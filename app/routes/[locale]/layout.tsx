@@ -1,35 +1,35 @@
-import type { Route } from ".react-router/types/app/routes/[locale]/+types/layout";
-import { useEffect } from "react";
-import { Outlet } from "react-router";
-import { BASE_URL } from "~/constants/api";
-import { type Role, useStore } from "~/stores/store";
+import type { Route } from '.react-router/types/app/routes/[locale]/+types/layout';
+import { useEffect } from 'react';
+import { Outlet } from 'react-router';
+import { BASE_URL } from '~/constants/api';
+import { type Role, useStore } from '~/stores/store';
 
 export async function loader({
-	request,
+  request,
 }: Route.LoaderArgs): Promise<Role | undefined> {
-	try {
-		const response = await fetch(`${BASE_URL}/v2/user/my-role`, {
-			headers: request.headers,
-		});
-		if (!response.ok) return undefined;
+  try {
+    const response = await fetch(`${BASE_URL}/v2/user/my-role`, {
+      headers: request.headers,
+    });
+    if (!response.ok) return undefined;
 
-		const { roles }: { roles: Role[] } = await response.json();
+    const { roles }: { roles: Role[] } = await response.json();
 
-		// 우선순위 체크
-		if (roles.includes("ROLE_STAFF")) return "ROLE_STAFF";
-		if (roles.includes("ROLE_RESERVATION")) return "ROLE_RESERVATION";
-		if (roles.includes("ROLE_COUNCIL")) return "ROLE_COUNCIL";
+    // 우선순위 체크
+    if (roles.includes('ROLE_STAFF')) return 'ROLE_STAFF';
+    if (roles.includes('ROLE_RESERVATION')) return 'ROLE_RESERVATION';
+    if (roles.includes('ROLE_COUNCIL')) return 'ROLE_COUNCIL';
 
-		return undefined;
-	} catch {
-		return undefined;
-	}
+    return undefined;
+  } catch {
+    return undefined;
+  }
 }
 
 export default function Layout({ loaderData }: Route.ComponentProps) {
-	useEffect(() => {
-		useStore.setState({ role: loaderData });
-	}, [loaderData]);
+  useEffect(() => {
+    useStore.setState({ role: loaderData });
+  }, [loaderData]);
 
-	return <Outlet />;
+  return <Outlet />;
 }

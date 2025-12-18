@@ -1,7 +1,15 @@
 {
-	"css": {
-		"parser": {
-			"tailwindDirectives": true
-		}
-	}
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
+  "formatter": {
+    "indentStyle": "space"
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single"
+    }
+  }
 }
