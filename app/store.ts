@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { BASE_URL } from '~/constants/api';
 import type { NavItem } from '~/constants/navigation';
 
 export type NavbarState =
@@ -11,10 +12,13 @@ export type Role = 'ROLE_STAFF' | 'ROLE_RESERVATION' | 'ROLE_COUNCIL';
 interface Store {
   role?: Role;
   navbarState: NavbarState;
-  // Actions
+  // Navbar actions
   expandNavbar: () => void;
   closeNavbar: () => void;
   hoverNavItem: (navItem: NavItem) => void;
+  // Session actions
+  login: () => void;
+  logout: () => Promise<void>;
 }
 
 export const useStore = create<Store>()((set) => ({
@@ -24,4 +28,14 @@ export const useStore = create<Store>()((set) => ({
   closeNavbar: () => set({ navbarState: { type: 'closed' } }),
   hoverNavItem: (navItem: NavItem) =>
     set({ navbarState: { type: 'hovered', navItem } }),
+  login: () => {
+    window.location.href = `${BASE_URL}/v1/login`;
+  },
+  logout: async () => {
+    await fetch(`${BASE_URL}/v1/logout`, {
+      method: 'GET',
+      credentials: 'include',
+    });
+    window.location.reload();
+  },
 }));

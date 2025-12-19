@@ -1,7 +1,7 @@
-import { Link, useLocation } from 'react-router';
+import { Link } from 'react-router';
 import { StraightNode } from '~/components/common/Nodes';
 import type { NavItem } from '~/constants/navigation';
-import { useTranslation } from '~/hooks/useTranslation';
+import { useLanguage } from '~/hooks/useLanguage';
 import navbarTranslations from './translations.json';
 
 interface LNBMenuItemProps {
@@ -19,17 +19,10 @@ export default function LNBMenuItem({
   onHover,
   onClick,
 }: LNBMenuItemProps) {
-  const location = useLocation();
-  const { t } = useTranslation(navbarTranslations);
+  const { localizedPath, t } = useLanguage(navbarTranslations);
 
-  // Determine locale from path
-  const isEnglish = location.pathname.startsWith('/en');
-  const hasPath = !!navItem.path;
-  const to = hasPath
-    ? isEnglish
-      ? `/en${navItem.path}`
-      : navItem.path
-    : undefined;
+  // Build localized path if navItem has a path
+  const to = navItem.path ? localizedPath(navItem.path) : undefined;
 
   // Translate and format label (inline NavLabel logic)
   const translated = t(navItem.key);
@@ -93,7 +86,7 @@ export default function LNBMenuItem({
     );
   }
 
-  if (hasPath && to) {
+  if (to) {
     return (
       <Link
         to={to}

@@ -1,4 +1,4 @@
-import type { Route } from '.react-router/types/app/routes/[locale]/+types/layout';
+import type { Route } from '.react-router/types/app/routes/+types/layout';
 import { useEffect } from 'react';
 import { Outlet } from 'react-router';
 import { BASE_URL } from '~/constants/api';

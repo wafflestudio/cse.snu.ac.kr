@@ -1,8 +1,8 @@
 import { type NavItem, navigationTree } from '~/constants/navigation';
-import { usePathWithoutLocale } from '~/hooks/usePathWithoutLocale';
+import { useLanguage } from '~/hooks/useLanguage';
 
 export function useActiveNavItem(): NavItem | null {
-  const pathWithoutLocale = usePathWithoutLocale();
+  const { pathWithoutLocale } = useLanguage();
 
   return findNavItemByPath(navigationTree, pathWithoutLocale);
 }

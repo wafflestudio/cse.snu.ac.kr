@@ -8,10 +8,12 @@ import {
   ScrollRestoration,
 } from 'react-router';
 import './app.css';
+import clsx from 'clsx';
+import Header from '~/components/layout/header/Header';
 import LNB from '~/components/layout/navbar/LNB';
-import { getLocaleFromPathname } from '~/utils/i18n';
+import { useLanguage } from '~/hooks/useLanguage';
 
-// Loader for handling redirects and setting language
+// Loader for handling redirects
 export async function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);
   const pathname = url.pathname;
@@ -33,14 +35,13 @@ export async function loader({ request }: Route.LoaderArgs) {
     }
   }
 
-  // Determine locale from pathname
-  const locale = getLocaleFromPathname(pathname);
-
-  return { locale };
+  return null;
 }
 
-export default function App({ loaderData }: Route.ComponentProps) {
-  const { locale } = loaderData;
+export default function App() {
+  const { locale, pathWithoutLocale } = useLanguage();
+  const isMain = pathWithoutLocale === '/';
+  const paddingLeft = isMain ? `sm:pl-[11rem]` : 'sm:pl-[6.25rem]';
 
   return (
     <html lang={locale} className="bg-neutral-900 font-normal text-neutral-950">
@@ -52,7 +53,10 @@ export default function App({ loaderData }: Route.ComponentProps) {
       </head>
       <body className="sm:min-w-[1200px]">
         <LNB />
-        <main className="flex min-h-full min-w-full flex-col sm:pl-25">
+        <main
+          className={clsx('flex min-h-full min-w-full flex-col', paddingLeft)}
+        >
+          <Header />
           <Outlet />
         </main>
         <ScrollRestoration />

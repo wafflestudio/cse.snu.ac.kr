@@ -1,7 +1,7 @@
-import { Link, useLocation } from 'react-router';
+import { Link } from 'react-router';
 import { navigationTree } from '~/constants/navigation';
 import { isAncestorNavItem, useActiveNavItem } from '~/hooks/useActiveNavItem';
-import { usePathWithoutLocale } from '~/hooks/usePathWithoutLocale';
+import { useLanguage } from '~/hooks/useLanguage';
 import { useStore } from '~/store';
 import DotEmpty from './assets/dot_empty.svg?react';
 import DotFill from './assets/dot_fill.svg?react';
@@ -14,9 +14,9 @@ export const NAVBAR_EXPANDED_WIDTH_REM = 11;
 export default function LNBSidebar() {
   const navbarState = useStore((s) => s.navbarState);
   const expandNavbar = useStore((s) => s.expandNavbar);
-  const path = usePathWithoutLocale();
+  const { pathWithoutLocale } = useLanguage();
 
-  const isMain = path === '/';
+  const isMain = pathWithoutLocale === '/';
 
   // Expand navbar if: hovered, explicitly expanded, or on main page
   const isExpanded = navbarState.type !== 'closed' || isMain;
@@ -35,13 +35,16 @@ export default function LNBSidebar() {
   );
 }
 
+const logoTranslations = {
+  '메인으로 이동': 'Go to home',
+};
+
 function Logo() {
-  const location = useLocation();
-  const isEnglish = location.pathname.startsWith('/en');
-  const homePath = isEnglish ? '/en' : '/';
+  const { localizedPath, t } = useLanguage(logoTranslations);
+  const homePath = localizedPath('/');
 
   return (
-    <Link to={homePath} aria-label="메인으로 이동">
+    <Link to={homePath} aria-label={t('메인으로 이동')}>
       <SnuLogo
         className="fill-white"
         width="56"
