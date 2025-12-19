@@ -27,6 +27,8 @@ const buttonVariants = cva(
           'h-9 rounded-[.0625rem] bg-main-orange px-[.875rem] py-[.3125rem] text-md font-semibold text-white disabled:opacity-30',
         headerLink:
           'h-auto rounded-none border-0 bg-transparent p-0 text-sm font-normal text-white shadow-none hover:bg-transparent hover:text-main-orange focus-visible:ring-0',
+        iconButton:
+          'h-auto rounded-none border-0 bg-transparent p-0 shadow-none hover:bg-transparent focus-visible:ring-0',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',

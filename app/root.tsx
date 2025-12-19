@@ -9,8 +9,9 @@ import {
 } from 'react-router';
 import './app.css';
 import clsx from 'clsx';
-import Header from '~/components/layout/header/Header';
-import LNB from '~/components/layout/navbar/LNB';
+import Header from '~/components/layout/Header';
+import LNB from '~/components/layout/LeftNav';
+import MobileNav from '~/components/layout/MobileNav';
 import { useLanguage } from '~/hooks/useLanguage';
 
 // Loader for handling redirects
@@ -44,15 +45,16 @@ export default function App() {
   const paddingLeft = isMain ? `sm:pl-[11rem]` : 'sm:pl-[6.25rem]';
 
   return (
-    <html lang={locale} className="bg-neutral-900 font-normal text-neutral-950">
+    <html lang={locale}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body className="sm:min-w-[1200px]">
+      <body className="sm:min-w-[1200px] bg-neutral-900 font-normal text-neutral-950">
         <LNB />
+        <MobileNav />
         <main
           className={clsx('flex min-h-full min-w-full flex-col', paddingLeft)}
         >

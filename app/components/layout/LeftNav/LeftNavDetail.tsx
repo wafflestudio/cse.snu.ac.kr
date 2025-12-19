@@ -1,7 +1,7 @@
 import type { NavItem } from '~/constants/navigation';
 import { useActiveNavItem } from '~/hooks/useActiveNavItem';
 import { useStore } from '~/store';
-import LNBMenuItem from './LNBMenuItem';
+import LNBMenuItem from './LeftNavMenuItem';
 
 export default function LNBDetail() {
   const navbarState = useStore((s) => s.navbarState);

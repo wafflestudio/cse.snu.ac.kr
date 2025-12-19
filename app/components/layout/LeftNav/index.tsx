@@ -1,6 +1,6 @@
 import { useStore } from '~/store';
-import LNBDetail from './LNBDetail';
-import LNBSidebar from './LNBSidebar';
+import LNBDetail from './LeftNavDetail';
+import LNBSidebar from './LeftNavSidebar';
 
 export default function LNB() {
   const closeNavbar = useStore((s) => s.closeNavbar);

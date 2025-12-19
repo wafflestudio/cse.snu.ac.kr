@@ -6,7 +6,7 @@ import { useStore } from '~/store';
 import DotEmpty from './assets/dot_empty.svg?react';
 import DotFill from './assets/dot_fill.svg?react';
 import SnuLogo from './assets/SNU_Logo.svg?react';
-import LNBMenuItem from './LNBMenuItem';
+import LNBMenuItem from './LeftNavMenuItem';
 
 export const NAVBAR_CLOSED_WIDTH_REM = 6.25;
 export const NAVBAR_EXPANDED_WIDTH_REM = 11;
