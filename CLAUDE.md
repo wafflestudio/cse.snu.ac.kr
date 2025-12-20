@@ -10,7 +10,6 @@
 
 Use react 19.
 Use react router v7.
-Prefer shadcn component. Install if required. pnpm dlx shadcn@latest add [component]
 
 Always use context7 when I need code generation, setup or configuration steps, or
 library/API documentation. This means you should automatically use the Context7 MCP

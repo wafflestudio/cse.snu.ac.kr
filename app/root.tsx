@@ -1,6 +1,5 @@
 import type { Route } from '.react-router/types/app/+types/root';
 import {
-  isRouteErrorResponse,
   Links,
   Meta,
   Outlet,

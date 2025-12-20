@@ -1,5 +1,4 @@
 import type { Route } from '.react-router/types/app/routes/+types/layout';
-import type { t } from 'node_modules/react-router/dist/development/index-react-server-client-CipGfVBI.mjs';
 import { useEffect } from 'react';
 import { isRouteErrorResponse, Outlet, useNavigate } from 'react-router';
 import Header from '~/components/layout/Header';

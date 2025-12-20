@@ -19,3 +19,12 @@ export const formatBytes = (bytes: number, decimals = 2) => {
 
   return `${parseFloat((bytes / k ** i).toFixed(dm))}${sizes[i]}`;
 };
+
+/**
+ * URL pathname에서 locale을 추출합니다.
+ * @param pathname - URL의 pathname (예: '/en/about/greetings' 또는 '/about/greetings')
+ * @returns 'en' 또는 'ko'
+ */
+export const getLocaleFromPathname = (pathname: string): 'en' | 'ko' => {
+  return pathname.startsWith('/en') ? 'en' : 'ko';
+};

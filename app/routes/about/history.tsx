@@ -5,11 +5,12 @@ import PageLayout from '~/components/layout/PageLayout';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useAboutSubNav } from '~/hooks/useSubNav';
 import type { AboutContent } from '~/types/api/v2';
+import { getLocaleFromPathname } from '~/utils/string';
 import historyImage from './assets/history.png';
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
-  const locale = url.pathname.startsWith('/en') ? 'en' : 'ko';
+  const locale = getLocaleFromPathname(url.pathname);
 
   const response = await fetch(
     `https://cse.snu.ac.kr/api/v2/about/history?language=${locale}`,
