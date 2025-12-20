@@ -6,4 +6,8 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   plugins: [tailwindcss(), reactRouter(), tsconfigPaths(), svgr()],
+  server: {
+    // 카맵 api가 3000번만 열려있는듯
+    port: 3000,
+  },
 });

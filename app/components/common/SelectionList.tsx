@@ -59,6 +59,7 @@ function SelectionItem({ name, isSelected, href }: SelectionItemProps) {
         >
           <Link
             to={href}
+            preventScrollReset
             className={`${itemCommonStyle} text-neutral-500 transition-all duration-300 hover:text-neutral-800`}
           >
             {name}
