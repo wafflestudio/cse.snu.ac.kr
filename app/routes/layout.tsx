@@ -1,7 +1,11 @@
 import type { Route } from '.react-router/types/app/routes/+types/layout';
+import type { t } from 'node_modules/react-router/dist/development/index-react-server-client-CipGfVBI.mjs';
 import { useEffect } from 'react';
-import { Outlet } from 'react-router';
+import { isRouteErrorResponse, Outlet, useNavigate } from 'react-router';
+import Header from '~/components/layout/Header';
+import { Button } from '~/components/ui/button';
 import { BASE_URL } from '~/constants/api';
+import { useLanguage } from '~/hooks/useLanguage';
 import { type Role, useStore } from '~/store';
 
 export async function loader({
@@ -32,4 +36,27 @@ export default function Layout({ loaderData }: Route.ComponentProps) {
   }, [loaderData]);
 
   return <Outlet />;
+}
+
+export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+  const { t } = useLanguage({ '메인으로 이동': 'Go to home' });
+  const navigate = useNavigate();
+
+  const message = isRouteErrorResponse(error)
+    ? `${error.status} ${error.statusText}`
+    : error instanceof Error
+      ? error.message
+      : 'Unknown error';
+
+  return (
+    <>
+      <Header />
+      <div className="grow p-15 flex flex-col items-start gap-4">
+        <p className="text-lg text-white">Error: {message}</p>
+        <Button variant="gray" onClick={() => navigate('/')}>
+          {t('메인으로 이동')}
+        </Button>
+      </div>
+    </>
+  );
 }
