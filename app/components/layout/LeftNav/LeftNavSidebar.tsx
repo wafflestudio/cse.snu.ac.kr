@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import { navigationTree } from '~/constants/navigation';
-import { isAncestorNavItem, useActiveNavItem } from '~/hooks/useActiveNavItem';
 import { useLanguage } from '~/hooks/useLanguage';
+import { isAncestorNavItem, useNavItem } from '~/hooks/useNavItem';
 import { useStore } from '~/store';
 import DotEmpty from './assets/dot_empty.svg?react';
 import DotFill from './assets/dot_fill.svg?react';
@@ -56,7 +56,7 @@ function Logo() {
 }
 
 function DotList() {
-  const activeItem = useActiveNavItem();
+  const { activeItem } = useNavItem();
 
   const isDotFilled = (item: (typeof navigationTree)[0]) => {
     if (!activeItem) return false;
@@ -93,7 +93,7 @@ function DotList() {
 
 function NavList() {
   const navbarState = useStore((s) => s.navbarState);
-  const activeItem = useActiveNavItem();
+  const { activeItem } = useNavItem();
   const hoverNavItem = useStore((s) => s.hoverNavItem);
 
   const shouldHighlight = (item: (typeof navigationTree)[0]) => {

@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import Header from '~/components/layout/Header';
 import navbarTranslations from '~/components/layout/LeftNav/translations.json';
 import type { NavItem } from '~/constants/navigation';
-import { useActiveNavItem } from '~/hooks/useActiveNavItem';
 import { useLanguage } from '~/hooks/useLanguage';
+import { useNavItem } from '~/hooks/useNavItem';
 import CategoryGrid from './common/CategoryGrid';
 
 export const tentenProjectNavItem: NavItem = {
@@ -31,7 +31,7 @@ export default function CategoryPage({
   description = '',
 }: MajorCategoryPageLayoutProps) {
   const { tUnsafe, pathWithoutLocale } = useLanguage(navbarTranslations);
-  const activeItem = useActiveNavItem();
+  const { activeItem } = useNavItem();
 
   // 10-10 프로젝트는 navigationTree에 없어서 activeItem이 null이므로 별도 트리로 폴백한다.
   const currentPage = pathWithoutLocale.startsWith('/10-10-project')

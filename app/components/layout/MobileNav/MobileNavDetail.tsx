@@ -1,13 +1,13 @@
 import { Link } from 'react-router';
 import type { NavItem } from '~/constants/navigation';
-import { useActiveNavItem } from '~/hooks/useActiveNavItem';
 import { useLanguage } from '~/hooks/useLanguage';
+import { useNavItem } from '~/hooks/useNavItem';
 import { useStore } from '~/store';
 import navbarTranslations from '../LeftNav/translations.json';
 
 export default function MobileNavDetail() {
   const navbarState = useStore((s) => s.navbarState);
-  const activeItem = useActiveNavItem();
+  const { activeItem } = useNavItem();
 
   if (navbarState.type !== 'hovered') return null;
 

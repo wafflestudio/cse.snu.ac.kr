@@ -1,10 +1,13 @@
 import { type NavItem, navigationTree } from '~/constants/navigation';
 import { useLanguage } from '~/hooks/useLanguage';
 
-export function useActiveNavItem(): NavItem | null {
+export function useNavItem() {
   const { pathWithoutLocale } = useLanguage();
 
-  return findNavItemByPath(navigationTree, pathWithoutLocale);
+  const activeItem = findNavItemByPath(navigationTree, pathWithoutLocale);
+  const topLevelItem = activeItem ? findTopLevelItem(activeItem) : null;
+
+  return { activeItem, topLevelItem };
 }
 
 function findNavItemByPath(
@@ -19,6 +22,16 @@ function findNavItemByPath(
       const found = findNavItemByPath(item.children, targetPath);
       if (found) return found;
     }
+  }
+
+  return null;
+}
+
+function findTopLevelItem(activeItem: NavItem): NavItem | null {
+  // navigationTree의 직접 자식 중에서 activeItem의 조상 찾기
+  for (const topLevel of navigationTree) {
+    if (topLevel.key === activeItem.key) return topLevel;
+    if (isAncestorNavItem(topLevel, activeItem)) return topLevel;
   }
 
   return null;

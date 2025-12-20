@@ -1,11 +1,11 @@
 import type { NavItem } from '~/constants/navigation';
-import { useActiveNavItem } from '~/hooks/useActiveNavItem';
+import { useNavItem } from '~/hooks/useNavItem';
 import { useStore } from '~/store';
 import LNBMenuItem from './LeftNavMenuItem';
 
 export default function LNBDetail() {
   const navbarState = useStore((s) => s.navbarState);
-  const activeItem = useActiveNavItem();
+  const { activeItem } = useNavItem();
 
   if (navbarState.type !== 'hovered') return null;
 
