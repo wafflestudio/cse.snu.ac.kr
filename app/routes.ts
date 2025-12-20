@@ -18,9 +18,20 @@ const routeFactory: (locale: Locale) => typeof _route =
 
 const getLocaleRoutes = (locale: Locale) => {
   const route = routeFactory(locale);
+
   return [
     route('/', 'routes/main/index.tsx'),
-    ...prefix('/about', [route('/overview', 'routes/about/overview.tsx')]),
+    ...prefix('/about', [
+      route('/', 'routes/about/index.tsx'),
+      route('/overview', 'routes/about/overview.tsx'),
+    ]),
+    ...prefix('/community', [route('/', 'routes/community/index.tsx')]),
+    ...prefix('/people', [route('/', 'routes/people/index.tsx')]),
+    ...prefix('/research', [route('/', 'routes/research/index.tsx')]),
+    ...prefix('/admissions', [route('/', 'routes/admissions/index.tsx')]),
+    ...prefix('/academics', [route('/', 'routes/academics/index.tsx')]),
+    ...prefix('/reservations', [route('/', 'routes/reservations/index.tsx')]),
+    route('/10-10-project', 'routes/10-10-project/index.tsx'),
   ];
 };
 
