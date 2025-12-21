@@ -1,5 +1,5 @@
 import type { NavItem } from '~/constants/navigation';
-import { useNavItem } from '~/hooks/useNavItem';
+import { isPathActive, useNavItem } from '~/hooks/useNavItem';
 import { useStore } from '~/store';
 import LNBMenuItem from './LeftNavMenuItem';
 
@@ -30,12 +30,14 @@ function NavTree({ item, activeItem, depth = 0 }: NavTreeProps) {
   const childItems = item.children || [];
   const closeNavbar = useStore((s) => s.closeNavbar);
 
+  const isHighlighted = isPathActive(activeItem?.path || '', item.path);
+
   return (
     <>
       {depth !== 0 && (
         <LNBMenuItem
           navItem={item}
-          highlight={activeItem?.path === item.path}
+          highlight={isHighlighted}
           variant="detail"
           onClick={closeNavbar}
         />
@@ -44,7 +46,6 @@ function NavTree({ item, activeItem, depth = 0 }: NavTreeProps) {
         <div className="mb-11 ml-5">
           {childItems.map((child, i) => (
             <NavTree
-              // biome-ignore lint/suspicious/noArrayIndexKey: static navigationTree array
               key={i}
               item={child}
               activeItem={activeItem}
