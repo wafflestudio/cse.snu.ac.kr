@@ -101,6 +101,7 @@ const getLocaleRoutes = (locale: Locale) => {
       ]),
       ...prefix('/graduate', [
         route('/guide', 'routes/academics/graduate/guide.tsx'),
+        route('/courses', 'routes/academics/graduate/courses.tsx'),
       ]),
     ]),
     ...prefix('/reservations', [route('/', 'routes/reservations/index.tsx')]),

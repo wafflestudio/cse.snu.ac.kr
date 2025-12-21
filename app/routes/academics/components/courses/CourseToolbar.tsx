@@ -1,3 +1,4 @@
+import { useSearchParams } from 'react-router';
 import { Tag } from '~/components/common/Tag';
 import { useLanguage } from '~/hooks/useLanguage';
 import type { SortOption, ViewOption } from '~/types/academics';
@@ -6,32 +7,43 @@ import translations from './translations.json';
 interface CourseToolbarProps {
   hideViewOption?: boolean;
   hideSortOption?: boolean;
-  viewOption: ViewOption;
-  sortOption: SortOption;
-  setViewOption: (option: ViewOption) => void;
-  setSortOption: (option: SortOption) => void;
 }
 
 export default function CourseToolbar({
   hideViewOption = false,
   hideSortOption = false,
-  viewOption,
-  sortOption,
-  setViewOption,
-  setSortOption,
 }: CourseToolbarProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const viewOption = getViewOption(searchParams);
+  const sortOption = getSortOption(searchParams);
+
+  const changeOption = (
+    type: 'view' | 'sort',
+    option: ViewOption | SortOption,
+  ) => {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (type === 'view') {
+        next.set('view', option as ViewOption);
+      } else {
+        next.set('sort', option as SortOption);
+      }
+      return next;
+    });
+  };
+
   return (
     <div className="mb-5 flex items-center justify-between sm:pl-5">
       {hideViewOption || (
         <ViewOptions
           selectedOption={viewOption}
-          changeOption={(option) => setViewOption(option)}
+          changeOption={(option) => changeOption('view', option)}
         />
       )}
       {hideSortOption || (
         <SortOptions
           selectedOption={sortOption}
-          changeOption={(option) => setSortOption(option)}
+          changeOption={(option) => changeOption('sort', option)}
         />
       )}
     </div>
@@ -77,6 +89,7 @@ interface SortOptionsProps {
 }
 
 export const SORT_OPTIONS: SortOption[] = ['학년', '교과목 구분', '학점'];
+const VIEW_OPTIONS: ViewOption[] = ['카드형', '목록형'];
 
 function SortOptions({ selectedOption, changeOption }: SortOptionsProps) {
   return (
@@ -94,3 +107,17 @@ function SortOptions({ selectedOption, changeOption }: SortOptionsProps) {
     </div>
   );
 }
+
+const getViewOption = (params: URLSearchParams): ViewOption => {
+  const view = params.get('view');
+  return VIEW_OPTIONS.includes(view as ViewOption)
+    ? (view as ViewOption)
+    : '목록형';
+};
+
+const getSortOption = (params: URLSearchParams): SortOption => {
+  const sort = params.get('sort');
+  return SORT_OPTIONS.includes(sort as SortOption)
+    ? (sort as SortOption)
+    : '학년';
+};
