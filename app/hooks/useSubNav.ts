@@ -128,3 +128,63 @@ export const useResearchSubNav = () => {
     ],
   };
 };
+
+export const useAcademicsSubNav = () => {
+  const { t } = useLanguage();
+
+  return {
+    title: t('학사 및 교과'),
+    titlePath: '/academics',
+    items: [
+      { name: t('학부'), depth: 1 },
+      {
+        name: t('학부 안내'),
+        path: '/academics/undergraduate/guide',
+        depth: 2,
+      },
+      {
+        name: t('교과과정'),
+        path: '/academics/undergraduate/courses',
+        depth: 2,
+      },
+      {
+        name: t('전공 이수 표준 형태'),
+        path: '/academics/undergraduate/curriculum',
+        depth: 2,
+      },
+      {
+        name: t('필수 교양 과목'),
+        path: '/academics/undergraduate/general-studies-requirements',
+        depth: 2,
+      },
+      {
+        name: t('졸업 규정'),
+        path: '/academics/undergraduate/degree-requirements',
+        depth: 2,
+      },
+      {
+        name: t('교과목 변경 내역'),
+        path: '/academics/undergraduate/course-changes',
+        depth: 2,
+      },
+      {
+        name: t('장학 제도'),
+        path: '/academics/undergraduate/scholarship',
+        depth: 2,
+      },
+      { name: t('대학원'), depth: 1 },
+      { name: t('대학원 안내'), path: '/academics/graduate/guide', depth: 2 },
+      { name: t('교과과정'), path: '/academics/graduate/courses', depth: 2 },
+      {
+        name: t('교과목 변경 내역'),
+        path: '/academics/graduate/course-changes',
+        depth: 2,
+      },
+      {
+        name: t('장학 제도'),
+        path: '/academics/graduate/scholarship',
+        depth: 2,
+      },
+    ],
+  };
+};
