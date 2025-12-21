@@ -6,7 +6,7 @@ import { useLanguage } from '~/hooks/useLanguage';
 import PeopleContactList from '~/routes/people/components/PeopleContactList';
 import PeopleInfoList from '~/routes/people/components/PeopleInfoList';
 import PeopleProfileImage from '~/routes/people/components/PeopleProfileImage';
-import type { EmeritusFaculty, WithLanguage } from '~/types/api/v2/professor';
+import type { EmeritusFaculty } from '~/types/api/v2/professor';
 import { getLocaleFromPathname } from '~/utils/string';
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
@@ -18,7 +18,10 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   const response = await fetch(`${BASE_URL}/v2/professor/${id}`);
   if (!response.ok) throw new Error('Failed to fetch emeritus faculty');
 
-  const data = (await response.json()) as WithLanguage<EmeritusFaculty>;
+  const data = (await response.json()) as {
+    ko: EmeritusFaculty;
+    en: EmeritusFaculty;
+  };
   return data[locale];
 }
 

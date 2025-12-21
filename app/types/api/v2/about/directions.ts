@@ -4,9 +4,4 @@ export interface Direction {
   description: string;
 }
 
-export type WithLanguage<T> = {
-  ko: T;
-  en: T;
-};
-
-export type DirectionsResponse = WithLanguage<Direction>[];
+export type DirectionsResponse = { ko: Direction; en: Direction }[];

@@ -43,6 +43,8 @@ const getLocaleRoutes = (locale: Locale) => {
       route('/faculty/:id', 'routes/people/faculty/$id.tsx'),
       route('/emeritus-faculty', 'routes/people/emeritus-faculty/index.tsx'),
       route('/emeritus-faculty/:id', 'routes/people/emeritus-faculty/$id.tsx'),
+      route('/staff', 'routes/people/staff/index.tsx'),
+      route('/staff/:id', 'routes/people/staff/$id.tsx'),
     ]),
     ...prefix('/research', [route('/', 'routes/research/index.tsx')]),
     ...prefix('/admissions', [

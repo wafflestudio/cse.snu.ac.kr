@@ -5,9 +5,4 @@ export interface Club {
   imageURL: string | null;
 }
 
-export type WithLanguage<T> = {
-  ko: T;
-  en: T;
-};
-
-export type StudentClubsResponse = WithLanguage<Club>[];
+export type StudentClubsResponse = { ko: Club; en: Club }[];

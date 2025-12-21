@@ -28,6 +28,7 @@ tools to resolve library id and get library docs without me having to explicitly
      - 예: `https://cse.snu.ac.kr/api/v2` → `app/types/api/v2/index.ts`
      - 예: `https://cse.snu.ac.kr/api/v2/notice` → `app/types/api/v2/notice/index.ts`
      - 예: `https://cse.snu.ac.kr/api/v2/about/facilities` → `app/types/api/v2/about/facilities.ts`
+     - **WithLanguage 타입을 별도로 정의하지 않음**: `ko/en` 구조는 각 타입/응답에서 직접 선언
    - **기타 공통 타입**: `app/types/`에 직접 배치
 4. **중요**: route 파일명과 같은 이름의 폴더 사용 금지
    - ❌ `app/routes/index.tsx` + `app/routes/index/` (충돌 발생)
@@ -36,6 +37,7 @@ tools to resolve library id and get library docs without me having to explicitly
 ### 데이터 페칭
 - React Router loader에서 직접 fetch 호출
 - 별도의 API wrapper 파일 생성하지 않음
+- `useLoaderData` 대신 `Route.ComponentProps`의 `loaderData`로 전달받아 사용
 - 예시:
 ```typescript
 export async function loader() {

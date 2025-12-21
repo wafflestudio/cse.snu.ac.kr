@@ -1,12 +1,12 @@
+import type { Route } from '.react-router/types/app/routes/people/faculty/+types/$id';
 import type { LoaderFunctionArgs } from 'react-router';
-import { useLoaderData } from 'react-router';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import PeopleInfoList from '~/routes/people/components/PeopleInfoList';
 import PeopleLabNode from '~/routes/people/components/PeopleLabNode';
 import PeopleProfileInfo from '~/routes/people/components/PeopleProfileInfo';
-import type { Faculty, WithLanguage } from '~/types/api/v2/professor';
+import type { Faculty } from '~/types/api/v2/professor';
 import { getLocaleFromPathname } from '~/utils/string';
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
@@ -19,12 +19,13 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   const response = await fetch(`${BASE_URL}/v2/professor/${id}`);
   if (!response.ok) throw new Error('Failed to fetch faculty');
 
-  const data = (await response.json()) as WithLanguage<Faculty>;
+  const data = (await response.json()) as { ko: Faculty; en: Faculty };
   return data[locale];
 }
 
-export default function FacultyDetailPage() {
-  const faculty = useLoaderData<typeof loader>();
+export default function FacultyDetailPage({
+  loaderData: faculty,
+}: Route.ComponentProps) {
   const { t } = useLanguage({
     학력: 'Education',
     '연구 분야': 'Research Areas',

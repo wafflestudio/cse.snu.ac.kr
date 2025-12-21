@@ -6,11 +6,6 @@ export const FACULTY_STATUS = {
 
 export type FacultyStatus = keyof typeof FACULTY_STATUS;
 
-export type WithLanguage<T> = {
-  ko: T;
-  en: T;
-};
-
 export interface SimpleFaculty {
   id: number;
   status: FacultyStatus;
@@ -56,18 +51,4 @@ export interface EmeritusFaculty extends SimpleEmeritusFaculty {
   careers: string[];
   office: string | null;
   educations: string[];
-}
-
-export interface SimpleStaff {
-  id: number;
-  name: string;
-  imageURL: string | null;
-  role: string;
-  office: string;
-  phone: string;
-  email: string;
-}
-
-export interface Staff extends SimpleStaff {
-  tasks: string[];
 }
