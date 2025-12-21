@@ -1,5 +1,6 @@
+import type { Route } from '.react-router/types/app/routes/community/news/+types/index';
 import type { LoaderFunctionArgs } from 'react-router';
-import { useLoaderData, useSearchParams } from 'react-router';
+import { useSearchParams } from 'react-router';
 import Pagination from '~/components/common/Pagination';
 import SearchBox from '~/components/common/SearchBox';
 import PageLayout from '~/components/layout/PageLayout';
@@ -47,8 +48,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return (await response.json()) as NewsPreviewList;
 }
 
-export default function NewsPage() {
-  const data = useLoaderData<typeof loader>();
+export default function NewsPage({ loaderData: data }: Route.ComponentProps) {
   const [searchParams] = useSearchParams();
   const { t } = useLanguage({ '새 소식': 'News', 커뮤니티: 'Community' });
   const subNav = useCommunitySubNav();

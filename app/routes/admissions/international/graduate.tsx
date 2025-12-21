@@ -1,4 +1,5 @@
-import { type LoaderFunctionArgs, useLoaderData } from 'react-router';
+import type { Route } from '.react-router/types/app/routes/admissions/international/+types/graduate';
+import type { LoaderFunctionArgs } from 'react-router';
 import { getLocaleFromPathname } from '~/utils/string';
 import AdmissionsPageContent from '../components/AdmissionsPageContent';
 import { fetchAdmissions } from '../components/fetchAdmissions';
@@ -11,8 +12,8 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return { description: data[locale].description };
 }
 
-export default function InternationalGraduateAdmissionPage() {
-  const { description } = useLoaderData<typeof loader>();
-
+export default function InternationalGraduateAdmissionPage({
+  loaderData: { description },
+}: Route.ComponentProps) {
   return <AdmissionsPageContent description={description} />;
 }

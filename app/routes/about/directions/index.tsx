@@ -1,4 +1,5 @@
-import { Link, useLoaderData, useSearchParams } from 'react-router';
+import type { Route } from '.react-router/types/app/routes/about/directions/+types/index';
+import { Link, useSearchParams } from 'react-router';
 import HTMLViewer from '~/components/common/HTMLViewer';
 import SelectionList from '~/components/common/SelectionList';
 import footerTranslations from '~/components/layout/Footer/translations.json';
@@ -17,8 +18,9 @@ export async function loader() {
   return (await response.json()) as DirectionsResponse;
 }
 
-export default function DirectionsPage() {
-  const directions = useLoaderData<typeof loader>();
+export default function DirectionsPage({
+  loaderData: directions,
+}: Route.ComponentProps) {
   const [searchParams] = useSearchParams();
   const { t, locale, localizedPath } = useLanguage({
     ...footerTranslations,

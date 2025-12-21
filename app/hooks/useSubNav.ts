@@ -78,10 +78,10 @@ export const useAdmissionsSubNav = () => {
 };
 
 export const useCommunitySubNav = () => {
-  const { t, tUnsafe } = useLanguage();
+  const { t } = useLanguage();
 
   return {
-    title: tUnsafe('커뮤니티'),
+    title: t('소식'),
     titlePath: '/community',
     items: [
       { name: t('공지사항'), path: '/community/notice', depth: 1 },

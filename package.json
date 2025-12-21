@@ -42,10 +42,5 @@
     "vite": "^7.1.7",
     "vite-plugin-svgr": "^4.5.0",
     "vite-tsconfig-paths": "^5.1.4"
-  },
-  "lint-staged": {
-    "*": [
-      "biome check --no-errors-on-unmatched --files-ignore-unknown=true --write"
-    ]
   }
 }

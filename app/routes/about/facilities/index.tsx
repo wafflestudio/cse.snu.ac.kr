@@ -1,5 +1,5 @@
+import type { Route } from '.react-router/types/app/routes/about/facilities/+types/index';
 import type { LoaderFunctionArgs } from 'react-router';
-import { useLoaderData } from 'react-router';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
@@ -18,8 +18,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return facilities.map((facility) => facility[locale]);
 }
 
-export default function FacilitiesPage() {
-  const facilities = useLoaderData<typeof loader>();
+export default function FacilitiesPage({
+  loaderData: facilities,
+}: Route.ComponentProps) {
   const { t } = useLanguage({ '시설 안내': 'Facilities' });
   const subNav = useAboutSubNav();
 

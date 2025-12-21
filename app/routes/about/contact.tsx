@@ -1,5 +1,5 @@
+import type { Route } from '.react-router/types/app/routes/about/+types/contact';
 import type { LoaderFunctionArgs } from 'react-router';
-import { useLoaderData } from 'react-router';
 import ContentSection from '~/components/common/ContentSection';
 import HTMLViewer from '~/components/common/HTMLViewer';
 import PageLayout from '~/components/layout/PageLayout';
@@ -24,8 +24,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return (await response.json()) as ContactResponse;
 }
 
-export default function ContactPage() {
-  const { description, imageURL } = useLoaderData<typeof loader>();
+export default function ContactPage({
+  loaderData: { description, imageURL },
+}: Route.ComponentProps) {
   const { t } = useLanguage({ 연락처: 'Contact' });
   const subNav = useAboutSubNav();
 
@@ -44,14 +45,12 @@ export default function ContactPage() {
         <HTMLViewer
           html={description}
           image={
-            imageURL
-              ? {
-                  src: imageURL,
-                  width: 240,
-                  height: 360,
-                  mobileFullWidth: true,
-                }
-              : undefined
+            imageURL && {
+              src: imageURL,
+              width: 240,
+              height: 360,
+              mobileFullWidth: true,
+            }
           }
         />
       </ContentSection>

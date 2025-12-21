@@ -2,6 +2,7 @@ import './assets/suneditor-contents.css';
 
 import { Autolinker } from 'autolinker';
 import useResponsive from '~/hooks/useResponsive';
+import { type Falsy, isNotFalsy } from '~/types/utils';
 
 interface TopRightImage {
   src: string;
@@ -12,7 +13,7 @@ interface TopRightImage {
 
 interface HTMLViewerProps {
   html: string;
-  image?: TopRightImage;
+  image?: TopRightImage | Falsy;
   variant?: 'default' | 'muted' | 'compact';
 }
 
@@ -37,8 +38,12 @@ export default function HTMLViewer({
     : linkedHTML;
 
   // image width 계산
-  const imageWidth =
-    image && isMobile && image.mobileFullWidth ? undefined : image?.width;
+  const hasImage = isNotFalsy(image);
+  const imageWidth = hasImage
+    ? isMobile && image.mobileFullWidth
+      ? undefined
+      : image?.width
+    : undefined;
 
   const contentTone =
     variant === 'muted'
@@ -49,7 +54,7 @@ export default function HTMLViewer({
 
   return (
     <div className="flow-root">
-      {image && (
+      {hasImage && (
         <div
           className="relative mb-7 w-full sm:float-right sm:ml-7 sm:w-auto"
           style={imageWidth ? { width: `${imageWidth}px` } : undefined}

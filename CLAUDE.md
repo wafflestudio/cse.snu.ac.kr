@@ -37,15 +37,51 @@ tools to resolve library id and get library docs without me having to explicitly
 ### 데이터 페칭
 - React Router loader에서 직접 fetch 호출
 - 별도의 API wrapper 파일 생성하지 않음
-- `useLoaderData` 대신 `Route.ComponentProps`의 `loaderData`로 전달받아 사용
-- 예시:
+- **중요**: `useLoaderData<typeof loader>()` 사용 금지
+- **반드시** `Route.ComponentProps`의 `loaderData` props로 데이터 전달받기
+- Route 타입은 `.react-router/types/`에서 자동 생성됨
+
+**패턴**:
 ```typescript
-export async function loader() {
+// 1. Route 타입 import (파일 경로에 맞게)
+import type { Route } from '.react-router/types/app/routes/[경로]/+types/[파일명]';
+import type { LoaderFunctionArgs } from 'react-router';
+
+// 2. loader 함수
+export async function loader({ request, params }: LoaderFunctionArgs) {
   const response = await fetch('https://cse.snu.ac.kr/api/v2');
   if (!response.ok) throw new Error('Failed to fetch');
   return (await response.json()) as MainResponse;
 }
+
+// 3. 컴포넌트에서 loaderData props로 받기
+export default function MyPage({ loaderData }: Route.ComponentProps) {
+  // loaderData 사용
+  return <div>{loaderData.title}</div>;
+}
+
+// destructuring도 가능
+export default function MyPage({
+  loaderData: { title, description }
+}: Route.ComponentProps) {
+  return <div>{title}</div>;
+}
+
+// rename도 가능
+export default function NewsDetailPage({
+  loaderData: news
+}: Route.ComponentProps) {
+  return <div>{news.title}</div>;
+}
 ```
+
+**Route 타입 경로 규칙**:
+- 일반 파일: `.react-router/types/app/routes/[경로]/+types/[파일명]`
+  - 예: `app/routes/about/contact.tsx` → `'.react-router/types/app/routes/about/+types/contact'`
+- index 파일: `.react-router/types/app/routes/[경로]/+types/index`
+  - 예: `app/routes/community/news/index.tsx` → `'.react-router/types/app/routes/community/news/+types/index'`
+- 동적 라우트: `.react-router/types/app/routes/[경로]/+types/$id`
+  - 예: `app/routes/community/news/$id.tsx` → `'.react-router/types/app/routes/community/news/+types/$id'`
 
 ### 번역 (i18n)
 - next-intl → useLanguage 훅 사용

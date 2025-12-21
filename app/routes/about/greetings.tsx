@@ -1,4 +1,5 @@
-import { type LoaderFunctionArgs, useLoaderData } from 'react-router';
+import type { Route } from '.react-router/types/app/routes/about/+types/greetings';
+import type { LoaderFunctionArgs } from 'react-router';
 import ContentSection from '~/components/common/ContentSection';
 import HTMLViewer from '~/components/common/HTMLViewer';
 import PageLayout from '~/components/layout/PageLayout';
@@ -19,7 +20,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return (await response.json()) as AboutContent;
 }
 
-export default function GreetingsPage() {
+export default function GreetingsPage({ loaderData }: Route.ComponentProps) {
   const { t } = useLanguage();
   const subNav = useAboutSubNav();
 
@@ -34,14 +35,12 @@ export default function GreetingsPage() {
       subNav={subNav}
       padding="none"
     >
-      <GreetingsContent />
+      <GreetingsContent data={loaderData} />
     </PageLayout>
   );
 }
 
-function GreetingsContent() {
-  const data = useLoaderData<typeof loader>();
-
+function GreetingsContent({ data }: { data: AboutContent }) {
   return (
     <ContentSection tone="white" padding="subNav">
       <div className="flex flex-col-reverse items-start gap-6 sm:flex-row sm:gap-10">

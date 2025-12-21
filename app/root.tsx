@@ -14,6 +14,8 @@ import LNB from '~/components/layout/LeftNav';
 import MobileNav from '~/components/layout/MobileNav';
 import { useLanguage } from '~/hooks/useLanguage';
 
+import 'dayjs/locale/ko';
+
 // Loader for handling redirects
 export async function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);

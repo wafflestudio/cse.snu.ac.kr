@@ -1,4 +1,5 @@
-import { type LoaderFunctionArgs, useLoaderData } from 'react-router';
+import type { Route } from '.react-router/types/app/routes/about/future-careers/+types/index';
+import type { LoaderFunctionArgs } from 'react-router';
 import ContentSection from '~/components/common/ContentSection';
 import HTMLViewer from '~/components/common/HTMLViewer';
 import PageLayout from '~/components/layout/PageLayout';
@@ -22,8 +23,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return (await response.json()) as FutureCareersResponse;
 }
 
-export default function FutureCareersPage() {
-  const data = useLoaderData<typeof loader>();
+export default function FutureCareersPage({
+  loaderData: data,
+}: Route.ComponentProps) {
   const { t } = useLanguage({
     '졸업생 진로': 'Career Paths',
   });

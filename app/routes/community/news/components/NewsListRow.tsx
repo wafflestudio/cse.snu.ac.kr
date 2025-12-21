@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
-import { Link } from 'react-router';
+import { Link, useSearchParams } from 'react-router';
 import { Tag } from '~/components/common/Tag';
 import { useLanguage } from '~/hooks/useLanguage';
 import type { NewsPreview } from '~/types/api/v2/news';
@@ -11,7 +11,13 @@ interface NewsListRowProps {
 
 export default function NewsListRow({ post }: NewsListRowProps) {
   const { locale, localizedPath, tUnsafe } = useLanguage();
-  const detailPath = localizedPath(`/community/news/${post.id}`);
+  const [searchParams] = useSearchParams();
+
+  const detailPathBase = localizedPath(`/community/news/${post.id}`);
+  const pageNum = searchParams.get('pageNum');
+  const detailPath = pageNum
+    ? `${detailPathBase}?pageNum=${pageNum}`
+    : detailPathBase;
 
   return (
     <article className="flex flex-col-reverse gap-4 border-b border-neutral-100 pb-5 sm:flex-row sm:gap-8">

@@ -1,4 +1,5 @@
-import { useLoaderData, useSearchParams } from 'react-router';
+import type { Route } from '.react-router/types/app/routes/about/student-clubs/+types/index';
+import { useSearchParams } from 'react-router';
 import SelectionList from '~/components/common/SelectionList';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
@@ -15,8 +16,9 @@ export async function loader() {
   return (await response.json()) as StudentClubsResponse;
 }
 
-export default function StudentClubsPage() {
-  const clubs = useLoaderData<typeof loader>();
+export default function StudentClubsPage({
+  loaderData: clubs,
+}: Route.ComponentProps) {
   const [searchParams] = useSearchParams();
   const { t, locale } = useLanguage({
     '학생 동아리': 'Student Clubs',
