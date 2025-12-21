@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Dropdown from '~/components/common/Dropdown';
 import { useLanguage } from '~/hooks/useLanguage';
-import type { YearStat } from '~/types/api/future-careers';
+import type { YearStat } from '~/types/api/v2/about/future-careers';
 
 const CAREER_STAT_ROWS = [
   '삼성',

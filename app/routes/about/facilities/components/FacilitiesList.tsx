@@ -1,5 +1,5 @@
 import HTMLViewer from '~/components/common/HTMLViewer';
-import type { Facility } from '~/types/api/facilities';
+import type { Facility } from '~/types/api/v2/about/facilities';
 import distanceIcon from '../assets/distance.svg';
 
 export default function FacilitiesList({

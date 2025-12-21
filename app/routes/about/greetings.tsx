@@ -4,7 +4,7 @@ import HTMLViewer from '~/components/common/HTMLViewer';
 import PageLayout from '~/components/layout/PageLayout';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useAboutSubNav } from '~/hooks/useSubNav';
-import type { AboutContent } from '~/types/api/v2';
+import type { AboutContent } from '~/types/api/v2/about/content';
 import { getLocaleFromPathname } from '~/utils/string';
 
 export async function loader({ request }: LoaderFunctionArgs) {

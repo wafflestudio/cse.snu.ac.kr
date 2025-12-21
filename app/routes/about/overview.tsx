@@ -5,7 +5,7 @@ import HTMLViewer from '~/components/common/HTMLViewer';
 import PageLayout from '~/components/layout/PageLayout';
 import { useLanguage } from '~/hooks/useLanguage';
 import commonTranslations from '~/translations.json';
-import type { AboutContent } from '~/types/api/v2';
+import type { AboutContent } from '~/types/api/v2/about/content';
 import { getLocaleFromPathname } from '~/utils/string';
 import brochure1 from './assets/brochure1.png';
 import brochure2 from './assets/brochure2.png';

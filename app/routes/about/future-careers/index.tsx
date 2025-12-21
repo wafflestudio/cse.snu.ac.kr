@@ -5,7 +5,7 @@ import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useAboutSubNav } from '~/hooks/useSubNav';
-import type { FutureCareersResponse } from '~/types/api/future-careers';
+import type { FutureCareersResponse } from '~/types/api/v2/about/future-careers';
 import { getLocaleFromPathname } from '~/utils/string';
 import CareerCompanies from './components/CareerCompanies';
 import CareerStat from './components/CareerStat';

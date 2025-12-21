@@ -1,6 +1,6 @@
 import HTMLViewer from '~/components/common/HTMLViewer';
 import SelectionTitle from '~/components/common/SelectionTitle';
-import type { Club, WithLanguage } from '~/types/api/student-clubs';
+import type { Club, WithLanguage } from '~/types/api/v2/about/student-clubs';
 
 interface ClubDetailsProps {
   club: WithLanguage<Club>;

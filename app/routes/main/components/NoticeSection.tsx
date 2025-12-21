@@ -71,7 +71,7 @@ export default function NoticeSection({
               className="flex text-base font-normal text-[#E65817]"
               to={localizedPath('/community/notice')}
             >
-              <Plus /> {t('더보기')}
+              <PlusIcon /> {t('더보기')}
             </Link>
           )}
         </div>

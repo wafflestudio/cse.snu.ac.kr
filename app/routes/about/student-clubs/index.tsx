@@ -4,7 +4,7 @@ import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useAboutSubNav } from '~/hooks/useSubNav';
-import type { StudentClubsResponse } from '~/types/api/student-clubs';
+import type { StudentClubsResponse } from '~/types/api/v2/about/student-clubs';
 import { findItemBySearchParam, replaceSpaceWithDash } from '~/utils/string';
 import ClubDetails from './components/ClubDetails';
 

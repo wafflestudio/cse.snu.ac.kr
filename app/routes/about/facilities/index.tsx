@@ -4,7 +4,7 @@ import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useAboutSubNav } from '~/hooks/useSubNav';
-import type { FacilitiesResponse } from '~/types/api/facilities';
+import type { FacilitiesResponse } from '~/types/api/v2/about/facilities';
 import { getLocaleFromPathname } from '~/utils/string';
 import FacilitiesList from './components/FacilitiesList';
 

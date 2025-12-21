@@ -24,8 +24,10 @@ tools to resolve library id and get library docs without me having to explicitly
 2. **에셋 위치**: `app/routes/[route]/assets/` (`public/`이 아닌)
 3. **타입 정의**:
    - **API 타입**: `app/types/api/` 하위에 API pathname과 동일한 폴더 구조로 관리
-     - 예: `https://cse.snu.ac.kr/api/v2` → `app/types/api/v2.ts`
-     - 예: `https://cse.snu.ac.kr/api/news/123` → `app/types/api/news.ts`
+     - **컨벤션**: 경로의 각 세그먼트가 폴더가 되고, 최종 리소스는 `index.ts` 또는 `.ts` 파일로 둔다
+     - 예: `https://cse.snu.ac.kr/api/v2` → `app/types/api/v2/index.ts`
+     - 예: `https://cse.snu.ac.kr/api/v2/notice` → `app/types/api/v2/notice/index.ts`
+     - 예: `https://cse.snu.ac.kr/api/v2/about/facilities` → `app/types/api/v2/about/facilities.ts`
    - **기타 공통 타입**: `app/types/`에 직접 배치
 4. **중요**: route 파일명과 같은 이름의 폴더 사용 금지
    - ❌ `app/routes/index.tsx` + `app/routes/index/` (충돌 발생)

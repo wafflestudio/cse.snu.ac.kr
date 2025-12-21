@@ -1,5 +1,5 @@
 import { useLanguage } from '~/hooks/useLanguage';
-import type { Company } from '~/types/api/future-careers';
+import type { Company } from '~/types/api/v2/about/future-careers';
 
 const TABLE_COLUMN_SIZE = [
   'sm:w-[3rem]',
