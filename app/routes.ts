@@ -21,6 +21,7 @@ const getLocaleRoutes = (locale: Locale) => {
 
   return [
     route('/', 'routes/main/index.tsx'),
+    route('/search', 'routes/search/index.tsx'),
     route('/.internal', 'routes/internal.tsx'),
     ...prefix('/about', [
       route('/', 'routes/about/index.tsx'),

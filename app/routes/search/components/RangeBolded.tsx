@@ -1,0 +1,19 @@
+export default function RangeBolded({
+  partialDescription,
+  boldStartIndex,
+  boldEndIndex,
+}: {
+  partialDescription: string;
+  boldStartIndex: number;
+  boldEndIndex: number;
+}) {
+  return (
+    <p className="line-clamp-2 text-md font-normal leading-normal text-neutral-700 sm:line-clamp-1">
+      {partialDescription.slice(0, boldStartIndex)}
+      <span className="font-semibold text-neutral-950">
+        {partialDescription.slice(boldStartIndex, boldEndIndex)}
+      </span>
+      {partialDescription.slice(boldEndIndex)}
+    </p>
+  );
+}

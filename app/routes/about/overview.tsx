@@ -18,7 +18,8 @@ export async function loader({ request }: Route.LoaderArgs) {
   const response = await fetch(
     `${BASE_URL}/v2/about/overview?language=${locale}`,
   );
-  if (!response.ok) throw new Error('Failed to fetch overview data');
+  if (!response.ok)
+    throw new Error('Failed to fetch overview data', { cause: response });
 
   return (await response.json()) as AboutContent;
 }

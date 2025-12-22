@@ -11,9 +11,9 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'https://cse.snu.ac.kr',
+        target: 'http://168.107.16.249.nip.io',
         changeOrigin: true,
-        secure: true,
+        secure: false,
       },
     },
   },
