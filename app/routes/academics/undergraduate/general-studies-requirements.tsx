@@ -1,5 +1,6 @@
 import type { Route } from '.react-router/types/app/routes/academics/undergraduate/+types/general-studies-requirements';
 import PageLayout from '~/components/layout/PageLayout';
+import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useAcademicsSubNav } from '~/hooks/useSubNav';
 import TimelineViewer from '~/routes/academics/components/timeline/TimelineViewer';
@@ -10,7 +11,7 @@ const OVERVIEW =
 
 export async function loader() {
   const response = await fetch(
-    'https://cse.snu.ac.kr/api/v2/academics/undergraduate/general-studies-requirements',
+    `${BASE_URL}/v2/academics/undergraduate/general-studies-requirements`,
   );
   if (!response.ok) {
     throw new Error('Failed to fetch general studies requirements data');

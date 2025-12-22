@@ -5,7 +5,7 @@ const MOBILE_BREAKPOINT = 640; // sm breakpoint
 /**
  * 모바일 여부를 반환 (640px 미만)
  */
-export default function useResponsive() {
+export default function useIsMobile() {
   const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import './assets/suneditor-contents.css';
 
 import { Autolinker } from 'autolinker';
-import useResponsive from '~/hooks/useResponsive';
+import useIsMobile from '~/hooks/useResponsive';
 import { type Falsy, isNotFalsy } from '~/types/utils';
 
 interface TopRightImage {
@@ -22,7 +22,7 @@ export default function HTMLViewer({
   image,
   variant = 'default',
 }: HTMLViewerProps) {
-  const isMobile = useResponsive();
+  const isMobile = useIsMobile();
 
   // 400.XXX같은 값들이 링크 처리되는걸 막기 위해 tldMatches false처리
   const linkedHTML = Autolinker.link(html, {

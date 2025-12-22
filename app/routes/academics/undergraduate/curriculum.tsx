@@ -1,5 +1,6 @@
 import type { Route } from '.react-router/types/app/routes/academics/undergraduate/+types/curriculum';
 import PageLayout from '~/components/layout/PageLayout';
+import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useAcademicsSubNav } from '~/hooks/useSubNav';
 import TimelineViewer from '~/routes/academics/components/timeline/TimelineViewer';
@@ -7,7 +8,7 @@ import type { TimelineContent } from '~/types/api/v2/academics';
 
 export async function loader() {
   const response = await fetch(
-    'https://cse.snu.ac.kr/api/v2/academics/undergraduate/curriculum',
+    `${BASE_URL}/v2/academics/undergraduate/curriculum`,
   );
   if (!response.ok) {
     throw new Error('Failed to fetch curriculum data');

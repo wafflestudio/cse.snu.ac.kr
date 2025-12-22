@@ -137,7 +137,15 @@ const getLocaleRoutes = (locale: Locale) => {
         ),
       ]),
     ]),
-    ...prefix('/reservations', [route('/', 'routes/reservations/index.tsx')]),
+    ...prefix('/reservations', [
+      route('/', 'routes/reservations/index.tsx'),
+      route('/introduction', 'routes/reservations/introduction.tsx'),
+      route('/privacy-policy', 'routes/reservations/privacy-policy.tsx'),
+      route(
+        '/:roomType/:roomName',
+        'routes/reservations/$roomType/$roomName.tsx',
+      ),
+    ]),
     route('/10-10-project', 'routes/10-10-project/index.tsx'),
     route('*', 'routes/404.tsx'),
   ];

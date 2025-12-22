@@ -3,6 +3,7 @@ import type { LoaderFunctionArgs } from 'react-router';
 import ContentSection from '~/components/common/ContentSection';
 import HTMLViewer from '~/components/common/HTMLViewer';
 import PageLayout from '~/components/layout/PageLayout';
+import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useAboutSubNav } from '~/hooks/useSubNav';
 import type { AboutContent } from '~/types/api/v2/about/content';
@@ -14,7 +15,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const locale = getLocaleFromPathname(url.pathname);
 
   const response = await fetch(
-    `https://cse.snu.ac.kr/api/v2/about/history?language=${locale}`,
+    `${BASE_URL}/v2/about/history?language=${locale}`,
   );
   if (!response.ok) throw new Error('Failed to fetch history');
 

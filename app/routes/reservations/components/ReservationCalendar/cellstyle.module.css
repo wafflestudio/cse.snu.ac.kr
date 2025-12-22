@@ -1,0 +1,8 @@
+.cell {
+  border-bottom: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+}
+
+.cell:nth-child(odd) {
+  border-bottom-style: dashed;
+}

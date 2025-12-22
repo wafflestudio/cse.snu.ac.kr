@@ -129,6 +129,105 @@ export const useResearchSubNav = () => {
   };
 };
 
+export const useReservationsSubNav = () => {
+  const { tUnsafe } = useLanguage();
+
+  return {
+    title: tUnsafe('시설 예약'),
+    titlePath: '/reservations',
+    items: [
+      {
+        name: tUnsafe('시설 예약 안내'),
+        path: '/reservations/introduction',
+        depth: 1,
+      },
+      { name: tUnsafe('세미나실 예약'), depth: 1 },
+      {
+        name: tUnsafe('301-417 (20석)'),
+        path: '/reservations/seminar-room/301-417',
+        depth: 2,
+      },
+      {
+        name: tUnsafe('301-MALDIVES (301-521, 11석)'),
+        path: '/reservations/seminar-room/301-521',
+        depth: 2,
+      },
+      {
+        name: tUnsafe('301-HAWAII (301-551-4, 20석)'),
+        path: '/reservations/seminar-room/301-551-4',
+        depth: 2,
+      },
+      {
+        name: tUnsafe('301-BAEKDU (301-552-1, 4석)'),
+        path: '/reservations/seminar-room/301-552-1',
+        depth: 2,
+      },
+      {
+        name: tUnsafe('301-ALPS (301-552-2, 5석)'),
+        path: '/reservations/seminar-room/301-552-2',
+        depth: 2,
+      },
+      {
+        name: tUnsafe('301-SANTORINI (301-552-3, 4석)'),
+        path: '/reservations/seminar-room/301-552-3',
+        depth: 2,
+      },
+      {
+        name: tUnsafe('301-JEJU (301-553-6, 6석)'),
+        path: '/reservations/seminar-room/301-553-6',
+        depth: 2,
+      },
+      {
+        name: tUnsafe('301-교수회의실 (301-317, 20석)'),
+        path: '/reservations/seminar-room/301-317',
+        depth: 2,
+      },
+      {
+        name: tUnsafe('302-308 (46석)'),
+        path: '/reservations/seminar-room/302-308',
+        depth: 2,
+      },
+      {
+        name: tUnsafe('302-309-1 (48석)'),
+        path: '/reservations/seminar-room/302-309-1',
+        depth: 2,
+      },
+      {
+        name: tUnsafe('302-309-2 (8석)'),
+        path: '/reservations/seminar-room/302-309-2',
+        depth: 2,
+      },
+      {
+        name: tUnsafe('302-309-3 (8석)'),
+        path: '/reservations/seminar-room/302-309-3',
+        depth: 2,
+      },
+      { name: tUnsafe('실습실 예약'), depth: 1 },
+      {
+        name: tUnsafe('소프트웨어 실습실 (302-311-1, 102석)'),
+        path: '/reservations/lab/302-311-1',
+        depth: 2,
+      },
+      {
+        name: tUnsafe('하드웨어 실습실 (302-310-2, 30석)'),
+        path: '/reservations/lab/302-310-2',
+        depth: 2,
+      },
+      { name: tUnsafe('공과대학 강의실 예약'), depth: 1 },
+      {
+        name: tUnsafe('302-208 (116석)'),
+        path: '/reservations/lecture-room/302-208',
+        depth: 2,
+      },
+      {
+        name: tUnsafe('302-209 (90석)'),
+        path: '/reservations/lecture-room/302-209',
+        depth: 2,
+      },
+    ],
+  };
+};
+
 export const useAcademicsSubNav = () => {
   const { t } = useLanguage();
 

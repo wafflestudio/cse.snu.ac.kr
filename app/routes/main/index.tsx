@@ -1,5 +1,6 @@
 import type { Route } from '.react-router/types/app/routes/main/+types';
 import Header from '~/components/layout/Header';
+import { BASE_URL } from '~/constants/api';
 import type { MainResponse } from '~/types/api/v2';
 import backgroundImg from './assets/background.png';
 import GraphicSection from './components/GraphicSection';
@@ -9,7 +10,7 @@ import NoticeSection from './components/NoticeSection';
 import NewsSection from './components/news/NewsSection';
 
 export async function loader() {
-  const response = await fetch('https://cse.snu.ac.kr/api/v2');
+  const response = await fetch(`${BASE_URL}/v2`);
   if (!response.ok) throw new Error('Failed to fetch main data');
   return (await response.json()) as MainResponse;
 }

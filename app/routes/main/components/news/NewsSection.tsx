@@ -2,13 +2,13 @@
 
 import SectionHeader from '~/components/common/SectionHeader';
 import { useLanguage } from '~/hooks/useLanguage';
-import useResponsive from '~/hooks/useResponsive';
+import useIsMobile from '~/hooks/useResponsive';
 import type { MainNews } from '~/types/api/v2';
 import NewsCarousel from './NewsCarousel';
 import NewsCarouselMobile from './NewsCarouselMobile';
 
 export default function NewsSection({ mainNews }: { mainNews: MainNews[] }) {
-  const isMobile = useResponsive();
+  const isMobile = useIsMobile();
   const { t, localizedPath } = useLanguage();
 
   return (

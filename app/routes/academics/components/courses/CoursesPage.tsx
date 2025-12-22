@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router';
 import PageLayout from '~/components/layout/PageLayout';
 import { useLanguage } from '~/hooks/useLanguage';
-import useResponsive from '~/hooks/useResponsive';
+import useIsMobile from '~/hooks/useResponsive';
 import { useAcademicsSubNav } from '~/hooks/useSubNav';
 import CourseCardGrid from '~/routes/academics/components/courses/CourseCardGrid';
 import CourseDetailModal from '~/routes/academics/components/courses/CourseDetailModal';
@@ -45,7 +45,7 @@ export default function CoursesPage({
     },
   ];
 
-  const isMobile = useResponsive();
+  const isMobile = useIsMobile();
   const [searchParams] = useSearchParams();
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
 

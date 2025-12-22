@@ -9,5 +9,11 @@ export default defineConfig({
   server: {
     // 카맵 api가 3000번만 열려있는듯
     port: 3000,
+    proxy: {
+      '/api': {
+        target: 'https://168.107.16.249.nip.io',
+        changeOrigin: true,
+      },
+    },
   },
 });

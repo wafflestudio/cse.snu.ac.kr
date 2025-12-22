@@ -3,13 +3,14 @@ import Attachments from '~/components/common/Attachments';
 import HTMLViewer from '~/components/common/HTMLViewer';
 import Node from '~/components/common/Nodes';
 import PageLayout from '~/components/layout/PageLayout';
+import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useAcademicsSubNav } from '~/hooks/useSubNav';
 import type { DegreeRequirements } from '~/types/api/v2/academics/undergraduate/degree-requirements';
 
 export async function loader() {
   const response = await fetch(
-    'https://cse.snu.ac.kr/api/v2/academics/undergraduate/degree-requirements',
+    `${BASE_URL}/v2/academics/undergraduate/degree-requirements`,
   );
   if (!response.ok) {
     throw new Error('Failed to fetch degree requirements data');

@@ -3,6 +3,7 @@ import Attachments from '~/components/common/Attachments';
 import ContentSection from '~/components/common/ContentSection';
 import HTMLViewer from '~/components/common/HTMLViewer';
 import PageLayout from '~/components/layout/PageLayout';
+import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import commonTranslations from '~/translations.json';
 import type { AboutContent } from '~/types/api/v2/about/content';
@@ -15,7 +16,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   const locale = getLocaleFromPathname(url.pathname);
 
   const response = await fetch(
-    `https://cse.snu.ac.kr/api/v2/about/overview?language=${locale}`,
+    `${BASE_URL}/v2/about/overview?language=${locale}`,
   );
   if (!response.ok) throw new Error('Failed to fetch overview data');
 

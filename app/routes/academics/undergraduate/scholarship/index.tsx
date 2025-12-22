@@ -1,6 +1,7 @@
 import type { Route } from '.react-router/types/app/routes/academics/undergraduate/scholarship/+types/index';
 import HTMLViewer from '~/components/common/HTMLViewer';
 import PageLayout from '~/components/layout/PageLayout';
+import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useAcademicsSubNav } from '~/hooks/useSubNav';
 import ScholarshipList from '~/routes/academics/components/ScholarshipList';
@@ -8,7 +9,7 @@ import type { ScholarshipList as ScholarshipListType } from '~/types/api/v2/acad
 
 export async function loader() {
   const response = await fetch(
-    'https://cse.snu.ac.kr/api/v2/academics/undergraduate/scholarship',
+    `${BASE_URL}/v2/academics/undergraduate/scholarship`,
   );
   if (!response.ok) {
     throw new Error('Failed to fetch undergraduate scholarship data');

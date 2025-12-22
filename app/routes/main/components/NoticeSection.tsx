@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 import Button from '~/components/common/Button';
 import { useLanguage } from '~/hooks/useLanguage';
-import useResponsive from '~/hooks/useResponsive';
+import useIsMobile from '~/hooks/useResponsive';
 import type { AllMainNotice } from '~/types/api/v2';
 import noticeGraphicImg from '../assets/noticeGraphic.png';
 import PlusIcon from '../assets/plus.svg?react';
@@ -18,7 +18,7 @@ export default function NoticeSection({
   allMainNotice: AllMainNotice;
 }) {
   const [tag, setTag] = useState<keyof AllMainNotice>('all');
-  const isMobile = useResponsive();
+  const isMobile = useIsMobile();
   const { t, localizedPath, locale } = useLanguage();
 
   return (
