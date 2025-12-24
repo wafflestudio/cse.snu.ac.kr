@@ -1,12 +1,12 @@
 import type { Route } from '.react-router/types/app/routes/research/centers/+types/index';
 import type { LoaderFunctionArgs } from 'react-router';
-import { useSearchParams } from 'react-router';
 import HTMLViewer from '~/components/common/HTMLViewer';
 import Node from '~/components/common/Nodes';
 import SelectionList from '~/components/common/SelectionList';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
+import { useSelectionList } from '~/hooks/useSelectionList';
 import { useResearchSubNav } from '~/hooks/useSubNav';
 import type { ResearchCentersResponse } from '~/types/api/v2/research/centers';
 import { getLocaleFromPathname } from '~/utils/string';
@@ -34,17 +34,11 @@ export default function ResearchCentersPage({
     '연구 센터는 존재하지 않습니다.': 'Research center does not exist.',
   });
   const subNav = useResearchSubNav();
-  const [searchParams] = useSearchParams();
-  const selectedParam = searchParams.get('selected') ?? undefined;
-  const selectedCenter =
-    centers.find((center) => String(center.id) === selectedParam) ?? centers[0];
 
-  const selectionItems = centers.map((center) => ({
-    id: String(center.id),
-    label: center.name,
-    href: `/research/centers?selected=${center.id}`,
-    selected: center.id === selectedCenter?.id,
-  }));
+  const { selectedItem: selectedCenter, selectionItems } = useSelectionList({
+    items: centers,
+    getItem: (center) => ({ id: center.id, label: center.name }),
+  });
 
   return (
     <PageLayout

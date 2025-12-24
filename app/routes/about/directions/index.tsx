@@ -1,5 +1,5 @@
 import type { Route } from '.react-router/types/app/routes/about/directions/+types/index';
-import { Link, useSearchParams } from 'react-router';
+import { Link } from 'react-router';
 import Button from '~/components/common/Button';
 import HTMLViewer from '~/components/common/HTMLViewer';
 import LoginVisible from '~/components/common/LoginVisible';
@@ -8,9 +8,10 @@ import footerTranslations from '~/components/layout/Footer/translations.json';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
+import { useSelectionList } from '~/hooks/useSelectionList';
 import { useAboutSubNav } from '~/hooks/useSubNav';
 import type { DirectionsResponse } from '~/types/api/v2/about/directions';
-import { encodeParam, findItemBySearchParam } from '~/utils/string';
+import { encodeParam } from '~/utils/string';
 import KakaoMap from './components/KakaoMap';
 
 export async function loader() {
@@ -23,7 +24,6 @@ export async function loader() {
 export default function DirectionsPage({
   loaderData: directions,
 }: Route.ComponentProps) {
-  const [searchParams] = useSearchParams();
   const { t, locale, localizedPath } = useLanguage({
     ...footerTranslations,
     '찾아오는 길': 'Directions',
@@ -33,23 +33,13 @@ export default function DirectionsPage({
       'The Department of Computer Science and Engineering is located in Building 301 (Engineering Building 1) on the Gwanak campus of Seoul National University.',
   });
   const subNav = useAboutSubNav();
-  const selectedParam = searchParams.get('selected') ?? undefined;
 
-  const selectedDirection = findItemBySearchParam(
-    directions,
-    (item) => [item.ko.name, item.en.name],
-    selectedParam,
-  );
-
-  const selectionItems = directions.map((direction) => {
-    const label = direction[locale]?.name ?? direction.ko.name;
-    const query = encodeParam(direction.en.name || direction.ko.name);
-    return {
-      id: direction.ko.name,
-      label,
-      href: `/about/directions?selected=${query}`,
-      selected: direction.ko.name === selectedDirection?.ko.name,
-    };
+  const { selectedItem: selectedDirection, selectionItems } = useSelectionList({
+    items: directions,
+    getItem: (direction) => ({
+      id: direction.en.name || direction.ko.name,
+      label: direction[locale]?.name ?? direction.ko.name,
+    }),
   });
 
   return (

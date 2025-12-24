@@ -29,29 +29,6 @@ export const getLocaleFromPathname = (pathname: string): 'en' | 'ko' => {
   return pathname.startsWith('/en') ? 'en' : 'ko';
 };
 
+// TODO: 필요한가??
 export const encodeParam = (words: string) => words.replace(/\s+/g, '-');
 export const decodeParam = (words: string) => words.replace(/-/g, ' ');
-
-/**
- * 검색 파라미터를 사용하여 배열에서 항목을 찾습니다.
- * @param items - 검색할 항목 배열
- * @param getItemIds - 각 항목의 ID들을 반환하는 함수
- * @param searchParam - 검색 파라미터 (선택적)
- * @returns 찾은 항목 또는 첫 번째 항목 (없으면 undefined)
- */
-export const findItemBySearchParam = <T>(
-  items: T[],
-  getItemIds: (item: T) => string[],
-  searchParam?: string | null,
-): T | undefined => {
-  const defaultItem = items[0];
-  if (!searchParam) return defaultItem;
-
-  const id = decodeParam(searchParam);
-  const item = items.find((item) =>
-    getItemIds(item)
-      .map((id) => decodeParam(id))
-      .includes(id),
-  );
-  return item ?? defaultItem;
-};

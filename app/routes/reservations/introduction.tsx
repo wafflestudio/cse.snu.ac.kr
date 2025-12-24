@@ -1,15 +1,12 @@
-import { useSearchParams } from 'react-router';
 import HTMLViewer from '~/components/common/HTMLViewer';
 import SelectionList from '~/components/common/SelectionList';
 import SelectionTitle from '~/components/common/SelectionTitle';
 import PageLayout from '~/components/layout/PageLayout';
 import { useLanguage } from '~/hooks/useLanguage';
+import { useSelectionList } from '~/hooks/useSelectionList';
 import { useReservationsSubNav } from '~/hooks/useSubNav';
-import { decodeParam, encodeParam } from '~/utils/string';
 
 const NAMES = ['세미나실 예약', '실습실 예약', '공과대학 강의실 예약'] as const;
-
-type ReservationIntroName = (typeof NAMES)[number];
 
 const HTML_CONTENTS = {
   '세미나실 예약':
@@ -21,22 +18,15 @@ const HTML_CONTENTS = {
 } as const;
 
 export default function ReservationsIntroductionPage() {
-  const [searchParams] = useSearchParams();
-  const { t, localizedPath } = useLanguage();
+  const { t } = useLanguage();
   const subNav = useReservationsSubNav();
 
-  const selectedParam = searchParams.get('selected');
-  const raw = selectedParam ? decodeParam(selectedParam) : NAMES[0];
-  const selectedName = NAMES.some((x) => x === raw)
-    ? (raw as ReservationIntroName)
-    : NAMES[0];
-
-  const items = NAMES.map((item) => {
-    const href = localizedPath(
-      `/reservations/introduction?selected=${encodeParam(item)}`,
-    );
-    return { id: item, label: item, href, selected: item === selectedName };
+  const { selectedItem, selectionItems: items } = useSelectionList({
+    items: Array.from(NAMES),
+    getItem: (item) => ({ id: item, label: item }),
   });
+
+  const selectedName = selectedItem ?? NAMES[0];
 
   return (
     <PageLayout

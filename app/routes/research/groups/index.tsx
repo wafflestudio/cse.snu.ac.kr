@@ -1,17 +1,14 @@
 import type { Route } from '.react-router/types/app/routes/research/groups/+types/index';
-import { Link, type LoaderFunctionArgs, useSearchParams } from 'react-router';
+import { Link, type LoaderFunctionArgs } from 'react-router';
 import HTMLViewer from '~/components/common/HTMLViewer';
 import SelectionList from '~/components/common/SelectionList';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
+import { useSelectionList } from '~/hooks/useSelectionList';
 import { useResearchSubNav } from '~/hooks/useSubNav';
 import type { ResearchGroupsResponse } from '~/types/api/v2/research/groups';
-import {
-  encodeParam,
-  findItemBySearchParam,
-  getLocaleFromPathname,
-} from '~/utils/string';
+import { getLocaleFromPathname } from '~/utils/string';
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
@@ -37,21 +34,11 @@ export default function ResearchGroupsPage({
     연구실: 'Labs',
   });
   const subNav = useResearchSubNav();
-  const [searchParams] = useSearchParams();
 
-  const item =
-    findItemBySearchParam(
-      groups,
-      (group) => [group.name],
-      searchParams.get('selected') ?? undefined,
-    ) ?? groups[0];
-
-  const items = groups.map((group) => ({
-    id: String(group.id),
-    label: group.name,
-    href: `/research/groups?selected=${encodeParam(group.name)}`,
-    selected: group.id === item?.id,
-  }));
+  const { selectedItem: item, selectionItems: items } = useSelectionList({
+    items: groups,
+    getItem: (group) => ({ id: group.name, label: group.name }),
+  });
 
   const labsPath = localizedPath('/research/labs');
 
