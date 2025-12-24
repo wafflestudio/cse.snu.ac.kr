@@ -1,5 +1,3 @@
-import type { Attachment } from '~/types/api/v2/attachment';
-
 export interface NewsPreview {
   id: number;
   title: string;
@@ -25,7 +23,6 @@ export interface News {
   imageURL: string | null;
   isSlide: boolean;
   isImportant: boolean;
-
   id: number;
   createdAt: string;
   modifiedAt: string;
@@ -33,7 +30,11 @@ export interface News {
   prevTitle: string | null;
   nextId: number | null;
   nextTitle: string | null;
-  attachments: Attachment[];
-
+  attachments: {
+    id: number;
+    name: string;
+    url: string;
+    bytes: number;
+  }[];
   date: string;
 }

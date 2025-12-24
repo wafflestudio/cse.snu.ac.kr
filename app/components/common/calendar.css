@@ -1,0 +1,45 @@
+/* Calendar Container */
+.custom-calendar {
+  border-radius: 0.125rem;
+  border: 1px solid rgb(212 212 212);
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+
+  /* CSS Variables */
+  --rdp-accent-color: #e65817;
+  --rdp-accent-background-color: #fff5f0;
+  --rdp-day-height: 2rem;
+  --rdp-day-width: 2rem;
+  --rdp-day_button-height: 1.875rem;
+  --rdp-day_button-width: 1.875rem;
+  --rdp-day_button-border-radius: 0.125rem;
+  --rdp-nav_button-height: 1.75rem;
+  --rdp-nav_button-width: 1.75rem;
+  --rdp-nav-height: 2rem;
+}
+
+/* Month Caption */
+.custom-calendar .rdp-month_caption {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Weekdays */
+.custom-calendar .rdp-weekday {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Day Buttons */
+.custom-calendar .rdp-day_button {
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+/* Selected Day */
+.custom-calendar .rdp-selected .rdp-day_button {
+  font-weight: 600;
+}

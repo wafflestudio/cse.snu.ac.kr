@@ -4,7 +4,9 @@ import type { LoaderFunctionArgs } from 'react-router';
 import 'dayjs/locale/ko';
 import type { ReactNode } from 'react';
 import Attachments from '~/components/common/Attachments';
+import Button from '~/components/common/Button';
 import HTMLViewer from '~/components/common/HTMLViewer';
+import LoginVisible from '~/components/common/LoginVisible';
 import Node from '~/components/common/Nodes';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
@@ -43,7 +45,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
 export default function SeminarDetailPage({
   loaderData: seminar,
 }: Route.ComponentProps) {
-  const { t, locale } = useLanguage({
+  const { t, locale, localizedPath } = useLanguage({
     세미나: 'Seminars',
     소식: 'Community',
     이름: 'Name',
@@ -68,6 +70,19 @@ export default function SeminarDetailPage({
       subNav={subNav}
       padding="none"
     >
+      <LoginVisible allow="ROLE_STAFF">
+        <div className="px-5 pt-9 text-right sm:pl-[100px] sm:pr-[340px]">
+          <Button
+            as="link"
+            to={localizedPath(`/community/seminar/edit/${seminar.id}`)}
+            variant="outline"
+            tone="neutral"
+            size="md"
+          >
+            편집
+          </Button>
+        </div>
+      </LoginVisible>
       <h2 className="px-5 py-9 text-[1.25rem] font-semibold leading-[1.4] sm:pl-[100px] sm:pr-[340px]">
         {seminar.title}
       </h2>

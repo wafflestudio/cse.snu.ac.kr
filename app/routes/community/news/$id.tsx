@@ -2,7 +2,9 @@ import type { Route } from '.react-router/types/app/routes/community/news/+types
 import dayjs from 'dayjs';
 import type { LoaderFunctionArgs } from 'react-router';
 import Attachments from '~/components/common/Attachments';
+import Button from '~/components/common/Button';
 import HTMLViewer from '~/components/common/HTMLViewer';
+import LoginVisible from '~/components/common/LoginVisible';
 import Node from '~/components/common/Nodes';
 import { Tag } from '~/components/common/Tag';
 import PageLayout from '~/components/layout/PageLayout';
@@ -56,6 +58,19 @@ export default function NewsDetailPage({
       subNav={subNav}
       padding="none"
     >
+      <LoginVisible allow="ROLE_STAFF">
+        <div className="px-5 pt-9 text-right sm:pl-[100px] sm:pr-[340px]">
+          <Button
+            as="link"
+            to={localizedPath(`/community/news/edit/${news.id}`)}
+            variant="outline"
+            tone="neutral"
+            size="md"
+          >
+            편집
+          </Button>
+        </div>
+      </LoginVisible>
       <div className="flex flex-col gap-4 px-5 py-9 sm:pl-[100px] sm:pr-[340px]">
         <h2 className="text-[1.25rem] font-semibold leading-[1.4]">
           {news.title}

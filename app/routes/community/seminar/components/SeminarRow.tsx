@@ -44,7 +44,7 @@ export default function SeminarRow({
 function ImageCell({ imageURL }: { imageURL: string | null }) {
   return (
     <div
-      className={`relative h-[10rem] w-[10rem] shrink-0 sm:h-[6.25rem] sm:w-[6.25rem] ${
+      className={`relative h-40 w-40 shrink-0 sm:h-25 sm:w-25 ${
         !imageURL ? 'bg-neutral-100' : ''
       }`}
     >

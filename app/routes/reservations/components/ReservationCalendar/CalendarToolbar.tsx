@@ -5,11 +5,9 @@ import {
   useReducer,
   useRef,
 } from 'react';
-import { DayPicker } from 'react-day-picker';
-import { ko } from 'react-day-picker/locale';
+import Calendar from '~/components/common/Calendar';
 import { useClickOutside } from '~/hooks/useClickOutside';
 import useSelectedDate from '~/routes/reservations/hooks/useSelectedDate';
-import 'react-day-picker/style.css';
 
 export default function CalendarToolbar({
   columnCount,
@@ -68,22 +66,13 @@ function SelectDayButton({ date }: { date: dayjs.Dayjs }) {
       {showCalendar && (
         <div className="relative" ref={calendarRef}>
           <div className="absolute top-2 z-10">
-            <DayPicker
-              locale={ko}
-              animate
-              className="bg-white border rounded-sm p-4"
-              classNames={{
-                today: `text-main-orange`,
-                chevron: `fill-main-orange`,
-                selected: `rounded-full bg-main-orange text-white`,
-              }}
-              mode="single"
+            <Calendar
               selected={date.toDate()}
-              onSelect={(date) => {
-                if (!date) return;
-                setSelectedDate(dayjs(date));
+              onSelect={(selectedDate) => {
+                setSelectedDate(dayjs(selectedDate));
                 toggleCalendar();
               }}
+              animate
             />
           </div>
         </div>

@@ -35,7 +35,7 @@ function Fieldset({
   title,
   titleSpacing = '2',
   children,
-  spacing = '6',
+  spacing,
   required = false,
   grow = true,
   className,
@@ -44,7 +44,7 @@ function Fieldset({
     <fieldset
       className={clsx(
         'flex flex-col',
-        SPACING_MAP[spacing],
+        spacing && SPACING_MAP[spacing],
         grow && 'flex-1',
         className,
       )}

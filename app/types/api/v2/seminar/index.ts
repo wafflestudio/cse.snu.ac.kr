@@ -1,10 +1,3 @@
-import type { Attachment } from '~/types/api/v2/attachment';
-
-export interface SeminarPreviewList {
-  total: number;
-  searchList: SeminarPreview[];
-}
-
 export interface SeminarPreview {
   id: number;
   title: string;
@@ -17,10 +10,20 @@ export interface SeminarPreview {
   isYearLast: boolean;
 }
 
+export interface SeminarPreviewList {
+  total: number;
+  searchList: SeminarPreview[];
+}
+
 export interface Seminar {
   affiliation: string | null;
   affiliationURL: string | null;
-  attachments: Attachment[];
+  attachments: {
+    id: number;
+    name: string;
+    url: string;
+    bytes: number;
+  }[];
   createdAt: string;
   description: string | null;
   endDate: string | null;

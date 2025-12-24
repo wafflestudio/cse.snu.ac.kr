@@ -1,9 +1,8 @@
 import type { ChangeEventHandler, MouseEventHandler } from 'react';
 import type { FieldValues, RegisterOptions } from 'react-hook-form';
 import { useController, useFormContext } from 'react-hook-form';
-
-import ClearIcon from './assets/clear_icon.svg?react';
 import type { EditorFile, LocalFile } from '~/types/form';
+import ClearIcon from './assets/clear_icon.svg?react';
 
 interface FilePickerProps {
   name: string;
@@ -14,7 +13,11 @@ interface FilePickerProps {
   multiple?: boolean;
 }
 
-export default function FilePicker({ name, rules, multiple = true }: FilePickerProps) {
+export default function FilePicker({
+  name,
+  rules,
+  multiple = true,
+}: FilePickerProps) {
   const { control } = useFormContext();
   const {
     field: { value: files, onChange },
@@ -44,7 +47,7 @@ export default function FilePicker({ name, rules, multiple = true }: FilePickerP
   return (
     <div className={`flex gap-3 ${multiple && 'flex-col'}`}>
       <SelectFileButton onChange={handleChange} multiple={multiple} />
-      <ol className="self-start rounded-sm border-[1px] border-neutral-200 bg-neutral-50">
+      <ol className="self-start rounded-sm border border-neutral-200 bg-neutral-50">
         {(files as EditorFile[]).map((item, idx) => (
           <FilePickerRow
             key={idx}
@@ -68,9 +71,14 @@ function SelectFileButton({
   multiple: boolean;
 }) {
   return (
-    <label className="mr-3 flex h-8 cursor-pointer items-center self-start rounded-sm border-[1px] border-neutral-300 px-[.62rem] text-xs hover:bg-neutral-100">
+    <label className="mr-3 flex h-8 cursor-pointer items-center self-start rounded-sm border border-neutral-300 px-[.62rem] text-xs hover:bg-neutral-100">
       파일 선택
-      <input type="file" className="hidden" onChange={onChange} multiple={multiple} />
+      <input
+        type="file"
+        className="hidden"
+        onChange={onChange}
+        multiple={multiple}
+      />
     </label>
   );
 }
@@ -82,9 +90,9 @@ interface FileRowProps {
 
 function FilePickerRow({ file, deleteFile }: FileRowProps) {
   return (
-    <li className="flex h-[1.875rem] w-[520px] items-center border-b-[1px] border-dashed border-neutral-200 px-3 last:border-none">
+    <li className="flex h-7.5 w-[520px] items-center border-b border-dashed border-neutral-200 px-3 last:border-none">
       <p className="mr-4 text-sm">{file.file.name}</p>
-      <button className="ml-auto" onClick={deleteFile}>
+      <button type="button" className="ml-auto" onClick={deleteFile}>
         <ClearIcon />
       </button>
     </li>

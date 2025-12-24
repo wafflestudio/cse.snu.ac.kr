@@ -1,10 +1,13 @@
 import type { Route } from '.react-router/types/app/routes/community/news/+types/index';
 import type { LoaderFunctionArgs } from 'react-router';
 import { useSearchParams } from 'react-router';
+import Button from '~/components/common/Button';
+import LoginVisible from '~/components/common/LoginVisible';
 import Pagination from '~/components/common/Pagination';
 import SearchBox from '~/components/common/SearchBox';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
+import { NEWS_TAGS } from '~/constants/tag';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useCommunitySubNav } from '~/hooks/useSubNav';
 import type { NewsPreview, NewsPreviewList } from '~/types/api/v2/news';
@@ -12,19 +15,6 @@ import { getLocaleFromPathname } from '~/utils/string';
 import NewsListRow from './components/NewsListRow';
 
 const POST_LIMIT = 10;
-
-const NEWS_TAGS = [
-  '행사',
-  '연구',
-  '수상',
-  '채용',
-  '칼럼',
-  '강연',
-  '교육',
-  '인터뷰',
-  '진로',
-  '과거 미분류',
-];
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
@@ -50,7 +40,10 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export default function NewsPage({ loaderData: data }: Route.ComponentProps) {
   const [searchParams] = useSearchParams();
-  const { t } = useLanguage({ '새 소식': 'News', 커뮤니티: 'Community' });
+  const { t, localizedPath } = useLanguage({
+    '새 소식': 'News',
+    커뮤니티: 'Community',
+  });
   const subNav = useCommunitySubNav();
 
   const pageNum = parseInt(searchParams.get('pageNum') || '1', 10);
@@ -69,6 +62,20 @@ export default function NewsPage({ loaderData: data }: Route.ComponentProps) {
       <SearchBox tags={NEWS_TAGS} />
       <NewsList posts={data.searchList} />
       <Pagination page={pageNum} totalPages={totalPages} />
+
+      <LoginVisible allow="ROLE_STAFF">
+        <div className="flex justify-end mt-12">
+          <Button
+            variant="solid"
+            tone="inverse"
+            size="md"
+            as="link"
+            to={localizedPath('/community/news/create')}
+          >
+            새 게시글
+          </Button>
+        </div>
+      </LoginVisible>
     </PageLayout>
   );
 }

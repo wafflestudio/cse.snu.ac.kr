@@ -2,6 +2,8 @@ import type { Route } from '.react-router/types/app/routes/community/seminar/+ty
 import { Fragment } from 'react';
 import type { LoaderFunctionArgs } from 'react-router';
 import { useSearchParams } from 'react-router';
+import Button from '~/components/common/Button';
+import LoginVisible from '~/components/common/LoginVisible';
 import Pagination from '~/components/common/Pagination';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
@@ -36,7 +38,7 @@ export default function SeminarPage({
   loaderData: data,
 }: Route.ComponentProps) {
   const [searchParams] = useSearchParams();
-  const { t } = useLanguage({
+  const { t, localizedPath } = useLanguage({
     세미나: 'Seminars',
     소식: 'Community',
     '검색 결과가 존재하지 않습니다.': 'No search results found.',
@@ -90,6 +92,20 @@ export default function SeminarPage({
       </div>
 
       <Pagination page={pageNum} totalPages={totalPages} />
+
+      <LoginVisible allow="ROLE_STAFF">
+        <div className="flex justify-end mt-12">
+          <Button
+            variant="solid"
+            tone="inverse"
+            size="md"
+            as="link"
+            to={localizedPath('/community/seminar/create')}
+          >
+            새 게시글
+          </Button>
+        </div>
+      </LoginVisible>
     </PageLayout>
   );
 }
