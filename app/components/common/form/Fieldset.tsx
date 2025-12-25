@@ -28,6 +28,7 @@ export interface FieldsetProps {
   spacing?: Spacing;
   required?: boolean;
   grow?: boolean;
+  hidden?: boolean;
   className?: string;
 }
 
@@ -38,6 +39,7 @@ function Fieldset({
   spacing,
   required = false,
   grow = true,
+  hidden = false,
   className,
 }: FieldsetProps) {
   return (
@@ -46,6 +48,7 @@ function Fieldset({
         'flex flex-col',
         spacing && SPACING_MAP[spacing],
         grow && 'flex-1',
+        hidden && 'hidden',
         className,
       )}
     >

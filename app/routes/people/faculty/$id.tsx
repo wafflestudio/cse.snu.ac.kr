@@ -1,5 +1,7 @@
 import type { Route } from '.react-router/types/app/routes/people/faculty/+types/$id';
 import type { LoaderFunctionArgs } from 'react-router';
+import Button from '~/components/common/Button';
+import LoginVisible from '~/components/common/LoginVisible';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
@@ -26,7 +28,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 export default function FacultyDetailPage({
   loaderData: faculty,
 }: Route.ComponentProps) {
-  const { t } = useLanguage({
+  const { t, localizedPath } = useLanguage({
     학력: 'Education',
     '연구 분야': 'Research Areas',
     경력: 'Career',
@@ -56,6 +58,20 @@ export default function FacultyDetailPage({
         { name: t('교수진'), path: '/people/faculty' },
       ]}
     >
+      <LoginVisible allow="ROLE_STAFF">
+        <div className="mb-9 text-right">
+          <Button
+            as="link"
+            to={localizedPath(`/people/faculty/${faculty.id}/edit`)}
+            variant="outline"
+            tone="neutral"
+            size="md"
+          >
+            편집
+          </Button>
+        </div>
+      </LoginVisible>
+
       <div className="relative mb-10 sm:flow-root">
         <PeopleProfileInfo imageURL={faculty.imageURL} items={contactItems} />
         <PeopleLabNode faculty={faculty} />

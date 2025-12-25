@@ -1,5 +1,7 @@
 import type { Route } from '.react-router/types/app/routes/people/emeritus-faculty/+types/$id';
 import type { LoaderFunctionArgs } from 'react-router';
+import Button from '~/components/common/Button';
+import LoginVisible from '~/components/common/LoginVisible';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
@@ -28,7 +30,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 export default function EmeritusFacultyDetailPage({
   loaderData: faculty,
 }: Route.ComponentProps) {
-  const { t } = useLanguage({
+  const { t, localizedPath } = useLanguage({
     '역대 교수진': 'Emeritus Faculty',
     구성원: 'People',
     연락처: 'Contact',
@@ -71,6 +73,20 @@ export default function EmeritusFacultyDetailPage({
         { name: t('역대 교수진'), path: '/people/emeritus-faculty' },
       ]}
     >
+      <LoginVisible allow="ROLE_STAFF">
+        <div className="mb-9 text-right">
+          <Button
+            as="link"
+            to={localizedPath(`/people/emeritus-faculty/${faculty.id}/edit`)}
+            variant="outline"
+            tone="neutral"
+            size="md"
+          >
+            편집
+          </Button>
+        </div>
+      </LoginVisible>
+
       <div className="relative mb-10 flex flex-col items-start sm:flex-row sm:gap-15">
         <PeopleProfileImage imageURL={faculty.imageURL} />
         <div className="mt-6 sm:mt-0">

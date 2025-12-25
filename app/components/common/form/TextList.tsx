@@ -43,7 +43,11 @@ export default function TextList({ name, placeholder }: Props) {
       </div>
       {list?.map((_, idx) => (
         <div className="mb-2.5 flex gap-3" key={idx}>
-          <Text maxWidth="w-[25rem]" name={`${name}.${idx}`} placeholder={placeholder} />
+          <Text
+            maxWidth="w-[25rem]"
+            name={`${name}.${idx}`}
+            placeholder={placeholder}
+          />
           <Button onClick={() => handleDelete(idx)}>삭제</Button>
         </div>
       ))}

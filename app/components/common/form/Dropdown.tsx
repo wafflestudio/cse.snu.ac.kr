@@ -51,10 +51,11 @@ export default function Dropdown({
   };
 
   return (
-    <div className="relative select-none" ref={ref}>
+    <div className="relative select-none w-fit" ref={ref}>
       <button
+        type="button"
         className={clsx(
-          'flex items-center border bg-white py-[.3125rem] pl-[.625rem] pr-[.3125rem]',
+          'flex w-full items-center border bg-white py-[.3125rem] pl-[.625rem] pr-[.3125rem]',
           expanded ? 'rounded-t-sm' : 'rounded-sm',
           borderStyle,
           width ? `${width} justify-between` : 'gap-4',
@@ -67,14 +68,16 @@ export default function Dropdown({
         }}
         disabled={isDisabled}
       >
-        <p className="text-md font-normal">{contents.find((x) => x.value === value)?.label}</p>
+        <p className="text-md font-normal">
+          {contents.find((x) => x.value === value)?.label}
+        </p>
         <span className="material-symbols-rounded text-base">
           {expanded ? 'expand_less' : 'expand_more'}
         </span>
       </button>
       <div className="relative z-10">
         <DropdownListWithScroll
-          className={clsx(width, expanded ? 'scale-y-1' : 'scale-y-0')}
+          className={clsx(width, expanded ? 'scale-y-100' : 'scale-y-0')}
           contents={contents.map((x) => x.label)}
           handleClick={handleClick}
           selectedIndex={value}
@@ -101,7 +104,7 @@ function DropdownListWithScroll({
   return (
     <div
       className={clsx(
-        'styled-scrollbar absolute left-0 right-0 top-0 max-h-[168px] origin-top overflow-y-scroll overscroll-contain rounded-bl-sm rounded-br-sm border-x border-b bg-white transition duration-200',
+        'styled-scrollbar absolute flex flex-col left-0 top-0 max-h-[168px] origin-top overflow-y-scroll overscroll-contain rounded-bl-sm rounded-br-sm border bg-white transition duration-200',
         className,
         borderStyle,
       )}
@@ -109,8 +112,9 @@ function DropdownListWithScroll({
       {contents.map((content, index) => (
         <button
           key={index}
+          type="button"
           className={clsx(
-            'h-7 w-full pl-[.62rem] text-left text-sm font-normal hover:bg-neutral-200 focus:border focus:border-neutral-400',
+            'h-7 shrink-0 pl-[.62rem] text-left text-nowrap text-sm font-normal hover:bg-neutral-200 focus:border focus:border-neutral-400 ',
             selectedIndex === index && 'text-main-orange',
           )}
           onClick={(e) => {

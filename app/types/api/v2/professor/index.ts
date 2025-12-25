@@ -12,6 +12,7 @@ export interface SimpleFaculty {
   name: string;
   imageURL: string | null;
   academicRank: string;
+  department: string;
   phone: string | null;
   email: string | null;
   labId: number | null;
@@ -39,6 +40,7 @@ export interface SimpleEmeritusFaculty {
   name: string;
   imageURL: string | null;
   academicRank: string;
+  department: string;
   email: string | null;
 }
 

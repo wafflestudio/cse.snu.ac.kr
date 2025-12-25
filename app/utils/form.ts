@@ -20,7 +20,7 @@ export const getDeleteIds = ({
 
 // TODO: 이름좀...
 export class FormData2 extends FormData {
-  appendJson<T>(key: string, value: T) {
+  appendJson(key: string, value: unknown) {
     this.append(
       key,
       new Blob([JSON.stringify(value)], { type: 'application/json' }),

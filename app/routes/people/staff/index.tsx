@@ -1,5 +1,7 @@
 import type { Route } from '.react-router/types/app/routes/people/staff/+types';
 import type { LoaderFunctionArgs } from 'react-router';
+import Button from '~/components/common/Button';
+import LoginVisible from '~/components/common/LoginVisible';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
@@ -41,6 +43,20 @@ export default function StaffPage({
       ]}
       subNav={subNav}
     >
+      <LoginVisible allow="ROLE_STAFF">
+        <div className="mb-7 flex justify-end">
+          <Button
+            variant="solid"
+            tone="inverse"
+            size="md"
+            as="link"
+            to={localizedPath('/people/staff/create')}
+          >
+            추가하기
+          </Button>
+        </div>
+      </LoginVisible>
+
       <PeopleGrid items={items} />
     </PageLayout>
   );

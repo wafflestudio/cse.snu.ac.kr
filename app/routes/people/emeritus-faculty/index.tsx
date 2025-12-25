@@ -1,5 +1,7 @@
 import type { Route } from '.react-router/types/app/routes/people/emeritus-faculty/+types/index';
 import type { LoaderFunctionArgs } from 'react-router';
+import Button from '~/components/common/Button';
+import LoginVisible from '~/components/common/LoginVisible';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
@@ -43,6 +45,20 @@ export default function EmeritusFacultyPage({
       ]}
       subNav={subNav}
     >
+      <LoginVisible allow="ROLE_STAFF">
+        <div className="mb-7 flex justify-end">
+          <Button
+            variant="solid"
+            tone="inverse"
+            size="md"
+            as="link"
+            to={localizedPath('/people/faculty/create?status=INACTIVE')}
+          >
+            추가하기
+          </Button>
+        </div>
+      </LoginVisible>
+
       <PeopleGrid items={items} />
     </PageLayout>
   );
@@ -57,11 +73,15 @@ const toCard = (
     content.push({ text: faculty.email, href: `mailto:${faculty.email}` });
   }
 
+  const subtitle = faculty.department
+    ? `${faculty.academicRank}, ${faculty.department}`
+    : faculty.academicRank;
+
   return {
     id: faculty.id,
     imageURL: faculty.imageURL,
     name: faculty.name,
-    subtitle: faculty.academicRank,
+    subtitle,
     href: localizedPath(`/people/emeritus-faculty/${faculty.id}`),
     content,
   };

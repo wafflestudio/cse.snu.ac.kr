@@ -1,5 +1,7 @@
 import type { Route } from '.react-router/types/app/routes/people/staff/+types/$id';
 import type { LoaderFunctionArgs } from 'react-router';
+import Button from '~/components/common/Button';
+import LoginVisible from '~/components/common/LoginVisible';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
@@ -25,7 +27,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 export default function StaffDetailPage({
   loaderData: staff,
 }: Route.ComponentProps) {
-  const { t } = useLanguage({
+  const { t, localizedPath } = useLanguage({
     구성원: 'People',
     행정직원: 'Staff',
     연락처: 'Contact',
@@ -55,6 +57,20 @@ export default function StaffDetailPage({
         { name: t('행정직원'), path: '/people/staff' },
       ]}
     >
+      <LoginVisible allow="ROLE_STAFF">
+        <div className="mb-9 text-right">
+          <Button
+            as="link"
+            to={localizedPath(`/people/staff/${staff.id}/edit`)}
+            variant="outline"
+            tone="neutral"
+            size="md"
+          >
+            편집
+          </Button>
+        </div>
+      </LoginVisible>
+
       <div className="relative mb-32 flex flex-col items-start sm:flex-row sm:gap-15">
         <PeopleProfileImage imageURL={staff.imageURL} />
         <div className="mt-6 sm:mt-0">

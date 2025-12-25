@@ -1,5 +1,8 @@
 import type { Route } from '.react-router/types/app/routes/people/faculty/+types';
+import { useState } from 'react';
 import type { LoaderFunctionArgs } from 'react-router';
+import Button from '~/components/common/Button';
+import LoginVisible from '~/components/common/LoginVisible';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
@@ -10,6 +13,8 @@ import PeopleGrid, {
   type PeopleCardContentItem,
   type PeopleCardProps,
 } from '../components/PeopleGrid';
+
+type SortType = 'name' | 'department';
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
@@ -29,15 +34,43 @@ export default function FacultyPage({
     교수진: 'Faculty',
     구성원: 'People',
     객원교수: 'Visiting Professors',
+    가나다순: 'Name',
+    소속순: 'Department',
   });
   const subNav = usePeopleSubNav();
+  const [sortType, setSortType] = useState<SortType>('name');
 
-  const normal = data.professors
-    .filter((professor) => professor.status !== 'VISITING')
-    .map((professor) => toCard(professor, localizedPath));
-  const visiting = data.professors
-    .filter((professor) => professor.status === 'VISITING')
-    .map((professor) => toCard(professor, localizedPath));
+  const sortProfessors = (professors: SimpleFaculty[]) => {
+    if (sortType === 'name') {
+      return [...professors].sort((a, b) => a.name.localeCompare(b.name, 'ko'));
+    } else {
+      return [...professors].sort((a, b) => {
+        const deptA = a.department || '';
+        const deptB = b.department || '';
+
+        // 컴퓨터공학부가 맨 앞
+        if (deptA === '컴퓨터공학부' && deptB !== '컴퓨터공학부') return -1;
+        if (deptA !== '컴퓨터공학부' && deptB === '컴퓨터공학부') return 1;
+
+        // 나머지는 가나다 역순
+        return deptB.localeCompare(deptA, 'ko');
+      });
+    }
+  };
+
+  const normalProfessors = data.professors.filter(
+    (professor) => professor.status !== 'VISITING',
+  );
+  const visitingProfessors = data.professors.filter(
+    (professor) => professor.status === 'VISITING',
+  );
+
+  const normal = sortProfessors(normalProfessors).map((professor) =>
+    toCard(professor, localizedPath),
+  );
+  const visiting = sortProfessors(visitingProfessors).map((professor) =>
+    toCard(professor, localizedPath),
+  );
 
   return (
     <PageLayout
@@ -49,6 +82,38 @@ export default function FacultyPage({
       ]}
       subNav={subNav}
     >
+      <div className="mb-7 flex items-center justify-between">
+        <div className="flex gap-2">
+          <Button
+            variant="solid"
+            tone={sortType === 'name' ? 'inverse' : 'neutral'}
+            size="md"
+            onClick={() => setSortType('name')}
+          >
+            {t('가나다순')}
+          </Button>
+          <Button
+            variant="solid"
+            tone={sortType === 'department' ? 'inverse' : 'neutral'}
+            size="md"
+            onClick={() => setSortType('department')}
+          >
+            {t('소속순')}
+          </Button>
+        </div>
+        <LoginVisible allow="ROLE_STAFF">
+          <Button
+            variant="solid"
+            tone="inverse"
+            size="md"
+            as="link"
+            to={localizedPath('/people/faculty/create')}
+          >
+            추가하기
+          </Button>
+        </LoginVisible>
+      </div>
+
       <PeopleGrid items={normal} />
       {visiting.length > 0 && (
         <>
@@ -79,11 +144,15 @@ const toCard = (
     content.push({ text: professor.email, href: `mailto:${professor.email}` });
   }
 
+  const subtitle = professor.department
+    ? `${professor.academicRank}, ${professor.department}`
+    : professor.academicRank;
+
   return {
     id: professor.id,
     imageURL: professor.imageURL,
     name: professor.name,
-    subtitle: professor.academicRank,
+    subtitle,
     href: localizedPath(`/people/faculty/${professor.id}`),
     content,
   };
