@@ -134,6 +134,11 @@ const getLocaleRoutes = (locale: Locale) => {
           'routes/admissions/international/scholarships.tsx',
         ),
       ]),
+      // Dynamic route for all admissions edit pages
+      route(
+        '/:mainType/:postType/edit',
+        'routes/admissions/$mainType/$postType/edit.tsx',
+      ),
     ]),
     ...prefix('/academics', [
       route('/', 'routes/academics/index.tsx'),
