@@ -7,15 +7,12 @@ import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useAcademicsSubNav } from '~/hooks/useSubNav';
 import type { DegreeRequirements } from '~/types/api/v2/academics/undergraduate/degree-requirements';
+import { fetchJson } from '~/utils/fetch';
 
 export async function loader() {
-  const response = await fetch(
+  return await fetchJson<DegreeRequirements>(
     `${BASE_URL}/v2/academics/undergraduate/degree-requirements`,
   );
-  if (!response.ok) {
-    throw new Error('Failed to fetch degree requirements data');
-  }
-  return (await response.json()) as DegreeRequirements;
 }
 
 export default function DegreeRequirementsPage({

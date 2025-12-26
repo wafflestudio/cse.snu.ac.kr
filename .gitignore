@@ -13,3 +13,5 @@ env/.env.*.local
 
 # Image optimization cache
 .cache/
+
+.playwright-mcp/

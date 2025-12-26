@@ -5,15 +5,12 @@ import { useLanguage } from '~/hooks/useLanguage';
 import { useAcademicsSubNav } from '~/hooks/useSubNav';
 import TimelineViewer from '~/routes/academics/components/timeline/TimelineViewer';
 import type { TimelineContent } from '~/types/api/v2/academics';
+import { fetchJson } from '~/utils/fetch';
 
 export async function loader() {
-  const response = await fetch(
+  return await fetchJson<TimelineContent[]>(
     `${BASE_URL}/v2/academics/undergraduate/curriculum`,
   );
-  if (!response.ok) {
-    throw new Error('Failed to fetch curriculum data');
-  }
-  return (await response.json()) as TimelineContent[];
 }
 
 export default function UndergraduateCurriculumPage({

@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import { type RefObject, useEffect, useReducer, useRef } from 'react';
 import { useLanguage } from '~/hooks/useLanguage';
 import type { SortOption } from '~/types/academics';
-import { GRADE } from '~/types/academics';
-import type { Course } from '~/types/api/v2/academics/courses';
+import type { Course } from '~/types/api/v2/academics';
+import { GRADE } from '~/types/api/v2/academics';
 import styles from './style.module.css';
 import translations from './translations.json';
 

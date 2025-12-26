@@ -12,5 +12,8 @@
   "3학년": "Junior",
   "4학년": "Senior",
   "대학원": "Graduate",
-  "교과목 상세": "Course Detail"
+  "교과목 상세": "Course Detail",
+  "삭제": "Delete",
+  "편집": "Edit",
+  "삭제하시겠습니까?": "Are you sure you want to delete?"
 }

@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router';
+import Button from '~/components/common/Button';
+import LoginVisible from '~/components/common/LoginVisible';
 import PageLayout from '~/components/layout/PageLayout';
 import { useLanguage } from '~/hooks/useLanguage';
 import useIsMobile from '~/hooks/useResponsive';
 import { useAcademicsSubNav } from '~/hooks/useSubNav';
+import AddCourseModal from '~/routes/academics/components/courses/AddCourseModal';
 import CourseCardGrid from '~/routes/academics/components/courses/CourseCardGrid';
 import CourseDetailModal from '~/routes/academics/components/courses/CourseDetailModal';
 import CourseList from '~/routes/academics/components/courses/CourseList';
 import CourseToolbar from '~/routes/academics/components/courses/CourseToolbar';
 import courseTranslations from '~/routes/academics/components/courses/translations.json';
 import type { Classification, SortOption, ViewOption } from '~/types/academics';
-import type { Course } from '~/types/api/v2/academics/courses';
+import type { Course } from '~/types/api/v2/academics';
 
 interface CoursesPageProps {
   courses: Course[];
@@ -48,6 +51,7 @@ export default function CoursesPage({
   const isMobile = useIsMobile();
   const [searchParams] = useSearchParams();
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+  const [isAddCourseModalOpen, setIsAddCourseModalOpen] = useState(false);
 
   const viewOption = getViewOption(searchParams);
   const sortOption = getSortOption(searchParams);
@@ -64,6 +68,17 @@ export default function CoursesPage({
       breadcrumb={breadcrumb}
       subNav={subNav}
     >
+      <LoginVisible allow="ROLE_STAFF">
+        <div className="mb-8 ml-auto flex justify-end">
+          <Button
+            variant="solid"
+            tone="brand"
+            onClick={() => setIsAddCourseModalOpen(true)}
+          >
+            새 교과목
+          </Button>
+        </div>
+      </LoginVisible>
       <h4 className="mb-8 text-[17px] font-bold sm:pl-5">{t('교과목 정보')}</h4>
       <CourseToolbar
         hideViewOption={isMobile}
@@ -86,6 +101,12 @@ export default function CoursesPage({
         open={Boolean(selectedCourse)}
         onOpenChange={(open) => !open && setSelectedCourse(null)}
       />
+      {isAddCourseModalOpen && (
+        <AddCourseModal
+          onClose={() => setIsAddCourseModalOpen(false)}
+          studentType={studentType}
+        />
+      )}
     </PageLayout>
   );
 }

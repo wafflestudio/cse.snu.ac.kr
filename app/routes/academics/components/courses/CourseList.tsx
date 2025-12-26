@@ -1,6 +1,6 @@
 import { useLanguage } from '~/hooks/useLanguage';
-import { GRADE } from '~/types/academics';
-import type { Course } from '~/types/api/v2/academics/courses';
+import type { Course } from '~/types/api/v2/academics';
+import { GRADE } from '~/types/api/v2/academics';
 import translations from './translations.json';
 
 interface CourseListProps {

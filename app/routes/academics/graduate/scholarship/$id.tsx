@@ -2,12 +2,14 @@ import type { Route } from '.react-router/types/app/routes/academics/graduate/sc
 import type { LoaderFunctionArgs } from 'react-router';
 import HTMLViewer from '~/components/common/HTMLViewer';
 import PageLayout from '~/components/layout/PageLayout';
+import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useAcademicsSubNav } from '~/hooks/useSubNav';
 import type {
   Scholarship,
   ScholarshipWithLanguage,
 } from '~/types/api/v2/academics/scholarship';
+import { fetchJson } from '~/utils/fetch';
 
 interface ScholarshipAPIResponse {
   first: Scholarship;
@@ -20,14 +22,9 @@ export async function loader({ params }: LoaderFunctionArgs) {
     throw new Error('Scholarship ID is required');
   }
 
-  const response = await fetch(
-    `https://cse.snu.ac.kr/api/v2/academics/scholarship/${id}`,
+  const data = await fetchJson<ScholarshipAPIResponse>(
+    `${BASE_URL}/v2/academics/scholarship/${id}`,
   );
-  if (!response.ok) {
-    throw new Error('Failed to fetch scholarship data');
-  }
-
-  const data = (await response.json()) as ScholarshipAPIResponse;
 
   // Normalize to WithLanguage format
   const isFirstKo = data.first.language === 'ko';
