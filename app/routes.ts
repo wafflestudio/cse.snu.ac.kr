@@ -157,14 +157,6 @@ const getLocaleRoutes = (locale: Locale) => {
           '/course-changes',
           'routes/academics/undergraduate/course-changes.tsx',
         ),
-        route(
-          '/scholarship',
-          'routes/academics/undergraduate/scholarship/index.tsx',
-        ),
-        route(
-          '/scholarship/:id',
-          'routes/academics/undergraduate/scholarship/$id.tsx',
-        ),
       ]),
       ...prefix('/graduate', [
         route('/guide', 'routes/academics/graduate/guide/index.tsx'),
@@ -174,15 +166,20 @@ const getLocaleRoutes = (locale: Locale) => {
           '/course-changes',
           'routes/academics/graduate/course-changes.tsx',
         ),
-        route(
-          '/scholarship',
-          'routes/academics/graduate/scholarship/index.tsx',
-        ),
-        route(
-          '/scholarship/:id',
-          'routes/academics/graduate/scholarship/$id.tsx',
-        ),
       ]),
+      // Dynamic routes for scholarship (must be after specific routes)
+      route(
+        '/:studentType/scholarship',
+        'routes/academics/$studentType/scholarship/index.tsx',
+      ),
+      route(
+        '/:studentType/scholarship/edit',
+        'routes/academics/$studentType/scholarship/edit.tsx',
+      ),
+      route(
+        '/:studentType/scholarship/:id',
+        'routes/academics/$studentType/scholarship/$id.tsx',
+      ),
     ]),
     ...prefix('/reservations', [
       route('/', 'routes/reservations/index.tsx'),
