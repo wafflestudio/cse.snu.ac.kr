@@ -10,7 +10,7 @@ import type SunEditorCore from 'suneditor/src/lib/core';
 import type { SunEditorOptions } from 'suneditor/src/options';
 import plugins from 'suneditor/src/plugins';
 
-import { postImage } from '~/api/file';
+import { BASE_URL } from '~/constants/api';
 
 // https://github.com/JiHong88/SunEditor/issues/199
 const isContentEmpty = (editor: SunEditorCore) => {
@@ -75,7 +75,17 @@ const handleImageUploadBefore = (files, _info, _core, uploadHandler) => {
     formData.append(newFile.name, newFile);
   });
 
-  postImage(formData)
+  fetch(`${BASE_URL}/v1/file/upload`, {
+    method: 'POST',
+    body: formData,
+    credentials: 'include',
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        throw new Error('Image upload failed');
+      }
+      return response.json();
+    })
     .then((resp) => {
       uploadHandler(resp);
     })
