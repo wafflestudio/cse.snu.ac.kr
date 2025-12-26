@@ -32,7 +32,17 @@ tools to resolve library id and get library docs without me having to explicitly
      - 예: `https://cse.snu.ac.kr/api/v2/about/facilities` → `app/types/api/v2/about/facilities.ts`
      - **WithLanguage 타입을 별도로 정의하지 않음**: `ko/en` 구조는 각 타입/응답에서 직접 선언
    - **기타 공통 타입**: `app/types/`에 직접 배치
-4. **중요**: route 파일명과 같은 이름의 폴더 사용 금지
+4. **편집 페이지가 있는 경우 폴더로 정리**:
+   - 읽기 페이지와 편집 페이지가 모두 있는 경우, 폴더를 만들어 `index.tsx`와 `edit.tsx`로 구성
+   - ❌ `app/routes/path/guide.tsx` (편집 페이지 추가 시 관리 어려움)
+   - ✅ `app/routes/path/guide/index.tsx` + `app/routes/path/guide/edit.tsx`
+   - 예시:
+     ```
+     app/routes/academics/undergraduate/guide/
+     ├── index.tsx    # 읽기 페이지
+     └── edit.tsx     # 편집 페이지
+     ```
+5. **중요**: route 파일명과 같은 이름의 폴더 사용 금지
    - ❌ `app/routes/index.tsx` + `app/routes/index/` (충돌 발생)
    - ✅ `app/routes/index.tsx` + `app/routes/main/` (정상 작동)
 
