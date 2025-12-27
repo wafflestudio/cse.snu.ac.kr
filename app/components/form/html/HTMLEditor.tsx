@@ -4,11 +4,7 @@ import './suneditor-contents.css';
 import { useEffect, useState } from 'react';
 import type { RegisterOptions } from 'react-hook-form';
 import { useFormContext } from 'react-hook-form';
-import suneditor from 'suneditor';
-import { ko } from 'suneditor/src/lang/';
 import type SunEditorCore from 'suneditor/src/lib/core';
-import type { SunEditorOptions } from 'suneditor/src/options';
-import plugins from 'suneditor/src/plugins';
 
 import { BASE_URL } from '~/constants/api';
 
@@ -42,20 +38,52 @@ export default function HTMLEditor({
 
   useEffect(() => {
     if (!div) return;
+    if (typeof window === 'undefined') return;
 
-    const editor = suneditor.create(div, suneditorOptions);
-    editor.onImageUploadBefore = handleImageUploadBefore;
-    editor.onBlur = onBlur;
-    editor.onChange = (contents) => {
-      setValue(name, isContentEmpty(editor) ? '' : contents, {
-        shouldDirty: true,
+    let _editor: SunEditorCore | null = null;
+
+    const initEditor = async () => {
+      const { default: suneditor } = await import('suneditor');
+      const editor = suneditor.create(div, {
+        defaultStyle: 'padding: 1rem',
+        minHeight: '400px',
+        lang: await import('suneditor/src/lang/').then((m) => m.ko),
+        plugins: await import('suneditor/src/plugins').then((m) => m.default),
+        buttonList: [
+          ['undo', 'redo'],
+          ['fontSize', 'formatBlock'],
+          ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
+          '/', // Line break
+          ['fontColor', 'hiliteColor'],
+          ['lineHeight', 'align', 'horizontalRule', 'list'],
+          ['table', 'link', 'image', 'preview'],
+        ],
+        imageMultipleFile: true,
+        linkRelDefault: {
+          // 안전하지 않은 써드파티 링크(target="_blank") 취약점 대응
+          // TODO: 복사 붙여넣기 한 경우 대응
+          check_new_window: 'noreferrer noopener',
+        },
+        // TODO: 성능 이슈 있을지 확인
+        historyStackDelayTime: 0,
       });
+
+      editor.onImageUploadBefore = handleImageUploadBefore;
+      editor.onBlur = onBlur;
+      editor.onChange = (contents) => {
+        setValue(name, isContentEmpty(editor) ? '' : contents, {
+          shouldDirty: true,
+        });
+      };
+
+      editor.setContents(getValues(name));
+      _editor = editor;
     };
 
-    editor.setContents(getValues(name));
+    initEditor();
 
     return () => {
-      editor.destroy();
+      _editor?.destroy();
       return;
     };
   }, [div, getValues, name, onBlur, setValue]);
@@ -92,26 +120,4 @@ const handleImageUploadBefore = (files, _info, _core, uploadHandler) => {
     .catch((reason) => uploadHandler(`${reason}`));
 
   return undefined;
-};
-
-const suneditorOptions: SunEditorOptions = {
-  defaultStyle: 'padding: 1rem',
-  minHeight: '400px',
-  lang: ko,
-  plugins,
-  buttonList: [
-    ['undo', 'redo'],
-    ['fontSize', 'formatBlock'],
-    ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
-    '/', // Line break
-    ['fontColor', 'hiliteColor'],
-    ['lineHeight', 'align', 'horizontalRule', 'list'],
-    ['table', 'link', 'image', 'preview'],
-  ],
-  imageMultipleFile: true,
-  linkRelDefault: {
-    // 안전하지 않은 써드파티 링크(target="_blank") 취약점 대응
-    // TODO: 복사 붙여넣기 한 경우 대응
-    check_new_window: 'noreferrer noopener',
-  },
 };

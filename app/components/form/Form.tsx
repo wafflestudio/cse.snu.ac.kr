@@ -1,11 +1,10 @@
 import type { ReactNode } from 'react';
-
+import HTMLEditor from '~/components/form/html/HTMLEditor';
 import Action from './Action';
 import Checkbox from './Checkbox';
 import DatePicker from './DatePicker';
 import Dropdown from './Dropdown';
 import FilePicker from './File';
-import LazyHTMLEditor from './html/LazyHTMLEditor';
 import ImagePicker from './Image';
 import Radio from './Radio';
 import Section from './Section';
@@ -29,6 +28,6 @@ export default Object.assign(Form, {
   Dropdown,
   Section,
   TextArea,
-  HTML: LazyHTMLEditor,
+  HTML: HTMLEditor,
   Date: DatePicker,
 });

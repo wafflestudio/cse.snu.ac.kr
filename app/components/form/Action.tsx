@@ -56,6 +56,7 @@ export default function Action({
           </Button>
         )}
         <Button
+          type="submit"
           variant="solid"
           tone="inverse"
           disabled={isSubmitting}
