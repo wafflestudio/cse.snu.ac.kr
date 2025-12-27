@@ -1,5 +1,5 @@
-import LinkRow from '~/components/ui/LinkRow';
 import { useLanguage } from '~/hooks/useLanguage';
+import LinkRow from './LinkRow';
 
 export default function LinkSection() {
   const { t, localizedPath } = useLanguage();
