@@ -20,13 +20,11 @@ export const tentenProjectNavItem: NavItem = {
 };
 
 interface MajorCategoryPageLayoutProps {
-  title?: string;
   subtitle?: string;
   description?: string;
 }
 
 export default function CategoryPage({
-  title,
   subtitle = '',
   description = '',
 }: MajorCategoryPageLayoutProps) {
@@ -38,7 +36,7 @@ export default function CategoryPage({
     ? tentenProjectNavItem
     : activeItem;
 
-  const resolvedTitle = title ?? (currentPage ? tUnsafe(currentPage.key) : '');
+  const resolvedTitle = currentPage ? tUnsafe(currentPage.key) : '';
 
   return (
     <div className="bg-neutral-850">

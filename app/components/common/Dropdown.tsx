@@ -7,7 +7,6 @@ interface DropdownProps {
   selectedIndex: number;
   onClick: (index: number) => void;
   borderStyle?: string;
-  width?: string;
   height?: string;
 }
 
@@ -16,7 +15,6 @@ export default function Dropdown({
   selectedIndex,
   onClick,
   borderStyle,
-  width,
   height,
 }: DropdownProps) {
   const [expanded, setExpanded] = useState(false);
@@ -42,12 +40,11 @@ export default function Dropdown({
         contents={contents}
         selectedIndex={selectedIndex}
         borderStyle={borderStyle}
-        width={width}
         height={height}
       />
       <div className="relative z-10">
         <DropdownListWithScroll
-          className={`${width} ${expanded ? 'scale-y-100' : 'scale-y-0'}`}
+          className={expanded ? 'scale-y-100' : 'scale-y-0'}
           contents={contents}
           handleClick={handleClick}
           selectedIndex={selectedIndex}
@@ -64,7 +61,6 @@ function DropdownButton({
   contents,
   selectedIndex,
   borderStyle = 'border-neutral-200',
-  width,
   height,
 }: {
   expanded: boolean;
@@ -72,7 +68,6 @@ function DropdownButton({
   contents: string[];
   selectedIndex: number;
   borderStyle?: string;
-  width?: string;
   height?: string;
 }) {
   return (
@@ -83,7 +78,7 @@ function DropdownButton({
             pr-[.3125rem]
             ${expanded ? 'rounded-t-xs' : 'rounded-xs'}
             ${borderStyle}
-            ${width ? `${width} justify-between` : 'gap-4'}
+            gap-4
             ${height}
         `}
       onClick={(e) => {

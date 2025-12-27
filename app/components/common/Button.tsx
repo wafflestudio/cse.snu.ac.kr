@@ -15,10 +15,8 @@ type BaseProps = {
   variant: ButtonVariant;
   tone?: ButtonTone;
   size?: ButtonSize;
-  fullWidth?: boolean;
   selected?: boolean;
   iconLeft?: ReactNode;
-  iconRight?: ReactNode;
   ariaLabel?: string;
   children?: ReactNode;
 };
@@ -122,43 +120,29 @@ function getButtonClass({
   variant,
   tone,
   size,
-  fullWidth,
   selected,
 }: {
   variant: ButtonVariant;
   tone: ButtonTone;
   size: ButtonSize;
-  fullWidth?: boolean;
   selected?: boolean;
 }) {
   const base =
     'inline-flex items-center justify-center gap-2 font-medium transition duration-200';
-  const widthClass = fullWidth ? 'w-full' : '';
 
   if (variant === 'pill') {
     return clsx(
       base,
       VARIANT_CLASSES.pill[tone],
       getPillStateClass(tone, selected),
-      widthClass,
     );
   }
 
   if (variant === 'text') {
-    return clsx(
-      base,
-      TEXT_SIZE_CLASSES[size],
-      VARIANT_CLASSES[variant][tone],
-      widthClass,
-    );
+    return clsx(base, TEXT_SIZE_CLASSES[size], VARIANT_CLASSES[variant][tone]);
   }
 
-  return clsx(
-    base,
-    SIZE_CLASSES[size],
-    VARIANT_CLASSES[variant][tone],
-    widthClass,
-  );
+  return clsx(base, SIZE_CLASSES[size], VARIANT_CLASSES[variant][tone]);
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
@@ -166,10 +150,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     variant,
     tone = 'neutral',
     size = 'md',
-    fullWidth,
     selected,
     iconLeft,
-    iconRight,
     ariaLabel,
     children,
   } = props;
@@ -179,7 +161,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
       variant,
       tone,
       size,
-      fullWidth,
       selected,
     }),
     props.as === 'button' || props.as === undefined
@@ -191,7 +172,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     <>
       {iconLeft}
       {children !== undefined && children !== null && <span>{children}</span>}
-      {iconRight}
     </>
   );
 

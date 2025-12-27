@@ -15,14 +15,9 @@ interface TopRightImage {
 interface HTMLViewerProps {
   html: string;
   image?: TopRightImage | Falsy;
-  variant?: 'default' | 'muted' | 'compact';
 }
 
-export default function HTMLViewer({
-  html,
-  image,
-  variant = 'default',
-}: HTMLViewerProps) {
+export default function HTMLViewer({ html, image }: HTMLViewerProps) {
   const isMobile = useIsMobile();
 
   // 400.XXX같은 값들이 링크 처리되는걸 막기 위해 tldMatches false처리
@@ -46,13 +41,6 @@ export default function HTMLViewer({
       : image?.width
     : undefined;
 
-  const contentTone =
-    variant === 'muted'
-      ? 'text-neutral-600'
-      : variant === 'compact'
-        ? 'text-sm leading-6'
-        : '';
-
   return (
     <div className="flow-root">
       {hasImage && (
@@ -70,7 +58,7 @@ export default function HTMLViewer({
         </div>
       )}
       <div
-        className={`sun-editor-editable ${contentTone}`}
+        className="sun-editor-editable"
         // biome-ignore lint/security/noDangerouslySetInnerHtml: TODO 근데 대안이 있나?
         dangerouslySetInnerHTML={{ __html: trimmedHTML }}
       />

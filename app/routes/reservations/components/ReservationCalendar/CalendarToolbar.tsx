@@ -94,7 +94,6 @@ function SelectDayButton({ date }: { date: dayjs.Dayjs }) {
                 setSelectedDate(dayjs(selectedDate));
                 toggleCalendar();
               }}
-              animate
             />
           </div>
         </div>
