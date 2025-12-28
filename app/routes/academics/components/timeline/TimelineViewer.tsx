@@ -1,11 +1,12 @@
 import { useReducer, useState } from 'react';
 import { Link, useLocation, useRevalidator } from 'react-router';
 import { toast } from 'sonner';
+import LoginVisible from '~/components/feature/auth/LoginVisible';
 import AlertDialog from '~/components/ui/AlertDialog';
 import Attachments from '~/components/ui/Attachments';
 import Button from '~/components/ui/Button';
 import HTMLViewer from '~/components/ui/HTMLViewer';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
+import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import type { TimelineContent } from '~/types/api/v2/academics';
 import { fetchOk } from '~/utils/fetch';
@@ -104,7 +105,7 @@ function ActionButtons({ year, pathname }: { year: number; pathname: string }) {
 
   const handleDelete = async () => {
     try {
-      await fetchOk(`/v2${pathname}/${year}`, { method: 'DELETE' });
+      await fetchOk(`/api/v2${pathname}/${year}`, { method: 'DELETE' });
       setShowDeleteDialog(false);
       toast.success('삭제에 성공했습니다.');
       revalidator.revalidate();

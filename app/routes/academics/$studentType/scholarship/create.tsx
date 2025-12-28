@@ -31,16 +31,7 @@ export default function ScholarshipCreatePage({
       await fetchOk(`${BASE_URL}/v2/academics/${studentType}/scholarship`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ko: {
-            name: content.koName,
-            description: content.koDescription,
-          },
-          en: {
-            name: content.enName,
-            description: content.enDescription,
-          },
-        }),
+        body: JSON.stringify(content),
       });
       toast.success(t('장학금을 추가했습니다.'));
       navigate(`/academics/${studentType}/scholarship`);

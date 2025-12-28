@@ -1,4 +1,4 @@
-import type { Route } from '.react-router/types/app/routes/academics/undergraduate/+types/general-studies-requirements';
+import type { Route } from '.react-router/types/app/routes/academics/undergraduate/general-studies-requirements/+types/index';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';

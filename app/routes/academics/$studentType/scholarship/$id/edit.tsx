@@ -40,7 +40,7 @@ export default function ScholarshipEditPage({
 
   const onSubmit = async (content: ScholarshipFormData) => {
     try {
-      await fetchOk(`${BASE_URL}/v2/academics/scholarship/${id}`, {
+      await fetchOk(`${BASE_URL}/v2/academics/scholarship`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

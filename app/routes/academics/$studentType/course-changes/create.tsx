@@ -30,6 +30,7 @@ export default function CourseChangesCreatePage({
   const onSubmit = async (data: TimelineFormData) => {
     const formData = new FormData2();
     formData.appendJson('request', {
+      name: '',
       year: data.year,
       description: data.description,
     });

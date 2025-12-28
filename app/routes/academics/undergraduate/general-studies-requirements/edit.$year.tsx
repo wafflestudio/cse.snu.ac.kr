@@ -1,4 +1,4 @@
-import type { Route } from '.react-router/types/app/routes/academics/undergraduate/curriculum/+types/edit.$year';
+import type { Route } from '.react-router/types/app/routes/academics/undergraduate/general-studies-requirements/+types/edit.$year';
 import type { LoaderFunctionArgs } from 'react-router';
 import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
@@ -21,7 +21,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   }
 
   const data = await fetchJson<TimelineContent[]>(
-    `${BASE_URL}/v2/academics/undergraduate/curriculum`,
+    `${BASE_URL}/v2/academics/undergraduate/general-studies-requirements`,
   );
   const yearNum = Number(year);
   const selected = data.find((item) => item.year === yearNum);
@@ -33,23 +33,25 @@ export async function loader({ params }: LoaderFunctionArgs) {
   return selected;
 }
 
-export default function CurriculumEditPage({
+export default function GeneralStudiesEditPage({
   loaderData: initContent,
 }: Route.ComponentProps) {
   const { t } = useLanguage({
-    '전공 이수 표준 형태 편집': 'Edit Curriculum',
+    '필수 교양 과목 편집': 'Edit General Studies',
   });
   const subNav = useAcademicsSubNav();
   const navigate = useNavigate();
 
-  const title = t('전공 이수 표준 형태 편집');
+  const title = t('필수 교양 과목 편집');
   const defaultValues: TimelineFormData = {
     year: initContent.year,
     description: initContent.description,
-    file: initContent.attachments.map((file) => ({
-      type: 'UPLOADED_FILE' as const,
-      file,
-    })),
+    file: initContent.attachments.map(
+      (file: TimelineContent['attachments'][number]) => ({
+        type: 'UPLOADED_FILE' as const,
+        file,
+      }),
+    ),
   };
 
   const onSubmit = async (data: TimelineFormData) => {
@@ -67,7 +69,7 @@ export default function CurriculumEditPage({
 
     try {
       await fetchOk(
-        `${BASE_URL}/v2/academics/undergraduate/curriculum/${initContent.year}`,
+        `${BASE_URL}/v2/academics/undergraduate/general-studies-requirements/${initContent.year}`,
         {
           method: 'PUT',
           body: formData,
@@ -75,7 +77,7 @@ export default function CurriculumEditPage({
       );
 
       toast.success('수정에 성공했습니다.');
-      navigate('/academics/undergraduate/curriculum');
+      navigate('/academics/undergraduate/general-studies-requirements');
     } catch {
       toast.error('수정에 실패했습니다.');
     }
@@ -85,7 +87,7 @@ export default function CurriculumEditPage({
     <PageLayout title={title} titleSize="xl" subNav={subNav}>
       <TimelineEditor
         onSubmit={onSubmit}
-        cancelPath="/academics/undergraduate/curriculum"
+        cancelPath="/academics/undergraduate/general-studies-requirements"
         defaultValues={defaultValues}
       />
     </PageLayout>
