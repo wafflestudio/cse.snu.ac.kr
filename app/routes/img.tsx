@@ -27,8 +27,6 @@ const CACHE_DIR = path.join(process.cwd(), '.cache', 'images');
  * dev 모드에서만 동작하며, 일부 이미지가 prod에만 올라가 있는 경우를 처리
  */
 function replaceHostWithProd(url: string): string {
-  if (!import.meta.env.DEV) return url;
-
   try {
     const parsedUrl = new URL(url);
     parsedUrl.hostname = 'cse.snu.ac.kr';
@@ -112,7 +110,10 @@ async function fetchImageWithProdFallback(imageUrl: string): Promise<Response> {
     imageResponse = await fetch(imageUrl);
 
     // dev 모드에서 404 발생 시 prod 환경으로 fallback
-    if (import.meta.env.DEV && imageResponse.status === 404) {
+    if (
+      (import.meta.env.DEV || import.meta.env.VITE_PHASE === 'beta') &&
+      imageResponse.status === 404
+    ) {
       actualImageUrl = replaceHostWithProd(imageUrl);
       imageResponse = await fetch(actualImageUrl);
     }
