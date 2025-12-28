@@ -1,4 +1,6 @@
 import type { Route } from '.react-router/types/app/routes/community/notice/+types/edit.$id';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import type { LoaderFunctionArgs } from 'react-router';
 import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
@@ -9,6 +11,8 @@ import { isLocalFile } from '~/types/form';
 import { fetchJson, fetchOk } from '~/utils/fetch';
 import { FormData2, getDeleteIds } from '~/utils/form';
 import NoticeEditor, { type NoticeFormData } from './components/NoticeEditor';
+
+dayjs.extend(customParseFormat);
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const id = Number(params.id);
@@ -30,8 +34,16 @@ export default function NoticeEditPage({ loaderData }: Route.ComponentProps) {
     })),
     tags: data.tags,
     isPrivate: data.isPrivate,
-    isImportant: data.isImportant,
     isPinned: data.isPinned,
+    pinnedUntil: data.pinnedUntil
+      ? dayjs(data.pinnedUntil, 'YYYY-MM-DD').toDate()
+      : null,
+    hasPinnedUntilDeadline: data.pinnedUntil !== null,
+    isImportant: data.isImportant,
+    importantUntil: data.importantUntil
+      ? dayjs(data.importantUntil, 'YYYY-MM-DD').toDate()
+      : null,
+    hasImportantUntilDeadline: data.importantUntil !== null,
   };
 
   const onCancel = () => {
@@ -52,7 +64,13 @@ export default function NoticeEditPage({ loaderData }: Route.ComponentProps) {
       description: content.description,
       isPrivate: content.isPrivate,
       isPinned: content.isPinned,
+      pinnedUntil: content.pinnedUntil
+        ? dayjs(content.pinnedUntil).format('YYYY-MM-DD')
+        : null,
       isImportant: content.isImportant,
+      importantUntil: content.importantUntil
+        ? dayjs(content.importantUntil).format('YYYY-MM-DD')
+        : null,
       tags: content.tags,
       deleteIds,
     });

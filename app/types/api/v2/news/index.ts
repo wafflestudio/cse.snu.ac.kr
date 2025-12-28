@@ -23,6 +23,7 @@ export interface News {
   imageURL: string | null;
   isSlide: boolean;
   isImportant: boolean;
+  importantUntil: string | null;
   id: number;
   createdAt: string;
   modifiedAt: string;

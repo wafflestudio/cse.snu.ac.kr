@@ -19,7 +19,9 @@ export interface Notice {
   isPrivate: boolean;
   tags: string[];
   isPinned: boolean;
+  pinnedUntil: string | null;
   isImportant: boolean;
+  importantUntil: string | null;
   author: string;
   id: number;
   createdAt: string;

@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
 import PageLayout from '~/components/layout/PageLayout';
@@ -23,7 +24,12 @@ export default function NoticeCreatePage() {
       description: content.description,
       isPrivate: content.isPrivate,
       isPinned: content.isPinned,
+      pinnedUntil: content.pinnedUntil
+        ? dayjs(content.pinnedUntil).format('YYYY-MM-DD')
+        : null,
       isImportant: content.isImportant,
+      importantUntil:
+        dayjs(content.importantUntil).format('YYYY-MM-DD') ?? null,
       tags: content.tags,
     });
 

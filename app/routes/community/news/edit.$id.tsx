@@ -1,4 +1,5 @@
 import type { Route } from '.react-router/types/app/routes/community/news/+types/edit.$id';
+import dayjs from 'dayjs';
 import type { LoaderFunctionArgs } from 'react-router';
 import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
@@ -9,6 +10,8 @@ import { isLocalFile } from '~/types/form';
 import { fetchJson, fetchOk } from '~/utils/fetch';
 import { FormData2, getDeleteIds } from '~/utils/form';
 import NewsEditor, { type NewsFormData } from './components/NewsEditor';
+
+dayjs.locale('ko');
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const id = Number(params.id);
@@ -24,7 +27,7 @@ export default function NewsEditPage({ loaderData }: Route.ComponentProps) {
     title: data.title,
     titleForMain: data.titleForMain ?? '',
     description: data.description,
-    date: new Date(data.date),
+    date: dayjs(data.date, 'YYYY-MM-DD').toDate(),
     image: data.imageURL
       ? { type: 'UPLOADED_IMAGE', url: data.imageURL }
       : null,
@@ -35,6 +38,10 @@ export default function NewsEditPage({ loaderData }: Route.ComponentProps) {
     tags: data.tags,
     isPrivate: data.isPrivate,
     isImportant: data.isImportant,
+    importantUntil: data.importantUntil
+      ? dayjs(data.importantUntil, 'YYYY-MM-DD').toDate()
+      : null,
+    hasImportantUntilDeadline: data.importantUntil !== null,
     isSlide: data.isSlide,
   };
 
@@ -54,10 +61,12 @@ export default function NewsEditPage({ loaderData }: Route.ComponentProps) {
       title: content.title,
       titleForMain: content.titleForMain || null,
       description: content.description,
-      // TODO: 정확한 date format이?
-      date: content.date,
+      date: content.date.toISOString(),
       isPrivate: content.isPrivate,
       isImportant: content.isImportant,
+      importantUntil: content.importantUntil
+        ? dayjs(content.importantUntil).format('YYYY-MM-DD')
+        : null,
       isSlide: content.isSlide,
       tags: content.tags,
       deleteIds,

@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
 import PageLayout from '~/components/layout/PageLayout';
@@ -6,6 +7,8 @@ import { isLocalFile } from '~/types/form';
 import { fetchOk } from '~/utils/fetch';
 import { FormData2 } from '~/utils/form';
 import NewsEditor, { type NewsFormData } from './components/NewsEditor';
+
+dayjs.locale('ko');
 
 export default function NewsCreatePage() {
   const navigate = useNavigate();
@@ -21,10 +24,12 @@ export default function NewsCreatePage() {
       title: content.title,
       titleForMain: content.titleForMain || null,
       description: content.description,
-      // TODO: 정확한 date format이?
       date: content.date,
       isPrivate: content.isPrivate,
       isImportant: content.isImportant,
+      importantUntil: content.importantUntil
+        ? dayjs(content.importantUntil).format('YYYY-MM-DD')
+        : null,
       isSlide: content.isSlide,
       tags: content.tags,
     });
