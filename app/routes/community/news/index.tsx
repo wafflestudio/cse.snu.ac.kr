@@ -56,16 +56,18 @@ export default function NewsPage({ loaderData: data }: Route.ComponentProps) {
       <Pagination page={pageNum} totalPages={totalPages} />
 
       <LoginVisible allow="ROLE_STAFF">
-        <div className="flex justify-end mt-12">
-          <Button
-            variant="solid"
-            tone="inverse"
-            size="md"
-            as="link"
-            to={localizedPath('/community/news/create')}
-          >
-            새 게시글
-          </Button>
+        <div className="mt-[40px] flex justify-end">
+          <span className="ml-4">
+            <Button
+              variant="solid"
+              tone="inverse"
+              size="md"
+              as="link"
+              to={localizedPath('/community/news/create')}
+            >
+              새 게시글
+            </Button>
+          </span>
         </div>
       </LoginVisible>
     </PageLayout>

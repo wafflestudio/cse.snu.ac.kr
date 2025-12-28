@@ -2,10 +2,10 @@ import type { Route } from '.react-router/types/app/routes/community/seminar/+ty
 import { Fragment } from 'react';
 import type { LoaderFunctionArgs } from 'react-router';
 import { useSearchParams } from 'react-router';
-import Button from '~/components/ui/Button';
 import LoginVisible from '~/components/feature/auth/LoginVisible';
-import Pagination from '~/components/ui/Pagination';
 import PageLayout from '~/components/layout/PageLayout';
+import Button from '~/components/ui/Button';
+import Pagination from '~/components/ui/Pagination';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useCommunitySubNav } from '~/hooks/useSubNav';
@@ -86,16 +86,18 @@ export default function SeminarPage({
       <Pagination page={pageNum} totalPages={totalPages} />
 
       <LoginVisible allow="ROLE_STAFF">
-        <div className="flex justify-end mt-12">
-          <Button
-            variant="solid"
-            tone="inverse"
-            size="md"
-            as="link"
-            to={localizedPath('/community/seminar/create')}
-          >
-            새 게시글
-          </Button>
+        <div className="mt-[40px] flex justify-end">
+          <span className="ml-4">
+            <Button
+              variant="solid"
+              tone="inverse"
+              size="md"
+              as="link"
+              to={localizedPath('/community/seminar/create')}
+            >
+              새 게시글
+            </Button>
+          </span>
         </div>
       </LoginVisible>
     </PageLayout>

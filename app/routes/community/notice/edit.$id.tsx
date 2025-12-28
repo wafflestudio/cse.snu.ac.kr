@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
 import type { Notice } from '~/types/api/v2/notice';
 import { isLocalFile } from '~/types/form';
 import { fetchJson, fetchOk } from '~/utils/fetch';
@@ -20,7 +19,6 @@ export async function loader({ params }: LoaderFunctionArgs) {
 export default function NoticeEditPage({ loaderData }: Route.ComponentProps) {
   const { id, data } = loaderData;
   const navigate = useNavigate();
-  const { locale } = useLanguage({});
 
   const defaultValues: NoticeFormData = {
     title: data.title,
@@ -37,7 +35,7 @@ export default function NoticeEditPage({ loaderData }: Route.ComponentProps) {
   };
 
   const onCancel = () => {
-    navigate(`/${locale}/community/notice/${id}`);
+    navigate(`/community/notice/${id}`);
   };
 
   const onSubmit = async (content: NoticeFormData) => {
@@ -71,7 +69,7 @@ export default function NoticeEditPage({ loaderData }: Route.ComponentProps) {
       });
 
       toast.success('공지사항을 수정했습니다.');
-      navigate(`/${locale}/community/notice/${id}`);
+      navigate(`/community/notice/${id}`);
     } catch {
       toast.error('수정에 실패했습니다.');
     }
@@ -84,7 +82,7 @@ export default function NoticeEditPage({ loaderData }: Route.ComponentProps) {
       });
 
       toast.success('공지사항을 삭제했습니다.');
-      navigate(`/${locale}/community/notice`);
+      navigate('/community/notice');
     } catch {
       toast.error('삭제에 실패했습니다.');
     }

@@ -79,9 +79,11 @@ export async function uploadFiles(
 /**
  * 폼 제출
  * 제출 후 페이지 로드가 완전히 끝날 때까지 대기합니다.
+ * @param page Playwright Page 객체
+ * @param buttonName 제출 버튼의 이름 (기본값: '저장하기')
  */
-export async function submitForm(page: Page) {
-  await page.getByRole('button', { name: '저장하기' }).click();
+export async function submitForm(page: Page, buttonName = '저장하기') {
+  await page.getByRole('button', { name: buttonName }).click();
   // load: load 이벤트까지 대기 (domcontentloaded보다 완전한 로드)
   await page.waitForLoadState('load');
 }
@@ -154,6 +156,28 @@ export async function selectDate(page: Page, fieldsetName: string, date: Date) {
   // 날짜 선택 (일자 버튼 클릭)
   const day = date.getDate();
   await page.getByRole('button', { name: day.toString(), exact: true }).click();
+}
+
+/**
+ * 체크박스 선택/해제 (Form.Checkbox)
+ * @param page Playwright Page 객체
+ * @param label 체크박스의 라벨
+ * @param checked true면 체크, false면 체크 해제 (기본값: true)
+ */
+export async function toggleCheckbox(
+  page: Page,
+  label: string,
+  checked = true,
+) {
+  const checkbox = page.getByRole('checkbox', { name: label });
+  const isChecked = await checkbox.isChecked();
+
+  // 체크박스는 appearance-none으로 숨겨져 있으므로 label 클릭
+  if (checked && !isChecked) {
+    await page.getByText(label, { exact: true }).click();
+  } else if (!checked && isChecked) {
+    await page.getByText(label, { exact: true }).click();
+  }
 }
 
 /**

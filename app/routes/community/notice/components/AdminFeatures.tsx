@@ -92,7 +92,7 @@ export default function AdminFeatures({
             </Button>
           </div>
         )}
-        <div className="ml-auto flex gap-4">
+        <div className="ml-auto flex items-center">
           <Button
             variant="solid"
             tone="brand"
@@ -101,17 +101,23 @@ export default function AdminFeatures({
           >
             {isEditMode ? '완료' : '편집'}
           </Button>
-          {!isEditMode && (
-            <Button
-              variant="solid"
-              tone="inverse"
-              size="md"
-              as="link"
-              to={localizedPath('/community/notice/create')}
-            >
-              새 게시글
-            </Button>
-          )}
+          <span className="ml-4">
+            {isEditMode ? (
+              <Button variant="solid" tone="inverse" size="md" disabled>
+                새 게시글
+              </Button>
+            ) : (
+              <Button
+                variant="solid"
+                tone="inverse"
+                size="md"
+                as="link"
+                to={localizedPath('/community/notice/create')}
+              >
+                새 게시글
+              </Button>
+            )}
+          </span>
         </div>
       </div>
 

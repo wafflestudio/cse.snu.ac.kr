@@ -1,20 +1,21 @@
 import type { Route } from '.react-router/types/app/routes/community/seminar/+types/$id';
 import dayjs from 'dayjs';
 import type { LoaderFunctionArgs } from 'react-router';
+import { useNavigate } from 'react-router';
 import 'dayjs/locale/ko';
 import type { ReactNode } from 'react';
+import { toast } from 'sonner';
+import PageLayout from '~/components/layout/PageLayout';
 import Attachments from '~/components/ui/Attachments';
-import Button from '~/components/ui/Button';
 import HTMLViewer from '~/components/ui/HTMLViewer';
 import Image from '~/components/ui/Image';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
 import Node from '~/components/ui/Nodes';
-import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useCommunitySubNav } from '~/hooks/useSubNav';
 import PostFooter from '~/routes/community/components/PostFooter';
 import type { Seminar } from '~/types/api/v2/seminar';
+import { fetchOk } from '~/utils/fetch';
 import { getLocaleFromPathname } from '~/utils/string';
 
 export async function loader({ params, request }: LoaderFunctionArgs) {
@@ -59,6 +60,19 @@ export default function SeminarDetailPage({
     '연사 소개': 'Speaker Introduction',
   });
   const subNav = useCommunitySubNav();
+  const navigate = useNavigate();
+
+  const handleDelete = async () => {
+    try {
+      await fetchOk(`${BASE_URL}/v2/seminar/${seminar.id}`, {
+        method: 'DELETE',
+      });
+      toast.success('게시글을 삭제했습니다.');
+      navigate(localizedPath('/community/seminar'));
+    } catch {
+      toast.error('삭제에 실패했습니다.');
+    }
+  };
 
   return (
     <PageLayout
@@ -67,19 +81,6 @@ export default function SeminarDetailPage({
       subNav={subNav}
       padding="none"
     >
-      <LoginVisible allow="ROLE_STAFF">
-        <div className="px-5 pt-9 text-right sm:pl-[100px] sm:pr-[340px]">
-          <Button
-            as="link"
-            to={localizedPath(`/community/seminar/edit/${seminar.id}`)}
-            variant="outline"
-            tone="neutral"
-            size="md"
-          >
-            편집
-          </Button>
-        </div>
-      </LoginVisible>
       <h2 className="px-5 py-9 text-[1.25rem] font-semibold leading-[1.4] sm:pl-[100px] sm:pr-[340px]">
         {seminar.title}
       </h2>
@@ -140,7 +141,12 @@ export default function SeminarDetailPage({
 
         <Node variant="straight" />
 
-        <PostFooter post={seminar} listPath="/community/seminar" />
+        <PostFooter
+          post={seminar}
+          listPath="/community/seminar"
+          editPath={`/community/seminar/edit/${seminar.id}`}
+          onDelete={handleDelete}
+        />
       </div>
     </PageLayout>
   );

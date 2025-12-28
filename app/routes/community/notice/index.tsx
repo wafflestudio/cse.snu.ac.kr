@@ -37,8 +37,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
     params.append('tag', t);
   }
 
+  const cookie = request.headers.get('cookie');
+  const headers: HeadersInit = cookie ? { Cookie: cookie } : {};
+
   return fetchJson<NoticePreviewList>(
     `${BASE_URL}/v2/notice?${params.toString()}`,
+    { headers },
   );
 }
 
