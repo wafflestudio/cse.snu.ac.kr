@@ -54,6 +54,7 @@ export default function StaffPage({
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}
+      noImageIndex
     >
       <LoginVisible allow="ROLE_STAFF">
         <div className="mb-7 flex justify-end">

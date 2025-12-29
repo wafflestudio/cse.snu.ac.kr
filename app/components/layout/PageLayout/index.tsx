@@ -27,6 +27,7 @@ interface PageLayoutProps {
   subNav?: SubNavConfig;
   pageTitle?: string; // <title> 및 og:title용
   pageDescription?: string; // meta description 및 og:description용
+  noImageIndex?: boolean; // 이미지 검색 차단용
   children: ReactNode;
 }
 
@@ -48,6 +49,7 @@ export default function PageLayout({
   subNav,
   pageTitle,
   pageDescription,
+  noImageIndex,
   children,
 }: PageLayoutProps) {
   const generatedBreadcrumb = useBreadcrumb();
@@ -83,6 +85,7 @@ export default function PageLayout({
           <meta property="og:description" content={pageDescription} />
         </>
       )}
+      {noImageIndex && <meta name="robots" content="noimageindex" />}
 
       {/* 기존 레이아웃 */}
       <div className="flex grow flex-col bg-neutral-900">

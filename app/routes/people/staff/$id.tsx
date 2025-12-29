@@ -63,6 +63,7 @@ export default function StaffDetailPage({
       titleSize="xl"
       pageTitle={pageTitle}
       pageDescription={pageDescription}
+      noImageIndex
     >
       <LoginVisible allow="ROLE_STAFF">
         <div className="mb-9 text-right">

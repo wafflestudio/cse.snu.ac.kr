@@ -12,11 +12,11 @@ export default function LinkSection() {
         </h3>
         <div className="flex flex-col gap-5">
           <LinkRow
-            to={localizedPath('/community/top-conference')}
+            to={localizedPath('/research/top-conference-list')}
             title="Top Conference List"
           />
           <LinkRow
-            to={localizedPath('/about/faculty-recruitment')}
+            to={localizedPath('/community/faculty-recruitment')}
             title="신임교수초빙"
             subtitle="Faculty Recruitment"
           />
@@ -34,7 +34,9 @@ export default function LinkSection() {
         </h3>
         <div className="flex flex-col gap-5">
           <LinkRow
-            to={localizedPath('/academics/undergraduate/general-studies')}
+            to={localizedPath(
+              '/academics/undergraduate/general-studies-requirements',
+            )}
             title="필수 교양 과목"
             subtitle="General Studies Requirements"
           />
