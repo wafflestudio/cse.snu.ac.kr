@@ -1,6 +1,6 @@
 import type { Route } from '.react-router/types/app/routes/main/+types';
 import Header from '~/components/layout/Header';
-import comunityImg from '~/components/ui/assets/comunity.jpg';
+import comunityImg from '~/components/ui/assets/comunity.webp';
 import Image from '~/components/ui/Image';
 import ImageModal from '~/components/ui/ImageModal';
 import { BASE_URL } from '~/constants/api';
