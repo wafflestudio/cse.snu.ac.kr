@@ -25,12 +25,22 @@ export interface ProcessedHtml {
 }
 
 export const processHtmlForCsp = (html: string): ProcessedHtml => {
-  // 400.XXX같은 값들이 링크 처리되는걸 막기 위해 tldMatches false처리
+  // 400.5 같은 숫자가 링크로 인식되는걸 방지 (tldMatches: false)
   const linkedHTML = Autolinker.link(html, {
     urls: { tldMatches: false },
   }).trim();
 
   const $ = cheerio.load(linkedHTML);
+
+  // 모든 링크에 보안 속성 추가
+  $('a').each((_i, el) => {
+    const $a = $(el);
+    const existingRel = $a.attr('rel');
+    const newRel = existingRel
+      ? `${existingRel} noopener noreferrer`
+      : 'noopener noreferrer';
+    $a.attr('rel', newRel);
+  });
 
   // CSS 속성 -> 클래스명 매핑 (캐싱용)
   const propertyToClassMap = new Map<string, string>();

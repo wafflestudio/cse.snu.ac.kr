@@ -66,12 +66,7 @@ export async function loader({ request, context }: Route.LoaderArgs) {
 
   context.set(nonceContext, nonce);
 
-  return data(
-    { nonce },
-    {
-      headers: pathname.includes('/create') ? undefined : headers,
-    },
-  );
+  return data({ nonce }, { headers });
 }
 
 export function headers({ loaderHeaders }: Route.HeadersArgs) {
