@@ -136,12 +136,12 @@ cd $REMOTE_PATH
 echo "🔄 Git 최신 변경사항 가져오는 중..."
 git pull --rebase
 
+echo "🏗️  Docker 이미지 빌드 중 ($BUILD_MODE 모드)..."
+docker build --build-arg BUILD_MODE=$BUILD_MODE -t $IMAGE_NAME:latest .
+
 echo "🛑 기존 컨테이너 중지 중..."
 docker stop $CONTAINER_NAME 2>/dev/null || echo "실행 중인 컨테이너 없음"
 docker rm $CONTAINER_NAME 2>/dev/null || echo "삭제할 컨테이너 없음"
-
-echo "🏗️  Docker 이미지 빌드 중 ($BUILD_MODE 모드)..."
-docker build --build-arg BUILD_MODE=$BUILD_MODE -t $IMAGE_NAME:latest .
 
 echo "🚀 새 컨테이너 시작 중..."
 docker run -d \

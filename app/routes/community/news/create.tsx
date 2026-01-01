@@ -1,14 +1,12 @@
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router';
-import { toast } from '~/components/ui/sonner';
 import PageLayout from '~/components/layout/PageLayout';
+import { toast } from '~/components/ui/sonner';
 import { BASE_URL } from '~/constants/api';
 import { isLocalFile } from '~/types/form';
 import { fetchOk } from '~/utils/fetch';
 import { FormData2 } from '~/utils/form';
 import NewsEditor, { type NewsFormData } from './components/NewsEditor';
-
-dayjs.locale('ko');
 
 export default function NewsCreatePage() {
   const navigate = useNavigate();

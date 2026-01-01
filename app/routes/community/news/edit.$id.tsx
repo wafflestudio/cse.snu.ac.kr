@@ -2,16 +2,14 @@ import type { Route } from '.react-router/types/app/routes/community/news/+types
 import dayjs from 'dayjs';
 import type { LoaderFunctionArgs } from 'react-router';
 import { useNavigate } from 'react-router';
-import { toast } from '~/components/ui/sonner';
 import PageLayout from '~/components/layout/PageLayout';
+import { toast } from '~/components/ui/sonner';
 import { BASE_URL } from '~/constants/api';
 import type { News } from '~/types/api/v2/news';
 import { isLocalFile } from '~/types/form';
 import { fetchJson, fetchOk } from '~/utils/fetch';
 import { FormData2, getDeleteIds } from '~/utils/form';
 import NewsEditor, { type NewsFormData } from './components/NewsEditor';
-
-dayjs.locale('ko');
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const id = Number(params.id);

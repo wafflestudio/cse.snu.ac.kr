@@ -14,10 +14,8 @@ import clsx from 'clsx';
 import Footer from '~/components/layout/Footer';
 import LNB from '~/components/layout/LeftNav';
 import MobileNav from '~/components/layout/MobileNav';
-import { useLanguage } from '~/hooks/useLanguage';
-
-import 'dayjs/locale/ko';
 import { Toaster } from '~/components/ui/sonner';
+import { useLanguage } from '~/hooks/useLanguage';
 import { useNonce } from '~/hooks/useNonce';
 import useIsMobile from '~/hooks/useResponsive';
 import { useStore } from '~/store';

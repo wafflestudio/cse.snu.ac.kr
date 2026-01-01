@@ -15,6 +15,7 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 RUN pnpm exec react-router build --mode ${BUILD_MODE}
 
 FROM base
+ENV TZ=Asia/Seoul
 COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/build /app/build
 CMD [ "pnpm", "start" ]
