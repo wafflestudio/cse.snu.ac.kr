@@ -140,7 +140,7 @@ function FooterBottomLeft() {
       <Dialog
         open={cserealOpen}
         onOpenChange={setCserealOpen}
-        ariaLabel="CSEREAL 팀 소개"
+        title="CSEREAL 팀 소개"
         contentClassName="w-[92vw] max-w-3xl p-0"
       >
         <div className="relative flex flex-col gap-5 overflow-y-auto overflow-x-hidden px-8 pb-12 pt-12 sm:px-12 sm:pb-16 sm:pt-14">

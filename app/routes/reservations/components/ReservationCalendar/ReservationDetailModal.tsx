@@ -1,12 +1,11 @@
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { useRevalidator } from 'react-router';
-import { toast } from '~/components/ui/sonner';
 import LoginVisible from '~/components/feature/auth/LoginVisible';
 import AlertDialog from '~/components/ui/AlertDialog';
 import Button from '~/components/ui/Button';
 import Dialog from '~/components/ui/Dialog';
-import { BASE_URL } from '~/constants/api';
+import { toast } from '~/components/ui/sonner';
 import { useLanguage } from '~/hooks/useLanguage';
 import {
   deleteRecurringReservation,
@@ -99,7 +98,7 @@ export default function ReservationDetailModal({
 
   return (
     <>
-      <Dialog open={open} onOpenChange={onOpenChange}>
+      <Dialog open={open} onOpenChange={onOpenChange} title="예약 상세">
         <div className="min-w-[320px]">
           <div className="mb-5 flex items-center justify-between">
             <h2 className="text-xl font-bold text-neutral-800">

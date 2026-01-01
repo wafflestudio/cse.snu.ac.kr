@@ -1,10 +1,10 @@
 import { useEffect, useReducer, useState } from 'react';
 import { useRevalidator } from 'react-router';
-import { toast } from '~/components/ui/sonner';
 import LoginVisible from '~/components/feature/auth/LoginVisible';
 import AlertDialog from '~/components/ui/AlertDialog';
 import Button from '~/components/ui/Button';
 import Dialog from '~/components/ui/Dialog';
+import { toast } from '~/components/ui/sonner';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import type { Course } from '~/types/api/v2/academics';
@@ -35,7 +35,7 @@ export default function CourseDetailModal({
   if (!course) return null;
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange} ariaLabel="교과목 상세">
+    <Dialog open={open} onOpenChange={onOpenChange} title="교과목 상세">
       <div className="flex flex-col gap-4">
         {isEditMode ? (
           <CourseEditor

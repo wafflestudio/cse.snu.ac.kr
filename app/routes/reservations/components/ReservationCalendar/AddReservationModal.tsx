@@ -47,7 +47,7 @@ export default function AddReservationModal({
     <Dialog
       open={open}
       onOpenChange={onOpenChange}
-      ariaLabel={t('시설 예약')}
+      title="시설 예약"
       contentClassName="border-b border-t-[3px] border-main-orange bg-neutral-100 px-7 pb-6 pt-7 text-md text-neutral-700"
     >
       <FormProvider {...methods}>

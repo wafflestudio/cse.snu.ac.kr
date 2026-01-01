@@ -1,10 +1,10 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { useRevalidator } from 'react-router';
-import { toast } from '~/components/ui/sonner';
 import Fieldset from '~/components/form/Fieldset';
 import Form from '~/components/form/Form';
 import Button from '~/components/ui/Button';
 import Dialog from '~/components/ui/Dialog';
+import { toast } from '~/components/ui/sonner';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import type { Course, StudentType } from '~/types/api/v2/academics';
@@ -71,6 +71,7 @@ export default function AddCourseModal({
     <Dialog
       open
       onOpenChange={onClose}
+      title="교과목 추가"
       contentClassName="min-w-[500px] max-w-[768px]"
     >
       <FormProvider {...formMethods}>
