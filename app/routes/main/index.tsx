@@ -1,6 +1,8 @@
 import type { Route } from '.react-router/types/app/routes/main/+types';
 import Header from '~/components/layout/Header';
+import comunityImg from '~/components/ui/assets/comunity.jpg';
 import Image from '~/components/ui/Image';
+import ImageModal from '~/components/ui/ImageModal';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import type { MainResponse } from '~/types/api/v2';
@@ -56,6 +58,16 @@ export default function MainPage({ loaderData }: Route.ComponentProps) {
         <ImportantSection importantList={loaderData.importants} />
         <NoticeSection allMainNotice={loaderData.notices} />
         <LinkSection />
+
+        {/* 이미지 모달 */}
+        <ImageModal
+          imageSrc={comunityImg}
+          imageAlt="ComUnity 50주년 행사"
+          title="ComUnity: 함께해 온 컴퓨팅 - 50주년 기념 동문 행사"
+          onAction={() => {
+            window.location.href = '/community/notice/24547';
+          }}
+        />
       </div>
     </>
   );

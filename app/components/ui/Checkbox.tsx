@@ -25,7 +25,6 @@ export default function Checkbox({
   const generatedId = useId();
   const inputId = id ?? generatedId;
 
-  // label이 있는 경우
   return (
     <label
       htmlFor={inputId}
