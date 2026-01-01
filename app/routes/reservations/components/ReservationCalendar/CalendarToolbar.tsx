@@ -1,5 +1,10 @@
 import dayjs from 'dayjs';
 import {
+  Calendar as CalendarIcon,
+  ChevronLeft,
+  ChevronRight,
+} from 'lucide-react';
+import {
   type ButtonHTMLAttributes,
   type DetailedHTMLProps,
   useReducer,
@@ -30,11 +35,11 @@ export default function CalendarToolbar({
         <SelectDayButton date={selectedDate} />
         <ChangeDateButton
           targetDate={selectedDate.add(-columnCount, 'day')}
-          symbolName="navigate_before"
+          direction="prev"
         />
         <ChangeDateButton
           targetDate={selectedDate.add(columnCount, 'day')}
-          symbolName="navigate_next"
+          direction="next"
         />
         {todayButtonVisible && <TodayButton />}
       </div>
@@ -78,9 +83,7 @@ function SelectDayButton({ date }: { date: dayjs.Dayjs }) {
           '날짜 선택'
         ) : (
           <>
-            <span className="material-symbols-rounded text-sm">
-              calendar_month
-            </span>
+            <CalendarIcon className="h-[13px] w-[13px]" />
             {date.format('YY.MM.DD.')}
           </>
         )}
@@ -104,19 +107,21 @@ function SelectDayButton({ date }: { date: dayjs.Dayjs }) {
 
 function ChangeDateButton({
   targetDate,
-  symbolName,
+  direction,
 }: {
   targetDate: dayjs.Dayjs;
-  symbolName: string;
+  direction: 'prev' | 'next';
 }) {
   const { setSelectedDate } = useSelectedDate();
   const handleClick = () => setSelectedDate(targetDate);
 
   return (
     <SquareButton className="w-7.5" onClick={handleClick}>
-      <span className="material-symbols-rounded align-middle text-xl font-light">
-        {symbolName}
-      </span>
+      {direction === 'prev' ? (
+        <ChevronLeft className="h-[22px] w-[22px]" strokeWidth={1.5} />
+      ) : (
+        <ChevronRight className="h-[22px] w-[22px]" strokeWidth={1.5} />
+      )}
     </SquareButton>
   );
 }

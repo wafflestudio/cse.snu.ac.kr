@@ -1,9 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700");
-@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@100..700");
-
-/* https://github.com/tailwindlabs/tailwindcss/discussions/15870 */
-/* 왜??? */
-/* material icon이 text-xs보다 우선순위가 높아 텍스트 크기가 적용 안되는 이슈 수정 */
 @layer theme, base, components, utilities;
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/preflight.css" layer(base);

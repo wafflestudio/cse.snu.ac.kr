@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useCallback, useRef, useState } from 'react';
 import { useController } from 'react-hook-form';
 
@@ -71,9 +72,11 @@ export default function Dropdown({
         <p className="text-md font-normal">
           {contents.find((x) => x.value === value)?.label}
         </p>
-        <span className="material-symbols-rounded text-base">
-          {expanded ? 'expand_less' : 'expand_more'}
-        </span>
+        {expanded ? (
+          <ChevronUp className="h-4 w-4" />
+        ) : (
+          <ChevronDown className="h-4 w-4" />
+        )}
       </button>
       <div className="relative z-10">
         <DropdownListWithScroll

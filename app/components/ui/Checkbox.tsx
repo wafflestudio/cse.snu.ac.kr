@@ -1,3 +1,4 @@
+import { Square, SquareCheck } from 'lucide-react';
 import { useId } from 'react';
 
 interface CheckboxProps {
@@ -32,14 +33,18 @@ export default function Checkbox({
         !disabled && 'cursor-pointer'
       } ${className ?? ''}`}
     >
-      <span
-        className={`material-symbols-rounded text-lg font-light text-neutral-400 ${
-          !disabled &&
-          'group-hover:text-neutral-600 group-active:text-main-orange'
-        } ${checked && 'text-neutral-600'}`}
-      >
-        {checked ? 'check_box' : 'check_box_outline_blank'}
-      </span>
+      {(() => {
+        const Icon = checked ? SquareCheck : Square;
+        return (
+          <Icon
+            className={`h-[18px] w-[18px] text-neutral-400 ${
+              !disabled &&
+              'group-hover:text-neutral-600 group-active:text-main-orange'
+            } ${checked && 'text-neutral-600'}`}
+            strokeWidth={1.5}
+          />
+        );
+      })()}
       <span
         className={`text-md tracking-wide text-neutral-600 ${
           !disabled && 'group-active:text-main-orange'

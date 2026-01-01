@@ -22,6 +22,7 @@
     "clsx": "^2.1.1",
     "dayjs": "^1.11.19",
     "isbot": "^5",
+    "lucide-react": "^0.562.0",
     "react": "^19.2.3",
     "react-day-picker": "^9.13.0",
     "react-dom": "^19.2.3",

@@ -1,3 +1,4 @@
+import { Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router';
 import Button from '~/components/ui/Button';
@@ -52,11 +53,7 @@ export default function HeaderSearchBar() {
         tone="neutral"
         size="sm"
         ariaLabel={t('통합검색')}
-        iconLeft={
-          <span className="material-symbols-rounded w-8 text-[1.25rem]">
-            search
-          </span>
-        }
+        iconLeft={<Search className="h-5 w-5" strokeWidth={1.5} />}
       />
     </form>
   );

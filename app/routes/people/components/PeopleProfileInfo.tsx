@@ -1,3 +1,5 @@
+import type { LucideIcon } from 'lucide-react';
+import { Globe, Mail, MapPin, PhoneCall, Printer } from 'lucide-react';
 import ProfileImage from '~/routes/people/components/PeopleProfileImage';
 
 interface PeopleProfileInfoItem {
@@ -10,6 +12,14 @@ interface PeopleProfileInfoProps {
   imageURL: string | null;
   items: PeopleProfileInfoItem[];
 }
+
+const ICONS: Record<string, LucideIcon> = {
+  distance: MapPin,
+  phone_in_talk: PhoneCall,
+  print: Printer,
+  mail: Mail,
+  captive_portal: Globe,
+};
 
 export default function PeopleProfileInfo({
   imageURL,
@@ -30,12 +40,11 @@ export default function PeopleProfileInfo({
 
 function ProfileInfoRow({ icon, label, href }: PeopleProfileInfoItem) {
   const hasLabel = typeof label === 'string' && label.length > 0;
+  const Icon = ICONS[icon];
 
   return (
     <div className="flex items-center gap-[6px] break-all">
-      <span className="material-symbols-rounded text-[20px] font-light">
-        {icon}
-      </span>
+      {Icon && <Icon className="h-5 w-5" strokeWidth={1.5} />}
       {href ? (
         <a
           target={href.startsWith('http') ? '_blank' : undefined}

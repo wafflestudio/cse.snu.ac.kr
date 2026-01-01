@@ -1,3 +1,4 @@
+import { FileText } from 'lucide-react';
 import { Fragment } from 'react';
 import { Link } from 'react-router';
 import { LAB_ROW_ITEM_WIDTH } from '~/routes/research/labs';
@@ -127,9 +128,10 @@ function LabMaterialsCell({
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="material-symbols-outlined text-[1.25rem] text-neutral-400 hover:text-neutral-800">
-            draft
-          </span>
+          <FileText
+            className="h-5 w-5 text-neutral-400 hover:text-neutral-800"
+            strokeWidth={1.5}
+          />
         </a>
       )}
       {youtube && (

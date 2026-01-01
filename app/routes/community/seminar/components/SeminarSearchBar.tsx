@@ -1,3 +1,4 @@
+import { Search } from 'lucide-react';
 import { type ChangeEvent, type FormEvent, useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import { useLanguage } from '~/hooks/useLanguage';
@@ -47,10 +48,10 @@ export default function SeminarSearchBar() {
         />
         <button
           type="submit"
-          className="material-symbols-rounded text-[1.25rem] font-light text-neutral-800 hover:text-neutral-500"
+          className="text-neutral-800 hover:text-neutral-500"
           aria-label={t('검색')}
         >
-          search
+          <Search className="h-5 w-5" strokeWidth={1.5} />
         </button>
       </div>
     </form>

@@ -1,3 +1,4 @@
+import { X } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import Button from '~/components/ui/Button';
@@ -79,7 +80,7 @@ function SearchPage({ onClose }: { onClose: () => void }) {
           onClick={onClose}
           ariaLabel="검색 닫기"
         >
-          <span className="material-symbols-rounded text-white">close</span>
+          <X className="h-5 w-5 text-white" />
         </Button>
       </div>
       <div className="mx-[1.94rem] mt-9 flex items-center border-b border-neutral-400">

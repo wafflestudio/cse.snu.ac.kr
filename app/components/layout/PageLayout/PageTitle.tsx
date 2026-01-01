@@ -1,3 +1,4 @@
+import { ChevronRight } from 'lucide-react';
 import { Fragment } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import Button from '~/components/ui/Button';
@@ -82,8 +83,8 @@ function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
               />
             </li>
             {i !== items.length - 1 && (
-              <li className="text-xs material-symbols-outlined font-extralight">
-                arrow_forward_ios
+              <li className="text-xs">
+                <ChevronRight className="h-[12px] w-[12px]" strokeWidth={1.5} />
               </li>
             )}
           </Fragment>

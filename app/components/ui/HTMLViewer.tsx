@@ -45,7 +45,7 @@ export default function HTMLViewer({
       {hasImage && (
         <div
           className={clsx(
-            'relative mb-7 w-full sm:float-right sm:ml-7 sm:w-auto',
+            'relative mb-7 w-full sm:float-right sm:ml-7',
             imageWidth ? IMAGE_WIDTH_CLASS[imageWidth] : null,
           )}
         >
@@ -65,9 +65,11 @@ export default function HTMLViewer({
         dangerouslySetInnerHTML={{ __html: trimmedHTML }}
       />
       {/* https://github.com/facebook/react/issues/32449 */}
-      <style href={styleKey} nonce={nonce} precedence="low">
-        {cssRules.join('\n')}
-      </style>
+      {cssRules.length > 0 && (
+        <style href={styleKey} nonce={nonce} precedence="low">
+          {cssRules}
+        </style>
+      )}
     </div>
   );
 }

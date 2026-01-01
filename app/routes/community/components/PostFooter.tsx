@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import { type ReactNode, useState } from 'react';
 import { Link, useSearchParams } from 'react-router';
 import LoginVisible from '~/components/feature/auth/LoginVisible';
 import AlertDialog from '~/components/ui/AlertDialog';
@@ -53,7 +54,7 @@ export default function PostFooter({
           href={localizedPath(`${listPath}/${nextPost.id}`)}
           label={t('다음글')}
           title={nextPost.title}
-          icon="expand_less"
+          icon={<ChevronUp className="h-5 w-5" strokeWidth={1.5} />}
         />
       )}
 
@@ -62,7 +63,7 @@ export default function PostFooter({
           href={localizedPath(`${listPath}/${prevPost.id}`)}
           label={t('이전글')}
           title={prevPost.title}
-          icon="expand_more"
+          icon={<ChevronDown className="h-5 w-5" strokeWidth={1.5} />}
         />
       )}
 
@@ -136,12 +137,10 @@ const PostNavLink = ({
   href: string;
   label: string;
   title: string;
-  icon: string;
+  icon: ReactNode;
 }) => (
-  <Link to={href} className="group mb-[2px] flex w-fit items-center">
-    <span className="material-symbols-rounded font-normal text-main-orange">
-      {icon}
-    </span>
+  <Link to={href} className="group mb-1 flex w-fit items-center">
+    <span className="text-main-orange">{icon}</span>
     <p className="mr-3 shrink-0 text-md font-medium text-main-orange">
       {label}
     </p>

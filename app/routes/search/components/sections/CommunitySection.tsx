@@ -1,3 +1,4 @@
+import { ChevronRight } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { Link } from 'react-router';
 import { useLanguage } from '~/hooks/useLanguage';
@@ -126,7 +127,7 @@ const MoreResultLink = ({ href }: { href: string }) => {
       className="text-middle mr-4 mt-10 flex items-center self-end text-md font-medium text-main-orange"
     >
       {t('결과 더보기')}
-      <span className="material-symbols-outlined text-sm">chevron_right</span>
+      <ChevronRight className="h-[13px] w-[13px]" />
     </Link>
   );
 };

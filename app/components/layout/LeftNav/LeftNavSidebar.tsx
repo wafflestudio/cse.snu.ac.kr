@@ -64,12 +64,10 @@ function Logo() {
 function DotList() {
   const { activeItem } = useNavItem();
 
-  const isDotFilled = (item: (typeof navigationTree)[0]) => {
+  const dotArr = navigationTree.map((item) => {
     if (!activeItem) return false;
-    return item.path?.startsWith(activeItem.path || '') ?? false;
-  };
-
-  const dotArr = navigationTree.map(isDotFilled);
+    return activeItem.path?.startsWith(item.path || '') ?? false;
+  });
 
   const getDotMargin = (filled: boolean, idx: number) => {
     if (dotArr[idx + 1]) return 'mb-[2.2rem]';

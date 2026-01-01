@@ -1,3 +1,4 @@
+import { RefreshCw } from 'lucide-react';
 import { useNavigate, useSearchParams } from 'react-router';
 import { Tag } from '~/components/ui/Tag';
 import { useLanguage } from '~/hooks/useLanguage';
@@ -67,9 +68,7 @@ function TagResetButton({ disabled, onClick }: TagResetButtonProps) {
       className="flex items-center gap-0.5 text-main-orange enabled:hover:text-neutral-400"
       disabled={disabled}
     >
-      <span className="material-symbols-outlined scale-x-[-1] text-base font-light">
-        refresh
-      </span>
+      <RefreshCw className="h-4 w-4 scale-x-[-1]" strokeWidth={1.5} />
       <span className="whitespace-nowrap text-md">{t('태그 초기화')}</span>
     </button>
   );

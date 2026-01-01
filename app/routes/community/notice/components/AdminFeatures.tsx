@@ -1,8 +1,9 @@
+import { SquareCheck } from 'lucide-react';
 import { useState } from 'react';
 import { useRevalidator } from 'react-router';
-import { toast } from '~/components/ui/sonner';
 import AlertDialog from '~/components/ui/AlertDialog';
 import Button from '~/components/ui/Button';
+import { toast } from '~/components/ui/sonner';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { fetchOk } from '~/utils/fetch';
@@ -65,9 +66,10 @@ export default function AdminFeatures({
         {isEditMode && (
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
-              <span className="material-symbols-rounded text-lg font-extralight text-neutral-500">
-                check_box
-              </span>
+              <SquareCheck
+                className="h-[18px] w-[18px] text-neutral-500"
+                strokeWidth={1.5}
+              />
               <span className="text-sm tracking-wide text-neutral-500">
                 {selectedIds.size}개 게시물 선택
               </span>

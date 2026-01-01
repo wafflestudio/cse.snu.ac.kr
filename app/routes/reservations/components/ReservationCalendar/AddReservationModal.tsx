@@ -1,3 +1,4 @@
+import { AlertCircle, ChevronRight } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { FormProvider } from 'react-hook-form';
 import { Link } from 'react-router';
@@ -158,9 +159,7 @@ export default function AddReservationModal({
             </Fieldset>
 
             <div className="items-center flex gap-1 text-neutral-400">
-              <span className="material-symbols-outlined my-auto text-base">
-                error
-              </span>
+              <AlertCircle className="h-4 w-4" />
               <p className="font-normal">
                 예약 시간 20분 후까지 사용하지 않을 시 예약이 취소됩니다.
               </p>
@@ -186,9 +185,7 @@ export default function AddReservationModal({
                 rel="noopener noreferrer"
               >
                 {t('보러가기')}
-                <span className="material-symbols-outlined translate-y-[3px] text-base">
-                  chevron_right
-                </span>
+                <ChevronRight className="h-4 w-4 translate-y-[3px]" />
               </Link>
             </div>
           </fieldset>

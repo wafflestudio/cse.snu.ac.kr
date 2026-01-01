@@ -1,4 +1,11 @@
 import clsx from 'clsx';
+import type { LucideIcon } from 'lucide-react';
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from 'lucide-react';
 import { useNavigate, useSearchParams } from 'react-router';
 import useIsMobile from '~/hooks/useResponsive';
 
@@ -35,14 +42,16 @@ export default function Pagination({
     <div className={clsx('flex justify-center', disabled && 'opacity-30')}>
       <ul className="mx-auto flex h-6 gap-x-2 tracking-wide text-neutral-800">
         <PaginationArrow
-          iconName="keyboard_double_arrow_left"
+          icon={ChevronsLeft}
           disabled={page === 1 || disabled}
           onClick={() => handleChange(1)}
+          ariaLabel="첫 페이지"
         />
         <PaginationArrow
-          iconName="navigate_before"
+          icon={ChevronLeft}
           disabled={firstNum === 1 || disabled}
           onClick={() => handleChange(Math.max(1, firstNum - 1))}
+          ariaLabel="이전 페이지"
         />
         <div className="flex gap-x-2 px-2">
           {Array(count)
@@ -58,16 +67,18 @@ export default function Pagination({
             ))}
         </div>
         <PaginationArrow
-          iconName="navigate_next"
+          icon={ChevronRight}
           disabled={firstNum + pageLimit > safeTotalPages || disabled}
           onClick={() =>
             handleChange(Math.min(safeTotalPages, firstNum + pageLimit))
           }
+          ariaLabel="다음 페이지"
         />
         <PaginationArrow
-          iconName="keyboard_double_arrow_right"
+          icon={ChevronsRight}
           disabled={page === safeTotalPages || disabled}
           onClick={() => handleChange(safeTotalPages)}
+          ariaLabel="마지막 페이지"
         />
       </ul>
     </div>
@@ -75,30 +86,28 @@ export default function Pagination({
 }
 
 interface PaginationArrowProps {
-  iconName: string;
+  icon: LucideIcon;
   disabled: boolean;
   onClick: () => void;
+  ariaLabel: string;
 }
 
 function PaginationArrow({
-  iconName,
+  icon: Icon,
   disabled,
   onClick,
+  ariaLabel,
 }: PaginationArrowProps) {
   return disabled ? (
-    <span className="material-symbols-rounded pointer-events-none cursor-default text-2xl font-light text-neutral-400">
-      {iconName}
-    </span>
+    <Icon className="pointer-events-none h-6 w-6 cursor-default text-neutral-400" />
   ) : (
     <button
       type="button"
       onClick={onClick}
       className="cursor-pointer hover:text-main-orange"
-      aria-label={iconName}
+      aria-label={ariaLabel}
     >
-      <span className="material-symbols-rounded text-2xl font-light">
-        {iconName}
-      </span>
+      <Icon className="h-6 w-6" />
     </button>
   );
 }

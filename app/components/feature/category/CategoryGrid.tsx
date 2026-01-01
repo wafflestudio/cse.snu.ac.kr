@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import navbarTranslations from '~/components/layout/LeftNav/translations.json';
@@ -154,9 +155,10 @@ function CategoryItem({
       </div>
       {hasArrow && (
         <div className="text-end">
-          <span className="material-symbols-outlined text-[18px] font-extralight text-neutral-800 duration-300 group-hover:translate-x-[10px] sm:text-[32px]">
-            arrow_forward
-          </span>
+          <ArrowRight
+            className="h-[18px] w-[18px] text-neutral-800 duration-300 group-hover:translate-x-[10px] sm:h-[32px] sm:w-[32px]"
+            strokeWidth={1.5}
+          />
         </div>
       )}
     </button>

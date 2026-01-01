@@ -1,3 +1,4 @@
+import { Search } from 'lucide-react';
 import { useLanguage } from '~/hooks/useLanguage';
 
 interface KeywordInputProps {
@@ -27,9 +28,10 @@ export default function Input({
         />
         <button
           type="submit"
-          className="material-symbols-rounded text-[1.25rem] font-light text-neutral-800 hover:text-neutral-500"
+          className="text-neutral-800 hover:text-neutral-500"
+          aria-label={t('검색')}
         >
-          search
+          <Search className="h-5 w-5" strokeWidth={1.5} />
         </button>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { Square, SquareCheck } from 'lucide-react';
 import type { ChangeHandler, RegisterOptions } from 'react-hook-form';
 import { useFormContext, useWatch } from 'react-hook-form';
 
@@ -23,8 +24,6 @@ export default function Checkbox({
   const tags = useWatch({ name });
 
   const isChecked = Array.isArray(tags) ? tags.includes(value) : Boolean(tags);
-  const iconName = isChecked ? 'check_box' : 'check_box_outline_blank';
-
   const { onChange: onChangeFromRegister, ...registerProps } = register(
     name,
     options,
@@ -34,6 +33,8 @@ export default function Checkbox({
     onChangeFromProp?.(!isChecked);
     return onChangeFromRegister(e);
   };
+
+  const Icon = isChecked ? SquareCheck : Square;
 
   return (
     <label
@@ -45,16 +46,15 @@ export default function Checkbox({
         },
       )}
     >
-      <span
+      <Icon
         className={clsx(
-          'material-symbols-rounded text-lg font-light text-neutral-400',
+          'h-[18px] w-[18px] text-neutral-400',
           !disabled &&
             'group-hover:text-neutral-600 group-active:text-main-orange',
           tags && 'text-neutral-600',
         )}
-      >
-        {iconName}
-      </span>
+        strokeWidth={1.5}
+      />
       <span
         className={clsx(
           'text-md tracking-wide text-neutral-600',

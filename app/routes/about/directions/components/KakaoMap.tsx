@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useNonce } from '~/hooks/useNonce';
 
 const LATITUDE = 37.449996;
 const LONGITUDE = 126.952509;
@@ -46,7 +47,7 @@ export default function KakaoMap() {
 
     const script = document.createElement('script');
     script.id = KAKAO_SCRIPT_ID;
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&autoload=false`;
+    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&autoload=false`;
     script.async = true;
     script.onload = () => window.kakao?.maps?.load(initializeMap);
     document.head.appendChild(script);

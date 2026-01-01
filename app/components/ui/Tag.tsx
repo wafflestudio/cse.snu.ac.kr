@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { X } from 'lucide-react';
 import { Link } from 'react-router';
 import Button from '~/components/ui/Button';
 
@@ -68,9 +69,7 @@ export function Tag({
           }}
           aria-label={`${label} 삭제`}
         >
-          <span className="material-symbols-outlined text-sm align-middle">
-            close
-          </span>
+          <X className="h-[13px] w-[13px]" />
         </Button>
       )}
     </>

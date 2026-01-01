@@ -1,3 +1,5 @@
+import { ArrowDown } from 'lucide-react';
+
 interface TimelineProps {
   times: number[];
   selectedTime: number;
@@ -49,11 +51,7 @@ function TimeSpot({
         <Circle highlight={isSelected} />
         <span className="flex items-center text-sm tracking-[0.02em] text-main-orange relative">
           {time}
-          {showDownArrow && (
-            <span className="material-symbols-rounded text-base font-light">
-              arrow_downward
-            </span>
-          )}
+          {showDownArrow && <ArrowDown className="h-4 w-4" strokeWidth={1.5} />}
         </span>
       </div>
       <div className="absolute left-5 top-1.5 h-px w-[72px] bg-main-orange" />

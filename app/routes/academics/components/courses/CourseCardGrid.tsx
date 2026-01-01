@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useRef } from 'react';
 import type { SortOption } from '~/types/academics';
 import type { Course } from '~/types/api/v2/academics';
@@ -50,7 +51,7 @@ function CourseRow({ courses, selectedOption }: CourseRowProps) {
   return (
     <div className="group flex items-center">
       <ArrowButton
-        iconName="navigate_before"
+        direction="left"
         onClick={() => scrollHorizontally('left')}
       />
       <div
@@ -68,7 +69,7 @@ function CourseRow({ courses, selectedOption }: CourseRowProps) {
         </div>
       </div>
       <ArrowButton
-        iconName="navigate_next"
+        direction="right"
         onClick={() => scrollHorizontally('right')}
       />
     </div>
@@ -76,20 +77,28 @@ function CourseRow({ courses, selectedOption }: CourseRowProps) {
 }
 
 interface ArrowButtonProps {
-  iconName: string;
+  direction: 'left' | 'right';
   onClick: () => void;
 }
 
-function ArrowButton({ iconName, onClick }: ArrowButtonProps) {
+function ArrowButton({ direction, onClick }: ArrowButtonProps) {
   return (
     <button
       type="button"
       className="opacity-0 duration-300 group-hover:opacity-100"
       onClick={onClick}
     >
-      <span className="material-symbols-rounded text-[44px] font-light text-main-orange">
-        {iconName}
-      </span>
+      {direction === 'left' ? (
+        <ChevronLeft
+          className="h-[44px] w-[44px] text-main-orange"
+          strokeWidth={1.5}
+        />
+      ) : (
+        <ChevronRight
+          className="h-[44px] w-[44px] text-main-orange"
+          strokeWidth={1.5}
+        />
+      )}
     </button>
   );
 }

@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router';
 
 interface LinkRowProps {
@@ -31,15 +32,14 @@ export default function LinkRow({ to, title, subtitle }: LinkRowProps) {
           <p className="text-xs font-medium sm:font-semibold">{subtitle}</p>
         )}
       </div>
-      <span
+      <ArrowRight
         className={clsx(
-          'material-symbols-outlined pt-0.5 text-[30px] font-extralight duration-300 group-hover:translate-x-[10px] group-hover:font-light',
+          'pt-0.5 h-[30px] w-[30px] duration-300 group-hover:translate-x-[10px]',
           'text-white',
           'group-hover:text-main-orange',
         )}
-      >
-        arrow_forward
-      </span>
+        strokeWidth={1.5}
+      />
     </Link>
   );
 }

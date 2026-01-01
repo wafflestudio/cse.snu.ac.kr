@@ -1,3 +1,4 @@
+import { ChevronDown, ChevronUp, Plus } from 'lucide-react';
 import { useReducer, useState } from 'react';
 import { Link, useLocation, useRevalidator } from 'react-router';
 import LoginVisible from '~/components/feature/auth/LoginVisible';
@@ -57,9 +58,7 @@ export default function TimelineViewer<T extends ProcessedTimelineContent>({
           to={`${pathname}/create`}
           className="mb-7 ml-0.5 flex h-[30px] w-fit items-center rounded-2xl border border-main-orange pl-0.5 pr-2 pt-px text-md text-main-orange duration-200 hover:bg-main-orange hover:text-white"
         >
-          <span className="material-symbols-outlined text-xl font-light">
-            add
-          </span>
+          <Plus className="h-[22px] w-[22px]" strokeWidth={1.5} />
           <span className="font-semibold">{t('연도 추가')}</span>
         </Link>
       </LoginVisible>
@@ -200,9 +199,11 @@ function TogglableContentViewer({
         onClick={toggleContent}
         className="mb-4 flex items-center hover:text-main-orange"
       >
-        <span className="material-symbols-outlined text-2xl font-light">
-          {isExpanded ? 'expand_less' : 'expand_more'}
-        </span>
+        {isExpanded ? (
+          <ChevronUp className="h-6 w-6" strokeWidth={1.5} />
+        ) : (
+          <ChevronDown className="h-6 w-6" strokeWidth={1.5} />
+        )}
         <span className="font-semibold">{title}</span>
       </button>
       {isExpanded && (
@@ -234,7 +235,7 @@ const getSelectedContents = <T extends ProcessedTimelineContent>(
           year,
           description: {
             html: `${year} ${t('내용은 없습니다.')}`,
-            cssRules: [],
+            cssRules: '',
             styleKey: '0',
           },
           attachments: [],

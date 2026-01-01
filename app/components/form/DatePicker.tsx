@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import dayjs from 'dayjs';
+import { Calendar as CalendarIcon } from 'lucide-react';
 import { useReducer, useRef } from 'react';
 import { useController } from 'react-hook-form';
 import Calendar from '~/components/ui/Calendar';
@@ -67,9 +68,7 @@ export default function DatePicker({
           )}
           onClick={toggleCalendar}
         >
-          <span className="material-symbols-rounded text-sm">
-            calendar_month
-          </span>
+          <CalendarIcon className="h-[13px] w-[13px]" />
           {dayjs(date).format('YYYY.MM.DD.')}
         </button>
         {showCalendar && (

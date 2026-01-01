@@ -1,3 +1,4 @@
+import { Info } from 'lucide-react';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router';
 import LoginVisible from '~/components/feature/auth/LoginVisible';
@@ -148,7 +149,7 @@ const getSortOption = (params: URLSearchParams): SortOption => {
 function ClassificationDescription() {
   return (
     <div className="mb-3 ml-5 flex items-center gap-1.5 text-sm text-neutral-400">
-      <span className="material-symbols-outlined text-xl font-light">info</span>
+      <Info className="h-[22px] w-[22px]" strokeWidth={1.5} />
       <span className="pt-px">
         RM: Required course for Major&nbsp;&nbsp;/&nbsp;&nbsp;EM: Elective
         course for Major&nbsp;&nbsp;/&nbsp;&nbsp;LE: Liberal Education course
