@@ -26,6 +26,10 @@ export async function loader({ request, context }: Route.LoaderArgs) {
   const url = new URL(request.url);
   const pathname = url.pathname;
 
+  if (pathname === '/login/success') {
+    return redirect('/');
+  }
+
   // /ko/* → /* redirect
   if (pathname.startsWith('/ko')) {
     return redirect(pathname.replace('/ko', '') || '/');
