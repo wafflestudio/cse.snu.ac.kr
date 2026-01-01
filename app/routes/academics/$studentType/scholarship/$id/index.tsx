@@ -52,8 +52,8 @@ export default function ScholarshipDetailPage({
   // 메타데이터 생성
   const pageTitle =
     locale === 'en'
-      ? `${name} | ${studentType === 'graduate' ? 'Graduate' : 'Undergraduate'} Scholarship`
-      : `${name} | ${studentLabel} 장학금`;
+      ? `${name} ⋅ ${studentType === 'graduate' ? 'Graduate' : 'Undergraduate'} Scholarship`
+      : `${name} ⋅ ${studentLabel} 장학금`;
 
   const pageDescription = scholarship.description?.html
     ? truncateDescription(stripHtml(scholarship.description.html))

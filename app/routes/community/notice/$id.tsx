@@ -66,7 +66,7 @@ export default function NoticeDetailPage({
 
   // 동적 메타데이터 생성
   const pageTitle =
-    locale === 'en' ? `${notice.title} | Notice` : `${notice.title} | 공지사항`;
+    locale === 'en' ? `${notice.title} ⋅ Notice` : `${notice.title} ⋅ 공지사항`;
 
   const pageDescription = notice.description?.html
     ? truncateDescription(stripHtml(notice.description.html))

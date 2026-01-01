@@ -53,7 +53,7 @@ export default function PageLayout({
 
   // pageTitle에 자동으로 SITE_NAME 추가
   const fullPageTitle = pageTitle
-    ? `${pageTitle} | ${locale === 'en' ? SITE_NAME.en : SITE_NAME.ko}`
+    ? `${pageTitle} ⋅ ${locale === 'en' ? SITE_NAME.en : SITE_NAME.ko}`
     : undefined;
 
   const paddingClass =

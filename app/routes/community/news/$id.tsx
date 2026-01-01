@@ -62,7 +62,7 @@ export default function NewsDetailPage({
 
   // 동적 메타데이터 생성
   const pageTitle =
-    locale === 'en' ? `${news.title} | News` : `${news.title} | 새 소식`;
+    locale === 'en' ? `${news.title} ⋅ News` : `${news.title} ⋅ 새 소식`;
 
   const pageDescription = news.description?.html
     ? truncateDescription(stripHtml(news.description.html))

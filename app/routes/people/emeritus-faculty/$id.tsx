@@ -46,8 +46,8 @@ export default function EmeritusFacultyDetailPage({
   // 동적 메타데이터 생성
   const pageTitle =
     locale === 'en'
-      ? `${faculty.name} | Emeritus Faculty`
-      : `${faculty.name} | 명예교수`;
+      ? `${faculty.name} ⋅ Emeritus Faculty`
+      : `${faculty.name} ⋅ 명예교수`;
 
   const researchAreasText = faculty.researchAreas.join(', ');
   const pageDescription =

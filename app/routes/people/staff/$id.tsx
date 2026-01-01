@@ -42,7 +42,7 @@ export default function StaffDetailPage({
 
   // 동적 메타데이터 생성
   const pageTitle =
-    locale === 'en' ? `${staff.name} | Staff` : `${staff.name} | 행정직원`;
+    locale === 'en' ? `${staff.name} ⋅ Staff` : `${staff.name} ⋅ 행정직원`;
 
   const pageDescription =
     locale === 'en'

@@ -77,8 +77,8 @@ export default function SeminarDetailPage({
   // 동적 메타데이터 생성
   const pageTitle =
     locale === 'en'
-      ? `${seminar.title} | Seminar`
-      : `${seminar.title} | 세미나`;
+      ? `${seminar.title} ⋅ Seminar`
+      : `${seminar.title} ⋅ 세미나`;
 
   const pageDescription = seminar.introduction?.html
     ? truncateDescription(stripHtml(seminar.introduction.html))

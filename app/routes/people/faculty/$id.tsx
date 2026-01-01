@@ -40,7 +40,7 @@ export default function FacultyDetailPage({
 
   // 동적 메타데이터 생성
   const pageTitle =
-    locale === 'en' ? `${faculty.name} | Faculty` : `${faculty.name} | 교수진`;
+    locale === 'en' ? `${faculty.name} ⋅ Faculty` : `${faculty.name} ⋅ 교수진`;
 
   const researchAreasText = faculty.researchAreas.join(', ');
   const pageDescription =

@@ -54,7 +54,7 @@ export default function ResearchLabDetailPage({
 
   // 메타데이터 생성
   const pageTitle =
-    locale === 'en' ? `${lab.name} | Research Lab` : `${lab.name} | 연구실`;
+    locale === 'en' ? `${lab.name} ⋅ Research Lab` : `${lab.name} ⋅ 연구실`;
 
   const professorNames = lab.professors.map((p) => p.name).join(', ');
   const pageDescription = lab.description?.html
