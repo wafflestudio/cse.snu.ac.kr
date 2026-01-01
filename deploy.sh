@@ -80,9 +80,9 @@ echo "작성자: $(git log -1 $REMOTE_BRANCH --format='%an <%ae>')"
 echo "날짜:   $(git log -1 $REMOTE_BRANCH --format='%cd' --date=format:'%Y-%m-%d %H:%M:%S')"
 echo ""
 
-# 배포 확인 (dev/prod 공통)
+# 첫 번째 배포 확인 (dev/prod 공통)
 if [ "$ENV" == "prod" ]; then
-    echo -e "${RED}⚠️  경고: 프로덕션 서버에 배포합니다!${NC}"
+    echo -e "${YELLOW}프로덕션 서버에 배포합니다.${NC}"
 else
     echo -e "${YELLOW}개발 서버에 배포합니다.${NC}"
 fi
@@ -94,6 +94,20 @@ echo ""
 if [[ ! $REPLY =~ ^[Yy][Ee][Ss]$ ]]; then
     echo -e "${BLUE}배포가 취소되었습니다.${NC}"
     exit 0
+fi
+
+# 프로덕션일 경우 두 번째 확인
+if [ "$ENV" == "prod" ]; then
+    echo -e "${RED}⚠️  경고: 프로덕션 서버에 배포합니다!${NC}"
+    echo -e "${RED}정말로 프로덕션 배포를 진행하시겠습니까?${NC}"
+    echo ""
+    read -p "최종 확인 (yes/no): " -r
+    echo ""
+
+    if [[ ! $REPLY =~ ^[Yy][Ee][Ss]$ ]]; then
+        echo -e "${BLUE}배포가 취소되었습니다.${NC}"
+        exit 0
+    fi
 fi
 
 # SSH 키 파일 확인
