@@ -61,9 +61,10 @@ export async function loader({ request, context }: Route.LoaderArgs) {
             : 'Content-Security-Policy-Report-Only']: getCSPHeaders(nonce),
         }),
     /** @see https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security */
-    'Strict-Transport-Security': 'max-age=3600', // 1 hour. HTTPS only
-    'X-Frame-Options': 'SAMEORIGIN', // Prevent clickjacking
+    'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+    'X-Frame-Options': 'DENY', // Prevent clickjacking
     'X-Content-Type-Options': 'nosniff', // Prevent MIME type sniffing
+    'Referrer-Policy': 'strict-origin-when-cross-origin', // Prevent referrer leakage
   };
 
   context.set(nonceContext, nonce);
