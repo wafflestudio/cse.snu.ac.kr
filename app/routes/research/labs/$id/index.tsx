@@ -8,11 +8,12 @@ import CornerFoldedRectangle from '~/components/ui/CornerFoldedRectangle';
 import HTMLViewer from '~/components/ui/HTMLViewer';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
+import { createSelectionUrl } from '~/hooks/useSelectionList';
 import { useResearchSubNav } from '~/hooks/useSubNav';
 import type { ResearchLabWithLanguage } from '~/types/api/v2/research/labs';
 import { processHtmlForCsp } from '~/utils/csp';
 import { stripHtml, truncateDescription } from '~/utils/metadata';
-import { encodeParam, getLocaleFromPathname } from '~/utils/string';
+import { getLocaleFromPathname } from '~/utils/string';
 import PentagonLong from '../assets/pentagon_long.svg?react';
 import PentagonShort from '../assets/pentagon_short.svg?react';
 
@@ -197,7 +198,7 @@ function StreamLink({
   const width =
     groupName.length < LENGTH_BOUNDARY ? 'w-[10.875rem]' : 'w-[16.4375rem]';
   const affiliatedGroupPath = localizedPath(
-    `/research/groups?selected=${encodeParam(groupName)}`,
+    createSelectionUrl('/research/groups', groupName),
   );
 
   return (

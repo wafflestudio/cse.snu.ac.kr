@@ -63,7 +63,3 @@ export const getPrimaryLanguage = (acceptLanguage: string): string => {
 
   return languages[0]?.primaryLang || '';
 };
-
-// TODO: 필요한가??
-export const encodeParam = (words: string) => words.replace(/\s+/g, '-');
-export const decodeParam = (words: string) => words.replace(/-/g, ' ');

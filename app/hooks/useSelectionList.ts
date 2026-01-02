@@ -1,6 +1,20 @@
 import { useSearchParams } from 'react-router';
 import { useLanguage } from '~/hooks/useLanguage';
-import { decodeParam, encodeParam } from '~/utils/string';
+
+// 훅 내부에서만 사용하는 인코딩/디코딩 함수
+const encodeParam = (words: string) => words.replace(/\s+/g, '-');
+const decodeParam = (words: string) => words.replace(/-/g, ' ');
+
+/**
+ * 외부에서 selection list 페이지로 연결하는 URL을 생성합니다.
+ * @param basePath - 베이스 경로 (예: '/about/directions', '/research/groups')
+ * @param selectedId - 선택할 항목의 ID 또는 이름
+ * @returns 쿼리 파라미터가 포함된 경로 (예: '/about/directions?selected=Computer-Science')
+ */
+export const createSelectionUrl = (basePath: string, selectedId: string) => {
+  const encodedId = encodeParam(selectedId);
+  return `${basePath}?selected=${encodedId}`;
+};
 
 interface UseSelectionListOptions<T> {
   items: T[];

@@ -8,11 +8,10 @@ import Button from '~/components/ui/Button';
 import HTMLViewer from '~/components/ui/HTMLViewer';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
-import { useSelectionList } from '~/hooks/useSelectionList';
+import { createSelectionUrl, useSelectionList } from '~/hooks/useSelectionList';
 import { useAboutSubNav } from '~/hooks/useSubNav';
 import type { DirectionsResponse } from '~/types/api/v2/about/directions';
 import { processHtmlForCsp } from '~/utils/csp';
-import { encodeParam } from '~/utils/string';
 import KakaoMap from './components/KakaoMap';
 
 export async function loader() {
@@ -111,9 +110,10 @@ export default function DirectionsPage({
               <Button
                 as="link"
                 to={localizedPath(
-                  `/about/directions/edit?selected=${encodeParam(
+                  createSelectionUrl(
+                    '/about/directions/edit',
                     selectedDirection.en.name || selectedDirection.ko.name,
-                  )}`,
+                  ),
                 )}
                 variant="outline"
                 tone="neutral"
