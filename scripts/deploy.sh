@@ -35,15 +35,16 @@ fi
 source "$ENV_FILE"
 
 # 환경별 설정
+REMOTE_PATH="~/cse.snu.ac.kr"
+CONTAINER_NAME="frontend"
+IMAGE_NAME="frontend"
+PORT="3000"
+
 if [ "$ENV" == "dev" ]; then
     SSH_KEY="${CSEREAL_DEV_SSH_KEY}"
     SSH_USER="${CSEREAL_DEV_SSH_USER}"
     SSH_HOST="${CSEREAL_DEV_SSH_HOST}"
     SSH_PORT="${CSEREAL_DEV_SSH_PORT}"
-    REMOTE_PATH="~/cse.snu.ac.kr"
-    CONTAINER_NAME="frontend"
-    IMAGE_NAME="frontend"
-    PORT="3000"
     BUILD_MODE="beta"
     TITLE="CSEREAL 개발 서버 배포"
 else
@@ -52,10 +53,6 @@ else
     SSH_USER="${CSEREAL_PROD_SSH_USER}"
     SSH_HOST="${CSEREAL_PROD_SSH_HOST}"
     SSH_PORT="${CSEREAL_PROD_SSH_PORT}"
-    REMOTE_PATH="~/cse.snu.ac.kr"
-    CONTAINER_NAME="frontend"
-    IMAGE_NAME="frontend"
-    PORT="3000"
     BUILD_MODE="production"
     TITLE="🚀 CSEREAL 프로덕션 서버 배포"
 fi
