@@ -51,6 +51,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     <>
       <Header />
       <ErrorState
+        title="500"
         message={`Error: ${message}`}
         action={{ label: t('메인으로 이동'), onClick: () => navigate('/') }}
       />

@@ -15,6 +15,7 @@ export default function NotFound() {
     <>
       <Header />
       <ErrorState
+        title="404"
         message={`${t('존재하지 않는 경로입니다')}: ${pathname}`}
         action={{ label: t('메인으로 이동'), onClick: () => navigate('/') }}
       />

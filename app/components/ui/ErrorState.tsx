@@ -7,7 +7,7 @@ interface ErrorAction {
 }
 
 interface ErrorStateProps {
-  title?: ReactNode;
+  title: string;
   message: ReactNode;
   action: ErrorAction;
 }
@@ -18,17 +18,18 @@ export default function ErrorState({
   action,
 }: ErrorStateProps) {
   return (
-    <div className="grow p-15 flex flex-col items-start gap-4">
-      {title && <p className="text-lg text-white">{title}</p>}
-      <p className="text-lg text-white">{message}</p>
-      <Button
-        variant="outline"
-        tone="neutral"
-        size="md"
-        onClick={action.onClick}
-      >
-        {action.label}
-      </Button>
+    <div className="flex grow flex-col items-center justify-center bg-neutral-900 px-6 py-24 sm:py-32">
+      <div className="text-center">
+        <div className="mb-8">
+          <div className="mb-6 text-[120px] font-bold leading-none text-main-orange sm:text-[160px]">
+            {title}
+          </div>
+          <p className="text-xl text-white sm:text-2xl">{message}</p>
+        </div>
+        <Button variant="solid" tone="brand" size="lg" onClick={action.onClick}>
+          {action.label}
+        </Button>
+      </div>
     </div>
   );
 }
