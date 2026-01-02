@@ -17,7 +17,8 @@
     "test": "playwright test",
     "test:ui": "playwright test --ui",
     "deploy:beta": "scripts/deploy.sh beta",
-    "deploy:prod": "scripts/deploy.sh prod"
+    "deploy:prod": "scripts/deploy.sh prod",
+    "lighthouse:dev": "sh lighthouse/run-docker.sh"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.1.15",
