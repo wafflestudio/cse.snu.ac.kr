@@ -118,47 +118,37 @@ fi
 
 echo -e "${YELLOW}[1/5] SSH 키 확인 완료: $SSH_KEY${NC}"
 
-# SSH 접속 테스트
+# SSH ControlMaster 설정 (연결 재사용)
+SSH_CONTROL_PATH="/tmp/ssh-control-$ENV-$$"
+SSH_OPTS="-i $SSH_KEY -p $SSH_PORT -o StrictHostKeyChecking=no -o ControlMaster=auto -o ControlPath=$SSH_CONTROL_PATH -o ControlPersist=300"
+
+# SSH 접속 테스트 및 마스터 연결 생성
 echo -e "${YELLOW}[2/5] SSH 연결 테스트 중...${NC}"
-ssh -i "$SSH_KEY" -p "$SSH_PORT" -o ConnectTimeout=10 -o StrictHostKeyChecking=no "$SSH_USER@$SSH_HOST" "echo 'SSH 연결 성공'" || {
+ssh $SSH_OPTS -o ConnectTimeout=10 "$SSH_USER@$SSH_HOST" "echo 'SSH 연결 성공'" || {
     echo -e "${RED}오류: $ENV 서버에 연결할 수 없습니다${NC}"
     exit 1
 }
 
+# 스크립트 종료 시 SSH 연결 정리
+trap "ssh -O exit -o ControlPath=$SSH_CONTROL_PATH $SSH_USER@$SSH_HOST 2>/dev/null" EXIT
+
 # Git pull 및 Docker 빌드/재시작
 echo -e "${YELLOW}[3/5] $ENV 서버에 배포 중...${NC}"
-ssh -i "$SSH_KEY" -p "$SSH_PORT" -o StrictHostKeyChecking=no "$SSH_USER@$SSH_HOST" << ENDSSH
-set -e
 
-echo "📦 프로젝트 디렉토리로 이동 중..."
-cd $REMOTE_PATH
+# 스크립트 파일 경로
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+REMOTE_DEPLOY_SCRIPT="$SCRIPT_DIR/remote-deploy.sh"
 
-echo "🔄 Git 최신 변경사항 가져오는 중..."
-git pull --rebase
+if [ ! -f "$REMOTE_DEPLOY_SCRIPT" ]; then
+    echo -e "${RED}오류: 배포 스크립트를 찾을 수 없습니다: $REMOTE_DEPLOY_SCRIPT${NC}"
+    exit 1
+fi
 
-echo "🏗️  Docker 이미지 빌드 중 ($BUILD_MODE 모드)..."
-docker build --build-arg BUILD_MODE=$BUILD_MODE -t $IMAGE_NAME:latest .
-
-echo "🛑 기존 컨테이너 중지 중..."
-docker stop $CONTAINER_NAME 2>/dev/null || echo "실행 중인 컨테이너 없음"
-docker rm $CONTAINER_NAME 2>/dev/null || echo "삭제할 컨테이너 없음"
-
-echo "🚀 새 컨테이너 시작 중..."
-docker run -d \
-  --name $CONTAINER_NAME \
-  --restart unless-stopped \
-  -p $PORT:$PORT \
-  $IMAGE_NAME:latest
-
-echo "✅ 컨테이너 시작 완료"
-
-# 컨테이너 상태 확인
-sleep 2
-docker ps | grep $CONTAINER_NAME
-ENDSSH
+# 변수를 치환하여 원격 스크립트 실행
+PREV_IMAGE=$(ssh $SSH_OPTS "$SSH_USER@$SSH_HOST" "REMOTE_PATH='$REMOTE_PATH' CONTAINER_NAME='$CONTAINER_NAME' IMAGE_NAME='$IMAGE_NAME' BUILD_MODE='$BUILD_MODE' PORT='$PORT' bash -s" < "$REMOTE_DEPLOY_SCRIPT")
 
 echo -e "${YELLOW}[4/5] 배포 확인 중...${NC}"
-ssh -i "$SSH_KEY" -p "$SSH_PORT" -o StrictHostKeyChecking=no "$SSH_USER@$SSH_HOST" << ENDSSH
+ssh $SSH_OPTS "$SSH_USER@$SSH_HOST" << ENDSSH
 # 컨테이너 로그 확인 (마지막 20줄)
 echo "📋 컨테이너 로그 (최근 20줄):"
 docker logs --tail 20 $CONTAINER_NAME
@@ -167,7 +157,7 @@ ENDSSH
 echo ""
 echo -e "${YELLOW}[5/5] 컨테이너 상태 확인 중...${NC}"
 sleep 3
-ssh -i "$SSH_KEY" -p "$SSH_PORT" -o StrictHostKeyChecking=no "$SSH_USER@$SSH_HOST" "docker ps --filter name=$CONTAINER_NAME --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'"
+ssh $SSH_OPTS "$SSH_USER@$SSH_HOST" "docker ps --filter name=$CONTAINER_NAME --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'"
 
 echo ""
 echo -e "${GREEN}=====================================${NC}"
@@ -181,9 +171,11 @@ else
     echo "🌐 프로덕션 서버: https://cse.snu.ac.kr"
 fi
 
-echo ""
-echo "유용한 명령어:"
-echo "  로그 보기:    ssh -i \"$SSH_KEY\" -p $SSH_PORT $SSH_USER@$SSH_HOST 'docker logs -f $CONTAINER_NAME'"
-echo "  재시작:       ssh -i \"$SSH_KEY\" -p $SSH_PORT $SSH_USER@$SSH_HOST 'docker restart $CONTAINER_NAME'"
-echo "  중지:         ssh -i \"$SSH_KEY\" -p $SSH_PORT $SSH_USER@$SSH_HOST 'docker stop $CONTAINER_NAME'"
-echo ""
+# 롤백 명령어 안내
+if [ -n "$PREV_IMAGE" ]; then
+    echo ""
+    echo -e "${BLUE}⏮️  롤백이 필요한 경우:${NC}"
+    echo ""
+    echo "ssh -i \"$SSH_KEY\" -p $SSH_PORT $SSH_USER@$SSH_HOST 'docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME && docker run -d --name $CONTAINER_NAME --restart unless-stopped -p $PORT:$PORT $IMAGE_NAME:rollback'"
+    echo ""
+fi

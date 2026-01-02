@@ -15,7 +15,9 @@
     "typecheck": "react-router typegen && tsc",
     "prepare": "node .husky/install.mjs",
     "test": "playwright test",
-    "test:ui": "playwright test --ui"
+    "test:ui": "playwright test --ui",
+    "deploy:dev": "scripts/deploy.sh dev",
+    "deploy:prod": "scripts/deploy.sh prod"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.1.15",
