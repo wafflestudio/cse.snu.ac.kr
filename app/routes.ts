@@ -227,6 +227,7 @@ const getLocaleRoutes = (locale: Locale) => {
 };
 
 export default [
+  _route('/sitemap.xml', 'sitemap.tsx'),
   layout('routes/layout.tsx', [
     _route('/img', 'routes/img.tsx'),
     ...getLocaleRoutes('ko'),
