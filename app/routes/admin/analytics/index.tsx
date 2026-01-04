@@ -61,13 +61,13 @@ export default function AnalyticsPage({ loaderData }: Route.ComponentProps) {
               </div>
             </div>
             <div>
-              <div className="text-sm text-neutral-600">/</div>
+              <div className="text-sm text-neutral-600">메인(한글)</div>
               <div className="mt-2 text-3xl font-bold">
                 {stats.tree.koViews.toLocaleString()}
               </div>
             </div>
             <div>
-              <div className="text-sm text-neutral-600">/en</div>
+              <div className="text-sm text-neutral-600">메인(영어)</div>
               <div className="mt-2 text-3xl font-bold">
                 {stats.tree.enViews.toLocaleString()}
               </div>
@@ -76,7 +76,7 @@ export default function AnalyticsPage({ loaderData }: Route.ComponentProps) {
 
           {/* 페이지별 (navigationTree 순서) */}
           <section className="mb-8">
-            <h2 className="mb-4 text-xl font-bold">페이지별 접속자수</h2>
+            <h2 className="mb-4 text-xl font-bold">페이지뷰</h2>
             <PagesTable tree={stats.tree} />
           </section>
 
@@ -118,11 +118,14 @@ function PagesTable({ tree }: { tree: TreeNode }) {
         <thead className="bg-neutral-50">
           <tr>
             <th className="px-4 py-3 text-left text-sm font-semibold">경로</th>
-            <th className="px-4 py-3 text-right text-sm font-semibold">
-              한글 조회수
+            <th className="px-4 py-3 text-right text-sm font-semibold w-[100px]">
+              한글
             </th>
-            <th className="px-4 py-3 text-right text-sm font-semibold">
-              영어 조회수
+            <th className="px-4 py-3 text-right text-sm font-semibold w-[100px]">
+              영어
+            </th>
+            <th className="px-4 py-3 text-right text-sm font-semibold w-[100px]">
+              하위
             </th>
           </tr>
         </thead>
@@ -170,10 +173,18 @@ function TreeNodeRow({ node, depth }: { node: TreeNode; depth: number }) {
           {node.fullPath}
         </td>
         <td className="px-4 py-3 text-right text-sm font-semibold">
-          {node.totalKoViews.toLocaleString()}
+          {node.koViews.toLocaleString()}
         </td>
         <td className="px-4 py-3 text-right text-sm font-semibold">
-          {node.totalEnViews.toLocaleString()}
+          {node.enViews.toLocaleString()}
+        </td>
+        <td className="px-4 py-3 text-right text-sm font-semibold">
+          {(
+            node.totalKoViews +
+            node.totalEnViews -
+            node.koViews -
+            node.enViews
+          ).toLocaleString()}
         </td>
       </tr>
       {hasChildren &&
