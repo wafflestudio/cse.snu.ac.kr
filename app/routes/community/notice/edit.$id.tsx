@@ -3,8 +3,8 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import type { LoaderFunctionArgs } from 'react-router';
 import { useNavigate } from 'react-router';
-import { toast } from '~/components/ui/sonner';
 import PageLayout from '~/components/layout/PageLayout';
+import { toast } from '~/components/ui/sonner';
 import { BASE_URL } from '~/constants/api';
 import type { Notice } from '~/types/api/v2/notice';
 import { isLocalFile } from '~/types/form';
@@ -14,9 +14,16 @@ import NoticeEditor, { type NoticeFormData } from './components/NoticeEditor';
 
 dayjs.extend(customParseFormat);
 
-export async function loader({ params }: LoaderFunctionArgs) {
+export async function loader({ request, params }: LoaderFunctionArgs) {
   const id = Number(params.id);
-  const data = await fetchJson<Notice>(`${BASE_URL}/v2/notice/${id}`);
+
+  const cookie = request.headers.get('cookie');
+  const headers: HeadersInit = cookie ? { Cookie: cookie } : {};
+
+  const data = await fetchJson<Notice>(`${BASE_URL}/v2/notice/${id}`, {
+    headers,
+  });
+
   return { id, data };
 }
 
