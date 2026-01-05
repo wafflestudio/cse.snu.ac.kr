@@ -130,7 +130,7 @@ function PagesTable({ tree }: { tree: TreeNode }) {
           </tr>
         </thead>
         <tbody className="divide-y divide-neutral-200">
-          {Object.values(tree.children).map((child) => (
+          {tree.children.map((child) => (
             <TreeNodeRow key={child.fullPath} node={child} depth={0} />
           ))}
         </tbody>
@@ -141,7 +141,7 @@ function PagesTable({ tree }: { tree: TreeNode }) {
 
 function TreeNodeRow({ node, depth }: { node: TreeNode; depth: number }) {
   const [isOpen, setIsOpen] = useState(false);
-  const hasChildren = Object.keys(node.children).length > 0;
+  const hasChildren = node.children.length > 0;
   const indent = `${depth * 1.5}rem`;
 
   return (
@@ -189,7 +189,7 @@ function TreeNodeRow({ node, depth }: { node: TreeNode; depth: number }) {
       </tr>
       {hasChildren &&
         isOpen &&
-        Object.values(node.children).map((child) => (
+        node.children.map((child) => (
           <TreeNodeRow key={child.fullPath} node={child} depth={depth + 1} />
         ))}
     </>

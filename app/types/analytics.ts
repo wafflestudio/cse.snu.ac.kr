@@ -25,7 +25,7 @@ export interface TreeNode {
   enViews: number;
   totalKoViews: number;
   totalEnViews: number;
-  children: Record<string, TreeNode>;
+  children: TreeNode[];
 }
 
 export interface DayStats {

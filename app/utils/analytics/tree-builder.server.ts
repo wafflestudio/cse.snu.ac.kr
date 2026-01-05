@@ -72,8 +72,12 @@ function buildTreeStructure(
     enViews: 0,
     totalKoViews: 0,
     totalEnViews: 0,
-    children: {},
+    children: [],
   };
+
+  // segment로 자식 노드를 찾기 위한 헬퍼 함수
+  const findChild = (node: TreeNode, segment: string): TreeNode | undefined =>
+    node.children.find((child) => child.segment === segment);
 
   for (const [path, views] of viewsMap) {
     const segments = path.split('/').filter(Boolean);
@@ -83,19 +87,21 @@ function buildTreeStructure(
     for (const segment of segments) {
       pathSoFar += `/${segment}`;
 
-      if (!current.children[segment]) {
-        current.children[segment] = {
+      let child = findChild(current, segment);
+      if (!child) {
+        child = {
           segment,
           fullPath: pathSoFar,
           koViews: 0,
           enViews: 0,
           totalKoViews: 0,
           totalEnViews: 0,
-          children: {},
+          children: [],
         };
+        current.children.push(child);
       }
 
-      current = current.children[segment];
+      current = child;
     }
 
     current.koViews = views.ko;
@@ -114,7 +120,7 @@ function calculateTotalViews(node: TreeNode): { ko: number; en: number } {
   let totalKo = node.koViews;
   let totalEn = node.enViews;
 
-  for (const child of Object.values(node.children)) {
+  for (const child of node.children) {
     const childTotals = calculateTotalViews(child);
     totalKo += childTotals.ko;
     totalEn += childTotals.en;
@@ -130,16 +136,15 @@ function calculateTotalViews(node: TreeNode): { ko: number; en: number } {
  * 트리 전체를 재귀적으로 조회수 내림차순 정렬 (한글 + 영어)
  */
 function sortTreeByViews(node: TreeNode): void {
-  const sortedEntries = Object.entries(node.children).sort((a, b) => {
-    const totalA = a[1].totalKoViews + a[1].totalEnViews;
-    const totalB = b[1].totalKoViews + b[1].totalEnViews;
+  // 배열을 직접 정렬 (totalKoViews + totalEnViews 기준 내림차순)
+  node.children.sort((a, b) => {
+    const totalA = a.totalKoViews + a.totalEnViews;
+    const totalB = b.totalKoViews + b.totalEnViews;
     return totalB - totalA; // 내림차순
   });
 
-  node.children = Object.fromEntries(sortedEntries);
-
   // 재귀적으로 자식 노드들도 정렬
-  for (const child of Object.values(node.children)) {
+  for (const child of node.children) {
     sortTreeByViews(child);
   }
 }
