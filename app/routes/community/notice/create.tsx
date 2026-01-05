@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router';
-import { toast } from '~/components/ui/sonner';
 import PageLayout from '~/components/layout/PageLayout';
+import { toast } from '~/components/ui/sonner';
 import { BASE_URL } from '~/constants/api';
 import { isLocalFile } from '~/types/form';
 import { fetchOk } from '~/utils/fetch';
@@ -28,8 +28,9 @@ export default function NoticeCreatePage() {
         ? dayjs(content.pinnedUntil).format('YYYY-MM-DD')
         : null,
       isImportant: content.isImportant,
-      importantUntil:
-        dayjs(content.importantUntil).format('YYYY-MM-DD') ?? null,
+      importantUntil: content.importantUntil
+        ? dayjs(content.importantUntil).format('YYYY-MM-DD')
+        : null,
       tags: content.tags,
     });
 
