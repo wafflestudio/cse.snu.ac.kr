@@ -27,9 +27,9 @@ function normalizePageViews(
   const viewsMap = new Map<string, { ko: number; en: number }>();
 
   for (const entry of entries) {
-    const { isEnglish, normalizedPath } = (() => {
-      const pathname = entry.pathname;
+    const pathname = entry.pathname;
 
+    const { isEnglish, normalizedPath } = (() => {
       if (pathname === '/en') {
         return { isEnglish: true, normalizedPath: '/' };
       }
@@ -104,8 +104,8 @@ function buildTreeStructure(
       current = child;
     }
 
-    current.koViews = views.ko;
-    current.enViews = views.en;
+    current.koViews += views.ko;
+    current.enViews += views.en;
   }
 
   return root;
