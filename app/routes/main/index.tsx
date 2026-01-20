@@ -58,16 +58,6 @@ export default function MainPage({ loaderData }: Route.ComponentProps) {
         <ImportantSection importantList={loaderData.importants} />
         <NoticeSection allMainNotice={loaderData.notices} />
         <LinkSection />
-
-        {/* 이미지 모달 */}
-        <ImageModal
-          imageSrc={comunityImg}
-          imageAlt="ComUnity 50주년 행사"
-          title="ComUnity: 함께해 온 컴퓨팅 - 50주년 기념 동문 행사"
-          onAction={() => {
-            window.location.href = '/community/notice/24547';
-          }}
-        />
       </div>
     </>
   );

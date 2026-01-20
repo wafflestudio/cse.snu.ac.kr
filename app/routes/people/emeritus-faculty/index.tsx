@@ -85,15 +85,11 @@ const toCard = (
     content.push({ text: faculty.email, href: `mailto:${faculty.email}` });
   }
 
-  const subtitle = faculty.department
-    ? `${faculty.academicRank}, ${faculty.department}`
-    : faculty.academicRank;
-
   return {
     id: faculty.id,
     imageURL: faculty.imageURL,
     name: faculty.name,
-    subtitle,
+    subtitle: faculty.academicRank,
     href: localizedPath(`/people/emeritus-faculty/${faculty.id}`),
     content,
   };

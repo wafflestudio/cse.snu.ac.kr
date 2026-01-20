@@ -156,15 +156,11 @@ const toCard = (
     content.push({ text: professor.email, href: `mailto:${professor.email}` });
   }
 
-  const subtitle = professor.department
-    ? `${professor.academicRank}, ${professor.department}`
-    : professor.academicRank;
-
   return {
     id: professor.id,
     imageURL: professor.imageURL,
     name: professor.name,
-    subtitle,
+    subtitle: professor.academicRank,
     href: localizedPath(`/people/faculty/${professor.id}`),
     content,
   };
