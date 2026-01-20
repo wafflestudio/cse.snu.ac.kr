@@ -1,7 +1,7 @@
 import type { Route } from '.react-router/types/app/routes/admin/analytics/+types/index';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
-import { ChevronDown, ChevronRight } from 'lucide-react';
+import { ChevronDown, ChevronRight, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
 import PageLayout from '~/components/layout/PageLayout';
 import Button from '~/components/ui/Button';
@@ -127,6 +127,9 @@ function PagesTable({ tree }: { tree: TreeNode }) {
             <th className="px-4 py-3 text-right text-sm font-semibold w-[100px]">
               하위
             </th>
+            <th className="px-4 py-3 text-center text-sm font-semibold w-[60px]">
+              링크
+            </th>
           </tr>
         </thead>
         <tbody className="divide-y divide-neutral-200">
@@ -185,6 +188,17 @@ function TreeNodeRow({ node, depth }: { node: TreeNode; depth: number }) {
             node.koViews -
             node.enViews
           ).toLocaleString()}
+        </td>
+        <td className="px-4 py-3 text-center">
+          <a
+            href={node.fullPath}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex text-neutral-500 hover:text-neutral-700"
+          >
+            <ExternalLink size={16} />
+          </a>
         </td>
       </tr>
       {hasChildren &&
