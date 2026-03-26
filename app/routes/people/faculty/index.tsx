@@ -58,16 +58,22 @@ export default function FacultyPage({
     if (sortType === 'name') {
       return [...professors].sort((a, b) => a.name.localeCompare(b.name, 'ko'));
     } else {
+      const mainDept =
+        locale === 'ko'
+          ? '컴퓨터공학부'
+          : 'Department of Computer Science and Engineering';
       return [...professors].sort((a, b) => {
         const deptA = a.department || '';
         const deptB = b.department || '';
 
         // 컴퓨터공학부가 맨 앞
-        if (deptA === '컴퓨터공학부' && deptB !== '컴퓨터공학부') return -1;
-        if (deptA !== '컴퓨터공학부' && deptB === '컴퓨터공학부') return 1;
+        if (deptA === mainDept && deptB !== mainDept) return -1;
+        if (deptA !== mainDept && deptB === mainDept) return 1;
 
-        // 나머지는 가나다 역순
-        return deptB.localeCompare(deptA, 'ko');
+        // 나머지는 가나다 역순, 소속이 같으면 이름순
+        const deptOrder = deptB.localeCompare(deptA, 'ko');
+        if (deptOrder !== 0) return deptOrder;
+        return a.name.localeCompare(b.name, locale);
       });
     }
   };
