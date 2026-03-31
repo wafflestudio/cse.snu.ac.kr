@@ -7,7 +7,11 @@ export type NavbarState =
   | { type: 'expanded' }
   | { type: 'hovered'; navItem: NavItem };
 
-export type Role = 'ROLE_STAFF' | 'ROLE_RESERVATION' | 'ROLE_COUNCIL';
+export type Role =
+  | 'ROLE_STAFF'
+  | 'ROLE_RESERVATION'
+  | 'ROLE_LABMASTER'
+  | 'ROLE_COUNCIL';
 
 interface Store {
   role?: Role;

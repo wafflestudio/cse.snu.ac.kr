@@ -6,7 +6,10 @@ import { useLanguage } from '~/hooks/useLanguage';
 import { useNavItem } from '~/hooks/useNavItem';
 import useIsMobile from '~/hooks/useResponsive';
 import { useReservationsSubNav } from '~/hooks/useSubNav';
-import { fetchWeeklyReservation } from '~/routes/reservations/api';
+import {
+  fetchReserveTerms,
+  fetchWeeklyReservation,
+} from '~/routes/reservations/api';
 import ReservationCalendar, {
   type ReservationCalendarProps,
 } from '~/routes/reservations/components/ReservationCalendar';
@@ -32,22 +35,33 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 
   if (!selectedDate.isValid()) throw new Error('Invalid date');
 
+  const isSeminarRoom = params.roomType === 'seminar-room';
+
   const startOfWeek = getStartOfWeek(selectedDate);
-  const [desktopReservations, mobileReservations] = await Promise.all([
-    fetchWeeklyReservation(roomId, startOfWeek),
-    fetchWeeklyReservation(roomId, selectedDate),
-  ]);
+  const [desktopReservations, mobileReservations, reserveTerms] =
+    await Promise.all([
+      fetchWeeklyReservation(roomId, startOfWeek),
+      fetchWeeklyReservation(roomId, selectedDate),
+      isSeminarRoom ? fetchReserveTerms() : Promise.resolve([]),
+    ]);
 
   return {
     roomId,
     selectedDate: formatDateParam(selectedDate),
     desktopReservations,
     mobileReservations,
+    reserveTerms,
   };
 }
 
 export default function RoomReservationPage({
-  loaderData: { roomId, desktopReservations, mobileReservations, selectedDate },
+  loaderData: {
+    roomId,
+    desktopReservations,
+    mobileReservations,
+    selectedDate,
+    reserveTerms,
+  },
 }: Route.ComponentProps) {
   const { t, tUnsafe } = useLanguage({
     '존재하지 않는 시설 아이디입니다.': 'Invalid room.',
@@ -69,12 +83,14 @@ export default function RoomReservationPage({
         columnCount: 3,
         startDate: dayjs(selectedDate),
         roomId,
+        reserveTerms,
       }
     : {
         reservations: desktopReservations,
         columnCount: 7,
         startDate: getStartOfWeek(dayjs(selectedDate)),
         roomId,
+        reserveTerms,
       };
 
   const isStaffOnlyRoom = STAFF_ONLY_ROOM_ID.includes(roomId);

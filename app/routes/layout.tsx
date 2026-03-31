@@ -21,6 +21,7 @@ export async function loader({
     // 우선순위 체크
     if (roles.includes('ROLE_STAFF')) return 'ROLE_STAFF';
     if (roles.includes('ROLE_RESERVATION')) return 'ROLE_RESERVATION';
+    if (roles.includes('ROLE_LABMASTER')) return 'ROLE_LABMASTER';
     if (roles.includes('ROLE_COUNCIL')) return 'ROLE_COUNCIL';
 
     return undefined;

@@ -105,6 +105,15 @@ function DevLogin() {
         variant="text"
         tone="inverse"
         size="sm"
+        onClick={() => mockLogin('ROLE_LABMASTER')}
+      >
+        LABMASTER
+      </Button>
+      <Divider />
+      <Button
+        variant="text"
+        tone="inverse"
+        size="sm"
         onClick={() => mockLogin('ROLE_COUNCIL')}
       >
         COUNCIL

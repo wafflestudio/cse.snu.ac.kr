@@ -21,6 +21,14 @@ export interface Reservation {
   contactPhone: string | null;
 }
 
+export interface ReserveTerm {
+  id: number;
+  applyStartTime: string;
+  applyEndTime: string;
+  termStartTime: string;
+  termEndTime: string;
+}
+
 export interface ReservationPostBody {
   roomId: number;
   startTime: string;

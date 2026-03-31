@@ -16,18 +16,38 @@ import Button from '~/components/ui/Button';
 import Calendar from '~/components/ui/Calendar';
 import { useClickOutside } from '~/hooks/useClickOutside';
 import useSelectedDate from '~/routes/reservations/hooks/useSelectedDate';
+import { useStore } from '~/store';
+import type { ReserveTerm } from '~/types/api/v2/reservation';
 import AddReservationModal from './AddReservationModal';
+
+function isInApplyPeriod(reserveTerms: ReserveTerm[]) {
+  const now = dayjs();
+  return reserveTerms.some(
+    (term) =>
+      now.isAfter(dayjs(term.applyStartTime)) &&
+      now.isBefore(dayjs(term.applyEndTime)),
+  );
+}
 
 export default function CalendarToolbar({
   columnCount,
   roomId,
+  reserveTerms,
 }: {
   columnCount: number;
   roomId: number;
+  reserveTerms: ReserveTerm[];
 }) {
   const { selectedDate } = useSelectedDate();
   const todayButtonVisible = !dayjs().isSame(selectedDate, 'day');
   const [showAddModal, setShowAddModal] = useState(false);
+  const role = useStore((s) => s.role);
+
+  const applyPeriodActive = isInApplyPeriod(reserveTerms);
+  const allowedRoles =
+    applyPeriodActive && role !== 'ROLE_STAFF'
+      ? (['ROLE_STAFF', 'ROLE_LABMASTER'] as const)
+      : (['ROLE_STAFF', 'ROLE_RESERVATION', 'ROLE_LABMASTER'] as const);
 
   return (
     <div className="mb-6 flex h-7.5 items-stretch justify-between">
@@ -43,7 +63,7 @@ export default function CalendarToolbar({
         />
         {todayButtonVisible && <TodayButton />}
       </div>
-      <LoginVisible allow={['ROLE_STAFF', 'ROLE_RESERVATION']}>
+      <LoginVisible allow={[...allowedRoles]}>
         <Button
           variant="solid"
           tone="brand"

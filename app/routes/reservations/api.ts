@@ -3,7 +3,30 @@ import { BASE_URL } from '~/constants/api';
 import type {
   ReservationPostBody,
   ReservationPreview,
+  ReserveTerm,
 } from '~/types/api/v2/reservation';
+
+export class ReservationError extends Error {
+  constructor(
+    public status: number,
+    public code: string | null,
+    public serverMessage: string | null,
+  ) {
+    super(serverMessage ?? `HTTP ${status}`);
+  }
+}
+
+export const fetchReserveTerms = async () => {
+  const response = await fetch(`${BASE_URL}/v2/reservation/terms`, {
+    credentials: 'include',
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch reserve terms');
+  }
+
+  return (await response.json()) as ReserveTerm[];
+};
 
 export const fetchWeeklyReservation = async (
   roomId: number,
@@ -37,7 +60,8 @@ export const postReservation = async (body: ReservationPostBody) => {
   });
 
   if (!response.ok) {
-    throw new Error(String(response.status));
+    const body = await response.json().catch(() => null);
+    throw new ReservationError(response.status, body?.code, body?.message);
   }
 };
 

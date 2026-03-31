@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRevalidator } from 'react-router';
 import { toast } from '~/components/ui/sonner';
-import { postReservation } from '~/routes/reservations/api';
+import { postReservation, ReservationError } from '~/routes/reservations/api';
 import type { ReservationPostBody } from '~/types/api/v2/reservation';
 import {
   getEarliestStartTimeFrom,
@@ -47,16 +47,20 @@ const getDefaultBodyValue = (): ReservationFormValues => {
 };
 
 const handleError = (error: unknown) => {
-  if (error instanceof Error) {
-    switch (error.message) {
-      case '409':
-        toast.error('해당 위치에 이미 예약이 존재합니다.');
+  if (error instanceof ReservationError) {
+    if (error.serverMessage) {
+      toast.error(error.serverMessage);
+      return;
+    }
+    switch (error.status) {
+      case 409:
+        toast.error('해당 시간에 이미 예약이 있습니다.');
         return;
-      case '403':
-        toast.error('대학원생은 교수 회의실을 예약할 수 없습니다.');
+      case 403:
+        toast.error('예약 권한이 없습니다.');
         return;
-      case '401':
-        toast.error('관리자만 예약을 추가할 수 있습니다.');
+      case 401:
+        toast.error('로그인이 필요합니다.');
         return;
       default:
         toast.error('예약에 실패했습니다.');
