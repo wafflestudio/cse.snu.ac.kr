@@ -13,11 +13,11 @@ export default function LoginVisible({
   children,
   fallback = null,
 }: LoginVisibleProps) {
-  const userRole = useStore((s) => s.role);
-  if (!userRole) return fallback;
+  const userRoles = useStore((s) => s.roles);
+  if (userRoles.length === 0) return fallback;
 
   const roleArr = Array.isArray(allow) ? allow : [allow];
-  if (!roleArr.includes(userRole)) return fallback;
+  if (!userRoles.some((r) => roleArr.includes(r))) return fallback;
 
   return children;
 }

@@ -53,11 +53,11 @@ export default function HeaderRight() {
 }
 
 function ProdLogin({ t }: { t: (key: '로그인' | '로그아웃') => string }) {
-  const role = useStore((s) => s.role);
+  const roles = useStore((s) => s.roles);
   const login = useStore((s) => s.login);
   const logout = useStore((s) => s.logout);
 
-  return role ? (
+  return roles.length > 0 ? (
     <Button variant="text" tone="inverse" size="sm" onClick={logout}>
       {t('로그아웃')}
     </Button>
@@ -69,11 +69,11 @@ function ProdLogin({ t }: { t: (key: '로그인' | '로그아웃') => string }) 
 }
 
 function DevLogin() {
-  const role = useStore((s) => s.role);
+  const roles = useStore((s) => s.roles);
   const mockLogin = useStore((s) => s.mockLogin);
   const mockLogout = useStore((s) => s.mockLogout);
 
-  if (role) {
+  if (roles.length > 0) {
     return (
       <Button variant="text" tone="inverse" size="sm" onClick={mockLogout}>
         로그아웃
@@ -105,9 +105,9 @@ function DevLogin() {
         variant="text"
         tone="inverse"
         size="sm"
-        onClick={() => mockLogin('ROLE_LABMASTER')}
+        onClick={() => mockLogin('ROLE_LABMASTER', 'ROLE_RESERVATION')}
       >
-        LABMASTER
+        LAB+RESERV
       </Button>
       <Divider />
       <Button

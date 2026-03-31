@@ -7,32 +7,23 @@ import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { type Role, useStore } from '~/store';
 
-export async function loader({
-  request,
-}: Route.LoaderArgs): Promise<Role | undefined> {
+export async function loader({ request }: Route.LoaderArgs): Promise<Role[]> {
   try {
     const response = await fetch(`${BASE_URL}/v2/user/my-role`, {
       headers: request.headers,
     });
-    if (!response.ok) return undefined;
+    if (!response.ok) return [];
 
     const { roles }: { roles: Role[] } = await response.json();
-
-    // 우선순위 체크
-    if (roles.includes('ROLE_STAFF')) return 'ROLE_STAFF';
-    if (roles.includes('ROLE_RESERVATION')) return 'ROLE_RESERVATION';
-    if (roles.includes('ROLE_LABMASTER')) return 'ROLE_LABMASTER';
-    if (roles.includes('ROLE_COUNCIL')) return 'ROLE_COUNCIL';
-
-    return undefined;
+    return roles;
   } catch {
-    return undefined;
+    return [];
   }
 }
 
 export default function Layout({ loaderData }: Route.ComponentProps) {
   useEffect(() => {
-    useStore.setState({ role: loaderData });
+    useStore.setState({ roles: loaderData });
   }, [loaderData]);
 
   return <Outlet />;

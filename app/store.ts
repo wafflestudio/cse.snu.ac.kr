@@ -14,7 +14,7 @@ export type Role =
   | 'ROLE_COUNCIL';
 
 interface Store {
-  role?: Role;
+  roles: Role[];
   navbarState: NavbarState;
   // Navbar actions
   expandNavbar: () => void;
@@ -23,12 +23,12 @@ interface Store {
   // Session actions
   login: () => void;
   logout: () => Promise<void>;
-  mockLogin: (role: Role) => Promise<void>;
+  mockLogin: (...roles: Role[]) => Promise<void>;
   mockLogout: () => Promise<void>;
 }
 
 export const useStore = create<Store>()((set) => ({
-  role: undefined,
+  roles: [],
   navbarState: { type: 'closed' },
   expandNavbar: () => set({ navbarState: { type: 'expanded' } }),
   closeNavbar: () => set({ navbarState: { type: 'closed' } }),
@@ -44,12 +44,13 @@ export const useStore = create<Store>()((set) => ({
     });
     window.location.reload();
   },
-  mockLogin: async (role: Role) => {
-    const response = await fetch(`${BASE_URL}/v2/mock-login?role=${role}`, {
+  mockLogin: async (...roles: Role[]) => {
+    const params = roles.map((r) => `role=${r}`).join('&');
+    const response = await fetch(`${BASE_URL}/v2/mock-login?${params}`, {
       method: 'GET',
       credentials: 'include',
     });
-    if (response.ok) set({ role });
+    if (response.ok) set({ roles });
   },
   mockLogout: async () => {
     await fetch(`${BASE_URL}/v1/logout`, {

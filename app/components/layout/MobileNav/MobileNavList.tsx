@@ -110,9 +110,9 @@ function SearchPage({ onClose }: { onClose: () => void }) {
 function AuthButton() {
   const login = useStore((s) => s.login);
   const logout = useStore((s) => s.logout);
-  const role = useStore((s) => s.role);
+  const roles = useStore((s) => s.roles);
 
-  const isLoggedIn = role !== undefined;
+  const isLoggedIn = roles.length > 0;
 
   return (
     <div className="mt-6">

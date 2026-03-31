@@ -30,11 +30,7 @@ export default function ReservationCalendar({
     <div className="max-w-fit">
       <h3 className="mb-7 text-2xl font-bold text-neutral-800">{title}</h3>
       <ReserveTermBanner reserveTerms={reserveTerms} roomId={roomId} />
-      <CalendarToolbar
-        columnCount={columnCount}
-        roomId={roomId}
-        reserveTerms={reserveTerms}
-      />
+      <CalendarToolbar columnCount={columnCount} roomId={roomId} />
       <CalendarContent
         reservations={reservations}
         columnCount={columnCount}
