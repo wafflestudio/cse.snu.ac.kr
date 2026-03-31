@@ -14,8 +14,8 @@ export async function loader({ request }: Route.LoaderArgs): Promise<Role[]> {
     });
     if (!response.ok) return [];
 
-    const { roles }: { roles: Role[] } = await response.json();
-    return roles;
+    const { roles }: { roles: string[] } = await response.json();
+    return roles.filter((r) => r !== 'ROLE_ANONYMOUS') as Role[];
   } catch {
     return [];
   }
