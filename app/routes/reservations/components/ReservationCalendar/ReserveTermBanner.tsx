@@ -19,12 +19,12 @@ export default function ReserveTermBanner({
   reserveTerms,
   roomId,
 }: {
-  reserveTerms: ReserveTerm[];
+  reserveTerms: ReserveTerm[] | null;
   roomId: number;
 }) {
   const { t } = useLanguage(translations);
 
-  if (roomId === PROFESSOR_ROOM_ID) return null;
+  if (!reserveTerms || roomId === PROFESSOR_ROOM_ID) return null;
 
   const now = dayjs();
 

@@ -13,7 +13,7 @@ export type ReservationCalendarProps = {
   columnCount: number;
   startDate: dayjs.Dayjs;
   roomId: number;
-  reserveTerms: ReserveTerm[];
+  reserveTerms: ReserveTerm[] | null;
 };
 
 export default function ReservationCalendar({

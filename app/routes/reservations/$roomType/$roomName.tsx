@@ -42,7 +42,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
     await Promise.all([
       fetchWeeklyReservation(roomId, startOfWeek),
       fetchWeeklyReservation(roomId, selectedDate),
-      isSeminarRoom ? fetchReserveTerms() : Promise.resolve([]),
+      isSeminarRoom ? fetchReserveTerms() : Promise.resolve(null),
     ]);
 
   return {
