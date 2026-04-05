@@ -24,7 +24,7 @@ export default function ReserveTermBanner({
 }) {
   const { t } = useLanguage(translations);
 
-  if (reserveTerms.length === 0 || roomId === PROFESSOR_ROOM_ID) return null;
+  if (roomId === PROFESSOR_ROOM_ID) return null;
 
   const now = dayjs();
 
