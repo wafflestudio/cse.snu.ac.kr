@@ -1,7 +1,13 @@
 import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import '~/lib/kstDayjs';
+
+dayjs.extend(customParseFormat);
 
 export const parseDateParam = (value: string) => {
-  return dayjs(value, 'YYYY-MM-DD', true);
+  const local = dayjs(value, 'YYYY-MM-DD', true);
+  if (!local.isValid()) return local;
+  return dayjs.tz(value, 'Asia/Seoul');
 };
 
 export const formatDateParam = (date: dayjs.Dayjs) => {

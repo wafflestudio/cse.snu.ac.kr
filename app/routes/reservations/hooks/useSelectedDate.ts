@@ -1,5 +1,6 @@
-import dayjs from 'dayjs';
+import type dayjs from 'dayjs';
 import { useSearchParams } from 'react-router';
+import { kstDayjs } from '~/lib/kstDayjs';
 import { formatDateParam, parseDateParam } from '~/utils/reservation';
 
 export default function useSelectedDate() {
@@ -7,8 +8,8 @@ export default function useSelectedDate() {
   const selectedDateParam = searchParams.get('selectedDate');
   const parsed = selectedDateParam
     ? parseDateParam(selectedDateParam)
-    : dayjs();
-  const selectedDate = parsed.isValid() ? parsed : dayjs();
+    : kstDayjs();
+  const selectedDate = parsed.isValid() ? parsed : kstDayjs();
 
   const setSelectedDate = (date: dayjs.Dayjs) => {
     const next = new URLSearchParams(searchParams);

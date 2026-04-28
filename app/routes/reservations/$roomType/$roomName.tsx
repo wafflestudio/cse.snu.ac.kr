@@ -1,11 +1,11 @@
 import type { Route } from '.react-router/types/app/routes/reservations/$roomType/+types/$roomName';
-import dayjs from 'dayjs';
 import LoginVisible from '~/components/feature/auth/LoginVisible';
 import PageLayout from '~/components/layout/PageLayout';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useNavItem } from '~/hooks/useNavItem';
 import useIsMobile from '~/hooks/useResponsive';
 import { useReservationsSubNav } from '~/hooks/useSubNav';
+import { kstDayjs } from '~/lib/kstDayjs';
 import {
   fetchReserveTerms,
   fetchWeeklyReservation,
@@ -31,7 +31,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   const selectedDateParam = url.searchParams.get('selectedDate');
   const selectedDate = selectedDateParam
     ? parseDateParam(selectedDateParam)
-    : dayjs();
+    : kstDayjs();
 
   if (!selectedDate.isValid()) throw new Error('Invalid date');
 
@@ -81,14 +81,14 @@ export default function RoomReservationPage({
     ? {
         reservations: mobileReservations,
         columnCount: 3,
-        startDate: dayjs(selectedDate),
+        startDate: parseDateParam(selectedDate),
         roomId,
         reserveTerms,
       }
     : {
         reservations: desktopReservations,
         columnCount: 7,
-        startDate: getStartOfWeek(dayjs(selectedDate)),
+        startDate: getStartOfWeek(parseDateParam(selectedDate)),
         roomId,
         reserveTerms,
       };

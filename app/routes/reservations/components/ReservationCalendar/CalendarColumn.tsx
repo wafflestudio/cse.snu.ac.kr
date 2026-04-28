@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { kstDayjs } from '~/lib/kstDayjs';
 import type { ReservationPreview } from '~/types/api/v2/reservation';
 import styles from './cellstyle.module.css';
 
@@ -79,8 +80,8 @@ const CalendarCell = ({
   reservation: ReservationPreview;
   onSelectReservation: (reservationId: number) => void;
 }) => {
-  const startTime = dayjs(reservation.startTime);
-  const endTime = dayjs(reservation.endTime);
+  const startTime = kstDayjs(reservation.startTime);
+  const endTime = kstDayjs(reservation.endTime);
 
   const { topOffset, unitCnt } = getReservationCellLayout(startTime, endTime);
 

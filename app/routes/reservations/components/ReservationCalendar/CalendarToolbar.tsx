@@ -15,6 +15,7 @@ import LoginVisible from '~/components/feature/auth/LoginVisible';
 import Button from '~/components/ui/Button';
 import Calendar from '~/components/ui/Calendar';
 import { useClickOutside } from '~/hooks/useClickOutside';
+import { kstDayjs } from '~/lib/kstDayjs';
 import useSelectedDate from '~/routes/reservations/hooks/useSelectedDate';
 import AddReservationModal from './AddReservationModal';
 
@@ -26,7 +27,7 @@ export default function CalendarToolbar({
   roomId: number;
 }) {
   const { selectedDate } = useSelectedDate();
-  const todayButtonVisible = !dayjs().isSame(selectedDate, 'day');
+  const todayButtonVisible = !kstDayjs().isSame(selectedDate, 'day');
   const [showAddModal, setShowAddModal] = useState(false);
 
   return (
@@ -69,7 +70,7 @@ function SelectDayButton({ date }: { date: dayjs.Dayjs }) {
   const [showCalendar, toggleCalendar] = useReducer((x) => !x, false);
   const calendarRef = useRef<HTMLDivElement | null>(null);
 
-  const isDateToday = dayjs().isSame(date, 'day');
+  const isDateToday = kstDayjs().isSame(date, 'day');
 
   useClickOutside(calendarRef, () => {
     if (showCalendar) toggleCalendar();
@@ -96,7 +97,7 @@ function SelectDayButton({ date }: { date: dayjs.Dayjs }) {
             <Calendar
               selected={date.toDate()}
               onSelect={(selectedDate) => {
-                setSelectedDate(dayjs(selectedDate));
+                setSelectedDate(kstDayjs(selectedDate));
                 toggleCalendar();
               }}
             />
@@ -130,7 +131,7 @@ function ChangeDateButton({
 
 function TodayButton() {
   const { setSelectedDate } = useSelectedDate();
-  const handleClick = () => setSelectedDate(dayjs());
+  const handleClick = () => setSelectedDate(kstDayjs());
 
   return (
     <SquareButton className="w-10.75" onClick={handleClick}>

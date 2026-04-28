@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { useRevalidator } from 'react-router';
 import LoginVisible from '~/components/feature/auth/LoginVisible';
@@ -7,6 +6,7 @@ import Button from '~/components/ui/Button';
 import Dialog from '~/components/ui/Dialog';
 import { toast } from '~/components/ui/sonner';
 import { useLanguage } from '~/hooks/useLanguage';
+import { kstDayjs } from '~/lib/kstDayjs';
 import {
   deleteRecurringReservation,
   deleteReservation,
@@ -118,7 +118,7 @@ export default function ReservationDetailModal({
                 title={t('예약 날짜')}
                 body={
                   reservation
-                    ? dayjs(reservation.startTime).format('YY.MM.DD')
+                    ? kstDayjs(reservation.startTime).format('YY.MM.DD')
                     : '-'
                 }
               />
@@ -126,14 +126,14 @@ export default function ReservationDetailModal({
                 title={t('시작 시간')}
                 body={
                   reservation
-                    ? dayjs(reservation.startTime).format('HH:mm')
+                    ? kstDayjs(reservation.startTime).format('HH:mm')
                     : '-'
                 }
               />
               <Row
                 title={t('종료 시간')}
                 body={
-                  reservation ? dayjs(reservation.endTime).format('HH:mm') : '-'
+                  reservation ? kstDayjs(reservation.endTime).format('HH:mm') : '-'
                 }
               />
               <Row

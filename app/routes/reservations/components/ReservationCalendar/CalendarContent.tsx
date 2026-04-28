@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import { useState } from 'react';
 import useIsMobile from '~/hooks/useResponsive';
+import { kstDayjs } from '~/lib/kstDayjs';
 import type { ReservationPreview } from '~/types/api/v2/reservation';
 import CalendarColumn from './CalendarColumn';
 import ReservationDetailModal from './ReservationDetailModal';
@@ -32,7 +33,7 @@ export default function CalendarContent({
             date={date}
             selected={date.isSame(dayjs(), 'day')}
             reservations={reservations.filter(({ startTime }) =>
-              dayjs(startTime).isSame(date, 'day'),
+              kstDayjs(startTime).isSame(date, 'day'),
             )}
             onSelectReservation={setSelectedReservationId}
           />
