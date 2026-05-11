@@ -2,12 +2,7 @@
   "name": "csereal-web-v2",
   "private": true,
   "type": "module",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "sharp",
-      "esbuild"
-    ]
-  },
+  "packageManager": "pnpm@10.13.1",
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
