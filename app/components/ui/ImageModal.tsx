@@ -53,53 +53,54 @@ const CheckboxChecked = ({ className }: { className?: string }) => (
 );
 
 interface ImageModalProps {
+  /** localStorage 키 구분용 식별자 */
+  id: string | number;
   /** 이미지 URL */
   imageSrc: string;
-  /** 이미지 alt 텍스트 */
-  imageAlt?: string;
-  /** 모달 제목 (접근성용) */
-  title?: string;
-  /** 액션 버튼 클릭 핸들러 */
-  onAction?: () => void;
+  /** 외부 링크 - 있으면 액션 버튼 노출, 클릭 시 새 창으로 이동 */
+  externalLink?: string | null;
 }
 
-const STORAGE_KEY = 'happy-new-year-but-no-more-modal';
+const STORAGE_KEY_PREFIX = 'image-modal-hidden-';
 
 export default function ImageModal({
+  id,
   imageSrc,
-  imageAlt = '',
-  title = '이벤트 안내',
-  onAction,
+  externalLink,
 }: ImageModalProps) {
   const { t } = useLanguage({
     닫기: 'Close',
-    '참여 신청하기': 'Apply Now',
+    '자세히 보기': 'Learn More',
     '다시 보지 않기': "Don't show again",
+    '이벤트 안내': 'Event Notice',
   });
+  const storageKey = `${STORAGE_KEY_PREFIX}${id}`;
   const [open, setOpen] = useState(false);
   const [hideModal, setHideModal] = useState(false);
 
   // localStorage에서 "다시 보지 않기" 상태 확인
   useEffect(() => {
-    const hidden = localStorage.getItem(STORAGE_KEY) === 'true';
+    const hidden = localStorage.getItem(storageKey) === 'true';
     if (!hidden) {
       setOpen(true);
     }
-  }, []);
+  }, [storageKey]);
 
   const handleOpenChange = (newOpen: boolean) => {
     setOpen(newOpen);
     // 닫을 때 "다시 보지 않기"가 체크되어 있으면 localStorage에 저장
     if (!newOpen && hideModal) {
-      localStorage.setItem(STORAGE_KEY, 'true');
+      localStorage.setItem(storageKey, 'true');
     }
   };
 
   const handleAction = () => {
-    onAction?.();
+    if (externalLink) {
+      window.open(externalLink, '_blank', 'noopener,noreferrer');
+    }
     setOpen(false);
     if (hideModal) {
-      localStorage.setItem(STORAGE_KEY, 'true');
+      localStorage.setItem(storageKey, 'true');
     }
   };
 
@@ -112,7 +113,7 @@ export default function ImageModal({
           aria-describedby={undefined}
         >
           <VisuallyHidden.Root>
-            <DialogPrimitive.Title>{title}</DialogPrimitive.Title>
+            <DialogPrimitive.Title>{t('이벤트 안내')}</DialogPrimitive.Title>
           </VisuallyHidden.Root>
 
           {/* 세로 레이아웃 */}
@@ -121,7 +122,7 @@ export default function ImageModal({
             <div className="flex-1 flex items-center justify-center overflow-auto">
               <img
                 src={imageSrc}
-                alt={imageAlt}
+                alt=""
                 className="w-full h-auto object-contain"
               />
             </div>
@@ -134,13 +135,15 @@ export default function ImageModal({
               >
                 {t('닫기')}
               </button>
-              <button
-                type="button"
-                onClick={handleAction}
-                className="flex-1 px-6 py-3 bg-main-orange text-white hover:bg-[#ff7b34] hover:text-white active:bg-[#f55a00] active:text-[#ffc38f] text-[15px] font-medium leading-[22px] tracking-[0.025em] focus:outline-none transition-colors"
-              >
-                {t('참여 신청하기')}
-              </button>
+              {externalLink && (
+                <button
+                  type="button"
+                  onClick={handleAction}
+                  className="flex-1 px-6 py-3 bg-main-orange text-white hover:bg-[#ff7b34] hover:text-white active:bg-[#f55a00] active:text-[#ffc38f] text-[15px] font-medium leading-[22px] tracking-[0.025em] focus:outline-none transition-colors"
+                >
+                  {t('자세히 보기')}
+                </button>
+              )}
             </div>
           </div>
 

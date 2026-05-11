@@ -5,12 +5,15 @@ import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useSelectionList } from '~/hooks/useSelectionList';
 import {
+  ADMIN_MENU_IMAGE_MODAL,
   ADMIN_MENU_IMPORTANT,
   ADMIN_MENU_SLIDE,
+  type ImageModal,
   type ImportantPreviewList,
   type SlidePreviewList,
 } from '~/types/api/v2/admin';
 import { fetchJson } from '~/utils/fetch';
+import ImageModalManagement from './components/ImageModalManagement';
 import ImportantManagement from './components/ImportantManagement';
 import SlideManagement from './components/SlideManagement';
 
@@ -31,6 +34,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
       { headers },
     );
     return { type: 'slide' as const, data };
+  } else if (selected === ADMIN_MENU_IMAGE_MODAL) {
+    const data = await fetchJson<ImageModal[]>(
+      `${BASE_URL}/v2/image-modal`,
+      { headers },
+    );
+    return { type: 'imageModal' as const, data };
   } else {
     const data = await fetchJson<ImportantPreviewList>(
       `${BASE_URL}/v2/admin/important?pageNum=${pageNum}`,
@@ -43,11 +52,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
 const MENU_LABELS = {
   [ADMIN_MENU_SLIDE]: '슬라이드쇼 관리',
   [ADMIN_MENU_IMPORTANT]: '중요 안내 관리',
+  [ADMIN_MENU_IMAGE_MODAL]: '이미지 팝업 관리',
 } as const;
 
 export default function AdminPage({ loaderData }: Route.ComponentProps) {
   const { selectionItems } = useSelectionList({
-    items: [ADMIN_MENU_SLIDE, ADMIN_MENU_IMPORTANT],
+    items: [ADMIN_MENU_SLIDE, ADMIN_MENU_IMPORTANT, ADMIN_MENU_IMAGE_MODAL],
     getItem: (item) => ({
       id: item,
       label: MENU_LABELS[item as keyof typeof MENU_LABELS],
@@ -73,15 +83,30 @@ export default function AdminPage({ loaderData }: Route.ComponentProps) {
       {(() => {
         // TODO: 문구
         if (!loaderData) return <p>로그인이 필요합니다.</p>;
-        return loaderData.type === 'slide' ? (
-          <>
-            <SlideDescription />
-            <SlideManagement
-              slides={loaderData.data.slides}
-              total={loaderData.data.total}
-            />
-          </>
-        ) : (
+        if (loaderData.type === 'slide') {
+          return (
+            <>
+              <SlideDescription />
+              <SlideManagement
+                slides={loaderData.data.slides}
+                total={loaderData.data.total}
+              />
+            </>
+          );
+        }
+        if (loaderData.type === 'imageModal') {
+          const modal = loaderData.data[0] ?? null;
+          return (
+            <>
+              <ImageModalDescription />
+              <ImageModalManagement
+                key={modal?.id ?? 'new'}
+                modal={modal}
+              />
+            </>
+          );
+        }
+        return (
           <>
             <ImportantDescription />
             <ImportantManagement
@@ -120,6 +145,20 @@ function ImportantDescription() {
       <br />
       메인페이지에 보이는 중요 안내 개수 제한은 없지만, 원활한 유지보수를 위하여
       주기적인 관리가 필요합니다.
+    </p>
+  );
+}
+
+function ImageModalDescription() {
+  return (
+    <p className="mb-10 bg-neutral-100 px-6 py-5 text-md leading-loose">
+      메인페이지 진입 시 노출되는 이미지 팝업을 관리합니다. 한 번에 하나의
+      팝업만 표시되며, 표시 종료일이 지난 팝업은 자동으로 숨겨집니다.
+      <br />
+      <br />
+      외부 링크를 입력하면 팝업에 <strong>{`'자세히 보기'`}</strong> 버튼이
+      노출됩니다. 사용자가 <strong>{`'다시 보지 않기'`}</strong>를 선택한 경우,
+      해당 팝업이 삭제·재등록되기 전까지는 다시 노출되지 않습니다.
     </p>
   );
 }

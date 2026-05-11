@@ -6,6 +6,7 @@ import ImageModal from '~/components/ui/ImageModal';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import type { MainResponse } from '~/types/api/v2';
+import type { ImageModal as ImageModalData } from '~/types/api/v2/admin';
 import { SITE_NAME } from '~/utils/metadata';
 import backgroundImg from './assets/background.avif';
 import GraphicSection from './components/GraphicSection';
@@ -15,9 +16,24 @@ import NoticeSection from './components/NoticeSection';
 import NewsSection from './components/news/NewsSection';
 
 export async function loader() {
-  const response = await fetch(`${BASE_URL}/v2`);
-  if (!response.ok) throw new Error('Failed to fetch main data');
-  return (await response.json()) as MainResponse;
+  const [mainRes, modalRes] = await Promise.all([
+    fetch(`${BASE_URL}/v2`),
+    fetch(`${BASE_URL}/v2/image-modal`),
+  ]);
+  if (!mainRes.ok) throw new Error('Failed to fetch main data');
+
+  const main = (await mainRes.json()) as MainResponse;
+
+  let imageModal: ImageModalData | null = null;
+  if (modalRes.ok) {
+    const [modal] = (await modalRes.json()) as ImageModalData[];
+    const isActive =
+      modal &&
+      (!modal.displayUntil || new Date(modal.displayUntil).getTime() > Date.now());
+    imageModal = isActive ? modal : null;
+  }
+
+  return { ...main, imageModal };
 }
 
 const META = {
@@ -36,6 +52,7 @@ const META = {
 export default function MainPage({ loaderData }: Route.ComponentProps) {
   const { locale } = useLanguage();
   const meta = META[locale];
+  const { imageModal } = loaderData;
 
   return (
     <>
@@ -59,6 +76,13 @@ export default function MainPage({ loaderData }: Route.ComponentProps) {
         <NoticeSection allMainNotice={loaderData.notices} />
         <LinkSection />
       </div>
+      {imageModal && (
+        <ImageModal
+          id={imageModal.id}
+          imageSrc={imageModal.imageUrl}
+          externalLink={imageModal.externalLink}
+        />
+      )}
     </>
   );
 }

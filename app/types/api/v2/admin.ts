@@ -1,5 +1,17 @@
 export const ADMIN_MENU_SLIDE = 'slide';
 export const ADMIN_MENU_IMPORTANT = 'important';
+export const ADMIN_MENU_IMAGE_MODAL = 'imageModal';
+
+export interface ImageModal {
+  id: number;
+  titleKo: string | null;
+  titleEn: string | null;
+  imageAltKo: string | null;
+  imageAltEn: string | null;
+  displayUntil: string | null;
+  externalLink: string | null;
+  imageUrl: string;
+}
 
 export interface SlidePreview {
   id: number;
