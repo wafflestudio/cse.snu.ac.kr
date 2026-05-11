@@ -234,7 +234,8 @@ export default [
     ...prefix('/en', [...getLocaleRoutes('en')]),
     _route('/admin', 'routes/admin/index.tsx'),
     _route('/admin/analytics', 'routes/admin/analytics/index.tsx'),
-    _route('/.internal', 'routes/internal.tsx'),
+    _route('/.internal', 'routes/internal/index.tsx'),
+    _route('/.internal/edit', 'routes/internal/edit.tsx'),
     _route('/lang', 'routes/lang.tsx'),
   ]),
 ] satisfies RouteConfig;
