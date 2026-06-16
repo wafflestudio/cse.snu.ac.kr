@@ -6,7 +6,7 @@ import {
   ChevronsLeft,
   ChevronsRight,
 } from 'lucide-react';
-import { useNavigate, useSearchParams } from 'react-router';
+import { useSearchParams } from '~/hooks/useSearchParams';
 import useIsMobile from '~/hooks/useResponsive';
 
 interface PaginationProps {
@@ -23,8 +23,7 @@ export default function Pagination({
   totalPages,
   disabled = false,
 }: PaginationProps) {
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const isMobile = useIsMobile();
   const pageLimit = isMobile ? MOBILE_PAGE_COUNT : DESKTOP_PAGE_COUNT;
   const safeTotalPages = Math.max(1, totalPages);
@@ -35,7 +34,7 @@ export default function Pagination({
     if (disabled || nextPage === page) return;
     const newParams = new URLSearchParams(searchParams);
     newParams.set('pageNum', nextPage.toString());
-    navigate({ search: newParams.toString() });
+    setSearchParams(newParams);
   };
 
   return (

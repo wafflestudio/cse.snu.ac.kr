@@ -1,6 +1,8 @@
 import { Search } from 'lucide-react';
+import { useLocation } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useSearchParams } from 'react-router';
+import { useSearchParams } from '~/hooks/useSearchParams';
+import { useNavigate } from '@tanstack/react-router';
 import Button from '~/components/ui/Button';
 import { useLanguage } from '~/hooks/useLanguage';
 
@@ -27,7 +29,7 @@ export default function HeaderSearchBar() {
   const search = () => {
     const query = text.trim();
     if (query !== '') {
-      navigate(`/search?keyword=${query}`);
+      navigate({ to: `/search?keyword=${query}` });
     }
   };
 

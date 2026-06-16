@@ -1,9 +1,9 @@
-import type { Route } from '.react-router/types/app/routes/admin/+types/index';
-import type { LoaderFunctionArgs } from 'react-router';
+import { createFileRoute } from '@tanstack/react-router';
 import SelectionList from '~/components/feature/selection/SelectionList';
 import PageLayout from '~/components/layout/PageLayout';
 import { BASE_URL } from '~/constants/api';
 import { useSelectionList } from '~/hooks/useSelectionList';
+import { forwardAuthHeaders } from '~/lib/ssr';
 import {
   ADMIN_MENU_IMAGE_MODAL,
   ADMIN_MENU_IMPORTANT,
@@ -17,45 +17,15 @@ import ImageModalManagement from './components/ImageModalManagement';
 import ImportantManagement from './components/ImportantManagement';
 import SlideManagement from './components/SlideManagement';
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  const url = new URL(request.url);
-  const selected = url.searchParams.get('selected') || ADMIN_MENU_SLIDE;
-  const pageNum = url.searchParams.get('pageNum') || '1';
-
-  // Get cookies from request to pass to API (required for JSESSIONID)
-  const cookie = request.headers.get('cookie');
-  if (!cookie) return;
-
-  const headers: HeadersInit = { Cookie: cookie };
-
-  if (selected === ADMIN_MENU_SLIDE) {
-    const data = await fetchJson<SlidePreviewList>(
-      `${BASE_URL}/v2/admin/slide?pageNum=${pageNum}`,
-      { headers },
-    );
-    return { type: 'slide' as const, data };
-  } else if (selected === ADMIN_MENU_IMAGE_MODAL) {
-    const data = await fetchJson<ImageModal[]>(
-      `${BASE_URL}/v2/image-modal`,
-      { headers },
-    );
-    return { type: 'imageModal' as const, data };
-  } else {
-    const data = await fetchJson<ImportantPreviewList>(
-      `${BASE_URL}/v2/admin/important?pageNum=${pageNum}`,
-      { headers },
-    );
-    return { type: 'important' as const, data };
-  }
-}
-
 const MENU_LABELS = {
   [ADMIN_MENU_SLIDE]: '슬라이드쇼 관리',
   [ADMIN_MENU_IMPORTANT]: '중요 안내 관리',
   [ADMIN_MENU_IMAGE_MODAL]: '이미지 팝업 관리',
 } as const;
 
-export default function AdminPage({ loaderData }: Route.ComponentProps) {
+function AdminPage() {
+  const loaderData = Route.useLoaderData();
+
   const { selectionItems } = useSelectionList({
     items: [ADMIN_MENU_SLIDE, ADMIN_MENU_IMPORTANT, ADMIN_MENU_IMAGE_MODAL],
     getItem: (item) => ({
@@ -99,10 +69,7 @@ export default function AdminPage({ loaderData }: Route.ComponentProps) {
           return (
             <>
               <ImageModalDescription />
-              <ImageModalManagement
-                key={modal?.id ?? 'new'}
-                modal={modal}
-              />
+              <ImageModalManagement key={modal?.id ?? 'new'} modal={modal} />
             </>
           );
         }
@@ -162,3 +129,39 @@ function ImageModalDescription() {
     </p>
   );
 }
+
+export const Route = createFileRoute('/admin/')({
+  loader: async ({ location }) => {
+    const searchStr = location.searchStr;
+    const sp = new URLSearchParams(searchStr);
+    const selected = sp.get('selected') || ADMIN_MENU_SLIDE;
+    const pageNum = sp.get('pageNum') || '1';
+
+    // 인증 헤더: 서버(SSR)는 요청 쿠키를 포워딩, 클라(revalidate/SPA)는 same-origin
+    // fetch가 JSESSIONID를 자동 첨부한다. RR은 loader가 항상 서버 실행이라 request.headers
+    // 에 쿠키가 있었지만, TanStack은 클라에서도 loader가 돌아 synthetic request엔 쿠키가
+    // 없다 → forwardAuthHeaders로 양쪽 모두 인증되게 한다(이 early-return이 admin 목록
+    // revalidate 미반영 버그의 원인이었음).
+    const headers = forwardAuthHeaders();
+
+    if (selected === ADMIN_MENU_SLIDE) {
+      const data = await fetchJson<SlidePreviewList>(
+        `${BASE_URL}/v2/admin/slide?pageNum=${pageNum}`,
+        { headers },
+      );
+      return { type: 'slide' as const, data };
+    } else if (selected === ADMIN_MENU_IMAGE_MODAL) {
+      const data = await fetchJson<ImageModal[]>(`${BASE_URL}/v2/image-modal`, {
+        headers,
+      });
+      return { type: 'imageModal' as const, data };
+    } else {
+      const data = await fetchJson<ImportantPreviewList>(
+        `${BASE_URL}/v2/admin/important?pageNum=${pageNum}`,
+        { headers },
+      );
+      return { type: 'important' as const, data };
+    }
+  },
+  component: AdminPage,
+});

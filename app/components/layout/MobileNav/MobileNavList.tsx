@@ -1,6 +1,6 @@
 import { X } from 'lucide-react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from '@tanstack/react-router';
 import Button from '~/components/ui/Button';
 import type { NavItem } from '~/constants/navigation';
 import { navigationTree } from '~/constants/navigation';
@@ -65,7 +65,7 @@ function SearchPage({ onClose }: { onClose: () => void }) {
 
   const search = () => {
     if (text.trim()) {
-      navigate(`${localizedPath('/search')}?keyword=${text}`);
+      navigate({ to: `${localizedPath('/search')}?keyword=${text}` });
       useStore.getState().closeNavbar();
     }
   };

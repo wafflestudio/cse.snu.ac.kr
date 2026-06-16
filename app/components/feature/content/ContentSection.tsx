@@ -15,11 +15,12 @@ const TONE_CLASSES: Record<Tone, string> = {
   neutral: 'bg-neutral-100',
 };
 
+// 가로 거터는 page-gutter-x(단일 출처), 세로 패딩만 프리셋별로.
 const PADDING_CLASSES: Record<Padding, string> = {
-  default: 'px-5 pb-12 pt-7 sm:py-11 sm:pl-25 sm:pr-90',
-  subNav: 'px-5 pb-12 pt-7 sm:pt-11 sm:pb-[150px] sm:pl-25 sm:pr-[360px]',
-  overviewTop: 'px-5 pb-12 pt-7 sm:py-11 sm:pl-25 sm:pr-90',
-  overviewBottom: 'px-5 pb-16 pt-10 sm:pb-[7.88rem] sm:pl-25 sm:pr-90',
+  default: 'page-gutter-x pb-12 pt-7 sm:py-11',
+  subNav: 'page-gutter-x pb-12 pt-7 sm:pt-11 sm:pb-[150px]',
+  overviewTop: 'page-gutter-x pb-12 pt-7 sm:py-11',
+  overviewBottom: 'page-gutter-x pb-16 pt-10 sm:pb-[7.88rem]',
 };
 
 export default function ContentSection({

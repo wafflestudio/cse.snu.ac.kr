@@ -1,4 +1,5 @@
-import { useFetcher, useLocation } from 'react-router';
+import { setLangCookie } from '~/lib/serverFns';
+import { useLocation } from '@tanstack/react-router';
 import commonTranslations from '~/translations.json';
 import type { Locale } from '~/types/i18n';
 
@@ -29,7 +30,6 @@ export function useLanguage<T extends Record<string, string>>(
 ):
   | UseLanguageWithTranslations<CommonTranslations>
   | UseLanguageWithTranslations<CommonTranslations & T> {
-  const fetcher = useFetcher();
   const { pathname } = useLocation();
 
   const locale = pathname.startsWith('/en') ? 'en' : 'ko';
@@ -37,9 +37,15 @@ export function useLanguage<T extends Record<string, string>>(
   const pathWithoutLocale = pathname.replace(/^\/en/, '') || '/';
 
   const changeLanguage = () => {
-    const newLocale = isEnglish ? 'ko' : 'en';
+    const newLocale: Locale = isEnglish ? 'ko' : 'en';
 
-    fetcher.submit({ lang: newLocale }, { method: 'post', action: '/lang' });
+    // 쿠키 설정(서버) 후 localized 경로로 전체 네비게이트 → root beforeLoad가
+    // 새 로케일로 렌더(RR의 /lang action + revalidate 리다이렉트 대체).
+    setLangCookie({ data: newLocale }).then(() => {
+      const target =
+        newLocale === 'en' ? `/en${pathWithoutLocale}` : pathWithoutLocale;
+      window.location.assign(target);
+    });
   };
 
   const localizedPath = (path: string): string => {

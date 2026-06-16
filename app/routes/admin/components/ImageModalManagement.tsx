@@ -1,5 +1,5 @@
+import { useRouter } from '@tanstack/react-router';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useRevalidator } from 'react-router';
 import Fieldset from '~/components/form/Fieldset';
 import Form from '~/components/form/Form';
 import { toast } from '~/components/ui/sonner';
@@ -39,7 +39,7 @@ const blankToNull = (s: string) => (s.trim() === '' ? null : s);
 export default function ImageModalManagement({
   modal,
 }: ImageModalManagementProps) {
-  const revalidator = useRevalidator();
+  const router = useRouter();
   const isEditing = modal !== null;
 
   const defaultValues: FormValues = {
@@ -92,7 +92,7 @@ export default function ImageModalManagement({
         });
         toast.success('이미지 팝업을 등록했습니다.');
       }
-      revalidator.revalidate();
+      router.invalidate();
     } catch {
       toast.error(isEditing ? '수정에 실패했습니다.' : '등록에 실패했습니다.');
     }
@@ -103,7 +103,7 @@ export default function ImageModalManagement({
     try {
       await fetchOk(`/api/v2/image-modal/${modal.id}`, { method: 'DELETE' });
       toast.success('이미지 팝업을 삭제했습니다.');
-      revalidator.revalidate();
+      router.invalidate();
     } catch {
       toast.error('삭제에 실패했습니다.');
     }

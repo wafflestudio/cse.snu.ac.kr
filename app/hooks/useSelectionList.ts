@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router';
+import { useSearchParams } from '~/hooks/useSearchParams';
 import { useLanguage } from '~/hooks/useLanguage';
 
 // 훅 내부에서만 사용하는 인코딩/디코딩 함수

@@ -1,5 +1,5 @@
 import { RefreshCw } from 'lucide-react';
-import { useNavigate, useSearchParams } from 'react-router';
+import { useSearchParams } from '~/hooks/useSearchParams';
 import { Tag } from '~/components/ui/Tag';
 import { useLanguage } from '~/hooks/useLanguage';
 
@@ -9,8 +9,7 @@ interface SelectedTagsProps {
 }
 
 export default function SelectedTags({ tags, disabled }: SelectedTagsProps) {
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const isTagExist = tags.length > 0;
   const { tUnsafe } = useLanguage();
 
@@ -24,14 +23,14 @@ export default function SelectedTags({ tags, disabled }: SelectedTagsProps) {
       newParams.append('tag', tag);
     }
 
-    navigate({ search: newParams.toString() }, { preventScrollReset: true });
+    setSearchParams(newParams, { preventScrollReset: true });
   };
 
   const resetTags = () => {
     const newParams = new URLSearchParams(searchParams);
     newParams.delete('tag');
     newParams.delete('pageNum');
-    navigate({ search: newParams.toString() }, { preventScrollReset: true });
+    setSearchParams(newParams, { preventScrollReset: true });
   };
 
   return (

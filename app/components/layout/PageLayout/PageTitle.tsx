@@ -1,6 +1,11 @@
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useRouter,
+} from '@tanstack/react-router';
 import { ChevronRight } from 'lucide-react';
 import { Fragment } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router';
 import Button from '~/components/ui/Button';
 import Node from '~/components/ui/Nodes';
 import { useLanguage } from '~/hooks/useLanguage';
@@ -102,7 +107,8 @@ interface LocationTextProps {
 
 function LocationText({ path, name, isCurrent }: LocationTextProps) {
   const { localizedPath } = useLanguage();
-  const navigate = useNavigate();
+  const _navigate = useNavigate();
+  const router = useRouter();
   const textStyle = 'text-xs sm:text-md font-normal tracking-[.02em]';
 
   if (isCurrent) {
@@ -111,7 +117,7 @@ function LocationText({ path, name, isCurrent }: LocationTextProps) {
         variant="text"
         tone="inherit"
         size="xs"
-        onClick={() => navigate(0)}
+        onClick={() => router.history.go(0)}
       >
         {name}
       </Button>

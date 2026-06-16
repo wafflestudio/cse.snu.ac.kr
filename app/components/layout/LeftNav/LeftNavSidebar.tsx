@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { Link } from '@tanstack/react-router';
 import { IS_PROD } from '~/constants/api';
 import { navigationTree } from '~/constants/navigation';
 import { useLanguage } from '~/hooks/useLanguage';
@@ -54,7 +54,7 @@ function Logo() {
       />
       {!IS_PROD && (
         <div className="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-mono font-bold">
-          beta
+          staging
         </div>
       )}
     </Link>

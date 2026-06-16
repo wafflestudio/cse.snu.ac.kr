@@ -1,4 +1,3 @@
-import Image from '~/components/ui/Image';
 import type { Attachment } from '~/types/api/v2/attachment';
 import { formatBytes } from '~/utils/string';
 import ClipIcon from './assets/clip.svg?react';

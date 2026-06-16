@@ -4,7 +4,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const IS_DEV = import.meta.env.DEV;
 
-export const IS_BETA = PHASE === 'beta';
+export const IS_STAGING = PHASE === 'staging';
 export const IS_PROD = PHASE === 'production';
 
 // In dev mode, route API calls through Vite's proxy to avoid CORS.

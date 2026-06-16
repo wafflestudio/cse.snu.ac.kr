@@ -1,0 +1,95 @@
+import { useRouter } from '@tanstack/react-router';
+import { useState } from 'react';
+import LoginVisible from '~/components/feature/auth/LoginVisible';
+import SelectionTitle from '~/components/feature/selection/SelectionTitle';
+import AlertDialog from '~/components/ui/AlertDialog';
+import Button from '~/components/ui/Button';
+import HTMLViewer from '~/components/ui/HTMLViewer';
+import { toast } from '~/components/ui/sonner';
+import { useLanguage } from '~/hooks/useLanguage';
+import type { Club } from '~/types/api/v2/about/student-clubs';
+import type { ProcessedHtml } from '~/utils/csp';
+import { fetchOk } from '~/utils/fetch';
+
+interface ClubDetailsProps {
+  club: { ko: ProcessedClub; en: ProcessedClub };
+  locale: 'ko' | 'en';
+}
+
+type ProcessedClub = Omit<Club, 'description'> & { description: ProcessedHtml };
+
+export default function ClubDetails({ club, locale }: ClubDetailsProps) {
+  const router = useRouter();
+  const { localizedPath } = useLanguage();
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+
+  const oppositeLocale = locale === 'ko' ? 'en' : 'ko';
+  const image = club[locale].imageURL
+    ? ({
+        src: club[locale].imageURL,
+        width: 320,
+        height: 200,
+        mobileFullWidth: true,
+      } as const)
+    : undefined;
+
+  const handleDelete = async () => {
+    try {
+      await fetchOk(`/api/v2/about/student-clubs/${club.ko.id}`, {
+        method: 'DELETE',
+      });
+
+      setShowDeleteDialog(false);
+      toast.success('동아리를 삭제했습니다.');
+      router.invalidate();
+    } catch {
+      toast.error('삭제에 실패했습니다.');
+    }
+  };
+
+  return (
+    <>
+      <div>
+        <div className="justify-between sm:flex items-start">
+          <SelectionTitle
+            title={club[locale].name}
+            subtitle={club[oppositeLocale].name}
+            animateKey={club[locale].name}
+          />
+          <LoginVisible allow="ROLE_STAFF">
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                tone="neutral"
+                size="md"
+                onClick={() => setShowDeleteDialog(true)}
+              >
+                삭제
+              </Button>
+              <Button
+                as="link"
+                to={localizedPath(
+                  `/about/student-clubs/edit?selected=${club.ko.id}`,
+                )}
+                variant="outline"
+                tone="neutral"
+                size="md"
+              >
+                편집
+              </Button>
+            </div>
+          </LoginVisible>
+        </div>
+        <HTMLViewer html={club[locale].description} image={image} />
+      </div>
+
+      <AlertDialog
+        open={showDeleteDialog}
+        onOpenChange={setShowDeleteDialog}
+        description="동아리를 삭제하시겠습니까?"
+        confirmText="삭제"
+        onConfirm={handleDelete}
+      />
+    </>
+  );
+}

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Link, useLocation } from 'react-router';
+import { useLocation, Link } from '@tanstack/react-router';
 import Node from '~/components/ui/Nodes';
 import { useLanguage } from '~/hooks/useLanguage';
 import type { SubNavConfig, SubNavConfigItem } from '~/hooks/useSubNav';

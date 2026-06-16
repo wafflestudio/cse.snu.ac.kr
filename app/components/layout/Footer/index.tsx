@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router';
+import { Link } from '@tanstack/react-router';
 import {
   getLinkGroups,
   type LinkGroupProps,
@@ -99,7 +99,7 @@ function LinkGroup({
 }
 
 function FooterBottomLeft() {
-  const { t } = useLanguage(footerTranslations);
+  const { t, localizedPath } = useLanguage(footerTranslations);
   const [cserealOpen, setCserealOpen] = useState(false);
 
   return (
@@ -113,9 +113,9 @@ function FooterBottomLeft() {
           {t('개인정보처리방침')}
         </a>
         <span>|</span>
-        <Link to="/about/contact">{t('학부 연락처')}</Link>
+        <Link to={localizedPath('/about/contact')}>{t('학부 연락처')}</Link>
         <span>|</span>
-        <Link to="/about/directions">{t('찾아오시는 길')}</Link>
+        <Link to={localizedPath('/about/directions')}>{t('찾아오시는 길')}</Link>
       </div>
 
       <address className="mb-[1.37rem] not-italic">

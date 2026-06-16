@@ -1,405 +1,275 @@
-# Playwright 테스트 작성 가이드
+# csereal-web-v2 작업 가이드 (에이전트용)
 
-이 문서는 csereal-web-v2 프로젝트의 Playwright E2E 테스트 작성 시 따라야 할 중요한 의사결정과 컨벤션을 담고 있습니다.
+작업 전 읽는 단일 가이드. 앞부분은 **E2E 테스트 컨벤션 + 아키텍처**, 문서 끝에 **라우팅·코드 컨벤션**과 **Storybook·디자인 시스템**을 둔다. (사람용 온보딩·스크립트·환경 표는 `README.md`.)
 
-## 테스트 파일 구조
+> **상태:** RR7 → TanStack Start(file-based + idiomatic) 마이그레이션 **완료(2026-06-15)**, Storybook + 디자인 시스템 감사 **완료(2026-06-16)**. E2E는 이제 마이그레이션 전용이 아니라 **일반 회귀 안전망**이다.
 
-### 폴더 구조
-테스트 파일은 **실제 라우트 구조를 따라** 구성합니다. `-edit` 같은 접미사는 사용하지 않습니다.
+## E2E 테스트 — 프론트가 렌더/동작/픽셀 동일한가를 지킨다(비주얼 회귀 포함).
+
+## E2E 범위 기준 (무엇을 테스트하나) — 단일 잣대
+
+> **"마이그레이션이 이걸 깨뜨린다면, 깨진 코드는 프론트 레포에 있나?"**
+> **예 → E2E로 테스트한다. 아니오(백엔드가 깨짐) → 백엔드를 신뢰한다(테스트 추가 금지).**
+
+백엔드는 마이그레이션 대상이 아니라 **고정된 실서버**라, 백엔드가 소유한 동작은 전후 불변 → E2E로 재면 비용(느림·flaky·stateful)만 들고 안전망 가치가 없다. ("실서버라 백도 곁다리로 검증된다"는 이유로 넓히지 않는다.)
+
+| 프론트 소유 → **테스트함** | 백엔드 소유 → **신뢰(테스트 안 함)** |
+|---|---|
+| 렌더(콘텐츠/레이아웃·스크린샷) | 역할 **인가 강제**(역할이 엔드포인트 호출 가능/거부) |
+| loader 와이어링(올바른 엔드포인트 fetch + 응답 파싱 + 필드→UI 매핑) | 비즈니스 규칙(409 충돌, 날짜 규칙, 정기예약 LABMASTER-only) |
+| action 와이어링(payload 구성 + 엔드포인트 + 응답 처리=토스트/리다이렉트/revalidate) | 서버 검증, 정렬/검색(FTS) **순서·랭킹** |
+| 클라 상태/상호작용(드롭다운·탭·모달·캐러셀·언어토글) | 영속 의미(cascade·기본값·계산 필드) |
+| 조건부 렌더/게이팅(`LoginVisible` 노출/숨김·fallback, 핀/잠금 **아이콘 렌더**, isPrivate 글의 플래그 전송) | 그 데이터 자체의 정확성·필터링 결과 |
+
+**경계 함정(이 기준으로 걸러진 실제 사례):**
+- 게시설정은 "프론트가 플래그를 **전송**하나"(O, isPrivate/isPinned/titleForMain 전송 → action 와이어링)와 "백엔드가 **정렬/필터**한 결과"(X)를 구분. 고정 검증은 `boundingBox` **순서**(백엔드 정렬)가 아니라 **핀 아이콘 렌더**(프론트 조건부)로 한다.
+- 역할 분기: "프론트가 역할별로 뭘 **렌더**하나"는 O(`LoginVisible`/staff-only 방 fallback), "백엔드가 역할별로 뭘 **허용**하나"는 X. 단 disallowed-로그인은 익명과 같은 false 브랜치라 read 스크린샷이 이미 커버 → 추가 안 함.
+- 통합 seam은 와이어링 모양당 1번(예: "생성→목록에 뜸"). 모든 필드의 정확 저장까진 안 캠(그건 백엔드).
+
+## 아키텍처 (왜 이렇게 됐는지가 중요)
 
 ```
+브라우저 ──(localhost:3000만)──> server.ts (:3000, prod와 공유)
+                                  ├─ /api/**  → hono proxy → 로컬 docker 백엔드 :8080 (API_PROXY_TARGET 설정 시)
+                                  └─ 그 외     → TanStack Start SSR (프로덕션 빌드 dist/)
+```
+
+- **백엔드: 로컬 docker 실서버** (`../csereal-server`, local 프로파일, :8080).
+  MySQL+Spring+Flyway. mock-login은 `@Profile("!prod")` 실엔드포인트(진짜 JSESSIONID 세션).
+  **로컬 전용(격리·리셋 자유)이라 리셋+시드 자유. staging·프로덕션 서버는 절대 건드리지 않는다.**
+  기동: `docker compose -f ../csereal-server/docker-compose-local-full.yml -f ../csereal-server/docker-compose-fe-test.yml up -d` (Playwright가 자동).
+
+- **프론트: 프로덕션 빌드** 를 루트 `server.ts`(**Hono** + `@hono/node-server`)로 서빙. MSW/mock 안 씀. **이 서버는 prod 컨테이너와 공유**(Dockerfile CMD=`pnpm start`=`tsx server.ts`). `/api` 프록시는 `API_PROXY_TARGET` 설정 시에만(local/E2E). prod는 미설정 → 절대 URL 직호출.
+  - **왜 server.ts가 필요한가:** TanStack Start 기본 빌드는 `dist/server/server.js`를 **Web fetch 핸들러**(서버 아님)로 내놓는다. Node HTTP 서버는 `IncomingMessage`/`ServerResponse`라 Web `Request`/`Response`를 안 써서(Node가 클래스는 주지만 서버 API는 req/res) **Node↔Web 다리가 필연**. Hono(+@hono/node-server)가 그 변환을 맡고(`handler.fetch(c.req.raw)` 한 줄), 정적서빙·`/api` 프록시도 같이. (Bun/Deno는 서버 API가 Web 표준이라 다리 불필요하지만 우리는 Node self-host.)
+  - **왜 prod 빌드(dev 아님):** 비주얼 회귀가 dev≠prod면 무의미하고, E2E 정석은 배포 산출물 검증. dev의 콜드 컴파일 플레이키도 없음.
+  - **왜 same-origin proxy:** 실서버 세션 쿠키(JSESSIONID)는 `Secure`라 브라우저 **cross-origin 요청에 안 실린다** → prod빌드를 :8080에 직접 쏘면 mutation 인증이 깨짐(302 OAuth). 그래서 브라우저는 :3000만 보고 `/api`를 서버사이드에서 :8080으로 proxy. 세션이 first-party로 유지되고 CORS/CSP도 무관 → **E2E용 앱 코드 수정 0.**
+
+## 디렉터리 구조
+
+라우트를 미러링한다.
+
+```
+server.ts                   # (루트) prod 빌드 서빙 + 선택적 /api proxy. prod 컨테이너·E2E 공유
 tests/
-├── helpers/              # 재사용 가능한 헬퍼 함수들
-│   ├── auth.ts          # 로그인/로그아웃
-│   ├── form-components.ts  # Form 컴포넌트 조작
-│   └── test-assets.ts   # 테스트용 이미지/파일 생성
-├── about/               # /about/* 경로 테스트
-│   ├── overview.spec.ts
-│   ├── greetings.spec.ts
-│   └── ...
-├── academics/
-│   ├── undergraduate/
-│   └── graduate/
-└── ...
+├── setup/
+│   ├── reset-db.sh         # DB truncate (결정론)
+│   ├── seed-content.sh     # SQL 시드: content 싱글톤(about/academics/admissions) + 참조데이터(room, conference_page)
+│   ├── normalize-dates.sh  # 서버가 박는 created_at/modifiedAt 고정값 정규화
+│   ├── global-setup.ts     # 매 런 1회: 리셋 → SQL시드 → API시드 → 날짜정규화
+│   └── seed/
+│       ├── client.ts       # mockLoginCookie, postMultipart, postJson (공용)
+│       ├── <domain>.ts     # research/about/community/people/academics/admissions/internal: *_SEED 상수 + seed<Domain>()
+│       └── index.ts        # seedBaseline(): 도메인 시더 조합
+├── helpers/
+│   ├── auth.ts             # loginAsStaff (세션 쿠키, prod 형태)
+│   ├── locale.ts           # setLocale (lang 쿠키 고정)
+│   └── forms.ts            # 폼 구동 헬퍼 (단일 책임)
+└── <도메인>/<라우트>/{read,flow}.spec.ts
 ```
 
-**예시:**
-- 라우트: `/about/overview` → 테스트: `tests/about/overview.spec.ts`
-- 라우트: `/academics/undergraduate/guide` → 테스트: `tests/academics/undergraduate/guide.spec.ts`
+## 테스트 2분류 (read / flow)
 
-## 아키텍처 패턴
+**분류 축: `read` = 비로그인 AND DB 변경 없음 · `flow` = 로그인 필요 OR DB 변경.**
+모든 케이스가 둘 중 하나에 들어간다(검색=read, admin=flow).
 
-### Helper 함수 방식 채택 (POM 미사용)
-- **Page Object Model (POM)을 사용하지 않습니다**
-- 대신 **함수형 헬퍼 패턴**을 사용합니다
-- 이유: 간단하고 직관적이며, Form 컴포넌트 재사용에 적합
+> ✅ **컨벤션 리팩토링 완료**(2026-06-14): 전 라우트가 `read.spec.ts`(데스크톱 `read` + 모바일 `read-mobile`)
+> + `flow.spec.ts`(en round-trip 포함) 구조다. smoke/visual은 제거됨. 신규 라우트도 아래 컨벤션으로 작성한다.
 
-### Form 컴포넌트 헬퍼
-`app/components/form`의 컴포넌트들이 여러 페이지에서 재사용되므로, 테스트도 동일하게 재사용 가능한 헬퍼 함수로 작성합니다.
+### `read.spec.ts` — 비로그인 사용자가 도달 가능한 모든 화면
+- 핵심 콘텐츠 **1~2개 assert + `toHaveScreenshot`** (콘텐츠 계약 + 픽셀, 한 파일에서)
+- **ko 전용** — en 읽기 화면은 안 찍는다(번역 텍스트만 바뀌어 가치 낮음)
+- **데스크톱 + 모바일(390px)** — `read`/`read-mobile` 프로젝트가 같은 스펙을 돌려 baseline 자동 분리
+  (`*-read-darwin.png` / `*-read-mobile-darwin.png`). **모바일 전용 코드 안 짠다.**
+  - ⚠️ **콘텐츠 assert는 모바일에서도 보이는 요소로**: `hidden sm:*`(데스크톱 전용 SubNavbar·메가메뉴 등)
+    텍스트를 assert하면 모바일에서 `hidden`이라 깨진다. 한 스펙이 두 viewport를 도니, **양쪽에 다 보이는
+    요소**(본문 PageTitle·콘텐츠)를 고른다. (예: 10-10 하위 페이지는 SubNavbar 'Project' 대신 PageTitle을 assert)
+- **상세 레이아웃이 목록/형제와 다르면 별도 스크린샷**: 같은 도메인이라도 컴포넌트 구성이 다르면(예: faculty 상세
+  =Profile+LabNode vs emeritus/staff 상세=ProfileImage+Contact+InfoList) 대표 1장으로 갈음 말고 각 레이아웃을 캡처.
+- **상태는 URL 우선**: `/search?keyword=`, `?tag=`, `?pageNum=`, `?selected=`, `?selectedDate=`로 직접 이동.
+  URL로 안 되는 클라이언트 상태(드롭다운·탭·모달)는 read에서 클릭(비로그인·비변경이면 OK).
+- **여러 상태 처리**:
+  - 레이아웃이 다른 상태(모달·탭·펼침/접힘·빈 상태) → **각각** 스크린샷
+  - 데이터만 다른 반복(SelectionList 항목·연도·페이지) → **대표 1장**
+  - **빈 상태**(검색 결과 없음·목록 0개) → **가능한 곳 모두** (없는 키워드/태그로 유도)
 
-**중요 원칙:**
-- 각 Form 컴포넌트마다 대응하는 헬퍼 함수 제공
-- 헬퍼 함수는 **단일 책임**만 수행
-- 복합 동작(예: 언어 전환 + 입력)은 테스트 코드에서 조합
+### `flow.spec.ts` — 로그인(staff) 컨텍스트 또는 DB 변경
+- **데스크톱만**, read 의존(mutation 전 read가 깨끗한 baseline 캡처)
+- 한 파일에 `describe`로 **'CRUD' / '게시 설정' / '일괄 관리'** 구분
+- **이중언어 콘텐츠 → en round-trip**: ko·en 입력 후 ko는 ko 상세에서, en은 `/en` 상세에서 값 노출 확인
+  (en 입력값이 저장·표시되는지 검증. read에서 en을 안 찍는 것과 별개 — 이건 쓰기 검증).
+  상세 URL이 `/:id`로 안정적이면 `helpers/locale.ts`의 `expectEnDetailHeading(page, enValue)` 사용(중복 제거).
+  목록 인라인 상세(centers/groups/clubs/facilities)는 `/en` 목록에서 `getByText(enValue)`, 싱글톤(admissions/
+  greetings/future-careers description)은 `/en` 본문에서 검증. 공통 `$type/edit` 형제(history/contact/overview)는
+  greetings로 대표 검증(주석 명시).
+- 게시설정·토글(비공개·고정·태그·첨부·이미지)은 **대표 타입(notice)만**, news/seminar 등은 동일 백엔드
+  메커니즘이라 주석으로 생략 명시
+- **로그인만 필요한 읽기**(admin 메뉴 렌더, staff 전용 예약실)도 flow에 둔다(visual 안 만듦)
 
-## 테스트용 데이터 생성
+### 게시 설정의 시각 (상태 변형)
+- **일반 사용자가 보는 것만** baseline에 심어 read로 캡처: 고정(핀, notice 목록) · 중요·슬라이드(메인)
+- **비공개(잠금)** → staff 전용이라 **시각 검증 안 함**, flow 동작(숨김)만
 
-### 타임스탬프 사용 규칙
-모든 테스트 데이터에는 **locale date time string**을 사용합니다.
-
-**중요:** 타임스탬프는 **테스트 시작 시 한 번만 생성**하여 모든 데이터에서 공유합니다.
-
-```typescript
-// ✅ 좋은 예: 타임스탬프를 한 번만 생성하여 모든 데이터에서 공유
-const dateTimeString = getKoreanDateTime();
-const koText = `Playwright KO ${dateTimeString}`;
-const { imagePath } = await createTestImage(testInfo, dateTimeString);
-const { filePath } = createTestTextFile(testInfo, dateTimeString);
-
-// ❌ 나쁜 예: 각 함수에서 개별 생성 (시점 차이로 불일치 발생)
-const { imagePath } = await createTestImage(testInfo);  // 내부에서 생성
-const { filePath } = createTestTextFile(testInfo);      // 내부에서 생성
+### Playwright 프로젝트 구조
+```
+read        : read.spec.ts,  데스크톱
+read-mobile : read.spec.ts,  390px
+flow        : flow.spec.ts,  데스크톱, dependencies: [read, read-mobile]
 ```
 
-**적용 위치:**
-1. 본문 텍스트: `Playwright KO 2024. 12. 27. 15:30:45`
-2. 파일명: `test-file-2024-12-27_15-30-45.txt`
-3. 이미지: placehold.co URL의 텍스트
-4. 첨부파일 내용
+## 결정론 (determinism)
 
-### 이미지 생성
-**placehold.co를 사용**하여 매번 고유한 이미지를 동적으로 생성합니다.
+- `globalSetup`이 매 런 **DB 리셋 → SQL 시드(`seed-content.sh`) → API 시드(`seedBaseline`) → 날짜 정규화(`normalize-dates.sh`)**. 빈 DB라 auto-increment id 고정.
+- **read 스펙은 baseline만 검증**. `RESEARCH_SEED` 등 도메인 시드 상수를 기대값 단일 출처로 import.
+- **flow 스펙은 baseline을 건드리지 않고 자기 항목만** 생성/편집/삭제. 고유 이름(`Date.now()`)으로 충돌 방지. 게시 설정 등 baseline 상태를 바꾸는 토글은 자기 글에만.
+- **날짜**: payload로 넣는 날짜(news.date, seminar.startDate)는 고정값이라 그대로. **서버가 박는 created_at/modifiedAt이 화면에 노출되면**(notice 목록·상세, 메인 NewsCard, conference_page) → `tests/setup/normalize-dates.sh`가 globalSetup에서 고정값(`2024-03-15`)으로 정규화. 새 게시물 테이블 추가 시 이 스크립트에 UPDATE 한 줄 추가. **마스킹보다 정규화 우선**(시:분 글자폭이 마스크 박스를 흔들어 마스킹이 불안정).
+- **마스킹**: 정규화 불가한 비결정 요소만 — 외부 SDK(`#map` KakaoMap), 백엔드 비정렬 컬렉션(research/groups 상세의 labs Set). `toHaveScreenshot({ mask: [...] })`.
+- 컴포넌트가 *상대시간*("3일 전")을 렌더하면 `page.clock`으로 시계 고정(현재 해당 없음).
 
-```typescript
-const randomColor = Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
-const imageUrl = `https://placehold.co/600x400/${randomColor}/white/png?text=${encodeURIComponent(dateTimeString)}`;
-```
+## flow 검증 = stateful (실서버 영속성)
 
-**장점:**
-- 매번 다른 색상 + 타임스탬프로 확실한 고유성
-- 실제 PNG 이미지 생성
-- 뷰어에서 시각적으로 확인 가능
-
-**단점:**
-- 네트워크 요청 필요
-- 오프라인 환경에서 작동 불가
-
-## 헬퍼 함수 설계 원칙
-
-### 1. `helpers/auth.ts`
-인증 관련 동작을 담당합니다.
+실서버라 "내가 만든 게 실제로 보이는가"를 직접 검증한다. 추가→편집→삭제 전체 플로우:
 
 ```typescript
-loginAsStaff(page)  // STAFF 로그인
-logout(page)         // 로그아웃
-```
+test('staff가 X를 추가→편집→삭제한다', async ({ page }) => {
+  const koName = `자동화 ${Date.now()}`;        // 고유 이름
+  await setLocale(page, 'ko');
+  await page.goto('/...');
+  await loginAsStaff(page);                      // 세션 쿠키 (prod엔 STAFF 버튼 없음)
 
-### 2. `helpers/form-components.ts`
-Form 컴포넌트별 조작 함수를 제공합니다.
-
-**중요: 각 함수는 하나의 책임만 가집니다**
-
-```typescript
-// ✅ 좋은 예: 단일 책임
-fillHTMLEditor(page, content)  // 현재 언어 에디터에만 입력
-switchLanguage(page, lang)     // 언어 전환만
-
-// ❌ 나쁜 예: 복합 책임
-fillHTMLEditor(page, { ko, en })  // 언어 전환 + 입력 동시 수행
-```
-
-**제공하는 함수들:**
-- `fillTextInput(page, fieldName, content)` - 현재 언어의 텍스트 필드에 내용 입력
-- `fillHTMLEditor(page, content)` - 현재 언어의 에디터에 내용 입력
-- `switchEditorLanguage(page, lang)` - 폼 에디터의 한/영 언어 전환 (300ms 대기 포함)
-- `uploadImage(page, imagePath)` - Form.Image 업로드
-- `clearAllFiles(page, fieldsetName?)` - Form.File 모두 삭제
-- `uploadFiles(page, paths, fieldsetName?)` - Form.File 업로드
-- `submitForm(page)` - 저장하기 버튼 클릭 후 load 대기
-- `cancelForm(page)` - 취소 버튼 클릭
-
-### 3. `helpers/test-assets.ts`
-테스트용 에셋 생성을 담당합니다.
-
-```typescript
-createTestImage(testInfo)     // placehold.co 이미지 생성
-createTestTextFile(testInfo)  // 텍스트 파일 생성
-```
-
-### 4. `helpers/navigation.ts`
-페이지 네비게이션 관련 헬퍼 함수를 제공합니다.
-
-```typescript
-switchPageLanguage(page, lang)  // 페이지 상단의 KO/ENG 버튼 클릭 후 load 대기
-```
-
-**주의:** `switchPageLanguage`는 폼 에디터의 언어 전환이 아닌, 페이지 전체의 언어를 전환합니다.
-
-### 5. `helpers/utils.ts`
-공통 유틸리티 함수를 제공합니다.
-
-```typescript
-getKoreanDateTime()      // "2024. 12. 27. 15:30:45" 형식 반환
-getFileNameDateTime()    // "2024-12-27_15-30-45" 형식 반환
-```
-
-## 설정
-
-### baseURL 사용
-`playwright.config.ts`에 baseURL이 설정되어 있으므로, 테스트에서는 **상대 경로**만 사용합니다.
-
-```typescript
-// ✅ 좋은 예
-await page.goto('/about/overview');
-
-// ❌ 나쁜 예
-await page.goto('http://localhost:3000/about/overview');
-```
-
-**장점:**
-- vite.config.ts의 port와 자동 동기화
-- 하드코딩 제거
-- 환경별 baseURL 설정 가능
-
-## 테스트 작성 패턴
-
-### 테스트 설명 언어
-**모든 테스트 설명(test description)은 한글로 작성합니다.**
-
-```typescript
-// ✅ 좋은 예: 한글 테스트 설명
-test('학부 소개 편집 및 한/영 내용 검증', async ({ page }, testInfo) => {
-  // ...
-});
-
-// ❌ 나쁜 예: 영문 테스트 설명
-test('edit about overview and verify ko/en content', async ({ page }, testInfo) => {
-  // ...
+  // 추가 → 목록에 실제로 나타남
+  // 편집 → 상세에 반영됨
+  // 삭제 → 목록에서 사라짐
 });
 ```
 
-**이유:**
-- 한국어 프로젝트이므로 테스트 리포트도 한글로 읽기 쉬워야 함
-- 테스트 실패 시 에러 메시지를 바로 이해할 수 있음
-- 팀원 간 커뮤니케이션 효율성 향상
+## 로그인 (prod 형태)
 
-### 테스트 플로우 규칙
-페이지 기능에 따라 테스트 플로우를 다르게 작성합니다.
+`loginAsStaff(page)`는 dev STAFF 버튼을 누르지 않는다(프로덕션 빌드엔 없음).
+mock-login으로 세션 쿠키를 발급받고 reload → my-role이 세션을 읽어 staff UI 렌더. 프로덕션과 동일한 화면.
 
-#### 1. 편집만 가능한 페이지
-편집 기능만 테스트합니다.
+## Form 컴포넌트
 
-```typescript
-// 예: overview, greetings, history, contact 등
-test('학부 소개 편집 및 한/영 내용 검증', async ({ page }, testInfo) => {
-  // 1. 편집 페이지로 이동
-  // 2. 폼 입력
-  // 3. 제출
-  // 4. 검증 - 한글/영문
-});
-```
+- suneditor 사용. 에디터: `.sun-editor-editable`. 한/영 전환은 `label[for="ko"|"en"]` 클릭(라디오 숨김).
+- Form 구동은 `tests/helpers/forms.ts`의 단일 책임 함수로(fillTextInput, fillHTMLEditor, switchEditorLanguage, selectDropdown, submitForm, deleteItem). 복합 동작(언어 전환+입력)은 스펙에서 조합. **인라인으로 재구현 말 것.**
+  - `fillHTMLEditor(page, html, index?)`: 한 화면에 에디터가 여럿이면(예: seminar 요약+연사소개) index로 대상 지정(`:visible` 기준).
+  - `deleteItem(page, confirmText?, trigger?)`: 트리거 '삭제' → 확인(`confirmText`, 기본 '확인') 처리. 한 화면에 '삭제'가 여럿(교수 학력별 삭제 + Form.Action, 행 스코프 삭제 등)이면 `trigger`로 명시(예: `.last()`, `row.getByRole('button',{name:'삭제'})`). **모든 CRUD 삭제는 이 헬퍼 경유**(일괄/예약취소 등 다른 의미의 삭제만 인라인).
+- 드롭다운 옵션 라벨은 컴포넌트가 가공할 수 있음(예: 그룹 → "시스템 스트림").
+- 삭제 AlertDialog 확인 버튼 라벨은 컴포넌트마다 다름(Form.Action='확인', 게시글/리스트='삭제') → `deleteItem`의 `confirmText`로 지정.
 
-#### 2. 추가 기능이 있는 페이지
-**추가 → 검증 → 편집 → 검증 → 삭제 → 검증** 순서로 전체 플로우를 테스트합니다.
+## 대기 처리
 
-```typescript
-// 예: student-clubs, facilities 등
-test('학생 동아리 추가->편집->삭제 플로우 검증', async ({ page }, testInfo) => {
-  // === 1단계: 추가 ===
-  // 새 항목 생성
+- 네비게이션: `waitForURL('**/path')` 또는 정규식. `waitForLoadState`보다 명시적 URL 확인 우선.
+- 에디터 언어 전환: `switchEditorLanguage`가 라디오 `input#{lang}` checked를 대기(고정 슬립 아님). **테스트에 `waitForTimeout` 금지** — 조건 대기로.
+- 나머지는 Playwright auto-waiting(`toBeVisible` 등)에 맡긴다. (prod 빌드라 hydration이 빨라 별도 마커 불필요. 진짜 `<button onClick>` 클릭이 플레이키하면 그 스펙에 국소 대응.)
 
-  // === 2단계: 추가된 항목 검증 ===
-  // 한글/영문 페이지에서 내용 확인
-
-  // === 3단계: 편집 ===
-  // 추가한 항목 수정
-
-  // === 4단계: 편집된 항목 검증 ===
-  // 한글/영문 페이지에서 수정된 내용 확인
-
-  // === 5단계: 삭제 ===
-  // 항목 삭제 (AlertDialog 처리 포함)
-
-  // === 6단계: 삭제 검증 ===
-  // 삭제된 항목이 목록에 없는지 확인
-});
-```
-
-**중요:**
-- 추가 기능이 있으면 **반드시 편집과 삭제도 함께 테스트**해야 함
-- 각 단계마다 한글/영문 페이지 모두 검증
-- 삭제 시 AlertDialog가 있는 경우 확인 버튼 클릭까지 처리
-
-### 복합 페이지의 모든 편집 기능 테스트하기
-
-**하나의 페이지에 여러 편집 기능이 있는 경우, 모든 편집 기능을 별도 테스트로 작성해야 합니다.**
-
-예: `/about/future-careers` 페이지는 3개의 독립적인 편집 기능이 있음
-1. 졸업생 진로 본문 (description) - 별도 편집 페이지
-2. 졸업생 진로 현황 (stat) - 별도 편집 페이지
-3. 졸업생 창업 기업 (companies) - 인라인 편집 (추가/편집/삭제)
-
-**올바른 테스트 작성 방법:**
-```typescript
-// future-careers.spec.ts 파일에 3개의 별도 테스트 작성
-test('졸업생 진로 본문 편집 및 한/영 내용 검증', async ({ page }) => {
-  // description 편집 테스트
-});
-
-test('졸업생 진로 현황 편집 및 검증', async ({ page }) => {
-  // stat 편집 테스트
-});
-
-test('졸업생 창업 기업 추가->편집->삭제 플로우 검증', async ({ page }) => {
-  // companies 추가/편집/삭제 테스트
-});
-```
-
-**편집 기능 찾는 방법:**
-1. 페이지에서 '편집' 버튼이 여러 개 있는지 확인
-2. 컴포넌트 내부에 인라인 편집 기능이 있는지 확인 (예: 기업 추가, 항목 편집 버튼)
-3. 별도 섹션마다 독립적인 데이터를 관리하는지 확인
-
-**놓치기 쉬운 경우:**
-- 같은 페이지에 여러 편집 버튼이 있는데 하나만 테스트하는 경우
-- 테이블/리스트 형태의 인라인 편집 기능을 놓치는 경우
-- 탭이나 섹션으로 나뉘어진 편집 기능을 놓치는 경우
-
-### 기본 구조
-모든 편집 테스트는 다음 흐름을 따릅니다:
-
-```typescript
-test('edit [페이지명] and verify ko/en content', async ({ page }, testInfo) => {
-  // 1. 테스트 데이터 준비
-  const dateTimeString = getKoreanDateTime();
-  const koText = `Playwright KO ${dateTimeString}`;
-  const enText = `Playwright EN ${dateTimeString}`;
-  const { imagePath } = await createTestImage(testInfo);
-  const { filePath, fileName } = createTestTextFile(testInfo);
-
-  // 2. 로그인
-  await page.goto('/...');  // baseURL 사용하므로 상대 경로만
-  await loginAsStaff(page);
-
-  // 3. 편집 페이지로 이동
-  await page.getByRole('link', { name: '편집' }).click();
-  await page.waitForURL('**/edit');
-
-  // 4. 폼 입력 (헬퍼 함수 조합)
-  await fillHTMLEditor(page, koText);
-  await switchEditorLanguage(page, 'en');
-  await fillHTMLEditor(page, enText);
-  await switchEditorLanguage(page, 'ko');
-  await uploadImage(page, imagePath);
-  await clearAllFiles(page);
-  await uploadFiles(page, filePath);
-
-  // 5. 제출
-  await submitForm(page);
-  // 뷰어 페이지로 돌아왔는지 명시적으로 확인
-  await page.waitForURL('**/about/overview');
-
-  // 6. 검증 - 한글 페이지
-  await expect(page.getByText(koText)).toBeVisible();
-  await expect(page.getByText(fileName)).toBeVisible();
-
-  // 7. 검증 - 영문 페이지
-  await switchPageLanguage(page, 'en');
-  // 영문 페이지로 이동했는지 명시적으로 확인
-  await page.waitForURL('**/en/about/overview');
-  await expect(page.getByText(enText)).toBeVisible();
-});
-```
-
-## Suneditor 특이사항
-
-프로젝트는 **suneditor**를 사용합니다 (toast-ui가 아님).
-
-**에디터 선택자:**
-```typescript
-page.locator('.sun-editor-editable')
-```
-
-**언어 전환 방식:**
-- 라디오 버튼은 `appearance-none`으로 숨겨져 있음
-- **label을 클릭**해야 함:
-```typescript
-page.locator('label[for="ko"]').click()
-page.locator('label[for="en"]').click()
-```
-
-## 파일 업로드 처리
-
-### 기존 파일 삭제
-Form.File의 기존 파일을 삭제할 때 주의사항:
-
-```typescript
-// ✅ 올바른 방법: 항상 첫 번째 항목 삭제 (삭제 시마다 리스트가 재정렬되므로)
-for (let i = 0; i < fileCount; i++) {
-  const deleteButton = fileFieldset.locator('ol li button').first();
-  await deleteButton.click();
-}
-
-// ❌ 잘못된 방법: nth(i) 사용 시 인덱스 오류 발생
-for (let i = 0; i < fileCount; i++) {
-  await fileFieldset.locator('ol li button').nth(i).click(); // 동작 안 함
-}
-```
-
-## 중요한 대기(wait) 처리
-
-### 네비게이션 대기 원칙
-**명시적으로 URL 확인**을 우선합니다. `waitForLoadState`보다 `waitForURL`이 더 안정적입니다.
-
-```typescript
-// ✅ 좋은 예: 명시적으로 URL 확인
-await submitForm(page);
-await page.waitForURL('**/about/overview');
-
-await switchPageLanguage(page, 'en');
-await page.waitForURL('**/en/about/overview');
-
-// ❌ 나쁜 예: loadState만 의존
-await submitForm(page);  // 내부에서 waitForLoadState만 수행
-// 바로 다음 동작 수행 - 네비게이션이 완료되지 않았을 수 있음
-```
-
-### 필수 대기가 필요한 경우:
-1. **에디터 언어 전환**: `switchEditorLanguage()` - 내부에서 300ms 대기
-2. **페이지 이동**: `waitForURL('**/path')` - 네비게이션 완료 확인
-
-### 대기가 불필요한 경우:
-- **파일 업로드**: `setInputFiles()`는 await만으로 충분
-- **폼 제출/페이지 언어 전환**: 헬퍼 함수가 `load` 상태까지 자동 대기
-- **일반 요소 상호작용**: Playwright의 auto-waiting이 처리
-
-### 헬퍼 함수의 자동 대기:
-- `submitForm()`: `waitForLoadState('load')` 포함
-- `switchPageLanguage()`: `waitForLoadState('load')` 포함
-- `switchEditorLanguage()`: `waitForTimeout(300)` 포함 (에디터 전환용)
-
-## 테스트 실행
+## 실행
 
 ```bash
-# 단일 브라우저
-npx playwright test tests/about/overview.spec.ts --project=chromium
-
-# 모든 브라우저
-npx playwright test tests/about/overview.spec.ts
-
-# 헤드풀 모드 (디버깅용)
-npx playwright test tests/about/overview.spec.ts --headed
+pnpm test                          # 전체(백엔드 docker+빌드+preview 자동 기동)
+pnpm test --update-snapshots       # 비주얼 baseline 생성/갱신
+pnpm test tests/research/labs      # 특정 라우트
+pnpm test --project=read           # 데스크톱 read만 / --project=read-mobile / --project=flow
 ```
 
-## 향후 고려사항
+## 백엔드 버전 동기화 (중요)
 
-현재는 Helper 함수 방식을 사용하지만, 프로젝트가 커지면 다음을 고려할 수 있습니다:
+로컬 `../csereal-server`는 docker가 **소스의 prebuilt JAR를 COPY**한다(Dockerfile). 소스가 낡으면 docker도 낡음.
+프론트가 최신 백엔드 기능(image-modal #396, FTS #398 등)을 기대하면 백엔드를 올려야 한다:
+```bash
+cd ../csereal-server && git merge --ff-only origin/main          # develop이 뒤처졌을 때
+docker run --rm -v "$PWD":/app -v csereal-gradle-cache:/root/.gradle -w /app \
+  eclipse-temurin:21-jdk ./gradlew bootJar -x test               # 호스트 JDK가 11이라 Java21 컨테이너로 빌드
+cd ../cse.snu.ac.kr && docker compose -f ../csereal-server/docker-compose-local-full.yml \
+  -f ../csereal-server/docker-compose-fe-test.yml up -d --build   # 새 JAR로 이미지 재빌드
+```
+현재 #399까지 반영됨(image-modal·FTS·교수 en 이름 버그 수정 포함).
 
-1. **하이브리드 방식**: Form 컴포넌트는 helper로, 페이지별 복잡한 로직은 POM으로
-2. **Fixture 확장**: 공통 setup을 Playwright fixture로 추출
-3. **데이터 분리**: 테스트 데이터를 별도 파일로 관리
+## 진행 현황 & 다른 세션에서 이어가기
+
+**목표는 전 라우트 100% 커버리지.** 진행 상태는 `tests/COVERAGE.md`가 단일 출처다.
+새 세션은 이 순서로 이어간다:
+
+1. `tests/COVERAGE.md`에서 진행 상태를 본다(전 라우트 read/flow 커버 + 컨벤션 리팩토링 완료).
+2. 신규 라우트는 아래 "다음 라우트 추가 런북"대로 `read.spec.ts`/(`flow.spec.ts`)를 작성한다.
+3. 라우트를 끝내면 `tests/COVERAGE.md`의 해당 칸을 ✅로 갱신하고 baseline PNG를 함께 커밋한다.
+
+reference 구현은 `tests/research/labs/`(`read.spec.ts`+`flow.spec.ts`)와 `tests/setup/seed/research.ts`. 새 라우트는 이걸 본뜬다.
+
+### 다음 라우트 추가 런북
+
+1. **라우트 조사** — `app/routes/<경로>/index.tsx`의 loader가 호출하는 API(`${BASE_URL}/v2/...`)와 화면에 쓰는 필드, 편집/추가/삭제 유무를 본다. 편집 폼은 `*/edit.tsx`, `*/create.tsx`의 onSubmit이 보내는 엔드포인트/payload를 본다.
+2. **시드** — 그 라우트가 읽을 데이터가 없으면 시드 추가. **API 우선**: 생성 API가 있으면 `tests/setup/seed/<domain>.ts`에 `<DOMAIN>_SEED` + `seed<Domain>(cookie)` 만들고 `seed/index.ts`에 등록(`postMultipart` 사용, 페이로드는 `create.tsx` onSubmit + 백엔드 `ReqBody` 참고). **SQL은 예외**: API 생성 경로가 없는 content 싱글톤(about overview/greetings/history/contact처럼 PUT만 있고 POST 없음 → 빈 DB 500)만 `tests/setup/seed-content.sh`에 SQL INSERT로 추가(utf8mb4, `seed/about.ts` 상수와 텍스트 일치). API로 가능하면 절대 SQL 쓰지 말 것.
+3. **스펙** — `tests/<domain>/<route>/`:
+   - `read.spec.ts`(비로그인): 핵심 콘텐츠 1~2개 assert + `toHaveScreenshot`(ko, 도달 가능한 화면들·빈 상태 포함). 데/모바일은 프로젝트가 자동.
+   - `flow.spec.ts`(로그인/변경): stateful CRUD + 게시설정 + (이중언어면) en round-trip, 고유 이름.
+4. **baseline** — `pnpm test --update-snapshots`, PNG 커밋(`-read-darwin.png` + `-read-mobile-darwin.png`).
+5. **검증** — `pnpm test tests/<domain>` 그린 확인 후 `COVERAGE.md` 갱신.
+
+### 자율 진행 시 주의
+- **묻지 말고 진행**하되, 라우트별로 끝낼 때마다 `COVERAGE.md`를 갱신해 컨텍스트가 끊겨도 이어지게 한다.
+- 백엔드(:8080)·preview(:3000)가 떠 있으면 `--update-snapshots` 없이 `pnpm test`가 빠르다(빌드 재사용). 앱 코드를 고쳤으면 빌드 재실행 필요(서버 죽이고 `pnpm test`).
+- 실서버가 실제 버그를 잡으면(예: DELETE 토스트) **증상 우회 말고 원인을 시스템 차원에서** 고치고 `COVERAGE.md` 알려진 이슈에 기록.
+
+## 확장 가이드 (라우트/도메인 추가 시)
+
+새 라우트는 보통 다음 순서:
+
+1. **시드 추가** — 그 도메인 데이터가 없으면 `tests/setup/seed/<domain>.ts` 생성:
+   `<DOMAIN>_SEED` 상수(기대값) + `seed<Domain>(cookie)` 시더. `seed/index.ts`에 한 줄 등록.
+   기존 도메인이면 해당 `*_SEED`에 항목만 추가.
+2. **스펙 작성** — `tests/<도메인>/<라우트>/read.spec.ts`(비로그인 콘텐츠+스크린샷), 편집/로그인 필요하면 `flow.spec.ts`.
+   기대값은 `*_SEED`에서 import(하드코딩·id 금지, 링크 클릭으로 상세 진입).
+3. **baseline 생성** — `pnpm test --update-snapshots`로 비주얼 PNG 커밋(데스크톱+모바일).
+
+### 확장 시 관리 원칙
+
+- **도메인별 시드 모듈, 중앙 조합.** seed 파일이 비대해지지 않게 도메인별로 쪼개고 `seed/index.ts`에서 의존 순서대로 조합. cross-domain 참조는 앞 시더가 반환한 id를 index.ts에서 명시적으로 넘긴다.
+- **기대값 단일 출처.** 표시 문자열·이름은 `*_SEED`에만 두고 스펙은 참조만. 데이터 바뀌면 한 곳만 고치면 됨.
+- **복합 페이지는 편집 기능마다 별도 flow 테스트.** 한 페이지에 편집 버튼이 여럿이거나 인라인 추가/편집이 있으면 각각 별도 테스트(놓치기 쉬움: 탭/섹션/테이블 인라인 편집).
+- **비주얼 baseline은 플랫폼 종속**(`*-darwin.png`). CI(linux)를 붙이면 baseline이 달라지므로, **일관된 환경(Playwright Docker 이미지 등)에서 생성**하거나 visual을 단일 플랫폼에서만 돌리도록 결정해야 함. — CI 도입 시 처리.
+- **POM 미사용.** 함수형 헬퍼 패턴 유지(간단·직관). 페이지별 복잡 로직이 늘면 그때 하이브리드 고려.
+
+## 발견된 실버그 (참고)
+
+E2E가 실제 버그를 잡을 수 있다. 예: DELETE는 200 빈 본문을 반환하는데 앱 `fetchJson`이 빈 본문을 파싱하다 throw → "삭제 성공인데 실패 토스트". → `fetchJson`을 빈 본문 시 undefined 반환하도록 root-cause 수정(22개 DELETE 사이트 일괄 해결). 증상이 아니라 원인을 시스템 차원에서 고친다.
 
 ---
 
-**마지막 업데이트:** 2024-12-27
-**작성자:** Claude (Sonnet 4.5)
+# ② 라우팅 · 코드 컨벤션 (마이그레이션에서 확립)
+
+- **라우팅: file-based** (`app/routes/**` → 생성 `app/routeTree.gen.ts`). 라우트 파일은 `createFileRoute('/path')({ loader, component })`.
+- **로케일: optional path param `{-$locale}`.** `app/routes/{-$locale}/**`에 1벌만. 매칭: `/about`(ko, 프리픽스 없음) · `/en/about`(en). 비로케일 라우트(`admin` · `[.]internal` · `img` · `sitemap`)는 `{-$locale}` 밖 `app/routes/` 직속. `__root` beforeLoad가 `/ko`→bare redirect + 쿠키(`lang`)·Accept-Language로 로케일 판정.
+- **⚠️ 로케일 링크는 항상 `localizedPath()`.** 수동 `/${locale}/...` 문자열 **금지** — ko에서 `/ko/...` 링크를 **클라 네비로 클릭**하면 `__root`의 `/ko`-strip redirect가 렌더 루프(메인스레드 peg)를 일으킨 실버그가 있었다(notice 상세 wedge). `localizedPath`는 ko에서 프리픽스 없는 경로를 만들어 이 라운드트립을 제거한다.
+- **loader는 `createFileRoute`에 인라인.** 분리 `async function loader` + wiring 안 씀. 컴포넌트는 `Route.useLoaderData()`/`Route.useParams()`를 **직접 호출**(prop 주입 안 함) → 라우트 path에서 params 자동 타입.
+- **mutation은 대부분 클라이언트 `fetch`**(same-origin proxy 경유). `action`은 거의 없음.
+- **검색/페이지네이션은 공용 `app/hooks/useSearchParams.ts`**(URLSearchParams 기반). Pagination·SearchBox·TagCheckboxes가 여러 라우트에서 공유돼 라우트별 타입인 `Route.useSearch`/`validateSearch`는 부적합 — 표준 URLSearchParams 훅이 이 용례에 맞다.
+- **서버 라우트(Response 직접 반환):** `/img`(이미지 최적화 프록시 — sharp·AVIF·디스크캐시·SSRF 화이트리스트), `/sitemap.xml` → `app/routes/img.ts`·`app/routes/sitemap[.]xml.ts`의 `server.handlers.GET`. 코어 로직은 `app/lib/server/img.tsx`·`app/sitemap.tsx`. dev 분기는 `import.meta.env.DEV`.
+  - `/img`가 시스템 유일의 이미지 최적화 계층(백엔드는 원본만 정적 서빙, `Image` 컴포넌트가 렌더타임에 `/img?url=...` 생성 — DB엔 원본 URL만 저장). 장기적으론 백엔드/CDN(imgproxy)으로 이관 검토.
+- **TanStack 함정(겪은 것):**
+  - 같은 라우트 재진입 시 컴포넌트를 **재마운트 안 할 수 있음** → `useState(props)` 초기화가 안 됨(TimelineViewer 연도선택 버그). URL/props 파생으로 처리.
+  - 클라 네비 시 **loader가 클라에서 실행** → 합성 request엔 쿠키 없음. 인증 의존 loader 주의(`forwardAuthHeaders`로 서버 헤더 전달).
+  - `getRequestHeaders()`는 **Headers 객체**(`.get()` 사용, 프로퍼티 접근 금지).
+- **빌드/서빙: 루트 `server.ts`**(prod 컨테이너 + E2E 프리뷰 공유). 환경 = production/staging/local(README 표). same-origin `/api` 프록시는 **로컬 전용**(`API_PROXY_TARGET` 설정 시) — 배포는 프론트·백엔드가 같은 도메인이라 절대 URL 직호출이라 프록시 불필요(이유는 위 §아키텍처 세션 쿠키).
+
+---
+
+# ④ Storybook · 디자인 시스템
+
+- **설정:** SB 10.4 `@storybook/tanstack-react`(TanStack Start 자동감지·라우터 컨텍스트 내장). 스토리 글롭 `app/**/*.stories.@(ts|tsx)`(컴포넌트 코로케이션). `.storybook/`: `main.ts`(viteFinal에 `@tailwindcss/vite` + `~/lib/serverFns` alias)·`preview.tsx`(app.css·sonner import + autodocs)·`withForm.tsx`(RHF FormProvider 데코).
+- **배포:** Dockerfile이 `build-storybook`까지 빌드해 `storybook-static`을 이미지에 포함, `server.ts`가 **`/storybook`** 으로 서빙(prod·staging 공통). storybook-static 에셋은 상대경로라 서브패스 OK, 앱 `/assets`와 안 섞인다(`/storybook/assets`). 로컬은 `pnpm storybook`(:6006).
+- **함정(재발 주의):**
+  - **addon-vitest 설치 금지** — `playwright@1.60`을 끌어와 앱 E2E `@playwright/test@1.57`와 충돌. 그래서 `sb.mock` 대신 **Vite alias**로 `~/lib/serverFns`를 `.storybook/serverFns.mock.ts`(no-op)로 대체(useLanguage의 `createServerFn` `.validator`가 SB 브라우저서 throw → 빈 렌더 회피).
+  - **viewport는 SB10 코어 내장** — 별도 애드온 없이 `parameters.viewport.options` + `globals.viewport`로 모바일 폭 고정(MobileNav `sm:hidden` 스토리에 사용).
+- **현황:** 공용 컴포넌트 ~42개. 제외 7: `Form`·`html/HTMLEditor`·`CategoryPage`·`PageLayout`(합성/외부 의존), `LoginVisible`(역할 게이팅 **로직**, 자체 시각 없음 — 가짜 placeholder 필요해 '실사용만' 위반), `ContentSection`(tone+padding **레이아웃 래퍼**), `NotFound`(Header+ErrorState **합성** — 둘 다 개별 스토리 있음, 404 시각은 ErrorState가 커버). 모두 **E2E가 실동작 커버**. + `Foundations/Design Tokens`(색·거터 토큰 문서용 스토리). → **전 공용 컴포넌트가 스토리 또는 제외 사유 보유.**
+- **폼 스토리:** `withForm` 데코레이터가 `parameters.formValues`로 `defaultValues`를 받는다(DatePicker=Date·File=배열 등 값 shape 가정 컴포넌트는 필수, 없으면 크래시). Radio·Checkbox는 같은 `name` 공유 **그룹**으로 보여준다(실사용). `Image` 예시는 `/img`(SB에 없음)를 안 타도록 data-URI 사용.
+- **스토리 작성 원칙(사용자 지시):**
+  1. **실사용 조합만.** 서비스에서 안 쓰는 variant/state를 창조하지 않는다(사용처 grep으로 확인). "쓰는데 공용으로 빼야 하나"는 고민·기록.
+  2. **DS에 우겨넣지 않는다.** 컴포넌트 일관성이 깨지는 사용처는 비주얼이 깨지더라도 **앱 코드를 고친다**(컴포넌트 API를 늘려 수용 X). 이렇게 잡은 실버그: scholarship `iconLeft="add"`(문자열이 리터럴 렌더), Tag 삭제버튼 `aria-label`→`ariaLabel`(접근명 누락).
+- **디자인 토큰:** `app/app.css`의 `@theme`(색 `main-orange`/`neutral`, 폰트). **가로 페이지 거터는 `.page-gutter-x` 단일 출처**(좌 100px/우 360px/모바일 20px; `PageLayout`·`ContentSection`이 소비). 토큰화/스케일화는 **픽셀 동일할 때만 자율**(예: `#e65817`→`main-orange-dark` 바이트 동일). 값이 바뀌는 정규화는 디자인 결정 → 합의.
+- **API 일관성:** `ui/*`=제어 프리미티브(value/onChange), `form/*`=RHF 어댑터(`name`+useFormContext). **의도된 레이어 분리 — 통합 금지.**
+- **a11y:** form Radio/Checkbox=네이티브, Dialog/AlertDialog/Select/ImageModal=Radix(ARIA 자동). Button **icon-only는 `ariaLabel` 필수**(호출자 제공). a11y 애드온은 `test:'todo'`(자동 실패는 addon-vitest 필요 → 미도입).
+- **합의 대기(자율 실행 금지):** ① Button `ghost` variant = **데드코드(0회 사용)** → 제거 제안. ② `#202020`(Button pill 근검정) 신규 색 토큰 — 매칭 토큰 없어 디자인 결정. ③ 패딩 **세로/컴포넌트 내부** 임의값 + `.62`/`.625` 근접중복 정규화(가로 거터는 완료).
+
+---
+
+**마지막 업데이트:** 2026-06-16 (마이그레이션·Storybook·디자인 시스템 완료. MIGRATION.md·STORYBOOK.md의 durable 내용을 이 문서로 통합 — 라우팅·코드 컨벤션 §②, Storybook·디자인 시스템 §④ 추가. 환경 용어 production/staging/local. E2E는 일반 회귀 안전망. **176 그린**.)

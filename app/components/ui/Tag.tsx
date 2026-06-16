@@ -1,6 +1,6 @@
+import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { X } from 'lucide-react';
-import { Link } from 'react-router';
 import Button from '~/components/ui/Button';
 
 type TagVariant = 'outline' | 'solid' | 'muted';
@@ -32,7 +32,7 @@ const VARIANT_CLASSES: Record<TagVariant, string> = {
 
 const HOVER_CLASSES: Record<TagVariant, string> = {
   outline: 'hover:bg-main-orange hover:border-main-orange hover:text-white',
-  solid: 'hover:bg-[#e65817] hover:border-[#e65817]',
+  solid: 'hover:bg-main-orange-dark hover:border-main-orange-dark',
   muted: 'hover:border-neutral-500 hover:text-neutral-600',
 };
 
@@ -67,7 +67,7 @@ export function Tag({
             event.stopPropagation();
             onDelete();
           }}
-          aria-label={`${label} 삭제`}
+          ariaLabel={`${label} 삭제`}
         >
           <X className="h-[13px] w-[13px]" />
         </Button>

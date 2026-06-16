@@ -1,11 +1,26 @@
-import crypto from 'node:crypto';
 import Autolinker from 'autolinker';
 import * as cheerio from 'cheerio';
-import { createContext } from 'react-router';
 
-export const nonceContext = createContext<string>();
+// node:crypto 대신 isomorphic 구현을 쓴다. processHtmlForCsp가 loader에서 실행되는데,
+// TanStack에선 loader가 클라(SPA 네비게이션)에서도 실행될 수 있어 node:crypto가 깨진다.
+// 클래스명/styleKey는 내부 식별자라(시각 동일) 순수 JS 해시로 대체해도 안전하다.
 
-export const createNonce = () => crypto.randomBytes(16).toString('hex');
+/** 16바이트 랜덤 hex(Web Crypto, 서버/클라 공통). */
+export const createNonce = () => {
+  const arr = new Uint8Array(16);
+  globalThis.crypto.getRandomValues(arr);
+  return Array.from(arr, (b) => b.toString(16).padStart(2, '0')).join('');
+};
+
+/** 결정론적 문자열 해시(FNV-1a 32bit → base36). 충돌 회피용 식별자 생성. */
+const hashStr = (input: string): string => {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < input.length; i++) {
+    h ^= input.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return (h >>> 0).toString(36);
+};
 
 export const getCSPHeaders = (nonce: string) =>
   [
@@ -63,12 +78,8 @@ export const processHtmlForCsp = (html: string): ProcessedHtml => {
       const cached = propertyToClassMap.get(property);
       if (cached) return cached;
 
-      // 새로운 클래스명 생성 (crypto 해시 + 접두사)
-      const hash = crypto
-        .createHash('md5')
-        .update(property)
-        .digest('base64url')
-        .slice(0, 8);
+      // 새로운 클래스명 생성 (해시 + 접두사)
+      const hash = hashStr(property);
       const className = `uwu-${hash}`;
       propertyToClassMap.set(property, className);
       // !important를 붙여서 기존 스타일보다 높은 우선순위 보장
@@ -88,11 +99,7 @@ export const processHtmlForCsp = (html: string): ProcessedHtml => {
 
   // styleKey는 모든 고유 속성을 정렬해서 해싱
   const allProperties = Array.from(propertyToClassMap.keys()).sort().join('|');
-  const styleKey = crypto
-    .createHash('md5')
-    .update(allProperties)
-    .digest('base64url')
-    .slice(0, 12);
+  const styleKey = hashStr(allProperties);
 
   return { html: trimmedHTML, cssRules: cssRules.join('\n'), styleKey };
 };

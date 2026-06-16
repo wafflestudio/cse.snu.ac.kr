@@ -56,14 +56,15 @@ export default function PageLayout({
     ? `${pageTitle} ⋅ ${locale === 'en' ? SITE_NAME.en : SITE_NAME.ko}`
     : undefined;
 
+  // 가로 거터는 page-gutter-x(단일 출처), 세로 패딩만 변형별로 지정.
   const paddingClass =
     padding === 'none'
       ? 'p-0'
       : padding === 'noTop'
-        ? 'p-[0_1.25rem_4rem_1.25rem] sm:p-[0_360px_150px_100px]'
+        ? 'page-gutter-x pb-16 sm:pb-[150px]'
         : padding === 'noBottom'
-          ? 'p-[1.75rem_1.25rem_0_1.25rem] sm:p-[2.75rem_360px_0_100px]'
-          : 'p-[1.75rem_1.25rem_4rem_1.25rem] sm:p-[2.75rem_360px_150px_100px]';
+          ? 'page-gutter-x pt-7 sm:pt-11'
+          : 'page-gutter-x pt-7 pb-16 sm:pt-11 sm:pb-[150px]';
 
   return (
     <>

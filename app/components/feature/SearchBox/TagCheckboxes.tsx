@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from 'react-router';
+import { useSearchParams } from '~/hooks/useSearchParams';
 import Checkbox from '~/components/ui/Checkbox';
 import { useLanguage } from '~/hooks/useLanguage';
 
@@ -14,8 +14,7 @@ export default function TagCheckBoxes({
   disabled,
 }: TagFilterProps) {
   const { t, tUnsafe } = useLanguage({ 태그: 'Tags' });
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const toggleCheck = (tag: string, isChecked: boolean) => {
     const newParams = new URLSearchParams(searchParams);
@@ -30,7 +29,7 @@ export default function TagCheckBoxes({
       newParams.append('tag', t);
     }
 
-    navigate({ search: newParams.toString() }, { preventScrollReset: true });
+    setSearchParams(newParams, { preventScrollReset: true });
   };
 
   const longestTag = Math.max(...tags.map((tag) => tag.length));

@@ -1,11 +1,12 @@
+import { useRouter } from '@tanstack/react-router';
 import { SquareCheck } from 'lucide-react';
 import { useState } from 'react';
-import { useRevalidator, useSearchParams } from 'react-router';
 import AlertDialog from '~/components/ui/AlertDialog';
 import Button from '~/components/ui/Button';
 import Pagination from '~/components/ui/Pagination';
 import { toast } from '~/components/ui/sonner';
 import { BASE_URL } from '~/constants/api';
+import { useSearchParams } from '~/hooks/useSearchParams';
 import { useSetToggle } from '~/hooks/useSetToggle';
 import type { ImportantPreview } from '~/types/api/v2/admin';
 import { fetchOk } from '~/utils/fetch';
@@ -22,7 +23,7 @@ export default function ImportantManagement({
   importants,
   total,
 }: ImportantManagementProps) {
-  const revalidator = useRevalidator();
+  const router = useRouter();
   const [searchParams] = useSearchParams();
   const { selected: selectedKeys, toggle: toggleSelection } =
     useSetToggle<string>();
@@ -43,7 +44,7 @@ export default function ImportantManagement({
         body: JSON.stringify({ targetInfos }),
       });
       toast.success('중요 안내를 해제했습니다.');
-      revalidator.revalidate();
+      router.invalidate();
     } catch {
       toast.error('중요 안내를 해제하지 못했습니다.');
     }

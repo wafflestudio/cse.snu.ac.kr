@@ -1,5 +1,5 @@
-import { Link } from 'react-router';
 import type { NavItem } from '~/constants/navigation';
+import { Link } from '@tanstack/react-router';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useNavItem } from '~/hooks/useNavItem';
 import { useStore } from '~/store';

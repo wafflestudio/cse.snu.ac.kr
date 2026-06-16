@@ -1,5 +1,5 @@
-import { Link } from 'react-router';
 import CornerFoldedRectangle from '~/components/ui/CornerFoldedRectangle';
+import { Link } from '@tanstack/react-router';
 import type { SelectionListItem } from '~/hooks/useSelectionList';
 
 interface SelectionListProps {
@@ -54,7 +54,7 @@ function SelectionItem({ name, isSelected, href }: SelectionItemProps) {
         >
           <Link
             to={href}
-            preventScrollReset
+            resetScroll={false}
             className={`${itemCommonStyle} text-neutral-500 transition-all duration-300 hover:text-neutral-800`}
           >
             {name}

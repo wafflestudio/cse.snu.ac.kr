@@ -101,6 +101,15 @@
   }
 }
 
+/* 표준 페이지 본문 가로 거터 — 단일 출처.
+   좌 100px(pl-25) / 우 360px(pr-90) / 모바일 20px(px-5). PageLayout 문서값 기준.
+   페이지·섹션은 가로 거터를 인라인 재선언하지 말고 이 클래스를 쓴다(세로 패딩만 각자). */
+@layer components {
+  .page-gutter-x {
+    @apply px-5 sm:pl-25 sm:pr-90;
+  }
+}
+
 /* Hide scrollbar for navbar */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

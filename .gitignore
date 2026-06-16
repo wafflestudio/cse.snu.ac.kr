@@ -22,3 +22,9 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# TanStack Start 빌드 산출물
+/dist/
+
+*storybook.log
+storybook-static

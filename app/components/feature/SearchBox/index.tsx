@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useNavigate, useSearchParams } from 'react-router';
+import { useSearchParams } from '~/hooks/useSearchParams';
 import Node from '~/components/ui/Nodes';
 import Input from './Input';
 import SelectedTags from './SelectedTags';
@@ -16,8 +16,7 @@ export default function SearchBox({
   disabled = false,
   formOnly = false,
 }: SearchBoxProps) {
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const selectedTags = searchParams.getAll('tag');
   const initialKeyword = searchParams.get('keyword') ?? '';
@@ -32,7 +31,7 @@ export default function SearchBox({
       newParams.append('tag', tag);
     }
 
-    navigate({ search: newParams.toString() });
+    setSearchParams(newParams);
   };
 
   return (

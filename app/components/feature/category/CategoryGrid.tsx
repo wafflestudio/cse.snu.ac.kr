@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from '@tanstack/react-router';
 import navbarTranslations from '~/components/layout/LeftNav/translations.json';
 import type { NavItem } from '~/constants/navigation';
 import { useLanguage } from '~/hooks/useLanguage';
@@ -33,7 +33,7 @@ export default function CategoryGrid({
 
   const handleItemClick = (item: NavItem) => {
     if (item.path) {
-      navigate(localizedPath(item.path));
+      navigate({ to: localizedPath(item.path) });
       return;
     }
     setSelectedCategory(item);
@@ -77,7 +77,7 @@ export default function CategoryGrid({
               hoverColor="bg-neutral-500"
               hasArrow
               onClick={() =>
-                subpage.path && navigate(localizedPath(subpage.path))
+                subpage.path && navigate({ to: localizedPath(subpage.path) })
               }
             />
           ))}

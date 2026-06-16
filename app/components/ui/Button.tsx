@@ -1,3 +1,4 @@
+import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
 import type {
   AnchorHTMLAttributes,
@@ -5,7 +6,6 @@ import type {
   ReactNode,
 } from 'react';
 import { forwardRef } from 'react';
-import { Link } from 'react-router';
 
 type ButtonTone = 'brand' | 'neutral' | 'inverse' | 'muted' | 'inherit';
 type ButtonVariant = 'solid' | 'outline' | 'ghost' | 'text' | 'pill';
@@ -92,7 +92,7 @@ const VARIANT_CLASSES: Record<ButtonVariant, Record<ButtonTone, string>> = {
   },
   pill: {
     brand:
-      'rounded-[1.875rem] border border-solid border-[#E65817] px-3 py-[0.37rem] text-md',
+      'rounded-[1.875rem] border border-solid border-main-orange-dark px-3 py-[0.37rem] text-md',
     neutral:
       'rounded-[1.875rem] border border-solid border-neutral-300 px-3 py-[0.37rem] text-md',
     inverse:
@@ -107,8 +107,8 @@ const VARIANT_CLASSES: Record<ButtonVariant, Record<ButtonTone, string>> = {
 function getPillStateClass(tone: ButtonTone, selected?: boolean) {
   if (tone === 'brand') {
     return selected
-      ? 'bg-[#E65817] text-[#202020]'
-      : 'bg-[#202020] text-[#E65817]';
+      ? 'bg-main-orange-dark text-[#202020]'
+      : 'bg-[#202020] text-main-orange-dark';
   }
 
   return selected

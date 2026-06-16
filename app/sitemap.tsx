@@ -1,5 +1,3 @@
-import type { LoaderFunctionArgs } from 'react-router';
-
 import { type NavItem, navigationTree } from '~/constants/navigation';
 
 const EXTRA_PATHS = [
@@ -36,7 +34,7 @@ function escapeXml(value: string): string {
     .replace(/'/g, '&apos;');
 }
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function handleSitemap(request: Request): Promise<Response> {
   const origin = new URL(request.url).origin;
   const paths = new Set<string>();
 

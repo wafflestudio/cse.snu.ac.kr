@@ -1,8 +1,8 @@
-import { ChevronDown, ChevronUp } from 'lucide-react';
-import { useCallback, useRef, useState } from 'react';
-import { useClickOutside } from '~/hooks/useClickOutside';
+import * as Select from '@radix-ui/react-select';
+import { ChevronDown } from 'lucide-react';
 
-// TODO: onClick을 인덱스 기반에서 값 기반으로 사용하는 옵션
+// 인덱스 기반 API는 그대로 유지(호출부 변경 없음). 내부만 Radix Select로 교체해
+// 키보드 내비·타입어헤드·ARIA combobox 등 접근성을 확보한다.
 interface DropdownProps {
   contents: string[];
   selectedIndex: number;
@@ -15,120 +15,46 @@ export default function Dropdown({
   contents,
   selectedIndex,
   onClick,
-  borderStyle,
-  height,
-}: DropdownProps) {
-  const [expanded, setExpanded] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useClickOutside(
-    ref,
-    useCallback(() => setExpanded(false), []),
-  );
-
-  const toggleExpanded = () => setExpanded((x) => !x);
-
-  const handleClick = (index: number) => {
-    onClick(index);
-    toggleExpanded();
-  };
-
-  return (
-    <div className="relative select-none" ref={ref}>
-      <DropdownButton
-        expanded={expanded}
-        toggleExpanded={toggleExpanded}
-        contents={contents}
-        selectedIndex={selectedIndex}
-        borderStyle={borderStyle}
-        height={height}
-      />
-      <div className="relative z-10">
-        <DropdownListWithScroll
-          className={expanded ? 'scale-y-100' : 'scale-y-0'}
-          contents={contents}
-          handleClick={handleClick}
-          selectedIndex={selectedIndex}
-          borderStyle={borderStyle}
-        />
-      </div>
-    </div>
-  );
-}
-
-function DropdownButton({
-  expanded,
-  toggleExpanded,
-  contents,
-  selectedIndex,
   borderStyle = 'border-neutral-200',
   height,
-}: {
-  expanded: boolean;
-  toggleExpanded: () => void;
-  contents: string[];
-  selectedIndex: number;
-  borderStyle?: string;
-  height?: string;
-}) {
+}: DropdownProps) {
   return (
-    <button
-      type="button"
-      className={`
-            flex items-center border bg-white py-[.3125rem] pl-[.625rem]
-            pr-[.3125rem]
-            ${expanded ? 'rounded-t-xs' : 'rounded-xs'}
-            ${borderStyle}
-            gap-4
-            ${height}
-        `}
-      onClick={(e) => {
-        e.preventDefault();
-        toggleExpanded();
-      }}
+    <Select.Root
+      value={String(selectedIndex)}
+      onValueChange={(value) => onClick(Number(value))}
     >
-      <p className="text-md font-normal">{contents[selectedIndex]}</p>
-      {expanded ? (
-        <ChevronUp className="h-4 w-4" />
-      ) : (
-        <ChevronDown className="h-4 w-4" />
-      )}
-    </button>
-  );
-}
+      {/* 닫힌 트리거: 기존 hand-rolled 버튼과 동일한 마크업/클래스(픽셀 동일) */}
+      <Select.Trigger
+        className={`flex select-none items-center gap-4 rounded-xs border bg-white py-[.3125rem] pl-[.625rem] pr-[.3125rem] ${borderStyle} ${height ?? ''}`}
+      >
+        <span className="text-md font-normal">
+          <Select.Value />
+        </span>
+        <Select.Icon>
+          <ChevronDown className="h-4 w-4" />
+        </Select.Icon>
+      </Select.Trigger>
 
-function DropdownListWithScroll({
-  className,
-  contents,
-  handleClick,
-  selectedIndex,
-  borderStyle = `border-neutral-200`,
-}: {
-  className: string;
-  contents: string[];
-  handleClick: (index: number) => void;
-  selectedIndex: number;
-  borderStyle?: string;
-}) {
-  return (
-    <div
-      className={`styled-scrollbar absolute left-0 right-0 top-0 max-h-[168px] origin-top overflow-y-scroll overscroll-contain rounded-bl-sm rounded-br-sm border-x border-b bg-white transition duration-200 ${className} ${borderStyle}`}
-    >
-      {contents.map((content, index) => (
-        <button
-          key={index}
-          type="button"
-          className={`h-7 w-full pl-[.62rem] text-left text-sm font-normal hover:bg-neutral-200 ${
-            selectedIndex === index && 'text-main-orange'
-          } focus:border focus:border-neutral-400`}
-          onClick={(e) => {
-            e.preventDefault();
-            handleClick(index);
-          }}
+      <Select.Portal>
+        <Select.Content
+          position="popper"
+          sideOffset={0}
+          className={`styled-scrollbar z-10 max-h-[168px] overflow-y-auto overscroll-contain rounded-bl-sm rounded-br-sm border-x border-b bg-white ${borderStyle}`}
+          style={{ width: 'var(--radix-select-trigger-width)' }}
         >
-          {content}
-        </button>
-      ))}
-    </div>
+          <Select.Viewport>
+            {contents.map((content, index) => (
+              <Select.Item
+                key={index}
+                value={String(index)}
+                className="flex h-7 w-full cursor-pointer items-center pl-[.62rem] text-left text-sm font-normal outline-none hover:bg-neutral-200 data-[state=checked]:text-main-orange"
+              >
+                <Select.ItemText>{content}</Select.ItemText>
+              </Select.Item>
+            ))}
+          </Select.Viewport>
+        </Select.Content>
+      </Select.Portal>
+    </Select.Root>
   );
 }

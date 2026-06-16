@@ -15,8 +15,21 @@ export function getLangCookieHeader(locale: Locale): string {
  * 우선순위: 쿠키 > Accept-Language 헤더
  */
 export function detectLang(request: Request): Locale {
+  return detectLangFromHeaders({
+    cookie: request.headers.get('cookie'),
+    acceptLanguage: request.headers.get('accept-language'),
+  });
+}
+
+/**
+ * 헤더 값에서 직접 언어를 감지합니다(TanStack getRequestHeaders 등 Request 없이 호출).
+ */
+export function detectLangFromHeaders(input: {
+  cookie?: string | null;
+  acceptLanguage?: string | null;
+}): Locale {
   // 쿠키 확인
-  const cookies = request.headers.get('cookie');
+  const cookies = input.cookie;
   if (cookies) {
     const match = cookies.match(new RegExp(`${COOKIE_NAME}=(\\w+)`));
     const value = match?.[1];
@@ -26,7 +39,7 @@ export function detectLang(request: Request): Locale {
   }
 
   // Accept-Language 헤더 확인
-  const acceptLanguage = request.headers.get('accept-language');
+  const acceptLanguage = input.acceptLanguage;
   if (!acceptLanguage) return 'ko';
 
   const languages = acceptLanguage.split(',').map((lang) => {
