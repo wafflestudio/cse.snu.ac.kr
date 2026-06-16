@@ -1,34 +1,26 @@
-import { useRouterState } from '@tanstack/react-router';
+import { useRouter } from '@tanstack/react-router';
 
-// Cache the first document nonce on the client so SPA navigations
-// don't pick up new loader nonces that don't match the original CSP header.
+// 클라에서 최초 문서의 nonce를 한 번 읽어 캐시한다. CSP 헤더는 최초 응답에 고정이라,
+// SPA 네비게이션으로 새로 주입되는 <style>도 같은 nonce여야 통과한다(매 네비 새 nonce 금지).
 let cachedNonce: string | undefined;
 
 /**
- * This hook retrieves the nonce value from the root route's loader data.
- * You may use this hook anywhere within root in client components.
+ * 현재 요청의 CSP nonce를 반환한다(HTMLViewer의 <style nonce> 등에서 사용).
+ * - 서버: router.options.ssr.nonce(요청별 생성값).
+ * - 클라: SSR이 심어둔 <meta name="csp-nonce">를 읽어 캐시.
  */
-export const useNonce = () => {
-  const loaderData: unknown = useRouterState({
-    select: (s) =>
-      s.matches.find((m) => m.routeId === '__root__')?.loaderData,
-  });
+export const useNonce = (): string | undefined => {
+  const router = useRouter();
 
-  const nonce =
-    loaderData &&
-    typeof loaderData === 'object' &&
-    'nonce' in loaderData &&
-    typeof loaderData.nonce === 'string'
-      ? loaderData.nonce
-      : undefined;
-
-  if (typeof window !== 'undefined') {
-    if (!cachedNonce && nonce) {
-      cachedNonce = nonce;
-    }
-
-    return cachedNonce ?? nonce;
+  if (typeof window === 'undefined') {
+    return router.options.ssr?.nonce;
   }
 
-  return nonce;
+  if (cachedNonce === undefined) {
+    cachedNonce =
+      document
+        .querySelector('meta[name="csp-nonce"]')
+        ?.getAttribute('content') ?? undefined;
+  }
+  return cachedNonce;
 };

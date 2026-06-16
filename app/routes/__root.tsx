@@ -19,6 +19,7 @@ import ErrorState from '~/components/ui/ErrorState';
 import { Toaster } from '~/components/ui/sonner';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
+import { useNonce } from '~/hooks/useNonce';
 import useIsMobile from '~/hooks/useResponsive';
 import { forwardAuthHeaders, readLangHeaders } from '~/lib/ssr';
 import { type Role, useStore } from '~/store';
@@ -85,6 +86,7 @@ export const Route = createRootRoute({
 });
 
 function RootDocument() {
+  const nonce = useNonce();
   const roles = Route.useLoaderData();
   useEffect(() => {
     useStore.setState({ roles: roles ?? [] });
@@ -102,6 +104,8 @@ function RootDocument() {
     <html lang={locale}>
       <head>
         <HeadContent />
+        {/* 클라가 SPA 네비 시 주입 스타일에 쓸 nonce 전달(useNonce가 읽음) */}
+        {nonce ? <meta name="csp-nonce" content={nonce} /> : null}
       </head>
       <body className="sm:min-w-[1200px] bg-neutral-900 font-normal text-neutral-950">
         <LNB />
