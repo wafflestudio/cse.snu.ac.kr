@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import { useSearchParams } from '~/hooks/useSearchParams';
 import Node from '~/components/ui/Nodes';
+import { useSearchParams } from '~/hooks/useSearchParams';
 import Input from './Input';
 import SelectedTags from './SelectedTags';
 import TagCheckBoxes from './TagCheckboxes';
@@ -61,7 +61,7 @@ export default function SearchBox({
       {!formOnly && (
         <>
           <div className="mb-3 mt-9">
-            <Node variant="straightDouble" tone="brand" direction="row" />
+            <Node variant="straightDouble" direction="row" />
           </div>
           <SelectedTags tags={selectedTags} disabled={disabled} />
         </>

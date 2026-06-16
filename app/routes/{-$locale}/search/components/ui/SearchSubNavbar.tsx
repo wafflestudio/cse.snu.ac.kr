@@ -19,7 +19,7 @@ export default function SearchSubNavbar({ node }: { node: TreeNode[] }) {
     <div className="absolute right-[80px] top-0 hidden h-full sm:block">
       <div className="sticky top-[52px] mb-8 mt-13 flex">
         <div>
-          <Node variant="curvedVertical" tone="brand" grow />
+          <Node variant="curvedVertical" grow />
         </div>
         <div className="pl-1.5 pt-2.75">
           <h3 className="mb-4 text-base font-semibold text-neutral-800">

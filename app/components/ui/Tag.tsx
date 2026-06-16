@@ -3,8 +3,7 @@ import clsx from 'clsx';
 import { X } from 'lucide-react';
 import Button from '~/components/ui/Button';
 
-type TagVariant = 'outline' | 'solid' | 'muted';
-type TagSize = 'sm' | 'md';
+type TagVariant = 'outline' | 'solid';
 
 interface TagProps {
   label: string;
@@ -13,27 +12,19 @@ interface TagProps {
   onDelete?: () => void;
   disabled?: boolean;
   variant?: TagVariant;
-  size?: TagSize;
 }
 
 const BASE_CLASS =
-  'inline-flex items-center rounded-[1.875rem] border text-[13px] font-medium whitespace-nowrap transition duration-200';
-
-const SIZE_CLASSES: Record<TagSize, string> = {
-  sm: 'h-[26px] px-2.5',
-  md: 'h-[30px] px-3 text-sm',
-};
+  'inline-flex h-[26px] items-center rounded-[1.875rem] border px-2.5 text-[13px] font-medium whitespace-nowrap transition duration-200';
 
 const VARIANT_CLASSES: Record<TagVariant, string> = {
   outline: 'bg-white border-main-orange text-main-orange',
   solid: 'bg-main-orange border-main-orange text-white',
-  muted: 'bg-white border-neutral-400 text-neutral-400',
 };
 
 const HOVER_CLASSES: Record<TagVariant, string> = {
   outline: 'hover:bg-main-orange hover:border-main-orange hover:text-white',
   solid: 'hover:bg-main-orange-dark hover:border-main-orange-dark',
-  muted: 'hover:border-neutral-500 hover:text-neutral-600',
 };
 
 export function Tag({
@@ -43,12 +34,10 @@ export function Tag({
   onDelete,
   disabled = false,
   variant = 'outline',
-  size = 'sm',
 }: TagProps) {
   const isInteractive = Boolean(href || onClick);
   const className = clsx(
     BASE_CLASS,
-    SIZE_CLASSES[size],
     VARIANT_CLASSES[variant],
     isInteractive && !disabled && HOVER_CLASSES[variant],
     isInteractive && !disabled && 'cursor-pointer',

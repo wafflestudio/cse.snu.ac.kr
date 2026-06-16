@@ -12,5 +12,4 @@ type Story = StoryObj<typeof meta>;
 
 export const Outline: Story = { args: { variant: 'outline' } };
 export const Solid: Story = { args: { variant: 'solid' } };
-export const Muted: Story = { args: { variant: 'muted' } };
 export const Deletable: Story = { args: { onDelete: () => {} } };

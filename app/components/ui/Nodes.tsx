@@ -1,7 +1,6 @@
 type NodeVariant =
   | 'straight'
   | 'straightDouble'
-  | 'curvedHorizontal'
   | 'curvedHorizontalGray'
   | 'curvedHorizontalSmall'
   | 'curvedVertical';
@@ -9,18 +8,17 @@ type NodeTone = 'brand' | 'neutral';
 
 interface NodeProps {
   variant: NodeVariant;
-  tone?: NodeTone;
   direction?: 'row' | 'col';
   grow?: boolean;
 }
 
 export default function Node({
   variant,
-  tone = 'brand',
   direction = 'row',
   grow = false,
 }: NodeProps) {
-  const color = tone === 'neutral' ? 'neutral' : 'brand';
+  // 색은 brand 고정. 회색 노드가 필요하면 curvedHorizontalGray 변형을 쓴다(내부 neutral 하드코딩).
+  const color: NodeTone = 'brand';
 
   if (variant === 'curvedHorizontalGray') {
     return (
@@ -64,15 +62,6 @@ export default function Node({
           translateY="translate-y-[3px]"
           tone={color}
         />
-      </div>
-    );
-  }
-
-  if (variant === 'curvedHorizontal') {
-    return (
-      <div className={`flex ${grow ? 'grow' : ''} w-auto items-center`}>
-        <StraightBlock direction="row" tone={color} grow={true} />
-        <Diagonal width="w-[90px]" tone={color} />
       </div>
     );
   }

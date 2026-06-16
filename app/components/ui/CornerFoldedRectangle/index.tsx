@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 
 import styles from './style.module.css';
 
-type ColorTheme = 'orange' | 'lightGray' | 'black' | 'darkGray';
+type ColorTheme = 'orange' | 'lightGray' | 'black';
 type Size = 'small' | 'large';
 type Shadow = 'light' | 'medium';
 
@@ -24,7 +24,6 @@ const colorThemeMap: Record<ColorTheme, { rect: string; triangle: string }> = {
     triangle: styles.triangleLightGray,
   },
   black: { rect: styles.themeBlack, triangle: styles.triangleBlack },
-  darkGray: { rect: styles.themeDarkGray, triangle: styles.triangleDarkGray },
 };
 
 const sizeMap: Record<Size, string> = {

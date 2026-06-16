@@ -17,12 +17,6 @@
   border-radius: 0.125rem;
 }
 
-.themeDarkGray {
-  background-color: #e5e5e5;
-  border: 1px solid #f5f5f5;
-  border-radius: 0.125rem;
-}
-
 /* Triangle base */
 .triangle {
   position: absolute;
@@ -48,10 +42,6 @@
 
 .triangleBlack {
   border-color: transparent transparent #e5e5e5 #e5e5e5;
-}
-
-.triangleDarkGray {
-  border-color: transparent transparent #525252 #525252;
 }
 
 /* Triangle sizes */
