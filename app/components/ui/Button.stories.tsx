@@ -1,70 +1,108 @@
 import type { Meta, StoryObj } from '@storybook/tanstack-react';
 import { Search } from 'lucide-react';
+import type { ReactElement } from 'react';
 import Button from './Button';
 
-// 스토리는 실제 서비스에서 쓰는 조합만 보여준다.
-// variant: solid/outline/text/pill (ghost는 미사용 → CLAUDE.md §④ 합의 대기에 정리)
-// tone: brand/neutral/inverse/muted/inherit · size: xs/sm/md/lg 모두 사용처 존재.
+// 스토리는 실사용 역할(kind)만 노출한다. 과거 variant×tone 곱집합(무효 조합 다수)을
+// 8개 역할로 수렴 → Storybook 컨트롤에서 깨진 조합을 만들 수 없다.
+//   primary/action/secondary = solid·outline 버튼, quiet/link/nav = 텍스트 버튼,
+//   toggle = pill 칩, segmented = 정렬 세그먼트 토글.
 const meta = {
   title: 'UI/Button',
   component: Button,
   parameters: { layout: 'centered' },
-  args: { as: 'button', children: '버튼', variant: 'solid', tone: 'brand' },
+  args: { as: 'button', children: '버튼', kind: 'primary' },
   argTypes: {
-    variant: {
+    kind: {
       control: 'select',
-      options: ['solid', 'outline', 'text', 'pill'],
-      description: '시각 스타일. pill은 토글(aria-pressed) 용도.',
-    },
-    tone: {
-      control: 'select',
-      options: ['brand', 'neutral', 'inverse', 'muted', 'inherit'],
-      description: '색 톤.',
+      options: [
+        'primary',
+        'action',
+        'secondary',
+        'quiet',
+        'link',
+        'nav',
+        'toggle',
+        'segmented',
+      ],
+      description:
+        '역할. primary=강조 CTA · action=폼/다이얼로그 커밋 · secondary=보조 · quiet=저강조 텍스트 · link=인라인 링크 · nav=다크 헤더 유틸 · toggle=pill 칩 · segmented=세그먼트 토글.',
     },
     size: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg'],
-      description: '크기(pill·text 변형은 size 영향 적음).',
+      description: '크기(toggle은 size 영향 없음).',
     },
-    selected: { control: 'boolean', description: 'pill 토글 선택 상태.' },
+    selected: {
+      control: 'boolean',
+      description: 'toggle·segmented 선택 상태(aria-pressed).',
+    },
     disabled: { control: 'boolean', description: 'as="button"에서만 적용.' },
   },
 } satisfies Meta<typeof Button>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// --- variant (실사용) ---
-export const Solid: Story = {};
-export const Outline: Story = { args: { variant: 'outline' } };
-export const Text: Story = { args: { variant: 'text' } };
+// 다크 표면 위에서만 의미 있는 kind(nav)를 위한 데코레이터.
+const onDark = (Story: () => ReactElement) => (
+  <div className="rounded bg-neutral-800 p-6">
+    <Story />
+  </div>
+);
 
-// --- tone (실사용: inverse=저장/삭제, neutral=취소, muted) ---
-export const Neutral: Story = { args: { variant: 'outline', tone: 'neutral' } };
-export const Inverse: Story = { args: { variant: 'solid', tone: 'inverse' } };
+// --- 역할별 (실사용) ---
+export const Primary: Story = { args: { kind: 'primary', children: '추가' } };
+export const Action: Story = { args: { kind: 'action', children: '저장' } };
+export const Secondary: Story = {
+  args: { kind: 'secondary', children: '취소' },
+};
+export const Quiet: Story = { args: { kind: 'quiet', children: '더보기' } };
+export const Link: Story = { args: { kind: 'link', children: '바로가기' } };
 
-// --- pill 토글 (NoticeSection 카테고리 칩) ---
-export const Pill: Story = { args: { variant: 'pill', selected: false } };
-export const PillSelected: Story = {
-  args: { variant: 'pill', selected: true },
+/** nav = 다크 헤더 유틸 버튼(흰 글자). 다크 표면에서만 의미 있어 배경을 깔아 보여준다. */
+export const Nav: Story = {
+  args: { kind: 'nav', size: 'sm', children: '로그인' },
+  decorators: [onDark],
 };
 
-// --- size (xs/lg 각 1곳, sm/md 다수) ---
-export const SizeSm: Story = { args: { size: 'sm' } };
-export const SizeLg: Story = { args: { size: 'lg' } };
+// --- 토글 ---
+export const Toggle: Story = {
+  args: { kind: 'toggle', selected: false, children: '전체' },
+};
+export const ToggleSelected: Story = {
+  args: { kind: 'toggle', selected: true, children: '전체' },
+};
+
+/** segmented = 정렬 세그먼트 토글(선택 dark / 비선택 gray). faculty 가나다순/소속순. */
+export const Segmented: Story = {
+  render: (args) => (
+    <div className="flex gap-2">
+      <Button {...args} kind="segmented" selected>
+        가나다순
+      </Button>
+      <Button {...args} kind="segmented" selected={false}>
+        소속순
+      </Button>
+    </div>
+  ),
+};
+
+// --- size (xs/lg 소수, sm/md 다수) ---
+export const SizeSm: Story = { args: { kind: 'primary', size: 'sm' } };
+export const SizeLg: Story = { args: { kind: 'primary', size: 'lg' } };
 
 // --- state ---
-export const Disabled: Story = { args: { disabled: true } };
+export const Disabled: Story = { args: { kind: 'primary', disabled: true } };
 
 /** 아이콘 + 텍스트 (MobileNav 검색 버튼 등). */
 export const WithIcon: Story = {
-  args: { iconLeft: <Search size={16} />, children: '검색' },
+  args: { kind: 'primary', iconLeft: <Search size={16} />, children: '검색' },
 };
 
-/** 아이콘 전용 (Header 검색 submit — text/neutral/sm, ariaLabel 필수). */
+/** 아이콘 전용 (Header 검색 submit — quiet/sm, ariaLabel 필수). */
 export const IconOnly: Story = {
   args: {
-    variant: 'text',
-    tone: 'neutral',
+    kind: 'quiet',
     size: 'sm',
     iconLeft: <Search className="h-5 w-5" strokeWidth={1.5} />,
     children: undefined,

@@ -57,8 +57,7 @@ function NewsPage() {
         <div className="mt-[40px] flex justify-end">
           <span className="ml-4">
             <Button
-              variant="solid"
-              tone="inverse"
+              kind="action"
               size="md"
               as="link"
               to={localizedPath('/community/news/create')}

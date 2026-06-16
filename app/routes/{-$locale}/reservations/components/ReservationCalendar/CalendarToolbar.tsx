@@ -47,12 +47,7 @@ export default function CalendarToolbar({
       <LoginVisible
         allow={['ROLE_STAFF', 'ROLE_RESERVATION', 'ROLE_LABMASTER']}
       >
-        <Button
-          variant="solid"
-          tone="brand"
-          size="md"
-          onClick={() => setShowAddModal(true)}
-        >
+        <Button kind="primary" size="md" onClick={() => setShowAddModal(true)}>
           예약하기
         </Button>
       </LoginVisible>

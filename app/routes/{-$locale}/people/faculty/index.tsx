@@ -90,16 +90,16 @@ function FacultyPage() {
       <div className="mb-7 flex items-center justify-between">
         <div className="flex gap-2">
           <Button
-            variant="solid"
-            tone={sortType === 'name' ? 'inverse' : 'neutral'}
+            kind="segmented"
+            selected={sortType === 'name'}
             size="md"
             onClick={() => setSortType('name')}
           >
             {t('가나다순')}
           </Button>
           <Button
-            variant="solid"
-            tone={sortType === 'department' ? 'inverse' : 'neutral'}
+            kind="segmented"
+            selected={sortType === 'department'}
             size="md"
             onClick={() => setSortType('department')}
           >
@@ -108,8 +108,7 @@ function FacultyPage() {
         </div>
         <LoginVisible allow="ROLE_STAFF">
           <Button
-            variant="solid"
-            tone="inverse"
+            kind="action"
             size="md"
             as="link"
             to={localizedPath('/people/faculty/create')}

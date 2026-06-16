@@ -67,14 +67,10 @@ function ScholarshipDetailPage() {
     >
       <LoginVisible allow="ROLE_STAFF">
         <div className="mb-8 flex justify-end gap-3">
-          <Button
-            variant="outline"
-            tone="neutral"
-            onClick={() => setShowDeleteDialog(true)}
-          >
+          <Button kind="secondary" onClick={() => setShowDeleteDialog(true)}>
             삭제
           </Button>
-          <Button variant="outline" tone="neutral" as="link" to="edit">
+          <Button kind="secondary" as="link" to="edit">
             편집
           </Button>
         </div>

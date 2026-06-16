@@ -59,8 +59,7 @@ export default function ClubDetails({ club, locale }: ClubDetailsProps) {
           <LoginVisible allow="ROLE_STAFF">
             <div className="flex gap-3">
               <Button
-                variant="outline"
-                tone="neutral"
+                kind="secondary"
                 size="md"
                 onClick={() => setShowDeleteDialog(true)}
               >
@@ -71,8 +70,7 @@ export default function ClubDetails({ club, locale }: ClubDetailsProps) {
                 to={localizedPath(
                   `/about/student-clubs/edit?selected=${club.ko.id}`,
                 )}
-                variant="outline"
-                tone="neutral"
+                kind="secondary"
                 size="md"
               >
                 편집

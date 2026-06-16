@@ -111,13 +111,7 @@ const NoticeSectionButton = ({
   children: ReactNode;
 }) => {
   return (
-    <Button
-      variant="pill"
-      tone="brand"
-      size="md"
-      selected={selected}
-      onClick={onClick}
-    >
+    <Button kind="toggle" size="md" selected={selected} onClick={onClick}>
       {children}
     </Button>
   );

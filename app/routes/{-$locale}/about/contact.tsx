@@ -51,8 +51,7 @@ function ContactPage() {
             <Button
               as="link"
               to={localizedPath('/about/contact/edit')}
-              variant="outline"
-              tone="neutral"
+              kind="secondary"
               size="md"
             >
               편집

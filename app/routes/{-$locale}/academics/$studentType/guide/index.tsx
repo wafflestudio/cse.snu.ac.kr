@@ -64,8 +64,7 @@ function GuidePage() {
           <Button
             as="link"
             to={localizedPath(`/academics/${studentType}/guide/edit`)}
-            variant="outline"
-            tone="neutral"
+            kind="secondary"
             size="md"
           >
             편집

@@ -48,8 +48,7 @@ function StaffPage() {
       <LoginVisible allow="ROLE_STAFF">
         <div className="mb-7 flex justify-end">
           <Button
-            variant="solid"
-            tone="inverse"
+            kind="action"
             size="md"
             as="link"
             to={localizedPath('/people/staff/create')}

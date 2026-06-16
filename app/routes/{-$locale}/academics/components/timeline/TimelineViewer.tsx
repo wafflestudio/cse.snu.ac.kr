@@ -131,19 +131,10 @@ function ActionButtons({ year, pathname }: { year: number; pathname: string }) {
     <>
       <LoginVisible allow="ROLE_STAFF">
         <div className="mt-7 flex justify-end gap-3">
-          <Button
-            variant="outline"
-            tone="neutral"
-            onClick={() => setShowDeleteDialog(true)}
-          >
+          <Button kind="secondary" onClick={() => setShowDeleteDialog(true)}>
             {t('삭제')}
           </Button>
-          <Button
-            variant="outline"
-            tone="neutral"
-            as="link"
-            to={`${pathname}/edit/${year}`}
-          >
+          <Button kind="secondary" as="link" to={`${pathname}/edit/${year}`}>
             {t('편집')}
           </Button>
         </div>

@@ -104,17 +104,11 @@ function CareerCompanyViewer({
           <div
             className={`hidden shrink-0 gap-2 sm:flex ${TABLE_COLUMN_SIZE[4]}`}
           >
-            <Button
-              variant="outline"
-              tone="neutral"
-              size="md"
-              onClick={toggleEdit}
-            >
+            <Button kind="secondary" size="md" onClick={toggleEdit}>
               편집
             </Button>
             <Button
-              variant="outline"
-              tone="neutral"
+              kind="secondary"
               size="md"
               onClick={() => setShowDeleteDialog(true)}
             >
@@ -191,20 +185,10 @@ export function CareerCompanyEditor({
           <div
             className={`hidden shrink-0 gap-2 sm:flex ${TABLE_COLUMN_SIZE[4]}`}
           >
-            <Button
-              variant="outline"
-              tone="neutral"
-              size="md"
-              onClick={onCancel}
-            >
+            <Button kind="secondary" size="md" onClick={onCancel}>
               취소
             </Button>
-            <Button
-              variant="solid"
-              tone="neutral"
-              size="md"
-              onClick={handleSubmit(onSubmit)}
-            >
+            <Button kind="action" size="md" onClick={handleSubmit(onSubmit)}>
               저장
             </Button>
           </div>

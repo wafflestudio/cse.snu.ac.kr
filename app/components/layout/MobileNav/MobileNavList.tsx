@@ -1,6 +1,6 @@
+import { useNavigate } from '@tanstack/react-router';
 import { X } from 'lucide-react';
 import { useState } from 'react';
-import { useNavigate } from '@tanstack/react-router';
 import Button from '~/components/ui/Button';
 import type { NavItem } from '~/constants/navigation';
 import { navigationTree } from '~/constants/navigation';
@@ -41,8 +41,7 @@ export default function MobileNavList() {
 
       <div className="mb-[40px] flex flex-col items-center text-sm font-medium text-neutral-500">
         <Button
-          variant="text"
-          tone="muted"
+          kind="quiet"
           size="sm"
           onClick={() => setSearch(true)}
           ariaLabel="검색"
@@ -73,13 +72,7 @@ function SearchPage({ onClose }: { onClose: () => void }) {
   return (
     <div className="absolute bottom-0 left-0 right-0 top-0 z-50 bg-[#1F2021]">
       <div className="absolute left-1/2 bottom-4 -translate-x-1/2">
-        <Button
-          variant="text"
-          tone="muted"
-          size="sm"
-          onClick={onClose}
-          ariaLabel="검색 닫기"
-        >
+        <Button kind="quiet" size="sm" onClick={onClose} ariaLabel="검색 닫기">
           <X className="h-5 w-5 text-white" />
         </Button>
       </div>
@@ -94,8 +87,7 @@ function SearchPage({ onClose }: { onClose: () => void }) {
           autoFocus
         />
         <Button
-          variant="text"
-          tone="muted"
+          kind="quiet"
           size="sm"
           onClick={search}
           ariaLabel="검색 실행"
@@ -116,12 +108,7 @@ function AuthButton() {
 
   return (
     <div className="mt-6">
-      <Button
-        variant="text"
-        tone="muted"
-        size="sm"
-        onClick={isLoggedIn ? logout : login}
-      >
+      <Button kind="quiet" size="sm" onClick={isLoggedIn ? logout : login}>
         {isLoggedIn ? 'LOGOUT' : 'LOGIN'}
       </Button>
     </div>
@@ -134,7 +121,7 @@ function LangButton() {
 
   return (
     <div className="mt-[0.62rem]">
-      <Button variant="text" tone="muted" size="sm" onClick={changeLanguage}>
+      <Button kind="quiet" size="sm" onClick={changeLanguage}>
         {locale === 'ko' ? 'ENG' : '한국어'}
       </Button>
     </div>

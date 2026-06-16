@@ -84,8 +84,7 @@ function ResearchGroupsPage() {
             <Button
               as="link"
               to={localizedPath('/research/groups/create')}
-              variant="solid"
-              tone="brand"
+              kind="primary"
               size="md"
             >
               연구 스트림 추가
@@ -101,8 +100,7 @@ function ResearchGroupsPage() {
               <Button
                 as="button"
                 onClick={() => setShowDeleteDialog(true)}
-                variant="outline"
-                tone="neutral"
+                kind="secondary"
                 size="md"
               >
                 삭제
@@ -110,8 +108,7 @@ function ResearchGroupsPage() {
               <Button
                 as="link"
                 to={localizedPath(`/research/groups/${item.id}/edit`)}
-                variant="outline"
-                tone="neutral"
+                kind="secondary"
                 size="md"
               >
                 편집

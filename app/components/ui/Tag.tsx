@@ -60,8 +60,7 @@ export function Tag({
       <span className={onDelete ? 'pr-1.5' : ''}>{label}</span>
       {onDelete && (
         <Button
-          variant="text"
-          tone="brand"
+          kind="link"
           disabled={disabled}
           onClick={(event) => {
             event.stopPropagation();

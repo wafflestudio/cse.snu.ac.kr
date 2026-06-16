@@ -94,8 +94,7 @@ function DirectionsPage() {
                 to={localizedPath(
                   `/about/directions/${selectedDirection.ko.id}/edit`,
                 )}
-                variant="outline"
-                tone="neutral"
+                kind="secondary"
                 size="md"
               >
                 편집

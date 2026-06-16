@@ -23,7 +23,7 @@ export default function HeaderRight() {
       <div className="flex items-center gap-3 text-sm font-normal text-white">
         {/* Admin menu - only for ROLE_STAFF */}
         <LoginVisible allow="ROLE_STAFF">
-          <Button variant="text" tone="inverse" size="sm" as="link" to="/admin">
+          <Button kind="nav" size="sm" as="link" to="/admin">
             {t('관리자 메뉴')}
           </Button>
           <Divider />
@@ -33,12 +33,7 @@ export default function HeaderRight() {
 
         <Divider />
 
-        <Button
-          variant="text"
-          tone="inverse"
-          size="sm"
-          onClick={changeLanguage}
-        >
+        <Button kind="nav" size="sm" onClick={changeLanguage}>
           {isEnglish ? (
             '한국어'
           ) : (
@@ -58,11 +53,11 @@ function ProdLogin({ t }: { t: (key: '로그인' | '로그아웃') => string }) 
   const logout = useStore((s) => s.logout);
 
   return roles.length > 0 ? (
-    <Button variant="text" tone="inverse" size="sm" onClick={logout}>
+    <Button kind="nav" size="sm" onClick={logout}>
       {t('로그아웃')}
     </Button>
   ) : (
-    <Button variant="text" tone="inverse" size="sm" onClick={login}>
+    <Button kind="nav" size="sm" onClick={login}>
       {t('로그인')}
     </Button>
   );
@@ -75,7 +70,7 @@ function DevLogin() {
 
   if (roles.length > 0) {
     return (
-      <Button variant="text" tone="inverse" size="sm" onClick={mockLogout}>
+      <Button kind="nav" size="sm" onClick={mockLogout}>
         로그아웃
       </Button>
     );
@@ -83,18 +78,12 @@ function DevLogin() {
 
   return (
     <>
-      <Button
-        variant="text"
-        tone="inverse"
-        size="sm"
-        onClick={() => mockLogin('ROLE_STAFF')}
-      >
+      <Button kind="nav" size="sm" onClick={() => mockLogin('ROLE_STAFF')}>
         STAFF
       </Button>
       <Divider />
       <Button
-        variant="text"
-        tone="inverse"
+        kind="nav"
         size="sm"
         onClick={() => mockLogin('ROLE_RESERVATION')}
       >
@@ -102,20 +91,14 @@ function DevLogin() {
       </Button>
       <Divider />
       <Button
-        variant="text"
-        tone="inverse"
+        kind="nav"
         size="sm"
         onClick={() => mockLogin('ROLE_LABMASTER', 'ROLE_RESERVATION')}
       >
         LAB+RESERV
       </Button>
       <Divider />
-      <Button
-        variant="text"
-        tone="inverse"
-        size="sm"
-        onClick={() => mockLogin('ROLE_COUNCIL')}
-      >
+      <Button kind="nav" size="sm" onClick={() => mockLogin('ROLE_COUNCIL')}>
         COUNCIL
       </Button>
     </>

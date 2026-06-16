@@ -47,8 +47,7 @@ function EmeritusFacultyPage() {
       <LoginVisible allow="ROLE_STAFF">
         <div className="mb-7 flex justify-end">
           <Button
-            variant="solid"
-            tone="inverse"
+            kind="action"
             size="md"
             as="link"
             to={localizedPath('/people/faculty/create?status=INACTIVE')}

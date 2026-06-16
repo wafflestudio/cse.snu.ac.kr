@@ -1,10 +1,9 @@
+import { useLocation, useNavigate } from '@tanstack/react-router';
 import { Search } from 'lucide-react';
-import { useLocation } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
-import { useSearchParams } from '~/hooks/useSearchParams';
-import { useNavigate } from '@tanstack/react-router';
 import Button from '~/components/ui/Button';
 import { useLanguage } from '~/hooks/useLanguage';
+import { useSearchParams } from '~/hooks/useSearchParams';
 
 const translations = {
   통합검색: 'Search',
@@ -51,8 +50,7 @@ export default function HeaderSearchBar() {
       />
       <Button
         type="submit"
-        variant="text"
-        tone="neutral"
+        kind="quiet"
         size="sm"
         ariaLabel={t('통합검색')}
         iconLeft={<Search className="h-5 w-5" strokeWidth={1.5} />}

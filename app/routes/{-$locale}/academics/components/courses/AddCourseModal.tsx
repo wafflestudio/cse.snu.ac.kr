@@ -179,14 +179,10 @@ export default function AddCourseModal({
             />
           </Fieldset>
           <div className="flex justify-end gap-2">
-            <Button variant="outline" tone="neutral" onClick={onClose}>
+            <Button kind="secondary" onClick={onClose}>
               {t('취소')}
             </Button>
-            <Button
-              variant="outline"
-              tone="neutral"
-              onClick={handleSubmit(onSubmit)}
-            >
+            <Button kind="secondary" onClick={handleSubmit(onSubmit)}>
               {t('추가하기')}
             </Button>
           </div>

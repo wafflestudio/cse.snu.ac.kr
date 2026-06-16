@@ -171,16 +171,14 @@ export default function ReservationDetailModal({
           >
             <div className="flex justify-end gap-2">
               <Button
-                variant="outline"
-                tone="neutral"
+                kind="secondary"
                 size="sm"
                 onClick={() => setShowDeleteRecurringDialog(true)}
               >
                 {t('반복 예약 전체 삭제')}
               </Button>
               <Button
-                variant="outline"
-                tone="neutral"
+                kind="secondary"
                 size="sm"
                 onClick={() => setShowDeleteDialog(true)}
               >

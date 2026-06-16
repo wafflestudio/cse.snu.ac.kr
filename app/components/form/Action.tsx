@@ -28,8 +28,7 @@ export default function Action({
       <div className="relative mb-6 flex items-center justify-end gap-3">
         <ErrorMessages />
         <Button
-          variant="outline"
-          tone="neutral"
+          kind="secondary"
           disabled={isSubmitting}
           onClick={(e: MouseEvent<HTMLButtonElement>) => {
             e.preventDefault();
@@ -44,8 +43,7 @@ export default function Action({
         </Button>
         {onDelete && (
           <Button
-            variant="solid"
-            tone="inverse"
+            kind="action"
             disabled={isSubmitting}
             onClick={(e: MouseEvent<HTMLButtonElement>) => {
               e.preventDefault();
@@ -57,8 +55,7 @@ export default function Action({
         )}
         <Button
           type="submit"
-          variant="solid"
-          tone="inverse"
+          kind="action"
           disabled={isSubmitting}
           onClick={onSubmit}
         >

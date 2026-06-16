@@ -41,17 +41,10 @@ export default function AlertDialog({
           </AlertDialogPrimitive.Description>
           <div className="flex justify-end gap-3">
             <AlertDialogPrimitive.Cancel asChild>
-              <Button variant="outline" tone="neutral">
-                취소
-              </Button>
+              <Button kind="secondary">취소</Button>
             </AlertDialogPrimitive.Cancel>
             <AlertDialogPrimitive.Action asChild>
-              <Button
-                ref={confirmButtonRef}
-                variant="solid"
-                tone="inverse"
-                onClick={onConfirm}
-              >
+              <Button ref={confirmButtonRef} kind="action" onClick={onConfirm}>
                 {confirmText}
               </Button>
             </AlertDialogPrimitive.Action>

@@ -63,8 +63,7 @@ function ResearchLabDetailPage() {
           <Button
             as="link"
             to={localizedPath(`/research/labs/${lab.id}/edit`)}
-            variant="outline"
-            tone="neutral"
+            kind="secondary"
             size="md"
           >
             편집

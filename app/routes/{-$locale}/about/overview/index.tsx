@@ -66,8 +66,7 @@ function Overview() {
             <Button
               as="link"
               to={localizedPath('/about/overview/edit')}
-              variant="outline"
-              tone="neutral"
+              kind="secondary"
               size="md"
             >
               편집

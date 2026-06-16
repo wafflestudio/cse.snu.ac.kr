@@ -6,7 +6,6 @@ import {
 } from '@tanstack/react-router';
 import { ChevronRight } from 'lucide-react';
 import { Fragment } from 'react';
-import Button from '~/components/ui/Button';
 import Node from '~/components/ui/Nodes';
 import { useLanguage } from '~/hooks/useLanguage';
 import type { BreadcrumbItem } from './index';
@@ -112,15 +111,16 @@ function LocationText({ path, name, isCurrent }: LocationTextProps) {
   const textStyle = 'text-xs sm:text-md font-normal tracking-[.02em]';
 
   if (isCurrent) {
+    // 브레드크럼 현재 항목: 형제 Link/span과 색을 맞춰야 해 색을 상속받는다(text-inherit).
+    // Button의 어떤 kind도 색 상속을 표현하지 않으므로 형제와 동일 스타일의 평범한 버튼으로 둔다.
     return (
-      <Button
-        variant="text"
-        tone="inherit"
-        size="xs"
+      <button
+        type="button"
         onClick={() => router.history.go(0)}
+        className={`inline-flex items-center justify-center gap-2 transition duration-200 ${textStyle} text-inherit hover:text-main-orange`}
       >
-        {name}
-      </Button>
+        <span>{name}</span>
+      </button>
     );
   }
 
