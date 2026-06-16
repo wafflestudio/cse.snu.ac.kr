@@ -6,7 +6,7 @@ import { useLanguage } from '~/hooks/useLanguage';
 import { useAcademicsSubNav } from '~/hooks/useSubNav';
 import TimelineViewer from '~/routes/{-$locale}/academics/components/timeline/TimelineViewer';
 import type { TimelineContent } from '~/types/api/v2/academics';
-import { processHtmlForCsp } from '~/utils/csp';
+import { processHtmlForCsp } from '~/utils/cspServerFn';
 import { fetchJson } from '~/utils/fetch';
 
 import './assets/curriculumfix.css';
@@ -56,10 +56,12 @@ export const Route = createFileRoute(
       `${BASE_URL}/v2/academics/undergraduate/curriculum`,
     );
 
-    return data.map((item) => ({
-      ...item,
-      description: processHtmlForCsp(item.description),
-    }));
+    return Promise.all(
+      data.map(async (item) => ({
+        ...item,
+        description: await processHtmlForCsp(item.description),
+      })),
+    );
   },
   component: UndergraduateCurriculumPage,
 });

@@ -14,7 +14,7 @@ import { useLanguage } from '~/hooks/useLanguage';
 import { useCommunitySubNav } from '~/hooks/useSubNav';
 import PostFooter from '~/routes/{-$locale}/community/components/PostFooter';
 import type { Notice } from '~/types/api/v2/notice';
-import { processHtmlForCsp } from '~/utils/csp';
+import { processHtmlForCsp } from '~/utils/cspServerFn';
 import { fetchOk } from '~/utils/fetch';
 import { stripHtml, truncateDescription } from '~/utils/metadata';
 
@@ -143,7 +143,7 @@ export const Route = createFileRoute('/{-$locale}/community/notice/$id')({
 
     return {
       ...notice,
-      description: processHtmlForCsp(notice.description),
+      description: await processHtmlForCsp(notice.description),
     };
   },
   component: NoticeDetailPage,

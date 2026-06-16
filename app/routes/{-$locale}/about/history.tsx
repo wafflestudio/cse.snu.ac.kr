@@ -8,7 +8,7 @@ import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useAboutSubNav } from '~/hooks/useSubNav';
 import type { AboutContent } from '~/types/api/v2/about/content';
-import { processHtmlForCsp } from '~/utils/csp';
+import { processHtmlForCsp } from '~/utils/cspServerFn';
 
 const META = {
   ko: {
@@ -81,7 +81,7 @@ export const Route = createFileRoute('/{-$locale}/about/history')({
 
     return {
       ...data,
-      description: processHtmlForCsp(data.description),
+      description: await processHtmlForCsp(data.description),
     };
   },
   component: HistoryPage,

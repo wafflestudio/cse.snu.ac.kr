@@ -9,7 +9,7 @@ import { useLanguage } from '~/hooks/useLanguage';
 import { createSelectionUrl } from '~/hooks/useSelectionList';
 import { useResearchSubNav } from '~/hooks/useSubNav';
 import type { ResearchLabWithLanguage } from '~/types/api/v2/research/labs';
-import { processHtmlForCsp } from '~/utils/csp';
+import { processHtmlForCsp } from '~/utils/cspServerFn';
 import { stripHtml, truncateDescription } from '~/utils/metadata';
 import PentagonLong from '../assets/pentagon_long.svg?react';
 import PentagonShort from '../assets/pentagon_short.svg?react';
@@ -215,7 +215,7 @@ export const Route = createFileRoute('/{-$locale}/research/labs/$id/')({
 
     return {
       ...data[locale],
-      description: processHtmlForCsp(data[locale].description),
+      description: await processHtmlForCsp(data[locale].description),
     };
   },
   component: ResearchLabDetailPage,

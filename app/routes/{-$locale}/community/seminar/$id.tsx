@@ -13,7 +13,7 @@ import { useLanguage } from '~/hooks/useLanguage';
 import { useCommunitySubNav } from '~/hooks/useSubNav';
 import PostFooter from '~/routes/{-$locale}/community/components/PostFooter';
 import type { Seminar } from '~/types/api/v2/seminar';
-import { processHtmlForCsp } from '~/utils/csp';
+import { processHtmlForCsp } from '~/utils/cspServerFn';
 import { fetchOk } from '~/utils/fetch';
 import { stripHtml, truncateDescription } from '~/utils/metadata';
 
@@ -213,10 +213,10 @@ export const Route = createFileRoute('/{-$locale}/community/seminar/$id')({
     return {
       ...seminar,
       description: seminar.description
-        ? processHtmlForCsp(seminar.description)
+        ? await processHtmlForCsp(seminar.description)
         : null,
       introduction: seminar.introduction
-        ? processHtmlForCsp(seminar.introduction)
+        ? await processHtmlForCsp(seminar.introduction)
         : null,
     };
   },

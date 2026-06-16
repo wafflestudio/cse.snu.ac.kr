@@ -13,7 +13,7 @@ import { useLanguage } from '~/hooks/useLanguage';
 import { useSelectionList } from '~/hooks/useSelectionList';
 import { useResearchSubNav } from '~/hooks/useSubNav';
 import type { ResearchCentersResponse } from '~/types/api/v2/research/centers';
-import { processHtmlForCsp } from '~/utils/csp';
+import { processHtmlForCsp } from '~/utils/cspServerFn';
 import { fetchJson, fetchOk } from '~/utils/fetch';
 import LinkIcon from './assets/link_icon.svg?react';
 
@@ -181,10 +181,12 @@ export const Route = createFileRoute('/{-$locale}/research/centers/')({
 
     const data = (await response.json()) as ResearchCentersResponse;
 
-    return data.map((center) => ({
-      ...center,
-      description: processHtmlForCsp(center.description),
-    }));
+    return Promise.all(
+      data.map(async (center) => ({
+        ...center,
+        description: await processHtmlForCsp(center.description),
+      })),
+    );
   },
   component: ResearchCentersPage,
 });

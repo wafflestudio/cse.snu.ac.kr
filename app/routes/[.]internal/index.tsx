@@ -5,7 +5,7 @@ import PageLayout from '~/components/layout/PageLayout';
 import Button from '~/components/ui/Button';
 import HTMLViewer from '~/components/ui/HTMLViewer';
 import { BASE_URL } from '~/constants/api';
-import { processHtmlForCsp } from '~/utils/csp';
+import { processHtmlForCsp } from '~/utils/cspServerFn';
 
 function InternalPage() {
   const loaderData = Route.useLoaderData();
@@ -35,7 +35,7 @@ export const Route = createFileRoute('/.internal/')({
     const response = await fetch(`${BASE_URL}/v2/internal`);
     if (!response.ok) throw new Error('Failed to fetch internal');
     const data = (await response.json()) as { description: string };
-    return { description: processHtmlForCsp(data.description) };
+    return { description: await processHtmlForCsp(data.description) };
   },
   component: InternalPage,
 });

@@ -9,7 +9,7 @@ import { useAcademicsSubNav } from '~/hooks/useSubNav';
 import ScholarshipList from '~/routes/{-$locale}/academics/components/ScholarshipList';
 import type { StudentType } from '~/types/api/v2/academics';
 import type { ScholarshipList as ScholarshipListType } from '~/types/api/v2/academics/scholarship';
-import { processHtmlForCsp } from '~/utils/csp';
+import { processHtmlForCsp } from '~/utils/cspServerFn';
 import { fetchJson } from '~/utils/fetch';
 
 const META = {
@@ -93,7 +93,7 @@ export const Route = createFileRoute(
 
     return {
       ...data,
-      description: processHtmlForCsp(data.description),
+      description: await processHtmlForCsp(data.description),
     };
   },
   component: ScholarshipPage,

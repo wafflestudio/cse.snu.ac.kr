@@ -6,7 +6,7 @@ import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useAboutSubNav } from '~/hooks/useSubNav';
 import type { FacilitiesResponse } from '~/types/api/v2/about/facilities';
-import { processHtmlForCsp } from '~/utils/csp';
+import { processHtmlForCsp } from '~/utils/cspServerFn';
 import FacilitiesList from './components/FacilitiesList';
 
 const META = {
@@ -64,10 +64,12 @@ export const Route = createFileRoute('/{-$locale}/about/facilities/')({
     if (!response.ok) throw new Error('Failed to fetch facilities');
 
     const facilities = (await response.json()) as FacilitiesResponse;
-    return facilities.map((facility) => ({
-      ...facility[locale],
-      description: processHtmlForCsp(facility[locale].description),
-    }));
+    return Promise.all(
+      facilities.map(async (facility) => ({
+        ...facility[locale],
+        description: await processHtmlForCsp(facility[locale].description),
+      })),
+    );
   },
   component: FacilitiesPage,
 });

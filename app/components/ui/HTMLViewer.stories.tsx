@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/tanstack-react';
-import { processHtmlForCsp } from '~/utils/csp';
+import { processHtmlForCsp } from '~/utils/processHtmlForCsp';
 import HTMLViewer from './HTMLViewer';
 
 const meta = {

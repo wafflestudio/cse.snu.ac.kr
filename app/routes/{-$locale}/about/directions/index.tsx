@@ -11,7 +11,7 @@ import { useLanguage } from '~/hooks/useLanguage';
 import { useSelectionList } from '~/hooks/useSelectionList';
 import { useAboutSubNav } from '~/hooks/useSubNav';
 import type { DirectionsResponse } from '~/types/api/v2/about/directions';
-import { processHtmlForCsp } from '~/utils/csp';
+import { processHtmlForCsp } from '~/utils/cspServerFn';
 import KakaoMap from './components/KakaoMap';
 
 const META = {
@@ -120,16 +120,18 @@ export const Route = createFileRoute('/{-$locale}/about/directions/')({
 
     const data = (await response.json()) as DirectionsResponse;
 
-    return data.map((direction) => ({
-      ko: {
-        ...direction.ko,
-        description: processHtmlForCsp(direction.ko.description),
-      },
-      en: {
-        ...direction.en,
-        description: processHtmlForCsp(direction.en.description),
-      },
-    }));
+    return Promise.all(
+      data.map(async (direction) => ({
+        ko: {
+          ...direction.ko,
+          description: await processHtmlForCsp(direction.ko.description),
+        },
+        en: {
+          ...direction.en,
+          description: await processHtmlForCsp(direction.en.description),
+        },
+      })),
+    );
   },
   component: DirectionsPage,
 });

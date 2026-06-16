@@ -9,7 +9,7 @@ import { useLanguage } from '~/hooks/useLanguage';
 import { useSelectionList } from '~/hooks/useSelectionList';
 import { useAboutSubNav } from '~/hooks/useSubNav';
 import type { StudentClubsResponse } from '~/types/api/v2/about/student-clubs';
-import { processHtmlForCsp } from '~/utils/csp';
+import { processHtmlForCsp } from '~/utils/cspServerFn';
 import { fetchJson } from '~/utils/fetch';
 import ClubDetails from './components/ClubDetails';
 
@@ -77,16 +77,18 @@ export const Route = createFileRoute('/{-$locale}/about/student-clubs/')({
       `${BASE_URL}/v2/about/student-clubs`,
     );
 
-    return response.map((club) => ({
-      ko: {
-        ...club.ko,
-        description: processHtmlForCsp(club.ko.description),
-      },
-      en: {
-        ...club.en,
-        description: processHtmlForCsp(club.en.description),
-      },
-    }));
+    return Promise.all(
+      response.map(async (club) => ({
+        ko: {
+          ...club.ko,
+          description: await processHtmlForCsp(club.ko.description),
+        },
+        en: {
+          ...club.en,
+          description: await processHtmlForCsp(club.en.description),
+        },
+      })),
+    );
   },
   component: StudentClubsPage,
 });

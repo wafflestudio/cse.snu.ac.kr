@@ -8,7 +8,7 @@ import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useAcademicsSubNav } from '~/hooks/useSubNav';
 import type { Guide } from '~/types/api/v2/academics';
-import { processHtmlForCsp } from '~/utils/csp';
+import { processHtmlForCsp } from '~/utils/cspServerFn';
 import { fetchJson } from '~/utils/fetch';
 
 const META = {
@@ -89,7 +89,7 @@ export const Route = createFileRoute(
 
     return {
       ...data,
-      description: processHtmlForCsp(data.description),
+      description: await processHtmlForCsp(data.description),
     };
   },
   component: GuidePage,

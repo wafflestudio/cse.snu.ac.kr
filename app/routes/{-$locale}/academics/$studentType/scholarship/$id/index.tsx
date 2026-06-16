@@ -9,7 +9,7 @@ import { toast } from '~/components/ui/sonner';
 import { BASE_URL } from '~/constants/api';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useAcademicsSubNav } from '~/hooks/useSubNav';
-import { processHtmlForCsp } from '~/utils/csp';
+import { processHtmlForCsp } from '~/utils/cspServerFn';
 import { fetchJson, fetchOk } from '~/utils/fetch';
 import { stripHtml, truncateDescription } from '~/utils/metadata';
 
@@ -105,8 +105,8 @@ export const Route = createFileRoute(
     const en = isFirstKo ? res.second : res.first;
 
     return {
-      ko: { ...ko, description: processHtmlForCsp(ko.description) },
-      en: { ...en, description: processHtmlForCsp(en.description) },
+      ko: { ...ko, description: await processHtmlForCsp(ko.description) },
+      en: { ...en, description: await processHtmlForCsp(en.description) },
     };
   },
   component: ScholarshipDetailPage,

@@ -7,7 +7,7 @@ import HTMLViewer from '~/components/ui/HTMLViewer';
 import { useLanguage } from '~/hooks/useLanguage';
 import { useSelectionList } from '~/hooks/useSelectionList';
 import { useReservationsSubNav } from '~/hooks/useSubNav';
-import { processHtmlForCsp } from '~/utils/csp';
+import { processHtmlForCsp } from '~/utils/cspServerFn';
 
 const META = {
   ko: {
@@ -67,9 +67,11 @@ export const Route = createFileRoute('/{-$locale}/reservations/introduction')({
   loader: async () => {
     return {
       contents: {
-        '세미나실 예약': processHtmlForCsp(HTML_CONTENTS['세미나실 예약']),
-        '실습실 예약': processHtmlForCsp(HTML_CONTENTS['실습실 예약']),
-        '공과대학 강의실 예약': processHtmlForCsp(
+        '세미나실 예약': await processHtmlForCsp(
+          HTML_CONTENTS['세미나실 예약'],
+        ),
+        '실습실 예약': await processHtmlForCsp(HTML_CONTENTS['실습실 예약']),
+        '공과대학 강의실 예약': await processHtmlForCsp(
           HTML_CONTENTS['공과대학 강의실 예약'],
         ),
       },

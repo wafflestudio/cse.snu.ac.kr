@@ -12,7 +12,7 @@ import { useCommunitySubNav } from '~/hooks/useSubNav';
 import { forwardAuthHeaders } from '~/lib/ssr';
 import PostFooter from '~/routes/{-$locale}/community/components/PostFooter';
 import type { News } from '~/types/api/v2/news';
-import { processHtmlForCsp } from '~/utils/csp';
+import { processHtmlForCsp } from '~/utils/cspServerFn';
 import { fetchOk } from '~/utils/fetch';
 import { stripHtml, truncateDescription } from '~/utils/metadata';
 
@@ -140,7 +140,7 @@ export const Route = createFileRoute('/{-$locale}/community/news/$id')({
 
     return {
       ...news,
-      description: processHtmlForCsp(news.description),
+      description: await processHtmlForCsp(news.description),
     };
   },
   component: NewsDetailPage,
