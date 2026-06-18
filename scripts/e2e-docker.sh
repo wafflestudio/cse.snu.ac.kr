@@ -2,9 +2,9 @@
 # E2E의 단일 진입점. `pnpm test`가 이걸 부른다. 모든 테스트 실행은 핀된 Playwright
 # 컨테이너 안에서 일어난다(로컬 직접 실행 없음 → 호스트 OS와 무관하게 결정론적).
 #
-# 왜 컨테이너인가: 비주얼 baseline(*-linux.png)은 폰트 렌더 환경에 종속이라, 호스트가
-# macOS든 ubuntu(CI)든 같은 PNG를 내려면 렌더 환경을 고정해야 한다. 이 이미지가 그
-# 단일 정본 환경이다 → 로컬 산출물 == CI 검증값.
+# 왜 컨테이너인가: 비주얼 baseline(*-linux.png)은 폰트 렌더 환경에 종속이라, 호스트
+# (macOS 등)와 무관하게 같은 PNG를 내려면 렌더 환경을 고정해야 한다. 이 핀된 이미지가
+# 그 단일 정본 환경이다(머신이 달라도 픽셀 동일).
 #
 # 역할 분담:
 #   - 백엔드(MySQL+Spring)는 호스트 docker로 띄운다(컨테이너 안엔 docker가 없음).
@@ -22,32 +22,32 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
 # @playwright/test 버전과 컨테이너 태그 일치(버전 올릴 때 함께 수정).
 IMAGE="mcr.microsoft.com/playwright:v1.57.0-jammy"
-# 백엔드 소스 디렉터리(로컬은 형제 ../csereal-server, CI는 워크스페이스 내 csereal-server).
-BACKEND_DIR="${BACKEND_DIR:-../csereal-server}"
+# 백엔드 소스 디렉터리 = main 체크아웃(baseline은 항상 main 백엔드 기준).
+# v3 등 다른 작업본은 형제 ../csereal-server 에 따로 두고, 테스트는 늘 이 main 체크아웃으로 띄운다.
+BACKEND_DIR="${BACKEND_DIR:-../csereal-server-main}"
 BACKEND_URL="http://localhost:8080"
 PNPM_STORE="${PNPM_STORE:-$PWD/.pnpm-store}"
 UI_PORT="${UI_PORT:-43210}"
 COMPOSE="-f $BACKEND_DIR/docker-compose-local-full.yml -f tests/setup/backend/docker-compose-fe-test.yml"
 mkdir -p "$PNPM_STORE"
 
-# 1) 백엔드 보장(호스트). 이미 떠 있으면 재사용(이미지 있으면 빌드도 생략).
+# 1) 백엔드 보장(호스트). 항상 main 체크아웃의 compose로 띄운다 — 프로젝트명이 첫 compose
+#    파일의 디렉터리 기준 'csereal-server-main'으로 고정돼, 이미 떠 있으면 no-op·없으면 기동.
+#    "떠 있는 :8080 아무거나 재사용"을 안 하므로 어느 백엔드인지 모호함이 없다(baseline=main 보장).
+#    v3 등 다른 백엔드가 :8080을 점유 중이면 포트 충돌로 즉시 드러난다 → 그걸 내려야 한다.
 backend_healthy() { curl -fsS "$BACKEND_URL/api/v2/research/lab?language=ko" >/dev/null 2>&1; }
-if backend_healthy; then
-  echo "[e2e] 백엔드 이미 기동됨 → 재사용"
-else
-  echo "[e2e] 백엔드 기동(docker compose up)…"
-  docker compose $COMPOSE up -d
-  echo "[e2e] 백엔드 health 대기…"
-  for i in $(seq 1 60); do
-    backend_healthy && break
-    if [ "$i" = 60 ]; then
-      echo "::error::[e2e] 백엔드 기동 실패"
-      docker compose $COMPOSE logs my_server || true
-      exit 1
-    fi
-    sleep 5
-  done
-fi
+echo "[e2e] 백엔드 보장(docker compose up -d)…"
+docker compose $COMPOSE up -d
+echo "[e2e] 백엔드 health 대기…"
+for i in $(seq 1 60); do
+  backend_healthy && break
+  if [ "$i" = 60 ]; then
+    echo "::error::[e2e] 백엔드 기동 실패"
+    docker compose $COMPOSE logs my_server || true
+    exit 1
+  fi
+  sleep 5
+done
 
 # 2) 인자 처리. --ui면 UI 포트를 공개해 호스트 브라우저에서 본다.
 docker_ui_args=()
