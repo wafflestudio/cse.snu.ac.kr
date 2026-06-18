@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useArgs } from 'storybook/preview-api';
 import { fn } from 'storybook/test';
 import preview from '../../../.storybook/preview';
 import Button from './Button';
 import Dialog from './Dialog';
 
-// 모달은 open을 강제하지 않는다(트리거+play 패턴 — AlertDialog 참고). docs는 닫힌 트리거만
-// 보여 오버레이가 페이지를 안 덮고 컨트롤이 라이브로 먹는다. canvas는 play가 열어 보여준다.
+// 모달은 open을 강제하지 않는다(트리거+play + open useArgs 패턴 — AlertDialog 참고). docs는
+// 닫힌 트리거만 보여 오버레이가 페이지를 안 덮고 컨트롤이 라이브로 먹는다(open 컨트롤 포함).
 // `title` prop은 VisuallyHidden(접근성용)이라 화면 제목은 children 안에 둔다(실사용 패턴).
 const meta = preview.meta({
   title: 'UI/Dialog',
@@ -28,13 +28,17 @@ const meta = preview.meta({
     ),
   },
   render: function Render(args) {
-    const [open, setOpen] = useState(false);
+    const [{ open }, updateArgs] = useArgs();
     return (
       <>
-        <Button kind="secondary" onClick={() => setOpen(true)}>
+        <Button kind="secondary" onClick={() => updateArgs({ open: true })}>
           대화상자 열기
         </Button>
-        <Dialog {...args} open={open} onOpenChange={setOpen} />
+        <Dialog
+          {...args}
+          open={open}
+          onOpenChange={(o) => updateArgs({ open: o })}
+        />
       </>
     );
   },

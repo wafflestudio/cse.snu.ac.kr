@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useArgs } from 'storybook/preview-api';
 import { fn } from 'storybook/test';
 import preview from '../../../.storybook/preview';
 import AlertDialog from './AlertDialog';
 import Button from './Button';
 
 // 모달은 open을 강제하지 않는다 — 열어두면 portal 오버레이가 docs 전체를 덮어 inline:false가
-// 강요되고, 그러면 Docs 컨트롤이 라이브로 안 먹는다. 대신 트리거+상태로 닫힌 채 렌더하고,
-// canvas에선 play가 열어 보여준다(docs는 play를 안 돌려 닫힌 트리거만 → 컨트롤 정상 반영).
+// 강요되고, 그러면 Docs 컨트롤이 라이브로 안 먹는다. 대신 닫힌 채 렌더하고 canvas에선 play가
+// 연다(docs는 play 미실행 → 닫힌 트리거만). open은 useArgs로 묶어 **컨트롤·트리거·play가 모두**
+// 같은 open arg를 움직인다(로컬 useState면 open 컨트롤이 무시됨).
 const meta = preview.meta({
   title: 'UI/AlertDialog',
   component: AlertDialog,
@@ -19,13 +20,17 @@ const meta = preview.meta({
     onOpenChange: fn(),
   },
   render: function Render(args) {
-    const [open, setOpen] = useState(false);
+    const [{ open }, updateArgs] = useArgs();
     return (
       <>
-        <Button kind="secondary" onClick={() => setOpen(true)}>
+        <Button kind="secondary" onClick={() => updateArgs({ open: true })}>
           항목 삭제
         </Button>
-        <AlertDialog {...args} open={open} onOpenChange={setOpen} />
+        <AlertDialog
+          {...args}
+          open={open}
+          onOpenChange={(o) => updateArgs({ open: o })}
+        />
       </>
     );
   },
