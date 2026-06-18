@@ -8,11 +8,7 @@
 #
 # read(비주얼) 전에 globalSetup에서 실행된다. flow가 만드는 글은 이후 생성이라 영향 없음.
 set -euo pipefail
-
-CONTAINER="${E2E_DB_CONTAINER:-csereal-server-db-1}"
-DB="${E2E_DB_NAME:-csereal}"
-USER="${E2E_DB_USER:-root}"
-PASS="${E2E_DB_PASSWORD:-password}"
+source "$(dirname "${BASH_SOURCE[0]}")/db-exec.sh"
 
 FIXED='2024-03-15 09:00:00'
 
@@ -25,5 +21,5 @@ UPDATE conference_page SET modified_at='$FIXED';
 UPDATE news SET created_at='$FIXED', modified_at='$FIXED';
 "
 
-docker exec -i "$CONTAINER" mysql -u"$USER" -p"$PASS" "$DB" -e "$SQL" 2>/dev/null
+run_mysql "$DB" -e "$SQL" 2>/dev/null
 echo "[normalize-dates] 게시물 날짜 정규화 완료"

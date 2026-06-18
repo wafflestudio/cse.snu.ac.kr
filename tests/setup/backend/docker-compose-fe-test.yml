@@ -1,0 +1,24 @@
+# 프론트엔드 E2E 부팅용 백엔드 compose 오버라이드 (FE 레포 소유).
+#
+# 베이스(csereal-server/docker-compose-local-full.yml)는 백엔드 레포 소유지만, 이 오버라이드는
+# "E2E가 백엔드를 어떻게 띄우는가"라는 프론트 측 계약이라 FE 레포가 소유한다(upstream
+# wafflestudio/csereal-server main에는 없음 → 여기로 vendoring).
+#
+# 사용(로컬·CI 동일):
+#   docker compose \
+#     -f ../csereal-server/docker-compose-local-full.yml \
+#     -f tests/setup/backend/docker-compose-fe-test.yml up -d --build
+#
+# build.context는 베이스(local-full.yml)의 `context: .`(= csereal-server/)를 상속한다.
+# 이 파일은 build.args(PROFILE=local)와 환경변수만 덧댄다.
+services:
+  my_server:
+    build:
+      args:
+        PROFILE: local
+    environment:
+      # mock-login은 @Profile("!prod")이라 local 프로파일에서 활성(진짜 JSESSIONID 세션).
+      - OIDC_CLIENT_SECRET_DEV=dummy
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/csereal?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password

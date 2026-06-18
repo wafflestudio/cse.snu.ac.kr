@@ -18,7 +18,9 @@ const APP_URL = 'http://localhost:3000';
 const BACKEND_DIR = path.resolve(here, '../csereal-server');
 
 const backendServer = {
-  command: `docker compose -f ${BACKEND_DIR}/docker-compose-local-full.yml -f ${BACKEND_DIR}/docker-compose-fe-test.yml up -d`,
+  // 베이스 compose는 백엔드 레포 소유, E2E 부팅 오버라이드는 FE 레포 소유(tests/setup/backend/).
+  // 로컬·CI가 같은 오버라이드 파일을 써 드리프트를 막는다(CI는 scripts/e2e-docker.sh + 워크플로).
+  command: `docker compose -f ${BACKEND_DIR}/docker-compose-local-full.yml -f ${here}/tests/setup/backend/docker-compose-fe-test.yml up -d`,
   url: `${BACKEND_URL}/api/v2/research/lab?language=ko`,
   reuseExistingServer: true,
   timeout: 180_000,
