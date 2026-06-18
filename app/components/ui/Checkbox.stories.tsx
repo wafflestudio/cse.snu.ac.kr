@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/tanstack-react';
 import { useArgs } from 'storybook/preview-api';
+import preview from '../../../.storybook/preview';
 import Checkbox from './Checkbox';
 
 // 제어 컴포넌트(checked/onChange)라 useArgs로 onChange→arg 갱신해야 클릭 체크가 먹는다.
 // (disabled를 args에 명시해 'Set boolean' 버튼 없이 토글이 바로 뜨게 한다.)
-const meta = {
+const meta = preview.meta({
   title: 'UI/Checkbox',
   component: Checkbox,
   parameters: { layout: 'centered' },
@@ -25,10 +25,8 @@ const meta = {
       />
     );
   },
-} satisfies Meta<typeof Checkbox>;
-export default meta;
-type Story = StoryObj<typeof meta>;
+});
 
-export const Unchecked: Story = {};
-export const Checked: Story = { args: { checked: true } };
-export const Disabled: Story = { args: { checked: true, disabled: true } };
+export const Unchecked = meta.story();
+export const Checked = meta.story({ args: { checked: true } });
+export const Disabled = meta.story({ args: { checked: true, disabled: true } });

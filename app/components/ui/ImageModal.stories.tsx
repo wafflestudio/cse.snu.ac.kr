@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import preview from '../../../.storybook/preview';
 import ImageModal from './ImageModal';
 
 // 메인 페이지 이벤트 안내 모달(마운트 시 자동 오픈, "다시 보지 않기"=localStorage).
@@ -13,7 +13,7 @@ const sampleImage =
     </svg>`,
   );
 
-const meta = {
+const meta = preview.meta({
   title: 'UI/ImageModal',
   component: ImageModal,
   parameters: {
@@ -21,17 +21,15 @@ const meta = {
     // 마운트 시 자동 오픈 → portal 오버레이가 docs 페이지 전체를 덮는다 → 독립 iframe 격리.
     // 세로 포스터(320×400)가 잘려 이미지 컨테이너(overflow-auto)에 스크롤바가 생기지 않도록
     // 90vh 기준 이미지가 다 들어갈 높이를 준다.
-    docs: { story: { inline: false, iframeHeight: 760 } },
+    docs: { story: { inline: false, iframeHeight: '760px' } },
   },
   args: { id: 'sb-default', imageSrc: sampleImage },
-} satisfies Meta<typeof ImageModal>;
-export default meta;
-type Story = StoryObj<typeof meta>;
+});
 
 /** 닫기만 (외부 링크 없음). */
-export const Default: Story = {};
+export const Default = meta.story();
 
 /** 외부 링크 → "자세히 보기" 액션 버튼 노출. */
-export const WithExternalLink: Story = {
+export const WithExternalLink = meta.story({
   args: { id: 'sb-link', externalLink: 'https://cse.snu.ac.kr' },
-};
+});

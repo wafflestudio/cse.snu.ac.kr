@@ -1,12 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import preview from '../../.storybook/preview';
 
 // 디자인 토큰(app/app.css의 @theme)과 레이아웃 규약을 Storybook에 노출하는 문서용 스토리.
 // 토큰 값이 바뀌면 이 스와치가 자동으로 따라간다(같은 Tailwind 클래스를 쓰므로).
-const meta = {
+const meta = preview.meta({
   title: 'Foundations/Design Tokens',
   parameters: { layout: 'fullscreen' },
-} satisfies Meta;
-export default meta;
+});
 
 function Swatch({
   cls,
@@ -49,7 +48,7 @@ const NEUTRAL = [
   ['neutral-950', 'bg-neutral-950', '#0a0a0a'],
 ] as const;
 
-export const Colors: StoryObj<typeof meta> = {
+export const Colors = meta.story({
   render: () => (
     <div className="flex flex-col gap-8 p-8">
       <section>
@@ -70,7 +69,7 @@ export const Colors: StoryObj<typeof meta> = {
       </section>
     </div>
   ),
-};
+});
 
 /**
  * 페이지 본문 좌우 여백의 **단일 출처** `.page-gutter-x`(app.css의 utility).
@@ -78,7 +77,7 @@ export const Colors: StoryObj<typeof meta> = {
  * 인라인으로 재선언하지 않는다. 우측이 큰 건 SubNavbar(목차) 자리를 비워두기 때문.
  * 아래는 좌/우 거터를 실제 px 비율로 시각화한 것이다.
  */
-export const PageGutter: StoryObj<typeof meta> = {
+export const PageGutter = meta.story({
   render: () => (
     <div className="flex max-w-3xl flex-col gap-6 p-8">
       {/* 데스크톱: 실제 px를 그대로 폭으로 그려 비율을 보여준다 (w-25=100px, w-90=360px) */}
@@ -120,4 +119,4 @@ export const PageGutter: StoryObj<typeof meta> = {
       </div>
     </div>
   ),
-};
+});

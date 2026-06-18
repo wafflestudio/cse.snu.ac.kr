@@ -1,12 +1,12 @@
 import { fileURLToPath } from 'node:url';
-import type { StorybookConfig } from '@storybook/tanstack-react';
+import { defineMain } from '@storybook/tanstack-react/node';
 import tailwindcss from '@tailwindcss/vite';
 
 const serverFnsMock = fileURLToPath(
   new URL('./serverFns.mock.ts', import.meta.url),
 );
 
-const config: StorybookConfig = {
+export default defineMain({
   stories: ['../app/**/*.stories.@(ts|tsx)'],
   addons: ['@storybook/addon-a11y', '@storybook/addon-docs'],
   framework: '@storybook/tanstack-react',
@@ -30,5 +30,4 @@ const config: StorybookConfig = {
     cfg.plugins = [...(cfg.plugins ?? []), tailwindcss()];
     return cfg;
   },
-};
-export default config;
+});

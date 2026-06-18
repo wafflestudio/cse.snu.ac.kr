@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import preview from '../../../.storybook/preview';
 import Attachments from './Attachments';
 
-const meta = {
+const meta = preview.meta({
   title: 'UI/Attachments',
   component: Attachments,
   parameters: { layout: 'padded' },
@@ -11,7 +11,6 @@ const meta = {
       { id: 2, name: '장학금-신청서.hwp', bytes: 51200, url: '#' },
     ],
   },
-} satisfies Meta<typeof Attachments>;
-export default meta;
+});
 
-export const Default: StoryObj<typeof meta> = {};
+export const Default = meta.story();

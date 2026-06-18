@@ -1,16 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/tanstack-react';
 import { fn } from 'storybook/test';
+import preview from '../../../.storybook/preview';
 import { Tag } from './Tag';
 
-const meta = {
+const meta = preview.meta({
   title: 'UI/Tag',
   component: Tag,
   parameters: { layout: 'centered' },
   args: { label: '학사(학부)' },
-} satisfies Meta<typeof Tag>;
-export default meta;
-type Story = StoryObj<typeof meta>;
+});
 
-export const Outline: Story = { args: { variant: 'outline' } };
-export const Solid: Story = { args: { variant: 'solid' } };
-export const Deletable: Story = { args: { onDelete: fn() } };
+export const Outline = meta.story({ args: { variant: 'outline' } });
+export const Solid = meta.story({ args: { variant: 'solid' } });
+export const Deletable = meta.story({ args: { onDelete: fn() } });

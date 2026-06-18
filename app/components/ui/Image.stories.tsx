@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import preview from '../../../.storybook/preview';
 import Image from './Image';
 
 // Image는 http(s) src를 `/img?url=…`(최적화 프록시)로 감싸는데 Storybook엔 /img 서버가 없어
@@ -16,19 +16,17 @@ const sample =
     </svg>`,
   );
 
-const meta = {
+const meta = preview.meta({
   title: 'UI/Image',
   component: Image,
   parameters: { layout: 'centered' },
   args: { src: sample, width: 320, height: 240, alt: '예시 이미지' },
-} satisfies Meta<typeof Image>;
-export default meta;
-type Story = StoryObj<typeof meta>;
+});
 
-export const Default: Story = {};
+export const Default = meta.story();
 
 /** src가 없거나 로드 실패 시 SNU 로고 플레이스홀더. */
-export const Fallback: Story = {
+export const Fallback = meta.story({
   name: 'src 없음(플레이스홀더)',
   args: { src: null, className: 'h-[240px] w-[320px]' },
-};
+});

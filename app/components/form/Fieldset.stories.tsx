@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import preview from '../../../.storybook/preview';
 import Fieldset from './Fieldset';
 
-const meta = {
+const meta = preview.meta({
   title: 'Form/Fieldset',
   component: Fieldset,
   parameters: { layout: 'centered' },
@@ -18,9 +18,7 @@ const meta = {
     required: true,
     children: <input className="border rounded p-2" placeholder="입력" />,
   },
-} satisfies Meta<typeof Fieldset>;
-export default meta;
-type Story = StoryObj<typeof meta>;
+});
 
-export const Required: Story = {};
-export const Optional: Story = { args: { required: false } };
+export const Required = meta.story();
+export const Optional = meta.story({ args: { required: false } });

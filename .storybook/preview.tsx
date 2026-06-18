@@ -1,9 +1,11 @@
-import type { Preview } from '@storybook/tanstack-react';
+import addonA11y from '@storybook/addon-a11y';
+import addonDocs from '@storybook/addon-docs';
+import { definePreview } from '@storybook/tanstack-react';
 // 앱 전역 스타일(Tailwind v4 엔트리 + 토스트). 없으면 SB에 스타일이 전혀 안 입혀진다.
 import '../app/app.css';
 import '../app/components/ui/sonner/styles.css';
 
-const preview: Preview = {
+export default definePreview({
   parameters: {
     // 사이드바 순서: 토큰(Foundations) → 자주 쓰는 프리미티브(UI) → 합성(Form/Feature/Layout).
     options: {
@@ -25,8 +27,9 @@ const preview: Preview = {
       test: 'todo',
     },
   },
+
   // 컴포넌트별 자동 문서 페이지 생성(props 표 + 스토리 미리보기).
   tags: ['autodocs'],
-};
 
-export default preview;
+  addons: [addonA11y(), addonDocs()],
+});

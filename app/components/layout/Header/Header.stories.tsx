@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import preview from '../../../../.storybook/preview';
 import Header from './index';
 
-const meta = {
+const meta = preview.meta({
   title: 'Layout/Header',
   component: Header,
   parameters: { layout: 'fullscreen' },
@@ -14,7 +14,6 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof Header>;
-export default meta;
+});
 
-export const Default: StoryObj<typeof meta> = {};
+export const Default = meta.story();

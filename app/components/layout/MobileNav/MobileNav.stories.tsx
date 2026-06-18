@@ -1,7 +1,8 @@
-import type { Decorator, Meta, StoryObj } from '@storybook/tanstack-react';
+import type { Decorator } from '@storybook/tanstack-react';
 import { useEffect } from 'react';
 import { navigationTree } from '~/constants/navigation';
 import { useStore } from '~/store';
+import preview from '../../../../.storybook/preview';
 import MobileNav from './index';
 
 // MobileNav는 navbarState.type === 'hovered'일 때만, 그리고 `sm:hidden`이라
@@ -17,7 +18,7 @@ const withHoveredNav: Decorator = function HoveredNavDecorator(Story) {
   return <Story />;
 };
 
-const meta = {
+const meta = preview.meta({
   title: 'Layout/MobileNav',
   component: MobileNav,
   decorators: [withHoveredNav],
@@ -37,8 +38,7 @@ const meta = {
     },
   },
   globals: { viewport: { value: 'mobile390' } },
-} satisfies Meta<typeof MobileNav>;
-export default meta;
+});
 
 /** 소개 메뉴를 탭한 상태의 모바일 내비 드로어(목록 + 상세). */
-export const Open: StoryObj<typeof meta> = {};
+export const Open = meta.story();

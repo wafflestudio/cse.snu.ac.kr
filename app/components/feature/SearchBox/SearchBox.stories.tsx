@@ -1,15 +1,13 @@
-import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import preview from '../../../../.storybook/preview';
 import SearchBox from './index';
 
-const meta = {
+const meta = preview.meta({
   title: 'Feature/SearchBox',
   component: SearchBox,
   parameters: { layout: 'padded' },
   args: { tags: ['학사(학부)', '장학', '수상', '행사'] },
-} satisfies Meta<typeof SearchBox>;
-export default meta;
-type Story = StoryObj<typeof meta>;
+});
 
-export const Default: Story = {};
-export const Disabled: Story = { args: { disabled: true } };
-export const FormOnly: Story = { args: { formOnly: true } };
+export const Default = meta.story();
+export const Disabled = meta.story({ args: { disabled: true } });
+export const FormOnly = meta.story({ args: { formOnly: true } });

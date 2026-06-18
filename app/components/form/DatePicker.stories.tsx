@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import preview from '../../../.storybook/preview';
 import { withForm } from '../../../.storybook/withForm';
 import DatePicker from './DatePicker';
 
-const meta = {
+const meta = preview.meta({
   title: 'Form/DatePicker',
   component: DatePicker,
   // 캘린더가 아래로 펼쳐지므로 세로 여유를 주는 래퍼를 바깥에, withForm을 안쪽에.
@@ -18,12 +18,10 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
     formValues: { date: new Date('2024-03-15T09:00:00') },
-    docs: { story: { inline: false, iframeHeight: 440 } },
+    docs: { story: { inline: false, iframeHeight: '440px' } },
   },
   args: { name: 'date' },
-} satisfies Meta<typeof DatePicker>;
-export default meta;
-type Story = StoryObj<typeof meta>;
+});
 
-export const Default: Story = {};
-export const DateOnly: Story = { args: { hideTime: true } };
+export const Default = meta.story();
+export const DateOnly = meta.story({ args: { hideTime: true } });

@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import preview from '../../../../.storybook/preview';
 import SelectionList from './SelectionList';
 
-const meta = {
+const meta = preview.meta({
   title: 'Feature/SelectionList',
   component: SelectionList,
   parameters: { layout: 'padded' },
@@ -13,7 +13,6 @@ const meta = {
       { id: '4', label: '대학원 안내', href: '/academics/graduate/guide' },
     ],
   },
-} satisfies Meta<typeof SelectionList>;
-export default meta;
+});
 
-export const Default: StoryObj<typeof meta> = {};
+export const Default = meta.story();

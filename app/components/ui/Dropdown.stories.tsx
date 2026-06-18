@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/tanstack-react';
 import { useArgs } from 'storybook/preview-api';
+import preview from '../../../.storybook/preview';
 import Dropdown from './Dropdown';
 
 // 제어 컴포넌트라 useArgs로 onClick→selectedIndex arg 갱신(컨트롤·클릭 동기화).
-const meta = {
+const meta = preview.meta({
   title: 'UI/Dropdown',
   component: Dropdown,
   parameters: {
     layout: 'fullscreen',
     // 펼치면 아래로 ~168px 늘어나므로 프리뷰(특히 docs)에 세로 여유를 준다.
-    docs: { story: { inline: false, iframeHeight: 320 } },
+    docs: { story: { inline: false, iframeHeight: '320px' } },
   },
   decorators: [
     (Story) => (
@@ -34,8 +34,6 @@ const meta = {
       />
     );
   },
-} satisfies Meta<typeof Dropdown>;
-export default meta;
-type Story = StoryObj<typeof meta>;
+});
 
-export const Default: Story = {};
+export const Default = meta.story();
