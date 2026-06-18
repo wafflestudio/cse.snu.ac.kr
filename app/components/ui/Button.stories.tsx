@@ -4,9 +4,8 @@ import preview from '../../../.storybook/preview';
 import Button from './Button';
 
 // 스토리는 실사용 역할(kind)만 노출한다. 과거 variant×tone 곱집합(무효 조합 다수)을
-// 7개 역할로 수렴 → Storybook 컨트롤에서 깨진 조합을 만들 수 없다.
-//   primary/action/secondary = solid·outline 버튼, quiet/link/nav = 텍스트 버튼,
-//   segmented = 정렬 세그먼트 토글.
+// 5개 역할로 수렴 → Storybook 컨트롤에서 깨진 조합을 만들 수 없다.
+//   primary/action/secondary = solid·outline 버튼, quiet/nav = 텍스트 버튼.
 const meta = preview.meta({
   title: 'UI/Button',
   component: Button,
@@ -15,26 +14,14 @@ const meta = preview.meta({
   argTypes: {
     kind: {
       control: 'select',
-      options: [
-        'primary',
-        'action',
-        'secondary',
-        'quiet',
-        'link',
-        'nav',
-        'segmented',
-      ],
+      options: ['primary', 'action', 'secondary', 'quiet', 'nav'],
       description:
-        '역할. primary=강조 CTA · action=폼/다이얼로그 커밋 · secondary=보조 · quiet=저강조 텍스트 · link=인라인 링크 · nav=다크 헤더 유틸 · segmented=세그먼트 토글.',
+        '역할. primary=강조 CTA · action=폼/다이얼로그 커밋 · secondary=보조 · quiet=저강조 텍스트 · nav=다크 헤더 유틸.',
     },
     size: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg'],
       description: '크기.',
-    },
-    selected: {
-      control: 'boolean',
-      description: 'segmented 선택 상태(aria-pressed).',
     },
     disabled: { control: 'boolean', description: 'as="button"에서만 적용.' },
   },
@@ -60,30 +47,11 @@ export const Secondary = meta.story({
 export const Quiet = meta.story({
   args: { kind: 'quiet', children: '더보기' },
 });
-export const Link = meta.story({
-  args: { kind: 'link', children: '바로가기' },
-});
 
 /** nav = 다크 헤더 유틸 버튼(흰 글자). 다크 표면에서만 의미 있어 배경을 깔아 보여준다. */
 export const Nav = meta.story({
   args: { kind: 'nav', size: 'sm', children: '로그인' },
   decorators: [onDark],
-});
-
-/** segmented = 정렬 세그먼트 토글(선택 dark / 비선택 gray). faculty 가나다순/소속순. */
-// 합성 데모(두 세그먼트)라 args를 받지 않는 render로 둔다 — kind가 discriminated union이라
-// CSF4에서 render의 args 파라미터 타입이 안 맞고, 이 스토리는 컨트롤 연동이 불필요하다.
-export const Segmented = meta.story({
-  render: () => (
-    <div className="flex gap-2">
-      <Button kind="segmented" selected>
-        가나다순
-      </Button>
-      <Button kind="segmented" selected={false}>
-        소속순
-      </Button>
-    </div>
-  ),
 });
 
 // --- size (xs/lg 소수, sm/md 다수) ---

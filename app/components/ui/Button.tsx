@@ -7,29 +7,20 @@ import type {
 } from 'react';
 import { forwardRef } from 'react';
 
-// 역할(kind) 기반 API. variant×tone 곱집합(무효 조합 다수) 대신 실사용 7개 역할만 노출한다.
+// 역할(kind) 기반 API. variant×tone 곱집합(무효 조합 다수) 대신 실사용 5개 역할만 노출한다.
 // 각 kind는 기존 variant/tone 조합의 클래스를 그대로 재생산한다(픽셀 동일).
 //   primary   = 강조 CTA(추가/재시도)             ← solid/brand
 //   action    = 폼·다이얼로그 커밋(저장/삭제/확인) ← solid/inverse
 //   secondary = 보조(취소/필터/페이지네이션)        ← outline/neutral
 //   quiet     = 저강조 텍스트(밝은 표면)            ← text/neutral-500
-//   link      = 인라인 링크형 텍스트               ← text/brand
 //   nav       = 다크 헤더 유틸 버튼(흰 글자)         ← text/inverse
-//   segmented = 세그먼트 토글(선택 dark/비선택 gray) ← solid/inverse|solid/neutral + selected
-type ButtonKind =
-  | 'primary'
-  | 'action'
-  | 'secondary'
-  | 'quiet'
-  | 'link'
-  | 'nav'
-  | 'segmented';
+// (단일 선택 토글은 Button kind이 아니라 네이티브 radiogroup으로 — faculty 정렬·공지 필터.)
+type ButtonKind = 'primary' | 'action' | 'secondary' | 'quiet' | 'nav';
 type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 
 type BaseProps = {
   kind: ButtonKind;
   size?: ButtonSize;
-  selected?: boolean;
   iconLeft?: ReactNode;
   ariaLabel?: string;
   children?: ReactNode;
@@ -71,39 +62,27 @@ const TEXT_SIZE_CLASSES: Record<ButtonSize, string> = {
 };
 
 // kind → 시각 클래스(기존 variant/tone 조합과 바이트 동일).
-// 상태 의존(segmented)은 KIND_CLASSES에 없고 아래에서 따로 처리.
-const KIND_CLASSES: Record<Exclude<ButtonKind, 'segmented'>, string> = {
+const KIND_CLASSES: Record<ButtonKind, string> = {
   primary: 'rounded-[.0625rem] bg-main-orange text-white',
   action: 'rounded-[.0625rem] bg-neutral-700 text-white hover:bg-neutral-500',
   secondary:
     'rounded-[.0625rem] border border-neutral-200 bg-neutral-100 text-neutral-500 hover:bg-neutral-200',
   quiet: 'text-neutral-500 hover:text-white',
-  link: 'text-main-orange hover:text-main-orange/80',
   nav: 'text-white hover:text-neutral-200',
 };
 
 // 텍스트형 kind는 padding 없는 TEXT_SIZE_CLASSES를 쓴다.
-const TEXT_KINDS = new Set<ButtonKind>(['quiet', 'link', 'nav']);
+const TEXT_KINDS = new Set<ButtonKind>(['quiet', 'nav']);
 
 function getButtonClass({
   kind,
   size,
-  selected,
 }: {
   kind: ButtonKind;
   size: ButtonSize;
-  selected?: boolean;
 }) {
   const base =
     'inline-flex items-center justify-center gap-2 font-medium transition duration-200';
-
-  if (kind === 'segmented') {
-    const seg = selected
-      ? 'rounded-[.0625rem] bg-neutral-700 text-white hover:bg-neutral-500'
-      : 'rounded-[.0625rem] bg-neutral-200 text-neutral-700';
-    return clsx(base, SIZE_CLASSES[size], seg);
-  }
-
   const sizeClass = TEXT_KINDS.has(kind)
     ? TEXT_SIZE_CLASSES[size]
     : SIZE_CLASSES[size];
@@ -111,10 +90,10 @@ function getButtonClass({
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-  const { kind, size = 'md', selected, iconLeft, ariaLabel, children } = props;
+  const { kind, size = 'md', iconLeft, ariaLabel, children } = props;
 
   const className = clsx(
-    getButtonClass({ kind, size, selected }),
+    getButtonClass({ kind, size }),
     props.as === 'button' || props.as === undefined
       ? 'disabled:cursor-not-allowed disabled:opacity-40'
       : '',
@@ -155,7 +134,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
       onClick={props.onClick}
       disabled={props.disabled}
       className={className}
-      aria-pressed={kind === 'segmented' ? selected : undefined}
       aria-label={ariaLabel}
       ref={ref}
     >

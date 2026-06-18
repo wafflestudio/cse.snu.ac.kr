@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
+import clsx from 'clsx';
 import { useState } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
@@ -13,6 +14,22 @@ import PeopleGrid, {
 } from '../components/PeopleGrid';
 
 type SortType = 'name' | 'department';
+
+// 정렬은 둘 중 하나인 단일 선택 → 토글 버튼이 아니라 radiogroup. 시각은 기존 segmented와 동일
+// (선택=action 다크, 비선택=회색). as const로 label을 리터럴 유지(useLanguage `t`가 등록 키만 받음).
+const SORT_OPTIONS = [
+  { value: 'name', label: '가나다순' },
+  { value: 'department', label: '소속순' },
+] as const satisfies readonly { value: SortType; label: string }[];
+
+const sortPillClass = (selected: boolean) =>
+  clsx(
+    'inline-flex cursor-pointer select-none items-center justify-center gap-2 rounded-[.0625rem] px-[.875rem] py-[.3125rem] text-md font-medium leading-6 transition duration-200',
+    'has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-neutral-700',
+    selected
+      ? 'bg-neutral-700 text-white hover:bg-neutral-500'
+      : 'bg-neutral-200 text-neutral-700',
+  );
 
 const META = {
   ko: {
@@ -88,24 +105,21 @@ function FacultyPage() {
       pageDescription={meta.description}
     >
       <div className="mb-7 flex items-center justify-between">
-        <div className="flex gap-2">
-          <Button
-            kind="segmented"
-            selected={sortType === 'name'}
-            size="md"
-            onClick={() => setSortType('name')}
-          >
-            {t('가나다순')}
-          </Button>
-          <Button
-            kind="segmented"
-            selected={sortType === 'department'}
-            size="md"
-            onClick={() => setSortType('department')}
-          >
-            {t('소속순')}
-          </Button>
-        </div>
+        <fieldset aria-label="정렬" className="m-0 flex gap-2 border-0 p-0">
+          {SORT_OPTIONS.map(({ value, label }) => (
+            <label key={value} className={sortPillClass(sortType === value)}>
+              <input
+                type="radio"
+                name="faculty-sort"
+                value={value}
+                checked={sortType === value}
+                onChange={() => setSortType(value)}
+                className="sr-only"
+              />
+              {t(label)}
+            </label>
+          ))}
+        </fieldset>
         <LoginVisible allow="ROLE_STAFF">
           <Button
             kind="action"

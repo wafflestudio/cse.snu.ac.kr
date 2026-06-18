@@ -1,7 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { X } from 'lucide-react';
-import Button from '@/components/ui/Button';
 
 type TagVariant = 'outline' | 'solid';
 
@@ -48,17 +47,19 @@ export function Tag({
     <>
       <span className={onDelete ? 'pr-1.5' : ''}>{label}</span>
       {onDelete && (
-        <Button
-          kind="link"
+        // 삭제 X — 이 한 곳뿐이라 Button kind으로 빼지 않고 직접 정의(브랜드색 아이콘 버튼).
+        <button
+          type="button"
           disabled={disabled}
           onClick={(event) => {
             event.stopPropagation();
             onDelete();
           }}
-          ariaLabel={`${label} 삭제`}
+          aria-label={`${label} 삭제`}
+          className="inline-flex items-center justify-center text-main-orange transition duration-200 hover:text-main-orange/80 disabled:cursor-not-allowed disabled:opacity-40"
         >
           <X className="h-[13px] w-[13px]" />
-        </Button>
+        </button>
       )}
     </>
   );
