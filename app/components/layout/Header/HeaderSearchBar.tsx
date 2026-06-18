@@ -48,13 +48,9 @@ export default function HeaderSearchBar() {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <Button
-        type="submit"
-        kind="quiet"
-        size="sm"
-        ariaLabel={t('통합검색')}
-        iconLeft={<Search className="h-5 w-5" strokeWidth={1.5} />}
-      />
+      <Button type="submit" kind="quiet" size="sm" ariaLabel={t('통합검색')}>
+        <Search className="h-5 w-5" strokeWidth={1.5} />
+      </Button>
     </form>
   );
 }

@@ -24,13 +24,6 @@ const meta = preview.meta({
       description: '크기.',
     },
     disabled: { control: 'boolean', description: 'as="button"에서만 적용.' },
-    // iconLeft는 ReactNode라 컨트롤로 직접 입력이 안 됨 → mapping으로 예시 아이콘을 선택 노출.
-    iconLeft: {
-      control: 'select',
-      options: ['none', 'search'],
-      mapping: { none: undefined, search: <Search size={16} /> },
-      description: '왼쪽 아이콘(ReactNode — 컨트롤은 예시 매핑).',
-    },
   },
 });
 
@@ -70,9 +63,17 @@ export const Disabled = meta.story({
   args: { kind: 'primary', disabled: true },
 });
 
-/** 아이콘 + 텍스트 (MobileNav 검색 버튼 등). */
+/** 아이콘 + 텍스트 — 아이콘을 children에 직접 넣는다(gap-2가 간격 처리). */
 export const WithIcon = meta.story({
-  args: { kind: 'primary', iconLeft: <Search size={16} />, children: '검색' },
+  args: {
+    kind: 'primary',
+    children: (
+      <>
+        <Search size={16} />
+        검색
+      </>
+    ),
+  },
 });
 
 /** 아이콘 전용 (Header 검색 submit — quiet/sm, ariaLabel 필수). */
@@ -80,8 +81,7 @@ export const IconOnly = meta.story({
   args: {
     kind: 'quiet',
     size: 'sm',
-    iconLeft: <Search className="h-5 w-5" strokeWidth={1.5} />,
-    children: undefined,
     ariaLabel: '통합검색',
+    children: <Search className="h-5 w-5" strokeWidth={1.5} />,
   },
 });

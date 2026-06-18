@@ -45,8 +45,9 @@ export default function MobileNavList() {
           size="sm"
           onClick={() => setSearch(true)}
           ariaLabel="검색"
-          iconLeft={<SearchIcon />}
-        />
+        >
+          <SearchIcon />
+        </Button>
         <AuthButton />
         <LangButton />
       </div>
@@ -86,13 +87,9 @@ function SearchPage({ onClose }: { onClose: () => void }) {
           // biome-ignore lint/a11y/noAutofocus: 넣을거임
           autoFocus
         />
-        <Button
-          kind="quiet"
-          size="sm"
-          onClick={search}
-          ariaLabel="검색 실행"
-          iconLeft={<SearchIcon />}
-        />
+        <Button kind="quiet" size="sm" onClick={search} ariaLabel="검색 실행">
+          <SearchIcon />
+        </Button>
       </div>
     </div>
   );

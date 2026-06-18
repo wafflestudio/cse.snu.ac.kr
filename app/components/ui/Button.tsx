@@ -21,8 +21,8 @@ type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 type BaseProps = {
   kind: ButtonKind;
   size?: ButtonSize;
-  iconLeft?: ReactNode;
   ariaLabel?: string;
+  // 아이콘은 children에 직접 넣는다(shadcn식). base의 gap-2가 아이콘·텍스트 간격을 처리.
   children?: ReactNode;
 };
 
@@ -90,7 +90,7 @@ function getButtonClass({
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-  const { kind, size = 'md', iconLeft, ariaLabel, children } = props;
+  const { kind, size = 'md', ariaLabel, children } = props;
 
   const className = clsx(
     getButtonClass({ kind, size }),
@@ -99,17 +99,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
       : '',
   );
 
-  const content = (
-    <>
-      {iconLeft}
-      {children !== undefined && children !== null && <span>{children}</span>}
-    </>
-  );
-
   if (props.as === 'link') {
     return (
       <Link to={props.to} className={className} aria-label={ariaLabel}>
-        {content}
+        {children}
       </Link>
     );
   }
@@ -123,7 +116,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         rel={props.rel}
         aria-label={ariaLabel}
       >
-        {content}
+        {children}
       </a>
     );
   }
@@ -137,7 +130,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
       aria-label={ariaLabel}
       ref={ref}
     >
-      {content}
+      {children}
     </button>
   );
 });
