@@ -5,11 +5,7 @@
 # API로 생성하는 경로가 없다. reset이 행을 지우므로 SQL로 직접 ko/en 쌍 + 링크를 만든다.
 # 다른 content 싱글톤(academics degree-requirements 등)도 같은 패턴으로 여기에 추가.
 set -euo pipefail
-
-CONTAINER="${E2E_DB_CONTAINER:-csereal-server-db-1}"
-DB="${E2E_DB_NAME:-csereal}"
-USER="${E2E_DB_USER:-root}"
-PASS="${E2E_DB_PASSWORD:-password}"
+source "$(dirname "${BASH_SOURCE[0]}")/db-exec.sh"
 
 # postType, ko 본문, en 본문
 seed_about() {
@@ -67,7 +63,10 @@ INSERT INTO admissions (main_type, post_type, language, name, description, searc
 }
 
 SQL="$(
-  seed_about OVERVIEW  '<p>학부 소개 본문입니다.</p>'        '<p>Department overview.</p>'
+  # OVERVIEW 본문의 인라인 font-size span은 CSP 회귀 가드다(제거 금지). strict CSP가 백엔드
+  # HTML의 인라인 스타일을 떼면(처리된 <style>이 nonce 없이 차단되면) 글자가 작아져 overview
+  # read 스크린샷이 깨진다 → HTMLViewer/processHtmlForCsp 경로의 회귀를 비주얼로 잡는다.
+  seed_about OVERVIEW  '<p>학부 소개 본문입니다.</p><p><span style="font-size: 28px;">CSP스타일보존</span></p>'        '<p>Department overview.</p>'
   seed_about GREETINGS '<p>학부장 인사말입니다.</p>'        '<p>Greetings from the chair.</p>'
   seed_about HISTORY   '<p>학부 연혁입니다.</p>'            '<p>Department history.</p>'
   seed_about FUTURE_CAREERS '<p>졸업생 진로 안내 본문입니다.</p>' '<p>Career paths overview.</p>'
@@ -108,5 +107,5 @@ INSERT INTO room (id, capacity, name, location, type, created_at, modified_at) V
  (15,54,'302-208','302동','LECTURE',NOW(),NOW()),(16,70,'302-209','302동','LECTURE',NOW(),NOW());
 "
 
-docker exec -i "$CONTAINER" mysql --default-character-set=utf8mb4 -u"$USER" -p"$PASS" "$DB" -e "$SQL" 2>/dev/null
+run_mysql --default-character-set=utf8mb4 "$DB" -e "$SQL" 2>/dev/null
 echo "[seed-content] about content 싱글톤 시드 완료"

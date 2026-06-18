@@ -9,6 +9,8 @@ test.describe('학부 소개 - 읽기', () => {
     const res = await page.goto('/about/overview');
     expect(res?.status()).toBe(200);
     await expect(page.getByText(ABOUT_SEED.overview.ko)).toBeVisible();
+    // overview 시드 본문엔 인라인 font-size 마커가 들어 있다(seed-content.sh). strict CSP가
+    // 백엔드 HTML의 인라인 스타일을 떼면 글자 크기가 줄어 이 스크린샷이 깨진다 → CSP 회귀를 비주얼로 가드.
     await expect(page).toHaveScreenshot('overview-ko.png', { fullPage: true });
   });
 });

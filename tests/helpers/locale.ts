@@ -1,4 +1,4 @@
-import { type Page, expect } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 /**
  * 언어를 결정론적으로 고정합니다.
@@ -14,6 +14,10 @@ export async function setLocale(page: Page, locale: 'ko' | 'en') {
     .addCookies([
       { name: 'lang', value: locale, domain: 'localhost', path: '/' },
     ]);
+  // 결정론: LeftNav는 마우스 hover 시 펼쳐져(onMouseEnter) 스크린샷이 비결정적이 된다
+  // (커서가 사이드바 위면 expand → 닫힘/펼침이 런마다 달라짐). 커서를 사이드바 밖(헤더 영역)으로
+  // 두어 항상 닫힌 상태로 고정한다. 모바일(390px)엔 LeftNav가 없어 무해. goto 전에 호출되므로 유지됨.
+  await page.mouse.move(300, 8);
 }
 
 /**

@@ -28,7 +28,7 @@ export default function HTMLViewer({
   const isMobile = useIsMobile();
   const nonce = useNonce();
 
-  const { html: trimmedHTML, cssRules, styleKey } = html;
+  const { html: trimmedHTML, cssRules } = html;
 
   // image width 계산
   const hasImage = isNotFalsy(image);
@@ -64,12 +64,13 @@ export default function HTMLViewer({
         // biome-ignore lint/security/noDangerouslySetInnerHtml: HTML 콘텐츠 렌더링 필요
         dangerouslySetInnerHTML={{ __html: trimmedHTML }}
       />
-      {/* https://github.com/facebook/react/issues/32449 */}
-      {cssRules.length > 0 && (
-        <style href={styleKey} nonce={nonce} precedence="blahblah">
-          {cssRules}
-        </style>
-      )}
+      {/* strict CSP: <style precedence>는 React가 head로 hoisting하며, hoisted style의 nonce를
+          "렌더옵션의 style nonce"로만 채운다. 그런데 react-dom은 렌더 nonce가 문자열이면 script용으로만
+          쓰고 style nonce는 비운다(객체 {script,style}여야 style도 채움). TanStack은 ssr.nonce(문자열)를
+          그대로 React 렌더에 넘기므로 hoisted style이 nonce 없이 나가 → strict CSP(style-src 'nonce-…')에
+          막힌다(처리된 인라인 폰트 크기 등이 소실). precedence를 빼면 in-place 렌더라 JSX nonce가 그대로
+          출력 → CSP 통과 → 적용된다. (정석은 TanStack이 {script,style} nonce를 렌더에 넘기는 것.) */}
+      {cssRules.length > 0 && <style nonce={nonce}>{cssRules}</style>}
     </div>
   );
 }
