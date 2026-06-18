@@ -20,5 +20,6 @@ const meta = preview.meta({
   },
 });
 
+// title prop은 Radix a11y용으로 VisuallyHidden 렌더라 화면엔 안 보인다(시각 variant 없음).
+// 실제 사용처도 title을 안 넘겨 기본값('확인')만 쓴다 → 단일 스토리로 충분.
 export const Default = meta.story();
-export const WithTitle = meta.story({ args: { title: '삭제 확인' } });
