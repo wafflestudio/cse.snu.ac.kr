@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import Node from '~/components/ui/Nodes';
-import { useSearchParams } from '~/hooks/useSearchParams';
+import Node from '@/components/ui/Nodes';
+import { useSearchParams } from '@/hooks/useSearchParams';
 import Input from './Input';
 import SelectedTags from './SelectedTags';
 import TagCheckBoxes from './TagCheckboxes';

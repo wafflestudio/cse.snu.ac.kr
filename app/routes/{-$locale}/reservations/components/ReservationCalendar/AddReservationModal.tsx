@@ -2,11 +2,11 @@ import { Link } from '@tanstack/react-router';
 import { AlertCircle, ChevronRight } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { FormProvider } from 'react-hook-form';
-import Form from '~/components/form/Form';
-import Button from '~/components/ui/Button';
-import Dialog from '~/components/ui/Dialog';
-import { useLanguage } from '~/hooks/useLanguage';
-import useReservationForm from '~/routes/{-$locale}/reservations/hooks/useReservationForm';
+import Form from '@/components/form/Form';
+import Button from '@/components/ui/Button';
+import Dialog from '@/components/ui/Dialog';
+import { useLanguage } from '@/hooks/useLanguage';
+import useReservationForm from '@/routes/{-$locale}/reservations/hooks/useReservationForm';
 
 interface AddReservationModalProps {
   roomId: number;

@@ -1,7 +1,7 @@
 import { X } from 'lucide-react';
-import { navigationTree } from '~/constants/navigation';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useStore } from '~/store';
+import { navigationTree } from '@/constants/navigation';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useStore } from '@/store';
 import MenuSVG from './assets/menu.svg?react';
 
 export default function MobileNavButton() {

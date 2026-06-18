@@ -1,4 +1,4 @@
-import { navigationTree } from '~/constants/navigation';
+import { navigationTree } from '@/constants/navigation';
 import preview from '../../../../.storybook/preview';
 import CategoryGrid from './CategoryGrid';
 

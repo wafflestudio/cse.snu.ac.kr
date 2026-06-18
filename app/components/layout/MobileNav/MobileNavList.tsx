@@ -1,11 +1,11 @@
 import { useNavigate } from '@tanstack/react-router';
 import { X } from 'lucide-react';
 import { useState } from 'react';
-import Button from '~/components/ui/Button';
-import type { NavItem } from '~/constants/navigation';
-import { navigationTree } from '~/constants/navigation';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useStore } from '~/store';
+import Button from '@/components/ui/Button';
+import type { NavItem } from '@/constants/navigation';
+import { navigationTree } from '@/constants/navigation';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useStore } from '@/store';
 import navbarTranslations from '../LeftNav/translations.json';
 import SearchIcon from './assets/search.svg?react';
 

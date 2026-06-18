@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import Image from '~/components/ui/Image';
+import Image from '@/components/ui/Image';
 
 interface PeopleGridProps {
   items: PeopleCardProps[];

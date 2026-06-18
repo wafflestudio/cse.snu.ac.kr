@@ -1,20 +1,20 @@
 import { createFileRoute, Link, useRouter } from '@tanstack/react-router';
 import { useState } from 'react';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import SelectionList from '~/components/feature/selection/SelectionList';
-import PageLayout from '~/components/layout/PageLayout';
-import AlertDialog from '~/components/ui/AlertDialog';
-import Button from '~/components/ui/Button';
-import HTMLViewer from '~/components/ui/HTMLViewer';
-import Image from '~/components/ui/Image';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useSelectionList } from '~/hooks/useSelectionList';
-import { useResearchSubNav } from '~/hooks/useSubNav';
-import type { ResearchGroupsResponse } from '~/types/api/v2/research/groups';
-import { processHtmlForCsp } from '~/utils/cspServerFn';
-import { fetchJson, fetchOk } from '~/utils/fetch';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import SelectionList from '@/components/feature/selection/SelectionList';
+import PageLayout from '@/components/layout/PageLayout';
+import AlertDialog from '@/components/ui/AlertDialog';
+import Button from '@/components/ui/Button';
+import HTMLViewer from '@/components/ui/HTMLViewer';
+import Image from '@/components/ui/Image';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useSelectionList } from '@/hooks/useSelectionList';
+import { useResearchSubNav } from '@/hooks/useSubNav';
+import type { ResearchGroupsResponse } from '@/types/api/v2/research/groups';
+import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { fetchJson, fetchOk } from '@/utils/fetch';
 
 const META = {
   ko: {

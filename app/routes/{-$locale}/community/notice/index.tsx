@@ -1,18 +1,18 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import SearchBox from '~/components/feature/SearchBox';
-import PageLayout from '~/components/layout/PageLayout';
-import Pagination from '~/components/ui/Pagination';
-import { BASE_URL } from '~/constants/api';
-import { NOTICE_TAGS } from '~/constants/tag';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useSearchParams } from '~/hooks/useSearchParams';
-import { useSetToggle } from '~/hooks/useSetToggle';
-import { useCommunitySubNav } from '~/hooks/useSubNav';
-import { forwardAuthHeaders } from '~/lib/ssr';
-import type { NoticePreviewList } from '~/types/api/v2/notice';
-import { fetchJson } from '~/utils/fetch';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import SearchBox from '@/components/feature/SearchBox';
+import PageLayout from '@/components/layout/PageLayout';
+import Pagination from '@/components/ui/Pagination';
+import { BASE_URL } from '@/constants/api';
+import { NOTICE_TAGS } from '@/constants/tag';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useSearchParams } from '@/hooks/useSearchParams';
+import { useSetToggle } from '@/hooks/useSetToggle';
+import { useCommunitySubNav } from '@/hooks/useSubNav';
+import { forwardAuthHeaders } from '@/lib/ssr';
+import type { NoticePreviewList } from '@/types/api/v2/notice';
+import { fetchJson } from '@/utils/fetch';
 import AdminFeatures from './components/AdminFeatures';
 import NoticeListRow, {
   NOTICE_ROW_CELL_WIDTH,

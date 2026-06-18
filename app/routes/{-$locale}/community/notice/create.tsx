@@ -1,12 +1,12 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import PageLayout from '~/components/layout/PageLayout';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { isLocalFile } from '~/types/form';
-import { fetchOk } from '~/utils/fetch';
-import { FormData2 } from '~/utils/form';
+import PageLayout from '@/components/layout/PageLayout';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { isLocalFile } from '@/types/form';
+import { fetchOk } from '@/utils/fetch';
+import { FormData2 } from '@/utils/form';
 import NoticeEditor, { type NoticeFormData } from './components/NoticeEditor';
 
 function NoticeCreatePage() {

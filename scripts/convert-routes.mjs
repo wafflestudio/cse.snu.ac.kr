@@ -41,7 +41,7 @@ for (const file of files) {
   src = src.replace(compRe, `function ${compName}(${m[2]}) {`);
 
   let header = `import { createFileRoute } from '@tanstack/react-router';\n`;
-  if (hasLoader) header += `import { getLoaderRequest } from '~/lib/ssr';\n`;
+  if (hasLoader) header += `import { getLoaderRequest } from '@/lib/ssr';\n`;
   src = header + src;
 
   const loaderLine = hasLoader

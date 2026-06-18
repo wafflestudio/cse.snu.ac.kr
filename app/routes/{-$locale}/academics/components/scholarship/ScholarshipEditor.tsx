@@ -1,10 +1,10 @@
 import { useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import Fieldset from '~/components/form/Fieldset';
-import Form from '~/components/form/Form';
-import LanguagePicker from '~/components/form/LanguagePicker';
-import type { Locale } from '~/types/i18n';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
+import LanguagePicker from '@/components/form/LanguagePicker';
+import type { Locale } from '@/types/i18n';
 
 export interface ScholarshipFormData {
   koName: string;

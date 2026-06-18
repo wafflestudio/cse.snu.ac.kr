@@ -1,6 +1,6 @@
 import type { LucideIcon } from 'lucide-react';
 import { Globe, Mail, MapPin, PhoneCall, Printer } from 'lucide-react';
-import ProfileImage from '~/routes/{-$locale}/people/components/PeopleProfileImage';
+import ProfileImage from '@/routes/{-$locale}/people/components/PeopleProfileImage';
 
 interface PeopleProfileInfoItem {
   icon: string;

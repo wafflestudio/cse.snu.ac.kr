@@ -1,11 +1,11 @@
 import './assets/suneditor-contents.css';
 
 import clsx from 'clsx';
-import Image from '~/components/ui/Image';
-import { useNonce } from '~/hooks/useNonce';
-import useIsMobile from '~/hooks/useResponsive';
-import { type Falsy, isNotFalsy } from '~/types/utils';
-import type { ProcessedHtml } from '~/utils/csp';
+import Image from '@/components/ui/Image';
+import { useNonce } from '@/hooks/useNonce';
+import useIsMobile from '@/hooks/useResponsive';
+import { type Falsy, isNotFalsy } from '@/types/utils';
+import type { ProcessedHtml } from '@/utils/csp';
 
 interface TopRightImage {
   src: string;

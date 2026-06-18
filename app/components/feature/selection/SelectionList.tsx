@@ -1,6 +1,6 @@
-import CornerFoldedRectangle from '~/components/ui/CornerFoldedRectangle';
+import CornerFoldedRectangle from '@/components/ui/CornerFoldedRectangle';
 import { Link } from '@tanstack/react-router';
-import type { SelectionListItem } from '~/hooks/useSelectionList';
+import type { SelectionListItem } from '@/hooks/useSelectionList';
 
 interface SelectionListProps {
   items: SelectionListItem[];

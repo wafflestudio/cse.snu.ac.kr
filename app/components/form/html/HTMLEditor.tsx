@@ -6,7 +6,7 @@ import type { RegisterOptions } from 'react-hook-form';
 import { useFormContext } from 'react-hook-form';
 import type SunEditorCore from 'suneditor/src/lib/core';
 
-import { BASE_URL } from '~/constants/api';
+import { BASE_URL } from '@/constants/api';
 
 // https://github.com/JiHong88/SunEditor/issues/199
 const isContentEmpty = (editor: SunEditorCore) => {

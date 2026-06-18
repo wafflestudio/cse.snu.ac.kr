@@ -1,17 +1,17 @@
 import { useRouter } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import AlertDialog from '~/components/ui/AlertDialog';
-import Button from '~/components/ui/Button';
-import Dialog from '~/components/ui/Dialog';
-import { toast } from '~/components/ui/sonner';
-import { useLanguage } from '~/hooks/useLanguage';
-import { kstDayjs } from '~/lib/kstDayjs';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import AlertDialog from '@/components/ui/AlertDialog';
+import Button from '@/components/ui/Button';
+import Dialog from '@/components/ui/Dialog';
+import { toast } from '@/components/ui/sonner';
+import { useLanguage } from '@/hooks/useLanguage';
+import { kstDayjs } from '@/lib/kstDayjs';
 import {
   deleteRecurringReservation,
   deleteReservation,
-} from '~/routes/{-$locale}/reservations/api';
-import type { Reservation } from '~/types/api/v2/reservation';
+} from '@/routes/{-$locale}/reservations/api';
+import type { Reservation } from '@/types/api/v2/reservation';
 
 interface ReservationDetailModalProps {
   reservationId: number | null;

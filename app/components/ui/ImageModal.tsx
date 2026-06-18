@@ -1,7 +1,7 @@
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import { useEffect, useState } from 'react';
-import { useLanguage } from '~/hooks/useLanguage';
+import { useLanguage } from '@/hooks/useLanguage';
 
 // Material Icons 체크박스 SVG
 const CheckboxUnchecked = ({ className }: { className?: string }) => (

@@ -1,6 +1,6 @@
-import { useLanguage } from '~/hooks/useLanguage';
+import { useLanguage } from '@/hooks/useLanguage';
 import { Link } from '@tanstack/react-router';
-import { useStore } from '~/store';
+import { useStore } from '@/store';
 import HeaderLogoSVG from './assets/header_logo.svg?react';
 import HeaderSubTextSVG from './assets/header_sub_text.svg?react';
 import HeaderTextSVG from './assets/header_text.svg?react';

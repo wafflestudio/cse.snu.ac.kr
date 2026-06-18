@@ -7,23 +7,23 @@ import {
 } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { useEffect } from 'react';
-import '~/app.css';
-import '~/components/ui/sonner/styles.css';
+import '@/app.css';
+import '@/components/ui/sonner/styles.css';
 import { useNavigate } from '@tanstack/react-router';
-import Footer from '~/components/layout/Footer';
-import Header from '~/components/layout/Header';
-import LNB from '~/components/layout/LeftNav';
-import MobileNav from '~/components/layout/MobileNav';
-import NotFound from '~/components/system/NotFound';
-import ErrorState from '~/components/ui/ErrorState';
-import { Toaster } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useNonce } from '~/hooks/useNonce';
-import useIsMobile from '~/hooks/useResponsive';
-import { forwardAuthHeaders, readLangHeaders } from '~/lib/ssr';
-import { type Role, useStore } from '~/store';
-import { detectLangFromHeaders } from '~/utils/lang';
+import Footer from '@/components/layout/Footer';
+import Header from '@/components/layout/Header';
+import LNB from '@/components/layout/LeftNav';
+import MobileNav from '@/components/layout/MobileNav';
+import NotFound from '@/components/system/NotFound';
+import ErrorState from '@/components/ui/ErrorState';
+import { Toaster } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useNonce } from '@/hooks/useNonce';
+import useIsMobile from '@/hooks/useResponsive';
+import { forwardAuthHeaders, readLangHeaders } from '@/lib/ssr';
+import { type Role, useStore } from '@/store';
+import { detectLangFromHeaders } from '@/utils/lang';
 
 export const Route = createRootRoute({
   beforeLoad: ({ location }) => {

@@ -1,17 +1,17 @@
 import { useRouter } from '@tanstack/react-router';
 import { FormProvider, useForm } from 'react-hook-form';
-import Form from '~/components/form/Form';
-import Button from '~/components/ui/Button';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
+import Form from '@/components/form/Form';
+import Button from '@/components/ui/Button';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
 import {
   CLASSIFICATION,
   type ClassificationEn,
   type Course,
   GRADE,
-} from '~/types/api/v2/academics';
-import { fetchOk } from '~/utils/fetch';
+} from '@/types/api/v2/academics';
+import { fetchOk } from '@/utils/fetch';
 import BookmarkIcon from './assets/bookmark_icon.svg?react';
 
 const CREDIT = [1, 2, 3, 4];

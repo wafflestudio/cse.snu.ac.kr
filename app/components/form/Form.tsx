@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import HTMLEditor from '~/components/form/html/HTMLEditor';
+import HTMLEditor from '@/components/form/html/HTMLEditor';
 import Action from './Action';
 import Checkbox from './Checkbox';
 import DatePicker from './DatePicker';

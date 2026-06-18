@@ -1,13 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import ContentSection from '~/components/feature/content/ContentSection';
-import PageLayout from '~/components/layout/PageLayout';
-import Button from '~/components/ui/Button';
-import HTMLViewer from '~/components/ui/HTMLViewer';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useAboutSubNav } from '~/hooks/useSubNav';
-import { processHtmlForCsp } from '~/utils/cspServerFn';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import ContentSection from '@/components/feature/content/ContentSection';
+import PageLayout from '@/components/layout/PageLayout';
+import Button from '@/components/ui/Button';
+import HTMLViewer from '@/components/ui/HTMLViewer';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useAboutSubNav } from '@/hooks/useSubNav';
+import { processHtmlForCsp } from '@/utils/cspServerFn';
 
 import './assets/contactfix.css';
 

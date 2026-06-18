@@ -1,7 +1,7 @@
 import type { ChangeEventHandler, MouseEventHandler } from 'react';
 import type { FieldValues, RegisterOptions } from 'react-hook-form';
 import { useController, useFormContext } from 'react-hook-form';
-import type { EditorFile, LocalFile } from '~/types/form';
+import type { EditorFile, LocalFile } from '@/types/form';
 import ClearIcon from './assets/clear_icon.svg?react';
 
 interface FilePickerProps {

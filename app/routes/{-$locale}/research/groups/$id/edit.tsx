@@ -1,11 +1,11 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import PageLayout from '~/components/layout/PageLayout';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import type { ResearchGroup } from '~/types/api/v2/research/groups';
-import { fetchJson, fetchOk } from '~/utils/fetch';
-import { FormData2 } from '~/utils/form';
+import PageLayout from '@/components/layout/PageLayout';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { ResearchGroup } from '@/types/api/v2/research/groups';
+import { fetchJson, fetchOk } from '@/utils/fetch';
+import { FormData2 } from '@/utils/form';
 import ResearchGroupEditor, {
   type ResearchGroupFormData,
 } from '../components/ResearchGroupEditor';

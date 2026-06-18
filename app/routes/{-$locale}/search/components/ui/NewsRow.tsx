@@ -1,8 +1,8 @@
 import { Link } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
-import Image from '~/components/ui/Image';
-import { useLanguage } from '~/hooks/useLanguage';
+import Image from '@/components/ui/Image';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface NewsRowProps {
   href: string;

@@ -1,22 +1,22 @@
 import { createFileRoute } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import { forwardAuthHeaders } from '~/lib/ssr';
+import { forwardAuthHeaders } from '@/lib/ssr';
 import 'dayjs/locale/ko';
 import { useNavigate } from '@tanstack/react-router';
-import PageLayout from '~/components/layout/PageLayout';
-import Attachments from '~/components/ui/Attachments';
-import HTMLViewer from '~/components/ui/HTMLViewer';
-import Node from '~/components/ui/Nodes';
-import { toast } from '~/components/ui/sonner';
-import { Tag } from '~/components/ui/Tag';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useCommunitySubNav } from '~/hooks/useSubNav';
-import PostFooter from '~/routes/{-$locale}/community/components/PostFooter';
-import type { Notice } from '~/types/api/v2/notice';
-import { processHtmlForCsp } from '~/utils/cspServerFn';
-import { fetchOk } from '~/utils/fetch';
-import { stripHtml, truncateDescription } from '~/utils/metadata';
+import PageLayout from '@/components/layout/PageLayout';
+import Attachments from '@/components/ui/Attachments';
+import HTMLViewer from '@/components/ui/HTMLViewer';
+import Node from '@/components/ui/Nodes';
+import { toast } from '@/components/ui/sonner';
+import { Tag } from '@/components/ui/Tag';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useCommunitySubNav } from '@/hooks/useSubNav';
+import PostFooter from '@/routes/{-$locale}/community/components/PostFooter';
+import type { Notice } from '@/types/api/v2/notice';
+import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { fetchOk } from '@/utils/fetch';
+import { stripHtml, truncateDescription } from '@/utils/metadata';
 
 function NoticeDetailPage() {
   const notice = Route.useLoaderData();

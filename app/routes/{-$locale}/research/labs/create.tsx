@@ -1,15 +1,15 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import PageLayout from '~/components/layout/PageLayout';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
+import PageLayout from '@/components/layout/PageLayout';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
 import ResearchLabEditor, {
   type ResearchLabFormData,
-} from '~/routes/{-$locale}/research/labs/components/ResearchLabEditor';
-import type { SimpleFaculty } from '~/types/api/v2/professor';
-import type { ResearchGroup } from '~/types/api/v2/research/groups';
-import { fetchJson } from '~/utils/fetch';
-import { FormData2 } from '~/utils/form';
+} from '@/routes/{-$locale}/research/labs/components/ResearchLabEditor';
+import type { SimpleFaculty } from '@/types/api/v2/professor';
+import type { ResearchGroup } from '@/types/api/v2/research/groups';
+import { fetchJson } from '@/utils/fetch';
+import { FormData2 } from '@/utils/form';
 
 function ResearchLabCreate() {
   const loaderData = Route.useLoaderData();

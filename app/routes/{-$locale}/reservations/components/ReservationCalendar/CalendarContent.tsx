@@ -1,8 +1,8 @@
 import dayjs from 'dayjs';
 import { useState } from 'react';
-import useIsMobile from '~/hooks/useResponsive';
-import { kstDayjs } from '~/lib/kstDayjs';
-import type { ReservationPreview } from '~/types/api/v2/reservation';
+import useIsMobile from '@/hooks/useResponsive';
+import { kstDayjs } from '@/lib/kstDayjs';
+import type { ReservationPreview } from '@/types/api/v2/reservation';
 import CalendarColumn from './CalendarColumn';
 import ReservationDetailModal from './ReservationDetailModal';
 

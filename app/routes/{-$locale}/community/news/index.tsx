@@ -1,15 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import SearchBox from '~/components/feature/SearchBox';
-import PageLayout from '~/components/layout/PageLayout';
-import Button from '~/components/ui/Button';
-import Pagination from '~/components/ui/Pagination';
-import { BASE_URL } from '~/constants/api';
-import { NEWS_TAGS } from '~/constants/tag';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useSearchParams } from '~/hooks/useSearchParams';
-import { useCommunitySubNav } from '~/hooks/useSubNav';
-import type { NewsPreview, NewsPreviewList } from '~/types/api/v2/news';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import SearchBox from '@/components/feature/SearchBox';
+import PageLayout from '@/components/layout/PageLayout';
+import Button from '@/components/ui/Button';
+import Pagination from '@/components/ui/Pagination';
+import { BASE_URL } from '@/constants/api';
+import { NEWS_TAGS } from '@/constants/tag';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useSearchParams } from '@/hooks/useSearchParams';
+import { useCommunitySubNav } from '@/hooks/useSubNav';
+import type { NewsPreview, NewsPreviewList } from '@/types/api/v2/news';
 import NewsListRow from './components/NewsListRow';
 
 const POST_LIMIT = 10;

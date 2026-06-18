@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
-import Image from '~/components/ui/Image';
-import { useLanguage } from '~/hooks/useLanguage';
-import type { MainImportant } from '~/types/api/v2';
+import Image from '@/components/ui/Image';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { MainImportant } from '@/types/api/v2';
 import charityImg from '../assets/charity.avif';
 import ImportantArrowIcon from '../assets/important_arrow.svg?react';
 

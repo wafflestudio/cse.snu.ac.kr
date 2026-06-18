@@ -1,5 +1,5 @@
-import type commonTranslations from '~/translations.json';
-import type { Locale } from '~/types/i18n';
+import type commonTranslations from '@/translations.json';
+import type { Locale } from '@/types/i18n';
 import type footerOnlyTranslations from './translations.json';
 
 type FooterTranslations = typeof commonTranslations &

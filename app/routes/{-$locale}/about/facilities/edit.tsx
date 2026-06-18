@@ -1,23 +1,23 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import Fieldset from '~/components/form/Fieldset';
-import Form from '~/components/form/Form';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
 import LanguagePicker, {
   type Language,
-} from '~/components/form/LanguagePicker';
-import PageLayout from '~/components/layout/PageLayout';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useSearchParams } from '~/hooks/useSearchParams';
+} from '@/components/form/LanguagePicker';
+import PageLayout from '@/components/layout/PageLayout';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useSearchParams } from '@/hooks/useSearchParams';
 import type {
   FacilitiesResponse,
   Facility,
-} from '~/types/api/v2/about/facilities';
-import type { EditorImage } from '~/types/form';
-import { fetchJson, fetchOk } from '~/utils/fetch';
-import { FormData2 } from '~/utils/form';
+} from '@/types/api/v2/about/facilities';
+import type { EditorImage } from '@/types/form';
+import { fetchJson, fetchOk } from '@/utils/fetch';
+import { FormData2 } from '@/utils/form';
 
 interface FacilityFormData {
   ko: { name: string; description: string; locations: string[] };

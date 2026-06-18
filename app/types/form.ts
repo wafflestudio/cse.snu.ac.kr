@@ -1,5 +1,5 @@
 import type { FieldValues, RegisterOptions } from 'react-hook-form';
-import type { Falsy } from '~/types/utils';
+import type { Falsy } from '@/types/utils';
 
 export type Rules =
   | Omit<

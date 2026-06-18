@@ -1,13 +1,13 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import PageLayout from '~/components/layout/PageLayout';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import type { News } from '~/types/api/v2/news';
-import { isLocalFile } from '~/types/form';
-import { fetchJson, fetchOk } from '~/utils/fetch';
-import { FormData2, getDeleteIds } from '~/utils/form';
+import PageLayout from '@/components/layout/PageLayout';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { News } from '@/types/api/v2/news';
+import { isLocalFile } from '@/types/form';
+import { fetchJson, fetchOk } from '@/utils/fetch';
+import { FormData2, getDeleteIds } from '@/utils/form';
 import NewsEditor, { type NewsFormData } from './components/NewsEditor';
 
 function NewsEditPage() {

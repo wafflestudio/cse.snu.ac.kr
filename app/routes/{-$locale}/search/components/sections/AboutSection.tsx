@@ -1,9 +1,9 @@
-import { useLanguage } from '~/hooks/useLanguage';
-import type { AboutPreview, AboutSearchResult } from '~/types/api/v2/search';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { AboutPreview, AboutSearchResult } from '@/types/api/v2/search';
 import BasicRow from '../ui/BasicRow';
 import Section from '../ui/Section';
 
-type TranslationKey = keyof typeof import('~/translations.json');
+type TranslationKey = keyof typeof import('@/translations.json');
 
 const ABOUT_PATHS: Record<AboutPreview['aboutPostType'], string> = {
   OVERVIEW: '/about/overview',

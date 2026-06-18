@@ -1,17 +1,17 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { FormProvider, useForm } from 'react-hook-form';
-import Fieldset from '~/components/form/Fieldset';
-import Form from '~/components/form/Form';
-import PageLayout from '~/components/layout/PageLayout';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useAcademicsSubNav } from '~/hooks/useSubNav';
-import type { DegreeRequirements } from '~/types/api/v2/academics/undergraduate/degree-requirements';
-import type { EditorFile } from '~/types/form';
-import { isUploadedFile } from '~/types/form';
-import { fetchJson, fetchOk } from '~/utils/fetch';
-import { contentToFormData, getAttachmentDeleteIds } from '~/utils/formData';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
+import PageLayout from '@/components/layout/PageLayout';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useAcademicsSubNav } from '@/hooks/useSubNav';
+import type { DegreeRequirements } from '@/types/api/v2/academics/undergraduate/degree-requirements';
+import type { EditorFile } from '@/types/form';
+import { isUploadedFile } from '@/types/form';
+import { fetchJson, fetchOk } from '@/utils/fetch';
+import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
 
 interface DegreeRequirementsFormData {
   description: string;

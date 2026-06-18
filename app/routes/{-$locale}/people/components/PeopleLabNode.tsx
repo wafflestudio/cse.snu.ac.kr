@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
-import Node from '~/components/ui/Nodes';
-import { useLanguage } from '~/hooks/useLanguage';
-import type { Faculty } from '~/types/api/v2/professor';
+import Node from '@/components/ui/Nodes';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { Faculty } from '@/types/api/v2/professor';
 
 export default function PeopleLabNode({ faculty }: { faculty: Faculty }) {
   const { localizedPath } = useLanguage();

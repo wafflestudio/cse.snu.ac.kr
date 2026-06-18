@@ -2,8 +2,8 @@ import type { ChangeEventHandler, MouseEventHandler } from 'react';
 import { useEffect, useState } from 'react';
 import type { RegisterOptions } from 'react-hook-form';
 import { useFormContext, useWatch } from 'react-hook-form';
-import Image from '~/components/ui/Image';
-import type { LocalImage, UploadedImage } from '~/types/form';
+import Image from '@/components/ui/Image';
+import type { LocalImage, UploadedImage } from '@/types/form';
 
 interface Props {
   name: string;

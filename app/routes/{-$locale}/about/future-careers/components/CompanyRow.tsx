@@ -1,14 +1,14 @@
 import { useRouter } from '@tanstack/react-router';
 import { useReducer, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import Form from '~/components/form/Form';
-import AlertDialog from '~/components/ui/AlertDialog';
-import Button from '~/components/ui/Button';
-import { toast } from '~/components/ui/sonner';
-import { TABLE_COLUMN_SIZE } from '~/routes/{-$locale}/about/future-careers/components/CareerCompanies';
-import type { Company } from '~/types/api/v2/about/future-careers';
-import { fetchOk } from '~/utils/fetch';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import Form from '@/components/form/Form';
+import AlertDialog from '@/components/ui/AlertDialog';
+import Button from '@/components/ui/Button';
+import { toast } from '@/components/ui/sonner';
+import { TABLE_COLUMN_SIZE } from '@/routes/{-$locale}/about/future-careers/components/CareerCompanies';
+import type { Company } from '@/types/api/v2/about/future-careers';
+import { fetchOk } from '@/utils/fetch';
 
 interface CompanyTableRowProps {
   index: number;

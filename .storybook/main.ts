@@ -10,7 +10,7 @@ export default defineMain({
   stories: ['../app/**/*.stories.@(ts|tsx)'],
   addons: ['@storybook/addon-a11y', '@storybook/addon-docs'],
   framework: '@storybook/tanstack-react',
-  // `~/lib/serverFns`(createServerFn 기반)는 SB 브라우저 환경에서 `.validator` 체인이
+  // `@/lib/serverFns`(createServerFn 기반)는 SB 브라우저 환경에서 `.validator` 체인이
   // 깨져 useLanguage 사용 컴포넌트의 렌더를 막는다 → SB에선 no-op 모킹으로 alias.
   // (idiomatic `sb.mock`은 addon-vitest 인프라를 요구하는데, 그 의존이 playwright@1.60을
   //  끌어와 앱 E2E(@playwright/test@1.57)와 충돌 → addon-vitest 미설치라 Vite alias로 대체.)
@@ -18,10 +18,10 @@ export default defineMain({
     cfg.resolve = cfg.resolve ?? {};
     const alias = cfg.resolve.alias;
     if (Array.isArray(alias)) {
-      alias.unshift({ find: '~/lib/serverFns', replacement: serverFnsMock });
+      alias.unshift({ find: '@/lib/serverFns', replacement: serverFnsMock });
     } else {
       cfg.resolve.alias = {
-        '~/lib/serverFns': serverFnsMock,
+        '@/lib/serverFns': serverFnsMock,
         ...(alias ?? {}),
       };
     }

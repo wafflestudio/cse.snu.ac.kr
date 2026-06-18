@@ -1,4 +1,4 @@
-import type { MainNews } from '~/types/api/v2';
+import type { MainNews } from '@/types/api/v2';
 import NewsCard from './NewsCard';
 
 export default function NewsCarouselMobile({ news }: { news: MainNews[] }) {

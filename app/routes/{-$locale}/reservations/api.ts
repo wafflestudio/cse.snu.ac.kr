@@ -1,10 +1,10 @@
 import type dayjs from 'dayjs';
-import { BASE_URL } from '~/constants/api';
+import { BASE_URL } from '@/constants/api';
 import type {
   ReservationPostBody,
   ReservationPreview,
   ReserveTerm,
-} from '~/types/api/v2/reservation';
+} from '@/types/api/v2/reservation';
 
 export class ReservationError extends Error {
   constructor(

@@ -1,10 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import PageLayout from '~/components/layout/PageLayout';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useResearchSubNav } from '~/hooks/useSubNav';
-import type { TopConferenceListResponse } from '~/types/api/v2/conference';
+import PageLayout from '@/components/layout/PageLayout';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useResearchSubNav } from '@/hooks/useSubNav';
+import type { TopConferenceListResponse } from '@/types/api/v2/conference';
 import ConferenceListTable from './components/ConferenceListTable';
 
 const META = {

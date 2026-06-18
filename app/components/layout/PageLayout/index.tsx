@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
-import { useBreadcrumb } from '~/hooks/useBreadcrumb';
-import { useLanguage } from '~/hooks/useLanguage';
-import type { SubNavConfig } from '~/hooks/useSubNav';
-import { SITE_NAME } from '~/utils/metadata';
+import { useBreadcrumb } from '@/hooks/useBreadcrumb';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { SubNavConfig } from '@/hooks/useSubNav';
+import { SITE_NAME } from '@/utils/metadata';
 import Header from '../Header';
 import PageTitle from './PageTitle';
 import SubNavbar from './SubNavbar';

@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { X } from 'lucide-react';
-import Button from '~/components/ui/Button';
+import Button from '@/components/ui/Button';
 
 type TagVariant = 'outline' | 'solid';
 

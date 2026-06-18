@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from '@tanstack/react-router';
 import { Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import Button from '~/components/ui/Button';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useSearchParams } from '~/hooks/useSearchParams';
+import Button from '@/components/ui/Button';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useSearchParams } from '@/hooks/useSearchParams';
 
 const translations = {
   통합검색: 'Search',

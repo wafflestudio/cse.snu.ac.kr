@@ -1,11 +1,11 @@
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import PageLayout from '~/components/layout/PageLayout';
-import Button from '~/components/ui/Button';
-import HTMLViewer from '~/components/ui/HTMLViewer';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useNavItem } from '~/hooks/useNavItem';
-import { useAdmissionsSubNav } from '~/hooks/useSubNav';
-import type { ProcessedHtml } from '~/utils/csp';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import PageLayout from '@/components/layout/PageLayout';
+import Button from '@/components/ui/Button';
+import HTMLViewer from '@/components/ui/HTMLViewer';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useNavItem } from '@/hooks/useNavItem';
+import { useAdmissionsSubNav } from '@/hooks/useSubNav';
+import type { ProcessedHtml } from '@/utils/csp';
 
 interface AdmissionsPageContentProps {
   description: ProcessedHtml;

@@ -1,15 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import PageLayout from '~/components/layout/PageLayout';
-import Button from '~/components/ui/Button';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { usePeopleSubNav } from '~/hooks/useSubNav';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import PageLayout from '@/components/layout/PageLayout';
+import Button from '@/components/ui/Button';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { usePeopleSubNav } from '@/hooks/useSubNav';
 import PeopleGrid, {
   type PeopleCardContentItem,
   type PeopleCardProps,
-} from '~/routes/{-$locale}/people/components/PeopleGrid';
-import type { SimpleStaff } from '~/types/api/v2/staff';
+} from '@/routes/{-$locale}/people/components/PeopleGrid';
+import type { SimpleStaff } from '@/types/api/v2/staff';
 
 const META = {
   ko: {

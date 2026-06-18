@@ -11,12 +11,12 @@ import {
   useRef,
   useState,
 } from 'react';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import Button from '~/components/ui/Button';
-import Calendar from '~/components/ui/Calendar';
-import { useClickOutside } from '~/hooks/useClickOutside';
-import { kstDayjs } from '~/lib/kstDayjs';
-import useSelectedDate from '~/routes/{-$locale}/reservations/hooks/useSelectedDate';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import Button from '@/components/ui/Button';
+import Calendar from '@/components/ui/Calendar';
+import { useClickOutside } from '@/hooks/useClickOutside';
+import { kstDayjs } from '@/lib/kstDayjs';
+import useSelectedDate from '@/routes/{-$locale}/reservations/hooks/useSelectedDate';
 import AddReservationModal from './AddReservationModal';
 
 export default function CalendarToolbar({

@@ -1,13 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import SelectionList from '~/components/feature/selection/SelectionList';
-import SelectionTitle from '~/components/feature/selection/SelectionTitle';
-import PageLayout from '~/components/layout/PageLayout';
-import HTMLViewer from '~/components/ui/HTMLViewer';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useSelectionList } from '~/hooks/useSelectionList';
-import { useReservationsSubNav } from '~/hooks/useSubNav';
-import { processHtmlForCsp } from '~/utils/cspServerFn';
+import SelectionList from '@/components/feature/selection/SelectionList';
+import SelectionTitle from '@/components/feature/selection/SelectionTitle';
+import PageLayout from '@/components/layout/PageLayout';
+import HTMLViewer from '@/components/ui/HTMLViewer';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useSelectionList } from '@/hooks/useSelectionList';
+import { useReservationsSubNav } from '@/hooks/useSubNav';
+import { processHtmlForCsp } from '@/utils/cspServerFn';
 
 const META = {
   ko: {

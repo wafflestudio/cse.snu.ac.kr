@@ -1,9 +1,9 @@
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
 
-import Fieldset from '~/components/form/Fieldset';
-import Form from '~/components/form/Form';
-import { NOTICE_TAGS } from '~/constants/tag';
-import type { EditorFile } from '~/types/form';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
+import { NOTICE_TAGS } from '@/constants/tag';
+import type { EditorFile } from '@/types/form';
 
 export interface NoticeFormData {
   title: string;

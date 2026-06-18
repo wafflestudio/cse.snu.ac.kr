@@ -1,18 +1,18 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import Fieldset from '~/components/form/Fieldset';
-import Form from '~/components/form/Form';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
 import LanguagePicker, {
   type Language,
-} from '~/components/form/LanguagePicker';
-import PageLayout from '~/components/layout/PageLayout';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import type { FutureCareersResponse } from '~/types/api/v2/about/future-careers';
-import { LOCALES } from '~/types/i18n';
-import { fetchJson, fetchOk } from '~/utils/fetch';
+} from '@/components/form/LanguagePicker';
+import PageLayout from '@/components/layout/PageLayout';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { FutureCareersResponse } from '@/types/api/v2/about/future-careers';
+import { LOCALES } from '@/types/i18n';
+import { fetchJson, fetchOk } from '@/utils/fetch';
 
 interface CareerDescriptionFormData {
   ko: string;

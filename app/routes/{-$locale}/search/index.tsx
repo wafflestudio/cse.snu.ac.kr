@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
-import SearchBox from '~/components/feature/SearchBox';
-import PageLayout from '~/components/layout/PageLayout';
-import { useLanguage } from '~/hooks/useLanguage';
+import SearchBox from '@/components/feature/SearchBox';
+import PageLayout from '@/components/layout/PageLayout';
+import { useLanguage } from '@/hooks/useLanguage';
 import MagnificentGlass from './assets/magnificent_glass.svg?react';
 import AboutSection from './components/sections/AboutSection';
 import AcademicSection from './components/sections/AcademicSection';

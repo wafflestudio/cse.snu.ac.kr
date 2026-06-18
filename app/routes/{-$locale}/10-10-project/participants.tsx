@@ -1,8 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
-import PageLayout from '~/components/layout/PageLayout';
-import HTMLViewer from '~/components/ui/HTMLViewer';
-import { useLanguage } from '~/hooks/useLanguage';
-import { processHtmlForCsp } from '~/utils/cspServerFn';
+import PageLayout from '@/components/layout/PageLayout';
+import HTMLViewer from '@/components/ui/HTMLViewer';
+import { useLanguage } from '@/hooks/useLanguage';
+import { processHtmlForCsp } from '@/utils/cspServerFn';
 
 const META = {
   ko: {

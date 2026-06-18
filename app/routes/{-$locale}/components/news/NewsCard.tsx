@@ -1,8 +1,8 @@
 import { Link } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import Image from '~/components/ui/Image';
-import { useLanguage } from '~/hooks/useLanguage';
-import type { MainNews } from '~/types/api/v2';
+import Image from '@/components/ui/Image';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { MainNews } from '@/types/api/v2';
 import { CARD_WIDTH_TAILWIND } from './constants';
 
 export default function NewsCard({ news }: { news: MainNews }) {

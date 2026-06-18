@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useRef } from 'react';
-import type { SortOption } from '~/types/academics';
-import type { Course } from '~/types/api/v2/academics';
+import type { SortOption } from '@/types/academics';
+import type { Course } from '@/types/api/v2/academics';
 import CourseCard from './CourseCard';
 
 interface CourseCardsProps {

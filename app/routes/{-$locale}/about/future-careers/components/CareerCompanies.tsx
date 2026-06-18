@@ -1,15 +1,15 @@
 import { useReducer } from 'react';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import Button from '~/components/ui/Button';
-import { toast } from '~/components/ui/sonner';
-import { useLanguage } from '~/hooks/useLanguage';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import Button from '@/components/ui/Button';
+import { toast } from '@/components/ui/sonner';
+import { useLanguage } from '@/hooks/useLanguage';
 import {
   CareerCompanyEditor,
   type CareerCompanyFormData,
   CompanyTableRow,
-} from '~/routes/{-$locale}/about/future-careers/components/CompanyRow';
-import type { Company } from '~/types/api/v2/about/future-careers';
-import { fetchOk } from '~/utils/fetch';
+} from '@/routes/{-$locale}/about/future-careers/components/CompanyRow';
+import type { Company } from '@/types/api/v2/about/future-careers';
+import { fetchOk } from '@/utils/fetch';
 
 export const TABLE_COLUMN_SIZE = [
   'sm:w-[3rem]',

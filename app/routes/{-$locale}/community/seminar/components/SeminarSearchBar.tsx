@@ -1,7 +1,7 @@
 import { Search } from 'lucide-react';
 import { type ChangeEvent, type FormEvent, useEffect, useState } from 'react';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useSearchParams } from '~/hooks/useSearchParams';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useSearchParams } from '@/hooks/useSearchParams';
 
 export default function SeminarSearchBar() {
   const { t } = useLanguage({ 검색: 'Search' });

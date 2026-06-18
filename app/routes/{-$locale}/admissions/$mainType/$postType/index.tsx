@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { processHtmlForCsp } from '~/utils/cspServerFn';
+import { processHtmlForCsp } from '@/utils/cspServerFn';
 import AdmissionsPageContent from '../../components/AdmissionsPageContent';
 import { fetchAdmissions } from '../../components/fetchAdmissions';
 

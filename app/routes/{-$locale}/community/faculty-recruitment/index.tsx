@@ -1,15 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import PageLayout from '~/components/layout/PageLayout';
-import Button from '~/components/ui/Button';
-import HTMLViewer from '~/components/ui/HTMLViewer';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useCommunitySubNav } from '~/hooks/useSubNav';
-import type { FacultyRecruitment } from '~/types/api/v2/recruit';
-import { processHtmlForCsp } from '~/utils/cspServerFn';
-import { fetchJson } from '~/utils/fetch';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import PageLayout from '@/components/layout/PageLayout';
+import Button from '@/components/ui/Button';
+import HTMLViewer from '@/components/ui/HTMLViewer';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useCommunitySubNav } from '@/hooks/useSubNav';
+import type { FacultyRecruitment } from '@/types/api/v2/recruit';
+import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { fetchJson } from '@/utils/fetch';
 
 const META = {
   ko: {

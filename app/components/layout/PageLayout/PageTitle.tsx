@@ -6,8 +6,8 @@ import {
 } from '@tanstack/react-router';
 import { ChevronRight } from 'lucide-react';
 import { Fragment } from 'react';
-import Node from '~/components/ui/Nodes';
-import { useLanguage } from '~/hooks/useLanguage';
+import Node from '@/components/ui/Nodes';
+import { useLanguage } from '@/hooks/useLanguage';
 import type { BreadcrumbItem } from './index';
 
 interface PageTitleProps {

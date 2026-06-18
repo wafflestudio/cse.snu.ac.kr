@@ -1,6 +1,6 @@
 import { create } from 'zustand';
-import { BASE_URL } from '~/constants/api';
-import type { NavItem } from '~/constants/navigation';
+import { BASE_URL } from '@/constants/api';
+import type { NavItem } from '@/constants/navigation';
 
 export type NavbarState =
   | { type: 'closed' }

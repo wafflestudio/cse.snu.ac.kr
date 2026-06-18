@@ -1,12 +1,12 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import PageLayout from '~/components/layout/PageLayout';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import type { Seminar } from '~/types/api/v2/seminar';
-import { isLocalFile } from '~/types/form';
-import { fetchJson, fetchOk } from '~/utils/fetch';
-import { FormData2, getDeleteIds } from '~/utils/form';
+import PageLayout from '@/components/layout/PageLayout';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { Seminar } from '@/types/api/v2/seminar';
+import { isLocalFile } from '@/types/form';
+import { fetchJson, fetchOk } from '@/utils/fetch';
+import { FormData2, getDeleteIds } from '@/utils/form';
 import SeminarEditor, {
   type SeminarFormData,
 } from './components/SeminarEditor';

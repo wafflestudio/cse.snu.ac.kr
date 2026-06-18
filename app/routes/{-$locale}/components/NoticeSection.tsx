@@ -3,11 +3,11 @@ import { Link } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import type { ReactNode } from 'react';
 import { useState } from 'react';
-import Button from '~/components/ui/Button';
-import Image from '~/components/ui/Image';
-import { useLanguage } from '~/hooks/useLanguage';
-import useIsMobile from '~/hooks/useResponsive';
-import type { AllMainNotice } from '~/types/api/v2';
+import Button from '@/components/ui/Button';
+import Image from '@/components/ui/Image';
+import { useLanguage } from '@/hooks/useLanguage';
+import useIsMobile from '@/hooks/useResponsive';
+import type { AllMainNotice } from '@/types/api/v2';
 import noticeGraphicImg from '../assets/noticeGraphic.avif';
 import PlusIcon from '../assets/plus.svg?react';
 

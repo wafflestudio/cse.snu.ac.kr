@@ -1,9 +1,9 @@
 import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
-import Checkbox from '~/components/ui/Checkbox';
-import { useLanguage } from '~/hooks/useLanguage';
-import type { ImportantPreview, SlidePreview } from '~/types/api/v2/admin';
+import Checkbox from '@/components/ui/Checkbox';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { ImportantPreview, SlidePreview } from '@/types/api/v2/admin';
 
 const CATEGORY_PATHS = {
   notice: '/community/notice',

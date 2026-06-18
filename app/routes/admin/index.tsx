@@ -1,9 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router';
-import SelectionList from '~/components/feature/selection/SelectionList';
-import PageLayout from '~/components/layout/PageLayout';
-import { BASE_URL } from '~/constants/api';
-import { useSelectionList } from '~/hooks/useSelectionList';
-import { forwardAuthHeaders } from '~/lib/ssr';
+import SelectionList from '@/components/feature/selection/SelectionList';
+import PageLayout from '@/components/layout/PageLayout';
+import { BASE_URL } from '@/constants/api';
+import { useSelectionList } from '@/hooks/useSelectionList';
+import { forwardAuthHeaders } from '@/lib/ssr';
 import {
   ADMIN_MENU_IMAGE_MODAL,
   ADMIN_MENU_IMPORTANT,
@@ -11,8 +11,8 @@ import {
   type ImageModal,
   type ImportantPreviewList,
   type SlidePreviewList,
-} from '~/types/api/v2/admin';
-import { fetchJson } from '~/utils/fetch';
+} from '@/types/api/v2/admin';
+import { fetchJson } from '@/utils/fetch';
 import ImageModalManagement from './components/ImageModalManagement';
 import ImportantManagement from './components/ImportantManagement';
 import SlideManagement from './components/SlideManagement';

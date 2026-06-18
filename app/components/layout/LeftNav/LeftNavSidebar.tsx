@@ -1,9 +1,9 @@
 import { Link } from '@tanstack/react-router';
-import { IS_PROD } from '~/constants/api';
-import { navigationTree } from '~/constants/navigation';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useNavItem } from '~/hooks/useNavItem';
-import { useStore } from '~/store';
+import { IS_PROD } from '@/constants/api';
+import { navigationTree } from '@/constants/navigation';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useNavItem } from '@/hooks/useNavItem';
+import { useStore } from '@/store';
 import DotEmpty from './assets/dot_empty.svg?react';
 import DotFill from './assets/dot_fill.svg?react';
 import SnuLogo from './assets/SNU_Logo.svg?react';

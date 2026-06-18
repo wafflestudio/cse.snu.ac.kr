@@ -1,15 +1,15 @@
 import { useRouter } from '@tanstack/react-router';
 import { useState } from 'react';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import SelectionTitle from '~/components/feature/selection/SelectionTitle';
-import AlertDialog from '~/components/ui/AlertDialog';
-import Button from '~/components/ui/Button';
-import HTMLViewer from '~/components/ui/HTMLViewer';
-import { toast } from '~/components/ui/sonner';
-import { useLanguage } from '~/hooks/useLanguage';
-import type { Club } from '~/types/api/v2/about/student-clubs';
-import type { ProcessedHtml } from '~/utils/csp';
-import { fetchOk } from '~/utils/fetch';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import SelectionTitle from '@/components/feature/selection/SelectionTitle';
+import AlertDialog from '@/components/ui/AlertDialog';
+import Button from '@/components/ui/Button';
+import HTMLViewer from '@/components/ui/HTMLViewer';
+import { toast } from '@/components/ui/sonner';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { Club } from '@/types/api/v2/about/student-clubs';
+import type { ProcessedHtml } from '@/utils/csp';
+import { fetchOk } from '@/utils/fetch';
 
 interface ClubDetailsProps {
   club: { ko: ProcessedClub; en: ProcessedClub };

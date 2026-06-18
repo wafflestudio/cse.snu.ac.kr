@@ -1,4 +1,4 @@
-import { useStore } from '~/store';
+import { useStore } from '@/store';
 import LNBDetail from './LeftNavDetail';
 import LNBSidebar from './LeftNavSidebar';
 

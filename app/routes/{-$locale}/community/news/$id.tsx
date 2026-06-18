@@ -1,20 +1,20 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import PageLayout from '~/components/layout/PageLayout';
-import Attachments from '~/components/ui/Attachments';
-import HTMLViewer from '~/components/ui/HTMLViewer';
-import Node from '~/components/ui/Nodes';
-import { toast } from '~/components/ui/sonner';
-import { Tag } from '~/components/ui/Tag';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useCommunitySubNav } from '~/hooks/useSubNav';
-import { forwardAuthHeaders } from '~/lib/ssr';
-import PostFooter from '~/routes/{-$locale}/community/components/PostFooter';
-import type { News } from '~/types/api/v2/news';
-import { processHtmlForCsp } from '~/utils/cspServerFn';
-import { fetchOk } from '~/utils/fetch';
-import { stripHtml, truncateDescription } from '~/utils/metadata';
+import PageLayout from '@/components/layout/PageLayout';
+import Attachments from '@/components/ui/Attachments';
+import HTMLViewer from '@/components/ui/HTMLViewer';
+import Node from '@/components/ui/Nodes';
+import { toast } from '@/components/ui/sonner';
+import { Tag } from '@/components/ui/Tag';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useCommunitySubNav } from '@/hooks/useSubNav';
+import { forwardAuthHeaders } from '@/lib/ssr';
+import PostFooter from '@/routes/{-$locale}/community/components/PostFooter';
+import type { News } from '@/types/api/v2/news';
+import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { fetchOk } from '@/utils/fetch';
+import { stripHtml, truncateDescription } from '@/utils/metadata';
 
 function NewsDetailPage() {
   const news = Route.useLoaderData();

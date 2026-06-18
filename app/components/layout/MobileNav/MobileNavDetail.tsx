@@ -1,8 +1,8 @@
-import type { NavItem } from '~/constants/navigation';
+import type { NavItem } from '@/constants/navigation';
 import { Link } from '@tanstack/react-router';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useNavItem } from '~/hooks/useNavItem';
-import { useStore } from '~/store';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useNavItem } from '@/hooks/useNavItem';
+import { useStore } from '@/store';
 import navbarTranslations from '../LeftNav/translations.json';
 
 export default function MobileNavDetail() {

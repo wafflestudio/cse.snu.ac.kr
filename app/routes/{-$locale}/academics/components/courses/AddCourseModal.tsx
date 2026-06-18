@@ -1,15 +1,15 @@
 import { useRouter } from '@tanstack/react-router';
 import { FormProvider, useForm } from 'react-hook-form';
-import Fieldset from '~/components/form/Fieldset';
-import Form from '~/components/form/Form';
-import Button from '~/components/ui/Button';
-import Dialog from '~/components/ui/Dialog';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import type { Course, StudentType } from '~/types/api/v2/academics';
-import { CLASSIFICATION, GRADE } from '~/types/api/v2/academics';
-import { fetchOk } from '~/utils/fetch';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
+import Button from '@/components/ui/Button';
+import Dialog from '@/components/ui/Dialog';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { Course, StudentType } from '@/types/api/v2/academics';
+import { CLASSIFICATION, GRADE } from '@/types/api/v2/academics';
+import { fetchOk } from '@/utils/fetch';
 
 const CREDIT = [1, 2, 3, 4];
 

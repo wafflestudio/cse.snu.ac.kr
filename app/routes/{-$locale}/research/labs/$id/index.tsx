@@ -1,16 +1,16 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import PageLayout from '~/components/layout/PageLayout';
-import Button from '~/components/ui/Button';
-import CornerFoldedRectangle from '~/components/ui/CornerFoldedRectangle';
-import HTMLViewer from '~/components/ui/HTMLViewer';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { createSelectionUrl } from '~/hooks/useSelectionList';
-import { useResearchSubNav } from '~/hooks/useSubNav';
-import type { ResearchLabWithLanguage } from '~/types/api/v2/research/labs';
-import { processHtmlForCsp } from '~/utils/cspServerFn';
-import { stripHtml, truncateDescription } from '~/utils/metadata';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import PageLayout from '@/components/layout/PageLayout';
+import Button from '@/components/ui/Button';
+import CornerFoldedRectangle from '@/components/ui/CornerFoldedRectangle';
+import HTMLViewer from '@/components/ui/HTMLViewer';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { createSelectionUrl } from '@/hooks/useSelectionList';
+import { useResearchSubNav } from '@/hooks/useSubNav';
+import type { ResearchLabWithLanguage } from '@/types/api/v2/research/labs';
+import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { stripHtml, truncateDescription } from '@/utils/metadata';
 import PentagonLong from '../assets/pentagon_long.svg?react';
 import PentagonShort from '../assets/pentagon_short.svg?react';
 
@@ -155,7 +155,7 @@ function LabSummary({
 }
 
 type ProcessedLab = Omit<ResearchLabWithLanguage['ko'], 'description'> & {
-  description: import('~/utils/csp').ProcessedHtml;
+  description: import('@/utils/csp').ProcessedHtml;
 };
 
 function StreamLink({

@@ -1,17 +1,17 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import PageLayout from '~/components/layout/PageLayout';
-import AlertDialog from '~/components/ui/AlertDialog';
-import Button from '~/components/ui/Button';
-import HTMLViewer from '~/components/ui/HTMLViewer';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useAcademicsSubNav } from '~/hooks/useSubNav';
-import { processHtmlForCsp } from '~/utils/cspServerFn';
-import { fetchJson, fetchOk } from '~/utils/fetch';
-import { stripHtml, truncateDescription } from '~/utils/metadata';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import PageLayout from '@/components/layout/PageLayout';
+import AlertDialog from '@/components/ui/AlertDialog';
+import Button from '@/components/ui/Button';
+import HTMLViewer from '@/components/ui/HTMLViewer';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useAcademicsSubNav } from '@/hooks/useSubNav';
+import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { fetchJson, fetchOk } from '@/utils/fetch';
+import { stripHtml, truncateDescription } from '@/utils/metadata';
 
 function ScholarshipDetailPage() {
   const loaderData = Route.useLoaderData();

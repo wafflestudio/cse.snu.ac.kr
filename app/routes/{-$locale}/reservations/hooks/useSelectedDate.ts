@@ -1,7 +1,7 @@
 import type dayjs from 'dayjs';
-import { useSearchParams } from '~/hooks/useSearchParams';
-import { kstDayjs } from '~/lib/kstDayjs';
-import { formatDateParam, parseDateParam } from '~/utils/reservation';
+import { useSearchParams } from '@/hooks/useSearchParams';
+import { kstDayjs } from '@/lib/kstDayjs';
+import { formatDateParam, parseDateParam } from '@/utils/reservation';
 
 export default function useSelectedDate() {
   const [searchParams, setSearchParams] = useSearchParams();

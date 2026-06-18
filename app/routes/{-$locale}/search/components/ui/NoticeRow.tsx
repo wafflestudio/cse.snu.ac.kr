@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import { useLanguage } from '~/hooks/useLanguage';
+import { useLanguage } from '@/hooks/useLanguage';
 import RangeBolded from './RangeBolded';
 
 interface NoticeRowProps {

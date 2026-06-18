@@ -2,19 +2,19 @@ import { useRouter } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from '~/components/ui/sonner';
+import { toast } from '@/components/ui/sonner';
 import {
   postReservation,
   ReservationError,
-} from '~/routes/{-$locale}/reservations/api';
-import type { ReservationPostBody } from '~/types/api/v2/reservation';
+} from '@/routes/{-$locale}/reservations/api';
+import type { ReservationPostBody } from '@/types/api/v2/reservation';
 import {
   getEarliestStartTimeFrom,
   getEndTimeOptions,
   getOptimalEndTime,
   getStartTimeOptions,
   isChecked,
-} from '~/utils/reservation';
+} from '@/utils/reservation';
 
 type ReservationFormValues = Omit<
   ReservationPostBody,

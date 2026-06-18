@@ -1,12 +1,12 @@
 import { useRouter } from '@tanstack/react-router';
 import { FormProvider, useForm } from 'react-hook-form';
-import Fieldset from '~/components/form/Fieldset';
-import Form from '~/components/form/Form';
-import { toast } from '~/components/ui/sonner';
-import type { ImageModal } from '~/types/api/v2/admin';
-import type { EditorImage } from '~/types/form';
-import { fetchOk } from '~/utils/fetch';
-import { FormData2 } from '~/utils/form';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
+import { toast } from '@/components/ui/sonner';
+import type { ImageModal } from '@/types/api/v2/admin';
+import type { EditorImage } from '@/types/form';
+import { fetchOk } from '@/utils/fetch';
+import { FormData2 } from '@/utils/form';
 
 interface ImageModalManagementProps {
   modal: ImageModal | null;

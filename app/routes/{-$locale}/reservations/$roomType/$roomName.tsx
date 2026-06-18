@@ -1,27 +1,27 @@
 import { createFileRoute } from '@tanstack/react-router';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import PageLayout from '~/components/layout/PageLayout';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useNavItem } from '~/hooks/useNavItem';
-import useIsMobile from '~/hooks/useResponsive';
-import { useReservationsSubNav } from '~/hooks/useSubNav';
-import { kstDayjs } from '~/lib/kstDayjs';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import PageLayout from '@/components/layout/PageLayout';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useNavItem } from '@/hooks/useNavItem';
+import useIsMobile from '@/hooks/useResponsive';
+import { useReservationsSubNav } from '@/hooks/useSubNav';
+import { kstDayjs } from '@/lib/kstDayjs';
 import {
   fetchReserveTerms,
   fetchWeeklyReservation,
-} from '~/routes/{-$locale}/reservations/api';
+} from '@/routes/{-$locale}/reservations/api';
 import ReservationCalendar, {
   type ReservationCalendarProps,
-} from '~/routes/{-$locale}/reservations/components/ReservationCalendar';
+} from '@/routes/{-$locale}/reservations/components/ReservationCalendar';
 import {
   roomNameToId,
   STAFF_ONLY_ROOM_ID,
-} from '~/routes/{-$locale}/reservations/constants';
+} from '@/routes/{-$locale}/reservations/constants';
 import {
   formatDateParam,
   getStartOfWeek,
   parseDateParam,
-} from '~/utils/reservation';
+} from '@/utils/reservation';
 
 function RoomReservationPage() {
   const {

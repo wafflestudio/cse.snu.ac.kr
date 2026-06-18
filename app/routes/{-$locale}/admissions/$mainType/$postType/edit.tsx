@@ -1,16 +1,16 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import Fieldset from '~/components/form/Fieldset';
-import Form from '~/components/form/Form';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
 import LanguagePicker, {
   type Language,
-} from '~/components/form/LanguagePicker';
-import PageLayout from '~/components/layout/PageLayout';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import type { AdmissionsResponse } from '~/types/api/v2/admissions';
-import { fetchJson, fetchOk } from '~/utils/fetch';
+} from '@/components/form/LanguagePicker';
+import PageLayout from '@/components/layout/PageLayout';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import type { AdmissionsResponse } from '@/types/api/v2/admissions';
+import { fetchJson, fetchOk } from '@/utils/fetch';
 
 const ADMISSIONS_PAGES: Record<
   string,

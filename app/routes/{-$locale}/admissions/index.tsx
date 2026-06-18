@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import CategoryPage from '~/components/feature/category/CategoryPage';
+import CategoryPage from '@/components/feature/category/CategoryPage';
 
 function AdmissionsPage() {
   return <CategoryPage subtitle="Join CSE" />;

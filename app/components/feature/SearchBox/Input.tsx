@@ -1,5 +1,5 @@
 import { Search } from 'lucide-react';
-import { useLanguage } from '~/hooks/useLanguage';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface KeywordInputProps {
   defaultValue: string;

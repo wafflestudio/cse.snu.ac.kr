@@ -3,10 +3,10 @@ import { Link } from '@tanstack/react-router';
 import {
   getLinkGroups,
   type LinkGroupProps,
-} from '~/components/layout/Footer/linkGroups';
-import Dialog from '~/components/ui/Dialog';
-import { useLanguage } from '~/hooks/useLanguage';
-import commonTranslations from '~/translations.json';
+} from '@/components/layout/Footer/linkGroups';
+import Dialog from '@/components/ui/Dialog';
+import { useLanguage } from '@/hooks/useLanguage';
+import commonTranslations from '@/translations.json';
 import SnuEngineeringIcon from './assets/SNU_Engineering.svg?react';
 import SnuLogoWithText from './assets/SNU_Logo_with_Text.svg?react';
 import footerOnlyTranslations from './translations.json';

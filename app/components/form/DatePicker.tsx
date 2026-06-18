@@ -3,8 +3,8 @@ import dayjs from 'dayjs';
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { useReducer, useRef } from 'react';
 import { useController } from 'react-hook-form';
-import Calendar from '~/components/ui/Calendar';
-import { useClickOutside } from '~/hooks/useClickOutside';
+import Calendar from '@/components/ui/Calendar';
+import { useClickOutside } from '@/hooks/useClickOutside';
 
 interface DateProps {
   name: string;

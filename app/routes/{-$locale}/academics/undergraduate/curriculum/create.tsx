@@ -1,14 +1,14 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import PageLayout from '~/components/layout/PageLayout';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useAcademicsSubNav } from '~/hooks/useSubNav';
+import PageLayout from '@/components/layout/PageLayout';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import TimelineEditor, {
   type TimelineFormData,
-} from '~/routes/{-$locale}/academics/components/timeline/TimelineEditor';
-import { fetchOk } from '~/utils/fetch';
-import { FormData2 } from '~/utils/form';
+} from '@/routes/{-$locale}/academics/components/timeline/TimelineEditor';
+import { fetchOk } from '@/utils/fetch';
+import { FormData2 } from '@/utils/form';
 
 function CurriculumCreatePage() {
   const { localizedPath, t } = useLanguage({

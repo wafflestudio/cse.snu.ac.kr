@@ -1,8 +1,8 @@
 import clsx from 'clsx';
-import Node from '~/components/ui/Nodes';
-import { useLanguage } from '~/hooks/useLanguage';
+import Node from '@/components/ui/Nodes';
+import { useLanguage } from '@/hooks/useLanguage';
 
-type TranslationKey = keyof typeof import('~/translations.json');
+type TranslationKey = keyof typeof import('@/translations.json');
 
 export type TreeNode = {
   id: string;

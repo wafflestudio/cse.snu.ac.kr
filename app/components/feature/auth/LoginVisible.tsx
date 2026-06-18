@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
-import type { Role } from '~/store';
-import { useStore } from '~/store';
+import type { Role } from '@/store';
+import { useStore } from '@/store';
 
 interface LoginVisibleProps {
   allow?: Role | Role[];

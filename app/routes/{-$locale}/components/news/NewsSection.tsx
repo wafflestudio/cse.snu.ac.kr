@@ -1,8 +1,8 @@
 import { Link } from '@tanstack/react-router';
-import SmallRightArrowIcon from '~/components/ui/assets/small_right_arrow.svg?react';
-import { useLanguage } from '~/hooks/useLanguage';
-import useIsMobile from '~/hooks/useResponsive';
-import type { MainNews } from '~/types/api/v2';
+import SmallRightArrowIcon from '@/components/ui/assets/small_right_arrow.svg?react';
+import { useLanguage } from '@/hooks/useLanguage';
+import useIsMobile from '@/hooks/useResponsive';
+import type { MainNews } from '@/types/api/v2';
 import NewsCarousel from './NewsCarousel';
 import NewsCarouselMobile from './NewsCarouselMobile';
 

@@ -1,4 +1,4 @@
-import { type NavItem, navigationTree } from '~/constants/navigation';
+import { type NavItem, navigationTree } from '@/constants/navigation';
 
 const EXTRA_PATHS = [
   '/',

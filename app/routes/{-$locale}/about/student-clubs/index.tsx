@@ -1,16 +1,16 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import SelectionList from '~/components/feature/selection/SelectionList';
-import PageLayout from '~/components/layout/PageLayout';
-import Button from '~/components/ui/Button';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useSelectionList } from '~/hooks/useSelectionList';
-import { useAboutSubNav } from '~/hooks/useSubNav';
-import type { StudentClubsResponse } from '~/types/api/v2/about/student-clubs';
-import { processHtmlForCsp } from '~/utils/cspServerFn';
-import { fetchJson } from '~/utils/fetch';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import SelectionList from '@/components/feature/selection/SelectionList';
+import PageLayout from '@/components/layout/PageLayout';
+import Button from '@/components/ui/Button';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useSelectionList } from '@/hooks/useSelectionList';
+import { useAboutSubNav } from '@/hooks/useSubNav';
+import type { StudentClubsResponse } from '@/types/api/v2/about/student-clubs';
+import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { fetchJson } from '@/utils/fetch';
 import ClubDetails from './components/ClubDetails';
 
 const META = {

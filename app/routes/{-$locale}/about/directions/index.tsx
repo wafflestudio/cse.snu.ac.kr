@@ -1,17 +1,17 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import SelectionList from '~/components/feature/selection/SelectionList';
-import footerTranslations from '~/components/layout/Footer/translations.json';
-import PageLayout from '~/components/layout/PageLayout';
-import Button from '~/components/ui/Button';
-import HTMLViewer from '~/components/ui/HTMLViewer';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useSelectionList } from '~/hooks/useSelectionList';
-import { useAboutSubNav } from '~/hooks/useSubNav';
-import type { DirectionsResponse } from '~/types/api/v2/about/directions';
-import { processHtmlForCsp } from '~/utils/cspServerFn';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import SelectionList from '@/components/feature/selection/SelectionList';
+import footerTranslations from '@/components/layout/Footer/translations.json';
+import PageLayout from '@/components/layout/PageLayout';
+import Button from '@/components/ui/Button';
+import HTMLViewer from '@/components/ui/HTMLViewer';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useSelectionList } from '@/hooks/useSelectionList';
+import { useAboutSubNav } from '@/hooks/useSubNav';
+import type { DirectionsResponse } from '@/types/api/v2/about/directions';
+import { processHtmlForCsp } from '@/utils/cspServerFn';
 import KakaoMap from './components/KakaoMap';
 
 const META = {

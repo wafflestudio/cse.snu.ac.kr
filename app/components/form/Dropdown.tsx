@@ -3,8 +3,8 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useCallback, useRef, useState } from 'react';
 import { useController } from 'react-hook-form';
 
-import { useClickOutside } from '~/hooks/useClickOutside';
-import type { Rules } from '~/types/form';
+import { useClickOutside } from '@/hooks/useClickOutside';
+import type { Rules } from '@/types/form';
 
 interface DropdownProps {
   contents: { label: string; value: unknown }[];

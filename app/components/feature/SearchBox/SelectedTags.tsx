@@ -1,7 +1,7 @@
 import { RefreshCw } from 'lucide-react';
-import { useSearchParams } from '~/hooks/useSearchParams';
-import { Tag } from '~/components/ui/Tag';
-import { useLanguage } from '~/hooks/useLanguage';
+import { useSearchParams } from '@/hooks/useSearchParams';
+import { Tag } from '@/components/ui/Tag';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface SelectedTagsProps {
   tags: string[];

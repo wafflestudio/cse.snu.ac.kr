@@ -1,6 +1,6 @@
 import { createServerFn } from '@tanstack/react-start';
 import { setCookie } from '@tanstack/react-start/server';
-import type { Locale } from '~/types/i18n';
+import type { Locale } from '@/types/i18n';
 
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1 year
 

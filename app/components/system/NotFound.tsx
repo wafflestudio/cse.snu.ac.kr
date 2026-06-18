@@ -1,8 +1,8 @@
 import { useNavigate } from '@tanstack/react-router';
 import { useLocation } from '@tanstack/react-router';
-import Header from '~/components/layout/Header';
-import ErrorState from '~/components/ui/ErrorState';
-import { useLanguage } from '~/hooks/useLanguage';
+import Header from '@/components/layout/Header';
+import ErrorState from '@/components/ui/ErrorState';
+import { useLanguage } from '@/hooks/useLanguage';
 
 export default function NotFound() {
   const { pathname } = useLocation();

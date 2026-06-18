@@ -1,9 +1,9 @@
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import HeaderSearchBar from '~/components/layout/Header/HeaderSearchBar';
-import Button from '~/components/ui/Button';
-import { IS_DEV, IS_STAGING } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useStore } from '~/store';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import HeaderSearchBar from '@/components/layout/Header/HeaderSearchBar';
+import Button from '@/components/ui/Button';
+import { IS_DEV, IS_STAGING } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useStore } from '@/store';
 
 const translations = {
   '관리자 메뉴': 'Admin Menu',

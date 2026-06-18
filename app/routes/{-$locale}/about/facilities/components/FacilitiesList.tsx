@@ -1,15 +1,15 @@
 import { useRouter } from '@tanstack/react-router';
 import { useState } from 'react';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import AlertDialog from '~/components/ui/AlertDialog';
-import Button from '~/components/ui/Button';
-import HTMLViewer from '~/components/ui/HTMLViewer';
-import Image from '~/components/ui/Image';
-import { toast } from '~/components/ui/sonner';
-import { useLanguage } from '~/hooks/useLanguage';
-import type { Facility } from '~/types/api/v2/about/facilities';
-import type { ProcessedHtml } from '~/utils/csp';
-import { fetchOk } from '~/utils/fetch';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import AlertDialog from '@/components/ui/AlertDialog';
+import Button from '@/components/ui/Button';
+import HTMLViewer from '@/components/ui/HTMLViewer';
+import Image from '@/components/ui/Image';
+import { toast } from '@/components/ui/sonner';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { Facility } from '@/types/api/v2/about/facilities';
+import type { ProcessedHtml } from '@/utils/csp';
+import { fetchOk } from '@/utils/fetch';
 import DistanceIcon from '../assets/distance.svg?react';
 
 export default function FacilitiesList({

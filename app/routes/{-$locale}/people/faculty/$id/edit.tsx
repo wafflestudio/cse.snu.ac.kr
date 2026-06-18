@@ -3,17 +3,17 @@ import {
   useNavigate,
   useRouter,
 } from '@tanstack/react-router';
-import PageLayout from '~/components/layout/PageLayout';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
+import PageLayout from '@/components/layout/PageLayout';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
 import FacultyEditor, {
   type FacultyFormData,
-} from '~/routes/{-$locale}/people/components/FacultyEditor';
-import type { Faculty } from '~/types/api/v2/professor';
-import type { SimpleResearchLab } from '~/types/api/v2/research/labs';
-import { fetchJson, fetchOk } from '~/utils/fetch';
-import { FormData2 } from '~/utils/form';
+} from '@/routes/{-$locale}/people/components/FacultyEditor';
+import type { Faculty } from '@/types/api/v2/professor';
+import type { SimpleResearchLab } from '@/types/api/v2/research/labs';
+import { fetchJson, fetchOk } from '@/utils/fetch';
+import { FormData2 } from '@/utils/form';
 
 function FacultyEdit() {
   const loaderData = Route.useLoaderData();

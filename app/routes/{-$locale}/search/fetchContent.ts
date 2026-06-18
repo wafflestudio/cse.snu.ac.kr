@@ -1,4 +1,4 @@
-import { BASE_URL } from '~/constants/api';
+import { BASE_URL } from '@/constants/api';
 import type {
   AboutSearchResult,
   AcademicsSearchResult,
@@ -7,8 +7,8 @@ import type {
   NewsSearchResult,
   NoticeSearchResult,
   ResearchSearchResult,
-} from '~/types/api/v2/search';
-import type { SeminarPreviewList } from '~/types/api/v2/seminar';
+} from '@/types/api/v2/search';
+import type { SeminarPreviewList } from '@/types/api/v2/seminar';
 import type { TreeNode } from './components/ui/SearchSubNavbar';
 
 export type SectionContent = {

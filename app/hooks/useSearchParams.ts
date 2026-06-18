@@ -17,7 +17,7 @@ type SetSearchParamsArg =
  *
  * TanStack의 타입드 `useSearch`/`validateSearch`는 라우트별 스키마를 전제하지만, 여기
  * (Pagination·SearchBox·정렬 토글 등)는 라우트 횡단 범용 검색 조작이라 이 훅이 적합하다.
- * (RR 호환 셰임 `~/lib/router`를 대체한 마지막 조각.)
+ * (RR 호환 셰임 `@/lib/router`를 대체한 마지막 조각.)
  */
 export function useSearchParams(): [
   URLSearchParams,

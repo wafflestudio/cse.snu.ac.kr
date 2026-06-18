@@ -1,16 +1,16 @@
 import { Link, useLocation, useRouter } from '@tanstack/react-router';
 import { ChevronDown, ChevronUp, Plus } from 'lucide-react';
 import { useReducer, useState } from 'react';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import AlertDialog from '~/components/ui/AlertDialog';
-import Attachments from '~/components/ui/Attachments';
-import Button from '~/components/ui/Button';
-import HTMLViewer from '~/components/ui/HTMLViewer';
-import { toast } from '~/components/ui/sonner';
-import { useLanguage } from '~/hooks/useLanguage';
-import type { TimelineContent } from '~/types/api/v2/academics';
-import type { ProcessedHtml } from '~/utils/csp';
-import { fetchOk } from '~/utils/fetch';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import AlertDialog from '@/components/ui/AlertDialog';
+import Attachments from '@/components/ui/Attachments';
+import Button from '@/components/ui/Button';
+import HTMLViewer from '@/components/ui/HTMLViewer';
+import { toast } from '@/components/ui/sonner';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { TimelineContent } from '@/types/api/v2/academics';
+import type { ProcessedHtml } from '@/utils/csp';
+import { fetchOk } from '@/utils/fetch';
 import Timeline from './Timeline';
 
 type ProcessedTimelineContent = Omit<TimelineContent, 'description'> & {

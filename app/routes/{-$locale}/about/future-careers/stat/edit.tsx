@@ -5,15 +5,15 @@ import {
   useFormContext,
   useWatch,
 } from 'react-hook-form';
-import Fieldset from '~/components/form/Fieldset';
-import Form from '~/components/form/Form';
-import PageLayout from '~/components/layout/PageLayout';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useAboutSubNav } from '~/hooks/useSubNav';
-import type { FutureCareersResponse } from '~/types/api/v2/about/future-careers';
-import { fetchJson, fetchOk } from '~/utils/fetch';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
+import PageLayout from '@/components/layout/PageLayout';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useAboutSubNav } from '@/hooks/useSubNav';
+import type { FutureCareersResponse } from '@/types/api/v2/about/future-careers';
+import { fetchJson, fetchOk } from '@/utils/fetch';
 
 const COMPANY_LIST = [
   'SAMSUNG',

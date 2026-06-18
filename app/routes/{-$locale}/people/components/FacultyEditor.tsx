@@ -6,18 +6,18 @@ import {
   useWatch,
 } from 'react-hook-form';
 
-import Fieldset from '~/components/form/Fieldset';
-import Form from '~/components/form/Form';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
 import LanguagePicker, {
   type Language,
-} from '~/components/form/LanguagePicker';
+} from '@/components/form/LanguagePicker';
 import {
   FACULTY_STATUS,
   type Faculty,
   type FacultyStatus,
-} from '~/types/api/v2/professor';
-import type { SimpleResearchLab } from '~/types/api/v2/research/labs';
-import type { EditorImage } from '~/types/form';
+} from '@/types/api/v2/professor';
+import type { SimpleResearchLab } from '@/types/api/v2/research/labs';
+import type { EditorImage } from '@/types/form';
 
 interface FacultyFormFields {
   name: string;

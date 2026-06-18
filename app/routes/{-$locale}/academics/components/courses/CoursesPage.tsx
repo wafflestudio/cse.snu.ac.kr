@@ -1,20 +1,20 @@
 import { Info } from 'lucide-react';
 import { useState } from 'react';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import PageLayout from '~/components/layout/PageLayout';
-import Button from '~/components/ui/Button';
-import { useLanguage } from '~/hooks/useLanguage';
-import useIsMobile from '~/hooks/useResponsive';
-import { useSearchParams } from '~/hooks/useSearchParams';
-import { useAcademicsSubNav } from '~/hooks/useSubNav';
-import AddCourseModal from '~/routes/{-$locale}/academics/components/courses/AddCourseModal';
-import CourseCardGrid from '~/routes/{-$locale}/academics/components/courses/CourseCardGrid';
-import CourseDetailModal from '~/routes/{-$locale}/academics/components/courses/CourseDetailModal';
-import CourseList from '~/routes/{-$locale}/academics/components/courses/CourseList';
-import CourseToolbar from '~/routes/{-$locale}/academics/components/courses/CourseToolbar';
-import courseTranslations from '~/routes/{-$locale}/academics/components/courses/translations.json';
-import type { Classification, SortOption, ViewOption } from '~/types/academics';
-import type { Course } from '~/types/api/v2/academics';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import PageLayout from '@/components/layout/PageLayout';
+import Button from '@/components/ui/Button';
+import { useLanguage } from '@/hooks/useLanguage';
+import useIsMobile from '@/hooks/useResponsive';
+import { useSearchParams } from '@/hooks/useSearchParams';
+import { useAcademicsSubNav } from '@/hooks/useSubNav';
+import AddCourseModal from '@/routes/{-$locale}/academics/components/courses/AddCourseModal';
+import CourseCardGrid from '@/routes/{-$locale}/academics/components/courses/CourseCardGrid';
+import CourseDetailModal from '@/routes/{-$locale}/academics/components/courses/CourseDetailModal';
+import CourseList from '@/routes/{-$locale}/academics/components/courses/CourseList';
+import CourseToolbar from '@/routes/{-$locale}/academics/components/courses/CourseToolbar';
+import courseTranslations from '@/routes/{-$locale}/academics/components/courses/translations.json';
+import type { Classification, SortOption, ViewOption } from '@/types/academics';
+import type { Course } from '@/types/api/v2/academics';
 
 interface CoursesPageProps {
   courses: Course[];

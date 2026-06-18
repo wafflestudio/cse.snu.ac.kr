@@ -1,12 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import PageLayout from '~/components/layout/PageLayout';
-import Button from '~/components/ui/Button';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useResearchSubNav } from '~/hooks/useSubNav';
-import ResearchLabListRow from '~/routes/{-$locale}/research/labs/component/ResearchLabRow';
-import type { SimpleResearchLab } from '~/types/api/v2/research/labs';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import PageLayout from '@/components/layout/PageLayout';
+import Button from '@/components/ui/Button';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useResearchSubNav } from '@/hooks/useSubNav';
+import ResearchLabListRow from '@/routes/{-$locale}/research/labs/component/ResearchLabRow';
+import type { SimpleResearchLab } from '@/types/api/v2/research/labs';
 
 const META = {
   ko: {

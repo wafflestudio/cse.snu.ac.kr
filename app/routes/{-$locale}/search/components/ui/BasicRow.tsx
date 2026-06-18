@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { useLanguage } from '~/hooks/useLanguage';
+import { useLanguage } from '@/hooks/useLanguage';
 import RangeBolded from './RangeBolded';
 
 type BasicRowProps = {

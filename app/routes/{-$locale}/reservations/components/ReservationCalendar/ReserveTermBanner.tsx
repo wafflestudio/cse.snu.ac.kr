@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { AlertCircle } from 'lucide-react';
-import { useLanguage } from '~/hooks/useLanguage';
-import type { ReserveTerm } from '~/types/api/v2/reservation';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { ReserveTerm } from '@/types/api/v2/reservation';
 
 const translations = {
   '세미나실 예약은 정기예약과 상시예약으로 운영됩니다. 정기예약 기간에는 랩대표만 예약할 수 있으며, 그 외 기간에는 누구나 예약 가능합니다. 다음 예약 기간은 등록 후 이곳에 공지됩니다.':

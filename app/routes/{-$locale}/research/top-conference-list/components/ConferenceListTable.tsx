@@ -1,5 +1,5 @@
-import { useLanguage } from '~/hooks/useLanguage';
-import type { TopConferenceListResponse } from '~/types/api/v2/conference';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { TopConferenceListResponse } from '@/types/api/v2/conference';
 
 interface ConferenceListTableProps {
   conferenceList: TopConferenceListResponse['conferenceList'];

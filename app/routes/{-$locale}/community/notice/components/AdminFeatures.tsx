@@ -1,12 +1,12 @@
 import { useRouter } from '@tanstack/react-router';
 import { SquareCheck } from 'lucide-react';
 import { useState } from 'react';
-import AlertDialog from '~/components/ui/AlertDialog';
-import Button from '~/components/ui/Button';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { fetchOk } from '~/utils/fetch';
+import AlertDialog from '@/components/ui/AlertDialog';
+import Button from '@/components/ui/Button';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { fetchOk } from '@/utils/fetch';
 
 interface AdminFeaturesProps {
   selectedIds: Set<number>;

@@ -1,6 +1,6 @@
-import { useSearchParams } from '~/hooks/useSearchParams';
-import Checkbox from '~/components/ui/Checkbox';
-import { useLanguage } from '~/hooks/useLanguage';
+import { useSearchParams } from '@/hooks/useSearchParams';
+import Checkbox from '@/components/ui/Checkbox';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface TagFilterProps {
   tags: string[];

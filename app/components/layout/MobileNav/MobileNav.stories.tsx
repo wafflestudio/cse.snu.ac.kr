@@ -1,7 +1,7 @@
 import type { Decorator } from '@storybook/tanstack-react';
 import { useEffect } from 'react';
-import { navigationTree } from '~/constants/navigation';
-import { useStore } from '~/store';
+import { navigationTree } from '@/constants/navigation';
+import { useStore } from '@/store';
 import preview from '../../../../.storybook/preview';
 import MobileNav from './index';
 

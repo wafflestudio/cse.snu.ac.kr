@@ -1,6 +1,6 @@
-import type { NavItem } from '~/constants/navigation';
-import { useNavItem } from '~/hooks/useNavItem';
-import { useStore } from '~/store';
+import type { NavItem } from '@/constants/navigation';
+import { useNavItem } from '@/hooks/useNavItem';
+import { useStore } from '@/store';
 import LNBMenuItem from './LeftNavMenuItem';
 
 export default function LNBDetail() {

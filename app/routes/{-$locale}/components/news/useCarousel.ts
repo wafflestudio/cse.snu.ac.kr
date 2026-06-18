@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import type { MainNews } from '~/types/api/v2';
+import type { MainNews } from '@/types/api/v2';
 import { AUTO_SCROLL_MS } from './constants';
 import { useCarouselLayout } from './useCarouselLayout';
 

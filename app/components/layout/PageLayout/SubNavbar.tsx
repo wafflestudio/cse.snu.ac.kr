@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { useLocation, Link } from '@tanstack/react-router';
-import Node from '~/components/ui/Nodes';
-import { useLanguage } from '~/hooks/useLanguage';
-import type { SubNavConfig, SubNavConfigItem } from '~/hooks/useSubNav';
+import Node from '@/components/ui/Nodes';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { SubNavConfig, SubNavConfigItem } from '@/hooks/useSubNav';
 
 // TODO: 더 나은 방법
 const heightMap = [

@@ -1,4 +1,4 @@
-import Node from '~/components/ui/Nodes';
+import Node from '@/components/ui/Nodes';
 
 interface SelectionTitleProps {
   title: string;

@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { useLanguage } from '~/hooks/useLanguage';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface ScholarshipListProps {
   scholarships: { id: number; name: string }[];

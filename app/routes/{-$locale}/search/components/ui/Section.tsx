@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
-import { useLanguage } from '~/hooks/useLanguage';
+import { useLanguage } from '@/hooks/useLanguage';
 
-type TranslationKey = keyof typeof import('~/translations.json');
+type TranslationKey = keyof typeof import('@/translations.json');
 
 export default function Section({
   title,

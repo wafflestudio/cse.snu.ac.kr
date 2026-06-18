@@ -1,6 +1,6 @@
-import type { Attachment } from '~/types/api/v2/attachment';
-import type { EditorFile, EditorImage } from '~/types/form';
-import { isLocalFile, isLocalImage, isUploadedFile } from '~/types/form';
+import type { Attachment } from '@/types/api/v2/attachment';
+import type { EditorFile, EditorImage } from '@/types/form';
+import { isLocalFile, isLocalImage, isUploadedFile } from '@/types/form';
 
 export const contentToFormData = (
   type: 'CREATE' | 'EDIT',

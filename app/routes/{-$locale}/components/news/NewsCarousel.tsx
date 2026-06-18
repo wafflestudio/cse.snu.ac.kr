@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes } from 'react';
 import { useEffect, useRef } from 'react';
-import type { MainNews } from '~/types/api/v2';
+import type { MainNews } from '@/types/api/v2';
 import PauseIcon from './assets/pause.svg?react';
 import PlayIcon from './assets/play.svg?react';
 import { CARD_GAP_TAILWIND } from './constants';

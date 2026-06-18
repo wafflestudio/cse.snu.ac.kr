@@ -1,19 +1,19 @@
 import { Link } from '@tanstack/react-router';
 import { ChevronRight } from 'lucide-react';
 import type { ReactNode } from 'react';
-import { useLanguage } from '~/hooks/useLanguage';
+import { useLanguage } from '@/hooks/useLanguage';
 import type {
   NewsSearchResult,
   NoticeSearchResult,
-} from '~/types/api/v2/search';
-import type { SeminarPreviewList } from '~/types/api/v2/seminar';
+} from '@/types/api/v2/search';
+import type { SeminarPreviewList } from '@/types/api/v2/seminar';
 import SeminarRow from '../../../community/seminar/components/SeminarRow';
 import CircleTitle from '../ui/CircleTitle';
 import NewsRow from '../ui/NewsRow';
 import NoticeRow from '../ui/NoticeRow';
 import Section from '../ui/Section';
 
-type TranslationKey = keyof typeof import('~/translations.json');
+type TranslationKey = keyof typeof import('@/translations.json');
 
 export default function CommunitySection({
   keyword,

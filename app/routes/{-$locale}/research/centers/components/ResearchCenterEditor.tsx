@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import Fieldset from '~/components/form/Fieldset';
-import Form from '~/components/form/Form';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
 import LanguagePicker, {
   type Language,
-} from '~/components/form/LanguagePicker';
-import type { EditorImage } from '~/types/form';
+} from '@/components/form/LanguagePicker';
+import type { EditorImage } from '@/types/form';
 
 interface ResearchCenterFormFields {
   name: string;

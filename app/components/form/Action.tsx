@@ -1,8 +1,8 @@
 import type { MouseEvent } from 'react';
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
-import AlertDialog from '~/components/ui/AlertDialog';
-import Button from '~/components/ui/Button';
+import AlertDialog from '@/components/ui/AlertDialog';
+import Button from '@/components/ui/Button';
 
 interface Props {
   onCancel: () => void;

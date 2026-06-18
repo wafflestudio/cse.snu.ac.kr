@@ -1,7 +1,7 @@
-import { Tag } from '~/components/ui/Tag';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useSearchParams } from '~/hooks/useSearchParams';
-import type { SortOption, ViewOption } from '~/types/academics';
+import { Tag } from '@/components/ui/Tag';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useSearchParams } from '@/hooks/useSearchParams';
+import type { SortOption, ViewOption } from '@/types/academics';
 import translations from './translations.json';
 
 interface CourseToolbarProps {

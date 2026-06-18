@@ -1,15 +1,15 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { FormProvider, useForm } from 'react-hook-form';
-import Fieldset from '~/components/form/Fieldset';
-import Form from '~/components/form/Form';
-import PageLayout from '~/components/layout/PageLayout';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import type { Guide } from '~/types/api/v2/academics/guide';
-import type { EditorFile } from '~/types/form';
-import { fetchJson, fetchOk } from '~/utils/fetch';
-import { FormData2, getDeleteIds } from '~/utils/form';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
+import PageLayout from '@/components/layout/PageLayout';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { Guide } from '@/types/api/v2/academics/guide';
+import type { EditorFile } from '@/types/form';
+import { fetchJson, fetchOk } from '@/utils/fetch';
+import { FormData2, getDeleteIds } from '@/utils/form';
 
 interface GuideFormData {
   description: string;

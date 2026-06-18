@@ -1,4 +1,4 @@
-import { useLanguage } from '~/hooks/useLanguage';
+import { useLanguage } from '@/hooks/useLanguage';
 import MagnificentGlass from '../../assets/magnificent_glass.svg?react';
 
 export default function NoSearchResult() {

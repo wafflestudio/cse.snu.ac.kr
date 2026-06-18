@@ -1,11 +1,11 @@
 import { Link } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
-import Image from '~/components/ui/Image';
-import { Tag } from '~/components/ui/Tag';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useSearchParams } from '~/hooks/useSearchParams';
-import type { NewsPreview } from '~/types/api/v2/news';
+import Image from '@/components/ui/Image';
+import { Tag } from '@/components/ui/Tag';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useSearchParams } from '@/hooks/useSearchParams';
+import type { NewsPreview } from '@/types/api/v2/news';
 
 interface NewsListRowProps {
   post: NewsPreview;

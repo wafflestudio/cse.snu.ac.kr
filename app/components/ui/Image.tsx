@@ -1,7 +1,7 @@
 import type { ImgHTMLAttributes, SyntheticEvent } from 'react';
 import { useState } from 'react';
-import SnuLogo from '~/components/layout/LeftNav/assets/SNU_Logo.svg?react';
-import { buildOptimizedUrl, shouldOptimize } from '~/utils/image';
+import SnuLogo from '@/components/layout/LeftNav/assets/SNU_Logo.svg?react';
+import { buildOptimizedUrl, shouldOptimize } from '@/utils/image';
 
 type ImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & {
   src?: string | null;

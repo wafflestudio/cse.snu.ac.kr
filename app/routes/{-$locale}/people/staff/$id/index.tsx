@@ -1,14 +1,14 @@
 import { createFileRoute } from '@tanstack/react-router';
-import LoginVisible from '~/components/feature/auth/LoginVisible';
-import PageLayout from '~/components/layout/PageLayout';
-import Button from '~/components/ui/Button';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import { usePeopleSubNav } from '~/hooks/useSubNav';
-import PeopleContactList from '~/routes/{-$locale}/people/components/PeopleContactList';
-import PeopleInfoList from '~/routes/{-$locale}/people/components/PeopleInfoList';
-import PeopleProfileImage from '~/routes/{-$locale}/people/components/PeopleProfileImage';
-import type { Staff } from '~/types/api/v2/staff';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import PageLayout from '@/components/layout/PageLayout';
+import Button from '@/components/ui/Button';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import { usePeopleSubNav } from '@/hooks/useSubNav';
+import PeopleContactList from '@/routes/{-$locale}/people/components/PeopleContactList';
+import PeopleInfoList from '@/routes/{-$locale}/people/components/PeopleInfoList';
+import PeopleProfileImage from '@/routes/{-$locale}/people/components/PeopleProfileImage';
+import type { Staff } from '@/types/api/v2/staff';
 
 function StaffDetailPage() {
   const staff = Route.useLoaderData();

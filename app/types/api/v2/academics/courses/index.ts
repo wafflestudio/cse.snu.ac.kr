@@ -2,7 +2,7 @@ import type {
   Classification,
   ClassificationEn,
   StudentType,
-} from '~/types/academics';
+} from '@/types/academics';
 
 export interface Course {
   code: string;

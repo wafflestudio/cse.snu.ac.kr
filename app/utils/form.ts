@@ -1,5 +1,5 @@
-import type { EditorFile, EditorImage } from '~/types/form';
-import { isFalsy } from '~/types/utils';
+import type { EditorFile, EditorImage } from '@/types/form';
+import { isFalsy } from '@/types/utils';
 
 export const getDeleteIds = ({
   prev,

@@ -1,4 +1,4 @@
-import { processHtmlForCsp } from '~/utils/processHtmlForCsp';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import preview from '../../../.storybook/preview';
 import HTMLViewer from './HTMLViewer';
 

@@ -1,13 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import Header from '~/components/layout/Header';
-import Image from '~/components/ui/Image';
-import ImageModal from '~/components/ui/ImageModal';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
-import type { MainResponse } from '~/types/api/v2';
-import type { ImageModal as ImageModalData } from '~/types/api/v2/admin';
-import { SITE_NAME } from '~/utils/metadata';
+import Header from '@/components/layout/Header';
+import Image from '@/components/ui/Image';
+import ImageModal from '@/components/ui/ImageModal';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { MainResponse } from '@/types/api/v2';
+import type { ImageModal as ImageModalData } from '@/types/api/v2/admin';
+import { SITE_NAME } from '@/utils/metadata';
 import backgroundImg from './assets/background.avif';
 import GraphicSection from './components/GraphicSection';
 import ImportantSection from './components/ImportantSection';

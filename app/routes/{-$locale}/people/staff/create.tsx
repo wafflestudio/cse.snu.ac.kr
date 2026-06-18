@@ -1,14 +1,14 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import PageLayout from '~/components/layout/PageLayout';
-import { toast } from '~/components/ui/sonner';
-import { BASE_URL } from '~/constants/api';
-import { useLanguage } from '~/hooks/useLanguage';
+import PageLayout from '@/components/layout/PageLayout';
+import { toast } from '@/components/ui/sonner';
+import { BASE_URL } from '@/constants/api';
+import { useLanguage } from '@/hooks/useLanguage';
 import StaffEditor, {
   type StaffFormData,
-} from '~/routes/{-$locale}/people/components/StaffEditor';
-import type { Staff } from '~/types/api/v2/staff';
-import { fetchJson } from '~/utils/fetch';
-import { FormData2 } from '~/utils/form';
+} from '@/routes/{-$locale}/people/components/StaffEditor';
+import type { Staff } from '@/types/api/v2/staff';
+import { fetchJson } from '@/utils/fetch';
+import { FormData2 } from '@/utils/form';
 
 function StaffCreate() {
   const navigate = useNavigate();

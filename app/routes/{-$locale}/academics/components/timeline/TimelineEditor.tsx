@@ -1,8 +1,8 @@
 import { useNavigate } from '@tanstack/react-router';
 import { FormProvider, useForm } from 'react-hook-form';
-import Fieldset from '~/components/form/Fieldset';
-import Form from '~/components/form/Form';
-import type { EditorFile } from '~/types/form';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
+import type { EditorFile } from '@/types/form';
 
 export type TimelineFormData = {
   year: number;

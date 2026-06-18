@@ -1,7 +1,7 @@
-import type { BreadcrumbItem } from '~/components/layout/PageLayout';
-import { type NavItem, navigationTree } from '~/constants/navigation';
-import { useLanguage } from '~/hooks/useLanguage';
-import { useNavItem } from '~/hooks/useNavItem';
+import type { BreadcrumbItem } from '@/components/layout/PageLayout';
+import { type NavItem, navigationTree } from '@/constants/navigation';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useNavItem } from '@/hooks/useNavItem';
 
 // TODO: 입학 > 수시모집이 아닌 입학 > 학부 > 수시모집 으로 뜨게 하기
 export function useBreadcrumb(): BreadcrumbItem[] {
