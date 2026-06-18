@@ -1,15 +1,33 @@
 import 'dayjs/locale/ko';
 import { Link } from '@tanstack/react-router';
+import clsx from 'clsx';
 import dayjs from 'dayjs';
-import type { ReactNode } from 'react';
 import { useState } from 'react';
-import Button from '@/components/ui/Button';
 import Image from '@/components/ui/Image';
 import { useLanguage } from '@/hooks/useLanguage';
 import useIsMobile from '@/hooks/useResponsive';
 import type { AllMainNotice } from '@/types/api/v2';
 import noticeGraphicImg from '../assets/noticeGraphic.avif';
 import PlusIcon from '../assets/plus.svg?react';
+
+// 공지 분류는 "넷 중 하나"인 상호배타 단일 선택이라 토글 버튼이 아니라 radiogroup이 맞다.
+// 네이티브 radio(fieldset)로 그룹 시맨틱·화살표 키 이동을 브라우저가 처리하고, 시각은 pill로.
+// as const로 label을 리터럴로 유지(useLanguage `t`가 등록된 키 union만 받음).
+const NOTICE_TAGS = [
+  { value: 'all', label: '전체' },
+  { value: 'scholarship', label: '장학' },
+  { value: 'undergraduate', label: '학부' },
+  { value: 'graduate', label: '대학원' },
+] as const satisfies readonly { value: keyof AllMainNotice; label: string }[];
+
+const noticeTagPillClass = (selected: boolean) =>
+  clsx(
+    'inline-flex cursor-pointer select-none items-center justify-center rounded-[1.875rem] border border-solid border-main-orange-dark px-3 py-[0.37rem] text-md font-medium transition duration-200',
+    'has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-main-orange-dark',
+    selected
+      ? 'bg-main-orange-dark text-[#202020]'
+      : 'bg-[#202020] text-main-orange-dark',
+  );
 
 export default function NoticeSection({
   allMainNotice,
@@ -34,32 +52,24 @@ export default function NoticeSection({
           {t('공지사항')}
         </h3>
         <div className="mt-6 flex items-center justify-between sm:mt-9">
-          <div className="flex gap-3.5">
-            <NoticeSectionButton
-              selected={tag === 'all'}
-              onClick={() => setTag('all')}
-            >
-              {t('전체')}
-            </NoticeSectionButton>
-            <NoticeSectionButton
-              selected={tag === 'scholarship'}
-              onClick={() => setTag('scholarship')}
-            >
-              {t('장학')}
-            </NoticeSectionButton>
-            <NoticeSectionButton
-              selected={tag === 'undergraduate'}
-              onClick={() => setTag('undergraduate')}
-            >
-              {t('학부')}
-            </NoticeSectionButton>
-            <NoticeSectionButton
-              selected={tag === 'graduate'}
-              onClick={() => setTag('graduate')}
-            >
-              {t('대학원')}
-            </NoticeSectionButton>
-          </div>
+          <fieldset
+            aria-label={t('공지사항')}
+            className="m-0 flex gap-3.5 border-0 p-0"
+          >
+            {NOTICE_TAGS.map(({ value, label }) => (
+              <label key={value} className={noticeTagPillClass(tag === value)}>
+                <input
+                  type="radio"
+                  name="notice-tag"
+                  value={value}
+                  checked={tag === value}
+                  onChange={() => setTag(value)}
+                  className="sr-only"
+                />
+                {t(label)}
+              </label>
+            ))}
+          </fieldset>
           {!isMobile && (
             <Link
               className="flex text-base font-normal text-main-orange-dark"
@@ -100,19 +110,3 @@ export default function NoticeSection({
     </div>
   );
 }
-
-const NoticeSectionButton = ({
-  selected,
-  onClick,
-  children,
-}: {
-  selected: boolean;
-  onClick: () => void;
-  children: ReactNode;
-}) => {
-  return (
-    <Button kind="toggle" size="md" selected={selected} onClick={onClick}>
-      {children}
-    </Button>
-  );
-};

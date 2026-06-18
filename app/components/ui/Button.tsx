@@ -15,7 +15,6 @@ import { forwardRef } from 'react';
 //   quiet     = 저강조 텍스트(밝은 표면)            ← text/neutral-500
 //   link      = 인라인 링크형 텍스트               ← text/brand
 //   nav       = 다크 헤더 유틸 버튼(흰 글자)         ← text/inverse
-//   toggle    = 토글 칩(pill, aria-pressed)        ← pill/brand + selected
 //   segmented = 세그먼트 토글(선택 dark/비선택 gray) ← solid/inverse|solid/neutral + selected
 type ButtonKind =
   | 'primary'
@@ -24,7 +23,6 @@ type ButtonKind =
   | 'quiet'
   | 'link'
   | 'nav'
-  | 'toggle'
   | 'segmented';
 type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 
@@ -73,11 +71,8 @@ const TEXT_SIZE_CLASSES: Record<ButtonSize, string> = {
 };
 
 // kind → 시각 클래스(기존 variant/tone 조합과 바이트 동일).
-// 상태 의존(toggle/segmented)은 KIND_CLASSES에 없고 아래에서 따로 처리.
-const KIND_CLASSES: Record<
-  Exclude<ButtonKind, 'toggle' | 'segmented'>,
-  string
-> = {
+// 상태 의존(segmented)은 KIND_CLASSES에 없고 아래에서 따로 처리.
+const KIND_CLASSES: Record<Exclude<ButtonKind, 'segmented'>, string> = {
   primary: 'rounded-[.0625rem] bg-main-orange text-white',
   action: 'rounded-[.0625rem] bg-neutral-700 text-white hover:bg-neutral-500',
   secondary:
@@ -90,16 +85,6 @@ const KIND_CLASSES: Record<
 // 텍스트형 kind는 padding 없는 TEXT_SIZE_CLASSES를 쓴다.
 const TEXT_KINDS = new Set<ButtonKind>(['quiet', 'link', 'nav']);
 
-// toggle(pill) 칩 — 기존 pill/brand 전용 클래스.
-const TOGGLE_BASE =
-  'rounded-[1.875rem] border border-solid border-main-orange-dark px-3 py-[0.37rem] text-md';
-
-function getToggleStateClass(selected?: boolean) {
-  return selected
-    ? 'bg-main-orange-dark text-[#202020]'
-    : 'bg-[#202020] text-main-orange-dark';
-}
-
 function getButtonClass({
   kind,
   size,
@@ -111,10 +96,6 @@ function getButtonClass({
 }) {
   const base =
     'inline-flex items-center justify-center gap-2 font-medium transition duration-200';
-
-  if (kind === 'toggle') {
-    return clsx(base, TOGGLE_BASE, getToggleStateClass(selected));
-  }
 
   if (kind === 'segmented') {
     const seg = selected
@@ -174,9 +155,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
       onClick={props.onClick}
       disabled={props.disabled}
       className={className}
-      aria-pressed={
-        kind === 'toggle' || kind === 'segmented' ? selected : undefined
-      }
+      aria-pressed={kind === 'segmented' ? selected : undefined}
       aria-label={ariaLabel}
       ref={ref}
     >

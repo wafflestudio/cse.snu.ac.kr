@@ -4,9 +4,9 @@ import preview from '../../../.storybook/preview';
 import Button from './Button';
 
 // 스토리는 실사용 역할(kind)만 노출한다. 과거 variant×tone 곱집합(무효 조합 다수)을
-// 8개 역할로 수렴 → Storybook 컨트롤에서 깨진 조합을 만들 수 없다.
+// 7개 역할로 수렴 → Storybook 컨트롤에서 깨진 조합을 만들 수 없다.
 //   primary/action/secondary = solid·outline 버튼, quiet/link/nav = 텍스트 버튼,
-//   toggle = pill 칩, segmented = 정렬 세그먼트 토글.
+//   segmented = 정렬 세그먼트 토글.
 const meta = preview.meta({
   title: 'UI/Button',
   component: Button,
@@ -22,20 +22,19 @@ const meta = preview.meta({
         'quiet',
         'link',
         'nav',
-        'toggle',
         'segmented',
       ],
       description:
-        '역할. primary=강조 CTA · action=폼/다이얼로그 커밋 · secondary=보조 · quiet=저강조 텍스트 · link=인라인 링크 · nav=다크 헤더 유틸 · toggle=pill 칩 · segmented=세그먼트 토글.',
+        '역할. primary=강조 CTA · action=폼/다이얼로그 커밋 · secondary=보조 · quiet=저강조 텍스트 · link=인라인 링크 · nav=다크 헤더 유틸 · segmented=세그먼트 토글.',
     },
     size: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg'],
-      description: '크기(toggle은 size 영향 없음).',
+      description: '크기.',
     },
     selected: {
       control: 'boolean',
-      description: 'toggle·segmented 선택 상태(aria-pressed).',
+      description: 'segmented 선택 상태(aria-pressed).',
     },
     disabled: { control: 'boolean', description: 'as="button"에서만 적용.' },
   },
@@ -69,14 +68,6 @@ export const Link = meta.story({
 export const Nav = meta.story({
   args: { kind: 'nav', size: 'sm', children: '로그인' },
   decorators: [onDark],
-});
-
-// --- 토글 ---
-export const Toggle = meta.story({
-  args: { kind: 'toggle', selected: false, children: '전체' },
-});
-export const ToggleSelected = meta.story({
-  args: { kind: 'toggle', selected: true, children: '전체' },
 });
 
 /** segmented = 정렬 세그먼트 토글(선택 dark / 비선택 gray). faculty 가나다순/소속순. */
