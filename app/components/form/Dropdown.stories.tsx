@@ -15,10 +15,10 @@ const meta = preview.meta({
     withForm,
   ],
   // 선택값 없으면 버튼에 라벨이 안 떠 빈 상태로 보임 → 초기 선택값 지정.
+  // inline:false 대신 닫힌 채 렌더 → canvas에선 play가 열어 펼침을 보여준다(docs는 트리거만).
   parameters: {
     layout: 'fullscreen',
     formValues: { category: 'undergraduate' },
-    docs: { story: { inline: false, iframeHeight: '320px' } },
   },
   args: {
     name: 'category',
@@ -27,6 +27,10 @@ const meta = preview.meta({
       { label: '대학원', value: 'graduate' },
       { label: '전체', value: 'all' },
     ],
+  },
+  // 트리거는 첫 버튼(아래 옵션 버튼들은 상시 DOM에 있고 scale로 접힘).
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getAllByRole('button')[0]);
   },
 });
 

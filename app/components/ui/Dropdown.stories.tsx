@@ -6,11 +6,8 @@ import Dropdown from './Dropdown';
 const meta = preview.meta({
   title: 'UI/Dropdown',
   component: Dropdown,
-  parameters: {
-    layout: 'fullscreen',
-    // 펼치면 아래로 ~168px 늘어나므로 프리뷰(특히 docs)에 세로 여유를 준다.
-    docs: { story: { inline: false, iframeHeight: '320px' } },
-  },
+  // inline:false 대신 닫힌 채 렌더 → canvas에선 play가 열어 펼침을 보여준다(docs는 트리거만).
+  parameters: { layout: 'fullscreen' },
   decorators: [
     (Story) => (
       <div className="flex justify-center px-10 pt-8 pb-60">
@@ -33,6 +30,9 @@ const meta = preview.meta({
         onClick={(i) => updateArgs({ selectedIndex: i })}
       />
     );
+  },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole('combobox'));
   },
 });
 

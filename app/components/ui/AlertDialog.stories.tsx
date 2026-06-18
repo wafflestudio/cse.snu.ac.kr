@@ -1,22 +1,36 @@
+import { useState } from 'react';
 import { fn } from 'storybook/test';
 import preview from '../../../.storybook/preview';
 import AlertDialog from './AlertDialog';
+import Button from './Button';
 
+// 모달은 open을 강제하지 않는다 — 열어두면 portal 오버레이가 docs 전체를 덮어 inline:false가
+// 강요되고, 그러면 Docs 컨트롤이 라이브로 안 먹는다. 대신 트리거+상태로 닫힌 채 렌더하고,
+// canvas에선 play가 열어 보여준다(docs는 play를 안 돌려 닫힌 트리거만 → 컨트롤 정상 반영).
 const meta = preview.meta({
   title: 'UI/AlertDialog',
   component: AlertDialog,
-  parameters: {
-    // 모달은 풀블리드(portal fixed inset-0) → fullscreen으로 통일(ImageModal/Dialog와 동일).
-    layout: 'fullscreen',
-    // open된 모달은 오버레이가 docs 페이지 전체를 덮는다 → 독립 iframe 격리.
-    docs: { story: { inline: false, iframeHeight: '360px' } },
-  },
+  parameters: { layout: 'centered' },
   args: {
-    open: true,
+    open: false,
     description: '정말 삭제하시겠습니까?',
     confirmText: '삭제',
     onConfirm: fn(),
     onOpenChange: fn(),
+  },
+  render: function Render(args) {
+    const [open, setOpen] = useState(false);
+    return (
+      <>
+        <Button kind="secondary" onClick={() => setOpen(true)}>
+          항목 삭제
+        </Button>
+        <AlertDialog {...args} open={open} onOpenChange={setOpen} />
+      </>
+    );
+  },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole('button', { name: '항목 삭제' }));
   },
 });
 

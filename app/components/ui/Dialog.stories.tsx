@@ -1,20 +1,18 @@
+import { useState } from 'react';
 import { fn } from 'storybook/test';
 import preview from '../../../.storybook/preview';
+import Button from './Button';
 import Dialog from './Dialog';
 
+// 모달은 open을 강제하지 않는다(트리거+play 패턴 — AlertDialog 참고). docs는 닫힌 트리거만
+// 보여 오버레이가 페이지를 안 덮고 컨트롤이 라이브로 먹는다. canvas는 play가 열어 보여준다.
 // `title` prop은 VisuallyHidden(접근성용)이라 화면 제목은 children 안에 둔다(실사용 패턴).
-// children 폭이 좁으면 우상단 X(absolute)와 겹치므로 실제처럼 충분한 콘텐츠를 준다.
 const meta = preview.meta({
   title: 'UI/Dialog',
   component: Dialog,
-  parameters: {
-    // 모달은 풀블리드(portal fixed inset-0) → fullscreen으로 통일(ImageModal/AlertDialog와 동일).
-    layout: 'fullscreen',
-    // open된 모달은 오버레이가 docs 페이지 전체를 덮는다 → 독립 iframe 격리.
-    docs: { story: { inline: false, iframeHeight: '480px' } },
-  },
+  parameters: { layout: 'centered' },
   args: {
-    open: true,
+    open: false,
     title: '대화상자 제목',
     onOpenChange: fn(),
     children: (
@@ -28,6 +26,22 @@ const meta = preview.meta({
         </p>
       </div>
     ),
+  },
+  render: function Render(args) {
+    const [open, setOpen] = useState(false);
+    return (
+      <>
+        <Button kind="secondary" onClick={() => setOpen(true)}>
+          대화상자 열기
+        </Button>
+        <Dialog {...args} open={open} onOpenChange={setOpen} />
+      </>
+    );
+  },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(
+      canvas.getByRole('button', { name: '대화상자 열기' }),
+    );
   },
 });
 

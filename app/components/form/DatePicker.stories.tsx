@@ -15,12 +15,15 @@ const meta = preview.meta({
     withForm,
   ],
   // DatePicker는 value를 Date로 다룸 → 초기 Date 필요(없으면 getHours 크래시).
+  // inline:false 대신 닫힌 채 렌더 → canvas에선 play가 열어 캘린더를 보여준다(docs는 트리거만).
   parameters: {
     layout: 'fullscreen',
     formValues: { date: new Date('2024-03-15T09:00:00') },
-    docs: { story: { inline: false, iframeHeight: '440px' } },
   },
   args: { name: 'date' },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole('button'));
+  },
 });
 
 export const Default = meta.story();
