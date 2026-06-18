@@ -16,7 +16,13 @@ const sampleImage =
 const meta = {
   title: 'UI/ImageModal',
   component: ImageModal,
-  parameters: { layout: 'fullscreen' },
+  parameters: {
+    layout: 'fullscreen',
+    // 마운트 시 자동 오픈 → portal 오버레이가 docs 페이지 전체를 덮는다 → 독립 iframe 격리.
+    // 세로 포스터(320×400)가 잘려 이미지 컨테이너(overflow-auto)에 스크롤바가 생기지 않도록
+    // 90vh 기준 이미지가 다 들어갈 높이를 준다.
+    docs: { story: { inline: false, iframeHeight: 760 } },
+  },
   args: { id: 'sb-default', imageSrc: sampleImage },
 } satisfies Meta<typeof ImageModal>;
 export default meta;

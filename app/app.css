@@ -119,6 +119,25 @@
   scrollbar-width: none;
 }
 
+/* 드롭다운/스크롤 패널용 얇은 스크롤바(.styled-scrollbar).
+   Dropdown(ui·form)이 참조하지만 정의가 마이그레이션에서 누락돼 네이티브 17px
+   스크롤바가 노출됐다 → 의도대로 얇게 복원. */
+.styled-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #d4d4d4 transparent;
+}
+.styled-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.styled-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #d4d4d4;
+  border-radius: 9999px;
+}
+.styled-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 /* https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor */
 @layer base {
   button:not(:disabled),

@@ -72,30 +72,15 @@ export const Colors: StoryObj<typeof meta> = {
   ),
 };
 
-/** 페이지 본문 가로 여백 규약 `.page-gutter-x`. 좌/우 거터를 실제 비율로 시각화. */
+/**
+ * 페이지 본문 좌우 여백의 **단일 출처** `.page-gutter-x`(app.css의 utility).
+ * `PageLayout`·`ContentSection`이 이 클래스를 쓰고, 개별 페이지에서 패딩(`px-…`)을
+ * 인라인으로 재선언하지 않는다. 우측이 큰 건 SubNavbar(목차) 자리를 비워두기 때문.
+ * 아래는 좌/우 거터를 실제 px 비율로 시각화한 것이다.
+ */
 export const PageGutter: StoryObj<typeof meta> = {
   render: () => (
     <div className="flex max-w-3xl flex-col gap-6 p-8">
-      <div>
-        <h2 className="mb-1 text-lg font-semibold text-neutral-900">
-          page-gutter-x — 페이지 본문 가로 여백
-        </h2>
-        <p className="text-sm leading-6 text-neutral-600">
-          페이지 본문 좌우 여백의 <strong>단일 출처</strong>(app.css의 utility).
-          <code className="mx-1 rounded bg-neutral-100 px-1 font-mono text-xs">
-            PageLayout
-          </code>
-          ·
-          <code className="mx-1 rounded bg-neutral-100 px-1 font-mono text-xs">
-            ContentSection
-          </code>
-          이 이 클래스를 쓰고, 개별 페이지에서 패딩(
-          <code className="font-mono text-xs">px-…</code>)을 인라인으로
-          재선언하지 않는다. 우측이 큰 건 <strong>SubNavbar(목차) 자리</strong>
-          를 비워두기 때문.
-        </p>
-      </div>
-
       {/* 데스크톱: 실제 px를 그대로 폭으로 그려 비율을 보여준다 (w-25=100px, w-90=360px) */}
       <div>
         <div className="mb-1.5 text-xs font-medium text-neutral-500">

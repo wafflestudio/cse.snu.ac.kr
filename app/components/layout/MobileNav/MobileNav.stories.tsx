@@ -21,6 +21,9 @@ const meta = {
   title: 'Layout/MobileNav',
   component: MobileNav,
   decorators: [withHoveredNav],
+  // sm:hidden + 모바일 뷰포트(390) 의존이라 autodocs(docs iframe은 풀폭이라 viewport 미적용)에선
+  // 항상 빈칸이 된다 → autodocs를 끄고 기본 진입을 Canvas(Open=뷰포트 390 적용)로 보낸다.
+  tags: ['!autodocs'],
   parameters: {
     layout: 'fullscreen',
     // SB10 코어 viewport(별도 애드온 불필요)로 모바일 폭 고정 → sm:hidden 해제.

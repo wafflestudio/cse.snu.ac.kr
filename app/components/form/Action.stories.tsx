@@ -9,7 +9,7 @@ const meta = {
   title: 'Form/Action',
   component: Action,
   decorators: [withForm],
-  parameters: { layout: 'padded' },
+  parameters: { layout: 'centered' },
   args: {
     onCancel: noop,
     onSubmit: asyncNoop,

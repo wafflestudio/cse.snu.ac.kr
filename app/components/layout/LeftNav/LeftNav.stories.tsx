@@ -5,7 +5,11 @@ import LNB from './index';
 const meta = {
   title: 'Layout/LeftNav',
   component: LNB,
-  parameters: { layout: 'fullscreen' },
+  parameters: {
+    layout: 'fullscreen',
+    // position:fixed라 autodocs 인라인 블록 밖으로 빠져 안 보인다 → 독립 iframe으로 렌더.
+    docs: { story: { inline: false, iframeHeight: 900 } },
+  },
 } satisfies Meta<typeof LNB>;
 export default meta;
 

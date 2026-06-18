@@ -6,7 +6,12 @@ import Dialog from './Dialog';
 const meta = {
   title: 'UI/Dialog',
   component: Dialog,
-  parameters: { layout: 'centered' },
+  parameters: {
+    // 모달은 풀블리드(portal fixed inset-0) → fullscreen으로 통일(ImageModal/AlertDialog와 동일).
+    layout: 'fullscreen',
+    // open된 모달은 오버레이가 docs 페이지 전체를 덮는다 → 독립 iframe 격리.
+    docs: { story: { inline: false, iframeHeight: 480 } },
+  },
   args: {
     open: true,
     title: '대화상자 제목',

@@ -107,7 +107,7 @@ function DropdownListWithScroll({
   return (
     <div
       className={clsx(
-        'styled-scrollbar absolute flex flex-col left-0 top-0 max-h-[168px] origin-top overflow-y-scroll overscroll-contain rounded-bl-sm rounded-br-sm border bg-white transition duration-200',
+        'styled-scrollbar absolute flex flex-col left-0 top-0 max-h-[168px] origin-top overflow-y-auto overscroll-contain rounded-bl-sm rounded-br-sm border bg-white transition duration-200',
         className,
         borderStyle,
       )}

@@ -5,6 +5,12 @@ import '../app/components/ui/sonner/styles.css';
 
 const preview: Preview = {
   parameters: {
+    // 사이드바 순서: 토큰(Foundations) → 자주 쓰는 프리미티브(UI) → 합성(Form/Feature/Layout).
+    options: {
+      storySort: {
+        order: ['Foundations', 'UI', 'Form', 'Feature', 'Layout'],
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
