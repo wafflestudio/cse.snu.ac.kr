@@ -24,6 +24,13 @@ const meta = preview.meta({
       description: '크기.',
     },
     disabled: { control: 'boolean', description: 'as="button"에서만 적용.' },
+    // iconLeft는 ReactNode라 컨트롤로 직접 입력이 안 됨 → mapping으로 예시 아이콘을 선택 노출.
+    iconLeft: {
+      control: 'select',
+      options: ['none', 'search'],
+      mapping: { none: undefined, search: <Search size={16} /> },
+      description: '왼쪽 아이콘(ReactNode — 컨트롤은 예시 매핑).',
+    },
   },
 });
 
