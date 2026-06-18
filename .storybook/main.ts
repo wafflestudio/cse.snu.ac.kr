@@ -8,11 +8,7 @@ const serverFnsMock = fileURLToPath(
 
 const config: StorybookConfig = {
   stories: ['../app/**/*.stories.@(ts|tsx)'],
-  addons: [
-    '@chromatic-com/storybook',
-    '@storybook/addon-a11y',
-    '@storybook/addon-docs',
-  ],
+  addons: ['@storybook/addon-a11y', '@storybook/addon-docs'],
   framework: '@storybook/tanstack-react',
   // `~/lib/serverFns`(createServerFn 기반)는 SB 브라우저 환경에서 `.validator` 체인이
   // 깨져 useLanguage 사용 컴포넌트의 렌더를 막는다 → SB에선 no-op 모킹으로 alias.

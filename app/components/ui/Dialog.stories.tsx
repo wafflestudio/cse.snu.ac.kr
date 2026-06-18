@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import { fn } from 'storybook/test';
 import Dialog from './Dialog';
 
 // `title` prop은 VisuallyHidden(접근성용)이라 화면 제목은 children 안에 둔다(실사용 패턴).
@@ -15,7 +16,7 @@ const meta = {
   args: {
     open: true,
     title: '대화상자 제목',
-    onOpenChange: () => {},
+    onOpenChange: fn(),
     children: (
       <div className="flex w-[26rem] max-w-full flex-col gap-3">
         <h2 className="text-xl font-semibold text-neutral-900">

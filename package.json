@@ -51,7 +51,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.9",
-    "@chromatic-com/storybook": "^5.2.1",
     "@playwright/test": "^1.57.0",
     "@react-router/dev": "7.10.1",
     "@react-router/express": "7.10.1",

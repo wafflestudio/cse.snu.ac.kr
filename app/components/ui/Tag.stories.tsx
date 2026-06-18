@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import { fn } from 'storybook/test';
 import { Tag } from './Tag';
 
 const meta = {
@@ -12,4 +13,4 @@ type Story = StoryObj<typeof meta>;
 
 export const Outline: Story = { args: { variant: 'outline' } };
 export const Solid: Story = { args: { variant: 'solid' } };
-export const Deletable: Story = { args: { onDelete: () => {} } };
+export const Deletable: Story = { args: { onDelete: fn() } };

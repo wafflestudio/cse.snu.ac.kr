@@ -28,6 +28,30 @@ env:
   BACKEND_DIR: csereal-server
 
 jobs:
+  # Storybook 빌드 회귀 가드. build-storybook은 평소 Dockerfile(배포 빌드)에서만 돌아
+  # 스토리가 깨져도 PR에선 안 잡혔다 → 여기서 컴파일/빌드를 검증한다(백엔드 불필요라 e2e와 병렬).
+  storybook-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout frontend
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Storybook
+        run: pnpm build-storybook --quiet
+
   e2e:
     runs-on: ubuntu-latest
     timeout-minutes: 60

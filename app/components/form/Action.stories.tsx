@@ -1,9 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import { fn } from 'storybook/test';
 import { withForm } from '../../../.storybook/withForm';
 import Action from './Action';
-
-const noop = () => {};
-const asyncNoop = async () => {};
 
 const meta = {
   title: 'Form/Action',
@@ -11,8 +9,8 @@ const meta = {
   decorators: [withForm],
   parameters: { layout: 'centered' },
   args: {
-    onCancel: noop,
-    onSubmit: asyncNoop,
+    onCancel: fn(),
+    onSubmit: fn(),
     submitLabel: '저장하기',
   },
   argTypes: {
@@ -30,7 +28,7 @@ export const Default: Story = {};
 
 /** 삭제 버튼 포함 (기존 항목 편집 폼). */
 export const WithDelete: Story = {
-  args: { onDelete: asyncNoop },
+  args: { onDelete: fn() },
 };
 
 export const CustomLabel: Story = {

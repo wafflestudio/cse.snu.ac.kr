@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import { fn } from 'storybook/test';
 import AlertDialog from './AlertDialog';
 
 const meta = {
@@ -14,8 +15,8 @@ const meta = {
     open: true,
     description: '정말 삭제하시겠습니까?',
     confirmText: '삭제',
-    onConfirm: () => {},
-    onOpenChange: () => {},
+    onConfirm: fn(),
+    onOpenChange: fn(),
   },
 } satisfies Meta<typeof AlertDialog>;
 export default meta;
