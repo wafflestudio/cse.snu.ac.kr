@@ -29,7 +29,6 @@ const BRAND = [
   { name: 'main-orange', cls: 'bg-main-orange', hex: '#ff6914' },
   { name: 'main-orange-dark', cls: 'bg-main-orange-dark', hex: '#e65817' },
   { name: 'link', cls: 'bg-link', hex: '#3c7be4' },
-  { name: 'visited', cls: 'bg-visited', hex: '#ff0000' },
 ];
 
 const NEUTRAL = [
