@@ -122,7 +122,7 @@ function FacultyPage() {
         </fieldset>
         <LoginVisible allow="ROLE_STAFF">
           <Button
-            kind="action"
+            variant="neutral"
             size="md"
             as="link"
             to={localizedPath('/people/faculty/create')}

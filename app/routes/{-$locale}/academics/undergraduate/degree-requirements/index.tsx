@@ -46,7 +46,7 @@ function DegreeRequirementsPage() {
     >
       <LoginVisible allow="ROLE_STAFF">
         <div className="mb-8 flex justify-end">
-          <Button kind="secondary" as="link" to="edit">
+          <Button variant="secondary" as="link" to="edit">
             편집
           </Button>
         </div>

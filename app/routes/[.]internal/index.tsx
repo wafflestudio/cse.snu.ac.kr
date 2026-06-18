@@ -14,7 +14,7 @@ function InternalPage() {
     <PageLayout title="학부 메일링리스트" titleSize="xl">
       <LoginVisible allow="ROLE_STAFF">
         <div className="mb-8 text-right">
-          <Button as="link" to="/.internal/edit" kind="secondary" size="md">
+          <Button as="link" to="/.internal/edit" variant="secondary" size="md">
             편집
           </Button>
         </div>

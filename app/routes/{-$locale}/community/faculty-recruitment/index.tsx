@@ -42,7 +42,7 @@ function FacultyRecruitmentPage() {
       <LoginVisible allow="ROLE_STAFF">
         <div className="mb-8 text-right">
           <Button
-            kind="action"
+            variant="neutral"
             size="md"
             as="link"
             to={localizedPath('/community/faculty-recruitment/edit')}

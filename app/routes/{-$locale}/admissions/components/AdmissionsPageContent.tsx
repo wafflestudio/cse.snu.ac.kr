@@ -152,7 +152,7 @@ export default function AdmissionsPageContent({
             <Button
               as="link"
               to={localizedPath(editPath)}
-              kind="secondary"
+              variant="secondary"
               size="md"
             >
               편집

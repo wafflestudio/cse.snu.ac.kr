@@ -46,7 +46,7 @@ function GreetingsPage() {
             <Button
               as="link"
               to={localizedPath('/about/greetings/edit')}
-              kind="secondary"
+              variant="secondary"
               size="md"
             >
               편집

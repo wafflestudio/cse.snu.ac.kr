@@ -31,7 +31,7 @@ const meta = preview.meta({
     const [{ open }, updateArgs] = useArgs();
     return (
       <>
-        <Button kind="secondary" onClick={() => updateArgs({ open: true })}>
+        <Button variant="secondary" onClick={() => updateArgs({ open: true })}>
           대화상자 열기
         </Button>
         <Dialog

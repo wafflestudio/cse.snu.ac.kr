@@ -89,7 +89,7 @@ function SeminarPage() {
         <div className="mt-[40px] flex justify-end">
           <span className="ml-4">
             <Button
-              kind="action"
+              variant="neutral"
               size="md"
               as="link"
               to={localizedPath('/community/seminar/create')}

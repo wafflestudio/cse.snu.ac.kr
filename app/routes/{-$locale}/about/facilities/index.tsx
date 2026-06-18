@@ -44,7 +44,7 @@ function FacilitiesPage() {
           <Button
             as="link"
             to={localizedPath('/about/facilities/create')}
-            kind="primary"
+            variant="primary"
             size="md"
           >
             시설 추가

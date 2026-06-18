@@ -43,7 +43,7 @@ export default function CareerStat({ stat }: { stat: YearStat[] }) {
             <Button
               as="link"
               to={localizedPath('/about/future-careers/stat/create')}
-              kind="primary"
+              variant="primary"
               size="md"
             >
               연도 추가
@@ -51,7 +51,7 @@ export default function CareerStat({ stat }: { stat: YearStat[] }) {
             <Button
               as="link"
               to={localizedPath(`/about/future-careers/stat/edit?year=${year}`)}
-              kind="secondary"
+              variant="secondary"
               size="md"
             >
               편집

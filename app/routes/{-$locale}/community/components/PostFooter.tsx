@@ -75,7 +75,7 @@ export default function PostFooter({
               {onDelete && (
                 <span className="mr-3">
                   <Button
-                    kind="secondary"
+                    variant="secondary"
                     size="md"
                     onClick={() => setShowDeleteDialog(true)}
                   >
@@ -85,7 +85,7 @@ export default function PostFooter({
               )}
               {editPath && (
                 <span className="mr-3">
-                  <Button as="link" to={editHref} kind="secondary" size="md">
+                  <Button as="link" to={editHref} variant="secondary" size="md">
                     편집
                   </Button>
                 </span>
@@ -93,7 +93,7 @@ export default function PostFooter({
             </div>
           </LoginVisible>
         )}
-        <Button as="link" to={listHref} kind="action" size="md">
+        <Button as="link" to={listHref} variant="neutral" size="md">
           {t('목록')}
         </Button>
       </div>

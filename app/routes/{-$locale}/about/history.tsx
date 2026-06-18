@@ -45,7 +45,7 @@ function HistoryPage() {
             <Button
               as="link"
               to={localizedPath('/about/history/edit')}
-              kind="secondary"
+              variant="secondary"
               size="md"
             >
               편집

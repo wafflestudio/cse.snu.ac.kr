@@ -192,14 +192,14 @@ export default function AddReservationModal({
 
           <div className="flex justify-end gap-2">
             <Button
-              kind="secondary"
+              variant="secondary"
               size="md"
               onClick={() => onOpenChange(false)}
             >
               {t('취소')}
             </Button>
             <Button
-              kind="primary"
+              variant="primary"
               size="md"
               type="submit"
               disabled={!isValid || isSubmitting}

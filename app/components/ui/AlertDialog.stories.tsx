@@ -23,7 +23,7 @@ const meta = preview.meta({
     const [{ open }, updateArgs] = useArgs();
     return (
       <>
-        <Button kind="secondary" onClick={() => updateArgs({ open: true })}>
+        <Button variant="secondary" onClick={() => updateArgs({ open: true })}>
           항목 삭제
         </Button>
         <AlertDialog

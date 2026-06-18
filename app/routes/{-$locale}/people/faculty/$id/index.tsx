@@ -58,7 +58,7 @@ function FacultyDetailPage() {
           <Button
             as="link"
             to={localizedPath(`/people/faculty/${faculty.id}/edit`)}
-            kind="secondary"
+            variant="secondary"
             size="md"
           >
             편집

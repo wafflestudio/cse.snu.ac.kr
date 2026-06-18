@@ -76,7 +76,7 @@ export default function SlideManagement({
           </span>
         </div>
         <Button
-          kind="secondary"
+          variant="secondary"
           size="sm"
           disabled={selectedKeys.size === 0}
           onClick={() => setShowDialog(true)}

@@ -131,10 +131,10 @@ export default function CourseEditor({
         />
       </div>
       <div className="flex justify-end gap-2">
-        <Button kind="secondary" onClick={toggleEditMode}>
+        <Button variant="secondary" onClick={toggleEditMode}>
           {t('취소')}
         </Button>
-        <Button kind="action" onClick={handleSubmit(onSubmit)}>
+        <Button variant="neutral" onClick={handleSubmit(onSubmit)}>
           {t('확인')}
         </Button>
       </div>

@@ -62,7 +62,7 @@ function FacilitiesRow({ facility }: { facility: ProcessedFacility }) {
           <LoginVisible allow="ROLE_STAFF">
             <div className="mt-5 flex gap-3">
               <Button
-                kind="secondary"
+                variant="secondary"
                 size="md"
                 onClick={() => setShowDeleteDialog(true)}
               >
@@ -71,7 +71,7 @@ function FacilitiesRow({ facility }: { facility: ProcessedFacility }) {
               <Button
                 as="link"
                 to={localizedPath(`/about/facilities/edit?id=${facility.id}`)}
-                kind="secondary"
+                variant="secondary"
                 size="md"
               >
                 편집

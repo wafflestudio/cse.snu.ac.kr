@@ -72,7 +72,7 @@ function EmeritusFacultyDetailPage() {
           <Button
             as="link"
             to={localizedPath(`/people/emeritus-faculty/${faculty.id}/edit`)}
-            kind="secondary"
+            variant="secondary"
             size="md"
           >
             편집

@@ -29,7 +29,7 @@ const meta = preview.meta({
     return (
       <>
         <Button
-          kind="secondary"
+          variant="secondary"
           onClick={() => {
             localStorage.removeItem(`image-modal-hidden-${args.id}`);
             setSeq((n) => n + 1);

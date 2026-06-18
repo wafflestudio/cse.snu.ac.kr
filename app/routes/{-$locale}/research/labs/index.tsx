@@ -50,7 +50,7 @@ function ResearchLabsPage() {
           <Button
             as="link"
             to={localizedPath('/research/labs/create')}
-            kind="primary"
+            variant="primary"
             size="md"
           >
             연구실 추가

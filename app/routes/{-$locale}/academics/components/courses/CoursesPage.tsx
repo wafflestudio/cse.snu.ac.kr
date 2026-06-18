@@ -91,7 +91,10 @@ export default function CoursesPage({
     >
       <LoginVisible allow="ROLE_STAFF">
         <div className="mb-8 ml-auto flex justify-end">
-          <Button kind="primary" onClick={() => setIsAddCourseModalOpen(true)}>
+          <Button
+            variant="primary"
+            onClick={() => setIsAddCourseModalOpen(true)}
+          >
             새 교과목
           </Button>
         </div>

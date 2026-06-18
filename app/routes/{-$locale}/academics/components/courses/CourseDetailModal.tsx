@@ -96,10 +96,10 @@ function CourseViewer({
 
       <LoginVisible allow="ROLE_STAFF">
         <div className="flex justify-end gap-3">
-          <Button kind="secondary" onClick={() => setShowDeleteDialog(true)}>
+          <Button variant="secondary" onClick={() => setShowDeleteDialog(true)}>
             {t('삭제')}
           </Button>
-          <Button kind="secondary" onClick={onClickEdit}>
+          <Button variant="secondary" onClick={onClickEdit}>
             {t('편집')}
           </Button>
         </div>

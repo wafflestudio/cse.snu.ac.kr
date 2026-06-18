@@ -59,7 +59,7 @@ function StaffDetailPage() {
           <Button
             as="link"
             to={localizedPath(`/people/staff/${staff.id}/edit`)}
-            kind="secondary"
+            variant="secondary"
             size="md"
           >
             편집

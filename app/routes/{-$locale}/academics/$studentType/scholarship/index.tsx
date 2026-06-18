@@ -61,7 +61,7 @@ function ScholarshipPage() {
     >
       <LoginVisible allow="ROLE_STAFF">
         <div className="mb-8 flex justify-end">
-          <Button kind="secondary" as="link" to="edit">
+          <Button variant="secondary" as="link" to="edit">
             편집
           </Button>
         </div>
@@ -73,7 +73,7 @@ function ScholarshipPage() {
       />
       <LoginVisible allow="ROLE_STAFF">
         <div className="mt-3">
-          <Button kind="primary" as="link" to="create">
+          <Button variant="primary" as="link" to="create">
             장학금 추가
           </Button>
         </div>

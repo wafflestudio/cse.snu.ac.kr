@@ -81,7 +81,7 @@ function ResearchCentersPage() {
             <Button
               as="link"
               to={localizedPath('/research/centers/create')}
-              kind="primary"
+              variant="primary"
               size="md"
             >
               연구 센터 추가
@@ -97,7 +97,7 @@ function ResearchCentersPage() {
               <Button
                 as="button"
                 onClick={() => setShowDeleteDialog(true)}
-                kind="secondary"
+                variant="secondary"
                 size="md"
               >
                 삭제
@@ -107,7 +107,7 @@ function ResearchCentersPage() {
                 to={localizedPath(
                   `/research/centers/${selectedCenter.id}/edit`,
                 )}
-                kind="secondary"
+                variant="secondary"
                 size="md"
               >
                 편집

@@ -51,7 +51,7 @@ export default function CareerCompanies({
         <div className="hidden sm:block">
           <LoginVisible allow="ROLE_STAFF">
             <Button
-              kind="primary"
+              variant="primary"
               size="md"
               onClick={toggleCreateForm}
               disabled={showCreateForm}

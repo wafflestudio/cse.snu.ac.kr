@@ -49,7 +49,7 @@ function FutureCareersPage() {
             <Button
               as="link"
               to={localizedPath('/about/future-careers/description/edit')}
-              kind="secondary"
+              variant="secondary"
               size="md"
             >
               편집

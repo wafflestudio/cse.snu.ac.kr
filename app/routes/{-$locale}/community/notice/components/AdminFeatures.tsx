@@ -75,7 +75,7 @@ export default function AdminFeatures({
               </span>
             </div>
             <Button
-              kind="secondary"
+              variant="secondary"
               size="sm"
               disabled={selectedIds.size === 0}
               onClick={() => setShowDeleteDialog(true)}
@@ -83,7 +83,7 @@ export default function AdminFeatures({
               일괄 삭제
             </Button>
             <Button
-              kind="secondary"
+              variant="secondary"
               size="sm"
               disabled={selectedIds.size === 0}
               onClick={() => setShowUnpinDialog(true)}
@@ -93,17 +93,17 @@ export default function AdminFeatures({
           </div>
         )}
         <div className="ml-auto flex items-center">
-          <Button kind="primary" size="md" onClick={toggleEditMode}>
+          <Button variant="primary" size="md" onClick={toggleEditMode}>
             {isEditMode ? '완료' : '편집'}
           </Button>
           <span className="ml-4">
             {isEditMode ? (
-              <Button kind="action" size="md" disabled>
+              <Button variant="neutral" size="md" disabled>
                 새 게시글
               </Button>
             ) : (
               <Button
-                kind="action"
+                variant="neutral"
                 size="md"
                 as="link"
                 to={localizedPath('/community/notice/create')}
