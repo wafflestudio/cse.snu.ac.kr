@@ -53,18 +53,12 @@ jobs:
           repository: wafflestudio/csereal-server # public → 토큰 불필요(GITHUB_TOKEN)
           ref: ${{ env.BACKEND_REF }}
           path: csereal-server-main # = BACKEND_DIR 기본값 ../csereal-server-main
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: cse.snu.ac.kr/.nvmrc
-          cache: pnpm
-          cache-dependency-path: cse.snu.ac.kr/pnpm-lock.yaml
-      # 로컬과 똑같이 `pnpm test`(=e2e-docker.sh). 백엔드는 ../csereal-server-main(체크아웃됨)
-      # 에서 compose가 빌드, 앱·시드·브라우저는 핀된 컨테이너 안. host.docker.internal은
-      # Linux 러너에서도 --add-host=host-gateway로 동작(스크립트가 이미 처리).
-      - name: E2E (pnpm test)
+      # 호스트엔 pnpm/node 불필요 — e2e-docker.sh가 모든 걸 핀된 컨테이너 안에서 한다(corepack·
+      # pnpm install·빌드·시드·브라우저). 백엔드는 ../csereal-server-main(체크아웃됨)에서 compose가
+      # 빌드. host.docker.internal은 Linux 러너에서도 --add-host=host-gateway로 동작(스크립트가 처리).
+      - name: E2E (e2e-docker.sh)
         working-directory: cse.snu.ac.kr
-        run: pnpm test
+        run: bash scripts/e2e-docker.sh
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
