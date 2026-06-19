@@ -16,7 +16,6 @@
     "test:ui": "bash scripts/e2e-docker.sh --ui",
     "deploy:staging": "scripts/deploy.sh staging",
     "deploy:prod": "scripts/deploy.sh prod",
-    "lighthouse:dev": "sh lighthouse/run-docker.sh",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
