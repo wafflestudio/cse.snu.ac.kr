@@ -1,17 +1,31 @@
 import preview from '../../../.storybook/preview';
 import CornerFoldedRectangle from './CornerFoldedRectangle';
 
+const card = <span className="p-4 block">접힌 모서리 카드</span>;
+
 const meta = preview.meta({
   title: 'UI/CornerFoldedRectangle',
   component: CornerFoldedRectangle,
   parameters: { layout: 'centered' },
-  args: { size: 'large' },
+  // Docs 컨트롤이 비지 않도록 컴포넌트 기본값을 명시한다.
+  args: {
+    colorTheme: 'orange',
+    size: 'large',
+    shadow: 'medium',
+    width: 'w-fit',
+    children: card,
+  },
+  argTypes: {
+    // animationType은 optional(기본=애니메이션 없음) → none을 기본 선택지로 노출(undefined 매핑).
+    animationType: {
+      control: 'inline-radio',
+      options: ['none', 'folding', 'unfolding'],
+      mapping: { none: undefined, folding: 'folding', unfolding: 'unfolding' },
+    },
+  },
 });
 
-// 필수 prop인 children(ReactNode)·colorTheme(union)은 CSF4가 meta.args만으론
-// "충족"으로 인식 못 해 각 스토리에 명시해야 한다(공통 children은 상수로 공유).
-const card = <span className="p-4 block">접힌 모서리 카드</span>;
-
+// colorTheme(union)·children은 CSF4가 meta.args만으론 충족 인식 못 해 스토리에 명시.
 export const Orange = meta.story({
   args: { colorTheme: 'orange', children: card },
 });
