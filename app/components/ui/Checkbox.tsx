@@ -29,7 +29,7 @@ export default function Checkbox({
     <label
       htmlFor={inputId}
       className={`group flex h-5 w-fit items-center gap-1 whitespace-nowrap ${
-        !disabled && 'cursor-pointer'
+        disabled ? 'cursor-not-allowed opacity-40' : 'cursor-pointer'
       } ${className ?? ''}`}
     >
       {(() => {
