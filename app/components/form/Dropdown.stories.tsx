@@ -17,7 +17,7 @@ const meta = preview.meta({
   // 선택값 없으면 버튼에 라벨이 안 떠 빈 상태로 보임 → 초기 선택값 지정.
   // inline:false 대신 닫힌 채 렌더 → canvas에선 play가 열어 펼침을 보여준다(docs는 트리거만).
   parameters: {
-    layout: 'fullscreen',
+    layout: 'centered',
     formValues: { category: 'undergraduate' },
   },
   args: {

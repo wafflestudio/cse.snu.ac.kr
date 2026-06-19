@@ -7,7 +7,7 @@ const meta = preview.meta({
   title: 'UI/Dropdown',
   component: Dropdown,
   // inline:false 대신 닫힌 채 렌더 → canvas에선 play가 열어 펼침을 보여준다(docs는 트리거만).
-  parameters: { layout: 'fullscreen' },
+  parameters: { layout: 'centered' },
   decorators: [
     (Story) => (
       <div className="flex justify-center px-10 pt-8 pb-60">
