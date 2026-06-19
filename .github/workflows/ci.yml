@@ -53,6 +53,16 @@ jobs:
           repository: wafflestudio/csereal-server # public → 토큰 불필요(GITHUB_TOKEN)
           ref: ${{ env.BACKEND_REF }}
           path: csereal-server-main # = BACKEND_DIR 기본값 ../csereal-server-main
+      # 백엔드 Dockerfile은 prebuilt JAR(build/libs)를 COPY한다 → 컴포즈 빌드 전에 JAR을 만들어야 함
+      # (로컬도 동일: CLAUDE.md §백엔드 동기화. JDK 21 필요).
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+      - name: 백엔드 JAR 빌드
+        working-directory: csereal-server-main
+        run: ./gradlew bootJar -x test
       # 호스트엔 pnpm/node 불필요 — e2e-docker.sh가 모든 걸 핀된 컨테이너 안에서 한다(corepack·
       # pnpm install·빌드·시드·브라우저). 백엔드는 ../csereal-server-main(체크아웃됨)에서 compose가
       # 빌드. host.docker.internal은 Linux 러너에서도 --add-host=host-gateway로 동작(스크립트가 처리).
