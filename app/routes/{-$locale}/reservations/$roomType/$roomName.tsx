@@ -5,7 +5,6 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useNavItem } from '@/hooks/useNavItem';
 import useIsMobile from '@/hooks/useResponsive';
 import { useReservationsSubNav } from '@/hooks/useSubNav';
-import { kstDayjs } from '@/lib/kstDayjs';
 import {
   fetchReserveTerms,
   fetchWeeklyReservation,
@@ -17,6 +16,7 @@ import {
   roomNameToId,
   STAFF_ONLY_ROOM_ID,
 } from '@/routes/{-$locale}/reservations/constants';
+import { kstDayjs } from '@/utils/kstDayjs';
 import {
   formatDateParam,
   getStartOfWeek,

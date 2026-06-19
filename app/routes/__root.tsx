@@ -21,9 +21,9 @@ import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useNonce } from '@/hooks/useNonce';
 import useIsMobile from '@/hooks/useResponsive';
-import { forwardAuthHeaders, readLangHeaders } from '@/lib/ssr';
 import { type Role, useStore } from '@/store';
 import { detectLangFromHeaders } from '@/utils/lang';
+import { forwardAuthHeaders, readLangHeaders } from '@/utils/ssr';
 
 export const Route = createRootRoute({
   beforeLoad: ({ location }) => {

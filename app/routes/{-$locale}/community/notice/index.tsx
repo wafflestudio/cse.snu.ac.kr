@@ -10,9 +10,9 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useSearchParams } from '@/hooks/useSearchParams';
 import { useSetToggle } from '@/hooks/useSetToggle';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
-import { forwardAuthHeaders } from '@/lib/ssr';
 import type { NoticePreviewList } from '@/types/api/v2/notice';
 import { fetchJson } from '@/utils/fetch';
+import { forwardAuthHeaders } from '@/utils/ssr';
 import AdminFeatures from './components/AdminFeatures';
 import NoticeListRow, {
   NOTICE_ROW_CELL_WIDTH,

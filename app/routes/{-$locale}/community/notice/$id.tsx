@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import { forwardAuthHeaders } from '@/lib/ssr';
+import { forwardAuthHeaders } from '@/utils/ssr';
 import 'dayjs/locale/ko';
 import { useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';

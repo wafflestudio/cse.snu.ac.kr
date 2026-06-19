@@ -9,12 +9,12 @@ import { Tag } from '@/components/ui/Tag';
 import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
-import { forwardAuthHeaders } from '@/lib/ssr';
 import PostFooter from '@/routes/{-$locale}/community/components/PostFooter';
 import type { News } from '@/types/api/v2/news';
 import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchOk } from '@/utils/fetch';
 import { stripHtml, truncateDescription } from '@/utils/metadata';
+import { forwardAuthHeaders } from '@/utils/ssr';
 
 function NewsDetailPage() {
   const news = Route.useLoaderData();

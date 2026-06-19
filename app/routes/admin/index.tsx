@@ -3,7 +3,6 @@ import SelectionList from '@/components/feature/selection/SelectionList';
 import PageLayout from '@/components/layout/PageLayout';
 import { BASE_URL } from '@/constants/api';
 import { useSelectionList } from '@/hooks/useSelectionList';
-import { forwardAuthHeaders } from '@/lib/ssr';
 import {
   ADMIN_MENU_IMAGE_MODAL,
   ADMIN_MENU_IMPORTANT,
@@ -13,6 +12,7 @@ import {
   type SlidePreviewList,
 } from '@/types/api/v2/admin';
 import { fetchJson } from '@/utils/fetch';
+import { forwardAuthHeaders } from '@/utils/ssr';
 import ImageModalManagement from './components/ImageModalManagement';
 import ImportantManagement from './components/ImportantManagement';
 import SlideManagement from './components/SlideManagement';

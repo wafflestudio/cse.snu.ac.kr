@@ -45,7 +45,7 @@
 - **라우트는 URL을 미러링**(`app/routes/{-$locale}/<path>`). 라우트별 비라우트 파일은 같은 폴더에 **co-locate**.
 - **co-location 폴더명은 라우팅 ignore 패턴과 맞물린다.** `vite.config.ts`의 `routeFileIgnorePattern`이 `components`·`sections`·`use[A-Z]`·PascalCase·(`api`/`constants`/`fetchContent`)를 라우트에서 제외한다 → 비라우트 파일은 **`components/`(복수)·`hooks/`(`useX`)·`sections/`·`assets/`** 또는 PascalCase로 둔다. ⚠️ 단수 `component/`처럼 패턴에 안 맞는 이름은 **라우트로 샐 수 있다**(실제 outlier 1건 → 복수로 통일함). 새 co-location 폴더는 반드시 패턴에 맞는 이름으로.
 - **공용 `app/components/`**: `ui`(제어 프리미티브, value/onChange) · `form`(RHF 어댑터, name+useFormContext) · `layout`(앱 셸: Header/Footer/Nav/PageLayout + 404 `NotFound`) · `feature`(도메인 위젯: auth/category/content/SearchBox/selection). **route-specific → co-locate, 여러 라우트서 재사용 → 여기로 승격.**
-- **`lib/` vs `utils/`**: `lib` = 프레임워크·서드파티 통합 / 서버 전용(`serverFns`·`ssr`·`kstDayjs`·`server/img`), `utils` = isomorphic 순수 헬퍼(`fetch`·`string`·`metadata`·`form`…). (`cspServerFn`/`processHtmlForCsp`는 serverFn이라 개념상 lib지만 importer가 많아 utils에 잔류 — **신규 serverFn은 lib 권장**.)
+- **헬퍼는 `app/utils/` 한 곳**(과거 `lib/`와 분리했으나 경계가 모호하고 폴더가 아무것도 강제하지 않아 합침). **서버 전용 보장은 폴더가 아니라 `createServerFn`·서버 라우트 핸들러가 한다** — 무거운 서버 전용 deps(cheerio→`cspServerFn`/`processHtmlForCsp`, sharp→`imageOptimizer`)는 그 경계 안에서만 돌려 클라 번들에서 빠진다.
 
 ---
 
