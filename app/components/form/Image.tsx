@@ -23,7 +23,7 @@ export default function ImagePicker({ name, options }: Props) {
 
   return (
     <>
-      <label className="mb-3 flex h-7.5 cursor-pointer items-center self-start rounded-sm border border-neutral-300 px-[.62rem] text-xs hover:bg-neutral-100">
+      <label className="mb-3 flex h-7.5 w-fit cursor-pointer items-center self-start rounded-sm border border-neutral-300 px-[.62rem] text-xs hover:bg-neutral-100">
         {`이미지 ${file ? '변경' : '업로드'}`}
         <input
           type="file"
