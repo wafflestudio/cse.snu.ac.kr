@@ -40,6 +40,27 @@ cp env/.env.example env/.env
 | staging | `168.107.16.249.nip.io` | 배포된 프리-프로드(공개 접근) |
 | local | `localhost:8080` (docker) | 로컬 E2E/개발 |
 
+## 아키텍처
+
+브라우저는 **한 오리진(앱)만** 호출하고, `/api`는 **서버사이드에서** 백엔드로 프록시된다 → 세션 쿠키(JSESSIONID)가 first-party로 유지돼 CORS·인증 문제가 없다.
+
+```mermaid
+flowchart LR
+  user(["사용자 브라우저"])
+  subgraph prod["프로덕션 호스트"]
+    edge["Caddy 엣지<br/>TLS · HTTP/2 · 압축 · 라우팅"]
+    fe["frontend :3000<br/>Hono · TanStack Start SSR"]
+    be["backend :8080<br/>Spring · MySQL"]
+  end
+  user -->|HTTPS| edge
+  edge -->|"그 외"| fe
+  edge -->|"/api/*"| be
+  fe -. "SSR 시 same-origin /api" .-> edge
+```
+
+- **prod:** Caddy(엣지)가 TLS·압축·라우팅을 맡고 `/api/*`는 백엔드로, 그 외는 frontend 컨테이너로 보낸다.
+- **local / E2E:** Caddy 대신 루트 `server.ts`(Hono)가 prod 빌드를 서빙하고 `API_PROXY_TARGET` 설정 시 `/api`를 로컬 docker 백엔드(:8080)로 프록시한다. (자세한 이유·트레이드오프는 `CLAUDE.md` §1.)
+
 ## 스크립트
 
 ```sh
@@ -54,17 +75,38 @@ pnpm typecheck      # TypeScript 타입 체크
 pnpm lint           # Biome 린트/포맷 검사 (커밋 전 lint-staged가 자동 실행 — 경고도 차단)
 pnpm lint:fix       # Biome 자동 수정 (포맷·import 정렬·안전한 수정)
 pnpm test           # E2E (핀된 Playwright 컨테이너 = 정본 렌더 환경. 백엔드는 자동 기동)
-                    #   솔로 레포라 CI 없음 — 로컬 pnpm test가 단일 게이트
-                    #   baseline 재생성: pnpm test --update-snapshots
+                    #   로컬·CI 동일(같은 e2e-docker.sh). baseline 재생성: pnpm test --update-snapshots
+pnpm knip           # 미사용 파일·export·의존성(프로젝트 레벨 dead code)
 pnpm test:ui        # E2E UI 모드 — 호스트 브라우저에서 http://localhost:43210
 pnpm lighthouse     # 주요 공개 페이지(=비주얼 테스트 페이지) Lighthouse 점수
                     #   먼저 `pnpm preview`(:3000, 백엔드 :8080)를 띄운 뒤 실행
 pnpm storybook      # Storybook (dev, :6006). 배포 시엔 `/storybook` 경로로도 서빙됨
 pnpm build-storybook
 
-pnpm deploy:staging # staging 서버 배포
-pnpm deploy:prod    # 프로덕션 배포
+pnpm deploy:staging # staging 서버 배포(GHCR 이미지 pull)
+pnpm deploy:prod    # 프로덕션 배포(GHCR 이미지 pull, 수동 확인)
 ```
+
+## CI/CD
+
+브랜치: **`feature/*` → `develop`(staging) → `main`(production)**. `main`에 직접 push 금지(PR 필수).
+
+```mermaid
+flowchart TD
+  feat["feature/*"] -->|"PR"| dev["develop · staging"]
+  dev -->|"PR"| main["main · production"]
+
+  feat -. "PR마다" .-> ci
+  dev -. "PR마다" .-> ci
+  ci["ci.yml<br/>게이트(typecheck·lint·knip·build·storybook) + E2E"]
+
+  dev ==>|"머지 push"| dstg["deploy.yml<br/>arm64 빌드 → GHCR :staging"] ==> stg[["staging 자동 배포"]]
+  main ==>|"머지 push"| dprd["deploy.yml<br/>amd64 빌드 → GHCR :prod"] ==> prd[["prod 수동 배포<br/>deploy.sh prod"]]
+```
+
+- **PR 게이트(`ci.yml`):** 모든 PR에서 타입/린트/knip/빌드/스토리북 + E2E(핀 컨테이너, 백엔드는 고정 SHA로 체크아웃). 통과해야 머지.
+- **빌드·배포(`deploy.yml`):** 머지 시 환경별 이미지를 호스트 arch에 맞춰 네이티브 빌드(staging=arm64, prod=amd64) → GHCR push. **staging은 자동 배포**, **prod는 `deploy.sh prod`로 수동**. 호스트는 빌드 없이 이미지를 pull만 한다.
+- **원칙:** CI는 로컬과 같은 스크립트(`pnpm test`·`pnpm lint` 등)를 호출만 한다 — 두 벌 관리하지 않는다. 상세·셋업(시크릿·branch protection)은 `CLAUDE.md` §1 "브랜치·CI/CD 컨벤션".
 
 ## 문서
 

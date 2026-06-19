@@ -6,6 +6,7 @@ name: Deploy
 on:
   push:
     branches: [develop, main]
+    paths-ignore: ['**.md'] # 문서만 바뀐 커밋은 재배포 안 함
 
 concurrency:
   group: deploy-${{ github.ref }}
