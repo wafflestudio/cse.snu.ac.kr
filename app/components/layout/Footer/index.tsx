@@ -7,8 +7,8 @@ import {
 import Dialog from '@/components/ui/Dialog';
 import { useLanguage } from '@/hooks/useLanguage';
 import commonTranslations from '@/translations.json';
-import SnuEngineeringIcon from './assets/SNU_Engineering.svg?react';
-import SnuLogoWithText from './assets/SNU_Logo_with_Text.svg?react';
+import snuEngineeringUrl from './assets/SNU_Engineering.svg?url';
+import snuLogoWithTextUrl from './assets/SNU_Logo_with_Text.svg?url';
 import footerOnlyTranslations from './translations.json';
 
 const footerTranslations = { ...commonTranslations, ...footerOnlyTranslations };
@@ -197,7 +197,7 @@ function FooterBottomRight() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <SnuEngineeringIcon />
+        <img src={snuEngineeringUrl} alt="" width={126} height={33} />
       </a>
       <a
         href="https://www.snu.ac.kr/snunow/pr/videos"
@@ -205,7 +205,7 @@ function FooterBottomRight() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <SnuLogoWithText />
+        <img src={snuLogoWithTextUrl} alt="" width={159} height={37} />
       </a>
     </div>
   );
