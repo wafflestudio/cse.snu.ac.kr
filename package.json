@@ -16,7 +16,7 @@
     "test:ui": "bash scripts/e2e-docker.sh --ui",
     "deploy:staging": "scripts/deploy.sh staging",
     "deploy:prod": "scripts/deploy.sh prod",
-    "lighthouse": "pnpm dlx unlighthouse --config-file unlighthouse.config.ts",
+    "lighthouse": "pnpm dlx unlighthouse",
     "lighthouse:dev": "sh lighthouse/run-docker.sh",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
