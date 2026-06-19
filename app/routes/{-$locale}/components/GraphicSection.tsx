@@ -10,6 +10,9 @@ export default function GraphicSection() {
       <Image
         src={backgroundImg}
         alt=""
+        // 모바일 히어로 배경 = LCP 요소. 기본 Low 우선순위라 발견 후에도 요청이 ~900ms
+        // 지연됐다(트레이스 확인) → high로 큐 대기 제거.
+        fetchPriority="high"
         className="absolute inset-0 h-full w-full object-cover sm:hidden"
       />
       <DownArrowIcon className="bottom-20 left-1/2 hidden -translate-x-1/2 animate-arrowBounce sm:absolute" />
