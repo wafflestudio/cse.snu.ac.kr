@@ -16,12 +16,9 @@ const meta = preview.meta({
     children: card,
   },
   argTypes: {
-    // animationType은 optional(기본=애니메이션 없음) → none을 기본 선택지로 노출(undefined 매핑).
-    animationType: {
-      control: 'inline-radio',
-      options: ['none', 'folding', 'unfolding'],
-      mapping: { none: undefined, folding: 'folding', unfolding: 'unfolding' },
-    },
+    // animationType은 optional(기본=무애니=undefined). Storybook은 undefined optional을 라디오에
+    // 기본 선택으로 못 잡아(빈 라디오) → 컨트롤 숨기고 애니메이션은 아래 Folding 스토리로 보여준다.
+    animationType: { control: false },
   },
 });
 
@@ -34,4 +31,9 @@ export const Black = meta.story({
 });
 export const LightGray = meta.story({
   args: { colorTheme: 'lightGray', children: card },
+});
+
+/** 펼침 애니메이션(SelectionList 펼쳐진 항목에서 사용). */
+export const Folding = meta.story({
+  args: { colorTheme: 'orange', children: card, animationType: 'folding' },
 });
