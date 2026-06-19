@@ -3,7 +3,7 @@ import preview from '../../../.storybook/preview';
 import ErrorState from './ErrorState';
 
 const meta = preview.meta({
-  title: 'UI/ErrorState',
+  title: 'Layout/ErrorState',
   component: ErrorState,
   parameters: { layout: 'fullscreen' },
   args: {
