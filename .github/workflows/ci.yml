@@ -42,17 +42,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     env:
-      BACKEND_REF: main # TODO: baseline 생성 시점의 백엔드 커밋 SHA로 핀
+      # baseline 생성 시점 백엔드 SHA로 핀(#399). 백엔드 올릴 땐 baseline 재생성 + 이 값 갱신.
+      BACKEND_REF: 1661f3d8fe409ee17359c0683cd6fca8a558ec1a
     steps:
       - uses: actions/checkout@v4
         with:
           path: cse.snu.ac.kr # 로컬과 동일한 형제 레이아웃 재현
       - uses: actions/checkout@v4
         with:
-          repository: wafflestudio/csereal-server
+          repository: wafflestudio/csereal-server # public → 토큰 불필요(GITHUB_TOKEN)
           ref: ${{ env.BACKEND_REF }}
           path: csereal-server-main # = BACKEND_DIR 기본값 ../csereal-server-main
-          token: ${{ secrets.BACKEND_REPO_TOKEN }} # 백엔드가 private이면 필요(없으면 GITHUB_TOKEN)
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:

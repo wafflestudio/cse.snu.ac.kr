@@ -41,7 +41,7 @@
 - **빌드는 학외(github-hosted)에서 OK — 단 빌드가 학내 API에 의존하지 않는 한.** 현재 SSG/prerender가 없어 빌드는 순수 번들링(API 무호출)이라 안전(검증함: 도달불가 API로도 빌드 성공). **과거 prod 호스트에서 빌드한 이유**는 RR7 시절 prerender가 빌드타임에 학내 API를 때려 학외에서 경계 NGFW SYN drop으로 깨졌기 때문 — 마이그레이션에서 prerender가 빠지며 사라진 제약(`imageOptimizer`의 "prerender hack" 주석은 잔재).
   - **⚠️ 미래(SSG/prerender 재도입 시):** 빌드가 다시 학내 API를 호출 → 학외 러너는 SYN drop(~0.3%, 페이지 수만큼 누적)에 취약. **대응 = `app/utils/fetch.ts`에 재시도(연결 미수립 에러 한정)+keep-alive 추가**(prerender는 GET이라 재시도 안전; 비멱등 POST/DELETE는 응답 후 타임아웃 재시도 금지 — 중복). 인프라 0이고 일반 학외 접근 견고성(미구현 과제)도 같이 해결. self-hosted on-campus 러너는 대안이나 인프라 부담이라 비채택. **이 전제로 설계함 — "빌드는 API 무의존"에 묶지 말 것.**
 
-> **⚠️ 활성화 전 셋업(미완 — 레포 설정/시크릿 필요):** ① `develop` 브랜치 생성·push + branch protection(PR 필수·체크 필수). ② secrets: `ENV_FILE_STAGING`/`ENV_FILE_PRODUCTION`(빌드 시 `env/.env.<mode>` 복원), `STAGING_SSH_KEY/HOST/USER/PORT`, 백엔드 private이면 `BACKEND_REPO_TOKEN`. ③ 호스트가 GHCR pull 가능하게(`docker login ghcr.io` 또는 패키지 public). ④ `ci.yml`의 `BACKEND_REF`를 baseline 생성 백엔드 커밋으로 핀. ⑤ E2E는 첫 그린 확인 후 required 체크로 승격. **⑥ cutover 순서: CI의 GHCR push가 동작함을 먼저 확인한 뒤에야 pull 기반 `deploy.sh`를 처음 돌릴 것**(그 전엔 이미지가 없어 실패).
+> **⚠️ 활성화 전 셋업(미완 — 레포 설정/시크릿 필요):** ① `develop` 브랜치 push(워크플로 파일 포함 → `workflow` 스코프 PAT 필요) + branch protection(PR 필수·체크 필수). ② secrets: `ENV_FILE_STAGING`/`ENV_FILE_PRODUCTION`(빌드 시 `env/.env.<mode>` 복원), `STAGING_SSH_KEY/HOST/USER/PORT`. (백엔드 repo가 public이라 토큰 불필요.) ③ 호스트가 GHCR pull 가능하게(`docker login ghcr.io` 또는 패키지 public). ④ ~~`BACKEND_REF` 핀~~ 완료(#399 SHA 1661f3d8). ⑤ E2E는 첫 그린 확인 후 required 체크로 승격. **⑥ cutover 순서: CI의 GHCR push가 동작함을 먼저 확인한 뒤에야 pull 기반 `deploy.sh`를 처음 돌릴 것**(그 전엔 이미지가 없어 실패).
 
 ---
 
