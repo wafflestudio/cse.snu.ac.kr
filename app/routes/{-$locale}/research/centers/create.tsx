@@ -11,7 +11,7 @@ import ResearchCenterEditor, {
 
 function ResearchCenterCreate() {
   const navigate = useNavigate();
-  const { localizedPath, locale } = useLanguage();
+  const { localizedPath } = useLanguage();
 
   const onCancel = () => {
     navigate({ to: localizedPath('/research/centers') });

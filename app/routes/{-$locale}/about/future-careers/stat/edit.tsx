@@ -52,7 +52,7 @@ interface CareerStat {
 function CareerStatEditPage() {
   const loaderData = Route.useLoaderData();
 
-  const { t, localizedPath } = useLanguage({
+  const { localizedPath } = useLanguage({
     '졸업생 진로': 'Future Careers',
   });
   const subNav = useAboutSubNav();

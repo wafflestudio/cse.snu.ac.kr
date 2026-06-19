@@ -66,7 +66,7 @@ function AdmissionsEdit() {
   const navigate = useNavigate();
   const [language, setLanguage] = useState<Language>('ko');
 
-  const config = ADMISSIONS_PAGES[mainType!][postType!];
+  const config = ADMISSIONS_PAGES[mainType][postType];
   const { title, apiPostType, successMessage } = config;
 
   const methods = useForm({
@@ -128,7 +128,7 @@ export const Route = createFileRoute(
 )({
   loader: async ({ params }) => {
     const { mainType, postType } = params;
-    const config = ADMISSIONS_PAGES[mainType!]?.[postType!];
+    const config = ADMISSIONS_PAGES[mainType]?.[postType];
 
     if (!config) {
       throw new Error(`Invalid admissions page: ${mainType}/${postType}`);

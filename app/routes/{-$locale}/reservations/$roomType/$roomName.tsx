@@ -89,7 +89,7 @@ export const Route = createFileRoute(
 )({
   loader: async ({ params, location }) => {
     const searchStr = location.searchStr;
-    const roomId = roomNameToId[params.roomName!];
+    const roomId = roomNameToId[params.roomName];
     if (roomId === undefined) throw new Error('Invalid room');
 
     const sp = new URLSearchParams(searchStr);

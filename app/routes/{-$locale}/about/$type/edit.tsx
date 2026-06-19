@@ -35,10 +35,10 @@ function AboutEdit() {
 
   const { koData, enData, type } = loaderData;
   const navigate = useNavigate();
-  const { localizedPath, locale } = useLanguage({});
+  const { localizedPath } = useLanguage({});
   const [language, setLanguage] = useState<Language>('ko');
 
-  const { title, endpoint } = ABOUT_TYPES[type!];
+  const { title, endpoint } = ABOUT_TYPES[type];
 
   const defaultValues: AboutFormData = {
     htmlKo: koData.description,
@@ -132,7 +132,7 @@ function AboutEdit() {
 export const Route = createFileRoute('/{-$locale}/about/$type/edit')({
   loader: async ({ params }) => {
     const { type } = params;
-    const endpoint = ABOUT_TYPES[type!].endpoint;
+    const endpoint = ABOUT_TYPES[type].endpoint;
 
     const [koData, enData] = await Promise.all(
       LOCALES.map((locale) =>

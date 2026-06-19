@@ -1,11 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { loginAsStaff } from '../../helpers/auth';
-import {
-  deleteItem,
-  fillTextArea,
-  fillTextInput,
-  submitForm,
-} from '../../helpers/forms';
+import { deleteItem, fillTextArea, fillTextInput } from '../../helpers/forms';
 import { setLocale } from '../../helpers/locale';
 
 /**
@@ -60,8 +55,8 @@ test.describe('교과목 - 추가/편집/삭제 플로우', () => {
     // === 삭제 === (상세 뷰어 삭제 → 확인 '삭제')
     await deleteItem(page, '삭제');
     await expect(page.getByText('교과목을 삭제했습니다.')).toBeVisible();
-    await expect(
-      page.getByRole('button', { name: koNameEdited }),
-    ).toHaveCount(0);
+    await expect(page.getByRole('button', { name: koNameEdited })).toHaveCount(
+      0,
+    );
   });
 });

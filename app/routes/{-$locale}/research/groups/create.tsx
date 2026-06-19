@@ -11,7 +11,7 @@ import ResearchGroupEditor, {
 
 function ResearchGroupCreate() {
   const navigate = useNavigate();
-  const { localizedPath, locale } = useLanguage();
+  const { localizedPath } = useLanguage();
 
   const onCancel = () => {
     navigate({ to: localizedPath('/research/groups') });

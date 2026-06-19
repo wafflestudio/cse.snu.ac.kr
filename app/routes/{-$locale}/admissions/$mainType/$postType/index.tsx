@@ -1,7 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { processHtmlForCsp } from '@/utils/cspServerFn';
 import AdmissionsPageContent from '../../components/AdmissionsPageContent';
-import { fetchAdmissions } from '../../components/fetchAdmissions';
+import {
+  fetchAdmissions,
+  type MainType,
+  type PostType,
+} from '../../components/fetchAdmissions';
 
 // Mapping for page configuration
 const ADMISSIONS_PAGES: Record<
@@ -43,7 +47,7 @@ export const Route = createFileRoute(
 )({
   loader: async ({ params }) => {
     const { mainType, postType } = params;
-    const config = ADMISSIONS_PAGES[mainType!]?.[postType!];
+    const config = ADMISSIONS_PAGES[mainType]?.[postType];
 
     if (!config) {
       throw new Error(`Invalid admissions page: ${mainType}/${postType}`);
@@ -51,8 +55,8 @@ export const Route = createFileRoute(
 
     const locale = params.locale === 'en' ? 'en' : 'ko';
     const data = await fetchAdmissions(
-      mainType as 'undergraduate' | 'graduate' | 'international',
-      config.apiPostType as any,
+      mainType as MainType,
+      config.apiPostType as PostType,
     );
 
     return {

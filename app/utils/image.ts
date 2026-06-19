@@ -22,7 +22,6 @@ export function buildOptimizedUrl(
   quality = 50,
   width?: number,
 ): string {
-  const encodedUrl = encodeURIComponent(src);
   const params = new URLSearchParams({ url: src, q: quality.toString() });
   if (width) params.set('w', width.toString());
   return `/img?${params.toString()}`;

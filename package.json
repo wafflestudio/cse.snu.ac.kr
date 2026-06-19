@@ -11,6 +11,8 @@
     "start": "tsx server.ts",
     "preview": "pnpm build:local && API_PROXY_TARGET=http://localhost:8080 tsx server.ts",
     "typecheck": "tsc",
+    "lint": "biome check",
+    "lint:fix": "biome check --write",
     "prepare": "node .husky/install.mjs",
     "test": "bash scripts/e2e-docker.sh",
     "test:ui": "bash scripts/e2e-docker.sh --ui",

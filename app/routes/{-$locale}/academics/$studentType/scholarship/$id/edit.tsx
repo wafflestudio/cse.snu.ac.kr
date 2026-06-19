@@ -6,6 +6,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import ScholarshipEditor, {
   type ScholarshipFormData,
 } from '@/routes/{-$locale}/academics/components/scholarship/ScholarshipEditor';
+import type { Scholarship } from '@/types/api/v2/academics/scholarship';
 import { fetchJson, fetchOk } from '@/utils/fetch';
 
 function ScholarshipEditPage() {
@@ -72,7 +73,7 @@ export const Route = createFileRoute(
 )({
   loader: async ({ params }) => {
     const { id } = params;
-    const res = await fetchJson<{ first: any; second: any }>(
+    const res = await fetchJson<{ first: Scholarship; second: Scholarship }>(
       `${BASE_URL}/v2/academics/scholarship/${id}`,
     );
     const isFirstKo = res.first.language === 'ko';

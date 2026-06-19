@@ -16,7 +16,7 @@ function SeminarEditPage() {
 
   const { id, data } = loaderData;
   const navigate = useNavigate();
-  const { localizedPath, locale } = useLanguage({});
+  const { localizedPath } = useLanguage({});
 
   const defaultValues: SeminarFormData = {
     title: data.title,

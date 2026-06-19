@@ -10,10 +10,8 @@ import CommunitySection from './components/sections/CommunitySection';
 import MemberSection from './components/sections/MemberSection';
 import ResearchSection from './components/sections/ResearchSection';
 import NoSearchResult from './components/ui/NoSearchResult';
-import SearchSubNavbar, {
-  type TreeNode,
-} from './components/ui/SearchSubNavbar';
-import fetchContent, { type SectionContent } from './fetchContent';
+import SearchSubNavbar from './components/ui/SearchSubNavbar';
+import fetchContent from './fetchContent';
 
 const SEARCH_TAGS = [
   '소개',
@@ -23,15 +21,6 @@ const SEARCH_TAGS = [
   '입학',
   '학사 및 교과',
 ];
-
-type SearchLoaderData = {
-  keyword?: string;
-  tag: string[];
-  total?: number;
-  sectionContent?: SectionContent;
-  node?: TreeNode[];
-  tooShort?: boolean;
-};
 
 function SearchPage() {
   const loaderData = Route.useLoaderData();

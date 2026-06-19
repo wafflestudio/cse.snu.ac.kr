@@ -21,7 +21,7 @@ interface FacilityFormData {
 
 function FacilitiesCreate() {
   const navigate = useNavigate();
-  const { localizedPath, locale } = useLanguage({});
+  const { localizedPath } = useLanguage({});
   const [language, setLanguage] = useState<Language>('ko');
 
   const defaultValues: FacilityFormData = {

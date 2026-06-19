@@ -30,7 +30,7 @@ function GuideEditPage() {
 
   const defaultValues = {
     description: loaderData.description,
-    file: loaderData.attachments.map((file: any) => ({
+    file: loaderData.attachments.map((file) => ({
       type: 'UPLOADED_FILE' as const,
       file,
     })),

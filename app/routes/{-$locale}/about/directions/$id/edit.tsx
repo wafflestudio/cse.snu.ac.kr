@@ -23,7 +23,7 @@ function DirectionsEdit() {
 
   const { direction } = loaderData;
   const navigate = useNavigate();
-  const { localizedPath, locale } = useLanguage({});
+  const { localizedPath } = useLanguage({});
   const [language, setLanguage] = useState<Language>('ko');
 
   const defaultValues: DirectionFormData = {

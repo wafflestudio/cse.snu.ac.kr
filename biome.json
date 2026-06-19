@@ -29,6 +29,12 @@
     }
   },
   "files": {
-    "includes": ["**", "!suneditor.css", "!suneditor-contents.css"]
+    "includes": [
+      "**",
+      "!**/routeTree.gen.ts",
+      "!**/suneditor.css",
+      "!**/suneditor-contents.css",
+      "!**/sonner/styles.css"
+    ]
   }
 }

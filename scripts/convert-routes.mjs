@@ -2,8 +2,9 @@
 // 컴포넌트 시그니처는 그대로 두고 createFileRoute의 component 래퍼가 loaderData/params를
 // prop으로 주입한다(원본 destructuring 파싱 불필요 → 견고). loader는 SSR 합성 request로 호출.
 // ※ 반드시 1회만 실행(재실행 시 중복 래핑). cutover.sh가 깨끗한 상태에서 1회 호출.
-import fs from 'node:fs';
+
 import { execSync } from 'node:child_process';
+import fs from 'node:fs';
 
 const files = execSync('find app/routes -name "*.tsx"', { encoding: 'utf8' })
   .split('\n')
@@ -60,4 +61,4 @@ for (const file of files) {
   fs.writeFileSync(file, src);
 }
 console.log(`변환 ${files.length - flagged.length}/${files.length}`);
-if (flagged.length) console.log('FLAGGED:\n' + flagged.join('\n'));
+if (flagged.length) console.log(`FLAGGED:\n${flagged.join('\n')}`);
