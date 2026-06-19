@@ -13,6 +13,7 @@
     "typecheck": "tsc",
     "lint": "biome check",
     "lint:fix": "biome check --write",
+    "knip": "pnpm dlx knip",
     "lighthouse": "node scripts/lighthouse.mjs",
     "prepare": "node .husky/install.mjs",
     "test": "bash scripts/e2e-docker.sh",
