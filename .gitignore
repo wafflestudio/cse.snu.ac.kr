@@ -1,34 +1,32 @@
 .DS_Store
+.mcp.json
+
+# 환경 변수
 /env/.env
 /env/.env.local
 /env/.env.*.local
-/node_modules/
-/node_modules/
 
-# React Router
-/.react-router/
-/build/
-.mcp.json
+# 의존성 / 패키지 매니저
+/node_modules/
+/.pnpm-store/
 
-# Image optimization cache
+# 빌드 산출물 (TanStack Start)
+/dist/
+
+# 이미지 최적화 디스크 캐시
 .cache/
 
-.playwright-mcp/
-
 # Playwright
-node_modules/
 /test-results/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+.playwright-mcp/
 
-# TanStack Start 빌드 산출물
-/dist/
-
+# Storybook
 *storybook.log
 storybook-static
-/.pnpm-store/
 
 # Claude Code 로컬 작업 상태
 .claude/
