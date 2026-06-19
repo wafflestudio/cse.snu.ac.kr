@@ -1,4 +1,4 @@
-export interface ResearchGroupLab {
+interface ResearchGroupLab {
   id: number;
   name: string;
 }

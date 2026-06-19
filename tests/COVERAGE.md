@@ -11,7 +11,7 @@
 ## 진행 요약
 
 - 완료: **about · community · research · admissions · reservations(정적) · 10-10-project · admin · internal · search/404 전체** · **people/academics 읽기 전체**(+주요 flow)
-- **테스트 컨벤션 리팩토링 완료**(2026-06-14): 라우트별 `smoke.spec.ts`+`visual.spec.ts`를 **`read.spec.ts` 하나로 통합**(콘텐츠 계약 assert + `toHaveScreenshot`). Playwright 프로젝트는 `read`(데스크톱)·`read-mobile`(390px)·`flow`(데스크톱, deps=[read,read-mobile]). 모바일 baseline(`*-read-mobile-darwin.png`) 생성, 검색 빈/결과 read 추가, 이중언어 flow에 en round-trip(`/en` 상세/목록 노출 확인) 추가. 데스크톱 baseline은 스냅샷 디렉터리만 `read.spec.ts-snapshots`로 이동해 재사용. **172 그린**(read 65 + read-mobile 65 + flow 42).
+- **테스트 컨벤션 리팩토링 완료**(2026-06-14): 라우트별 `smoke.spec.ts`+`visual.spec.ts`를 **`read.spec.ts` 하나로 통합**(콘텐츠 계약 assert + `toHaveScreenshot`). Playwright 프로젝트는 `read`(데스크톱)·`read-mobile`(390px)·`flow`(데스크톱, deps=[read,read-mobile]). 모바일 baseline(`*-read-mobile-linux.png`) 생성, 검색 빈/결과 read 추가, 이중언어 flow에 en round-trip(`/en` 상세/목록 노출 확인) 추가. 데스크톱 baseline은 스냅샷 디렉터리만 `read.spec.ts-snapshots`로 이동해 재사용. (이후 baseline은 핀된 Linux 컨테이너 단일 세트 `*-linux.png`로 전환 — CLAUDE.md §3 "비주얼 baseline은 Linux 단일" 참고.)
 - **백엔드 #399로 업그레이드 완료**(image-modal/FTS/교수en 수정 반영). 향후 origin/main 갱신 시 JAR 재빌드 필요.
 - **전 라우트 커버리지 달성**(읽기 전 라우트 + 편집 가능 라우트 flow). 남은 건 선택적 심화(추가 조합/엣지)뿐.
 - 참고(시드 인프라): 게시물 표시 날짜가 createdAt이면 normalize-dates.sh에 테이블 추가, payload 날짜면 불필요. 태그 있으면 enrollTag 재시드. PUT 업서트 싱글톤은 `postMultipart(...,'PUT')`. 다국어 엔티티 ko/en POST는 `{ko,en}` 구조(단 professor는 en 이름 버그).
@@ -146,7 +146,7 @@ read는 ko 기준(데스크톱+모바일). flow는 staff 편집/추가/삭제가
 - **/v2/admin/slide 미인증 302**: 비로그인 admin slide 요청이 302(OAuth)로 → preview-server SSR이 비-JSON
   파싱 실패로 로그에 'WebServer 500' 노이즈. admin loader가 `if(!cookie) return`으로 가드해 실제 테스트엔 무영향.
 - DELETE 빈 200 본문 → `fetchJson` 버그(수정 완료, 미커밋). 22개 DELETE 사이트 영향.
-- 비주얼 baseline은 플랫폼 종속(`*-darwin.png`, 데스크톱 `-read-` / 모바일 `-read-mobile-`). CI(linux) 도입 시 일관 환경에서 재생성 필요.
+- 비주얼 baseline은 **Linux 단일**(`*-linux.png`, 데스크톱 `-read-` / 모바일 `-read-mobile-`). 핀된 컨테이너가 정본 렌더 환경이라 머신 무관하게 픽셀 동일(CLAUDE.md §3 "비주얼 baseline은 Linux 단일" 참고).
 - **모바일 read 주의(`hidden sm:*`)**: 데스크톱에만 보이는 요소를 콘텐츠 계약으로 쓰면 모바일(390px)에서 깨진다.
   예: 10-10-project 하위 페이지는 'Project'가 SubNavbar(`hidden sm:block`)에만 있어, 모바일에도 보이는
   각 페이지 PageTitle(`Proposal`/`Manager`/`Participants(Professors)`)을 heading으로 assert. 새 read 작성 시
@@ -169,12 +169,12 @@ read는 ko 기준(데스크톱+모바일). flow는 staff 편집/추가/삭제가
   시각/요일과 무관하게 노출. (늦은 일요일 밤 조건에서 통과 확인.)
 - **풀 병렬 실행 간헐 플레이키 — 원인 규명 + 하드닝 완료**: 원인은 **로컬 워커 동시성 vs 단일 docker 백엔드 경합**.
   기본 워커수(코어 수)로 동시 mutation이 실서버를 과부하 → ephemeral 신호(성공 토스트)가 5초 안에 못 떠 간헐 실패.
-  격리/저워커 실행에선 항상 통과(CI는 `workers:1`). **조치 3종**: (1) `playwright.config` 로컬 `workers:4` 캡(검증:
+  격리/저워커 실행에선 항상 통과(컨테이너 런은 `CI=1`→`workers:1`). **조치 3종**: (1) `playwright.config` 로컬 워커 수 캡(검증:
   4워커 flow 4/4 그린, 풀런 3/3 그린 — 기본값은 ~1/5 flaky), (2) 생성 성공 단언을 ephemeral 토스트 → **영속 신호**로
   교체(labs/news=waitForURL, 예약=모달 닫힘 대기), (3) news 대표 이미지 `<img>` 타임아웃 15s.
   - **잔여(저빈도, infra 의존)**: `community/news` 대표 이미지 카드 `<img>` — `ui/Image`가 src **로드 성공 시에만**
     `<img>`, 실패 시 폴백 `<div>`(SnuLogo)로 **영구** 전환(재시도 안 함). 즉 업로드 이미지의 **서빙·로드**(백엔드/infra)
-    에 의존 → 기준상 백엔드 영역. 워커 캡으로 거의 안정, 드물게 미스 시 CI `retries=2`가 흡수.
+    에 의존 → 기준상 백엔드 영역. 워커 캡으로 거의 안정, 드물게 미스 시 컨테이너 런 `retries=2`가 흡수.
 - **그룹 연구실 목록 비정렬**: research/groups 상세의 `item.labs`는 백엔드가 비정렬 컬렉션(Set)으로
   반환 → 런마다 순서가 바뀜. 풀 병렬 실행에서 groups 비주얼이 플레이키 → 해당 ul을 마스킹으로 해결.
   (스모크가 연구실 존재는 검증). 비슷하게 순서 보장 없는 목록 비주얼은 마스킹 고려.

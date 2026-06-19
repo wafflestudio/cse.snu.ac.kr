@@ -24,7 +24,7 @@ export interface SlidePreviewList {
   total: number;
 }
 
-export type ImportantCategory = 'notice' | 'news' | 'seminar';
+type ImportantCategory = 'notice' | 'news' | 'seminar';
 
 export interface ImportantPreview {
   id: number;
@@ -36,9 +36,4 @@ export interface ImportantPreview {
 export interface ImportantPreviewList {
   importants: ImportantPreview[];
   total: number;
-}
-
-export interface ImportantPostIdentifier {
-  id: number;
-  category: ImportantCategory;
 }

@@ -37,9 +37,7 @@ test.describe('10-10 Project - 읽기', () => {
       const res = await page.goto(path);
       expect(res?.status()).toBe(200);
       // PageTitle(h3)은 모바일에서도 보임. 'Proposal' 등은 subNav에선 링크라 heading 역할로 유일.
-      await expect(
-        page.getByRole('heading', { name: heading }),
-      ).toBeVisible();
+      await expect(page.getByRole('heading', { name: heading })).toBeVisible();
       await expect(page).toHaveScreenshot(snapshot, { fullPage: true });
     });
   }

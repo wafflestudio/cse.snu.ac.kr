@@ -14,16 +14,16 @@ import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 import LNB from '@/components/layout/LeftNav';
 import MobileNav from '@/components/layout/MobileNav';
-import NotFound from '@/components/system/NotFound';
+import NotFound from '@/components/layout/NotFound';
 import ErrorState from '@/components/ui/ErrorState';
 import { Toaster } from '@/components/ui/sonner';
 import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useNonce } from '@/hooks/useNonce';
 import useIsMobile from '@/hooks/useResponsive';
-import { forwardAuthHeaders, readLangHeaders } from '@/lib/ssr';
 import { type Role, useStore } from '@/store';
 import { detectLangFromHeaders } from '@/utils/lang';
+import { forwardAuthHeaders, readLangHeaders } from '@/utils/ssr';
 
 export const Route = createRootRoute({
   beforeLoad: ({ location }) => {
@@ -92,7 +92,7 @@ function RootDocument() {
     useStore.setState({ roles: roles ?? [] });
   }, [roles]);
 
-  const { localizedPath, locale, pathWithoutLocale } = useLanguage();
+  const { locale, pathWithoutLocale } = useLanguage();
   const isMain = pathWithoutLocale === '/';
   const paddingLeft = isMain ? 'sm:pl-[11rem]' : 'sm:pl-[6.25rem]';
 

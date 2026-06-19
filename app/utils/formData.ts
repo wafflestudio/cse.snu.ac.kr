@@ -69,25 +69,3 @@ export const getAttachmentDeleteIds = (
 
   return deleteIds;
 };
-
-export const getEditorImage = (url: string | null | undefined): EditorImage =>
-  url ? { type: 'UPLOADED_IMAGE', url } : null;
-
-export function getEditorFile(attachment: Attachment): EditorFile;
-export function getEditorFile(attachment: Attachment[]): EditorFile[];
-export function getEditorFile(
-  attachment: Attachment | Attachment[],
-): EditorFile | EditorFile[] {
-  return Array.isArray(attachment)
-    ? attachment.map((file) => ({ type: 'UPLOADED_FILE', file }))
-    : { type: 'UPLOADED_FILE', file: attachment };
-}
-
-export const attachmentToEditorFile = (attachment: Attachment): EditorFile => ({
-  type: 'UPLOADED_FILE',
-  file: attachment,
-});
-
-export const attachmentsToEditorFiles = (
-  attachments: Attachment[],
-): EditorFile[] => attachments.map(attachmentToEditorFile);

@@ -1,8 +1,8 @@
 import { BASE_URL } from '@/constants/api';
 import type { AdmissionsResponse } from '@/types/api/v2/admissions';
 
-type MainType = 'undergraduate' | 'graduate' | 'international';
-type PostType =
+export type MainType = 'undergraduate' | 'graduate' | 'international';
+export type PostType =
   | 'early-admission'
   | 'regular-admission'
   | 'exchange-visiting'

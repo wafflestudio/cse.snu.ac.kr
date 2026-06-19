@@ -60,8 +60,6 @@ test.describe('연구 스트림 - 추가/편집/삭제 플로우', () => {
     await page.getByRole('link', { name: koNameEdited }).click();
     await deleteItem(page, '삭제');
     await expect(page.getByText('연구 스트림을 삭제했습니다.')).toBeVisible();
-    await expect(
-      page.getByRole('link', { name: koNameEdited }),
-    ).toHaveCount(0);
+    await expect(page.getByRole('link', { name: koNameEdited })).toHaveCount(0);
   });
 });

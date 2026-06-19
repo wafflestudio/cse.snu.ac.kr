@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { Link } from '@tanstack/react-router';
+import { useState } from 'react';
 import {
   getLinkGroups,
   type LinkGroupProps,
@@ -115,7 +115,9 @@ function FooterBottomLeft() {
         <span>|</span>
         <Link to={localizedPath('/about/contact')}>{t('학부 연락처')}</Link>
         <span>|</span>
-        <Link to={localizedPath('/about/directions')}>{t('찾아오시는 길')}</Link>
+        <Link to={localizedPath('/about/directions')}>
+          {t('찾아오시는 길')}
+        </Link>
       </div>
 
       <address className="mb-[1.37rem] not-italic">

@@ -23,9 +23,12 @@ test.describe('입학 - 읽기', () => {
     await expect(
       page.getByText(ADMISSIONS_SEED['undergraduate/regular-admission'].ko),
     ).toBeVisible();
-    await expect(page).toHaveScreenshot('admissions-undergraduate-regular-ko.png', {
-      fullPage: true,
-    });
+    await expect(page).toHaveScreenshot(
+      'admissions-undergraduate-regular-ko.png',
+      {
+        fullPage: true,
+      },
+    );
   });
 
   test('외국인 장학 비주얼 (ko, extraBottom)', async ({ page }) => {
@@ -34,8 +37,11 @@ test.describe('입학 - 읽기', () => {
     await expect(
       page.getByText(ADMISSIONS_SEED['international/scholarships'].ko),
     ).toBeVisible();
-    await expect(page).toHaveScreenshot('admissions-international-scholarships-ko.png', {
-      fullPage: true,
-    });
+    await expect(page).toHaveScreenshot(
+      'admissions-international-scholarships-ko.png',
+      {
+        fullPage: true,
+      },
+    );
   });
 });

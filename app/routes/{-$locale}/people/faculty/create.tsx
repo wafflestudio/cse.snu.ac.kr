@@ -16,7 +16,7 @@ function FacultyCreate() {
 
   const { status, labs } = loaderData;
   const navigate = useNavigate();
-  const { localizedPath, locale } = useLanguage({});
+  const { localizedPath } = useLanguage({});
 
   const onSubmit = async (content: FacultyFormData) => {
     const formData = new FormData2();
@@ -50,7 +50,7 @@ function FacultyCreate() {
         content.status === 'INACTIVE'
           ? '/people/emeritus-faculty'
           : '/people/faculty';
-      navigate({ to: `/${locale}${path}/${response.ko.id}` });
+      navigate({ to: localizedPath(`${path}/${response.ko.id}`) });
     } catch {
       toast.error('추가에 실패했습니다.');
     }

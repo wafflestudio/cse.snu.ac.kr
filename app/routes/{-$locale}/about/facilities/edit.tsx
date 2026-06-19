@@ -30,7 +30,7 @@ function FacilitiesEdit() {
 
   const { facility, allFacilities } = loaderData;
   const navigate = useNavigate();
-  const { localizedPath, locale } = useLanguage({});
+  const { localizedPath } = useLanguage({});
   const [language, setLanguage] = useState<Language>('ko');
   const [_searchParams, setSearchParams] = useSearchParams();
 

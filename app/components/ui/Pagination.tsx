@@ -6,8 +6,8 @@ import {
   ChevronsLeft,
   ChevronsRight,
 } from 'lucide-react';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import useIsMobile from '@/hooks/useResponsive';
+import { useSearchParams } from '@/hooks/useSearchParams';
 
 interface PaginationProps {
   page: number;

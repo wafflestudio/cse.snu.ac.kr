@@ -22,8 +22,14 @@ export const ABOUT_SEED = {
  */
 export const DIRECTIONS_SEED = [
   {
-    ko: { name: '대중교통', description: '지하철 2호선 서울대입구역에서 버스 환승.' },
-    en: { name: 'By Public Transit', description: 'Subway Line 2 to SNU Station, then bus.' },
+    ko: {
+      name: '대중교통',
+      description: '지하철 2호선 서울대입구역에서 버스 환승.',
+    },
+    en: {
+      name: 'By Public Transit',
+      description: 'Subway Line 2 to SNU Station, then bus.',
+    },
   },
   {
     ko: { name: '자가용', description: '관악 캠퍼스 정문으로 진입.' },
@@ -93,7 +99,11 @@ export const FUTURE_CAREERS_SEED = {
   statYear: 2024,
   companies: [
     { name: '에이아이비전', url: 'https://aivision.example.com', year: 2020 },
-    { name: '데이터스케이프', url: 'https://datascape.example.com', year: 2021 },
+    {
+      name: '데이터스케이프',
+      url: 'https://datascape.example.com',
+      year: 2021,
+    },
   ],
 } as const;
 

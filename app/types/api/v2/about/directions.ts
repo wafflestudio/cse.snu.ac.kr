@@ -1,4 +1,4 @@
-export interface Direction {
+interface Direction {
   id: number;
   name: string;
   description: string;

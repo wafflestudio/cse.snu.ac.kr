@@ -16,7 +16,7 @@ function ResearchLabCreate() {
 
   const { groups, professors } = loaderData;
   const navigate = useNavigate();
-  const { localizedPath, locale } = useLanguage({});
+  const { localizedPath } = useLanguage({});
 
   const onSubmit = async ({ ko, en, ...common }: ResearchLabFormData) => {
     const formData = new FormData2();

@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { BASE_URL } from '@/constants/api';
 import type { NavItem } from '@/constants/navigation';
 
-export type NavbarState =
+type NavbarState =
   | { type: 'closed' }
   | { type: 'expanded' }
   | { type: 'hovered'; navItem: NavItem };

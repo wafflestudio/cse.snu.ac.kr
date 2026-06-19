@@ -20,7 +20,7 @@ function ResearchGroupEdit() {
 
   const { ko, en } = loaderData;
   const navigate = useNavigate();
-  const { localizedPath, locale } = useLanguage({});
+  const { localizedPath } = useLanguage({});
 
   const defaultValues: ResearchGroupFormData = {
     ko: { name: ko.name, description: ko.description, type: 'groups' },
@@ -71,7 +71,7 @@ function ResearchGroupEdit() {
 
 export const Route = createFileRoute('/{-$locale}/research/groups/$id/edit')({
   loader: async ({ params }) => {
-    const id = params.id!;
+    const id = params.id;
 
     const data = await fetchJson<ResearchGroupData>(
       `${BASE_URL}/v2/research/${id}`,

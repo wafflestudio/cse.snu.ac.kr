@@ -6,12 +6,12 @@ import Button from '@/components/ui/Button';
 import Dialog from '@/components/ui/Dialog';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import { kstDayjs } from '@/lib/kstDayjs';
 import {
   deleteRecurringReservation,
   deleteReservation,
 } from '@/routes/{-$locale}/reservations/api';
 import type { Reservation } from '@/types/api/v2/reservation';
+import { kstDayjs } from '@/utils/kstDayjs';
 
 interface ReservationDetailModalProps {
   reservationId: number | null;

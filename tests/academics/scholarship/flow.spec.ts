@@ -56,8 +56,6 @@ test.describe('장학 제도 - 추가/편집/삭제 플로우', () => {
     await deleteItem(page, '삭제');
     await expect(page.getByText('장학금을 삭제했습니다.')).toBeVisible();
     await page.waitForURL('**/academics/undergraduate/scholarship');
-    await expect(
-      page.getByRole('link', { name: koNameEdited }),
-    ).toHaveCount(0);
+    await expect(page.getByRole('link', { name: koNameEdited })).toHaveCount(0);
   });
 });

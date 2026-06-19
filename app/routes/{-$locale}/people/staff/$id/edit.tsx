@@ -78,7 +78,7 @@ function StaffEdit() {
 
 export const Route = createFileRoute('/{-$locale}/people/staff/$id/edit')({
   loader: async ({ params }) => {
-    const id = parseInt(params.id!, 10);
+    const id = parseInt(params.id, 10);
 
     const staff = await fetchJson<{ ko: Staff; en: Staff }>(
       `${BASE_URL}/v2/staff/${id}`,

@@ -9,6 +9,7 @@ import { toast } from '@/components/ui/sonner';
 import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
+import type { Scholarship } from '@/types/api/v2/academics/scholarship';
 import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchJson, fetchOk } from '@/utils/fetch';
 import { stripHtml, truncateDescription } from '@/utils/metadata';
@@ -93,7 +94,7 @@ export const Route = createFileRoute(
 )({
   loader: async ({ params }) => {
     const { id } = params;
-    const res = await fetchJson<{ first: any; second: any }>(
+    const res = await fetchJson<{ first: Scholarship; second: Scholarship }>(
       `${BASE_URL}/v2/academics/scholarship/${id}`,
     );
     const isFirstKo = res.first.language === 'ko';

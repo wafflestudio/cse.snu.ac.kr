@@ -20,7 +20,7 @@ export const CLASSIFICATION = {
   전공선택: 'EM',
   교양: 'LE',
 } as const;
-export type Classification = keyof typeof CLASSIFICATION;
+type Classification = keyof typeof CLASSIFICATION;
 export type ClassificationEn =
   (typeof CLASSIFICATION)[keyof typeof CLASSIFICATION];
 

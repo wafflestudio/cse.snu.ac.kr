@@ -21,7 +21,7 @@ const TITLE_SPACING_MAP: Record<TitleSpacing, string> = {
   '3': 'mb-3',
 };
 
-export interface FieldsetProps {
+interface FieldsetProps {
   title: string;
   titleSpacing?: TitleSpacing;
   children: ReactNode;

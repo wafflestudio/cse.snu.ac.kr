@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { handleImg } from '@/lib/server/img';
+import { handleImg } from '@/utils/imageOptimizer';
 
 // 이미지 최적화 프록시(/img?url=...&w=...&q=...). TanStack Start server route.
 // 빌드에 포함돼 dev(vite)·preview·prod 모두에서 동작한다.

@@ -57,7 +57,11 @@ test.describe('시설 안내 - 추가/편집/삭제 플로우', () => {
     await expect(editedRow).toBeVisible();
 
     // === 삭제 === (행 스코프 삭제 트리거 → 다이얼로그 확인 '삭제')
-    await deleteItem(page, '삭제', editedRow.getByRole('button', { name: '삭제' }));
+    await deleteItem(
+      page,
+      '삭제',
+      editedRow.getByRole('button', { name: '삭제' }),
+    );
     await expect(page.getByText('시설을 삭제했습니다.')).toBeVisible();
     await expect(
       page.locator('article').filter({ hasText: koNameEdited }),

@@ -17,7 +17,7 @@ function ResearchLabEdit() {
 
   const { lab, groups, professors } = loaderData;
   const navigate = useNavigate();
-  const { localizedPath, locale } = useLanguage({});
+  const { localizedPath } = useLanguage({});
 
   const defaultValues: ResearchLabFormData = {
     ko: {
@@ -104,7 +104,7 @@ function ResearchLabEdit() {
 
 export const Route = createFileRoute('/{-$locale}/research/labs/$id/edit')({
   loader: async ({ params }) => {
-    const id = parseInt(params.id!, 10);
+    const id = parseInt(params.id, 10);
 
     if (!id || Number.isNaN(id)) {
       throw new Response('Invalid ID', { status: 400 });

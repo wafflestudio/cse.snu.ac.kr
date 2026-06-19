@@ -1,5 +1,3 @@
-export type SearchParam = { keyword: string; number: number; amount?: number };
-
 export type AboutSearchResult = {
   total: number;
   results: AboutPreview[];
@@ -48,7 +46,7 @@ export type NewsSearchResult = {
   }[];
 };
 
-export type MemberType = 'PROFESSOR' | 'STAFF';
+type MemberType = 'PROFESSOR' | 'STAFF';
 
 export type Member = {
   id: number;
@@ -81,7 +79,7 @@ export type ResearchSearchResult = {
   }[];
 };
 
-export type AcademicType =
+type AcademicType =
   | 'GUIDE'
   | 'GENERAL_STUDIES_REQUIREMENTS'
   | 'GENERAL_STUDIES_REQUIREMENTS_SUBJECT_CHANGES'
@@ -91,9 +89,9 @@ export type AcademicType =
   | 'COURSE_CHANGES'
   | 'SCHOLARSHIP';
 
-export type PostType = 'ACADEMICS' | 'COURSE' | 'SCHOLARSHIP';
+type PostType = 'ACADEMICS' | 'COURSE' | 'SCHOLARSHIP';
 
-export type StudentType = 'UNDERGRADUATE' | 'GRADUATE';
+type StudentType = 'UNDERGRADUATE' | 'GRADUATE';
 
 export type Academic = {
   id: number;

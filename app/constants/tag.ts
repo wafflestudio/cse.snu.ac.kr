@@ -26,12 +26,3 @@ export const NEWS_TAGS = [
   '진로',
   '과거 미분류',
 ];
-
-export const SEARCH_TAGS = [
-  '소개',
-  '소식',
-  '구성원',
-  '연구',
-  '입학',
-  '학사 및 교과',
-];

@@ -103,7 +103,7 @@ export const Route = createFileRoute(
   '/{-$locale}/people/emeritus-faculty/$id/edit',
 )({
   loader: async ({ params }) => {
-    const id = parseInt(params.id!, 10);
+    const id = parseInt(params.id, 10);
 
     const [faculty, labsKo, labsEn] = await Promise.all([
       fetchJson<{ ko: Faculty; en: Faculty }>(`${BASE_URL}/v2/professor/${id}`),

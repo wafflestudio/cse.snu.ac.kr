@@ -23,9 +23,7 @@ test.describe('신임교수초빙 - 편집 플로우', () => {
     await fillHTMLEditor(page, desc);
     await submitForm(page);
 
-    await expect(
-      page.getByText('신임교수초빙을 수정했습니다.'),
-    ).toBeVisible();
+    await expect(page.getByText('신임교수초빙을 수정했습니다.')).toBeVisible();
     await page.waitForURL('**/community/faculty-recruitment');
     await expect(page.getByRole('heading', { name: title })).toBeVisible();
     await expect(page.getByText(desc)).toBeVisible();

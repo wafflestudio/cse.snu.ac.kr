@@ -21,9 +21,7 @@ test.describe('입학 - 편집 플로우', () => {
     await loginAsStaff(page);
 
     await page.getByRole('link', { name: '편집' }).click();
-    await page.waitForURL(
-      '**/admissions/undergraduate/regular-admission/edit',
-    );
+    await page.waitForURL('**/admissions/undergraduate/regular-admission/edit');
 
     await fillHTMLEditor(page, koText);
     await switchEditorLanguage(page, 'en');

@@ -20,7 +20,7 @@ function ResearchCenterEdit() {
 
   const { ko, en } = loaderData;
   const navigate = useNavigate();
-  const { localizedPath, locale } = useLanguage({});
+  const { localizedPath } = useLanguage({});
 
   const defaultValues: ResearchCenterFormData = {
     ko: {
@@ -81,7 +81,7 @@ function ResearchCenterEdit() {
 
 export const Route = createFileRoute('/{-$locale}/research/centers/$id/edit')({
   loader: async ({ params }) => {
-    const id = params.id!;
+    const id = params.id;
 
     const data = await fetchJson<ResearchCenterData>(
       `${BASE_URL}/v2/research/${id}`,

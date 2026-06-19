@@ -100,13 +100,13 @@ test.describe('관리자 기능 - 종단 검증', () => {
     await page.goto('/admin?selected=imageModal');
 
     // 등록 (이미지 업로드 필수 + 표시 종료일 displayUntil)
-    await page
-      .locator('input[type="file"]')
-      .setInputFiles({ name: 'popup.png', mimeType: 'image/png', buffer: PNG_1x1 });
+    await page.locator('input[type="file"]').setInputFiles({
+      name: 'popup.png',
+      mimeType: 'image/png',
+      buffer: PNG_1x1,
+    });
     await fillTextInput(page, 'externalLink', 'https://popup.example.com');
-    await page
-      .locator('input[name="displayUntil"]')
-      .fill('2099-12-31T23:59');
+    await page.locator('input[name="displayUntil"]').fill('2099-12-31T23:59');
     await page.getByRole('button', { name: '등록하기' }).click();
     await expect(page.getByText('이미지 팝업을 등록했습니다.')).toBeVisible();
     // 표시 종료일이 저장·재로딩되어 폼에 반영(프론트 displayUntil 와이어링 round-trip)
@@ -115,7 +115,11 @@ test.describe('관리자 기능 - 종단 검증', () => {
     );
 
     // 수정 (등록 후 편집 모드: 저장하기/삭제 노출)
-    await fillTextInput(page, 'externalLink', 'https://popup-edited.example.com');
+    await fillTextInput(
+      page,
+      'externalLink',
+      'https://popup-edited.example.com',
+    );
     await page.getByRole('button', { name: '저장하기' }).click();
     await expect(page.getByText('이미지 팝업을 수정했습니다.')).toBeVisible();
 
