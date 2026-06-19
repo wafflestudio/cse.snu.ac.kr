@@ -22,6 +22,27 @@
   - **왜 prod 빌드(dev 아님):** 비주얼 회귀가 dev≠prod면 무의미하고, E2E 정석은 배포 산출물 검증. dev 콜드 컴파일 플레이키도 없음.
   - **왜 same-origin proxy:** 실서버 세션 쿠키(JSESSIONID)는 `Secure`라 브라우저 **cross-origin 요청에 안 실린다** → prod빌드를 :8080에 직접 쏘면 mutation 인증이 깨짐(302 OAuth). 브라우저는 :3000만 보고 `/api`를 서버사이드에서 :8080으로 프록시 → 세션 first-party 유지, CORS/CSP 무관 → **E2E용 앱 코드 수정 0.** `/api` 프록시는 `API_PROXY_TARGET` 설정 시에만(local/E2E); 배포는 프론트·백엔드 동일 도메인이라 절대 URL 직호출.
 
+## prod 토폴로지 (호스트 `csereal-prod`)
+
+```
+인터넷 ─443─> Caddy(엣지: TLS·HSTS·HTTP/2·라우팅)
+              ├─ 그 외        → :3000  frontend(Hono 컨테이너)
+              └─ /api/*       → :8080  backend(GHCR 이미지)
+```
+- 엣지 = **Caddy 컨테이너**(`~/proxy/caddy/Caddyfile`, 이 레포 밖). TLS·라우팅 담당. **압축(br)·`immutable` 캐시는 Caddy 위 상위 계층(SNU 인프라 추정)이 처리** → 프론트/이 레포는 압축 안 함(중복이라 `hono/compress` 안 넣음).
+- 백엔드는 `ghcr.io/wafflestudio/csereal-server`(CI 빌드→GHCR→pull). 프론트도 같은 패턴으로 통일(아래).
+
+## 브랜치 · CI/CD 컨벤션
+
+- **브랜치:** `main`=production · `develop`=staging · `feature/*`·`fix/*`→`develop` PR · `hotfix/*`→`main` PR(후 develop back-merge). **직접 push 금지(branch protection).**
+- **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`build:local`/`build-storybook`, ~1–2분) ② E2E(`pnpm test` = 로컬과 동일 `e2e-docker.sh`; CI는 백엔드 레포를 핀된 `BACKEND_REF`로 체크아웃해 `BACKEND_DIR`로 가리키는 것만 다름 — GHCR `:prod`는 prod 프로파일이라 mock-login이 꺼져 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.**
+- **CD(`deploy.yml`):** `develop` 머지 → `--mode staging` 이미지 → `ghcr.io/wafflestudio/cse.snu.ac.kr:staging` push → **staging 자동 배포**(SSH pull+run). `main` 머지 → `--mode production` → `:prod` push, **배포는 `deploy.sh prod` 수동**(pull 기반, 확인 절차). 환경별 빌드라 이미지가 다름(아티팩트 승격 아님).
+- **호스트 배포는 pull 기반**(`remote-deploy.sh`): 호스트 build 없이 GHCR 이미지 pull+run. 롤백은 `cse.snu.ac.kr:rollback` 로컬 태그.
+- **빌드는 학외(github-hosted)에서 OK — 단 빌드가 학내 API에 의존하지 않는 한.** 현재 SSG/prerender가 없어 빌드는 순수 번들링(API 무호출)이라 안전(검증함: 도달불가 API로도 빌드 성공). **과거 prod 호스트에서 빌드한 이유**는 RR7 시절 prerender가 빌드타임에 학내 API를 때려 학외에서 경계 NGFW SYN drop으로 깨졌기 때문 — 마이그레이션에서 prerender가 빠지며 사라진 제약(`imageOptimizer`의 "prerender hack" 주석은 잔재).
+  - **⚠️ 미래(SSG/prerender 재도입 시):** 빌드가 다시 학내 API를 호출 → 학외 러너는 SYN drop(~0.3%, 페이지 수만큼 누적)에 취약. **대응 = `app/utils/fetch.ts`에 재시도(연결 미수립 에러 한정)+keep-alive 추가**(prerender는 GET이라 재시도 안전; 비멱등 POST/DELETE는 응답 후 타임아웃 재시도 금지 — 중복). 인프라 0이고 일반 학외 접근 견고성(미구현 과제)도 같이 해결. self-hosted on-campus 러너는 대안이나 인프라 부담이라 비채택. **이 전제로 설계함 — "빌드는 API 무의존"에 묶지 말 것.**
+
+> **⚠️ 활성화 전 셋업(미완 — 레포 설정/시크릿 필요):** ① `develop` 브랜치 생성·push + branch protection(PR 필수·체크 필수). ② secrets: `ENV_FILE_STAGING`/`ENV_FILE_PRODUCTION`(빌드 시 `env/.env.<mode>` 복원), `STAGING_SSH_KEY/HOST/USER/PORT`, 백엔드 private이면 `BACKEND_REPO_TOKEN`. ③ 호스트가 GHCR pull 가능하게(`docker login ghcr.io` 또는 패키지 public). ④ `ci.yml`의 `BACKEND_REF`를 baseline 생성 백엔드 커밋으로 핀. ⑤ E2E는 첫 그린 확인 후 required 체크로 승격. **⑥ cutover 순서: CI의 GHCR push가 동작함을 먼저 확인한 뒤에야 pull 기반 `deploy.sh`를 처음 돌릴 것**(그 전엔 이미지가 없어 실패).
+
 ---
 
 # 2. 라우팅 · 코드 컨벤션

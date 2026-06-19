@@ -1,0 +1,95 @@
+# 머지 시 이미지 빌드 → GHCR push. staging(develop)은 자동 배포, prod(main)은 push까지만(배포 수동).
+# 이미지: ghcr.io/wafflestudio/cse.snu.ac.kr  (백엔드 GHCR 패턴과 통일)
+# 빌드는 호스트가 아니라 여기서(= prod 빌드 부하 제거). 같은 Dockerfile 사용.
+name: Deploy
+
+on:
+  push:
+    branches: [develop, main]
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false # 배포는 중간 취소 금지
+
+env:
+  IMAGE: ghcr.io/${{ github.repository_owner }}/cse.snu.ac.kr
+
+jobs:
+  build-push:
+    runs-on: ubuntu-latest # 학외. 현재 빌드는 API 무의존이라 안전.
+    # ⚠️ 전제(미래): SSG/prerender 도입 시 빌드타임에 학내 API를 호출하게 된다 → 학외 러너는
+    # 경계 NGFW SYN drop(~0.3%, 다수 요청 시 누적)에 취약(과거 prod 호스트 빌드의 이유).
+    # 그때 대응: **fetch 레벨 재시도(연결 미수립 에러 한정)+keep-alive**를 app/utils/fetch.ts에
+    # 추가(인프라 0, 일반 학외 견고성도 해결). prerender는 GET이라 재시도 안전. self-hosted
+    # on-campus 러너는 대안이지만 인프라 부담이라 비채택. (CLAUDE.md §CI/CD 참고)
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      packages: write # GHCR push (GITHUB_TOKEN)
+    outputs:
+      env_name: ${{ steps.meta.outputs.env_name }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: meta
+        run: |
+          if [ "${{ github.ref_name }}" = "main" ]; then
+            echo "env_name=prod"        >> "$GITHUB_OUTPUT"
+            echo "build_mode=production" >> "$GITHUB_OUTPUT"
+          else
+            echo "env_name=staging"     >> "$GITHUB_OUTPUT"
+            echo "build_mode=staging"    >> "$GITHUB_OUTPUT"
+          fi
+      # vite build는 env/.env.<mode>(gitignore된 빌드 시 시크릿: VITE_API_BASE_URL·카카오키 등)를
+      # 읽어 클라 번들에 박는다 → CI에선 시크릿으로 복원.
+      - name: env 파일 복원
+        env:
+          # 멀티라인 시크릿은 셸에 직접 보간하지 말고 env로 받는다(주입/깨짐 방지).
+          ENV_CONTENT: ${{ steps.meta.outputs.env_name == 'prod' && secrets.ENV_FILE_PRODUCTION || secrets.ENV_FILE_STAGING }}
+        run: |
+          mkdir -p env
+          printf '%s' "$ENV_CONTENT" > "env/.env.${{ steps.meta.outputs.build_mode }}"
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          build-args: BUILD_MODE=${{ steps.meta.outputs.build_mode }}
+          push: true
+          tags: |
+            ${{ env.IMAGE }}:${{ steps.meta.outputs.env_name }}
+            ${{ env.IMAGE }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # staging만 자동 배포. prod는 main push에서 이 잡을 건너뛰고 사람이 `deploy.sh prod`로 pull 배포.
+  deploy-staging:
+    needs: build-push
+    if: github.ref_name == 'develop'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4 # remote-deploy.sh를 호스트로 보내 실행(빌드 아니라 pull)
+      - name: staging 배포(SSH → docker pull + run)
+        env:
+          SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
+          SSH_HOST: ${{ secrets.STAGING_SSH_HOST }}
+          SSH_USER: ${{ secrets.STAGING_SSH_USER }}
+          SSH_PORT: ${{ secrets.STAGING_SSH_PORT }}
+        run: |
+          install -m 600 /dev/stdin key <<< "$SSH_KEY"
+          # 학외(Actions)→학내 호스트는 경계 NGFW가 가끔 SYN drop(~0.3%, docs 참고) →
+          # 재시도+keep-alive로 흡수. remote-deploy.sh는 pull+교체라 재실행 안전(idempotent).
+          OPTS="-i key -p $SSH_PORT -o StrictHostKeyChecking=no -o ConnectTimeout=15 -o ServerAliveInterval=15 -o ServerAliveCountMax=4"
+          for attempt in 1 2 3; do
+            if ssh $OPTS "$SSH_USER@$SSH_HOST" \
+                 "CONTAINER_NAME=frontend IMAGE=${{ env.IMAGE }}:staging PORT=3000 bash -s" \
+                 < scripts/remote-deploy.sh; then
+              exit 0
+            fi
+            echo "::warning::staging 배포 SSH 시도 ${attempt}/3 실패, 재시도…"
+            sleep 10
+          done
+          echo "::error::staging 배포 3회 모두 실패"; exit 1
