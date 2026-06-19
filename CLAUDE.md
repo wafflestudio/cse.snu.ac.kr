@@ -34,14 +34,16 @@
 
 ## 브랜치 · CI/CD 컨벤션
 
-- **브랜치:** `main`=production · `develop`=staging · `feature/*`·`fix/*`→`develop` PR · `hotfix/*`→`main` PR(후 develop back-merge). **직접 push 금지(branch protection).**
-- **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`knip`/`build:local`/`build-storybook`, ~1–2분; `knip`=미사용 파일·export·의존성) ② E2E(`pnpm test` = 로컬과 동일 `e2e-docker.sh`; CI는 백엔드 레포를 핀된 `BACKEND_REF`로 체크아웃해 `BACKEND_DIR`로 가리키는 것만 다름 — GHCR `:prod`는 prod 프로파일이라 mock-login이 꺼져 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.**
-- **CD(`deploy.yml`):** `develop` 머지 → `--mode staging` 이미지 → `ghcr.io/wafflestudio/cse.snu.ac.kr:staging` push → **staging 자동 배포**(SSH pull+run). `main` 머지 → `--mode production` → `:prod` push, **배포는 `deploy.sh prod` 수동**(pull 기반, 확인 절차). 환경별 빌드라 이미지가 다름(아티팩트 승격 아님).
+- **브랜치:** `main`=production · `develop`=staging · `feature/*`·`fix/*`→`develop` PR · `hotfix/*`→`main` PR(후 develop back-merge). **직접 push 금지** — ruleset이 main·develop에 PR 필수 + `gate`·`e2e` 필수체크 + force push 금지 강제(admin 포함).
+- **머지 전략:** `feature`→`develop`은 **squash**(WIP 커밋 정리, 기능당 1커밋). `develop`→`main`은 **merge commit**(squash ❌ — develop은 long-lived라 squash하면 main과 히스토리가 갈라져 다음 승격 PR이 깨짐). rebase 머지는 끔, 머지 후 head 브랜치 자동삭제. (레포 설정으로 강제.)
+- **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`knip`/`build:local`/`build-storybook`, ~1–2분; `knip`=미사용 파일·export·의존성) ② E2E(로컬과 동일 `e2e-docker.sh`; CI는 프론트를 서브디렉터리·백엔드를 핀된 `BACKEND_REF` **소스**로 체크아웃 후 `gradlew bootJar`로 JAR 빌드(Dockerfile이 build/libs를 COPY)하는 것만 다름 — GHCR `:prod`는 prod 프로파일이라 mock-login이 꺼져 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.**
+- **CD(`deploy.yml`, push 시):** `develop` push → staging 이미지(**arm64 네이티브 빌드**) → `ghcr.io/wafflestudio/cse.snu.ac.kr:staging` push → **staging 자동 배포**(SSH pull+run). `main` push → prod 이미지(**amd64**) → `:prod` push, **배포는 `deploy.sh prod` 수동**(pull 기반, 확인 절차). **호스트 arch가 staging=arm64·prod=amd64라 브랜치별 네이티브 러너로 빌드**(QEMU 없이; 공개 레포라 `ubuntu-24.04-arm` 무료). 환경별 빌드라 이미지가 다름(아티팩트 승격 아님). 문서만(`**.md`) 바뀐 push는 `paths-ignore`로 재배포 안 함.
 - **호스트 배포는 pull 기반**(`remote-deploy.sh`): 호스트 build 없이 GHCR 이미지 pull+run. 롤백은 `cse.snu.ac.kr:rollback` 로컬 태그.
 - **빌드는 학외(github-hosted)에서 OK — 단 빌드가 학내 API에 의존하지 않는 한.** 현재 SSG/prerender가 없어 빌드는 순수 번들링(API 무호출)이라 안전(검증함: 도달불가 API로도 빌드 성공). **과거 prod 호스트에서 빌드한 이유**는 RR7 시절 prerender가 빌드타임에 학내 API를 때려 학외에서 경계 NGFW SYN drop으로 깨졌기 때문 — 마이그레이션에서 prerender가 빠지며 사라진 제약(`imageOptimizer`의 "prerender hack" 주석은 잔재).
   - **⚠️ 미래(SSG/prerender 재도입 시):** 빌드가 다시 학내 API를 호출 → 학외 러너는 SYN drop(~0.3%, 페이지 수만큼 누적)에 취약. **대응 = `app/utils/fetch.ts`에 재시도(연결 미수립 에러 한정)+keep-alive 추가**(prerender는 GET이라 재시도 안전; 비멱등 POST/DELETE는 응답 후 타임아웃 재시도 금지 — 중복). 인프라 0이고 일반 학외 접근 견고성(미구현 과제)도 같이 해결. self-hosted on-campus 러너는 대안이나 인프라 부담이라 비채택. **이 전제로 설계함 — "빌드는 API 무의존"에 묶지 말 것.**
 
-> **⚠️ 활성화 전 셋업(미완 — 레포 설정/시크릿 필요):** ① `develop` 브랜치 push(워크플로 파일 포함 → `workflow` 스코프 PAT 필요) + branch protection(PR 필수·체크 필수). ② secrets: `ENV_FILE_STAGING`/`ENV_FILE_PRODUCTION`(빌드 시 `env/.env.<mode>` 복원), `STAGING_SSH_KEY/HOST/USER/PORT`. (백엔드 repo가 public이라 토큰 불필요.) ③ 호스트가 GHCR pull 가능하게(`docker login ghcr.io` 또는 패키지 public). ④ ~~`BACKEND_REF` 핀~~ 완료(#399 SHA 1661f3d8). ⑤ E2E는 첫 그린 확인 후 required 체크로 승격. **⑥ cutover 순서: CI의 GHCR push가 동작함을 먼저 확인한 뒤에야 pull 기반 `deploy.sh`를 처음 돌릴 것**(그 전엔 이미지가 없어 실패).
+> **활성화 상태(2026-06-20):** ✅ 완료 — secrets 6개(`ENV_FILE_STAGING`/`PRODUCTION`, `STAGING_SSH_KEY/HOST/USER/PORT`; 백엔드 public이라 토큰 불필요) · `develop` push · branch protection(ruleset: main·develop PR필수+`gate`·`e2e`) · `BACKEND_REF` 핀(#399 SHA 1661f3d8) · ci.yml(gate+e2e PR #2 그린) · deploy.yml(staging arm64 자동배포 그린).
+> **남은 것 = prod cutover(수동):** ① prod 호스트 `docker login ghcr.io`(또는 패키지 public). ② develop→main 머지로 `:prod` 이미지 생성. ③ `deploy.sh prod`. **순서 필수** — ②(이미지 생성) 전에 ③ 돌리면 `:prod` 없어 실패.
 
 ---
 
