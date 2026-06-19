@@ -6,7 +6,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useNavItem } from '@/hooks/useNavItem';
 import CategoryGrid from './CategoryGrid';
 
-export const tentenProjectNavItem: NavItem = {
+const tentenProjectNavItem: NavItem = {
   key: '10-10 Project',
   path: '/10-10-project',
   children: [

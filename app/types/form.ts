@@ -45,6 +45,3 @@ export interface UploadedImage {
 
 export const isLocalImage = (image: EditorImage): image is LocalImage =>
   !!image && image.type === 'LOCAL_IMAGE';
-
-export const isUploadedImage = (image: EditorImage): image is UploadedImage =>
-  !!image && image.type === 'UPLOADED_IMAGE';

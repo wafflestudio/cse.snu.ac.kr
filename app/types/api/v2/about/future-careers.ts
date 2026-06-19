@@ -11,7 +11,7 @@ export interface YearStat {
   doctor: CareerCount[];
 }
 
-export interface CareerCount {
+interface CareerCount {
   name: string;
   count: number;
 }

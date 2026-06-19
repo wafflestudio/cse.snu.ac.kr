@@ -1,2 +1,2 @@
 // Barrel export for local sonner copy
-export { Toaster, toast, useSonner } from './sonner/index.js';
+export { Toaster, toast } from './sonner/index.js';

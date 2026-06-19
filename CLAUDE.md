@@ -35,7 +35,7 @@
 ## 브랜치 · CI/CD 컨벤션
 
 - **브랜치:** `main`=production · `develop`=staging · `feature/*`·`fix/*`→`develop` PR · `hotfix/*`→`main` PR(후 develop back-merge). **직접 push 금지(branch protection).**
-- **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`build:local`/`build-storybook`, ~1–2분) ② E2E(`pnpm test` = 로컬과 동일 `e2e-docker.sh`; CI는 백엔드 레포를 핀된 `BACKEND_REF`로 체크아웃해 `BACKEND_DIR`로 가리키는 것만 다름 — GHCR `:prod`는 prod 프로파일이라 mock-login이 꺼져 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.**
+- **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`knip`/`build:local`/`build-storybook`, ~1–2분; `knip`=미사용 파일·export·의존성) ② E2E(`pnpm test` = 로컬과 동일 `e2e-docker.sh`; CI는 백엔드 레포를 핀된 `BACKEND_REF`로 체크아웃해 `BACKEND_DIR`로 가리키는 것만 다름 — GHCR `:prod`는 prod 프로파일이라 mock-login이 꺼져 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.**
 - **CD(`deploy.yml`):** `develop` 머지 → `--mode staging` 이미지 → `ghcr.io/wafflestudio/cse.snu.ac.kr:staging` push → **staging 자동 배포**(SSH pull+run). `main` 머지 → `--mode production` → `:prod` push, **배포는 `deploy.sh prod` 수동**(pull 기반, 확인 절차). 환경별 빌드라 이미지가 다름(아티팩트 승격 아님).
 - **호스트 배포는 pull 기반**(`remote-deploy.sh`): 호스트 build 없이 GHCR 이미지 pull+run. 롤백은 `cse.snu.ac.kr:rollback` 로컬 태그.
 - **빌드는 학외(github-hosted)에서 OK — 단 빌드가 학내 API에 의존하지 않는 한.** 현재 SSG/prerender가 없어 빌드는 순수 번들링(API 무호출)이라 안전(검증함: 도달불가 API로도 빌드 성공). **과거 prod 호스트에서 빌드한 이유**는 RR7 시절 prerender가 빌드타임에 학내 API를 때려 학외에서 경계 NGFW SYN drop으로 깨졌기 때문 — 마이그레이션에서 prerender가 빠지며 사라진 제약(`imageOptimizer`의 "prerender hack" 주석은 잔재).

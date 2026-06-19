@@ -1,21 +1,14 @@
 {
-  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "$schema": "https://unpkg.com/knip@6/schema.json",
   "entry": [
     "app/routes/**/*.{ts,tsx}",
     "app/router.tsx",
     "app/sitemap.tsx",
-    "server.ts",
     "app/**/*.stories.tsx",
     ".storybook/{main,preview}.{ts,tsx}",
-    "tests/**/*.spec.ts",
-    "tests/setup/global-setup.ts"
+    "tests/**/*.spec.ts"
   ],
-  "project": [
-    "app/**/*.{ts,tsx}",
-    "server.ts",
-    "scripts/*.mjs",
-    "tests/**/*.ts"
-  ],
+  "project": ["app/**/*.{ts,tsx}", "scripts/*.mjs", "tests/**/*.ts"],
   "ignore": ["app/routeTree.gen.ts"],
   "ignoreBinaries": ["scripts/deploy.sh"],
   "ignoreDependencies": ["tailwindcss"]

@@ -1,6 +1,6 @@
 import type { Attachment } from '@/types/api/v2/attachment';
 
-export interface ResearchLabProfessor {
+interface ResearchLabProfessor {
   id: number;
   name: string;
 }
@@ -16,7 +16,7 @@ export interface SimpleResearchLab {
   youtube: string | null;
 }
 
-export interface ResearchLab extends SimpleResearchLab {
+interface ResearchLab extends SimpleResearchLab {
   description: string;
   websiteURL: string | null;
   group: { id: number; name: string } | null;

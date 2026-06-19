@@ -26,6 +26,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm typecheck
       - run: pnpm lint # biome check (pre-commit과 동일 기준)
+      - run: pnpm knip # 미사용 파일·export·의존성(프로젝트 레벨 dead code)
       - run: pnpm build:local # 빌드 깨짐 감지(env 파일 불필요)
       - run: pnpm build-storybook # 스토리 빌드 회귀 감지(현재 사각지대)
 

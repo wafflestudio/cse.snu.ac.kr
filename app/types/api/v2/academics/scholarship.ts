@@ -9,8 +9,3 @@ export interface Scholarship {
   name: string;
   description: string;
 }
-
-export type ScholarshipWithLanguage = {
-  ko: Scholarship;
-  en: Scholarship;
-};
