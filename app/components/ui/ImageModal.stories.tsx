@@ -4,16 +4,8 @@ import Button from './Button';
 import ImageModal from './ImageModal';
 
 // 메인 페이지 이벤트 안내 모달(마운트 시 자동 오픈, "다시 보지 않기"=localStorage).
-// 결정론을 위해 원격 이미지 대신 인라인 data-URI SVG 사용.
-const sampleImage =
-  'data:image/svg+xml,' +
-  encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="320" height="400">
-      <rect width="320" height="400" fill="#FB4E03"/>
-      <text x="160" y="200" fill="white" font-size="28" font-family="sans-serif"
-        text-anchor="middle">이벤트 안내</text>
-    </svg>`,
-  );
+// 예시 이미지는 placehold.co로 통일(세로 포스터 320×400).
+const sampleImage = 'https://placehold.co/320x400/FB4E03/FFFFFF.svg';
 
 // ImageModal은 open prop 없이 마운트 시 자동 오픈한다(localStorage "다시 보지 않기" 존중).
 // 그대로 렌더하면 오버레이가 docs 전체를 덮어 inline:false→컨트롤 미반영이 된다.

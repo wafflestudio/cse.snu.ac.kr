@@ -1,20 +1,9 @@
 import preview from '../../../.storybook/preview';
 import Image from './Image';
 
-// Image는 http(s) src를 `/img?url=…`(최적화 프록시)로 감싸는데 Storybook엔 /img 서버가 없어
-// 404→폴백이 된다. 그래서 예시는 최적화를 안 타는 data-URI(=상대 경로 취급)로 실제 이미지를 보여준다.
-const sample =
-  'data:image/svg+xml,' +
-  encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240">
-      <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#FB4E03"/><stop offset="1" stop-color="#202020"/>
-      </linearGradient></defs>
-      <rect width="320" height="240" fill="url(#g)"/>
-      <text x="160" y="128" fill="white" font-size="22" font-family="sans-serif"
-        text-anchor="middle">예시 이미지 320×240</text>
-    </svg>`,
-  );
+// 예시 이미지는 placehold.co로 통일. `.svg` 포맷이라 shouldOptimize가 false →
+// `/img` 프록시(SB엔 없음)를 안 타고 raw <img>로 로드된다(.png였다면 /img→404→폴백).
+const sample = 'https://placehold.co/320x240/FB4E03/FFFFFF.svg';
 
 const meta = preview.meta({
   title: 'UI/Image',
