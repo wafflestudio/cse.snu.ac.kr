@@ -14,7 +14,10 @@ export const ACADEMICS_SEED = {
     undergraduate: { ko: '학부 안내 본문입니다.', en: 'Undergraduate guide.' },
     graduate: { ko: '대학원 안내 본문입니다.', en: 'Graduate guide.' },
   },
-  degreeRequirements: { ko: '졸업 규정 본문입니다.', en: 'Degree requirements.' },
+  degreeRequirements: {
+    ko: '졸업 규정 본문입니다.',
+    en: 'Degree requirements.',
+  },
   // 장학: 페이지 description은 SQL 싱글톤, 장학금 목록은 API(createScholarship)로 시드.
   scholarshipPage: { ko: '장학 제도 안내입니다.', en: 'Scholarships intro.' },
   scholarships: [
@@ -29,14 +32,20 @@ export const ACADEMICS_SEED = {
   // 연도별 타임라인(year). API 시드(POST). 프론트가 language 미전달 → ko로 생성/조회.
   curriculum: { year: 2024, descriptionText: '2024 전공 이수 안내입니다.' },
   generalStudies: { year: 2024, descriptionText: '2024 교양 이수 안내입니다.' },
-  courseChanges: { year: 2024, descriptionText: '2024 교과목 변경 안내입니다.' },
+  courseChanges: {
+    year: 2024,
+    descriptionText: '2024 교과목 변경 안내입니다.',
+  },
   // 교과목(courses). createCourse JSON API. CourseCard가 name/code를 렌더.
   course: {
     code: 'M1522.000600',
     credit: 3,
     grade: 1,
     ko: { name: '컴퓨터의 개념 및 실습', classification: '전공필수' },
-    en: { name: 'Computer Concepts and Practice', classification: 'Major Required' },
+    en: {
+      name: 'Computer Concepts and Practice',
+      classification: 'Major Required',
+    },
   },
 } as const;
 

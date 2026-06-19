@@ -1,5 +1,5 @@
-import Node from '@/components/ui/Nodes';
 import { Link } from '@tanstack/react-router';
+import Node from '@/components/ui/Nodes';
 import type { NavItem } from '@/constants/navigation';
 import { useLanguage } from '@/hooks/useLanguage';
 import commonTranslations from '@/translations.json';

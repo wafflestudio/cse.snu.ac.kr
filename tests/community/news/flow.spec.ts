@@ -39,15 +39,17 @@ test.describe('새 소식 - 작성/편집/삭제 플로우', () => {
     await submitForm(page, '게시하기');
     await expect(page.getByText('새소식을 수정했습니다.')).toBeVisible();
     await page.waitForURL(/\/community\/news\/\d+/);
-    await expect(page.getByRole('heading', { name: titleEdited })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: titleEdited }),
+    ).toBeVisible();
 
     // === 삭제 === (상세 PostFooter 삭제 → 확인 '삭제')
     await deleteItem(page, '삭제');
     await expect(page.getByText('게시글을 삭제했습니다.')).toBeVisible();
     await page.waitForURL('**/community/news');
-    await expect(
-      page.getByRole('heading', { name: titleEdited }),
-    ).toHaveCount(0);
+    await expect(page.getByRole('heading', { name: titleEdited })).toHaveCount(
+      0,
+    );
   });
 });
 
@@ -104,7 +106,11 @@ test.describe('새 소식 - 대표 이미지', () => {
       .locator('label')
       .filter({ hasText: '이미지 업로드' })
       .locator('input[type="file"]')
-      .setInputFiles({ name: 'rep.png', mimeType: 'image/png', buffer: PNG_1x1 });
+      .setInputFiles({
+        name: 'rep.png',
+        mimeType: 'image/png',
+        buffer: PNG_1x1,
+      });
 
     await submitForm(page, '게시하기');
     // 성공은 영속 결과(상세로 이동)로 검증. ephemeral 토스트 단언 제거(부하 시 flaky).

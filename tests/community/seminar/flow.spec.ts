@@ -49,14 +49,16 @@ test.describe('세미나 - 작성/편집/삭제 플로우', () => {
     await submitForm(page);
     await expect(page.getByText('세미나를 수정했습니다.')).toBeVisible();
     await page.waitForURL(/\/community\/seminar\/\d+/);
-    await expect(page.getByRole('heading', { name: titleEdited })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: titleEdited }),
+    ).toBeVisible();
 
     // === 삭제 === (상세 PostFooter 삭제 → 확인 '삭제')
     await deleteItem(page, '삭제');
     await expect(page.getByText('게시글을 삭제했습니다.')).toBeVisible();
     await page.waitForURL('**/community/seminar');
-    await expect(
-      page.getByRole('heading', { name: titleEdited }),
-    ).toHaveCount(0);
+    await expect(page.getByRole('heading', { name: titleEdited })).toHaveCount(
+      0,
+    );
   });
 });

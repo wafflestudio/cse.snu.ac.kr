@@ -17,7 +17,10 @@ export const RESEARCH_SEED = {
   },
   // Top Conference List(이름순 정렬 → ICSE가 위). 페이지가 language를 무시해 ko/en 동일.
   conferences: [
-    { abbreviation: 'ICSE', name: 'International Conference on Software Engineering' },
+    {
+      abbreviation: 'ICSE',
+      name: 'International Conference on Software Engineering',
+    },
     { abbreviation: 'NeurIPS', name: 'Neural Information Processing Systems' },
   ],
   professors: [

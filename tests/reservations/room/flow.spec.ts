@@ -1,4 +1,4 @@
-import { type Page, expect, test } from '@playwright/test';
+import { expect, type Page, test } from '@playwright/test';
 import { loginAsStaff } from '../../helpers/auth';
 import { deleteItem, fillTextArea, fillTextInput } from '../../helpers/forms';
 import { setLocale } from '../../helpers/locale';

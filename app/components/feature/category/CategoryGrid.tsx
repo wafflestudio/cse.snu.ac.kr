@@ -1,7 +1,7 @@
+import { useNavigate } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
-import { useNavigate } from '@tanstack/react-router';
 import navbarTranslations from '@/components/layout/LeftNav/translations.json';
 import type { NavItem } from '@/constants/navigation';
 import { useLanguage } from '@/hooks/useLanguage';

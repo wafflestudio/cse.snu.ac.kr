@@ -20,7 +20,11 @@ const ROUTES = [
     addToast: '추가에 성공했습니다.',
     label: '교양이수',
   },
-  { path: 'course-changes', addToast: '저장에 성공했습니다.', label: '교과변경' },
+  {
+    path: 'course-changes',
+    addToast: '저장에 성공했습니다.',
+    label: '교과변경',
+  },
 ] as const;
 
 for (const route of ROUTES) {

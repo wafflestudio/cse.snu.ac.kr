@@ -22,7 +22,9 @@ test.describe('시설 예약 캘린더 - 읽기', () => {
   // staff-only 방(302-208/209, id 15·16)은 비-staff에게 캘린더 대신 fallback을 렌더한다
   // (`isStaffOnlyRoom ? <LoginVisible allow=ROLE_STAFF fallback={NonStaffFallback}>`).
   // 비로그인 사용자 기준 = 프론트 조건부 렌더(인가 강제는 백엔드 몫, 여기선 렌더만 검증).
-  test('staff 전용 방은 비로그인에게 fallback을 보여준다 (ko)', async ({ page }) => {
+  test('staff 전용 방은 비로그인에게 fallback을 보여준다 (ko)', async ({
+    page,
+  }) => {
     await setLocale(page, 'ko');
     const res = await page.goto('/reservations/lecture-room/302-208');
     expect(res?.status()).toBe(200);

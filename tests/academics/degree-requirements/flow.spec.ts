@@ -13,15 +13,15 @@ test.describe('졸업 규정 - 편집 플로우', () => {
     await loginAsStaff(page);
 
     await page.getByRole('link', { name: '편집' }).click();
-    await page.waitForURL('**/academics/undergraduate/degree-requirements/edit');
+    await page.waitForURL(
+      '**/academics/undergraduate/degree-requirements/edit',
+    );
 
     await fillHTMLEditor(page, text);
     await submitForm(page);
 
     await expect(page.getByText('학부 졸업규정을 수정했습니다.')).toBeVisible();
-    await page.waitForURL(
-      '**/academics/undergraduate/degree-requirements',
-    );
+    await page.waitForURL('**/academics/undergraduate/degree-requirements');
     await expect(page.getByText(text)).toBeVisible();
   });
 });

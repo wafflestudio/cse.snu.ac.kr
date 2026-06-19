@@ -39,15 +39,15 @@ test.describe('공지사항 - 작성/편집/삭제 플로우', () => {
     await submitForm(page, '게시하기');
     await expect(page.getByText('공지사항을 수정했습니다.')).toBeVisible();
     await page.waitForURL(/\/community\/notice\/\d+/);
-    await expect(page.getByRole('heading', { name: titleEdited })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: titleEdited }),
+    ).toBeVisible();
 
     // === 삭제 === (상세 PostFooter 삭제 → 확인 '삭제')
     await deleteItem(page, '삭제');
     await expect(page.getByText('게시글을 삭제했습니다.')).toBeVisible();
     await page.waitForURL('**/community/notice');
-    await expect(
-      page.getByRole('link', { name: titleEdited }),
-    ).toHaveCount(0);
+    await expect(page.getByRole('link', { name: titleEdited })).toHaveCount(0);
   });
 });
 
@@ -84,9 +84,7 @@ test.describe('공지사항 - 게시 설정', () => {
     await expect(page.getByRole('link', { name: title })).toHaveCount(0);
   });
 
-  test('고정한 공지는 목록 행에 핀 아이콘이 표시된다', async ({
-    page,
-  }) => {
+  test('고정한 공지는 목록 행에 핀 아이콘이 표시된다', async ({ page }) => {
     const title = `고정공지 ${Date.now()}`;
 
     await setLocale(page, 'ko');
@@ -146,7 +144,11 @@ test.describe('공지사항 - 게시 설정', () => {
  * 편집모드에선 제목이 link가 아니라 span이 되므로 getByText로 검증. 체크박스는 행의 label 클릭.
  */
 test.describe('공지사항 - 목록 일괄 관리', () => {
-  async function createNotice(page: import('@playwright/test').Page, title: string, pinned = false) {
+  async function createNotice(
+    page: import('@playwright/test').Page,
+    title: string,
+    pinned = false,
+  ) {
     await page.getByRole('link', { name: '새 게시글' }).click();
     await page.waitForURL('**/community/notice/create');
     await fillTextInput(page, 'title', title);
@@ -169,8 +171,18 @@ test.describe('공지사항 - 목록 일괄 관리', () => {
 
     // 편집모드 진입 → 두 글 선택 → 일괄 삭제
     await page.getByRole('button', { name: '편집' }).click();
-    await page.locator('li').filter({ hasText: t1 }).locator('label').first().click();
-    await page.locator('li').filter({ hasText: t2 }).locator('label').first().click();
+    await page
+      .locator('li')
+      .filter({ hasText: t1 })
+      .locator('label')
+      .first()
+      .click();
+    await page
+      .locator('li')
+      .filter({ hasText: t2 })
+      .locator('label')
+      .first()
+      .click();
     await page.getByRole('button', { name: '일괄 삭제' }).click();
     await page.getByRole('button', { name: '삭제' }).last().click();
     await expect(page.getByText('선택된 공지를 삭제했습니다.')).toBeVisible();
@@ -188,20 +200,35 @@ test.describe('공지사항 - 목록 일괄 관리', () => {
 
     // 고정 상태: baseline 비고정 공지보다 위
     const pinnedBox1 = await page.getByText(title).first().boundingBox();
-    const normalBox1 = await page.getByText('학사 일정 안내').first().boundingBox();
+    const normalBox1 = await page
+      .getByText('학사 일정 안내')
+      .first()
+      .boundingBox();
     expect(pinnedBox1 && normalBox1 && pinnedBox1.y < normalBox1.y).toBe(true);
 
     // 편집모드 → 선택 → 일괄 고정 해제
     await page.getByRole('button', { name: '편집' }).click();
-    await page.locator('li').filter({ hasText: title }).locator('label').first().click();
+    await page
+      .locator('li')
+      .filter({ hasText: title })
+      .locator('label')
+      .first()
+      .click();
     await page.getByRole('button', { name: '일괄 고정 해제' }).click();
     await page.getByRole('button', { name: '고정 해제' }).last().click();
-    await expect(page.getByText('선택된 공지를 고정 해제했습니다.')).toBeVisible();
+    await expect(
+      page.getByText('선택된 공지를 고정 해제했습니다.'),
+    ).toBeVisible();
 
     // 고정 해제됨: 여전히 고정인 baseline '장학금 신청 공지'보다 아래로 내려감
     const myBox2 = await page.getByText(title).first().boundingBox();
-    const stillPinnedBox2 = await page.getByText('장학금 신청 공지').first().boundingBox();
-    expect(myBox2 && stillPinnedBox2 && myBox2.y > stillPinnedBox2.y).toBe(true);
+    const stillPinnedBox2 = await page
+      .getByText('장학금 신청 공지')
+      .first()
+      .boundingBox();
+    expect(myBox2 && stillPinnedBox2 && myBox2.y > stillPinnedBox2.y).toBe(
+      true,
+    );
   });
 });
 

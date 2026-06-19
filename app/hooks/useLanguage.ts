@@ -1,5 +1,5 @@
-import { setLangCookie } from '@/lib/serverFns';
 import { useLocation } from '@tanstack/react-router';
+import { setLangCookie } from '@/lib/serverFns';
 import commonTranslations from '@/translations.json';
 import type { Locale } from '@/types/i18n';
 

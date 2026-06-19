@@ -46,12 +46,18 @@ test.describe('교수진 - 추가/편집/삭제 플로우', () => {
     await submitForm(page);
     await expect(page.getByText('교수진을 수정했습니다.')).toBeVisible();
     await page.waitForURL(/\/people\/faculty\/\d+$/);
-    await expect(page.getByRole('heading', { name: koNameEdited })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: koNameEdited }),
+    ).toBeVisible();
 
     // === 삭제 === (편집 폼 Form.Action 삭제 → 확인). 학력별 삭제와 겹칠 수 있어 트리거는 .last()
     await page.getByRole('link', { name: '편집' }).click();
     await page.waitForURL(/\/people\/faculty\/\d+\/edit/);
-    await deleteItem(page, '확인', page.getByRole('button', { name: '삭제' }).last());
+    await deleteItem(
+      page,
+      '확인',
+      page.getByRole('button', { name: '삭제' }).last(),
+    );
     await expect(page.getByText('교수진을 삭제했습니다.')).toBeVisible();
     await page.waitForURL('**/people/faculty');
     await expect(page.getByText(koNameEdited)).toHaveCount(0);

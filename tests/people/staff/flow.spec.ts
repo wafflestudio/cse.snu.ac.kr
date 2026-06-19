@@ -59,12 +59,18 @@ test.describe('행정직원 - 추가/편집/삭제 플로우', () => {
     await submitForm(page);
     await expect(page.getByText('행정직원을 수정했습니다.')).toBeVisible();
     await page.waitForURL(/\/people\/staff\/\d+$/);
-    await expect(page.getByRole('heading', { name: koNameEdited })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: koNameEdited }),
+    ).toBeVisible();
 
     // === 삭제 === (편집 폼의 Form.Action 삭제 → 확인). task별 삭제와 공존 → 트리거는 .last()
     await page.getByRole('link', { name: '편집' }).click();
     await page.waitForURL(/\/people\/staff\/\d+\/edit/);
-    await deleteItem(page, '확인', page.getByRole('button', { name: '삭제' }).last());
+    await deleteItem(
+      page,
+      '확인',
+      page.getByRole('button', { name: '삭제' }).last(),
+    );
     await expect(page.getByText('행정직원을 삭제했습니다.')).toBeVisible();
     await page.waitForURL('**/people/staff');
     await expect(page.getByText(koNameEdited)).toHaveCount(0);
