@@ -16,13 +16,13 @@ env:
 
 jobs:
   build-push:
-    runs-on: ubuntu-latest # 학외. 현재 빌드는 API 무의존이라 안전.
-    # ⚠️ 전제(미래): SSG/prerender 도입 시 빌드타임에 학내 API를 호출하게 된다 → 학외 러너는
-    # 경계 NGFW SYN drop(~0.3%, 다수 요청 시 누적)에 취약(과거 prod 호스트 빌드의 이유).
-    # 그때 대응: **fetch 레벨 재시도(연결 미수립 에러 한정)+keep-alive**를 app/utils/fetch.ts에
-    # 추가(인프라 0, 일반 학외 견고성도 해결). prerender는 GET이라 재시도 안전. self-hosted
-    # on-campus 러너는 대안이지만 인프라 부담이라 비채택. (CLAUDE.md §CI/CD 참고)
-    timeout-minutes: 20
+    # 호스트 arch에 맞춰 네이티브 빌드: staging 호스트=arm64, prod 호스트=amd64
+    # (QEMU 없이 빠름, 공개 레포라 ubuntu-24.04-arm 무료). 호스트 arch 바뀌면 갱신.
+    runs-on: ${{ github.ref_name == 'main' && 'ubuntu-latest' || 'ubuntu-24.04-arm' }}
+    # ⚠️ 빌드는 현재 학내 API 무의존이라 학외 러너 OK. SSG/prerender 도입 시 빌드타임 학내 API
+    #    호출이 생기면 학외 러너가 NGFW SYN drop에 취약 → app/utils/fetch.ts에 재시도+keep-alive로
+    #    대응(인프라 0). self-hosted on-campus는 대안이나 비채택. (CLAUDE.md §CI/CD)
+    timeout-minutes: 30
     permissions:
       contents: read
       packages: write # GHCR push (GITHUB_TOKEN)
