@@ -112,6 +112,7 @@
 - **모든 테스트는 핀된 Playwright 컨테이너에서 돈다**(`pnpm test` = `scripts/e2e-docker.sh`). 호스트 직접 실행 정식 경로 없음 — 렌더 환경을 컨테이너로 고정해야 baseline이 머신 무관하게 픽셀 동일. **솔로 레포라 (GitHub) CI 없음 — 로컬 `pnpm test`가 단일 게이트.** (컨테이너 런은 `CI=1`로 워커1·retries2 모드 선택.)
 - **비주얼 baseline = Linux 단일(`*-linux.png`)**, 컨테이너가 정본 렌더 환경이라 머신 무관.
 - **백엔드 기준 = `../csereal-server-main`(origin/main)** — baseline은 이 main 백엔드에서 찍고, E2E가 main 백엔드 스모크도 겸한다. 트레이드오프: main이 floating이라 **백엔드만 바뀌어도 baseline이 깨질 수 있음** → 백엔드를 최신 main으로 올리고(아래) `--update-snapshots`로 재생성.
+- **Lighthouse 점수**(`pnpm lighthouse`, `scripts/lighthouse.mjs`): 측정 전용. read.spec.ts의 `goto` 경로를 자동 추출해 **비주얼 테스트 페이지 == 측정 페이지**로 맞춘다(404·빈상태·내부 제외). 픽셀과 달리 perf는 CPU 민감이라 **컨테이너 아닌 호스트 Chrome**으로 돌려 점수가 안정적이게 한다(`pnpm preview` 실행 중에). 최적화는 사용자와 함께.
 
 ## 백엔드 버전 동기화(cross-repo 런북)
 

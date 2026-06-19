@@ -57,6 +57,8 @@ pnpm test           # E2E (핀된 Playwright 컨테이너 = 정본 렌더 환경
                     #   솔로 레포라 CI 없음 — 로컬 pnpm test가 단일 게이트
                     #   baseline 재생성: pnpm test --update-snapshots
 pnpm test:ui        # E2E UI 모드 — 호스트 브라우저에서 http://localhost:43210
+pnpm lighthouse     # 주요 공개 페이지(=비주얼 테스트 페이지) Lighthouse 점수
+                    #   먼저 `pnpm preview`(:3000, 백엔드 :8080)를 띄운 뒤 실행
 pnpm storybook      # Storybook (dev, :6006). 배포 시엔 `/storybook` 경로로도 서빙됨
 pnpm build-storybook
 
