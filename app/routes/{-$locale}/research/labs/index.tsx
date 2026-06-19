@@ -5,7 +5,7 @@ import Button from '@/components/ui/Button';
 import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useResearchSubNav } from '@/hooks/useSubNav';
-import ResearchLabListRow from '@/routes/{-$locale}/research/labs/component/ResearchLabRow';
+import ResearchLabListRow from '@/routes/{-$locale}/research/labs/components/ResearchLabRow';
 import type { SimpleResearchLab } from '@/types/api/v2/research/labs';
 
 const META = {
