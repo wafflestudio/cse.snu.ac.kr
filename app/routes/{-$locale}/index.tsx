@@ -48,6 +48,8 @@ function MainPage() {
           <Image
             src={backgroundImg}
             alt=""
+            // 데스크톱 히어로 배경 = LCP 요소(모바일과 동일 asset → 요청 1회). high로 우선 로드.
+            fetchPriority="high"
             className="object-cover w-full h-full"
           />
         </div>
