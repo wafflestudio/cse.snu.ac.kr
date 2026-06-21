@@ -23,45 +23,67 @@ import { useNonce } from '@/hooks/useNonce';
 import useIsMobile from '@/hooks/useResponsive';
 import { type Role, useStore } from '@/store';
 import { detectLangFromHeaders } from '@/utils/lang';
-import { forwardAuthHeaders, readLangHeaders } from '@/utils/ssr';
+import {
+  forwardAuthHeaders,
+  getSiteOrigin,
+  readLangHeaders,
+} from '@/utils/ssr';
+
+// 로케일 프리픽스를 부여하지 않는 최상위(비로케일) 라우트. 정적 에셋은 SSR 전에 서빙돼 여기 도달 안 함.
+const NON_LOCALE_SEGMENTS = new Set([
+  'admin',
+  '.internal',
+  'img',
+  'sitemap.xml',
+  'assets',
+]);
 
 export const Route = createRootRoute({
   beforeLoad: ({ location }) => {
     const pathname = location.pathname;
     const search = location.searchStr ?? '';
+    const firstSeg = pathname.split('/')[1] ?? '';
 
-    // /ko 프리픽스는 ko=무프리픽스 정책상 항상 제거(클라/서버 공통, 검색 보존).
-    if (pathname === '/ko' || pathname.startsWith('/ko/')) {
-      const stripped = pathname.replace(/^\/ko/, '') || '/';
-      throw redirect({ href: `${stripped}${search}` });
-    }
-    if (pathname === '/login/success') {
-      throw redirect({ href: '/' });
-    }
+    // 이미 로케일 프리픽스가 있으면 통과($locale route가 검증·렌더).
+    if (firstSeg === 'ko' || firstSeg === 'en') return;
+    // 비로케일 최상위 라우트는 프리픽스 부여 대상이 아님.
+    if (NON_LOCALE_SEGMENTS.has(firstSeg)) return;
 
-    // 쿠키/Accept-Language 기반 로케일 판정은 서버에서만(클라는 Link가 이미 localized).
+    // 프리픽스 없는 bare 경로 → /{lang} 부여(로케일-프리픽스 불변식을 서버·클라 양쪽에서 보장).
+    // - 서버: 쿠키/Accept-Language로 감지(사용자별로 갈리므로 캐시 금지, 302).
+    // - 클라 네비: readLangHeaders=null → 네비 전 현재 URL의 로케일을 유지. 대부분의 링크는
+    //   localizedPath로 이미 프리픽스되지만, bare로 새는 navigate(예: mutation 후 상세 이동)도
+    //   여기서 일관되게 보정된다(개별 호출부 땜질 대신 라우터 차원 보장).
     const langHeaders = readLangHeaders();
-    if (!langHeaders) return;
-    const pathWithoutLocale = pathname.replace(/^\/en/, '') || '/';
-    const lang = detectLangFromHeaders(langHeaders);
-    if (lang === 'en' && !/^\/en/.test(pathname)) {
-      throw redirect({ href: `/en${pathWithoutLocale}${search}` });
+    const lang = langHeaders
+      ? detectLangFromHeaders(langHeaders)
+      : typeof window !== 'undefined' &&
+          window.location.pathname.startsWith('/en')
+        ? 'en'
+        : 'ko';
+
+    // OAuth 콜백은 로케일 홈으로.
+    if (pathname === '/login/success') {
+      throw redirect({ href: `/${lang}` });
     }
-    if (lang === 'ko' && /^\/en/.test(pathname)) {
-      throw redirect({ href: `${pathWithoutLocale}${search}` });
-    }
+    const base = pathname === '/' ? '' : pathname;
+    throw redirect({ href: `/${lang}${base}${search}` });
   },
   // my-role: 세션 역할(전 라우트 공통). 세션 내 안정적이라 staleTime으로 네비게이션마다 재요청 방지.
-  loader: async (): Promise<Role[]> => {
+  loader: async (): Promise<{ roles: Role[]; origin: string }> => {
+    const origin = getSiteOrigin();
     try {
       const response = await fetch(`${BASE_URL}/v2/user/my-role`, {
         headers: forwardAuthHeaders(),
       });
-      if (!response.ok) return [];
+      if (!response.ok) return { roles: [], origin };
       const { roles }: { roles: string[] } = await response.json();
-      return roles.filter((r) => r !== 'ROLE_ANONYMOUS') as Role[];
+      return {
+        roles: roles.filter((r) => r !== 'ROLE_ANONYMOUS') as Role[],
+        origin,
+      };
     } catch {
-      return [];
+      return { roles: [], origin };
     }
   },
   staleTime: 5 * 60_000,
@@ -87,12 +109,13 @@ export const Route = createRootRoute({
 
 function RootDocument() {
   const nonce = useNonce();
-  const roles = Route.useLoaderData();
+  const { roles, origin } = Route.useLoaderData();
   useEffect(() => {
     useStore.setState({ roles: roles ?? [] });
   }, [roles]);
 
   const { locale, pathWithoutLocale } = useLanguage();
+  const altPath = pathWithoutLocale === '/' ? '' : pathWithoutLocale;
   const isMain = pathWithoutLocale === '/';
   const paddingLeft = isMain ? 'sm:pl-[11rem]' : 'sm:pl-[6.25rem]';
 
@@ -104,6 +127,14 @@ function RootDocument() {
     <html lang={locale}>
       <head>
         <HeadContent />
+        {/* 로케일 대체 링크(SEO). 모든 페이지가 ko/en 프리픽스로 대칭, x-default=ko. */}
+        <link rel="alternate" hrefLang="ko" href={`${origin}/ko${altPath}`} />
+        <link rel="alternate" hrefLang="en" href={`${origin}/en${altPath}`} />
+        <link
+          rel="alternate"
+          hrefLang="x-default"
+          href={`${origin}/ko${altPath}`}
+        />
         {/* 클라가 SPA 네비 시 주입 스타일에 쓸 nonce 전달(useNonce가 읽음) */}
         {nonce ? <meta name="csp-nonce" content={nonce} /> : null}
       </head>

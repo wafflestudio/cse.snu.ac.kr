@@ -85,9 +85,16 @@ export default defineConfig({
       },
     },
     {
+      // 로케일 라우팅 동작(리다이렉트·우선순위·토글·hreflang). DB 비변경이라 read 단계에서
+      // 병렬 실행. viewport는 스펙 내부에서 모바일 토글만 test.use로 따로 잡는다.
+      name: 'language',
+      testMatch: /language\.spec\.ts$/,
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
       name: 'flow',
       testMatch: /flow\.spec\.ts$/,
-      dependencies: ['read', 'read-mobile'],
+      dependencies: ['read', 'read-mobile', 'language'],
       use: { ...devices['Desktop Chrome'] },
     },
   ],

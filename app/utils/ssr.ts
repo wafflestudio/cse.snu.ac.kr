@@ -33,3 +33,21 @@ export const forwardAuthHeaders = createIsomorphicFn()
     return cookie ? { cookie } : {};
   })
   .client((): HeadersInit => ({}));
+
+/**
+ * 사이트 절대 origin(hreflang 등 절대 URL 생성용).
+ * - 서버: 요청 host + proto(엣지 프록시면 x-forwarded-proto).
+ * - 클라: window.location.origin.
+ * hreflang은 상대 URL을 신뢰하지 않으므로 절대 URL이 필요하다.
+ */
+export const getSiteOrigin = createIsomorphicFn()
+  .server((): string => {
+    const h = getRequestHeaders();
+    const host = h.get('host');
+    if (!host) return '';
+    const proto = h.get('x-forwarded-proto') ?? 'https';
+    return `${proto}://${host}`;
+  })
+  .client((): string =>
+    typeof window !== 'undefined' ? window.location.origin : '',
+  );
