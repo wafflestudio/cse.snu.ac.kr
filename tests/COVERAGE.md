@@ -10,6 +10,7 @@
 
 ## 진행 요약
 
+- **로케일 항상-프리픽스 전환 완료(2026-06-21)**: `{-$locale}`(optional)→`$locale`(required). 모든 페이지가 `/ko`·`/en` 프리픽스, bare 경로는 `__root` beforeLoad가 cookie>Accept-Language로 감지해 `/{lang}` 302 리다이렉트. 근거·세부는 `docs/i18n-url-strategy.md`. **신규 `tests/language.spec.ts` + `language` 프로젝트**(`testMatch: /language\.spec\.ts$/`, flow가 dependency로 read 단계 포함): bare→/ko·/en 감지, cookie>AL 우선순위, 토글+쿠키 persist, /ko no-loop 회귀 가드, hreflang head, 모바일 토글(7케이스). 기존 read/flow는 무수정 통과(bare goto는 `setLocale` 쿠키로 서버 리다이렉트→콘텐츠 동일·스크린샷 baseline 유지, URL 단언은 `**`-glob·비앵커 정규식이라 `/ko`에 그대로 매칭). `tests/helpers/locale.ts`만 `/ko`·`/en` 재부착으로 수정. `$locale` route에 `notFoundComponent` 추가(로케일 하위 미존재 경로의 404).
 - 완료: **about · community · research · admissions · reservations(정적) · 10-10-project · admin · internal · search/404 전체** · **people/academics 읽기 전체**(+주요 flow)
 - **테스트 컨벤션 리팩토링 완료**(2026-06-14): 라우트별 `smoke.spec.ts`+`visual.spec.ts`를 **`read.spec.ts` 하나로 통합**(콘텐츠 계약 assert + `toHaveScreenshot`). Playwright 프로젝트는 `read`(데스크톱)·`read-mobile`(390px)·`flow`(데스크톱, deps=[read,read-mobile]). 모바일 baseline(`*-read-mobile-linux.png`) 생성, 검색 빈/결과 read 추가, 이중언어 flow에 en round-trip(`/en` 상세/목록 노출 확인) 추가. 데스크톱 baseline은 스냅샷 디렉터리만 `read.spec.ts-snapshots`로 이동해 재사용. (이후 baseline은 핀된 Linux 컨테이너 단일 세트 `*-linux.png`로 전환 — CLAUDE.md §3 "비주얼 baseline은 Linux 단일" 참고.)
 - **백엔드 #399로 업그레이드 완료**(image-modal/FTS/교수en 수정 반영). 향후 origin/main 갱신 시 JAR 재빌드 필요.

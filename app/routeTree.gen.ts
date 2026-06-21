@@ -11,101 +11,101 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ImgRouteImport } from './routes/img'
-import { Route as Char123LocaleChar125RouteRouteImport } from './routes/{-$locale}/route'
-import { Route as Char123LocaleChar125IndexRouteImport } from './routes/{-$locale}/index'
+import { Route as LocaleRouteRouteImport } from './routes/$locale/route'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as DotinternalIndexRouteImport } from './routes/[.]internal/index'
+import { Route as LocaleIndexRouteImport } from './routes/$locale/index'
 import { Route as DotinternalEditRouteImport } from './routes/[.]internal/edit'
-import { Route as Char123LocaleChar125SearchIndexRouteImport } from './routes/{-$locale}/search/index'
-import { Route as Char123LocaleChar125ReservationsIndexRouteImport } from './routes/{-$locale}/reservations/index'
-import { Route as Char123LocaleChar125ResearchIndexRouteImport } from './routes/{-$locale}/research/index'
-import { Route as Char123LocaleChar125PeopleIndexRouteImport } from './routes/{-$locale}/people/index'
-import { Route as Char123LocaleChar125CommunityIndexRouteImport } from './routes/{-$locale}/community/index'
-import { Route as Char123LocaleChar125AdmissionsIndexRouteImport } from './routes/{-$locale}/admissions/index'
-import { Route as Char123LocaleChar125AcademicsIndexRouteImport } from './routes/{-$locale}/academics/index'
-import { Route as Char123LocaleChar125AboutIndexRouteImport } from './routes/{-$locale}/about/index'
-import { Route as Char123LocaleChar1251010ProjectIndexRouteImport } from './routes/{-$locale}/10-10-project/index'
-import { Route as Char123LocaleChar125ReservationsPrivacyPolicyRouteImport } from './routes/{-$locale}/reservations/privacy-policy'
-import { Route as Char123LocaleChar125ReservationsIntroductionRouteImport } from './routes/{-$locale}/reservations/introduction'
-import { Route as Char123LocaleChar125AboutHistoryRouteImport } from './routes/{-$locale}/about/history'
-import { Route as Char123LocaleChar125AboutGreetingsRouteImport } from './routes/{-$locale}/about/greetings'
-import { Route as Char123LocaleChar125AboutContactRouteImport } from './routes/{-$locale}/about/contact'
-import { Route as Char123LocaleChar1251010ProjectProposalRouteImport } from './routes/{-$locale}/10-10-project/proposal'
-import { Route as Char123LocaleChar1251010ProjectParticipantsRouteImport } from './routes/{-$locale}/10-10-project/participants'
-import { Route as Char123LocaleChar1251010ProjectManagerRouteImport } from './routes/{-$locale}/10-10-project/manager'
-import { Route as Char123LocaleChar125ResearchTopConferenceListIndexRouteImport } from './routes/{-$locale}/research/top-conference-list/index'
-import { Route as Char123LocaleChar125ResearchLabsIndexRouteImport } from './routes/{-$locale}/research/labs/index'
-import { Route as Char123LocaleChar125ResearchGroupsIndexRouteImport } from './routes/{-$locale}/research/groups/index'
-import { Route as Char123LocaleChar125ResearchCentersIndexRouteImport } from './routes/{-$locale}/research/centers/index'
-import { Route as Char123LocaleChar125PeopleStaffIndexRouteImport } from './routes/{-$locale}/people/staff/index'
-import { Route as Char123LocaleChar125PeopleFacultyIndexRouteImport } from './routes/{-$locale}/people/faculty/index'
-import { Route as Char123LocaleChar125PeopleEmeritusFacultyIndexRouteImport } from './routes/{-$locale}/people/emeritus-faculty/index'
-import { Route as Char123LocaleChar125CommunitySeminarIndexRouteImport } from './routes/{-$locale}/community/seminar/index'
-import { Route as Char123LocaleChar125CommunityNoticeIndexRouteImport } from './routes/{-$locale}/community/notice/index'
-import { Route as Char123LocaleChar125CommunityNewsIndexRouteImport } from './routes/{-$locale}/community/news/index'
-import { Route as Char123LocaleChar125CommunityFacultyRecruitmentIndexRouteImport } from './routes/{-$locale}/community/faculty-recruitment/index'
-import { Route as Char123LocaleChar125AboutStudentClubsIndexRouteImport } from './routes/{-$locale}/about/student-clubs/index'
-import { Route as Char123LocaleChar125AboutOverviewIndexRouteImport } from './routes/{-$locale}/about/overview/index'
-import { Route as Char123LocaleChar125AboutFutureCareersIndexRouteImport } from './routes/{-$locale}/about/future-careers/index'
-import { Route as Char123LocaleChar125AboutFacilitiesIndexRouteImport } from './routes/{-$locale}/about/facilities/index'
-import { Route as Char123LocaleChar125AboutDirectionsIndexRouteImport } from './routes/{-$locale}/about/directions/index'
-import { Route as Char123LocaleChar125ReservationsRoomTypeRoomNameRouteImport } from './routes/{-$locale}/reservations/$roomType/$roomName'
-import { Route as Char123LocaleChar125ResearchLabsCreateRouteImport } from './routes/{-$locale}/research/labs/create'
-import { Route as Char123LocaleChar125ResearchGroupsCreateRouteImport } from './routes/{-$locale}/research/groups/create'
-import { Route as Char123LocaleChar125ResearchCentersCreateRouteImport } from './routes/{-$locale}/research/centers/create'
-import { Route as Char123LocaleChar125PeopleStaffCreateRouteImport } from './routes/{-$locale}/people/staff/create'
-import { Route as Char123LocaleChar125PeopleFacultyCreateRouteImport } from './routes/{-$locale}/people/faculty/create'
-import { Route as Char123LocaleChar125CommunitySeminarCreateRouteImport } from './routes/{-$locale}/community/seminar/create'
-import { Route as Char123LocaleChar125CommunitySeminarIdRouteImport } from './routes/{-$locale}/community/seminar/$id'
-import { Route as Char123LocaleChar125CommunityNoticeCreateRouteImport } from './routes/{-$locale}/community/notice/create'
-import { Route as Char123LocaleChar125CommunityNoticeIdRouteImport } from './routes/{-$locale}/community/notice/$id'
-import { Route as Char123LocaleChar125CommunityNewsCreateRouteImport } from './routes/{-$locale}/community/news/create'
-import { Route as Char123LocaleChar125CommunityNewsIdRouteImport } from './routes/{-$locale}/community/news/$id'
-import { Route as Char123LocaleChar125CommunityFacultyRecruitmentEditRouteImport } from './routes/{-$locale}/community/faculty-recruitment/edit'
-import { Route as Char123LocaleChar125AcademicsStudentTypeCoursesRouteImport } from './routes/{-$locale}/academics/$studentType/courses'
-import { Route as Char123LocaleChar125AboutStudentClubsEditRouteImport } from './routes/{-$locale}/about/student-clubs/edit'
-import { Route as Char123LocaleChar125AboutStudentClubsCreateRouteImport } from './routes/{-$locale}/about/student-clubs/create'
-import { Route as Char123LocaleChar125AboutOverviewEditRouteImport } from './routes/{-$locale}/about/overview/edit'
-import { Route as Char123LocaleChar125AboutFacilitiesEditRouteImport } from './routes/{-$locale}/about/facilities/edit'
-import { Route as Char123LocaleChar125AboutFacilitiesCreateRouteImport } from './routes/{-$locale}/about/facilities/create'
-import { Route as Char123LocaleChar125AboutTypeEditRouteImport } from './routes/{-$locale}/about/$type/edit'
-import { Route as Char123LocaleChar125ResearchLabsIdIndexRouteImport } from './routes/{-$locale}/research/labs/$id/index'
-import { Route as Char123LocaleChar125PeopleStaffIdIndexRouteImport } from './routes/{-$locale}/people/staff/$id/index'
-import { Route as Char123LocaleChar125PeopleFacultyIdIndexRouteImport } from './routes/{-$locale}/people/faculty/$id/index'
-import { Route as Char123LocaleChar125PeopleEmeritusFacultyIdIndexRouteImport } from './routes/{-$locale}/people/emeritus-faculty/$id/index'
-import { Route as Char123LocaleChar125AdmissionsMainTypePostTypeIndexRouteImport } from './routes/{-$locale}/admissions/$mainType/$postType/index'
-import { Route as Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsIndexRouteImport } from './routes/{-$locale}/academics/undergraduate/general-studies-requirements/index'
-import { Route as Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsIndexRouteImport } from './routes/{-$locale}/academics/undergraduate/degree-requirements/index'
-import { Route as Char123LocaleChar125AcademicsUndergraduateCurriculumIndexRouteImport } from './routes/{-$locale}/academics/undergraduate/curriculum/index'
-import { Route as Char123LocaleChar125AcademicsStudentTypeScholarshipIndexRouteImport } from './routes/{-$locale}/academics/$studentType/scholarship/index'
-import { Route as Char123LocaleChar125AcademicsStudentTypeGuideIndexRouteImport } from './routes/{-$locale}/academics/$studentType/guide/index'
-import { Route as Char123LocaleChar125AcademicsStudentTypeCourseChangesIndexRouteImport } from './routes/{-$locale}/academics/$studentType/course-changes/index'
-import { Route as Char123LocaleChar125ResearchLabsIdEditRouteImport } from './routes/{-$locale}/research/labs/$id/edit'
-import { Route as Char123LocaleChar125ResearchGroupsIdEditRouteImport } from './routes/{-$locale}/research/groups/$id/edit'
-import { Route as Char123LocaleChar125ResearchCentersIdEditRouteImport } from './routes/{-$locale}/research/centers/$id/edit'
-import { Route as Char123LocaleChar125PeopleStaffIdEditRouteImport } from './routes/{-$locale}/people/staff/$id/edit'
-import { Route as Char123LocaleChar125PeopleFacultyIdEditRouteImport } from './routes/{-$locale}/people/faculty/$id/edit'
-import { Route as Char123LocaleChar125PeopleEmeritusFacultyIdEditRouteImport } from './routes/{-$locale}/people/emeritus-faculty/$id/edit'
-import { Route as Char123LocaleChar125CommunitySeminarEditIdRouteImport } from './routes/{-$locale}/community/seminar/edit.$id'
-import { Route as Char123LocaleChar125CommunityNoticeEditIdRouteImport } from './routes/{-$locale}/community/notice/edit.$id'
-import { Route as Char123LocaleChar125CommunityNewsEditIdRouteImport } from './routes/{-$locale}/community/news/edit.$id'
-import { Route as Char123LocaleChar125AdmissionsMainTypePostTypeEditRouteImport } from './routes/{-$locale}/admissions/$mainType/$postType/edit'
-import { Route as Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsCreateRouteImport } from './routes/{-$locale}/academics/undergraduate/general-studies-requirements/create'
-import { Route as Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsEditRouteImport } from './routes/{-$locale}/academics/undergraduate/degree-requirements/edit'
-import { Route as Char123LocaleChar125AcademicsUndergraduateCurriculumCreateRouteImport } from './routes/{-$locale}/academics/undergraduate/curriculum/create'
-import { Route as Char123LocaleChar125AcademicsStudentTypeScholarshipEditRouteImport } from './routes/{-$locale}/academics/$studentType/scholarship/edit'
-import { Route as Char123LocaleChar125AcademicsStudentTypeScholarshipCreateRouteImport } from './routes/{-$locale}/academics/$studentType/scholarship/create'
-import { Route as Char123LocaleChar125AcademicsStudentTypeGuideEditRouteImport } from './routes/{-$locale}/academics/$studentType/guide/edit'
-import { Route as Char123LocaleChar125AcademicsStudentTypeCourseChangesCreateRouteImport } from './routes/{-$locale}/academics/$studentType/course-changes/create'
-import { Route as Char123LocaleChar125AboutFutureCareersStatEditRouteImport } from './routes/{-$locale}/about/future-careers/stat/edit'
-import { Route as Char123LocaleChar125AboutFutureCareersStatCreateRouteImport } from './routes/{-$locale}/about/future-careers/stat/create'
-import { Route as Char123LocaleChar125AboutFutureCareersDescriptionEditRouteImport } from './routes/{-$locale}/about/future-careers/description/edit'
-import { Route as Char123LocaleChar125AboutDirectionsIdEditRouteImport } from './routes/{-$locale}/about/directions/$id/edit'
-import { Route as Char123LocaleChar125AcademicsStudentTypeScholarshipIdIndexRouteImport } from './routes/{-$locale}/academics/$studentType/scholarship/$id/index'
-import { Route as Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsEditYearRouteImport } from './routes/{-$locale}/academics/undergraduate/general-studies-requirements/edit.$year'
-import { Route as Char123LocaleChar125AcademicsUndergraduateCurriculumEditYearRouteImport } from './routes/{-$locale}/academics/undergraduate/curriculum/edit.$year'
-import { Route as Char123LocaleChar125AcademicsStudentTypeScholarshipIdEditRouteImport } from './routes/{-$locale}/academics/$studentType/scholarship/$id/edit'
-import { Route as Char123LocaleChar125AcademicsStudentTypeCourseChangesEditYearRouteImport } from './routes/{-$locale}/academics/$studentType/course-changes/edit/$year'
+import { Route as LocaleSearchIndexRouteImport } from './routes/$locale/search/index'
+import { Route as LocaleReservationsIndexRouteImport } from './routes/$locale/reservations/index'
+import { Route as LocaleResearchIndexRouteImport } from './routes/$locale/research/index'
+import { Route as LocalePeopleIndexRouteImport } from './routes/$locale/people/index'
+import { Route as LocaleCommunityIndexRouteImport } from './routes/$locale/community/index'
+import { Route as LocaleAdmissionsIndexRouteImport } from './routes/$locale/admissions/index'
+import { Route as LocaleAcademicsIndexRouteImport } from './routes/$locale/academics/index'
+import { Route as LocaleAboutIndexRouteImport } from './routes/$locale/about/index'
+import { Route as Locale1010ProjectIndexRouteImport } from './routes/$locale/10-10-project/index'
+import { Route as LocaleReservationsPrivacyPolicyRouteImport } from './routes/$locale/reservations/privacy-policy'
+import { Route as LocaleReservationsIntroductionRouteImport } from './routes/$locale/reservations/introduction'
+import { Route as LocaleAboutHistoryRouteImport } from './routes/$locale/about/history'
+import { Route as LocaleAboutGreetingsRouteImport } from './routes/$locale/about/greetings'
+import { Route as LocaleAboutContactRouteImport } from './routes/$locale/about/contact'
+import { Route as Locale1010ProjectProposalRouteImport } from './routes/$locale/10-10-project/proposal'
+import { Route as Locale1010ProjectParticipantsRouteImport } from './routes/$locale/10-10-project/participants'
+import { Route as Locale1010ProjectManagerRouteImport } from './routes/$locale/10-10-project/manager'
+import { Route as LocaleResearchTopConferenceListIndexRouteImport } from './routes/$locale/research/top-conference-list/index'
+import { Route as LocaleResearchLabsIndexRouteImport } from './routes/$locale/research/labs/index'
+import { Route as LocaleResearchGroupsIndexRouteImport } from './routes/$locale/research/groups/index'
+import { Route as LocaleResearchCentersIndexRouteImport } from './routes/$locale/research/centers/index'
+import { Route as LocalePeopleStaffIndexRouteImport } from './routes/$locale/people/staff/index'
+import { Route as LocalePeopleFacultyIndexRouteImport } from './routes/$locale/people/faculty/index'
+import { Route as LocalePeopleEmeritusFacultyIndexRouteImport } from './routes/$locale/people/emeritus-faculty/index'
+import { Route as LocaleCommunitySeminarIndexRouteImport } from './routes/$locale/community/seminar/index'
+import { Route as LocaleCommunityNoticeIndexRouteImport } from './routes/$locale/community/notice/index'
+import { Route as LocaleCommunityNewsIndexRouteImport } from './routes/$locale/community/news/index'
+import { Route as LocaleCommunityFacultyRecruitmentIndexRouteImport } from './routes/$locale/community/faculty-recruitment/index'
+import { Route as LocaleAboutStudentClubsIndexRouteImport } from './routes/$locale/about/student-clubs/index'
+import { Route as LocaleAboutOverviewIndexRouteImport } from './routes/$locale/about/overview/index'
+import { Route as LocaleAboutFutureCareersIndexRouteImport } from './routes/$locale/about/future-careers/index'
+import { Route as LocaleAboutFacilitiesIndexRouteImport } from './routes/$locale/about/facilities/index'
+import { Route as LocaleAboutDirectionsIndexRouteImport } from './routes/$locale/about/directions/index'
+import { Route as LocaleReservationsRoomTypeRoomNameRouteImport } from './routes/$locale/reservations/$roomType/$roomName'
+import { Route as LocaleResearchLabsCreateRouteImport } from './routes/$locale/research/labs/create'
+import { Route as LocaleResearchGroupsCreateRouteImport } from './routes/$locale/research/groups/create'
+import { Route as LocaleResearchCentersCreateRouteImport } from './routes/$locale/research/centers/create'
+import { Route as LocalePeopleStaffCreateRouteImport } from './routes/$locale/people/staff/create'
+import { Route as LocalePeopleFacultyCreateRouteImport } from './routes/$locale/people/faculty/create'
+import { Route as LocaleCommunitySeminarCreateRouteImport } from './routes/$locale/community/seminar/create'
+import { Route as LocaleCommunitySeminarIdRouteImport } from './routes/$locale/community/seminar/$id'
+import { Route as LocaleCommunityNoticeCreateRouteImport } from './routes/$locale/community/notice/create'
+import { Route as LocaleCommunityNoticeIdRouteImport } from './routes/$locale/community/notice/$id'
+import { Route as LocaleCommunityNewsCreateRouteImport } from './routes/$locale/community/news/create'
+import { Route as LocaleCommunityNewsIdRouteImport } from './routes/$locale/community/news/$id'
+import { Route as LocaleCommunityFacultyRecruitmentEditRouteImport } from './routes/$locale/community/faculty-recruitment/edit'
+import { Route as LocaleAcademicsStudentTypeCoursesRouteImport } from './routes/$locale/academics/$studentType/courses'
+import { Route as LocaleAboutStudentClubsEditRouteImport } from './routes/$locale/about/student-clubs/edit'
+import { Route as LocaleAboutStudentClubsCreateRouteImport } from './routes/$locale/about/student-clubs/create'
+import { Route as LocaleAboutOverviewEditRouteImport } from './routes/$locale/about/overview/edit'
+import { Route as LocaleAboutFacilitiesEditRouteImport } from './routes/$locale/about/facilities/edit'
+import { Route as LocaleAboutFacilitiesCreateRouteImport } from './routes/$locale/about/facilities/create'
+import { Route as LocaleAboutTypeEditRouteImport } from './routes/$locale/about/$type/edit'
+import { Route as LocaleResearchLabsIdIndexRouteImport } from './routes/$locale/research/labs/$id/index'
+import { Route as LocalePeopleStaffIdIndexRouteImport } from './routes/$locale/people/staff/$id/index'
+import { Route as LocalePeopleFacultyIdIndexRouteImport } from './routes/$locale/people/faculty/$id/index'
+import { Route as LocalePeopleEmeritusFacultyIdIndexRouteImport } from './routes/$locale/people/emeritus-faculty/$id/index'
+import { Route as LocaleAdmissionsMainTypePostTypeIndexRouteImport } from './routes/$locale/admissions/$mainType/$postType/index'
+import { Route as LocaleAcademicsUndergraduateGeneralStudiesRequirementsIndexRouteImport } from './routes/$locale/academics/undergraduate/general-studies-requirements/index'
+import { Route as LocaleAcademicsUndergraduateDegreeRequirementsIndexRouteImport } from './routes/$locale/academics/undergraduate/degree-requirements/index'
+import { Route as LocaleAcademicsUndergraduateCurriculumIndexRouteImport } from './routes/$locale/academics/undergraduate/curriculum/index'
+import { Route as LocaleAcademicsStudentTypeScholarshipIndexRouteImport } from './routes/$locale/academics/$studentType/scholarship/index'
+import { Route as LocaleAcademicsStudentTypeGuideIndexRouteImport } from './routes/$locale/academics/$studentType/guide/index'
+import { Route as LocaleAcademicsStudentTypeCourseChangesIndexRouteImport } from './routes/$locale/academics/$studentType/course-changes/index'
+import { Route as LocaleResearchLabsIdEditRouteImport } from './routes/$locale/research/labs/$id/edit'
+import { Route as LocaleResearchGroupsIdEditRouteImport } from './routes/$locale/research/groups/$id/edit'
+import { Route as LocaleResearchCentersIdEditRouteImport } from './routes/$locale/research/centers/$id/edit'
+import { Route as LocalePeopleStaffIdEditRouteImport } from './routes/$locale/people/staff/$id/edit'
+import { Route as LocalePeopleFacultyIdEditRouteImport } from './routes/$locale/people/faculty/$id/edit'
+import { Route as LocalePeopleEmeritusFacultyIdEditRouteImport } from './routes/$locale/people/emeritus-faculty/$id/edit'
+import { Route as LocaleCommunitySeminarEditIdRouteImport } from './routes/$locale/community/seminar/edit.$id'
+import { Route as LocaleCommunityNoticeEditIdRouteImport } from './routes/$locale/community/notice/edit.$id'
+import { Route as LocaleCommunityNewsEditIdRouteImport } from './routes/$locale/community/news/edit.$id'
+import { Route as LocaleAdmissionsMainTypePostTypeEditRouteImport } from './routes/$locale/admissions/$mainType/$postType/edit'
+import { Route as LocaleAcademicsUndergraduateGeneralStudiesRequirementsCreateRouteImport } from './routes/$locale/academics/undergraduate/general-studies-requirements/create'
+import { Route as LocaleAcademicsUndergraduateDegreeRequirementsEditRouteImport } from './routes/$locale/academics/undergraduate/degree-requirements/edit'
+import { Route as LocaleAcademicsUndergraduateCurriculumCreateRouteImport } from './routes/$locale/academics/undergraduate/curriculum/create'
+import { Route as LocaleAcademicsStudentTypeScholarshipEditRouteImport } from './routes/$locale/academics/$studentType/scholarship/edit'
+import { Route as LocaleAcademicsStudentTypeScholarshipCreateRouteImport } from './routes/$locale/academics/$studentType/scholarship/create'
+import { Route as LocaleAcademicsStudentTypeGuideEditRouteImport } from './routes/$locale/academics/$studentType/guide/edit'
+import { Route as LocaleAcademicsStudentTypeCourseChangesCreateRouteImport } from './routes/$locale/academics/$studentType/course-changes/create'
+import { Route as LocaleAboutFutureCareersStatEditRouteImport } from './routes/$locale/about/future-careers/stat/edit'
+import { Route as LocaleAboutFutureCareersStatCreateRouteImport } from './routes/$locale/about/future-careers/stat/create'
+import { Route as LocaleAboutFutureCareersDescriptionEditRouteImport } from './routes/$locale/about/future-careers/description/edit'
+import { Route as LocaleAboutDirectionsIdEditRouteImport } from './routes/$locale/about/directions/$id/edit'
+import { Route as LocaleAcademicsStudentTypeScholarshipIdIndexRouteImport } from './routes/$locale/academics/$studentType/scholarship/$id/index'
+import { Route as LocaleAcademicsUndergraduateGeneralStudiesRequirementsEditYearRouteImport } from './routes/$locale/academics/undergraduate/general-studies-requirements/edit.$year'
+import { Route as LocaleAcademicsUndergraduateCurriculumEditYearRouteImport } from './routes/$locale/academics/undergraduate/curriculum/edit.$year'
+import { Route as LocaleAcademicsStudentTypeScholarshipIdEditRouteImport } from './routes/$locale/academics/$studentType/scholarship/$id/edit'
+import { Route as LocaleAcademicsStudentTypeCourseChangesEditYearRouteImport } from './routes/$locale/academics/$studentType/course-changes/edit/$year'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -117,18 +117,11 @@ const ImgRoute = ImgRouteImport.update({
   path: '/img',
   getParentRoute: () => rootRouteImport,
 } as any)
-const Char123LocaleChar125RouteRoute =
-  Char123LocaleChar125RouteRouteImport.update({
-    id: '/{-$locale}',
-    path: '/{-$locale}',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const Char123LocaleChar125IndexRoute =
-  Char123LocaleChar125IndexRouteImport.update({
-    id: '/',
-    path: '/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
+const LocaleRouteRoute = LocaleRouteRouteImport.update({
+  id: '/$locale',
+  path: '/$locale',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
@@ -139,1166 +132,1141 @@ const DotinternalIndexRoute = DotinternalIndexRouteImport.update({
   path: '/.internal/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LocaleIndexRoute = LocaleIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
 const DotinternalEditRoute = DotinternalEditRouteImport.update({
   id: '/.internal/edit',
   path: '/.internal/edit',
   getParentRoute: () => rootRouteImport,
 } as any)
-const Char123LocaleChar125SearchIndexRoute =
-  Char123LocaleChar125SearchIndexRouteImport.update({
-    id: '/search/',
-    path: '/search/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125ReservationsIndexRoute =
-  Char123LocaleChar125ReservationsIndexRouteImport.update({
-    id: '/reservations/',
-    path: '/reservations/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125ResearchIndexRoute =
-  Char123LocaleChar125ResearchIndexRouteImport.update({
-    id: '/research/',
-    path: '/research/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125PeopleIndexRoute =
-  Char123LocaleChar125PeopleIndexRouteImport.update({
-    id: '/people/',
-    path: '/people/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125CommunityIndexRoute =
-  Char123LocaleChar125CommunityIndexRouteImport.update({
-    id: '/community/',
-    path: '/community/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125AdmissionsIndexRoute =
-  Char123LocaleChar125AdmissionsIndexRouteImport.update({
-    id: '/admissions/',
-    path: '/admissions/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125AcademicsIndexRoute =
-  Char123LocaleChar125AcademicsIndexRouteImport.update({
-    id: '/academics/',
-    path: '/academics/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125AboutIndexRoute =
-  Char123LocaleChar125AboutIndexRouteImport.update({
-    id: '/about/',
-    path: '/about/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar1251010ProjectIndexRoute =
-  Char123LocaleChar1251010ProjectIndexRouteImport.update({
-    id: '/10-10-project/',
-    path: '/10-10-project/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125ReservationsPrivacyPolicyRoute =
-  Char123LocaleChar125ReservationsPrivacyPolicyRouteImport.update({
+const LocaleSearchIndexRoute = LocaleSearchIndexRouteImport.update({
+  id: '/search/',
+  path: '/search/',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaleReservationsIndexRoute = LocaleReservationsIndexRouteImport.update({
+  id: '/reservations/',
+  path: '/reservations/',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaleResearchIndexRoute = LocaleResearchIndexRouteImport.update({
+  id: '/research/',
+  path: '/research/',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocalePeopleIndexRoute = LocalePeopleIndexRouteImport.update({
+  id: '/people/',
+  path: '/people/',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaleCommunityIndexRoute = LocaleCommunityIndexRouteImport.update({
+  id: '/community/',
+  path: '/community/',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaleAdmissionsIndexRoute = LocaleAdmissionsIndexRouteImport.update({
+  id: '/admissions/',
+  path: '/admissions/',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaleAcademicsIndexRoute = LocaleAcademicsIndexRouteImport.update({
+  id: '/academics/',
+  path: '/academics/',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaleAboutIndexRoute = LocaleAboutIndexRouteImport.update({
+  id: '/about/',
+  path: '/about/',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const Locale1010ProjectIndexRoute = Locale1010ProjectIndexRouteImport.update({
+  id: '/10-10-project/',
+  path: '/10-10-project/',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaleReservationsPrivacyPolicyRoute =
+  LocaleReservationsPrivacyPolicyRouteImport.update({
     id: '/reservations/privacy-policy',
     path: '/reservations/privacy-policy',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125ReservationsIntroductionRoute =
-  Char123LocaleChar125ReservationsIntroductionRouteImport.update({
+const LocaleReservationsIntroductionRoute =
+  LocaleReservationsIntroductionRouteImport.update({
     id: '/reservations/introduction',
     path: '/reservations/introduction',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AboutHistoryRoute =
-  Char123LocaleChar125AboutHistoryRouteImport.update({
-    id: '/about/history',
-    path: '/about/history',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125AboutGreetingsRoute =
-  Char123LocaleChar125AboutGreetingsRouteImport.update({
-    id: '/about/greetings',
-    path: '/about/greetings',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125AboutContactRoute =
-  Char123LocaleChar125AboutContactRouteImport.update({
-    id: '/about/contact',
-    path: '/about/contact',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar1251010ProjectProposalRoute =
-  Char123LocaleChar1251010ProjectProposalRouteImport.update({
+const LocaleAboutHistoryRoute = LocaleAboutHistoryRouteImport.update({
+  id: '/about/history',
+  path: '/about/history',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaleAboutGreetingsRoute = LocaleAboutGreetingsRouteImport.update({
+  id: '/about/greetings',
+  path: '/about/greetings',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaleAboutContactRoute = LocaleAboutContactRouteImport.update({
+  id: '/about/contact',
+  path: '/about/contact',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const Locale1010ProjectProposalRoute =
+  Locale1010ProjectProposalRouteImport.update({
     id: '/10-10-project/proposal',
     path: '/10-10-project/proposal',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar1251010ProjectParticipantsRoute =
-  Char123LocaleChar1251010ProjectParticipantsRouteImport.update({
+const Locale1010ProjectParticipantsRoute =
+  Locale1010ProjectParticipantsRouteImport.update({
     id: '/10-10-project/participants',
     path: '/10-10-project/participants',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar1251010ProjectManagerRoute =
-  Char123LocaleChar1251010ProjectManagerRouteImport.update({
+const Locale1010ProjectManagerRoute =
+  Locale1010ProjectManagerRouteImport.update({
     id: '/10-10-project/manager',
     path: '/10-10-project/manager',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125ResearchTopConferenceListIndexRoute =
-  Char123LocaleChar125ResearchTopConferenceListIndexRouteImport.update({
+const LocaleResearchTopConferenceListIndexRoute =
+  LocaleResearchTopConferenceListIndexRouteImport.update({
     id: '/research/top-conference-list/',
     path: '/research/top-conference-list/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125ResearchLabsIndexRoute =
-  Char123LocaleChar125ResearchLabsIndexRouteImport.update({
-    id: '/research/labs/',
-    path: '/research/labs/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125ResearchGroupsIndexRoute =
-  Char123LocaleChar125ResearchGroupsIndexRouteImport.update({
+const LocaleResearchLabsIndexRoute = LocaleResearchLabsIndexRouteImport.update({
+  id: '/research/labs/',
+  path: '/research/labs/',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaleResearchGroupsIndexRoute =
+  LocaleResearchGroupsIndexRouteImport.update({
     id: '/research/groups/',
     path: '/research/groups/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125ResearchCentersIndexRoute =
-  Char123LocaleChar125ResearchCentersIndexRouteImport.update({
+const LocaleResearchCentersIndexRoute =
+  LocaleResearchCentersIndexRouteImport.update({
     id: '/research/centers/',
     path: '/research/centers/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125PeopleStaffIndexRoute =
-  Char123LocaleChar125PeopleStaffIndexRouteImport.update({
-    id: '/people/staff/',
-    path: '/people/staff/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125PeopleFacultyIndexRoute =
-  Char123LocaleChar125PeopleFacultyIndexRouteImport.update({
+const LocalePeopleStaffIndexRoute = LocalePeopleStaffIndexRouteImport.update({
+  id: '/people/staff/',
+  path: '/people/staff/',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocalePeopleFacultyIndexRoute =
+  LocalePeopleFacultyIndexRouteImport.update({
     id: '/people/faculty/',
     path: '/people/faculty/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125PeopleEmeritusFacultyIndexRoute =
-  Char123LocaleChar125PeopleEmeritusFacultyIndexRouteImport.update({
+const LocalePeopleEmeritusFacultyIndexRoute =
+  LocalePeopleEmeritusFacultyIndexRouteImport.update({
     id: '/people/emeritus-faculty/',
     path: '/people/emeritus-faculty/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125CommunitySeminarIndexRoute =
-  Char123LocaleChar125CommunitySeminarIndexRouteImport.update({
+const LocaleCommunitySeminarIndexRoute =
+  LocaleCommunitySeminarIndexRouteImport.update({
     id: '/community/seminar/',
     path: '/community/seminar/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125CommunityNoticeIndexRoute =
-  Char123LocaleChar125CommunityNoticeIndexRouteImport.update({
+const LocaleCommunityNoticeIndexRoute =
+  LocaleCommunityNoticeIndexRouteImport.update({
     id: '/community/notice/',
     path: '/community/notice/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125CommunityNewsIndexRoute =
-  Char123LocaleChar125CommunityNewsIndexRouteImport.update({
+const LocaleCommunityNewsIndexRoute =
+  LocaleCommunityNewsIndexRouteImport.update({
     id: '/community/news/',
     path: '/community/news/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125CommunityFacultyRecruitmentIndexRoute =
-  Char123LocaleChar125CommunityFacultyRecruitmentIndexRouteImport.update({
+const LocaleCommunityFacultyRecruitmentIndexRoute =
+  LocaleCommunityFacultyRecruitmentIndexRouteImport.update({
     id: '/community/faculty-recruitment/',
     path: '/community/faculty-recruitment/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AboutStudentClubsIndexRoute =
-  Char123LocaleChar125AboutStudentClubsIndexRouteImport.update({
+const LocaleAboutStudentClubsIndexRoute =
+  LocaleAboutStudentClubsIndexRouteImport.update({
     id: '/about/student-clubs/',
     path: '/about/student-clubs/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AboutOverviewIndexRoute =
-  Char123LocaleChar125AboutOverviewIndexRouteImport.update({
+const LocaleAboutOverviewIndexRoute =
+  LocaleAboutOverviewIndexRouteImport.update({
     id: '/about/overview/',
     path: '/about/overview/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AboutFutureCareersIndexRoute =
-  Char123LocaleChar125AboutFutureCareersIndexRouteImport.update({
+const LocaleAboutFutureCareersIndexRoute =
+  LocaleAboutFutureCareersIndexRouteImport.update({
     id: '/about/future-careers/',
     path: '/about/future-careers/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AboutFacilitiesIndexRoute =
-  Char123LocaleChar125AboutFacilitiesIndexRouteImport.update({
+const LocaleAboutFacilitiesIndexRoute =
+  LocaleAboutFacilitiesIndexRouteImport.update({
     id: '/about/facilities/',
     path: '/about/facilities/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AboutDirectionsIndexRoute =
-  Char123LocaleChar125AboutDirectionsIndexRouteImport.update({
+const LocaleAboutDirectionsIndexRoute =
+  LocaleAboutDirectionsIndexRouteImport.update({
     id: '/about/directions/',
     path: '/about/directions/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125ReservationsRoomTypeRoomNameRoute =
-  Char123LocaleChar125ReservationsRoomTypeRoomNameRouteImport.update({
+const LocaleReservationsRoomTypeRoomNameRoute =
+  LocaleReservationsRoomTypeRoomNameRouteImport.update({
     id: '/reservations/$roomType/$roomName',
     path: '/reservations/$roomType/$roomName',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125ResearchLabsCreateRoute =
-  Char123LocaleChar125ResearchLabsCreateRouteImport.update({
+const LocaleResearchLabsCreateRoute =
+  LocaleResearchLabsCreateRouteImport.update({
     id: '/research/labs/create',
     path: '/research/labs/create',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125ResearchGroupsCreateRoute =
-  Char123LocaleChar125ResearchGroupsCreateRouteImport.update({
+const LocaleResearchGroupsCreateRoute =
+  LocaleResearchGroupsCreateRouteImport.update({
     id: '/research/groups/create',
     path: '/research/groups/create',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125ResearchCentersCreateRoute =
-  Char123LocaleChar125ResearchCentersCreateRouteImport.update({
+const LocaleResearchCentersCreateRoute =
+  LocaleResearchCentersCreateRouteImport.update({
     id: '/research/centers/create',
     path: '/research/centers/create',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125PeopleStaffCreateRoute =
-  Char123LocaleChar125PeopleStaffCreateRouteImport.update({
-    id: '/people/staff/create',
-    path: '/people/staff/create',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125PeopleFacultyCreateRoute =
-  Char123LocaleChar125PeopleFacultyCreateRouteImport.update({
+const LocalePeopleStaffCreateRoute = LocalePeopleStaffCreateRouteImport.update({
+  id: '/people/staff/create',
+  path: '/people/staff/create',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocalePeopleFacultyCreateRoute =
+  LocalePeopleFacultyCreateRouteImport.update({
     id: '/people/faculty/create',
     path: '/people/faculty/create',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125CommunitySeminarCreateRoute =
-  Char123LocaleChar125CommunitySeminarCreateRouteImport.update({
+const LocaleCommunitySeminarCreateRoute =
+  LocaleCommunitySeminarCreateRouteImport.update({
     id: '/community/seminar/create',
     path: '/community/seminar/create',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125CommunitySeminarIdRoute =
-  Char123LocaleChar125CommunitySeminarIdRouteImport.update({
+const LocaleCommunitySeminarIdRoute =
+  LocaleCommunitySeminarIdRouteImport.update({
     id: '/community/seminar/$id',
     path: '/community/seminar/$id',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125CommunityNoticeCreateRoute =
-  Char123LocaleChar125CommunityNoticeCreateRouteImport.update({
+const LocaleCommunityNoticeCreateRoute =
+  LocaleCommunityNoticeCreateRouteImport.update({
     id: '/community/notice/create',
     path: '/community/notice/create',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125CommunityNoticeIdRoute =
-  Char123LocaleChar125CommunityNoticeIdRouteImport.update({
-    id: '/community/notice/$id',
-    path: '/community/notice/$id',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125CommunityNewsCreateRoute =
-  Char123LocaleChar125CommunityNewsCreateRouteImport.update({
+const LocaleCommunityNoticeIdRoute = LocaleCommunityNoticeIdRouteImport.update({
+  id: '/community/notice/$id',
+  path: '/community/notice/$id',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaleCommunityNewsCreateRoute =
+  LocaleCommunityNewsCreateRouteImport.update({
     id: '/community/news/create',
     path: '/community/news/create',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125CommunityNewsIdRoute =
-  Char123LocaleChar125CommunityNewsIdRouteImport.update({
-    id: '/community/news/$id',
-    path: '/community/news/$id',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125CommunityFacultyRecruitmentEditRoute =
-  Char123LocaleChar125CommunityFacultyRecruitmentEditRouteImport.update({
+const LocaleCommunityNewsIdRoute = LocaleCommunityNewsIdRouteImport.update({
+  id: '/community/news/$id',
+  path: '/community/news/$id',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaleCommunityFacultyRecruitmentEditRoute =
+  LocaleCommunityFacultyRecruitmentEditRouteImport.update({
     id: '/community/faculty-recruitment/edit',
     path: '/community/faculty-recruitment/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AcademicsStudentTypeCoursesRoute =
-  Char123LocaleChar125AcademicsStudentTypeCoursesRouteImport.update({
+const LocaleAcademicsStudentTypeCoursesRoute =
+  LocaleAcademicsStudentTypeCoursesRouteImport.update({
     id: '/academics/$studentType/courses',
     path: '/academics/$studentType/courses',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AboutStudentClubsEditRoute =
-  Char123LocaleChar125AboutStudentClubsEditRouteImport.update({
+const LocaleAboutStudentClubsEditRoute =
+  LocaleAboutStudentClubsEditRouteImport.update({
     id: '/about/student-clubs/edit',
     path: '/about/student-clubs/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AboutStudentClubsCreateRoute =
-  Char123LocaleChar125AboutStudentClubsCreateRouteImport.update({
+const LocaleAboutStudentClubsCreateRoute =
+  LocaleAboutStudentClubsCreateRouteImport.update({
     id: '/about/student-clubs/create',
     path: '/about/student-clubs/create',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AboutOverviewEditRoute =
-  Char123LocaleChar125AboutOverviewEditRouteImport.update({
-    id: '/about/overview/edit',
-    path: '/about/overview/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125AboutFacilitiesEditRoute =
-  Char123LocaleChar125AboutFacilitiesEditRouteImport.update({
+const LocaleAboutOverviewEditRoute = LocaleAboutOverviewEditRouteImport.update({
+  id: '/about/overview/edit',
+  path: '/about/overview/edit',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaleAboutFacilitiesEditRoute =
+  LocaleAboutFacilitiesEditRouteImport.update({
     id: '/about/facilities/edit',
     path: '/about/facilities/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AboutFacilitiesCreateRoute =
-  Char123LocaleChar125AboutFacilitiesCreateRouteImport.update({
+const LocaleAboutFacilitiesCreateRoute =
+  LocaleAboutFacilitiesCreateRouteImport.update({
     id: '/about/facilities/create',
     path: '/about/facilities/create',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AboutTypeEditRoute =
-  Char123LocaleChar125AboutTypeEditRouteImport.update({
-    id: '/about/$type/edit',
-    path: '/about/$type/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125ResearchLabsIdIndexRoute =
-  Char123LocaleChar125ResearchLabsIdIndexRouteImport.update({
+const LocaleAboutTypeEditRoute = LocaleAboutTypeEditRouteImport.update({
+  id: '/about/$type/edit',
+  path: '/about/$type/edit',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaleResearchLabsIdIndexRoute =
+  LocaleResearchLabsIdIndexRouteImport.update({
     id: '/research/labs/$id/',
     path: '/research/labs/$id/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125PeopleStaffIdIndexRoute =
-  Char123LocaleChar125PeopleStaffIdIndexRouteImport.update({
+const LocalePeopleStaffIdIndexRoute =
+  LocalePeopleStaffIdIndexRouteImport.update({
     id: '/people/staff/$id/',
     path: '/people/staff/$id/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125PeopleFacultyIdIndexRoute =
-  Char123LocaleChar125PeopleFacultyIdIndexRouteImport.update({
+const LocalePeopleFacultyIdIndexRoute =
+  LocalePeopleFacultyIdIndexRouteImport.update({
     id: '/people/faculty/$id/',
     path: '/people/faculty/$id/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125PeopleEmeritusFacultyIdIndexRoute =
-  Char123LocaleChar125PeopleEmeritusFacultyIdIndexRouteImport.update({
+const LocalePeopleEmeritusFacultyIdIndexRoute =
+  LocalePeopleEmeritusFacultyIdIndexRouteImport.update({
     id: '/people/emeritus-faculty/$id/',
     path: '/people/emeritus-faculty/$id/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AdmissionsMainTypePostTypeIndexRoute =
-  Char123LocaleChar125AdmissionsMainTypePostTypeIndexRouteImport.update({
+const LocaleAdmissionsMainTypePostTypeIndexRoute =
+  LocaleAdmissionsMainTypePostTypeIndexRouteImport.update({
     id: '/admissions/$mainType/$postType/',
     path: '/admissions/$mainType/$postType/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsIndexRoute =
-  Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsIndexRouteImport.update(
+const LocaleAcademicsUndergraduateGeneralStudiesRequirementsIndexRoute =
+  LocaleAcademicsUndergraduateGeneralStudiesRequirementsIndexRouteImport.update(
     {
       id: '/academics/undergraduate/general-studies-requirements/',
       path: '/academics/undergraduate/general-studies-requirements/',
-      getParentRoute: () => Char123LocaleChar125RouteRoute,
+      getParentRoute: () => LocaleRouteRoute,
     } as any,
   )
-const Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsIndexRoute =
-  Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsIndexRouteImport.update(
-    {
-      id: '/academics/undergraduate/degree-requirements/',
-      path: '/academics/undergraduate/degree-requirements/',
-      getParentRoute: () => Char123LocaleChar125RouteRoute,
-    } as any,
-  )
-const Char123LocaleChar125AcademicsUndergraduateCurriculumIndexRoute =
-  Char123LocaleChar125AcademicsUndergraduateCurriculumIndexRouteImport.update({
+const LocaleAcademicsUndergraduateDegreeRequirementsIndexRoute =
+  LocaleAcademicsUndergraduateDegreeRequirementsIndexRouteImport.update({
+    id: '/academics/undergraduate/degree-requirements/',
+    path: '/academics/undergraduate/degree-requirements/',
+    getParentRoute: () => LocaleRouteRoute,
+  } as any)
+const LocaleAcademicsUndergraduateCurriculumIndexRoute =
+  LocaleAcademicsUndergraduateCurriculumIndexRouteImport.update({
     id: '/academics/undergraduate/curriculum/',
     path: '/academics/undergraduate/curriculum/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AcademicsStudentTypeScholarshipIndexRoute =
-  Char123LocaleChar125AcademicsStudentTypeScholarshipIndexRouteImport.update({
+const LocaleAcademicsStudentTypeScholarshipIndexRoute =
+  LocaleAcademicsStudentTypeScholarshipIndexRouteImport.update({
     id: '/academics/$studentType/scholarship/',
     path: '/academics/$studentType/scholarship/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AcademicsStudentTypeGuideIndexRoute =
-  Char123LocaleChar125AcademicsStudentTypeGuideIndexRouteImport.update({
+const LocaleAcademicsStudentTypeGuideIndexRoute =
+  LocaleAcademicsStudentTypeGuideIndexRouteImport.update({
     id: '/academics/$studentType/guide/',
     path: '/academics/$studentType/guide/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AcademicsStudentTypeCourseChangesIndexRoute =
-  Char123LocaleChar125AcademicsStudentTypeCourseChangesIndexRouteImport.update({
+const LocaleAcademicsStudentTypeCourseChangesIndexRoute =
+  LocaleAcademicsStudentTypeCourseChangesIndexRouteImport.update({
     id: '/academics/$studentType/course-changes/',
     path: '/academics/$studentType/course-changes/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125ResearchLabsIdEditRoute =
-  Char123LocaleChar125ResearchLabsIdEditRouteImport.update({
+const LocaleResearchLabsIdEditRoute =
+  LocaleResearchLabsIdEditRouteImport.update({
     id: '/research/labs/$id/edit',
     path: '/research/labs/$id/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125ResearchGroupsIdEditRoute =
-  Char123LocaleChar125ResearchGroupsIdEditRouteImport.update({
+const LocaleResearchGroupsIdEditRoute =
+  LocaleResearchGroupsIdEditRouteImport.update({
     id: '/research/groups/$id/edit',
     path: '/research/groups/$id/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125ResearchCentersIdEditRoute =
-  Char123LocaleChar125ResearchCentersIdEditRouteImport.update({
+const LocaleResearchCentersIdEditRoute =
+  LocaleResearchCentersIdEditRouteImport.update({
     id: '/research/centers/$id/edit',
     path: '/research/centers/$id/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125PeopleStaffIdEditRoute =
-  Char123LocaleChar125PeopleStaffIdEditRouteImport.update({
-    id: '/people/staff/$id/edit',
-    path: '/people/staff/$id/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
-  } as any)
-const Char123LocaleChar125PeopleFacultyIdEditRoute =
-  Char123LocaleChar125PeopleFacultyIdEditRouteImport.update({
+const LocalePeopleStaffIdEditRoute = LocalePeopleStaffIdEditRouteImport.update({
+  id: '/people/staff/$id/edit',
+  path: '/people/staff/$id/edit',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocalePeopleFacultyIdEditRoute =
+  LocalePeopleFacultyIdEditRouteImport.update({
     id: '/people/faculty/$id/edit',
     path: '/people/faculty/$id/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125PeopleEmeritusFacultyIdEditRoute =
-  Char123LocaleChar125PeopleEmeritusFacultyIdEditRouteImport.update({
+const LocalePeopleEmeritusFacultyIdEditRoute =
+  LocalePeopleEmeritusFacultyIdEditRouteImport.update({
     id: '/people/emeritus-faculty/$id/edit',
     path: '/people/emeritus-faculty/$id/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125CommunitySeminarEditIdRoute =
-  Char123LocaleChar125CommunitySeminarEditIdRouteImport.update({
+const LocaleCommunitySeminarEditIdRoute =
+  LocaleCommunitySeminarEditIdRouteImport.update({
     id: '/community/seminar/edit/$id',
     path: '/community/seminar/edit/$id',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125CommunityNoticeEditIdRoute =
-  Char123LocaleChar125CommunityNoticeEditIdRouteImport.update({
+const LocaleCommunityNoticeEditIdRoute =
+  LocaleCommunityNoticeEditIdRouteImport.update({
     id: '/community/notice/edit/$id',
     path: '/community/notice/edit/$id',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125CommunityNewsEditIdRoute =
-  Char123LocaleChar125CommunityNewsEditIdRouteImport.update({
+const LocaleCommunityNewsEditIdRoute =
+  LocaleCommunityNewsEditIdRouteImport.update({
     id: '/community/news/edit/$id',
     path: '/community/news/edit/$id',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AdmissionsMainTypePostTypeEditRoute =
-  Char123LocaleChar125AdmissionsMainTypePostTypeEditRouteImport.update({
+const LocaleAdmissionsMainTypePostTypeEditRoute =
+  LocaleAdmissionsMainTypePostTypeEditRouteImport.update({
     id: '/admissions/$mainType/$postType/edit',
     path: '/admissions/$mainType/$postType/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsCreateRoute =
-  Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsCreateRouteImport.update(
+const LocaleAcademicsUndergraduateGeneralStudiesRequirementsCreateRoute =
+  LocaleAcademicsUndergraduateGeneralStudiesRequirementsCreateRouteImport.update(
     {
       id: '/academics/undergraduate/general-studies-requirements/create',
       path: '/academics/undergraduate/general-studies-requirements/create',
-      getParentRoute: () => Char123LocaleChar125RouteRoute,
+      getParentRoute: () => LocaleRouteRoute,
     } as any,
   )
-const Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsEditRoute =
-  Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsEditRouteImport.update(
-    {
-      id: '/academics/undergraduate/degree-requirements/edit',
-      path: '/academics/undergraduate/degree-requirements/edit',
-      getParentRoute: () => Char123LocaleChar125RouteRoute,
-    } as any,
-  )
-const Char123LocaleChar125AcademicsUndergraduateCurriculumCreateRoute =
-  Char123LocaleChar125AcademicsUndergraduateCurriculumCreateRouteImport.update({
+const LocaleAcademicsUndergraduateDegreeRequirementsEditRoute =
+  LocaleAcademicsUndergraduateDegreeRequirementsEditRouteImport.update({
+    id: '/academics/undergraduate/degree-requirements/edit',
+    path: '/academics/undergraduate/degree-requirements/edit',
+    getParentRoute: () => LocaleRouteRoute,
+  } as any)
+const LocaleAcademicsUndergraduateCurriculumCreateRoute =
+  LocaleAcademicsUndergraduateCurriculumCreateRouteImport.update({
     id: '/academics/undergraduate/curriculum/create',
     path: '/academics/undergraduate/curriculum/create',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AcademicsStudentTypeScholarshipEditRoute =
-  Char123LocaleChar125AcademicsStudentTypeScholarshipEditRouteImport.update({
+const LocaleAcademicsStudentTypeScholarshipEditRoute =
+  LocaleAcademicsStudentTypeScholarshipEditRouteImport.update({
     id: '/academics/$studentType/scholarship/edit',
     path: '/academics/$studentType/scholarship/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AcademicsStudentTypeScholarshipCreateRoute =
-  Char123LocaleChar125AcademicsStudentTypeScholarshipCreateRouteImport.update({
+const LocaleAcademicsStudentTypeScholarshipCreateRoute =
+  LocaleAcademicsStudentTypeScholarshipCreateRouteImport.update({
     id: '/academics/$studentType/scholarship/create',
     path: '/academics/$studentType/scholarship/create',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AcademicsStudentTypeGuideEditRoute =
-  Char123LocaleChar125AcademicsStudentTypeGuideEditRouteImport.update({
+const LocaleAcademicsStudentTypeGuideEditRoute =
+  LocaleAcademicsStudentTypeGuideEditRouteImport.update({
     id: '/academics/$studentType/guide/edit',
     path: '/academics/$studentType/guide/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AcademicsStudentTypeCourseChangesCreateRoute =
-  Char123LocaleChar125AcademicsStudentTypeCourseChangesCreateRouteImport.update(
-    {
-      id: '/academics/$studentType/course-changes/create',
-      path: '/academics/$studentType/course-changes/create',
-      getParentRoute: () => Char123LocaleChar125RouteRoute,
-    } as any,
-  )
-const Char123LocaleChar125AboutFutureCareersStatEditRoute =
-  Char123LocaleChar125AboutFutureCareersStatEditRouteImport.update({
+const LocaleAcademicsStudentTypeCourseChangesCreateRoute =
+  LocaleAcademicsStudentTypeCourseChangesCreateRouteImport.update({
+    id: '/academics/$studentType/course-changes/create',
+    path: '/academics/$studentType/course-changes/create',
+    getParentRoute: () => LocaleRouteRoute,
+  } as any)
+const LocaleAboutFutureCareersStatEditRoute =
+  LocaleAboutFutureCareersStatEditRouteImport.update({
     id: '/about/future-careers/stat/edit',
     path: '/about/future-careers/stat/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AboutFutureCareersStatCreateRoute =
-  Char123LocaleChar125AboutFutureCareersStatCreateRouteImport.update({
+const LocaleAboutFutureCareersStatCreateRoute =
+  LocaleAboutFutureCareersStatCreateRouteImport.update({
     id: '/about/future-careers/stat/create',
     path: '/about/future-careers/stat/create',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AboutFutureCareersDescriptionEditRoute =
-  Char123LocaleChar125AboutFutureCareersDescriptionEditRouteImport.update({
+const LocaleAboutFutureCareersDescriptionEditRoute =
+  LocaleAboutFutureCareersDescriptionEditRouteImport.update({
     id: '/about/future-careers/description/edit',
     path: '/about/future-careers/description/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AboutDirectionsIdEditRoute =
-  Char123LocaleChar125AboutDirectionsIdEditRouteImport.update({
+const LocaleAboutDirectionsIdEditRoute =
+  LocaleAboutDirectionsIdEditRouteImport.update({
     id: '/about/directions/$id/edit',
     path: '/about/directions/$id/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AcademicsStudentTypeScholarshipIdIndexRoute =
-  Char123LocaleChar125AcademicsStudentTypeScholarshipIdIndexRouteImport.update({
+const LocaleAcademicsStudentTypeScholarshipIdIndexRoute =
+  LocaleAcademicsStudentTypeScholarshipIdIndexRouteImport.update({
     id: '/academics/$studentType/scholarship/$id/',
     path: '/academics/$studentType/scholarship/$id/',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute =
-  Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsEditYearRouteImport.update(
+const LocaleAcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute =
+  LocaleAcademicsUndergraduateGeneralStudiesRequirementsEditYearRouteImport.update(
     {
       id: '/academics/undergraduate/general-studies-requirements/edit/$year',
       path: '/academics/undergraduate/general-studies-requirements/edit/$year',
-      getParentRoute: () => Char123LocaleChar125RouteRoute,
+      getParentRoute: () => LocaleRouteRoute,
     } as any,
   )
-const Char123LocaleChar125AcademicsUndergraduateCurriculumEditYearRoute =
-  Char123LocaleChar125AcademicsUndergraduateCurriculumEditYearRouteImport.update(
-    {
-      id: '/academics/undergraduate/curriculum/edit/$year',
-      path: '/academics/undergraduate/curriculum/edit/$year',
-      getParentRoute: () => Char123LocaleChar125RouteRoute,
-    } as any,
-  )
-const Char123LocaleChar125AcademicsStudentTypeScholarshipIdEditRoute =
-  Char123LocaleChar125AcademicsStudentTypeScholarshipIdEditRouteImport.update({
+const LocaleAcademicsUndergraduateCurriculumEditYearRoute =
+  LocaleAcademicsUndergraduateCurriculumEditYearRouteImport.update({
+    id: '/academics/undergraduate/curriculum/edit/$year',
+    path: '/academics/undergraduate/curriculum/edit/$year',
+    getParentRoute: () => LocaleRouteRoute,
+  } as any)
+const LocaleAcademicsStudentTypeScholarshipIdEditRoute =
+  LocaleAcademicsStudentTypeScholarshipIdEditRouteImport.update({
     id: '/academics/$studentType/scholarship/$id/edit',
     path: '/academics/$studentType/scholarship/$id/edit',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => LocaleRouteRoute,
   } as any)
-const Char123LocaleChar125AcademicsStudentTypeCourseChangesEditYearRoute =
-  Char123LocaleChar125AcademicsStudentTypeCourseChangesEditYearRouteImport.update(
-    {
-      id: '/academics/$studentType/course-changes/edit/$year',
-      path: '/academics/$studentType/course-changes/edit/$year',
-      getParentRoute: () => Char123LocaleChar125RouteRoute,
-    } as any,
-  )
+const LocaleAcademicsStudentTypeCourseChangesEditYearRoute =
+  LocaleAcademicsStudentTypeCourseChangesEditYearRouteImport.update({
+    id: '/academics/$studentType/course-changes/edit/$year',
+    path: '/academics/$studentType/course-changes/edit/$year',
+    getParentRoute: () => LocaleRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
+  '/$locale': typeof LocaleRouteRouteWithChildren
   '/img': typeof ImgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/.internal/edit': typeof DotinternalEditRoute
+  '/$locale/': typeof LocaleIndexRoute
   '/.internal/': typeof DotinternalIndexRoute
   '/admin/': typeof AdminIndexRoute
-  '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
-  '/{-$locale}/10-10-project/manager': typeof Char123LocaleChar1251010ProjectManagerRoute
-  '/{-$locale}/10-10-project/participants': typeof Char123LocaleChar1251010ProjectParticipantsRoute
-  '/{-$locale}/10-10-project/proposal': typeof Char123LocaleChar1251010ProjectProposalRoute
-  '/{-$locale}/about/contact': typeof Char123LocaleChar125AboutContactRoute
-  '/{-$locale}/about/greetings': typeof Char123LocaleChar125AboutGreetingsRoute
-  '/{-$locale}/about/history': typeof Char123LocaleChar125AboutHistoryRoute
-  '/{-$locale}/reservations/introduction': typeof Char123LocaleChar125ReservationsIntroductionRoute
-  '/{-$locale}/reservations/privacy-policy': typeof Char123LocaleChar125ReservationsPrivacyPolicyRoute
-  '/{-$locale}/10-10-project/': typeof Char123LocaleChar1251010ProjectIndexRoute
-  '/{-$locale}/about/': typeof Char123LocaleChar125AboutIndexRoute
-  '/{-$locale}/academics/': typeof Char123LocaleChar125AcademicsIndexRoute
-  '/{-$locale}/admissions/': typeof Char123LocaleChar125AdmissionsIndexRoute
-  '/{-$locale}/community/': typeof Char123LocaleChar125CommunityIndexRoute
-  '/{-$locale}/people/': typeof Char123LocaleChar125PeopleIndexRoute
-  '/{-$locale}/research/': typeof Char123LocaleChar125ResearchIndexRoute
-  '/{-$locale}/reservations/': typeof Char123LocaleChar125ReservationsIndexRoute
-  '/{-$locale}/search/': typeof Char123LocaleChar125SearchIndexRoute
-  '/{-$locale}/about/$type/edit': typeof Char123LocaleChar125AboutTypeEditRoute
-  '/{-$locale}/about/facilities/create': typeof Char123LocaleChar125AboutFacilitiesCreateRoute
-  '/{-$locale}/about/facilities/edit': typeof Char123LocaleChar125AboutFacilitiesEditRoute
-  '/{-$locale}/about/overview/edit': typeof Char123LocaleChar125AboutOverviewEditRoute
-  '/{-$locale}/about/student-clubs/create': typeof Char123LocaleChar125AboutStudentClubsCreateRoute
-  '/{-$locale}/about/student-clubs/edit': typeof Char123LocaleChar125AboutStudentClubsEditRoute
-  '/{-$locale}/academics/$studentType/courses': typeof Char123LocaleChar125AcademicsStudentTypeCoursesRoute
-  '/{-$locale}/community/faculty-recruitment/edit': typeof Char123LocaleChar125CommunityFacultyRecruitmentEditRoute
-  '/{-$locale}/community/news/$id': typeof Char123LocaleChar125CommunityNewsIdRoute
-  '/{-$locale}/community/news/create': typeof Char123LocaleChar125CommunityNewsCreateRoute
-  '/{-$locale}/community/notice/$id': typeof Char123LocaleChar125CommunityNoticeIdRoute
-  '/{-$locale}/community/notice/create': typeof Char123LocaleChar125CommunityNoticeCreateRoute
-  '/{-$locale}/community/seminar/$id': typeof Char123LocaleChar125CommunitySeminarIdRoute
-  '/{-$locale}/community/seminar/create': typeof Char123LocaleChar125CommunitySeminarCreateRoute
-  '/{-$locale}/people/faculty/create': typeof Char123LocaleChar125PeopleFacultyCreateRoute
-  '/{-$locale}/people/staff/create': typeof Char123LocaleChar125PeopleStaffCreateRoute
-  '/{-$locale}/research/centers/create': typeof Char123LocaleChar125ResearchCentersCreateRoute
-  '/{-$locale}/research/groups/create': typeof Char123LocaleChar125ResearchGroupsCreateRoute
-  '/{-$locale}/research/labs/create': typeof Char123LocaleChar125ResearchLabsCreateRoute
-  '/{-$locale}/reservations/$roomType/$roomName': typeof Char123LocaleChar125ReservationsRoomTypeRoomNameRoute
-  '/{-$locale}/about/directions/': typeof Char123LocaleChar125AboutDirectionsIndexRoute
-  '/{-$locale}/about/facilities/': typeof Char123LocaleChar125AboutFacilitiesIndexRoute
-  '/{-$locale}/about/future-careers/': typeof Char123LocaleChar125AboutFutureCareersIndexRoute
-  '/{-$locale}/about/overview/': typeof Char123LocaleChar125AboutOverviewIndexRoute
-  '/{-$locale}/about/student-clubs/': typeof Char123LocaleChar125AboutStudentClubsIndexRoute
-  '/{-$locale}/community/faculty-recruitment/': typeof Char123LocaleChar125CommunityFacultyRecruitmentIndexRoute
-  '/{-$locale}/community/news/': typeof Char123LocaleChar125CommunityNewsIndexRoute
-  '/{-$locale}/community/notice/': typeof Char123LocaleChar125CommunityNoticeIndexRoute
-  '/{-$locale}/community/seminar/': typeof Char123LocaleChar125CommunitySeminarIndexRoute
-  '/{-$locale}/people/emeritus-faculty/': typeof Char123LocaleChar125PeopleEmeritusFacultyIndexRoute
-  '/{-$locale}/people/faculty/': typeof Char123LocaleChar125PeopleFacultyIndexRoute
-  '/{-$locale}/people/staff/': typeof Char123LocaleChar125PeopleStaffIndexRoute
-  '/{-$locale}/research/centers/': typeof Char123LocaleChar125ResearchCentersIndexRoute
-  '/{-$locale}/research/groups/': typeof Char123LocaleChar125ResearchGroupsIndexRoute
-  '/{-$locale}/research/labs/': typeof Char123LocaleChar125ResearchLabsIndexRoute
-  '/{-$locale}/research/top-conference-list/': typeof Char123LocaleChar125ResearchTopConferenceListIndexRoute
-  '/{-$locale}/about/directions/$id/edit': typeof Char123LocaleChar125AboutDirectionsIdEditRoute
-  '/{-$locale}/about/future-careers/description/edit': typeof Char123LocaleChar125AboutFutureCareersDescriptionEditRoute
-  '/{-$locale}/about/future-careers/stat/create': typeof Char123LocaleChar125AboutFutureCareersStatCreateRoute
-  '/{-$locale}/about/future-careers/stat/edit': typeof Char123LocaleChar125AboutFutureCareersStatEditRoute
-  '/{-$locale}/academics/$studentType/course-changes/create': typeof Char123LocaleChar125AcademicsStudentTypeCourseChangesCreateRoute
-  '/{-$locale}/academics/$studentType/guide/edit': typeof Char123LocaleChar125AcademicsStudentTypeGuideEditRoute
-  '/{-$locale}/academics/$studentType/scholarship/create': typeof Char123LocaleChar125AcademicsStudentTypeScholarshipCreateRoute
-  '/{-$locale}/academics/$studentType/scholarship/edit': typeof Char123LocaleChar125AcademicsStudentTypeScholarshipEditRoute
-  '/{-$locale}/academics/undergraduate/curriculum/create': typeof Char123LocaleChar125AcademicsUndergraduateCurriculumCreateRoute
-  '/{-$locale}/academics/undergraduate/degree-requirements/edit': typeof Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsEditRoute
-  '/{-$locale}/academics/undergraduate/general-studies-requirements/create': typeof Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsCreateRoute
-  '/{-$locale}/admissions/$mainType/$postType/edit': typeof Char123LocaleChar125AdmissionsMainTypePostTypeEditRoute
-  '/{-$locale}/community/news/edit/$id': typeof Char123LocaleChar125CommunityNewsEditIdRoute
-  '/{-$locale}/community/notice/edit/$id': typeof Char123LocaleChar125CommunityNoticeEditIdRoute
-  '/{-$locale}/community/seminar/edit/$id': typeof Char123LocaleChar125CommunitySeminarEditIdRoute
-  '/{-$locale}/people/emeritus-faculty/$id/edit': typeof Char123LocaleChar125PeopleEmeritusFacultyIdEditRoute
-  '/{-$locale}/people/faculty/$id/edit': typeof Char123LocaleChar125PeopleFacultyIdEditRoute
-  '/{-$locale}/people/staff/$id/edit': typeof Char123LocaleChar125PeopleStaffIdEditRoute
-  '/{-$locale}/research/centers/$id/edit': typeof Char123LocaleChar125ResearchCentersIdEditRoute
-  '/{-$locale}/research/groups/$id/edit': typeof Char123LocaleChar125ResearchGroupsIdEditRoute
-  '/{-$locale}/research/labs/$id/edit': typeof Char123LocaleChar125ResearchLabsIdEditRoute
-  '/{-$locale}/academics/$studentType/course-changes/': typeof Char123LocaleChar125AcademicsStudentTypeCourseChangesIndexRoute
-  '/{-$locale}/academics/$studentType/guide/': typeof Char123LocaleChar125AcademicsStudentTypeGuideIndexRoute
-  '/{-$locale}/academics/$studentType/scholarship/': typeof Char123LocaleChar125AcademicsStudentTypeScholarshipIndexRoute
-  '/{-$locale}/academics/undergraduate/curriculum/': typeof Char123LocaleChar125AcademicsUndergraduateCurriculumIndexRoute
-  '/{-$locale}/academics/undergraduate/degree-requirements/': typeof Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsIndexRoute
-  '/{-$locale}/academics/undergraduate/general-studies-requirements/': typeof Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsIndexRoute
-  '/{-$locale}/admissions/$mainType/$postType/': typeof Char123LocaleChar125AdmissionsMainTypePostTypeIndexRoute
-  '/{-$locale}/people/emeritus-faculty/$id/': typeof Char123LocaleChar125PeopleEmeritusFacultyIdIndexRoute
-  '/{-$locale}/people/faculty/$id/': typeof Char123LocaleChar125PeopleFacultyIdIndexRoute
-  '/{-$locale}/people/staff/$id/': typeof Char123LocaleChar125PeopleStaffIdIndexRoute
-  '/{-$locale}/research/labs/$id/': typeof Char123LocaleChar125ResearchLabsIdIndexRoute
-  '/{-$locale}/academics/$studentType/course-changes/edit/$year': typeof Char123LocaleChar125AcademicsStudentTypeCourseChangesEditYearRoute
-  '/{-$locale}/academics/$studentType/scholarship/$id/edit': typeof Char123LocaleChar125AcademicsStudentTypeScholarshipIdEditRoute
-  '/{-$locale}/academics/undergraduate/curriculum/edit/$year': typeof Char123LocaleChar125AcademicsUndergraduateCurriculumEditYearRoute
-  '/{-$locale}/academics/undergraduate/general-studies-requirements/edit/$year': typeof Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute
-  '/{-$locale}/academics/$studentType/scholarship/$id/': typeof Char123LocaleChar125AcademicsStudentTypeScholarshipIdIndexRoute
+  '/$locale/10-10-project/manager': typeof Locale1010ProjectManagerRoute
+  '/$locale/10-10-project/participants': typeof Locale1010ProjectParticipantsRoute
+  '/$locale/10-10-project/proposal': typeof Locale1010ProjectProposalRoute
+  '/$locale/about/contact': typeof LocaleAboutContactRoute
+  '/$locale/about/greetings': typeof LocaleAboutGreetingsRoute
+  '/$locale/about/history': typeof LocaleAboutHistoryRoute
+  '/$locale/reservations/introduction': typeof LocaleReservationsIntroductionRoute
+  '/$locale/reservations/privacy-policy': typeof LocaleReservationsPrivacyPolicyRoute
+  '/$locale/10-10-project/': typeof Locale1010ProjectIndexRoute
+  '/$locale/about/': typeof LocaleAboutIndexRoute
+  '/$locale/academics/': typeof LocaleAcademicsIndexRoute
+  '/$locale/admissions/': typeof LocaleAdmissionsIndexRoute
+  '/$locale/community/': typeof LocaleCommunityIndexRoute
+  '/$locale/people/': typeof LocalePeopleIndexRoute
+  '/$locale/research/': typeof LocaleResearchIndexRoute
+  '/$locale/reservations/': typeof LocaleReservationsIndexRoute
+  '/$locale/search/': typeof LocaleSearchIndexRoute
+  '/$locale/about/$type/edit': typeof LocaleAboutTypeEditRoute
+  '/$locale/about/facilities/create': typeof LocaleAboutFacilitiesCreateRoute
+  '/$locale/about/facilities/edit': typeof LocaleAboutFacilitiesEditRoute
+  '/$locale/about/overview/edit': typeof LocaleAboutOverviewEditRoute
+  '/$locale/about/student-clubs/create': typeof LocaleAboutStudentClubsCreateRoute
+  '/$locale/about/student-clubs/edit': typeof LocaleAboutStudentClubsEditRoute
+  '/$locale/academics/$studentType/courses': typeof LocaleAcademicsStudentTypeCoursesRoute
+  '/$locale/community/faculty-recruitment/edit': typeof LocaleCommunityFacultyRecruitmentEditRoute
+  '/$locale/community/news/$id': typeof LocaleCommunityNewsIdRoute
+  '/$locale/community/news/create': typeof LocaleCommunityNewsCreateRoute
+  '/$locale/community/notice/$id': typeof LocaleCommunityNoticeIdRoute
+  '/$locale/community/notice/create': typeof LocaleCommunityNoticeCreateRoute
+  '/$locale/community/seminar/$id': typeof LocaleCommunitySeminarIdRoute
+  '/$locale/community/seminar/create': typeof LocaleCommunitySeminarCreateRoute
+  '/$locale/people/faculty/create': typeof LocalePeopleFacultyCreateRoute
+  '/$locale/people/staff/create': typeof LocalePeopleStaffCreateRoute
+  '/$locale/research/centers/create': typeof LocaleResearchCentersCreateRoute
+  '/$locale/research/groups/create': typeof LocaleResearchGroupsCreateRoute
+  '/$locale/research/labs/create': typeof LocaleResearchLabsCreateRoute
+  '/$locale/reservations/$roomType/$roomName': typeof LocaleReservationsRoomTypeRoomNameRoute
+  '/$locale/about/directions/': typeof LocaleAboutDirectionsIndexRoute
+  '/$locale/about/facilities/': typeof LocaleAboutFacilitiesIndexRoute
+  '/$locale/about/future-careers/': typeof LocaleAboutFutureCareersIndexRoute
+  '/$locale/about/overview/': typeof LocaleAboutOverviewIndexRoute
+  '/$locale/about/student-clubs/': typeof LocaleAboutStudentClubsIndexRoute
+  '/$locale/community/faculty-recruitment/': typeof LocaleCommunityFacultyRecruitmentIndexRoute
+  '/$locale/community/news/': typeof LocaleCommunityNewsIndexRoute
+  '/$locale/community/notice/': typeof LocaleCommunityNoticeIndexRoute
+  '/$locale/community/seminar/': typeof LocaleCommunitySeminarIndexRoute
+  '/$locale/people/emeritus-faculty/': typeof LocalePeopleEmeritusFacultyIndexRoute
+  '/$locale/people/faculty/': typeof LocalePeopleFacultyIndexRoute
+  '/$locale/people/staff/': typeof LocalePeopleStaffIndexRoute
+  '/$locale/research/centers/': typeof LocaleResearchCentersIndexRoute
+  '/$locale/research/groups/': typeof LocaleResearchGroupsIndexRoute
+  '/$locale/research/labs/': typeof LocaleResearchLabsIndexRoute
+  '/$locale/research/top-conference-list/': typeof LocaleResearchTopConferenceListIndexRoute
+  '/$locale/about/directions/$id/edit': typeof LocaleAboutDirectionsIdEditRoute
+  '/$locale/about/future-careers/description/edit': typeof LocaleAboutFutureCareersDescriptionEditRoute
+  '/$locale/about/future-careers/stat/create': typeof LocaleAboutFutureCareersStatCreateRoute
+  '/$locale/about/future-careers/stat/edit': typeof LocaleAboutFutureCareersStatEditRoute
+  '/$locale/academics/$studentType/course-changes/create': typeof LocaleAcademicsStudentTypeCourseChangesCreateRoute
+  '/$locale/academics/$studentType/guide/edit': typeof LocaleAcademicsStudentTypeGuideEditRoute
+  '/$locale/academics/$studentType/scholarship/create': typeof LocaleAcademicsStudentTypeScholarshipCreateRoute
+  '/$locale/academics/$studentType/scholarship/edit': typeof LocaleAcademicsStudentTypeScholarshipEditRoute
+  '/$locale/academics/undergraduate/curriculum/create': typeof LocaleAcademicsUndergraduateCurriculumCreateRoute
+  '/$locale/academics/undergraduate/degree-requirements/edit': typeof LocaleAcademicsUndergraduateDegreeRequirementsEditRoute
+  '/$locale/academics/undergraduate/general-studies-requirements/create': typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsCreateRoute
+  '/$locale/admissions/$mainType/$postType/edit': typeof LocaleAdmissionsMainTypePostTypeEditRoute
+  '/$locale/community/news/edit/$id': typeof LocaleCommunityNewsEditIdRoute
+  '/$locale/community/notice/edit/$id': typeof LocaleCommunityNoticeEditIdRoute
+  '/$locale/community/seminar/edit/$id': typeof LocaleCommunitySeminarEditIdRoute
+  '/$locale/people/emeritus-faculty/$id/edit': typeof LocalePeopleEmeritusFacultyIdEditRoute
+  '/$locale/people/faculty/$id/edit': typeof LocalePeopleFacultyIdEditRoute
+  '/$locale/people/staff/$id/edit': typeof LocalePeopleStaffIdEditRoute
+  '/$locale/research/centers/$id/edit': typeof LocaleResearchCentersIdEditRoute
+  '/$locale/research/groups/$id/edit': typeof LocaleResearchGroupsIdEditRoute
+  '/$locale/research/labs/$id/edit': typeof LocaleResearchLabsIdEditRoute
+  '/$locale/academics/$studentType/course-changes/': typeof LocaleAcademicsStudentTypeCourseChangesIndexRoute
+  '/$locale/academics/$studentType/guide/': typeof LocaleAcademicsStudentTypeGuideIndexRoute
+  '/$locale/academics/$studentType/scholarship/': typeof LocaleAcademicsStudentTypeScholarshipIndexRoute
+  '/$locale/academics/undergraduate/curriculum/': typeof LocaleAcademicsUndergraduateCurriculumIndexRoute
+  '/$locale/academics/undergraduate/degree-requirements/': typeof LocaleAcademicsUndergraduateDegreeRequirementsIndexRoute
+  '/$locale/academics/undergraduate/general-studies-requirements/': typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsIndexRoute
+  '/$locale/admissions/$mainType/$postType/': typeof LocaleAdmissionsMainTypePostTypeIndexRoute
+  '/$locale/people/emeritus-faculty/$id/': typeof LocalePeopleEmeritusFacultyIdIndexRoute
+  '/$locale/people/faculty/$id/': typeof LocalePeopleFacultyIdIndexRoute
+  '/$locale/people/staff/$id/': typeof LocalePeopleStaffIdIndexRoute
+  '/$locale/research/labs/$id/': typeof LocaleResearchLabsIdIndexRoute
+  '/$locale/academics/$studentType/course-changes/edit/$year': typeof LocaleAcademicsStudentTypeCourseChangesEditYearRoute
+  '/$locale/academics/$studentType/scholarship/$id/edit': typeof LocaleAcademicsStudentTypeScholarshipIdEditRoute
+  '/$locale/academics/undergraduate/curriculum/edit/$year': typeof LocaleAcademicsUndergraduateCurriculumEditYearRoute
+  '/$locale/academics/undergraduate/general-studies-requirements/edit/$year': typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute
+  '/$locale/academics/$studentType/scholarship/$id/': typeof LocaleAcademicsStudentTypeScholarshipIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/img': typeof ImgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/.internal/edit': typeof DotinternalEditRoute
+  '/$locale': typeof LocaleIndexRoute
   '/.internal': typeof DotinternalIndexRoute
   '/admin': typeof AdminIndexRoute
-  '/{-$locale}': typeof Char123LocaleChar125IndexRoute
-  '/{-$locale}/10-10-project/manager': typeof Char123LocaleChar1251010ProjectManagerRoute
-  '/{-$locale}/10-10-project/participants': typeof Char123LocaleChar1251010ProjectParticipantsRoute
-  '/{-$locale}/10-10-project/proposal': typeof Char123LocaleChar1251010ProjectProposalRoute
-  '/{-$locale}/about/contact': typeof Char123LocaleChar125AboutContactRoute
-  '/{-$locale}/about/greetings': typeof Char123LocaleChar125AboutGreetingsRoute
-  '/{-$locale}/about/history': typeof Char123LocaleChar125AboutHistoryRoute
-  '/{-$locale}/reservations/introduction': typeof Char123LocaleChar125ReservationsIntroductionRoute
-  '/{-$locale}/reservations/privacy-policy': typeof Char123LocaleChar125ReservationsPrivacyPolicyRoute
-  '/{-$locale}/10-10-project': typeof Char123LocaleChar1251010ProjectIndexRoute
-  '/{-$locale}/about': typeof Char123LocaleChar125AboutIndexRoute
-  '/{-$locale}/academics': typeof Char123LocaleChar125AcademicsIndexRoute
-  '/{-$locale}/admissions': typeof Char123LocaleChar125AdmissionsIndexRoute
-  '/{-$locale}/community': typeof Char123LocaleChar125CommunityIndexRoute
-  '/{-$locale}/people': typeof Char123LocaleChar125PeopleIndexRoute
-  '/{-$locale}/research': typeof Char123LocaleChar125ResearchIndexRoute
-  '/{-$locale}/reservations': typeof Char123LocaleChar125ReservationsIndexRoute
-  '/{-$locale}/search': typeof Char123LocaleChar125SearchIndexRoute
-  '/{-$locale}/about/$type/edit': typeof Char123LocaleChar125AboutTypeEditRoute
-  '/{-$locale}/about/facilities/create': typeof Char123LocaleChar125AboutFacilitiesCreateRoute
-  '/{-$locale}/about/facilities/edit': typeof Char123LocaleChar125AboutFacilitiesEditRoute
-  '/{-$locale}/about/overview/edit': typeof Char123LocaleChar125AboutOverviewEditRoute
-  '/{-$locale}/about/student-clubs/create': typeof Char123LocaleChar125AboutStudentClubsCreateRoute
-  '/{-$locale}/about/student-clubs/edit': typeof Char123LocaleChar125AboutStudentClubsEditRoute
-  '/{-$locale}/academics/$studentType/courses': typeof Char123LocaleChar125AcademicsStudentTypeCoursesRoute
-  '/{-$locale}/community/faculty-recruitment/edit': typeof Char123LocaleChar125CommunityFacultyRecruitmentEditRoute
-  '/{-$locale}/community/news/$id': typeof Char123LocaleChar125CommunityNewsIdRoute
-  '/{-$locale}/community/news/create': typeof Char123LocaleChar125CommunityNewsCreateRoute
-  '/{-$locale}/community/notice/$id': typeof Char123LocaleChar125CommunityNoticeIdRoute
-  '/{-$locale}/community/notice/create': typeof Char123LocaleChar125CommunityNoticeCreateRoute
-  '/{-$locale}/community/seminar/$id': typeof Char123LocaleChar125CommunitySeminarIdRoute
-  '/{-$locale}/community/seminar/create': typeof Char123LocaleChar125CommunitySeminarCreateRoute
-  '/{-$locale}/people/faculty/create': typeof Char123LocaleChar125PeopleFacultyCreateRoute
-  '/{-$locale}/people/staff/create': typeof Char123LocaleChar125PeopleStaffCreateRoute
-  '/{-$locale}/research/centers/create': typeof Char123LocaleChar125ResearchCentersCreateRoute
-  '/{-$locale}/research/groups/create': typeof Char123LocaleChar125ResearchGroupsCreateRoute
-  '/{-$locale}/research/labs/create': typeof Char123LocaleChar125ResearchLabsCreateRoute
-  '/{-$locale}/reservations/$roomType/$roomName': typeof Char123LocaleChar125ReservationsRoomTypeRoomNameRoute
-  '/{-$locale}/about/directions': typeof Char123LocaleChar125AboutDirectionsIndexRoute
-  '/{-$locale}/about/facilities': typeof Char123LocaleChar125AboutFacilitiesIndexRoute
-  '/{-$locale}/about/future-careers': typeof Char123LocaleChar125AboutFutureCareersIndexRoute
-  '/{-$locale}/about/overview': typeof Char123LocaleChar125AboutOverviewIndexRoute
-  '/{-$locale}/about/student-clubs': typeof Char123LocaleChar125AboutStudentClubsIndexRoute
-  '/{-$locale}/community/faculty-recruitment': typeof Char123LocaleChar125CommunityFacultyRecruitmentIndexRoute
-  '/{-$locale}/community/news': typeof Char123LocaleChar125CommunityNewsIndexRoute
-  '/{-$locale}/community/notice': typeof Char123LocaleChar125CommunityNoticeIndexRoute
-  '/{-$locale}/community/seminar': typeof Char123LocaleChar125CommunitySeminarIndexRoute
-  '/{-$locale}/people/emeritus-faculty': typeof Char123LocaleChar125PeopleEmeritusFacultyIndexRoute
-  '/{-$locale}/people/faculty': typeof Char123LocaleChar125PeopleFacultyIndexRoute
-  '/{-$locale}/people/staff': typeof Char123LocaleChar125PeopleStaffIndexRoute
-  '/{-$locale}/research/centers': typeof Char123LocaleChar125ResearchCentersIndexRoute
-  '/{-$locale}/research/groups': typeof Char123LocaleChar125ResearchGroupsIndexRoute
-  '/{-$locale}/research/labs': typeof Char123LocaleChar125ResearchLabsIndexRoute
-  '/{-$locale}/research/top-conference-list': typeof Char123LocaleChar125ResearchTopConferenceListIndexRoute
-  '/{-$locale}/about/directions/$id/edit': typeof Char123LocaleChar125AboutDirectionsIdEditRoute
-  '/{-$locale}/about/future-careers/description/edit': typeof Char123LocaleChar125AboutFutureCareersDescriptionEditRoute
-  '/{-$locale}/about/future-careers/stat/create': typeof Char123LocaleChar125AboutFutureCareersStatCreateRoute
-  '/{-$locale}/about/future-careers/stat/edit': typeof Char123LocaleChar125AboutFutureCareersStatEditRoute
-  '/{-$locale}/academics/$studentType/course-changes/create': typeof Char123LocaleChar125AcademicsStudentTypeCourseChangesCreateRoute
-  '/{-$locale}/academics/$studentType/guide/edit': typeof Char123LocaleChar125AcademicsStudentTypeGuideEditRoute
-  '/{-$locale}/academics/$studentType/scholarship/create': typeof Char123LocaleChar125AcademicsStudentTypeScholarshipCreateRoute
-  '/{-$locale}/academics/$studentType/scholarship/edit': typeof Char123LocaleChar125AcademicsStudentTypeScholarshipEditRoute
-  '/{-$locale}/academics/undergraduate/curriculum/create': typeof Char123LocaleChar125AcademicsUndergraduateCurriculumCreateRoute
-  '/{-$locale}/academics/undergraduate/degree-requirements/edit': typeof Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsEditRoute
-  '/{-$locale}/academics/undergraduate/general-studies-requirements/create': typeof Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsCreateRoute
-  '/{-$locale}/admissions/$mainType/$postType/edit': typeof Char123LocaleChar125AdmissionsMainTypePostTypeEditRoute
-  '/{-$locale}/community/news/edit/$id': typeof Char123LocaleChar125CommunityNewsEditIdRoute
-  '/{-$locale}/community/notice/edit/$id': typeof Char123LocaleChar125CommunityNoticeEditIdRoute
-  '/{-$locale}/community/seminar/edit/$id': typeof Char123LocaleChar125CommunitySeminarEditIdRoute
-  '/{-$locale}/people/emeritus-faculty/$id/edit': typeof Char123LocaleChar125PeopleEmeritusFacultyIdEditRoute
-  '/{-$locale}/people/faculty/$id/edit': typeof Char123LocaleChar125PeopleFacultyIdEditRoute
-  '/{-$locale}/people/staff/$id/edit': typeof Char123LocaleChar125PeopleStaffIdEditRoute
-  '/{-$locale}/research/centers/$id/edit': typeof Char123LocaleChar125ResearchCentersIdEditRoute
-  '/{-$locale}/research/groups/$id/edit': typeof Char123LocaleChar125ResearchGroupsIdEditRoute
-  '/{-$locale}/research/labs/$id/edit': typeof Char123LocaleChar125ResearchLabsIdEditRoute
-  '/{-$locale}/academics/$studentType/course-changes': typeof Char123LocaleChar125AcademicsStudentTypeCourseChangesIndexRoute
-  '/{-$locale}/academics/$studentType/guide': typeof Char123LocaleChar125AcademicsStudentTypeGuideIndexRoute
-  '/{-$locale}/academics/$studentType/scholarship': typeof Char123LocaleChar125AcademicsStudentTypeScholarshipIndexRoute
-  '/{-$locale}/academics/undergraduate/curriculum': typeof Char123LocaleChar125AcademicsUndergraduateCurriculumIndexRoute
-  '/{-$locale}/academics/undergraduate/degree-requirements': typeof Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsIndexRoute
-  '/{-$locale}/academics/undergraduate/general-studies-requirements': typeof Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsIndexRoute
-  '/{-$locale}/admissions/$mainType/$postType': typeof Char123LocaleChar125AdmissionsMainTypePostTypeIndexRoute
-  '/{-$locale}/people/emeritus-faculty/$id': typeof Char123LocaleChar125PeopleEmeritusFacultyIdIndexRoute
-  '/{-$locale}/people/faculty/$id': typeof Char123LocaleChar125PeopleFacultyIdIndexRoute
-  '/{-$locale}/people/staff/$id': typeof Char123LocaleChar125PeopleStaffIdIndexRoute
-  '/{-$locale}/research/labs/$id': typeof Char123LocaleChar125ResearchLabsIdIndexRoute
-  '/{-$locale}/academics/$studentType/course-changes/edit/$year': typeof Char123LocaleChar125AcademicsStudentTypeCourseChangesEditYearRoute
-  '/{-$locale}/academics/$studentType/scholarship/$id/edit': typeof Char123LocaleChar125AcademicsStudentTypeScholarshipIdEditRoute
-  '/{-$locale}/academics/undergraduate/curriculum/edit/$year': typeof Char123LocaleChar125AcademicsUndergraduateCurriculumEditYearRoute
-  '/{-$locale}/academics/undergraduate/general-studies-requirements/edit/$year': typeof Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute
-  '/{-$locale}/academics/$studentType/scholarship/$id': typeof Char123LocaleChar125AcademicsStudentTypeScholarshipIdIndexRoute
+  '/$locale/10-10-project/manager': typeof Locale1010ProjectManagerRoute
+  '/$locale/10-10-project/participants': typeof Locale1010ProjectParticipantsRoute
+  '/$locale/10-10-project/proposal': typeof Locale1010ProjectProposalRoute
+  '/$locale/about/contact': typeof LocaleAboutContactRoute
+  '/$locale/about/greetings': typeof LocaleAboutGreetingsRoute
+  '/$locale/about/history': typeof LocaleAboutHistoryRoute
+  '/$locale/reservations/introduction': typeof LocaleReservationsIntroductionRoute
+  '/$locale/reservations/privacy-policy': typeof LocaleReservationsPrivacyPolicyRoute
+  '/$locale/10-10-project': typeof Locale1010ProjectIndexRoute
+  '/$locale/about': typeof LocaleAboutIndexRoute
+  '/$locale/academics': typeof LocaleAcademicsIndexRoute
+  '/$locale/admissions': typeof LocaleAdmissionsIndexRoute
+  '/$locale/community': typeof LocaleCommunityIndexRoute
+  '/$locale/people': typeof LocalePeopleIndexRoute
+  '/$locale/research': typeof LocaleResearchIndexRoute
+  '/$locale/reservations': typeof LocaleReservationsIndexRoute
+  '/$locale/search': typeof LocaleSearchIndexRoute
+  '/$locale/about/$type/edit': typeof LocaleAboutTypeEditRoute
+  '/$locale/about/facilities/create': typeof LocaleAboutFacilitiesCreateRoute
+  '/$locale/about/facilities/edit': typeof LocaleAboutFacilitiesEditRoute
+  '/$locale/about/overview/edit': typeof LocaleAboutOverviewEditRoute
+  '/$locale/about/student-clubs/create': typeof LocaleAboutStudentClubsCreateRoute
+  '/$locale/about/student-clubs/edit': typeof LocaleAboutStudentClubsEditRoute
+  '/$locale/academics/$studentType/courses': typeof LocaleAcademicsStudentTypeCoursesRoute
+  '/$locale/community/faculty-recruitment/edit': typeof LocaleCommunityFacultyRecruitmentEditRoute
+  '/$locale/community/news/$id': typeof LocaleCommunityNewsIdRoute
+  '/$locale/community/news/create': typeof LocaleCommunityNewsCreateRoute
+  '/$locale/community/notice/$id': typeof LocaleCommunityNoticeIdRoute
+  '/$locale/community/notice/create': typeof LocaleCommunityNoticeCreateRoute
+  '/$locale/community/seminar/$id': typeof LocaleCommunitySeminarIdRoute
+  '/$locale/community/seminar/create': typeof LocaleCommunitySeminarCreateRoute
+  '/$locale/people/faculty/create': typeof LocalePeopleFacultyCreateRoute
+  '/$locale/people/staff/create': typeof LocalePeopleStaffCreateRoute
+  '/$locale/research/centers/create': typeof LocaleResearchCentersCreateRoute
+  '/$locale/research/groups/create': typeof LocaleResearchGroupsCreateRoute
+  '/$locale/research/labs/create': typeof LocaleResearchLabsCreateRoute
+  '/$locale/reservations/$roomType/$roomName': typeof LocaleReservationsRoomTypeRoomNameRoute
+  '/$locale/about/directions': typeof LocaleAboutDirectionsIndexRoute
+  '/$locale/about/facilities': typeof LocaleAboutFacilitiesIndexRoute
+  '/$locale/about/future-careers': typeof LocaleAboutFutureCareersIndexRoute
+  '/$locale/about/overview': typeof LocaleAboutOverviewIndexRoute
+  '/$locale/about/student-clubs': typeof LocaleAboutStudentClubsIndexRoute
+  '/$locale/community/faculty-recruitment': typeof LocaleCommunityFacultyRecruitmentIndexRoute
+  '/$locale/community/news': typeof LocaleCommunityNewsIndexRoute
+  '/$locale/community/notice': typeof LocaleCommunityNoticeIndexRoute
+  '/$locale/community/seminar': typeof LocaleCommunitySeminarIndexRoute
+  '/$locale/people/emeritus-faculty': typeof LocalePeopleEmeritusFacultyIndexRoute
+  '/$locale/people/faculty': typeof LocalePeopleFacultyIndexRoute
+  '/$locale/people/staff': typeof LocalePeopleStaffIndexRoute
+  '/$locale/research/centers': typeof LocaleResearchCentersIndexRoute
+  '/$locale/research/groups': typeof LocaleResearchGroupsIndexRoute
+  '/$locale/research/labs': typeof LocaleResearchLabsIndexRoute
+  '/$locale/research/top-conference-list': typeof LocaleResearchTopConferenceListIndexRoute
+  '/$locale/about/directions/$id/edit': typeof LocaleAboutDirectionsIdEditRoute
+  '/$locale/about/future-careers/description/edit': typeof LocaleAboutFutureCareersDescriptionEditRoute
+  '/$locale/about/future-careers/stat/create': typeof LocaleAboutFutureCareersStatCreateRoute
+  '/$locale/about/future-careers/stat/edit': typeof LocaleAboutFutureCareersStatEditRoute
+  '/$locale/academics/$studentType/course-changes/create': typeof LocaleAcademicsStudentTypeCourseChangesCreateRoute
+  '/$locale/academics/$studentType/guide/edit': typeof LocaleAcademicsStudentTypeGuideEditRoute
+  '/$locale/academics/$studentType/scholarship/create': typeof LocaleAcademicsStudentTypeScholarshipCreateRoute
+  '/$locale/academics/$studentType/scholarship/edit': typeof LocaleAcademicsStudentTypeScholarshipEditRoute
+  '/$locale/academics/undergraduate/curriculum/create': typeof LocaleAcademicsUndergraduateCurriculumCreateRoute
+  '/$locale/academics/undergraduate/degree-requirements/edit': typeof LocaleAcademicsUndergraduateDegreeRequirementsEditRoute
+  '/$locale/academics/undergraduate/general-studies-requirements/create': typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsCreateRoute
+  '/$locale/admissions/$mainType/$postType/edit': typeof LocaleAdmissionsMainTypePostTypeEditRoute
+  '/$locale/community/news/edit/$id': typeof LocaleCommunityNewsEditIdRoute
+  '/$locale/community/notice/edit/$id': typeof LocaleCommunityNoticeEditIdRoute
+  '/$locale/community/seminar/edit/$id': typeof LocaleCommunitySeminarEditIdRoute
+  '/$locale/people/emeritus-faculty/$id/edit': typeof LocalePeopleEmeritusFacultyIdEditRoute
+  '/$locale/people/faculty/$id/edit': typeof LocalePeopleFacultyIdEditRoute
+  '/$locale/people/staff/$id/edit': typeof LocalePeopleStaffIdEditRoute
+  '/$locale/research/centers/$id/edit': typeof LocaleResearchCentersIdEditRoute
+  '/$locale/research/groups/$id/edit': typeof LocaleResearchGroupsIdEditRoute
+  '/$locale/research/labs/$id/edit': typeof LocaleResearchLabsIdEditRoute
+  '/$locale/academics/$studentType/course-changes': typeof LocaleAcademicsStudentTypeCourseChangesIndexRoute
+  '/$locale/academics/$studentType/guide': typeof LocaleAcademicsStudentTypeGuideIndexRoute
+  '/$locale/academics/$studentType/scholarship': typeof LocaleAcademicsStudentTypeScholarshipIndexRoute
+  '/$locale/academics/undergraduate/curriculum': typeof LocaleAcademicsUndergraduateCurriculumIndexRoute
+  '/$locale/academics/undergraduate/degree-requirements': typeof LocaleAcademicsUndergraduateDegreeRequirementsIndexRoute
+  '/$locale/academics/undergraduate/general-studies-requirements': typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsIndexRoute
+  '/$locale/admissions/$mainType/$postType': typeof LocaleAdmissionsMainTypePostTypeIndexRoute
+  '/$locale/people/emeritus-faculty/$id': typeof LocalePeopleEmeritusFacultyIdIndexRoute
+  '/$locale/people/faculty/$id': typeof LocalePeopleFacultyIdIndexRoute
+  '/$locale/people/staff/$id': typeof LocalePeopleStaffIdIndexRoute
+  '/$locale/research/labs/$id': typeof LocaleResearchLabsIdIndexRoute
+  '/$locale/academics/$studentType/course-changes/edit/$year': typeof LocaleAcademicsStudentTypeCourseChangesEditYearRoute
+  '/$locale/academics/$studentType/scholarship/$id/edit': typeof LocaleAcademicsStudentTypeScholarshipIdEditRoute
+  '/$locale/academics/undergraduate/curriculum/edit/$year': typeof LocaleAcademicsUndergraduateCurriculumEditYearRoute
+  '/$locale/academics/undergraduate/general-studies-requirements/edit/$year': typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute
+  '/$locale/academics/$studentType/scholarship/$id': typeof LocaleAcademicsStudentTypeScholarshipIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
+  '/$locale': typeof LocaleRouteRouteWithChildren
   '/img': typeof ImgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/.internal/edit': typeof DotinternalEditRoute
+  '/$locale/': typeof LocaleIndexRoute
   '/.internal/': typeof DotinternalIndexRoute
   '/admin/': typeof AdminIndexRoute
-  '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
-  '/{-$locale}/10-10-project/manager': typeof Char123LocaleChar1251010ProjectManagerRoute
-  '/{-$locale}/10-10-project/participants': typeof Char123LocaleChar1251010ProjectParticipantsRoute
-  '/{-$locale}/10-10-project/proposal': typeof Char123LocaleChar1251010ProjectProposalRoute
-  '/{-$locale}/about/contact': typeof Char123LocaleChar125AboutContactRoute
-  '/{-$locale}/about/greetings': typeof Char123LocaleChar125AboutGreetingsRoute
-  '/{-$locale}/about/history': typeof Char123LocaleChar125AboutHistoryRoute
-  '/{-$locale}/reservations/introduction': typeof Char123LocaleChar125ReservationsIntroductionRoute
-  '/{-$locale}/reservations/privacy-policy': typeof Char123LocaleChar125ReservationsPrivacyPolicyRoute
-  '/{-$locale}/10-10-project/': typeof Char123LocaleChar1251010ProjectIndexRoute
-  '/{-$locale}/about/': typeof Char123LocaleChar125AboutIndexRoute
-  '/{-$locale}/academics/': typeof Char123LocaleChar125AcademicsIndexRoute
-  '/{-$locale}/admissions/': typeof Char123LocaleChar125AdmissionsIndexRoute
-  '/{-$locale}/community/': typeof Char123LocaleChar125CommunityIndexRoute
-  '/{-$locale}/people/': typeof Char123LocaleChar125PeopleIndexRoute
-  '/{-$locale}/research/': typeof Char123LocaleChar125ResearchIndexRoute
-  '/{-$locale}/reservations/': typeof Char123LocaleChar125ReservationsIndexRoute
-  '/{-$locale}/search/': typeof Char123LocaleChar125SearchIndexRoute
-  '/{-$locale}/about/$type/edit': typeof Char123LocaleChar125AboutTypeEditRoute
-  '/{-$locale}/about/facilities/create': typeof Char123LocaleChar125AboutFacilitiesCreateRoute
-  '/{-$locale}/about/facilities/edit': typeof Char123LocaleChar125AboutFacilitiesEditRoute
-  '/{-$locale}/about/overview/edit': typeof Char123LocaleChar125AboutOverviewEditRoute
-  '/{-$locale}/about/student-clubs/create': typeof Char123LocaleChar125AboutStudentClubsCreateRoute
-  '/{-$locale}/about/student-clubs/edit': typeof Char123LocaleChar125AboutStudentClubsEditRoute
-  '/{-$locale}/academics/$studentType/courses': typeof Char123LocaleChar125AcademicsStudentTypeCoursesRoute
-  '/{-$locale}/community/faculty-recruitment/edit': typeof Char123LocaleChar125CommunityFacultyRecruitmentEditRoute
-  '/{-$locale}/community/news/$id': typeof Char123LocaleChar125CommunityNewsIdRoute
-  '/{-$locale}/community/news/create': typeof Char123LocaleChar125CommunityNewsCreateRoute
-  '/{-$locale}/community/notice/$id': typeof Char123LocaleChar125CommunityNoticeIdRoute
-  '/{-$locale}/community/notice/create': typeof Char123LocaleChar125CommunityNoticeCreateRoute
-  '/{-$locale}/community/seminar/$id': typeof Char123LocaleChar125CommunitySeminarIdRoute
-  '/{-$locale}/community/seminar/create': typeof Char123LocaleChar125CommunitySeminarCreateRoute
-  '/{-$locale}/people/faculty/create': typeof Char123LocaleChar125PeopleFacultyCreateRoute
-  '/{-$locale}/people/staff/create': typeof Char123LocaleChar125PeopleStaffCreateRoute
-  '/{-$locale}/research/centers/create': typeof Char123LocaleChar125ResearchCentersCreateRoute
-  '/{-$locale}/research/groups/create': typeof Char123LocaleChar125ResearchGroupsCreateRoute
-  '/{-$locale}/research/labs/create': typeof Char123LocaleChar125ResearchLabsCreateRoute
-  '/{-$locale}/reservations/$roomType/$roomName': typeof Char123LocaleChar125ReservationsRoomTypeRoomNameRoute
-  '/{-$locale}/about/directions/': typeof Char123LocaleChar125AboutDirectionsIndexRoute
-  '/{-$locale}/about/facilities/': typeof Char123LocaleChar125AboutFacilitiesIndexRoute
-  '/{-$locale}/about/future-careers/': typeof Char123LocaleChar125AboutFutureCareersIndexRoute
-  '/{-$locale}/about/overview/': typeof Char123LocaleChar125AboutOverviewIndexRoute
-  '/{-$locale}/about/student-clubs/': typeof Char123LocaleChar125AboutStudentClubsIndexRoute
-  '/{-$locale}/community/faculty-recruitment/': typeof Char123LocaleChar125CommunityFacultyRecruitmentIndexRoute
-  '/{-$locale}/community/news/': typeof Char123LocaleChar125CommunityNewsIndexRoute
-  '/{-$locale}/community/notice/': typeof Char123LocaleChar125CommunityNoticeIndexRoute
-  '/{-$locale}/community/seminar/': typeof Char123LocaleChar125CommunitySeminarIndexRoute
-  '/{-$locale}/people/emeritus-faculty/': typeof Char123LocaleChar125PeopleEmeritusFacultyIndexRoute
-  '/{-$locale}/people/faculty/': typeof Char123LocaleChar125PeopleFacultyIndexRoute
-  '/{-$locale}/people/staff/': typeof Char123LocaleChar125PeopleStaffIndexRoute
-  '/{-$locale}/research/centers/': typeof Char123LocaleChar125ResearchCentersIndexRoute
-  '/{-$locale}/research/groups/': typeof Char123LocaleChar125ResearchGroupsIndexRoute
-  '/{-$locale}/research/labs/': typeof Char123LocaleChar125ResearchLabsIndexRoute
-  '/{-$locale}/research/top-conference-list/': typeof Char123LocaleChar125ResearchTopConferenceListIndexRoute
-  '/{-$locale}/about/directions/$id/edit': typeof Char123LocaleChar125AboutDirectionsIdEditRoute
-  '/{-$locale}/about/future-careers/description/edit': typeof Char123LocaleChar125AboutFutureCareersDescriptionEditRoute
-  '/{-$locale}/about/future-careers/stat/create': typeof Char123LocaleChar125AboutFutureCareersStatCreateRoute
-  '/{-$locale}/about/future-careers/stat/edit': typeof Char123LocaleChar125AboutFutureCareersStatEditRoute
-  '/{-$locale}/academics/$studentType/course-changes/create': typeof Char123LocaleChar125AcademicsStudentTypeCourseChangesCreateRoute
-  '/{-$locale}/academics/$studentType/guide/edit': typeof Char123LocaleChar125AcademicsStudentTypeGuideEditRoute
-  '/{-$locale}/academics/$studentType/scholarship/create': typeof Char123LocaleChar125AcademicsStudentTypeScholarshipCreateRoute
-  '/{-$locale}/academics/$studentType/scholarship/edit': typeof Char123LocaleChar125AcademicsStudentTypeScholarshipEditRoute
-  '/{-$locale}/academics/undergraduate/curriculum/create': typeof Char123LocaleChar125AcademicsUndergraduateCurriculumCreateRoute
-  '/{-$locale}/academics/undergraduate/degree-requirements/edit': typeof Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsEditRoute
-  '/{-$locale}/academics/undergraduate/general-studies-requirements/create': typeof Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsCreateRoute
-  '/{-$locale}/admissions/$mainType/$postType/edit': typeof Char123LocaleChar125AdmissionsMainTypePostTypeEditRoute
-  '/{-$locale}/community/news/edit/$id': typeof Char123LocaleChar125CommunityNewsEditIdRoute
-  '/{-$locale}/community/notice/edit/$id': typeof Char123LocaleChar125CommunityNoticeEditIdRoute
-  '/{-$locale}/community/seminar/edit/$id': typeof Char123LocaleChar125CommunitySeminarEditIdRoute
-  '/{-$locale}/people/emeritus-faculty/$id/edit': typeof Char123LocaleChar125PeopleEmeritusFacultyIdEditRoute
-  '/{-$locale}/people/faculty/$id/edit': typeof Char123LocaleChar125PeopleFacultyIdEditRoute
-  '/{-$locale}/people/staff/$id/edit': typeof Char123LocaleChar125PeopleStaffIdEditRoute
-  '/{-$locale}/research/centers/$id/edit': typeof Char123LocaleChar125ResearchCentersIdEditRoute
-  '/{-$locale}/research/groups/$id/edit': typeof Char123LocaleChar125ResearchGroupsIdEditRoute
-  '/{-$locale}/research/labs/$id/edit': typeof Char123LocaleChar125ResearchLabsIdEditRoute
-  '/{-$locale}/academics/$studentType/course-changes/': typeof Char123LocaleChar125AcademicsStudentTypeCourseChangesIndexRoute
-  '/{-$locale}/academics/$studentType/guide/': typeof Char123LocaleChar125AcademicsStudentTypeGuideIndexRoute
-  '/{-$locale}/academics/$studentType/scholarship/': typeof Char123LocaleChar125AcademicsStudentTypeScholarshipIndexRoute
-  '/{-$locale}/academics/undergraduate/curriculum/': typeof Char123LocaleChar125AcademicsUndergraduateCurriculumIndexRoute
-  '/{-$locale}/academics/undergraduate/degree-requirements/': typeof Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsIndexRoute
-  '/{-$locale}/academics/undergraduate/general-studies-requirements/': typeof Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsIndexRoute
-  '/{-$locale}/admissions/$mainType/$postType/': typeof Char123LocaleChar125AdmissionsMainTypePostTypeIndexRoute
-  '/{-$locale}/people/emeritus-faculty/$id/': typeof Char123LocaleChar125PeopleEmeritusFacultyIdIndexRoute
-  '/{-$locale}/people/faculty/$id/': typeof Char123LocaleChar125PeopleFacultyIdIndexRoute
-  '/{-$locale}/people/staff/$id/': typeof Char123LocaleChar125PeopleStaffIdIndexRoute
-  '/{-$locale}/research/labs/$id/': typeof Char123LocaleChar125ResearchLabsIdIndexRoute
-  '/{-$locale}/academics/$studentType/course-changes/edit/$year': typeof Char123LocaleChar125AcademicsStudentTypeCourseChangesEditYearRoute
-  '/{-$locale}/academics/$studentType/scholarship/$id/edit': typeof Char123LocaleChar125AcademicsStudentTypeScholarshipIdEditRoute
-  '/{-$locale}/academics/undergraduate/curriculum/edit/$year': typeof Char123LocaleChar125AcademicsUndergraduateCurriculumEditYearRoute
-  '/{-$locale}/academics/undergraduate/general-studies-requirements/edit/$year': typeof Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute
-  '/{-$locale}/academics/$studentType/scholarship/$id/': typeof Char123LocaleChar125AcademicsStudentTypeScholarshipIdIndexRoute
+  '/$locale/10-10-project/manager': typeof Locale1010ProjectManagerRoute
+  '/$locale/10-10-project/participants': typeof Locale1010ProjectParticipantsRoute
+  '/$locale/10-10-project/proposal': typeof Locale1010ProjectProposalRoute
+  '/$locale/about/contact': typeof LocaleAboutContactRoute
+  '/$locale/about/greetings': typeof LocaleAboutGreetingsRoute
+  '/$locale/about/history': typeof LocaleAboutHistoryRoute
+  '/$locale/reservations/introduction': typeof LocaleReservationsIntroductionRoute
+  '/$locale/reservations/privacy-policy': typeof LocaleReservationsPrivacyPolicyRoute
+  '/$locale/10-10-project/': typeof Locale1010ProjectIndexRoute
+  '/$locale/about/': typeof LocaleAboutIndexRoute
+  '/$locale/academics/': typeof LocaleAcademicsIndexRoute
+  '/$locale/admissions/': typeof LocaleAdmissionsIndexRoute
+  '/$locale/community/': typeof LocaleCommunityIndexRoute
+  '/$locale/people/': typeof LocalePeopleIndexRoute
+  '/$locale/research/': typeof LocaleResearchIndexRoute
+  '/$locale/reservations/': typeof LocaleReservationsIndexRoute
+  '/$locale/search/': typeof LocaleSearchIndexRoute
+  '/$locale/about/$type/edit': typeof LocaleAboutTypeEditRoute
+  '/$locale/about/facilities/create': typeof LocaleAboutFacilitiesCreateRoute
+  '/$locale/about/facilities/edit': typeof LocaleAboutFacilitiesEditRoute
+  '/$locale/about/overview/edit': typeof LocaleAboutOverviewEditRoute
+  '/$locale/about/student-clubs/create': typeof LocaleAboutStudentClubsCreateRoute
+  '/$locale/about/student-clubs/edit': typeof LocaleAboutStudentClubsEditRoute
+  '/$locale/academics/$studentType/courses': typeof LocaleAcademicsStudentTypeCoursesRoute
+  '/$locale/community/faculty-recruitment/edit': typeof LocaleCommunityFacultyRecruitmentEditRoute
+  '/$locale/community/news/$id': typeof LocaleCommunityNewsIdRoute
+  '/$locale/community/news/create': typeof LocaleCommunityNewsCreateRoute
+  '/$locale/community/notice/$id': typeof LocaleCommunityNoticeIdRoute
+  '/$locale/community/notice/create': typeof LocaleCommunityNoticeCreateRoute
+  '/$locale/community/seminar/$id': typeof LocaleCommunitySeminarIdRoute
+  '/$locale/community/seminar/create': typeof LocaleCommunitySeminarCreateRoute
+  '/$locale/people/faculty/create': typeof LocalePeopleFacultyCreateRoute
+  '/$locale/people/staff/create': typeof LocalePeopleStaffCreateRoute
+  '/$locale/research/centers/create': typeof LocaleResearchCentersCreateRoute
+  '/$locale/research/groups/create': typeof LocaleResearchGroupsCreateRoute
+  '/$locale/research/labs/create': typeof LocaleResearchLabsCreateRoute
+  '/$locale/reservations/$roomType/$roomName': typeof LocaleReservationsRoomTypeRoomNameRoute
+  '/$locale/about/directions/': typeof LocaleAboutDirectionsIndexRoute
+  '/$locale/about/facilities/': typeof LocaleAboutFacilitiesIndexRoute
+  '/$locale/about/future-careers/': typeof LocaleAboutFutureCareersIndexRoute
+  '/$locale/about/overview/': typeof LocaleAboutOverviewIndexRoute
+  '/$locale/about/student-clubs/': typeof LocaleAboutStudentClubsIndexRoute
+  '/$locale/community/faculty-recruitment/': typeof LocaleCommunityFacultyRecruitmentIndexRoute
+  '/$locale/community/news/': typeof LocaleCommunityNewsIndexRoute
+  '/$locale/community/notice/': typeof LocaleCommunityNoticeIndexRoute
+  '/$locale/community/seminar/': typeof LocaleCommunitySeminarIndexRoute
+  '/$locale/people/emeritus-faculty/': typeof LocalePeopleEmeritusFacultyIndexRoute
+  '/$locale/people/faculty/': typeof LocalePeopleFacultyIndexRoute
+  '/$locale/people/staff/': typeof LocalePeopleStaffIndexRoute
+  '/$locale/research/centers/': typeof LocaleResearchCentersIndexRoute
+  '/$locale/research/groups/': typeof LocaleResearchGroupsIndexRoute
+  '/$locale/research/labs/': typeof LocaleResearchLabsIndexRoute
+  '/$locale/research/top-conference-list/': typeof LocaleResearchTopConferenceListIndexRoute
+  '/$locale/about/directions/$id/edit': typeof LocaleAboutDirectionsIdEditRoute
+  '/$locale/about/future-careers/description/edit': typeof LocaleAboutFutureCareersDescriptionEditRoute
+  '/$locale/about/future-careers/stat/create': typeof LocaleAboutFutureCareersStatCreateRoute
+  '/$locale/about/future-careers/stat/edit': typeof LocaleAboutFutureCareersStatEditRoute
+  '/$locale/academics/$studentType/course-changes/create': typeof LocaleAcademicsStudentTypeCourseChangesCreateRoute
+  '/$locale/academics/$studentType/guide/edit': typeof LocaleAcademicsStudentTypeGuideEditRoute
+  '/$locale/academics/$studentType/scholarship/create': typeof LocaleAcademicsStudentTypeScholarshipCreateRoute
+  '/$locale/academics/$studentType/scholarship/edit': typeof LocaleAcademicsStudentTypeScholarshipEditRoute
+  '/$locale/academics/undergraduate/curriculum/create': typeof LocaleAcademicsUndergraduateCurriculumCreateRoute
+  '/$locale/academics/undergraduate/degree-requirements/edit': typeof LocaleAcademicsUndergraduateDegreeRequirementsEditRoute
+  '/$locale/academics/undergraduate/general-studies-requirements/create': typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsCreateRoute
+  '/$locale/admissions/$mainType/$postType/edit': typeof LocaleAdmissionsMainTypePostTypeEditRoute
+  '/$locale/community/news/edit/$id': typeof LocaleCommunityNewsEditIdRoute
+  '/$locale/community/notice/edit/$id': typeof LocaleCommunityNoticeEditIdRoute
+  '/$locale/community/seminar/edit/$id': typeof LocaleCommunitySeminarEditIdRoute
+  '/$locale/people/emeritus-faculty/$id/edit': typeof LocalePeopleEmeritusFacultyIdEditRoute
+  '/$locale/people/faculty/$id/edit': typeof LocalePeopleFacultyIdEditRoute
+  '/$locale/people/staff/$id/edit': typeof LocalePeopleStaffIdEditRoute
+  '/$locale/research/centers/$id/edit': typeof LocaleResearchCentersIdEditRoute
+  '/$locale/research/groups/$id/edit': typeof LocaleResearchGroupsIdEditRoute
+  '/$locale/research/labs/$id/edit': typeof LocaleResearchLabsIdEditRoute
+  '/$locale/academics/$studentType/course-changes/': typeof LocaleAcademicsStudentTypeCourseChangesIndexRoute
+  '/$locale/academics/$studentType/guide/': typeof LocaleAcademicsStudentTypeGuideIndexRoute
+  '/$locale/academics/$studentType/scholarship/': typeof LocaleAcademicsStudentTypeScholarshipIndexRoute
+  '/$locale/academics/undergraduate/curriculum/': typeof LocaleAcademicsUndergraduateCurriculumIndexRoute
+  '/$locale/academics/undergraduate/degree-requirements/': typeof LocaleAcademicsUndergraduateDegreeRequirementsIndexRoute
+  '/$locale/academics/undergraduate/general-studies-requirements/': typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsIndexRoute
+  '/$locale/admissions/$mainType/$postType/': typeof LocaleAdmissionsMainTypePostTypeIndexRoute
+  '/$locale/people/emeritus-faculty/$id/': typeof LocalePeopleEmeritusFacultyIdIndexRoute
+  '/$locale/people/faculty/$id/': typeof LocalePeopleFacultyIdIndexRoute
+  '/$locale/people/staff/$id/': typeof LocalePeopleStaffIdIndexRoute
+  '/$locale/research/labs/$id/': typeof LocaleResearchLabsIdIndexRoute
+  '/$locale/academics/$studentType/course-changes/edit/$year': typeof LocaleAcademicsStudentTypeCourseChangesEditYearRoute
+  '/$locale/academics/$studentType/scholarship/$id/edit': typeof LocaleAcademicsStudentTypeScholarshipIdEditRoute
+  '/$locale/academics/undergraduate/curriculum/edit/$year': typeof LocaleAcademicsUndergraduateCurriculumEditYearRoute
+  '/$locale/academics/undergraduate/general-studies-requirements/edit/$year': typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute
+  '/$locale/academics/$studentType/scholarship/$id/': typeof LocaleAcademicsStudentTypeScholarshipIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/{-$locale}'
+    | '/$locale'
     | '/img'
     | '/sitemap.xml'
     | '/.internal/edit'
+    | '/$locale/'
     | '/.internal/'
     | '/admin/'
-    | '/{-$locale}/'
-    | '/{-$locale}/10-10-project/manager'
-    | '/{-$locale}/10-10-project/participants'
-    | '/{-$locale}/10-10-project/proposal'
-    | '/{-$locale}/about/contact'
-    | '/{-$locale}/about/greetings'
-    | '/{-$locale}/about/history'
-    | '/{-$locale}/reservations/introduction'
-    | '/{-$locale}/reservations/privacy-policy'
-    | '/{-$locale}/10-10-project/'
-    | '/{-$locale}/about/'
-    | '/{-$locale}/academics/'
-    | '/{-$locale}/admissions/'
-    | '/{-$locale}/community/'
-    | '/{-$locale}/people/'
-    | '/{-$locale}/research/'
-    | '/{-$locale}/reservations/'
-    | '/{-$locale}/search/'
-    | '/{-$locale}/about/$type/edit'
-    | '/{-$locale}/about/facilities/create'
-    | '/{-$locale}/about/facilities/edit'
-    | '/{-$locale}/about/overview/edit'
-    | '/{-$locale}/about/student-clubs/create'
-    | '/{-$locale}/about/student-clubs/edit'
-    | '/{-$locale}/academics/$studentType/courses'
-    | '/{-$locale}/community/faculty-recruitment/edit'
-    | '/{-$locale}/community/news/$id'
-    | '/{-$locale}/community/news/create'
-    | '/{-$locale}/community/notice/$id'
-    | '/{-$locale}/community/notice/create'
-    | '/{-$locale}/community/seminar/$id'
-    | '/{-$locale}/community/seminar/create'
-    | '/{-$locale}/people/faculty/create'
-    | '/{-$locale}/people/staff/create'
-    | '/{-$locale}/research/centers/create'
-    | '/{-$locale}/research/groups/create'
-    | '/{-$locale}/research/labs/create'
-    | '/{-$locale}/reservations/$roomType/$roomName'
-    | '/{-$locale}/about/directions/'
-    | '/{-$locale}/about/facilities/'
-    | '/{-$locale}/about/future-careers/'
-    | '/{-$locale}/about/overview/'
-    | '/{-$locale}/about/student-clubs/'
-    | '/{-$locale}/community/faculty-recruitment/'
-    | '/{-$locale}/community/news/'
-    | '/{-$locale}/community/notice/'
-    | '/{-$locale}/community/seminar/'
-    | '/{-$locale}/people/emeritus-faculty/'
-    | '/{-$locale}/people/faculty/'
-    | '/{-$locale}/people/staff/'
-    | '/{-$locale}/research/centers/'
-    | '/{-$locale}/research/groups/'
-    | '/{-$locale}/research/labs/'
-    | '/{-$locale}/research/top-conference-list/'
-    | '/{-$locale}/about/directions/$id/edit'
-    | '/{-$locale}/about/future-careers/description/edit'
-    | '/{-$locale}/about/future-careers/stat/create'
-    | '/{-$locale}/about/future-careers/stat/edit'
-    | '/{-$locale}/academics/$studentType/course-changes/create'
-    | '/{-$locale}/academics/$studentType/guide/edit'
-    | '/{-$locale}/academics/$studentType/scholarship/create'
-    | '/{-$locale}/academics/$studentType/scholarship/edit'
-    | '/{-$locale}/academics/undergraduate/curriculum/create'
-    | '/{-$locale}/academics/undergraduate/degree-requirements/edit'
-    | '/{-$locale}/academics/undergraduate/general-studies-requirements/create'
-    | '/{-$locale}/admissions/$mainType/$postType/edit'
-    | '/{-$locale}/community/news/edit/$id'
-    | '/{-$locale}/community/notice/edit/$id'
-    | '/{-$locale}/community/seminar/edit/$id'
-    | '/{-$locale}/people/emeritus-faculty/$id/edit'
-    | '/{-$locale}/people/faculty/$id/edit'
-    | '/{-$locale}/people/staff/$id/edit'
-    | '/{-$locale}/research/centers/$id/edit'
-    | '/{-$locale}/research/groups/$id/edit'
-    | '/{-$locale}/research/labs/$id/edit'
-    | '/{-$locale}/academics/$studentType/course-changes/'
-    | '/{-$locale}/academics/$studentType/guide/'
-    | '/{-$locale}/academics/$studentType/scholarship/'
-    | '/{-$locale}/academics/undergraduate/curriculum/'
-    | '/{-$locale}/academics/undergraduate/degree-requirements/'
-    | '/{-$locale}/academics/undergraduate/general-studies-requirements/'
-    | '/{-$locale}/admissions/$mainType/$postType/'
-    | '/{-$locale}/people/emeritus-faculty/$id/'
-    | '/{-$locale}/people/faculty/$id/'
-    | '/{-$locale}/people/staff/$id/'
-    | '/{-$locale}/research/labs/$id/'
-    | '/{-$locale}/academics/$studentType/course-changes/edit/$year'
-    | '/{-$locale}/academics/$studentType/scholarship/$id/edit'
-    | '/{-$locale}/academics/undergraduate/curriculum/edit/$year'
-    | '/{-$locale}/academics/undergraduate/general-studies-requirements/edit/$year'
-    | '/{-$locale}/academics/$studentType/scholarship/$id/'
+    | '/$locale/10-10-project/manager'
+    | '/$locale/10-10-project/participants'
+    | '/$locale/10-10-project/proposal'
+    | '/$locale/about/contact'
+    | '/$locale/about/greetings'
+    | '/$locale/about/history'
+    | '/$locale/reservations/introduction'
+    | '/$locale/reservations/privacy-policy'
+    | '/$locale/10-10-project/'
+    | '/$locale/about/'
+    | '/$locale/academics/'
+    | '/$locale/admissions/'
+    | '/$locale/community/'
+    | '/$locale/people/'
+    | '/$locale/research/'
+    | '/$locale/reservations/'
+    | '/$locale/search/'
+    | '/$locale/about/$type/edit'
+    | '/$locale/about/facilities/create'
+    | '/$locale/about/facilities/edit'
+    | '/$locale/about/overview/edit'
+    | '/$locale/about/student-clubs/create'
+    | '/$locale/about/student-clubs/edit'
+    | '/$locale/academics/$studentType/courses'
+    | '/$locale/community/faculty-recruitment/edit'
+    | '/$locale/community/news/$id'
+    | '/$locale/community/news/create'
+    | '/$locale/community/notice/$id'
+    | '/$locale/community/notice/create'
+    | '/$locale/community/seminar/$id'
+    | '/$locale/community/seminar/create'
+    | '/$locale/people/faculty/create'
+    | '/$locale/people/staff/create'
+    | '/$locale/research/centers/create'
+    | '/$locale/research/groups/create'
+    | '/$locale/research/labs/create'
+    | '/$locale/reservations/$roomType/$roomName'
+    | '/$locale/about/directions/'
+    | '/$locale/about/facilities/'
+    | '/$locale/about/future-careers/'
+    | '/$locale/about/overview/'
+    | '/$locale/about/student-clubs/'
+    | '/$locale/community/faculty-recruitment/'
+    | '/$locale/community/news/'
+    | '/$locale/community/notice/'
+    | '/$locale/community/seminar/'
+    | '/$locale/people/emeritus-faculty/'
+    | '/$locale/people/faculty/'
+    | '/$locale/people/staff/'
+    | '/$locale/research/centers/'
+    | '/$locale/research/groups/'
+    | '/$locale/research/labs/'
+    | '/$locale/research/top-conference-list/'
+    | '/$locale/about/directions/$id/edit'
+    | '/$locale/about/future-careers/description/edit'
+    | '/$locale/about/future-careers/stat/create'
+    | '/$locale/about/future-careers/stat/edit'
+    | '/$locale/academics/$studentType/course-changes/create'
+    | '/$locale/academics/$studentType/guide/edit'
+    | '/$locale/academics/$studentType/scholarship/create'
+    | '/$locale/academics/$studentType/scholarship/edit'
+    | '/$locale/academics/undergraduate/curriculum/create'
+    | '/$locale/academics/undergraduate/degree-requirements/edit'
+    | '/$locale/academics/undergraduate/general-studies-requirements/create'
+    | '/$locale/admissions/$mainType/$postType/edit'
+    | '/$locale/community/news/edit/$id'
+    | '/$locale/community/notice/edit/$id'
+    | '/$locale/community/seminar/edit/$id'
+    | '/$locale/people/emeritus-faculty/$id/edit'
+    | '/$locale/people/faculty/$id/edit'
+    | '/$locale/people/staff/$id/edit'
+    | '/$locale/research/centers/$id/edit'
+    | '/$locale/research/groups/$id/edit'
+    | '/$locale/research/labs/$id/edit'
+    | '/$locale/academics/$studentType/course-changes/'
+    | '/$locale/academics/$studentType/guide/'
+    | '/$locale/academics/$studentType/scholarship/'
+    | '/$locale/academics/undergraduate/curriculum/'
+    | '/$locale/academics/undergraduate/degree-requirements/'
+    | '/$locale/academics/undergraduate/general-studies-requirements/'
+    | '/$locale/admissions/$mainType/$postType/'
+    | '/$locale/people/emeritus-faculty/$id/'
+    | '/$locale/people/faculty/$id/'
+    | '/$locale/people/staff/$id/'
+    | '/$locale/research/labs/$id/'
+    | '/$locale/academics/$studentType/course-changes/edit/$year'
+    | '/$locale/academics/$studentType/scholarship/$id/edit'
+    | '/$locale/academics/undergraduate/curriculum/edit/$year'
+    | '/$locale/academics/undergraduate/general-studies-requirements/edit/$year'
+    | '/$locale/academics/$studentType/scholarship/$id/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/img'
     | '/sitemap.xml'
     | '/.internal/edit'
+    | '/$locale'
     | '/.internal'
     | '/admin'
-    | '/{-$locale}'
-    | '/{-$locale}/10-10-project/manager'
-    | '/{-$locale}/10-10-project/participants'
-    | '/{-$locale}/10-10-project/proposal'
-    | '/{-$locale}/about/contact'
-    | '/{-$locale}/about/greetings'
-    | '/{-$locale}/about/history'
-    | '/{-$locale}/reservations/introduction'
-    | '/{-$locale}/reservations/privacy-policy'
-    | '/{-$locale}/10-10-project'
-    | '/{-$locale}/about'
-    | '/{-$locale}/academics'
-    | '/{-$locale}/admissions'
-    | '/{-$locale}/community'
-    | '/{-$locale}/people'
-    | '/{-$locale}/research'
-    | '/{-$locale}/reservations'
-    | '/{-$locale}/search'
-    | '/{-$locale}/about/$type/edit'
-    | '/{-$locale}/about/facilities/create'
-    | '/{-$locale}/about/facilities/edit'
-    | '/{-$locale}/about/overview/edit'
-    | '/{-$locale}/about/student-clubs/create'
-    | '/{-$locale}/about/student-clubs/edit'
-    | '/{-$locale}/academics/$studentType/courses'
-    | '/{-$locale}/community/faculty-recruitment/edit'
-    | '/{-$locale}/community/news/$id'
-    | '/{-$locale}/community/news/create'
-    | '/{-$locale}/community/notice/$id'
-    | '/{-$locale}/community/notice/create'
-    | '/{-$locale}/community/seminar/$id'
-    | '/{-$locale}/community/seminar/create'
-    | '/{-$locale}/people/faculty/create'
-    | '/{-$locale}/people/staff/create'
-    | '/{-$locale}/research/centers/create'
-    | '/{-$locale}/research/groups/create'
-    | '/{-$locale}/research/labs/create'
-    | '/{-$locale}/reservations/$roomType/$roomName'
-    | '/{-$locale}/about/directions'
-    | '/{-$locale}/about/facilities'
-    | '/{-$locale}/about/future-careers'
-    | '/{-$locale}/about/overview'
-    | '/{-$locale}/about/student-clubs'
-    | '/{-$locale}/community/faculty-recruitment'
-    | '/{-$locale}/community/news'
-    | '/{-$locale}/community/notice'
-    | '/{-$locale}/community/seminar'
-    | '/{-$locale}/people/emeritus-faculty'
-    | '/{-$locale}/people/faculty'
-    | '/{-$locale}/people/staff'
-    | '/{-$locale}/research/centers'
-    | '/{-$locale}/research/groups'
-    | '/{-$locale}/research/labs'
-    | '/{-$locale}/research/top-conference-list'
-    | '/{-$locale}/about/directions/$id/edit'
-    | '/{-$locale}/about/future-careers/description/edit'
-    | '/{-$locale}/about/future-careers/stat/create'
-    | '/{-$locale}/about/future-careers/stat/edit'
-    | '/{-$locale}/academics/$studentType/course-changes/create'
-    | '/{-$locale}/academics/$studentType/guide/edit'
-    | '/{-$locale}/academics/$studentType/scholarship/create'
-    | '/{-$locale}/academics/$studentType/scholarship/edit'
-    | '/{-$locale}/academics/undergraduate/curriculum/create'
-    | '/{-$locale}/academics/undergraduate/degree-requirements/edit'
-    | '/{-$locale}/academics/undergraduate/general-studies-requirements/create'
-    | '/{-$locale}/admissions/$mainType/$postType/edit'
-    | '/{-$locale}/community/news/edit/$id'
-    | '/{-$locale}/community/notice/edit/$id'
-    | '/{-$locale}/community/seminar/edit/$id'
-    | '/{-$locale}/people/emeritus-faculty/$id/edit'
-    | '/{-$locale}/people/faculty/$id/edit'
-    | '/{-$locale}/people/staff/$id/edit'
-    | '/{-$locale}/research/centers/$id/edit'
-    | '/{-$locale}/research/groups/$id/edit'
-    | '/{-$locale}/research/labs/$id/edit'
-    | '/{-$locale}/academics/$studentType/course-changes'
-    | '/{-$locale}/academics/$studentType/guide'
-    | '/{-$locale}/academics/$studentType/scholarship'
-    | '/{-$locale}/academics/undergraduate/curriculum'
-    | '/{-$locale}/academics/undergraduate/degree-requirements'
-    | '/{-$locale}/academics/undergraduate/general-studies-requirements'
-    | '/{-$locale}/admissions/$mainType/$postType'
-    | '/{-$locale}/people/emeritus-faculty/$id'
-    | '/{-$locale}/people/faculty/$id'
-    | '/{-$locale}/people/staff/$id'
-    | '/{-$locale}/research/labs/$id'
-    | '/{-$locale}/academics/$studentType/course-changes/edit/$year'
-    | '/{-$locale}/academics/$studentType/scholarship/$id/edit'
-    | '/{-$locale}/academics/undergraduate/curriculum/edit/$year'
-    | '/{-$locale}/academics/undergraduate/general-studies-requirements/edit/$year'
-    | '/{-$locale}/academics/$studentType/scholarship/$id'
+    | '/$locale/10-10-project/manager'
+    | '/$locale/10-10-project/participants'
+    | '/$locale/10-10-project/proposal'
+    | '/$locale/about/contact'
+    | '/$locale/about/greetings'
+    | '/$locale/about/history'
+    | '/$locale/reservations/introduction'
+    | '/$locale/reservations/privacy-policy'
+    | '/$locale/10-10-project'
+    | '/$locale/about'
+    | '/$locale/academics'
+    | '/$locale/admissions'
+    | '/$locale/community'
+    | '/$locale/people'
+    | '/$locale/research'
+    | '/$locale/reservations'
+    | '/$locale/search'
+    | '/$locale/about/$type/edit'
+    | '/$locale/about/facilities/create'
+    | '/$locale/about/facilities/edit'
+    | '/$locale/about/overview/edit'
+    | '/$locale/about/student-clubs/create'
+    | '/$locale/about/student-clubs/edit'
+    | '/$locale/academics/$studentType/courses'
+    | '/$locale/community/faculty-recruitment/edit'
+    | '/$locale/community/news/$id'
+    | '/$locale/community/news/create'
+    | '/$locale/community/notice/$id'
+    | '/$locale/community/notice/create'
+    | '/$locale/community/seminar/$id'
+    | '/$locale/community/seminar/create'
+    | '/$locale/people/faculty/create'
+    | '/$locale/people/staff/create'
+    | '/$locale/research/centers/create'
+    | '/$locale/research/groups/create'
+    | '/$locale/research/labs/create'
+    | '/$locale/reservations/$roomType/$roomName'
+    | '/$locale/about/directions'
+    | '/$locale/about/facilities'
+    | '/$locale/about/future-careers'
+    | '/$locale/about/overview'
+    | '/$locale/about/student-clubs'
+    | '/$locale/community/faculty-recruitment'
+    | '/$locale/community/news'
+    | '/$locale/community/notice'
+    | '/$locale/community/seminar'
+    | '/$locale/people/emeritus-faculty'
+    | '/$locale/people/faculty'
+    | '/$locale/people/staff'
+    | '/$locale/research/centers'
+    | '/$locale/research/groups'
+    | '/$locale/research/labs'
+    | '/$locale/research/top-conference-list'
+    | '/$locale/about/directions/$id/edit'
+    | '/$locale/about/future-careers/description/edit'
+    | '/$locale/about/future-careers/stat/create'
+    | '/$locale/about/future-careers/stat/edit'
+    | '/$locale/academics/$studentType/course-changes/create'
+    | '/$locale/academics/$studentType/guide/edit'
+    | '/$locale/academics/$studentType/scholarship/create'
+    | '/$locale/academics/$studentType/scholarship/edit'
+    | '/$locale/academics/undergraduate/curriculum/create'
+    | '/$locale/academics/undergraduate/degree-requirements/edit'
+    | '/$locale/academics/undergraduate/general-studies-requirements/create'
+    | '/$locale/admissions/$mainType/$postType/edit'
+    | '/$locale/community/news/edit/$id'
+    | '/$locale/community/notice/edit/$id'
+    | '/$locale/community/seminar/edit/$id'
+    | '/$locale/people/emeritus-faculty/$id/edit'
+    | '/$locale/people/faculty/$id/edit'
+    | '/$locale/people/staff/$id/edit'
+    | '/$locale/research/centers/$id/edit'
+    | '/$locale/research/groups/$id/edit'
+    | '/$locale/research/labs/$id/edit'
+    | '/$locale/academics/$studentType/course-changes'
+    | '/$locale/academics/$studentType/guide'
+    | '/$locale/academics/$studentType/scholarship'
+    | '/$locale/academics/undergraduate/curriculum'
+    | '/$locale/academics/undergraduate/degree-requirements'
+    | '/$locale/academics/undergraduate/general-studies-requirements'
+    | '/$locale/admissions/$mainType/$postType'
+    | '/$locale/people/emeritus-faculty/$id'
+    | '/$locale/people/faculty/$id'
+    | '/$locale/people/staff/$id'
+    | '/$locale/research/labs/$id'
+    | '/$locale/academics/$studentType/course-changes/edit/$year'
+    | '/$locale/academics/$studentType/scholarship/$id/edit'
+    | '/$locale/academics/undergraduate/curriculum/edit/$year'
+    | '/$locale/academics/undergraduate/general-studies-requirements/edit/$year'
+    | '/$locale/academics/$studentType/scholarship/$id'
   id:
     | '__root__'
-    | '/{-$locale}'
+    | '/$locale'
     | '/img'
     | '/sitemap.xml'
     | '/.internal/edit'
+    | '/$locale/'
     | '/.internal/'
     | '/admin/'
-    | '/{-$locale}/'
-    | '/{-$locale}/10-10-project/manager'
-    | '/{-$locale}/10-10-project/participants'
-    | '/{-$locale}/10-10-project/proposal'
-    | '/{-$locale}/about/contact'
-    | '/{-$locale}/about/greetings'
-    | '/{-$locale}/about/history'
-    | '/{-$locale}/reservations/introduction'
-    | '/{-$locale}/reservations/privacy-policy'
-    | '/{-$locale}/10-10-project/'
-    | '/{-$locale}/about/'
-    | '/{-$locale}/academics/'
-    | '/{-$locale}/admissions/'
-    | '/{-$locale}/community/'
-    | '/{-$locale}/people/'
-    | '/{-$locale}/research/'
-    | '/{-$locale}/reservations/'
-    | '/{-$locale}/search/'
-    | '/{-$locale}/about/$type/edit'
-    | '/{-$locale}/about/facilities/create'
-    | '/{-$locale}/about/facilities/edit'
-    | '/{-$locale}/about/overview/edit'
-    | '/{-$locale}/about/student-clubs/create'
-    | '/{-$locale}/about/student-clubs/edit'
-    | '/{-$locale}/academics/$studentType/courses'
-    | '/{-$locale}/community/faculty-recruitment/edit'
-    | '/{-$locale}/community/news/$id'
-    | '/{-$locale}/community/news/create'
-    | '/{-$locale}/community/notice/$id'
-    | '/{-$locale}/community/notice/create'
-    | '/{-$locale}/community/seminar/$id'
-    | '/{-$locale}/community/seminar/create'
-    | '/{-$locale}/people/faculty/create'
-    | '/{-$locale}/people/staff/create'
-    | '/{-$locale}/research/centers/create'
-    | '/{-$locale}/research/groups/create'
-    | '/{-$locale}/research/labs/create'
-    | '/{-$locale}/reservations/$roomType/$roomName'
-    | '/{-$locale}/about/directions/'
-    | '/{-$locale}/about/facilities/'
-    | '/{-$locale}/about/future-careers/'
-    | '/{-$locale}/about/overview/'
-    | '/{-$locale}/about/student-clubs/'
-    | '/{-$locale}/community/faculty-recruitment/'
-    | '/{-$locale}/community/news/'
-    | '/{-$locale}/community/notice/'
-    | '/{-$locale}/community/seminar/'
-    | '/{-$locale}/people/emeritus-faculty/'
-    | '/{-$locale}/people/faculty/'
-    | '/{-$locale}/people/staff/'
-    | '/{-$locale}/research/centers/'
-    | '/{-$locale}/research/groups/'
-    | '/{-$locale}/research/labs/'
-    | '/{-$locale}/research/top-conference-list/'
-    | '/{-$locale}/about/directions/$id/edit'
-    | '/{-$locale}/about/future-careers/description/edit'
-    | '/{-$locale}/about/future-careers/stat/create'
-    | '/{-$locale}/about/future-careers/stat/edit'
-    | '/{-$locale}/academics/$studentType/course-changes/create'
-    | '/{-$locale}/academics/$studentType/guide/edit'
-    | '/{-$locale}/academics/$studentType/scholarship/create'
-    | '/{-$locale}/academics/$studentType/scholarship/edit'
-    | '/{-$locale}/academics/undergraduate/curriculum/create'
-    | '/{-$locale}/academics/undergraduate/degree-requirements/edit'
-    | '/{-$locale}/academics/undergraduate/general-studies-requirements/create'
-    | '/{-$locale}/admissions/$mainType/$postType/edit'
-    | '/{-$locale}/community/news/edit/$id'
-    | '/{-$locale}/community/notice/edit/$id'
-    | '/{-$locale}/community/seminar/edit/$id'
-    | '/{-$locale}/people/emeritus-faculty/$id/edit'
-    | '/{-$locale}/people/faculty/$id/edit'
-    | '/{-$locale}/people/staff/$id/edit'
-    | '/{-$locale}/research/centers/$id/edit'
-    | '/{-$locale}/research/groups/$id/edit'
-    | '/{-$locale}/research/labs/$id/edit'
-    | '/{-$locale}/academics/$studentType/course-changes/'
-    | '/{-$locale}/academics/$studentType/guide/'
-    | '/{-$locale}/academics/$studentType/scholarship/'
-    | '/{-$locale}/academics/undergraduate/curriculum/'
-    | '/{-$locale}/academics/undergraduate/degree-requirements/'
-    | '/{-$locale}/academics/undergraduate/general-studies-requirements/'
-    | '/{-$locale}/admissions/$mainType/$postType/'
-    | '/{-$locale}/people/emeritus-faculty/$id/'
-    | '/{-$locale}/people/faculty/$id/'
-    | '/{-$locale}/people/staff/$id/'
-    | '/{-$locale}/research/labs/$id/'
-    | '/{-$locale}/academics/$studentType/course-changes/edit/$year'
-    | '/{-$locale}/academics/$studentType/scholarship/$id/edit'
-    | '/{-$locale}/academics/undergraduate/curriculum/edit/$year'
-    | '/{-$locale}/academics/undergraduate/general-studies-requirements/edit/$year'
-    | '/{-$locale}/academics/$studentType/scholarship/$id/'
+    | '/$locale/10-10-project/manager'
+    | '/$locale/10-10-project/participants'
+    | '/$locale/10-10-project/proposal'
+    | '/$locale/about/contact'
+    | '/$locale/about/greetings'
+    | '/$locale/about/history'
+    | '/$locale/reservations/introduction'
+    | '/$locale/reservations/privacy-policy'
+    | '/$locale/10-10-project/'
+    | '/$locale/about/'
+    | '/$locale/academics/'
+    | '/$locale/admissions/'
+    | '/$locale/community/'
+    | '/$locale/people/'
+    | '/$locale/research/'
+    | '/$locale/reservations/'
+    | '/$locale/search/'
+    | '/$locale/about/$type/edit'
+    | '/$locale/about/facilities/create'
+    | '/$locale/about/facilities/edit'
+    | '/$locale/about/overview/edit'
+    | '/$locale/about/student-clubs/create'
+    | '/$locale/about/student-clubs/edit'
+    | '/$locale/academics/$studentType/courses'
+    | '/$locale/community/faculty-recruitment/edit'
+    | '/$locale/community/news/$id'
+    | '/$locale/community/news/create'
+    | '/$locale/community/notice/$id'
+    | '/$locale/community/notice/create'
+    | '/$locale/community/seminar/$id'
+    | '/$locale/community/seminar/create'
+    | '/$locale/people/faculty/create'
+    | '/$locale/people/staff/create'
+    | '/$locale/research/centers/create'
+    | '/$locale/research/groups/create'
+    | '/$locale/research/labs/create'
+    | '/$locale/reservations/$roomType/$roomName'
+    | '/$locale/about/directions/'
+    | '/$locale/about/facilities/'
+    | '/$locale/about/future-careers/'
+    | '/$locale/about/overview/'
+    | '/$locale/about/student-clubs/'
+    | '/$locale/community/faculty-recruitment/'
+    | '/$locale/community/news/'
+    | '/$locale/community/notice/'
+    | '/$locale/community/seminar/'
+    | '/$locale/people/emeritus-faculty/'
+    | '/$locale/people/faculty/'
+    | '/$locale/people/staff/'
+    | '/$locale/research/centers/'
+    | '/$locale/research/groups/'
+    | '/$locale/research/labs/'
+    | '/$locale/research/top-conference-list/'
+    | '/$locale/about/directions/$id/edit'
+    | '/$locale/about/future-careers/description/edit'
+    | '/$locale/about/future-careers/stat/create'
+    | '/$locale/about/future-careers/stat/edit'
+    | '/$locale/academics/$studentType/course-changes/create'
+    | '/$locale/academics/$studentType/guide/edit'
+    | '/$locale/academics/$studentType/scholarship/create'
+    | '/$locale/academics/$studentType/scholarship/edit'
+    | '/$locale/academics/undergraduate/curriculum/create'
+    | '/$locale/academics/undergraduate/degree-requirements/edit'
+    | '/$locale/academics/undergraduate/general-studies-requirements/create'
+    | '/$locale/admissions/$mainType/$postType/edit'
+    | '/$locale/community/news/edit/$id'
+    | '/$locale/community/notice/edit/$id'
+    | '/$locale/community/seminar/edit/$id'
+    | '/$locale/people/emeritus-faculty/$id/edit'
+    | '/$locale/people/faculty/$id/edit'
+    | '/$locale/people/staff/$id/edit'
+    | '/$locale/research/centers/$id/edit'
+    | '/$locale/research/groups/$id/edit'
+    | '/$locale/research/labs/$id/edit'
+    | '/$locale/academics/$studentType/course-changes/'
+    | '/$locale/academics/$studentType/guide/'
+    | '/$locale/academics/$studentType/scholarship/'
+    | '/$locale/academics/undergraduate/curriculum/'
+    | '/$locale/academics/undergraduate/degree-requirements/'
+    | '/$locale/academics/undergraduate/general-studies-requirements/'
+    | '/$locale/admissions/$mainType/$postType/'
+    | '/$locale/people/emeritus-faculty/$id/'
+    | '/$locale/people/faculty/$id/'
+    | '/$locale/people/staff/$id/'
+    | '/$locale/research/labs/$id/'
+    | '/$locale/academics/$studentType/course-changes/edit/$year'
+    | '/$locale/academics/$studentType/scholarship/$id/edit'
+    | '/$locale/academics/undergraduate/curriculum/edit/$year'
+    | '/$locale/academics/undergraduate/general-studies-requirements/edit/$year'
+    | '/$locale/academics/$studentType/scholarship/$id/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  Char123LocaleChar125RouteRoute: typeof Char123LocaleChar125RouteRouteWithChildren
+  LocaleRouteRoute: typeof LocaleRouteRouteWithChildren
   ImgRoute: typeof ImgRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   DotinternalEditRoute: typeof DotinternalEditRoute
@@ -1322,19 +1290,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ImgRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/{-$locale}': {
-      id: '/{-$locale}'
-      path: '/{-$locale}'
-      fullPath: '/{-$locale}'
-      preLoaderRoute: typeof Char123LocaleChar125RouteRouteImport
+    '/$locale': {
+      id: '/$locale'
+      path: '/$locale'
+      fullPath: '/$locale'
+      preLoaderRoute: typeof LocaleRouteRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/{-$locale}/': {
-      id: '/{-$locale}/'
-      path: '/'
-      fullPath: '/{-$locale}/'
-      preLoaderRoute: typeof Char123LocaleChar125IndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
     }
     '/admin/': {
       id: '/admin/'
@@ -1350,6 +1311,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DotinternalIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$locale/': {
+      id: '/$locale/'
+      path: '/'
+      fullPath: '/$locale/'
+      preLoaderRoute: typeof LocaleIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
+    }
     '/.internal/edit': {
       id: '/.internal/edit'
       path: '/.internal/edit'
@@ -1357,922 +1325,862 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DotinternalEditRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/{-$locale}/search/': {
-      id: '/{-$locale}/search/'
+    '/$locale/search/': {
+      id: '/$locale/search/'
       path: '/search'
-      fullPath: '/{-$locale}/search/'
-      preLoaderRoute: typeof Char123LocaleChar125SearchIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/search/'
+      preLoaderRoute: typeof LocaleSearchIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/reservations/': {
-      id: '/{-$locale}/reservations/'
+    '/$locale/reservations/': {
+      id: '/$locale/reservations/'
       path: '/reservations'
-      fullPath: '/{-$locale}/reservations/'
-      preLoaderRoute: typeof Char123LocaleChar125ReservationsIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/reservations/'
+      preLoaderRoute: typeof LocaleReservationsIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/research/': {
-      id: '/{-$locale}/research/'
+    '/$locale/research/': {
+      id: '/$locale/research/'
       path: '/research'
-      fullPath: '/{-$locale}/research/'
-      preLoaderRoute: typeof Char123LocaleChar125ResearchIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/research/'
+      preLoaderRoute: typeof LocaleResearchIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/people/': {
-      id: '/{-$locale}/people/'
+    '/$locale/people/': {
+      id: '/$locale/people/'
       path: '/people'
-      fullPath: '/{-$locale}/people/'
-      preLoaderRoute: typeof Char123LocaleChar125PeopleIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/people/'
+      preLoaderRoute: typeof LocalePeopleIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/community/': {
-      id: '/{-$locale}/community/'
+    '/$locale/community/': {
+      id: '/$locale/community/'
       path: '/community'
-      fullPath: '/{-$locale}/community/'
-      preLoaderRoute: typeof Char123LocaleChar125CommunityIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/community/'
+      preLoaderRoute: typeof LocaleCommunityIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/admissions/': {
-      id: '/{-$locale}/admissions/'
+    '/$locale/admissions/': {
+      id: '/$locale/admissions/'
       path: '/admissions'
-      fullPath: '/{-$locale}/admissions/'
-      preLoaderRoute: typeof Char123LocaleChar125AdmissionsIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/admissions/'
+      preLoaderRoute: typeof LocaleAdmissionsIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/': {
-      id: '/{-$locale}/academics/'
+    '/$locale/academics/': {
+      id: '/$locale/academics/'
       path: '/academics'
-      fullPath: '/{-$locale}/academics/'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/'
+      preLoaderRoute: typeof LocaleAcademicsIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/': {
-      id: '/{-$locale}/about/'
+    '/$locale/about/': {
+      id: '/$locale/about/'
       path: '/about'
-      fullPath: '/{-$locale}/about/'
-      preLoaderRoute: typeof Char123LocaleChar125AboutIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/'
+      preLoaderRoute: typeof LocaleAboutIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/10-10-project/': {
-      id: '/{-$locale}/10-10-project/'
+    '/$locale/10-10-project/': {
+      id: '/$locale/10-10-project/'
       path: '/10-10-project'
-      fullPath: '/{-$locale}/10-10-project/'
-      preLoaderRoute: typeof Char123LocaleChar1251010ProjectIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/10-10-project/'
+      preLoaderRoute: typeof Locale1010ProjectIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/reservations/privacy-policy': {
-      id: '/{-$locale}/reservations/privacy-policy'
+    '/$locale/reservations/privacy-policy': {
+      id: '/$locale/reservations/privacy-policy'
       path: '/reservations/privacy-policy'
-      fullPath: '/{-$locale}/reservations/privacy-policy'
-      preLoaderRoute: typeof Char123LocaleChar125ReservationsPrivacyPolicyRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/reservations/privacy-policy'
+      preLoaderRoute: typeof LocaleReservationsPrivacyPolicyRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/reservations/introduction': {
-      id: '/{-$locale}/reservations/introduction'
+    '/$locale/reservations/introduction': {
+      id: '/$locale/reservations/introduction'
       path: '/reservations/introduction'
-      fullPath: '/{-$locale}/reservations/introduction'
-      preLoaderRoute: typeof Char123LocaleChar125ReservationsIntroductionRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/reservations/introduction'
+      preLoaderRoute: typeof LocaleReservationsIntroductionRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/history': {
-      id: '/{-$locale}/about/history'
+    '/$locale/about/history': {
+      id: '/$locale/about/history'
       path: '/about/history'
-      fullPath: '/{-$locale}/about/history'
-      preLoaderRoute: typeof Char123LocaleChar125AboutHistoryRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/history'
+      preLoaderRoute: typeof LocaleAboutHistoryRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/greetings': {
-      id: '/{-$locale}/about/greetings'
+    '/$locale/about/greetings': {
+      id: '/$locale/about/greetings'
       path: '/about/greetings'
-      fullPath: '/{-$locale}/about/greetings'
-      preLoaderRoute: typeof Char123LocaleChar125AboutGreetingsRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/greetings'
+      preLoaderRoute: typeof LocaleAboutGreetingsRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/contact': {
-      id: '/{-$locale}/about/contact'
+    '/$locale/about/contact': {
+      id: '/$locale/about/contact'
       path: '/about/contact'
-      fullPath: '/{-$locale}/about/contact'
-      preLoaderRoute: typeof Char123LocaleChar125AboutContactRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/contact'
+      preLoaderRoute: typeof LocaleAboutContactRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/10-10-project/proposal': {
-      id: '/{-$locale}/10-10-project/proposal'
+    '/$locale/10-10-project/proposal': {
+      id: '/$locale/10-10-project/proposal'
       path: '/10-10-project/proposal'
-      fullPath: '/{-$locale}/10-10-project/proposal'
-      preLoaderRoute: typeof Char123LocaleChar1251010ProjectProposalRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/10-10-project/proposal'
+      preLoaderRoute: typeof Locale1010ProjectProposalRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/10-10-project/participants': {
-      id: '/{-$locale}/10-10-project/participants'
+    '/$locale/10-10-project/participants': {
+      id: '/$locale/10-10-project/participants'
       path: '/10-10-project/participants'
-      fullPath: '/{-$locale}/10-10-project/participants'
-      preLoaderRoute: typeof Char123LocaleChar1251010ProjectParticipantsRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/10-10-project/participants'
+      preLoaderRoute: typeof Locale1010ProjectParticipantsRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/10-10-project/manager': {
-      id: '/{-$locale}/10-10-project/manager'
+    '/$locale/10-10-project/manager': {
+      id: '/$locale/10-10-project/manager'
       path: '/10-10-project/manager'
-      fullPath: '/{-$locale}/10-10-project/manager'
-      preLoaderRoute: typeof Char123LocaleChar1251010ProjectManagerRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/10-10-project/manager'
+      preLoaderRoute: typeof Locale1010ProjectManagerRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/research/top-conference-list/': {
-      id: '/{-$locale}/research/top-conference-list/'
+    '/$locale/research/top-conference-list/': {
+      id: '/$locale/research/top-conference-list/'
       path: '/research/top-conference-list'
-      fullPath: '/{-$locale}/research/top-conference-list/'
-      preLoaderRoute: typeof Char123LocaleChar125ResearchTopConferenceListIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/research/top-conference-list/'
+      preLoaderRoute: typeof LocaleResearchTopConferenceListIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/research/labs/': {
-      id: '/{-$locale}/research/labs/'
+    '/$locale/research/labs/': {
+      id: '/$locale/research/labs/'
       path: '/research/labs'
-      fullPath: '/{-$locale}/research/labs/'
-      preLoaderRoute: typeof Char123LocaleChar125ResearchLabsIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/research/labs/'
+      preLoaderRoute: typeof LocaleResearchLabsIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/research/groups/': {
-      id: '/{-$locale}/research/groups/'
+    '/$locale/research/groups/': {
+      id: '/$locale/research/groups/'
       path: '/research/groups'
-      fullPath: '/{-$locale}/research/groups/'
-      preLoaderRoute: typeof Char123LocaleChar125ResearchGroupsIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/research/groups/'
+      preLoaderRoute: typeof LocaleResearchGroupsIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/research/centers/': {
-      id: '/{-$locale}/research/centers/'
+    '/$locale/research/centers/': {
+      id: '/$locale/research/centers/'
       path: '/research/centers'
-      fullPath: '/{-$locale}/research/centers/'
-      preLoaderRoute: typeof Char123LocaleChar125ResearchCentersIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/research/centers/'
+      preLoaderRoute: typeof LocaleResearchCentersIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/people/staff/': {
-      id: '/{-$locale}/people/staff/'
+    '/$locale/people/staff/': {
+      id: '/$locale/people/staff/'
       path: '/people/staff'
-      fullPath: '/{-$locale}/people/staff/'
-      preLoaderRoute: typeof Char123LocaleChar125PeopleStaffIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/people/staff/'
+      preLoaderRoute: typeof LocalePeopleStaffIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/people/faculty/': {
-      id: '/{-$locale}/people/faculty/'
+    '/$locale/people/faculty/': {
+      id: '/$locale/people/faculty/'
       path: '/people/faculty'
-      fullPath: '/{-$locale}/people/faculty/'
-      preLoaderRoute: typeof Char123LocaleChar125PeopleFacultyIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/people/faculty/'
+      preLoaderRoute: typeof LocalePeopleFacultyIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/people/emeritus-faculty/': {
-      id: '/{-$locale}/people/emeritus-faculty/'
+    '/$locale/people/emeritus-faculty/': {
+      id: '/$locale/people/emeritus-faculty/'
       path: '/people/emeritus-faculty'
-      fullPath: '/{-$locale}/people/emeritus-faculty/'
-      preLoaderRoute: typeof Char123LocaleChar125PeopleEmeritusFacultyIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/people/emeritus-faculty/'
+      preLoaderRoute: typeof LocalePeopleEmeritusFacultyIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/community/seminar/': {
-      id: '/{-$locale}/community/seminar/'
+    '/$locale/community/seminar/': {
+      id: '/$locale/community/seminar/'
       path: '/community/seminar'
-      fullPath: '/{-$locale}/community/seminar/'
-      preLoaderRoute: typeof Char123LocaleChar125CommunitySeminarIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/community/seminar/'
+      preLoaderRoute: typeof LocaleCommunitySeminarIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/community/notice/': {
-      id: '/{-$locale}/community/notice/'
+    '/$locale/community/notice/': {
+      id: '/$locale/community/notice/'
       path: '/community/notice'
-      fullPath: '/{-$locale}/community/notice/'
-      preLoaderRoute: typeof Char123LocaleChar125CommunityNoticeIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/community/notice/'
+      preLoaderRoute: typeof LocaleCommunityNoticeIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/community/news/': {
-      id: '/{-$locale}/community/news/'
+    '/$locale/community/news/': {
+      id: '/$locale/community/news/'
       path: '/community/news'
-      fullPath: '/{-$locale}/community/news/'
-      preLoaderRoute: typeof Char123LocaleChar125CommunityNewsIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/community/news/'
+      preLoaderRoute: typeof LocaleCommunityNewsIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/community/faculty-recruitment/': {
-      id: '/{-$locale}/community/faculty-recruitment/'
+    '/$locale/community/faculty-recruitment/': {
+      id: '/$locale/community/faculty-recruitment/'
       path: '/community/faculty-recruitment'
-      fullPath: '/{-$locale}/community/faculty-recruitment/'
-      preLoaderRoute: typeof Char123LocaleChar125CommunityFacultyRecruitmentIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/community/faculty-recruitment/'
+      preLoaderRoute: typeof LocaleCommunityFacultyRecruitmentIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/student-clubs/': {
-      id: '/{-$locale}/about/student-clubs/'
+    '/$locale/about/student-clubs/': {
+      id: '/$locale/about/student-clubs/'
       path: '/about/student-clubs'
-      fullPath: '/{-$locale}/about/student-clubs/'
-      preLoaderRoute: typeof Char123LocaleChar125AboutStudentClubsIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/student-clubs/'
+      preLoaderRoute: typeof LocaleAboutStudentClubsIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/overview/': {
-      id: '/{-$locale}/about/overview/'
+    '/$locale/about/overview/': {
+      id: '/$locale/about/overview/'
       path: '/about/overview'
-      fullPath: '/{-$locale}/about/overview/'
-      preLoaderRoute: typeof Char123LocaleChar125AboutOverviewIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/overview/'
+      preLoaderRoute: typeof LocaleAboutOverviewIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/future-careers/': {
-      id: '/{-$locale}/about/future-careers/'
+    '/$locale/about/future-careers/': {
+      id: '/$locale/about/future-careers/'
       path: '/about/future-careers'
-      fullPath: '/{-$locale}/about/future-careers/'
-      preLoaderRoute: typeof Char123LocaleChar125AboutFutureCareersIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/future-careers/'
+      preLoaderRoute: typeof LocaleAboutFutureCareersIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/facilities/': {
-      id: '/{-$locale}/about/facilities/'
+    '/$locale/about/facilities/': {
+      id: '/$locale/about/facilities/'
       path: '/about/facilities'
-      fullPath: '/{-$locale}/about/facilities/'
-      preLoaderRoute: typeof Char123LocaleChar125AboutFacilitiesIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/facilities/'
+      preLoaderRoute: typeof LocaleAboutFacilitiesIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/directions/': {
-      id: '/{-$locale}/about/directions/'
+    '/$locale/about/directions/': {
+      id: '/$locale/about/directions/'
       path: '/about/directions'
-      fullPath: '/{-$locale}/about/directions/'
-      preLoaderRoute: typeof Char123LocaleChar125AboutDirectionsIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/directions/'
+      preLoaderRoute: typeof LocaleAboutDirectionsIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/reservations/$roomType/$roomName': {
-      id: '/{-$locale}/reservations/$roomType/$roomName'
+    '/$locale/reservations/$roomType/$roomName': {
+      id: '/$locale/reservations/$roomType/$roomName'
       path: '/reservations/$roomType/$roomName'
-      fullPath: '/{-$locale}/reservations/$roomType/$roomName'
-      preLoaderRoute: typeof Char123LocaleChar125ReservationsRoomTypeRoomNameRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/reservations/$roomType/$roomName'
+      preLoaderRoute: typeof LocaleReservationsRoomTypeRoomNameRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/research/labs/create': {
-      id: '/{-$locale}/research/labs/create'
+    '/$locale/research/labs/create': {
+      id: '/$locale/research/labs/create'
       path: '/research/labs/create'
-      fullPath: '/{-$locale}/research/labs/create'
-      preLoaderRoute: typeof Char123LocaleChar125ResearchLabsCreateRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/research/labs/create'
+      preLoaderRoute: typeof LocaleResearchLabsCreateRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/research/groups/create': {
-      id: '/{-$locale}/research/groups/create'
+    '/$locale/research/groups/create': {
+      id: '/$locale/research/groups/create'
       path: '/research/groups/create'
-      fullPath: '/{-$locale}/research/groups/create'
-      preLoaderRoute: typeof Char123LocaleChar125ResearchGroupsCreateRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/research/groups/create'
+      preLoaderRoute: typeof LocaleResearchGroupsCreateRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/research/centers/create': {
-      id: '/{-$locale}/research/centers/create'
+    '/$locale/research/centers/create': {
+      id: '/$locale/research/centers/create'
       path: '/research/centers/create'
-      fullPath: '/{-$locale}/research/centers/create'
-      preLoaderRoute: typeof Char123LocaleChar125ResearchCentersCreateRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/research/centers/create'
+      preLoaderRoute: typeof LocaleResearchCentersCreateRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/people/staff/create': {
-      id: '/{-$locale}/people/staff/create'
+    '/$locale/people/staff/create': {
+      id: '/$locale/people/staff/create'
       path: '/people/staff/create'
-      fullPath: '/{-$locale}/people/staff/create'
-      preLoaderRoute: typeof Char123LocaleChar125PeopleStaffCreateRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/people/staff/create'
+      preLoaderRoute: typeof LocalePeopleStaffCreateRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/people/faculty/create': {
-      id: '/{-$locale}/people/faculty/create'
+    '/$locale/people/faculty/create': {
+      id: '/$locale/people/faculty/create'
       path: '/people/faculty/create'
-      fullPath: '/{-$locale}/people/faculty/create'
-      preLoaderRoute: typeof Char123LocaleChar125PeopleFacultyCreateRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/people/faculty/create'
+      preLoaderRoute: typeof LocalePeopleFacultyCreateRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/community/seminar/create': {
-      id: '/{-$locale}/community/seminar/create'
+    '/$locale/community/seminar/create': {
+      id: '/$locale/community/seminar/create'
       path: '/community/seminar/create'
-      fullPath: '/{-$locale}/community/seminar/create'
-      preLoaderRoute: typeof Char123LocaleChar125CommunitySeminarCreateRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/community/seminar/create'
+      preLoaderRoute: typeof LocaleCommunitySeminarCreateRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/community/seminar/$id': {
-      id: '/{-$locale}/community/seminar/$id'
+    '/$locale/community/seminar/$id': {
+      id: '/$locale/community/seminar/$id'
       path: '/community/seminar/$id'
-      fullPath: '/{-$locale}/community/seminar/$id'
-      preLoaderRoute: typeof Char123LocaleChar125CommunitySeminarIdRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/community/seminar/$id'
+      preLoaderRoute: typeof LocaleCommunitySeminarIdRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/community/notice/create': {
-      id: '/{-$locale}/community/notice/create'
+    '/$locale/community/notice/create': {
+      id: '/$locale/community/notice/create'
       path: '/community/notice/create'
-      fullPath: '/{-$locale}/community/notice/create'
-      preLoaderRoute: typeof Char123LocaleChar125CommunityNoticeCreateRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/community/notice/create'
+      preLoaderRoute: typeof LocaleCommunityNoticeCreateRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/community/notice/$id': {
-      id: '/{-$locale}/community/notice/$id'
+    '/$locale/community/notice/$id': {
+      id: '/$locale/community/notice/$id'
       path: '/community/notice/$id'
-      fullPath: '/{-$locale}/community/notice/$id'
-      preLoaderRoute: typeof Char123LocaleChar125CommunityNoticeIdRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/community/notice/$id'
+      preLoaderRoute: typeof LocaleCommunityNoticeIdRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/community/news/create': {
-      id: '/{-$locale}/community/news/create'
+    '/$locale/community/news/create': {
+      id: '/$locale/community/news/create'
       path: '/community/news/create'
-      fullPath: '/{-$locale}/community/news/create'
-      preLoaderRoute: typeof Char123LocaleChar125CommunityNewsCreateRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/community/news/create'
+      preLoaderRoute: typeof LocaleCommunityNewsCreateRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/community/news/$id': {
-      id: '/{-$locale}/community/news/$id'
+    '/$locale/community/news/$id': {
+      id: '/$locale/community/news/$id'
       path: '/community/news/$id'
-      fullPath: '/{-$locale}/community/news/$id'
-      preLoaderRoute: typeof Char123LocaleChar125CommunityNewsIdRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/community/news/$id'
+      preLoaderRoute: typeof LocaleCommunityNewsIdRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/community/faculty-recruitment/edit': {
-      id: '/{-$locale}/community/faculty-recruitment/edit'
+    '/$locale/community/faculty-recruitment/edit': {
+      id: '/$locale/community/faculty-recruitment/edit'
       path: '/community/faculty-recruitment/edit'
-      fullPath: '/{-$locale}/community/faculty-recruitment/edit'
-      preLoaderRoute: typeof Char123LocaleChar125CommunityFacultyRecruitmentEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/community/faculty-recruitment/edit'
+      preLoaderRoute: typeof LocaleCommunityFacultyRecruitmentEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/$studentType/courses': {
-      id: '/{-$locale}/academics/$studentType/courses'
+    '/$locale/academics/$studentType/courses': {
+      id: '/$locale/academics/$studentType/courses'
       path: '/academics/$studentType/courses'
-      fullPath: '/{-$locale}/academics/$studentType/courses'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsStudentTypeCoursesRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/$studentType/courses'
+      preLoaderRoute: typeof LocaleAcademicsStudentTypeCoursesRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/student-clubs/edit': {
-      id: '/{-$locale}/about/student-clubs/edit'
+    '/$locale/about/student-clubs/edit': {
+      id: '/$locale/about/student-clubs/edit'
       path: '/about/student-clubs/edit'
-      fullPath: '/{-$locale}/about/student-clubs/edit'
-      preLoaderRoute: typeof Char123LocaleChar125AboutStudentClubsEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/student-clubs/edit'
+      preLoaderRoute: typeof LocaleAboutStudentClubsEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/student-clubs/create': {
-      id: '/{-$locale}/about/student-clubs/create'
+    '/$locale/about/student-clubs/create': {
+      id: '/$locale/about/student-clubs/create'
       path: '/about/student-clubs/create'
-      fullPath: '/{-$locale}/about/student-clubs/create'
-      preLoaderRoute: typeof Char123LocaleChar125AboutStudentClubsCreateRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/student-clubs/create'
+      preLoaderRoute: typeof LocaleAboutStudentClubsCreateRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/overview/edit': {
-      id: '/{-$locale}/about/overview/edit'
+    '/$locale/about/overview/edit': {
+      id: '/$locale/about/overview/edit'
       path: '/about/overview/edit'
-      fullPath: '/{-$locale}/about/overview/edit'
-      preLoaderRoute: typeof Char123LocaleChar125AboutOverviewEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/overview/edit'
+      preLoaderRoute: typeof LocaleAboutOverviewEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/facilities/edit': {
-      id: '/{-$locale}/about/facilities/edit'
+    '/$locale/about/facilities/edit': {
+      id: '/$locale/about/facilities/edit'
       path: '/about/facilities/edit'
-      fullPath: '/{-$locale}/about/facilities/edit'
-      preLoaderRoute: typeof Char123LocaleChar125AboutFacilitiesEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/facilities/edit'
+      preLoaderRoute: typeof LocaleAboutFacilitiesEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/facilities/create': {
-      id: '/{-$locale}/about/facilities/create'
+    '/$locale/about/facilities/create': {
+      id: '/$locale/about/facilities/create'
       path: '/about/facilities/create'
-      fullPath: '/{-$locale}/about/facilities/create'
-      preLoaderRoute: typeof Char123LocaleChar125AboutFacilitiesCreateRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/facilities/create'
+      preLoaderRoute: typeof LocaleAboutFacilitiesCreateRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/$type/edit': {
-      id: '/{-$locale}/about/$type/edit'
+    '/$locale/about/$type/edit': {
+      id: '/$locale/about/$type/edit'
       path: '/about/$type/edit'
-      fullPath: '/{-$locale}/about/$type/edit'
-      preLoaderRoute: typeof Char123LocaleChar125AboutTypeEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/$type/edit'
+      preLoaderRoute: typeof LocaleAboutTypeEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/research/labs/$id/': {
-      id: '/{-$locale}/research/labs/$id/'
+    '/$locale/research/labs/$id/': {
+      id: '/$locale/research/labs/$id/'
       path: '/research/labs/$id'
-      fullPath: '/{-$locale}/research/labs/$id/'
-      preLoaderRoute: typeof Char123LocaleChar125ResearchLabsIdIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/research/labs/$id/'
+      preLoaderRoute: typeof LocaleResearchLabsIdIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/people/staff/$id/': {
-      id: '/{-$locale}/people/staff/$id/'
+    '/$locale/people/staff/$id/': {
+      id: '/$locale/people/staff/$id/'
       path: '/people/staff/$id'
-      fullPath: '/{-$locale}/people/staff/$id/'
-      preLoaderRoute: typeof Char123LocaleChar125PeopleStaffIdIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/people/staff/$id/'
+      preLoaderRoute: typeof LocalePeopleStaffIdIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/people/faculty/$id/': {
-      id: '/{-$locale}/people/faculty/$id/'
+    '/$locale/people/faculty/$id/': {
+      id: '/$locale/people/faculty/$id/'
       path: '/people/faculty/$id'
-      fullPath: '/{-$locale}/people/faculty/$id/'
-      preLoaderRoute: typeof Char123LocaleChar125PeopleFacultyIdIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/people/faculty/$id/'
+      preLoaderRoute: typeof LocalePeopleFacultyIdIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/people/emeritus-faculty/$id/': {
-      id: '/{-$locale}/people/emeritus-faculty/$id/'
+    '/$locale/people/emeritus-faculty/$id/': {
+      id: '/$locale/people/emeritus-faculty/$id/'
       path: '/people/emeritus-faculty/$id'
-      fullPath: '/{-$locale}/people/emeritus-faculty/$id/'
-      preLoaderRoute: typeof Char123LocaleChar125PeopleEmeritusFacultyIdIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/people/emeritus-faculty/$id/'
+      preLoaderRoute: typeof LocalePeopleEmeritusFacultyIdIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/admissions/$mainType/$postType/': {
-      id: '/{-$locale}/admissions/$mainType/$postType/'
+    '/$locale/admissions/$mainType/$postType/': {
+      id: '/$locale/admissions/$mainType/$postType/'
       path: '/admissions/$mainType/$postType'
-      fullPath: '/{-$locale}/admissions/$mainType/$postType/'
-      preLoaderRoute: typeof Char123LocaleChar125AdmissionsMainTypePostTypeIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/admissions/$mainType/$postType/'
+      preLoaderRoute: typeof LocaleAdmissionsMainTypePostTypeIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/undergraduate/general-studies-requirements/': {
-      id: '/{-$locale}/academics/undergraduate/general-studies-requirements/'
+    '/$locale/academics/undergraduate/general-studies-requirements/': {
+      id: '/$locale/academics/undergraduate/general-studies-requirements/'
       path: '/academics/undergraduate/general-studies-requirements'
-      fullPath: '/{-$locale}/academics/undergraduate/general-studies-requirements/'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/undergraduate/general-studies-requirements/'
+      preLoaderRoute: typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/undergraduate/degree-requirements/': {
-      id: '/{-$locale}/academics/undergraduate/degree-requirements/'
+    '/$locale/academics/undergraduate/degree-requirements/': {
+      id: '/$locale/academics/undergraduate/degree-requirements/'
       path: '/academics/undergraduate/degree-requirements'
-      fullPath: '/{-$locale}/academics/undergraduate/degree-requirements/'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/undergraduate/degree-requirements/'
+      preLoaderRoute: typeof LocaleAcademicsUndergraduateDegreeRequirementsIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/undergraduate/curriculum/': {
-      id: '/{-$locale}/academics/undergraduate/curriculum/'
+    '/$locale/academics/undergraduate/curriculum/': {
+      id: '/$locale/academics/undergraduate/curriculum/'
       path: '/academics/undergraduate/curriculum'
-      fullPath: '/{-$locale}/academics/undergraduate/curriculum/'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsUndergraduateCurriculumIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/undergraduate/curriculum/'
+      preLoaderRoute: typeof LocaleAcademicsUndergraduateCurriculumIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/$studentType/scholarship/': {
-      id: '/{-$locale}/academics/$studentType/scholarship/'
+    '/$locale/academics/$studentType/scholarship/': {
+      id: '/$locale/academics/$studentType/scholarship/'
       path: '/academics/$studentType/scholarship'
-      fullPath: '/{-$locale}/academics/$studentType/scholarship/'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsStudentTypeScholarshipIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/$studentType/scholarship/'
+      preLoaderRoute: typeof LocaleAcademicsStudentTypeScholarshipIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/$studentType/guide/': {
-      id: '/{-$locale}/academics/$studentType/guide/'
+    '/$locale/academics/$studentType/guide/': {
+      id: '/$locale/academics/$studentType/guide/'
       path: '/academics/$studentType/guide'
-      fullPath: '/{-$locale}/academics/$studentType/guide/'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsStudentTypeGuideIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/$studentType/guide/'
+      preLoaderRoute: typeof LocaleAcademicsStudentTypeGuideIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/$studentType/course-changes/': {
-      id: '/{-$locale}/academics/$studentType/course-changes/'
+    '/$locale/academics/$studentType/course-changes/': {
+      id: '/$locale/academics/$studentType/course-changes/'
       path: '/academics/$studentType/course-changes'
-      fullPath: '/{-$locale}/academics/$studentType/course-changes/'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsStudentTypeCourseChangesIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/$studentType/course-changes/'
+      preLoaderRoute: typeof LocaleAcademicsStudentTypeCourseChangesIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/research/labs/$id/edit': {
-      id: '/{-$locale}/research/labs/$id/edit'
+    '/$locale/research/labs/$id/edit': {
+      id: '/$locale/research/labs/$id/edit'
       path: '/research/labs/$id/edit'
-      fullPath: '/{-$locale}/research/labs/$id/edit'
-      preLoaderRoute: typeof Char123LocaleChar125ResearchLabsIdEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/research/labs/$id/edit'
+      preLoaderRoute: typeof LocaleResearchLabsIdEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/research/groups/$id/edit': {
-      id: '/{-$locale}/research/groups/$id/edit'
+    '/$locale/research/groups/$id/edit': {
+      id: '/$locale/research/groups/$id/edit'
       path: '/research/groups/$id/edit'
-      fullPath: '/{-$locale}/research/groups/$id/edit'
-      preLoaderRoute: typeof Char123LocaleChar125ResearchGroupsIdEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/research/groups/$id/edit'
+      preLoaderRoute: typeof LocaleResearchGroupsIdEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/research/centers/$id/edit': {
-      id: '/{-$locale}/research/centers/$id/edit'
+    '/$locale/research/centers/$id/edit': {
+      id: '/$locale/research/centers/$id/edit'
       path: '/research/centers/$id/edit'
-      fullPath: '/{-$locale}/research/centers/$id/edit'
-      preLoaderRoute: typeof Char123LocaleChar125ResearchCentersIdEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/research/centers/$id/edit'
+      preLoaderRoute: typeof LocaleResearchCentersIdEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/people/staff/$id/edit': {
-      id: '/{-$locale}/people/staff/$id/edit'
+    '/$locale/people/staff/$id/edit': {
+      id: '/$locale/people/staff/$id/edit'
       path: '/people/staff/$id/edit'
-      fullPath: '/{-$locale}/people/staff/$id/edit'
-      preLoaderRoute: typeof Char123LocaleChar125PeopleStaffIdEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/people/staff/$id/edit'
+      preLoaderRoute: typeof LocalePeopleStaffIdEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/people/faculty/$id/edit': {
-      id: '/{-$locale}/people/faculty/$id/edit'
+    '/$locale/people/faculty/$id/edit': {
+      id: '/$locale/people/faculty/$id/edit'
       path: '/people/faculty/$id/edit'
-      fullPath: '/{-$locale}/people/faculty/$id/edit'
-      preLoaderRoute: typeof Char123LocaleChar125PeopleFacultyIdEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/people/faculty/$id/edit'
+      preLoaderRoute: typeof LocalePeopleFacultyIdEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/people/emeritus-faculty/$id/edit': {
-      id: '/{-$locale}/people/emeritus-faculty/$id/edit'
+    '/$locale/people/emeritus-faculty/$id/edit': {
+      id: '/$locale/people/emeritus-faculty/$id/edit'
       path: '/people/emeritus-faculty/$id/edit'
-      fullPath: '/{-$locale}/people/emeritus-faculty/$id/edit'
-      preLoaderRoute: typeof Char123LocaleChar125PeopleEmeritusFacultyIdEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/people/emeritus-faculty/$id/edit'
+      preLoaderRoute: typeof LocalePeopleEmeritusFacultyIdEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/community/seminar/edit/$id': {
-      id: '/{-$locale}/community/seminar/edit/$id'
+    '/$locale/community/seminar/edit/$id': {
+      id: '/$locale/community/seminar/edit/$id'
       path: '/community/seminar/edit/$id'
-      fullPath: '/{-$locale}/community/seminar/edit/$id'
-      preLoaderRoute: typeof Char123LocaleChar125CommunitySeminarEditIdRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/community/seminar/edit/$id'
+      preLoaderRoute: typeof LocaleCommunitySeminarEditIdRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/community/notice/edit/$id': {
-      id: '/{-$locale}/community/notice/edit/$id'
+    '/$locale/community/notice/edit/$id': {
+      id: '/$locale/community/notice/edit/$id'
       path: '/community/notice/edit/$id'
-      fullPath: '/{-$locale}/community/notice/edit/$id'
-      preLoaderRoute: typeof Char123LocaleChar125CommunityNoticeEditIdRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/community/notice/edit/$id'
+      preLoaderRoute: typeof LocaleCommunityNoticeEditIdRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/community/news/edit/$id': {
-      id: '/{-$locale}/community/news/edit/$id'
+    '/$locale/community/news/edit/$id': {
+      id: '/$locale/community/news/edit/$id'
       path: '/community/news/edit/$id'
-      fullPath: '/{-$locale}/community/news/edit/$id'
-      preLoaderRoute: typeof Char123LocaleChar125CommunityNewsEditIdRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/community/news/edit/$id'
+      preLoaderRoute: typeof LocaleCommunityNewsEditIdRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/admissions/$mainType/$postType/edit': {
-      id: '/{-$locale}/admissions/$mainType/$postType/edit'
+    '/$locale/admissions/$mainType/$postType/edit': {
+      id: '/$locale/admissions/$mainType/$postType/edit'
       path: '/admissions/$mainType/$postType/edit'
-      fullPath: '/{-$locale}/admissions/$mainType/$postType/edit'
-      preLoaderRoute: typeof Char123LocaleChar125AdmissionsMainTypePostTypeEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/admissions/$mainType/$postType/edit'
+      preLoaderRoute: typeof LocaleAdmissionsMainTypePostTypeEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/undergraduate/general-studies-requirements/create': {
-      id: '/{-$locale}/academics/undergraduate/general-studies-requirements/create'
+    '/$locale/academics/undergraduate/general-studies-requirements/create': {
+      id: '/$locale/academics/undergraduate/general-studies-requirements/create'
       path: '/academics/undergraduate/general-studies-requirements/create'
-      fullPath: '/{-$locale}/academics/undergraduate/general-studies-requirements/create'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsCreateRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/undergraduate/general-studies-requirements/create'
+      preLoaderRoute: typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsCreateRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/undergraduate/degree-requirements/edit': {
-      id: '/{-$locale}/academics/undergraduate/degree-requirements/edit'
+    '/$locale/academics/undergraduate/degree-requirements/edit': {
+      id: '/$locale/academics/undergraduate/degree-requirements/edit'
       path: '/academics/undergraduate/degree-requirements/edit'
-      fullPath: '/{-$locale}/academics/undergraduate/degree-requirements/edit'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/undergraduate/degree-requirements/edit'
+      preLoaderRoute: typeof LocaleAcademicsUndergraduateDegreeRequirementsEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/undergraduate/curriculum/create': {
-      id: '/{-$locale}/academics/undergraduate/curriculum/create'
+    '/$locale/academics/undergraduate/curriculum/create': {
+      id: '/$locale/academics/undergraduate/curriculum/create'
       path: '/academics/undergraduate/curriculum/create'
-      fullPath: '/{-$locale}/academics/undergraduate/curriculum/create'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsUndergraduateCurriculumCreateRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/undergraduate/curriculum/create'
+      preLoaderRoute: typeof LocaleAcademicsUndergraduateCurriculumCreateRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/$studentType/scholarship/edit': {
-      id: '/{-$locale}/academics/$studentType/scholarship/edit'
+    '/$locale/academics/$studentType/scholarship/edit': {
+      id: '/$locale/academics/$studentType/scholarship/edit'
       path: '/academics/$studentType/scholarship/edit'
-      fullPath: '/{-$locale}/academics/$studentType/scholarship/edit'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsStudentTypeScholarshipEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/$studentType/scholarship/edit'
+      preLoaderRoute: typeof LocaleAcademicsStudentTypeScholarshipEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/$studentType/scholarship/create': {
-      id: '/{-$locale}/academics/$studentType/scholarship/create'
+    '/$locale/academics/$studentType/scholarship/create': {
+      id: '/$locale/academics/$studentType/scholarship/create'
       path: '/academics/$studentType/scholarship/create'
-      fullPath: '/{-$locale}/academics/$studentType/scholarship/create'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsStudentTypeScholarshipCreateRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/$studentType/scholarship/create'
+      preLoaderRoute: typeof LocaleAcademicsStudentTypeScholarshipCreateRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/$studentType/guide/edit': {
-      id: '/{-$locale}/academics/$studentType/guide/edit'
+    '/$locale/academics/$studentType/guide/edit': {
+      id: '/$locale/academics/$studentType/guide/edit'
       path: '/academics/$studentType/guide/edit'
-      fullPath: '/{-$locale}/academics/$studentType/guide/edit'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsStudentTypeGuideEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/$studentType/guide/edit'
+      preLoaderRoute: typeof LocaleAcademicsStudentTypeGuideEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/$studentType/course-changes/create': {
-      id: '/{-$locale}/academics/$studentType/course-changes/create'
+    '/$locale/academics/$studentType/course-changes/create': {
+      id: '/$locale/academics/$studentType/course-changes/create'
       path: '/academics/$studentType/course-changes/create'
-      fullPath: '/{-$locale}/academics/$studentType/course-changes/create'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsStudentTypeCourseChangesCreateRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/$studentType/course-changes/create'
+      preLoaderRoute: typeof LocaleAcademicsStudentTypeCourseChangesCreateRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/future-careers/stat/edit': {
-      id: '/{-$locale}/about/future-careers/stat/edit'
+    '/$locale/about/future-careers/stat/edit': {
+      id: '/$locale/about/future-careers/stat/edit'
       path: '/about/future-careers/stat/edit'
-      fullPath: '/{-$locale}/about/future-careers/stat/edit'
-      preLoaderRoute: typeof Char123LocaleChar125AboutFutureCareersStatEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/future-careers/stat/edit'
+      preLoaderRoute: typeof LocaleAboutFutureCareersStatEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/future-careers/stat/create': {
-      id: '/{-$locale}/about/future-careers/stat/create'
+    '/$locale/about/future-careers/stat/create': {
+      id: '/$locale/about/future-careers/stat/create'
       path: '/about/future-careers/stat/create'
-      fullPath: '/{-$locale}/about/future-careers/stat/create'
-      preLoaderRoute: typeof Char123LocaleChar125AboutFutureCareersStatCreateRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/future-careers/stat/create'
+      preLoaderRoute: typeof LocaleAboutFutureCareersStatCreateRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/future-careers/description/edit': {
-      id: '/{-$locale}/about/future-careers/description/edit'
+    '/$locale/about/future-careers/description/edit': {
+      id: '/$locale/about/future-careers/description/edit'
       path: '/about/future-careers/description/edit'
-      fullPath: '/{-$locale}/about/future-careers/description/edit'
-      preLoaderRoute: typeof Char123LocaleChar125AboutFutureCareersDescriptionEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/future-careers/description/edit'
+      preLoaderRoute: typeof LocaleAboutFutureCareersDescriptionEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/about/directions/$id/edit': {
-      id: '/{-$locale}/about/directions/$id/edit'
+    '/$locale/about/directions/$id/edit': {
+      id: '/$locale/about/directions/$id/edit'
       path: '/about/directions/$id/edit'
-      fullPath: '/{-$locale}/about/directions/$id/edit'
-      preLoaderRoute: typeof Char123LocaleChar125AboutDirectionsIdEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/about/directions/$id/edit'
+      preLoaderRoute: typeof LocaleAboutDirectionsIdEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/$studentType/scholarship/$id/': {
-      id: '/{-$locale}/academics/$studentType/scholarship/$id/'
+    '/$locale/academics/$studentType/scholarship/$id/': {
+      id: '/$locale/academics/$studentType/scholarship/$id/'
       path: '/academics/$studentType/scholarship/$id'
-      fullPath: '/{-$locale}/academics/$studentType/scholarship/$id/'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsStudentTypeScholarshipIdIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/$studentType/scholarship/$id/'
+      preLoaderRoute: typeof LocaleAcademicsStudentTypeScholarshipIdIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/undergraduate/general-studies-requirements/edit/$year': {
-      id: '/{-$locale}/academics/undergraduate/general-studies-requirements/edit/$year'
+    '/$locale/academics/undergraduate/general-studies-requirements/edit/$year': {
+      id: '/$locale/academics/undergraduate/general-studies-requirements/edit/$year'
       path: '/academics/undergraduate/general-studies-requirements/edit/$year'
-      fullPath: '/{-$locale}/academics/undergraduate/general-studies-requirements/edit/$year'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsEditYearRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/undergraduate/general-studies-requirements/edit/$year'
+      preLoaderRoute: typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsEditYearRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/undergraduate/curriculum/edit/$year': {
-      id: '/{-$locale}/academics/undergraduate/curriculum/edit/$year'
+    '/$locale/academics/undergraduate/curriculum/edit/$year': {
+      id: '/$locale/academics/undergraduate/curriculum/edit/$year'
       path: '/academics/undergraduate/curriculum/edit/$year'
-      fullPath: '/{-$locale}/academics/undergraduate/curriculum/edit/$year'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsUndergraduateCurriculumEditYearRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/undergraduate/curriculum/edit/$year'
+      preLoaderRoute: typeof LocaleAcademicsUndergraduateCurriculumEditYearRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/$studentType/scholarship/$id/edit': {
-      id: '/{-$locale}/academics/$studentType/scholarship/$id/edit'
+    '/$locale/academics/$studentType/scholarship/$id/edit': {
+      id: '/$locale/academics/$studentType/scholarship/$id/edit'
       path: '/academics/$studentType/scholarship/$id/edit'
-      fullPath: '/{-$locale}/academics/$studentType/scholarship/$id/edit'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsStudentTypeScholarshipIdEditRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/$studentType/scholarship/$id/edit'
+      preLoaderRoute: typeof LocaleAcademicsStudentTypeScholarshipIdEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
-    '/{-$locale}/academics/$studentType/course-changes/edit/$year': {
-      id: '/{-$locale}/academics/$studentType/course-changes/edit/$year'
+    '/$locale/academics/$studentType/course-changes/edit/$year': {
+      id: '/$locale/academics/$studentType/course-changes/edit/$year'
       path: '/academics/$studentType/course-changes/edit/$year'
-      fullPath: '/{-$locale}/academics/$studentType/course-changes/edit/$year'
-      preLoaderRoute: typeof Char123LocaleChar125AcademicsStudentTypeCourseChangesEditYearRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      fullPath: '/$locale/academics/$studentType/course-changes/edit/$year'
+      preLoaderRoute: typeof LocaleAcademicsStudentTypeCourseChangesEditYearRouteImport
+      parentRoute: typeof LocaleRouteRoute
     }
   }
 }
 
-interface Char123LocaleChar125RouteRouteChildren {
-  Char123LocaleChar125IndexRoute: typeof Char123LocaleChar125IndexRoute
-  Char123LocaleChar1251010ProjectManagerRoute: typeof Char123LocaleChar1251010ProjectManagerRoute
-  Char123LocaleChar1251010ProjectParticipantsRoute: typeof Char123LocaleChar1251010ProjectParticipantsRoute
-  Char123LocaleChar1251010ProjectProposalRoute: typeof Char123LocaleChar1251010ProjectProposalRoute
-  Char123LocaleChar125AboutContactRoute: typeof Char123LocaleChar125AboutContactRoute
-  Char123LocaleChar125AboutGreetingsRoute: typeof Char123LocaleChar125AboutGreetingsRoute
-  Char123LocaleChar125AboutHistoryRoute: typeof Char123LocaleChar125AboutHistoryRoute
-  Char123LocaleChar125ReservationsIntroductionRoute: typeof Char123LocaleChar125ReservationsIntroductionRoute
-  Char123LocaleChar125ReservationsPrivacyPolicyRoute: typeof Char123LocaleChar125ReservationsPrivacyPolicyRoute
-  Char123LocaleChar1251010ProjectIndexRoute: typeof Char123LocaleChar1251010ProjectIndexRoute
-  Char123LocaleChar125AboutIndexRoute: typeof Char123LocaleChar125AboutIndexRoute
-  Char123LocaleChar125AcademicsIndexRoute: typeof Char123LocaleChar125AcademicsIndexRoute
-  Char123LocaleChar125AdmissionsIndexRoute: typeof Char123LocaleChar125AdmissionsIndexRoute
-  Char123LocaleChar125CommunityIndexRoute: typeof Char123LocaleChar125CommunityIndexRoute
-  Char123LocaleChar125PeopleIndexRoute: typeof Char123LocaleChar125PeopleIndexRoute
-  Char123LocaleChar125ResearchIndexRoute: typeof Char123LocaleChar125ResearchIndexRoute
-  Char123LocaleChar125ReservationsIndexRoute: typeof Char123LocaleChar125ReservationsIndexRoute
-  Char123LocaleChar125SearchIndexRoute: typeof Char123LocaleChar125SearchIndexRoute
-  Char123LocaleChar125AboutTypeEditRoute: typeof Char123LocaleChar125AboutTypeEditRoute
-  Char123LocaleChar125AboutFacilitiesCreateRoute: typeof Char123LocaleChar125AboutFacilitiesCreateRoute
-  Char123LocaleChar125AboutFacilitiesEditRoute: typeof Char123LocaleChar125AboutFacilitiesEditRoute
-  Char123LocaleChar125AboutOverviewEditRoute: typeof Char123LocaleChar125AboutOverviewEditRoute
-  Char123LocaleChar125AboutStudentClubsCreateRoute: typeof Char123LocaleChar125AboutStudentClubsCreateRoute
-  Char123LocaleChar125AboutStudentClubsEditRoute: typeof Char123LocaleChar125AboutStudentClubsEditRoute
-  Char123LocaleChar125AcademicsStudentTypeCoursesRoute: typeof Char123LocaleChar125AcademicsStudentTypeCoursesRoute
-  Char123LocaleChar125CommunityFacultyRecruitmentEditRoute: typeof Char123LocaleChar125CommunityFacultyRecruitmentEditRoute
-  Char123LocaleChar125CommunityNewsIdRoute: typeof Char123LocaleChar125CommunityNewsIdRoute
-  Char123LocaleChar125CommunityNewsCreateRoute: typeof Char123LocaleChar125CommunityNewsCreateRoute
-  Char123LocaleChar125CommunityNoticeIdRoute: typeof Char123LocaleChar125CommunityNoticeIdRoute
-  Char123LocaleChar125CommunityNoticeCreateRoute: typeof Char123LocaleChar125CommunityNoticeCreateRoute
-  Char123LocaleChar125CommunitySeminarIdRoute: typeof Char123LocaleChar125CommunitySeminarIdRoute
-  Char123LocaleChar125CommunitySeminarCreateRoute: typeof Char123LocaleChar125CommunitySeminarCreateRoute
-  Char123LocaleChar125PeopleFacultyCreateRoute: typeof Char123LocaleChar125PeopleFacultyCreateRoute
-  Char123LocaleChar125PeopleStaffCreateRoute: typeof Char123LocaleChar125PeopleStaffCreateRoute
-  Char123LocaleChar125ResearchCentersCreateRoute: typeof Char123LocaleChar125ResearchCentersCreateRoute
-  Char123LocaleChar125ResearchGroupsCreateRoute: typeof Char123LocaleChar125ResearchGroupsCreateRoute
-  Char123LocaleChar125ResearchLabsCreateRoute: typeof Char123LocaleChar125ResearchLabsCreateRoute
-  Char123LocaleChar125ReservationsRoomTypeRoomNameRoute: typeof Char123LocaleChar125ReservationsRoomTypeRoomNameRoute
-  Char123LocaleChar125AboutDirectionsIndexRoute: typeof Char123LocaleChar125AboutDirectionsIndexRoute
-  Char123LocaleChar125AboutFacilitiesIndexRoute: typeof Char123LocaleChar125AboutFacilitiesIndexRoute
-  Char123LocaleChar125AboutFutureCareersIndexRoute: typeof Char123LocaleChar125AboutFutureCareersIndexRoute
-  Char123LocaleChar125AboutOverviewIndexRoute: typeof Char123LocaleChar125AboutOverviewIndexRoute
-  Char123LocaleChar125AboutStudentClubsIndexRoute: typeof Char123LocaleChar125AboutStudentClubsIndexRoute
-  Char123LocaleChar125CommunityFacultyRecruitmentIndexRoute: typeof Char123LocaleChar125CommunityFacultyRecruitmentIndexRoute
-  Char123LocaleChar125CommunityNewsIndexRoute: typeof Char123LocaleChar125CommunityNewsIndexRoute
-  Char123LocaleChar125CommunityNoticeIndexRoute: typeof Char123LocaleChar125CommunityNoticeIndexRoute
-  Char123LocaleChar125CommunitySeminarIndexRoute: typeof Char123LocaleChar125CommunitySeminarIndexRoute
-  Char123LocaleChar125PeopleEmeritusFacultyIndexRoute: typeof Char123LocaleChar125PeopleEmeritusFacultyIndexRoute
-  Char123LocaleChar125PeopleFacultyIndexRoute: typeof Char123LocaleChar125PeopleFacultyIndexRoute
-  Char123LocaleChar125PeopleStaffIndexRoute: typeof Char123LocaleChar125PeopleStaffIndexRoute
-  Char123LocaleChar125ResearchCentersIndexRoute: typeof Char123LocaleChar125ResearchCentersIndexRoute
-  Char123LocaleChar125ResearchGroupsIndexRoute: typeof Char123LocaleChar125ResearchGroupsIndexRoute
-  Char123LocaleChar125ResearchLabsIndexRoute: typeof Char123LocaleChar125ResearchLabsIndexRoute
-  Char123LocaleChar125ResearchTopConferenceListIndexRoute: typeof Char123LocaleChar125ResearchTopConferenceListIndexRoute
-  Char123LocaleChar125AboutDirectionsIdEditRoute: typeof Char123LocaleChar125AboutDirectionsIdEditRoute
-  Char123LocaleChar125AboutFutureCareersDescriptionEditRoute: typeof Char123LocaleChar125AboutFutureCareersDescriptionEditRoute
-  Char123LocaleChar125AboutFutureCareersStatCreateRoute: typeof Char123LocaleChar125AboutFutureCareersStatCreateRoute
-  Char123LocaleChar125AboutFutureCareersStatEditRoute: typeof Char123LocaleChar125AboutFutureCareersStatEditRoute
-  Char123LocaleChar125AcademicsStudentTypeCourseChangesCreateRoute: typeof Char123LocaleChar125AcademicsStudentTypeCourseChangesCreateRoute
-  Char123LocaleChar125AcademicsStudentTypeGuideEditRoute: typeof Char123LocaleChar125AcademicsStudentTypeGuideEditRoute
-  Char123LocaleChar125AcademicsStudentTypeScholarshipCreateRoute: typeof Char123LocaleChar125AcademicsStudentTypeScholarshipCreateRoute
-  Char123LocaleChar125AcademicsStudentTypeScholarshipEditRoute: typeof Char123LocaleChar125AcademicsStudentTypeScholarshipEditRoute
-  Char123LocaleChar125AcademicsUndergraduateCurriculumCreateRoute: typeof Char123LocaleChar125AcademicsUndergraduateCurriculumCreateRoute
-  Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsEditRoute: typeof Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsEditRoute
-  Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsCreateRoute: typeof Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsCreateRoute
-  Char123LocaleChar125AdmissionsMainTypePostTypeEditRoute: typeof Char123LocaleChar125AdmissionsMainTypePostTypeEditRoute
-  Char123LocaleChar125CommunityNewsEditIdRoute: typeof Char123LocaleChar125CommunityNewsEditIdRoute
-  Char123LocaleChar125CommunityNoticeEditIdRoute: typeof Char123LocaleChar125CommunityNoticeEditIdRoute
-  Char123LocaleChar125CommunitySeminarEditIdRoute: typeof Char123LocaleChar125CommunitySeminarEditIdRoute
-  Char123LocaleChar125PeopleEmeritusFacultyIdEditRoute: typeof Char123LocaleChar125PeopleEmeritusFacultyIdEditRoute
-  Char123LocaleChar125PeopleFacultyIdEditRoute: typeof Char123LocaleChar125PeopleFacultyIdEditRoute
-  Char123LocaleChar125PeopleStaffIdEditRoute: typeof Char123LocaleChar125PeopleStaffIdEditRoute
-  Char123LocaleChar125ResearchCentersIdEditRoute: typeof Char123LocaleChar125ResearchCentersIdEditRoute
-  Char123LocaleChar125ResearchGroupsIdEditRoute: typeof Char123LocaleChar125ResearchGroupsIdEditRoute
-  Char123LocaleChar125ResearchLabsIdEditRoute: typeof Char123LocaleChar125ResearchLabsIdEditRoute
-  Char123LocaleChar125AcademicsStudentTypeCourseChangesIndexRoute: typeof Char123LocaleChar125AcademicsStudentTypeCourseChangesIndexRoute
-  Char123LocaleChar125AcademicsStudentTypeGuideIndexRoute: typeof Char123LocaleChar125AcademicsStudentTypeGuideIndexRoute
-  Char123LocaleChar125AcademicsStudentTypeScholarshipIndexRoute: typeof Char123LocaleChar125AcademicsStudentTypeScholarshipIndexRoute
-  Char123LocaleChar125AcademicsUndergraduateCurriculumIndexRoute: typeof Char123LocaleChar125AcademicsUndergraduateCurriculumIndexRoute
-  Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsIndexRoute: typeof Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsIndexRoute
-  Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsIndexRoute: typeof Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsIndexRoute
-  Char123LocaleChar125AdmissionsMainTypePostTypeIndexRoute: typeof Char123LocaleChar125AdmissionsMainTypePostTypeIndexRoute
-  Char123LocaleChar125PeopleEmeritusFacultyIdIndexRoute: typeof Char123LocaleChar125PeopleEmeritusFacultyIdIndexRoute
-  Char123LocaleChar125PeopleFacultyIdIndexRoute: typeof Char123LocaleChar125PeopleFacultyIdIndexRoute
-  Char123LocaleChar125PeopleStaffIdIndexRoute: typeof Char123LocaleChar125PeopleStaffIdIndexRoute
-  Char123LocaleChar125ResearchLabsIdIndexRoute: typeof Char123LocaleChar125ResearchLabsIdIndexRoute
-  Char123LocaleChar125AcademicsStudentTypeCourseChangesEditYearRoute: typeof Char123LocaleChar125AcademicsStudentTypeCourseChangesEditYearRoute
-  Char123LocaleChar125AcademicsStudentTypeScholarshipIdEditRoute: typeof Char123LocaleChar125AcademicsStudentTypeScholarshipIdEditRoute
-  Char123LocaleChar125AcademicsUndergraduateCurriculumEditYearRoute: typeof Char123LocaleChar125AcademicsUndergraduateCurriculumEditYearRoute
-  Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute: typeof Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute
-  Char123LocaleChar125AcademicsStudentTypeScholarshipIdIndexRoute: typeof Char123LocaleChar125AcademicsStudentTypeScholarshipIdIndexRoute
+interface LocaleRouteRouteChildren {
+  LocaleIndexRoute: typeof LocaleIndexRoute
+  Locale1010ProjectManagerRoute: typeof Locale1010ProjectManagerRoute
+  Locale1010ProjectParticipantsRoute: typeof Locale1010ProjectParticipantsRoute
+  Locale1010ProjectProposalRoute: typeof Locale1010ProjectProposalRoute
+  LocaleAboutContactRoute: typeof LocaleAboutContactRoute
+  LocaleAboutGreetingsRoute: typeof LocaleAboutGreetingsRoute
+  LocaleAboutHistoryRoute: typeof LocaleAboutHistoryRoute
+  LocaleReservationsIntroductionRoute: typeof LocaleReservationsIntroductionRoute
+  LocaleReservationsPrivacyPolicyRoute: typeof LocaleReservationsPrivacyPolicyRoute
+  Locale1010ProjectIndexRoute: typeof Locale1010ProjectIndexRoute
+  LocaleAboutIndexRoute: typeof LocaleAboutIndexRoute
+  LocaleAcademicsIndexRoute: typeof LocaleAcademicsIndexRoute
+  LocaleAdmissionsIndexRoute: typeof LocaleAdmissionsIndexRoute
+  LocaleCommunityIndexRoute: typeof LocaleCommunityIndexRoute
+  LocalePeopleIndexRoute: typeof LocalePeopleIndexRoute
+  LocaleResearchIndexRoute: typeof LocaleResearchIndexRoute
+  LocaleReservationsIndexRoute: typeof LocaleReservationsIndexRoute
+  LocaleSearchIndexRoute: typeof LocaleSearchIndexRoute
+  LocaleAboutTypeEditRoute: typeof LocaleAboutTypeEditRoute
+  LocaleAboutFacilitiesCreateRoute: typeof LocaleAboutFacilitiesCreateRoute
+  LocaleAboutFacilitiesEditRoute: typeof LocaleAboutFacilitiesEditRoute
+  LocaleAboutOverviewEditRoute: typeof LocaleAboutOverviewEditRoute
+  LocaleAboutStudentClubsCreateRoute: typeof LocaleAboutStudentClubsCreateRoute
+  LocaleAboutStudentClubsEditRoute: typeof LocaleAboutStudentClubsEditRoute
+  LocaleAcademicsStudentTypeCoursesRoute: typeof LocaleAcademicsStudentTypeCoursesRoute
+  LocaleCommunityFacultyRecruitmentEditRoute: typeof LocaleCommunityFacultyRecruitmentEditRoute
+  LocaleCommunityNewsIdRoute: typeof LocaleCommunityNewsIdRoute
+  LocaleCommunityNewsCreateRoute: typeof LocaleCommunityNewsCreateRoute
+  LocaleCommunityNoticeIdRoute: typeof LocaleCommunityNoticeIdRoute
+  LocaleCommunityNoticeCreateRoute: typeof LocaleCommunityNoticeCreateRoute
+  LocaleCommunitySeminarIdRoute: typeof LocaleCommunitySeminarIdRoute
+  LocaleCommunitySeminarCreateRoute: typeof LocaleCommunitySeminarCreateRoute
+  LocalePeopleFacultyCreateRoute: typeof LocalePeopleFacultyCreateRoute
+  LocalePeopleStaffCreateRoute: typeof LocalePeopleStaffCreateRoute
+  LocaleResearchCentersCreateRoute: typeof LocaleResearchCentersCreateRoute
+  LocaleResearchGroupsCreateRoute: typeof LocaleResearchGroupsCreateRoute
+  LocaleResearchLabsCreateRoute: typeof LocaleResearchLabsCreateRoute
+  LocaleReservationsRoomTypeRoomNameRoute: typeof LocaleReservationsRoomTypeRoomNameRoute
+  LocaleAboutDirectionsIndexRoute: typeof LocaleAboutDirectionsIndexRoute
+  LocaleAboutFacilitiesIndexRoute: typeof LocaleAboutFacilitiesIndexRoute
+  LocaleAboutFutureCareersIndexRoute: typeof LocaleAboutFutureCareersIndexRoute
+  LocaleAboutOverviewIndexRoute: typeof LocaleAboutOverviewIndexRoute
+  LocaleAboutStudentClubsIndexRoute: typeof LocaleAboutStudentClubsIndexRoute
+  LocaleCommunityFacultyRecruitmentIndexRoute: typeof LocaleCommunityFacultyRecruitmentIndexRoute
+  LocaleCommunityNewsIndexRoute: typeof LocaleCommunityNewsIndexRoute
+  LocaleCommunityNoticeIndexRoute: typeof LocaleCommunityNoticeIndexRoute
+  LocaleCommunitySeminarIndexRoute: typeof LocaleCommunitySeminarIndexRoute
+  LocalePeopleEmeritusFacultyIndexRoute: typeof LocalePeopleEmeritusFacultyIndexRoute
+  LocalePeopleFacultyIndexRoute: typeof LocalePeopleFacultyIndexRoute
+  LocalePeopleStaffIndexRoute: typeof LocalePeopleStaffIndexRoute
+  LocaleResearchCentersIndexRoute: typeof LocaleResearchCentersIndexRoute
+  LocaleResearchGroupsIndexRoute: typeof LocaleResearchGroupsIndexRoute
+  LocaleResearchLabsIndexRoute: typeof LocaleResearchLabsIndexRoute
+  LocaleResearchTopConferenceListIndexRoute: typeof LocaleResearchTopConferenceListIndexRoute
+  LocaleAboutDirectionsIdEditRoute: typeof LocaleAboutDirectionsIdEditRoute
+  LocaleAboutFutureCareersDescriptionEditRoute: typeof LocaleAboutFutureCareersDescriptionEditRoute
+  LocaleAboutFutureCareersStatCreateRoute: typeof LocaleAboutFutureCareersStatCreateRoute
+  LocaleAboutFutureCareersStatEditRoute: typeof LocaleAboutFutureCareersStatEditRoute
+  LocaleAcademicsStudentTypeCourseChangesCreateRoute: typeof LocaleAcademicsStudentTypeCourseChangesCreateRoute
+  LocaleAcademicsStudentTypeGuideEditRoute: typeof LocaleAcademicsStudentTypeGuideEditRoute
+  LocaleAcademicsStudentTypeScholarshipCreateRoute: typeof LocaleAcademicsStudentTypeScholarshipCreateRoute
+  LocaleAcademicsStudentTypeScholarshipEditRoute: typeof LocaleAcademicsStudentTypeScholarshipEditRoute
+  LocaleAcademicsUndergraduateCurriculumCreateRoute: typeof LocaleAcademicsUndergraduateCurriculumCreateRoute
+  LocaleAcademicsUndergraduateDegreeRequirementsEditRoute: typeof LocaleAcademicsUndergraduateDegreeRequirementsEditRoute
+  LocaleAcademicsUndergraduateGeneralStudiesRequirementsCreateRoute: typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsCreateRoute
+  LocaleAdmissionsMainTypePostTypeEditRoute: typeof LocaleAdmissionsMainTypePostTypeEditRoute
+  LocaleCommunityNewsEditIdRoute: typeof LocaleCommunityNewsEditIdRoute
+  LocaleCommunityNoticeEditIdRoute: typeof LocaleCommunityNoticeEditIdRoute
+  LocaleCommunitySeminarEditIdRoute: typeof LocaleCommunitySeminarEditIdRoute
+  LocalePeopleEmeritusFacultyIdEditRoute: typeof LocalePeopleEmeritusFacultyIdEditRoute
+  LocalePeopleFacultyIdEditRoute: typeof LocalePeopleFacultyIdEditRoute
+  LocalePeopleStaffIdEditRoute: typeof LocalePeopleStaffIdEditRoute
+  LocaleResearchCentersIdEditRoute: typeof LocaleResearchCentersIdEditRoute
+  LocaleResearchGroupsIdEditRoute: typeof LocaleResearchGroupsIdEditRoute
+  LocaleResearchLabsIdEditRoute: typeof LocaleResearchLabsIdEditRoute
+  LocaleAcademicsStudentTypeCourseChangesIndexRoute: typeof LocaleAcademicsStudentTypeCourseChangesIndexRoute
+  LocaleAcademicsStudentTypeGuideIndexRoute: typeof LocaleAcademicsStudentTypeGuideIndexRoute
+  LocaleAcademicsStudentTypeScholarshipIndexRoute: typeof LocaleAcademicsStudentTypeScholarshipIndexRoute
+  LocaleAcademicsUndergraduateCurriculumIndexRoute: typeof LocaleAcademicsUndergraduateCurriculumIndexRoute
+  LocaleAcademicsUndergraduateDegreeRequirementsIndexRoute: typeof LocaleAcademicsUndergraduateDegreeRequirementsIndexRoute
+  LocaleAcademicsUndergraduateGeneralStudiesRequirementsIndexRoute: typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsIndexRoute
+  LocaleAdmissionsMainTypePostTypeIndexRoute: typeof LocaleAdmissionsMainTypePostTypeIndexRoute
+  LocalePeopleEmeritusFacultyIdIndexRoute: typeof LocalePeopleEmeritusFacultyIdIndexRoute
+  LocalePeopleFacultyIdIndexRoute: typeof LocalePeopleFacultyIdIndexRoute
+  LocalePeopleStaffIdIndexRoute: typeof LocalePeopleStaffIdIndexRoute
+  LocaleResearchLabsIdIndexRoute: typeof LocaleResearchLabsIdIndexRoute
+  LocaleAcademicsStudentTypeCourseChangesEditYearRoute: typeof LocaleAcademicsStudentTypeCourseChangesEditYearRoute
+  LocaleAcademicsStudentTypeScholarshipIdEditRoute: typeof LocaleAcademicsStudentTypeScholarshipIdEditRoute
+  LocaleAcademicsUndergraduateCurriculumEditYearRoute: typeof LocaleAcademicsUndergraduateCurriculumEditYearRoute
+  LocaleAcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute: typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute
+  LocaleAcademicsStudentTypeScholarshipIdIndexRoute: typeof LocaleAcademicsStudentTypeScholarshipIdIndexRoute
 }
 
-const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChildren =
-  {
-    Char123LocaleChar125IndexRoute: Char123LocaleChar125IndexRoute,
-    Char123LocaleChar1251010ProjectManagerRoute:
-      Char123LocaleChar1251010ProjectManagerRoute,
-    Char123LocaleChar1251010ProjectParticipantsRoute:
-      Char123LocaleChar1251010ProjectParticipantsRoute,
-    Char123LocaleChar1251010ProjectProposalRoute:
-      Char123LocaleChar1251010ProjectProposalRoute,
-    Char123LocaleChar125AboutContactRoute:
-      Char123LocaleChar125AboutContactRoute,
-    Char123LocaleChar125AboutGreetingsRoute:
-      Char123LocaleChar125AboutGreetingsRoute,
-    Char123LocaleChar125AboutHistoryRoute:
-      Char123LocaleChar125AboutHistoryRoute,
-    Char123LocaleChar125ReservationsIntroductionRoute:
-      Char123LocaleChar125ReservationsIntroductionRoute,
-    Char123LocaleChar125ReservationsPrivacyPolicyRoute:
-      Char123LocaleChar125ReservationsPrivacyPolicyRoute,
-    Char123LocaleChar1251010ProjectIndexRoute:
-      Char123LocaleChar1251010ProjectIndexRoute,
-    Char123LocaleChar125AboutIndexRoute: Char123LocaleChar125AboutIndexRoute,
-    Char123LocaleChar125AcademicsIndexRoute:
-      Char123LocaleChar125AcademicsIndexRoute,
-    Char123LocaleChar125AdmissionsIndexRoute:
-      Char123LocaleChar125AdmissionsIndexRoute,
-    Char123LocaleChar125CommunityIndexRoute:
-      Char123LocaleChar125CommunityIndexRoute,
-    Char123LocaleChar125PeopleIndexRoute: Char123LocaleChar125PeopleIndexRoute,
-    Char123LocaleChar125ResearchIndexRoute:
-      Char123LocaleChar125ResearchIndexRoute,
-    Char123LocaleChar125ReservationsIndexRoute:
-      Char123LocaleChar125ReservationsIndexRoute,
-    Char123LocaleChar125SearchIndexRoute: Char123LocaleChar125SearchIndexRoute,
-    Char123LocaleChar125AboutTypeEditRoute:
-      Char123LocaleChar125AboutTypeEditRoute,
-    Char123LocaleChar125AboutFacilitiesCreateRoute:
-      Char123LocaleChar125AboutFacilitiesCreateRoute,
-    Char123LocaleChar125AboutFacilitiesEditRoute:
-      Char123LocaleChar125AboutFacilitiesEditRoute,
-    Char123LocaleChar125AboutOverviewEditRoute:
-      Char123LocaleChar125AboutOverviewEditRoute,
-    Char123LocaleChar125AboutStudentClubsCreateRoute:
-      Char123LocaleChar125AboutStudentClubsCreateRoute,
-    Char123LocaleChar125AboutStudentClubsEditRoute:
-      Char123LocaleChar125AboutStudentClubsEditRoute,
-    Char123LocaleChar125AcademicsStudentTypeCoursesRoute:
-      Char123LocaleChar125AcademicsStudentTypeCoursesRoute,
-    Char123LocaleChar125CommunityFacultyRecruitmentEditRoute:
-      Char123LocaleChar125CommunityFacultyRecruitmentEditRoute,
-    Char123LocaleChar125CommunityNewsIdRoute:
-      Char123LocaleChar125CommunityNewsIdRoute,
-    Char123LocaleChar125CommunityNewsCreateRoute:
-      Char123LocaleChar125CommunityNewsCreateRoute,
-    Char123LocaleChar125CommunityNoticeIdRoute:
-      Char123LocaleChar125CommunityNoticeIdRoute,
-    Char123LocaleChar125CommunityNoticeCreateRoute:
-      Char123LocaleChar125CommunityNoticeCreateRoute,
-    Char123LocaleChar125CommunitySeminarIdRoute:
-      Char123LocaleChar125CommunitySeminarIdRoute,
-    Char123LocaleChar125CommunitySeminarCreateRoute:
-      Char123LocaleChar125CommunitySeminarCreateRoute,
-    Char123LocaleChar125PeopleFacultyCreateRoute:
-      Char123LocaleChar125PeopleFacultyCreateRoute,
-    Char123LocaleChar125PeopleStaffCreateRoute:
-      Char123LocaleChar125PeopleStaffCreateRoute,
-    Char123LocaleChar125ResearchCentersCreateRoute:
-      Char123LocaleChar125ResearchCentersCreateRoute,
-    Char123LocaleChar125ResearchGroupsCreateRoute:
-      Char123LocaleChar125ResearchGroupsCreateRoute,
-    Char123LocaleChar125ResearchLabsCreateRoute:
-      Char123LocaleChar125ResearchLabsCreateRoute,
-    Char123LocaleChar125ReservationsRoomTypeRoomNameRoute:
-      Char123LocaleChar125ReservationsRoomTypeRoomNameRoute,
-    Char123LocaleChar125AboutDirectionsIndexRoute:
-      Char123LocaleChar125AboutDirectionsIndexRoute,
-    Char123LocaleChar125AboutFacilitiesIndexRoute:
-      Char123LocaleChar125AboutFacilitiesIndexRoute,
-    Char123LocaleChar125AboutFutureCareersIndexRoute:
-      Char123LocaleChar125AboutFutureCareersIndexRoute,
-    Char123LocaleChar125AboutOverviewIndexRoute:
-      Char123LocaleChar125AboutOverviewIndexRoute,
-    Char123LocaleChar125AboutStudentClubsIndexRoute:
-      Char123LocaleChar125AboutStudentClubsIndexRoute,
-    Char123LocaleChar125CommunityFacultyRecruitmentIndexRoute:
-      Char123LocaleChar125CommunityFacultyRecruitmentIndexRoute,
-    Char123LocaleChar125CommunityNewsIndexRoute:
-      Char123LocaleChar125CommunityNewsIndexRoute,
-    Char123LocaleChar125CommunityNoticeIndexRoute:
-      Char123LocaleChar125CommunityNoticeIndexRoute,
-    Char123LocaleChar125CommunitySeminarIndexRoute:
-      Char123LocaleChar125CommunitySeminarIndexRoute,
-    Char123LocaleChar125PeopleEmeritusFacultyIndexRoute:
-      Char123LocaleChar125PeopleEmeritusFacultyIndexRoute,
-    Char123LocaleChar125PeopleFacultyIndexRoute:
-      Char123LocaleChar125PeopleFacultyIndexRoute,
-    Char123LocaleChar125PeopleStaffIndexRoute:
-      Char123LocaleChar125PeopleStaffIndexRoute,
-    Char123LocaleChar125ResearchCentersIndexRoute:
-      Char123LocaleChar125ResearchCentersIndexRoute,
-    Char123LocaleChar125ResearchGroupsIndexRoute:
-      Char123LocaleChar125ResearchGroupsIndexRoute,
-    Char123LocaleChar125ResearchLabsIndexRoute:
-      Char123LocaleChar125ResearchLabsIndexRoute,
-    Char123LocaleChar125ResearchTopConferenceListIndexRoute:
-      Char123LocaleChar125ResearchTopConferenceListIndexRoute,
-    Char123LocaleChar125AboutDirectionsIdEditRoute:
-      Char123LocaleChar125AboutDirectionsIdEditRoute,
-    Char123LocaleChar125AboutFutureCareersDescriptionEditRoute:
-      Char123LocaleChar125AboutFutureCareersDescriptionEditRoute,
-    Char123LocaleChar125AboutFutureCareersStatCreateRoute:
-      Char123LocaleChar125AboutFutureCareersStatCreateRoute,
-    Char123LocaleChar125AboutFutureCareersStatEditRoute:
-      Char123LocaleChar125AboutFutureCareersStatEditRoute,
-    Char123LocaleChar125AcademicsStudentTypeCourseChangesCreateRoute:
-      Char123LocaleChar125AcademicsStudentTypeCourseChangesCreateRoute,
-    Char123LocaleChar125AcademicsStudentTypeGuideEditRoute:
-      Char123LocaleChar125AcademicsStudentTypeGuideEditRoute,
-    Char123LocaleChar125AcademicsStudentTypeScholarshipCreateRoute:
-      Char123LocaleChar125AcademicsStudentTypeScholarshipCreateRoute,
-    Char123LocaleChar125AcademicsStudentTypeScholarshipEditRoute:
-      Char123LocaleChar125AcademicsStudentTypeScholarshipEditRoute,
-    Char123LocaleChar125AcademicsUndergraduateCurriculumCreateRoute:
-      Char123LocaleChar125AcademicsUndergraduateCurriculumCreateRoute,
-    Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsEditRoute:
-      Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsEditRoute,
-    Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsCreateRoute:
-      Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsCreateRoute,
-    Char123LocaleChar125AdmissionsMainTypePostTypeEditRoute:
-      Char123LocaleChar125AdmissionsMainTypePostTypeEditRoute,
-    Char123LocaleChar125CommunityNewsEditIdRoute:
-      Char123LocaleChar125CommunityNewsEditIdRoute,
-    Char123LocaleChar125CommunityNoticeEditIdRoute:
-      Char123LocaleChar125CommunityNoticeEditIdRoute,
-    Char123LocaleChar125CommunitySeminarEditIdRoute:
-      Char123LocaleChar125CommunitySeminarEditIdRoute,
-    Char123LocaleChar125PeopleEmeritusFacultyIdEditRoute:
-      Char123LocaleChar125PeopleEmeritusFacultyIdEditRoute,
-    Char123LocaleChar125PeopleFacultyIdEditRoute:
-      Char123LocaleChar125PeopleFacultyIdEditRoute,
-    Char123LocaleChar125PeopleStaffIdEditRoute:
-      Char123LocaleChar125PeopleStaffIdEditRoute,
-    Char123LocaleChar125ResearchCentersIdEditRoute:
-      Char123LocaleChar125ResearchCentersIdEditRoute,
-    Char123LocaleChar125ResearchGroupsIdEditRoute:
-      Char123LocaleChar125ResearchGroupsIdEditRoute,
-    Char123LocaleChar125ResearchLabsIdEditRoute:
-      Char123LocaleChar125ResearchLabsIdEditRoute,
-    Char123LocaleChar125AcademicsStudentTypeCourseChangesIndexRoute:
-      Char123LocaleChar125AcademicsStudentTypeCourseChangesIndexRoute,
-    Char123LocaleChar125AcademicsStudentTypeGuideIndexRoute:
-      Char123LocaleChar125AcademicsStudentTypeGuideIndexRoute,
-    Char123LocaleChar125AcademicsStudentTypeScholarshipIndexRoute:
-      Char123LocaleChar125AcademicsStudentTypeScholarshipIndexRoute,
-    Char123LocaleChar125AcademicsUndergraduateCurriculumIndexRoute:
-      Char123LocaleChar125AcademicsUndergraduateCurriculumIndexRoute,
-    Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsIndexRoute:
-      Char123LocaleChar125AcademicsUndergraduateDegreeRequirementsIndexRoute,
-    Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsIndexRoute:
-      Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsIndexRoute,
-    Char123LocaleChar125AdmissionsMainTypePostTypeIndexRoute:
-      Char123LocaleChar125AdmissionsMainTypePostTypeIndexRoute,
-    Char123LocaleChar125PeopleEmeritusFacultyIdIndexRoute:
-      Char123LocaleChar125PeopleEmeritusFacultyIdIndexRoute,
-    Char123LocaleChar125PeopleFacultyIdIndexRoute:
-      Char123LocaleChar125PeopleFacultyIdIndexRoute,
-    Char123LocaleChar125PeopleStaffIdIndexRoute:
-      Char123LocaleChar125PeopleStaffIdIndexRoute,
-    Char123LocaleChar125ResearchLabsIdIndexRoute:
-      Char123LocaleChar125ResearchLabsIdIndexRoute,
-    Char123LocaleChar125AcademicsStudentTypeCourseChangesEditYearRoute:
-      Char123LocaleChar125AcademicsStudentTypeCourseChangesEditYearRoute,
-    Char123LocaleChar125AcademicsStudentTypeScholarshipIdEditRoute:
-      Char123LocaleChar125AcademicsStudentTypeScholarshipIdEditRoute,
-    Char123LocaleChar125AcademicsUndergraduateCurriculumEditYearRoute:
-      Char123LocaleChar125AcademicsUndergraduateCurriculumEditYearRoute,
-    Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute:
-      Char123LocaleChar125AcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute,
-    Char123LocaleChar125AcademicsStudentTypeScholarshipIdIndexRoute:
-      Char123LocaleChar125AcademicsStudentTypeScholarshipIdIndexRoute,
-  }
+const LocaleRouteRouteChildren: LocaleRouteRouteChildren = {
+  LocaleIndexRoute: LocaleIndexRoute,
+  Locale1010ProjectManagerRoute: Locale1010ProjectManagerRoute,
+  Locale1010ProjectParticipantsRoute: Locale1010ProjectParticipantsRoute,
+  Locale1010ProjectProposalRoute: Locale1010ProjectProposalRoute,
+  LocaleAboutContactRoute: LocaleAboutContactRoute,
+  LocaleAboutGreetingsRoute: LocaleAboutGreetingsRoute,
+  LocaleAboutHistoryRoute: LocaleAboutHistoryRoute,
+  LocaleReservationsIntroductionRoute: LocaleReservationsIntroductionRoute,
+  LocaleReservationsPrivacyPolicyRoute: LocaleReservationsPrivacyPolicyRoute,
+  Locale1010ProjectIndexRoute: Locale1010ProjectIndexRoute,
+  LocaleAboutIndexRoute: LocaleAboutIndexRoute,
+  LocaleAcademicsIndexRoute: LocaleAcademicsIndexRoute,
+  LocaleAdmissionsIndexRoute: LocaleAdmissionsIndexRoute,
+  LocaleCommunityIndexRoute: LocaleCommunityIndexRoute,
+  LocalePeopleIndexRoute: LocalePeopleIndexRoute,
+  LocaleResearchIndexRoute: LocaleResearchIndexRoute,
+  LocaleReservationsIndexRoute: LocaleReservationsIndexRoute,
+  LocaleSearchIndexRoute: LocaleSearchIndexRoute,
+  LocaleAboutTypeEditRoute: LocaleAboutTypeEditRoute,
+  LocaleAboutFacilitiesCreateRoute: LocaleAboutFacilitiesCreateRoute,
+  LocaleAboutFacilitiesEditRoute: LocaleAboutFacilitiesEditRoute,
+  LocaleAboutOverviewEditRoute: LocaleAboutOverviewEditRoute,
+  LocaleAboutStudentClubsCreateRoute: LocaleAboutStudentClubsCreateRoute,
+  LocaleAboutStudentClubsEditRoute: LocaleAboutStudentClubsEditRoute,
+  LocaleAcademicsStudentTypeCoursesRoute:
+    LocaleAcademicsStudentTypeCoursesRoute,
+  LocaleCommunityFacultyRecruitmentEditRoute:
+    LocaleCommunityFacultyRecruitmentEditRoute,
+  LocaleCommunityNewsIdRoute: LocaleCommunityNewsIdRoute,
+  LocaleCommunityNewsCreateRoute: LocaleCommunityNewsCreateRoute,
+  LocaleCommunityNoticeIdRoute: LocaleCommunityNoticeIdRoute,
+  LocaleCommunityNoticeCreateRoute: LocaleCommunityNoticeCreateRoute,
+  LocaleCommunitySeminarIdRoute: LocaleCommunitySeminarIdRoute,
+  LocaleCommunitySeminarCreateRoute: LocaleCommunitySeminarCreateRoute,
+  LocalePeopleFacultyCreateRoute: LocalePeopleFacultyCreateRoute,
+  LocalePeopleStaffCreateRoute: LocalePeopleStaffCreateRoute,
+  LocaleResearchCentersCreateRoute: LocaleResearchCentersCreateRoute,
+  LocaleResearchGroupsCreateRoute: LocaleResearchGroupsCreateRoute,
+  LocaleResearchLabsCreateRoute: LocaleResearchLabsCreateRoute,
+  LocaleReservationsRoomTypeRoomNameRoute:
+    LocaleReservationsRoomTypeRoomNameRoute,
+  LocaleAboutDirectionsIndexRoute: LocaleAboutDirectionsIndexRoute,
+  LocaleAboutFacilitiesIndexRoute: LocaleAboutFacilitiesIndexRoute,
+  LocaleAboutFutureCareersIndexRoute: LocaleAboutFutureCareersIndexRoute,
+  LocaleAboutOverviewIndexRoute: LocaleAboutOverviewIndexRoute,
+  LocaleAboutStudentClubsIndexRoute: LocaleAboutStudentClubsIndexRoute,
+  LocaleCommunityFacultyRecruitmentIndexRoute:
+    LocaleCommunityFacultyRecruitmentIndexRoute,
+  LocaleCommunityNewsIndexRoute: LocaleCommunityNewsIndexRoute,
+  LocaleCommunityNoticeIndexRoute: LocaleCommunityNoticeIndexRoute,
+  LocaleCommunitySeminarIndexRoute: LocaleCommunitySeminarIndexRoute,
+  LocalePeopleEmeritusFacultyIndexRoute: LocalePeopleEmeritusFacultyIndexRoute,
+  LocalePeopleFacultyIndexRoute: LocalePeopleFacultyIndexRoute,
+  LocalePeopleStaffIndexRoute: LocalePeopleStaffIndexRoute,
+  LocaleResearchCentersIndexRoute: LocaleResearchCentersIndexRoute,
+  LocaleResearchGroupsIndexRoute: LocaleResearchGroupsIndexRoute,
+  LocaleResearchLabsIndexRoute: LocaleResearchLabsIndexRoute,
+  LocaleResearchTopConferenceListIndexRoute:
+    LocaleResearchTopConferenceListIndexRoute,
+  LocaleAboutDirectionsIdEditRoute: LocaleAboutDirectionsIdEditRoute,
+  LocaleAboutFutureCareersDescriptionEditRoute:
+    LocaleAboutFutureCareersDescriptionEditRoute,
+  LocaleAboutFutureCareersStatCreateRoute:
+    LocaleAboutFutureCareersStatCreateRoute,
+  LocaleAboutFutureCareersStatEditRoute: LocaleAboutFutureCareersStatEditRoute,
+  LocaleAcademicsStudentTypeCourseChangesCreateRoute:
+    LocaleAcademicsStudentTypeCourseChangesCreateRoute,
+  LocaleAcademicsStudentTypeGuideEditRoute:
+    LocaleAcademicsStudentTypeGuideEditRoute,
+  LocaleAcademicsStudentTypeScholarshipCreateRoute:
+    LocaleAcademicsStudentTypeScholarshipCreateRoute,
+  LocaleAcademicsStudentTypeScholarshipEditRoute:
+    LocaleAcademicsStudentTypeScholarshipEditRoute,
+  LocaleAcademicsUndergraduateCurriculumCreateRoute:
+    LocaleAcademicsUndergraduateCurriculumCreateRoute,
+  LocaleAcademicsUndergraduateDegreeRequirementsEditRoute:
+    LocaleAcademicsUndergraduateDegreeRequirementsEditRoute,
+  LocaleAcademicsUndergraduateGeneralStudiesRequirementsCreateRoute:
+    LocaleAcademicsUndergraduateGeneralStudiesRequirementsCreateRoute,
+  LocaleAdmissionsMainTypePostTypeEditRoute:
+    LocaleAdmissionsMainTypePostTypeEditRoute,
+  LocaleCommunityNewsEditIdRoute: LocaleCommunityNewsEditIdRoute,
+  LocaleCommunityNoticeEditIdRoute: LocaleCommunityNoticeEditIdRoute,
+  LocaleCommunitySeminarEditIdRoute: LocaleCommunitySeminarEditIdRoute,
+  LocalePeopleEmeritusFacultyIdEditRoute:
+    LocalePeopleEmeritusFacultyIdEditRoute,
+  LocalePeopleFacultyIdEditRoute: LocalePeopleFacultyIdEditRoute,
+  LocalePeopleStaffIdEditRoute: LocalePeopleStaffIdEditRoute,
+  LocaleResearchCentersIdEditRoute: LocaleResearchCentersIdEditRoute,
+  LocaleResearchGroupsIdEditRoute: LocaleResearchGroupsIdEditRoute,
+  LocaleResearchLabsIdEditRoute: LocaleResearchLabsIdEditRoute,
+  LocaleAcademicsStudentTypeCourseChangesIndexRoute:
+    LocaleAcademicsStudentTypeCourseChangesIndexRoute,
+  LocaleAcademicsStudentTypeGuideIndexRoute:
+    LocaleAcademicsStudentTypeGuideIndexRoute,
+  LocaleAcademicsStudentTypeScholarshipIndexRoute:
+    LocaleAcademicsStudentTypeScholarshipIndexRoute,
+  LocaleAcademicsUndergraduateCurriculumIndexRoute:
+    LocaleAcademicsUndergraduateCurriculumIndexRoute,
+  LocaleAcademicsUndergraduateDegreeRequirementsIndexRoute:
+    LocaleAcademicsUndergraduateDegreeRequirementsIndexRoute,
+  LocaleAcademicsUndergraduateGeneralStudiesRequirementsIndexRoute:
+    LocaleAcademicsUndergraduateGeneralStudiesRequirementsIndexRoute,
+  LocaleAdmissionsMainTypePostTypeIndexRoute:
+    LocaleAdmissionsMainTypePostTypeIndexRoute,
+  LocalePeopleEmeritusFacultyIdIndexRoute:
+    LocalePeopleEmeritusFacultyIdIndexRoute,
+  LocalePeopleFacultyIdIndexRoute: LocalePeopleFacultyIdIndexRoute,
+  LocalePeopleStaffIdIndexRoute: LocalePeopleStaffIdIndexRoute,
+  LocaleResearchLabsIdIndexRoute: LocaleResearchLabsIdIndexRoute,
+  LocaleAcademicsStudentTypeCourseChangesEditYearRoute:
+    LocaleAcademicsStudentTypeCourseChangesEditYearRoute,
+  LocaleAcademicsStudentTypeScholarshipIdEditRoute:
+    LocaleAcademicsStudentTypeScholarshipIdEditRoute,
+  LocaleAcademicsUndergraduateCurriculumEditYearRoute:
+    LocaleAcademicsUndergraduateCurriculumEditYearRoute,
+  LocaleAcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute:
+    LocaleAcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute,
+  LocaleAcademicsStudentTypeScholarshipIdIndexRoute:
+    LocaleAcademicsStudentTypeScholarshipIdIndexRoute,
+}
 
-const Char123LocaleChar125RouteRouteWithChildren =
-  Char123LocaleChar125RouteRoute._addFileChildren(
-    Char123LocaleChar125RouteRouteChildren,
-  )
+const LocaleRouteRouteWithChildren = LocaleRouteRoute._addFileChildren(
+  LocaleRouteRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
-  Char123LocaleChar125RouteRoute: Char123LocaleChar125RouteRouteWithChildren,
+  LocaleRouteRoute: LocaleRouteRouteWithChildren,
   ImgRoute: ImgRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   DotinternalEditRoute: DotinternalEditRoute,

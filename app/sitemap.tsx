@@ -10,7 +10,8 @@ const EXTRA_PATHS = [
   '/reservations/privacy-policy',
 ];
 
-const LOCALES = ['', '/en'];
+// 모든 URL이 로케일 프리픽스를 가진다(ko도 /ko). bare 경로는 리다이렉트 전용이라 미수록.
+const LOCALES = ['/ko', '/en'];
 
 function normalizePath(path: string): string {
   if (!path.startsWith('/')) return `/${path}`;
