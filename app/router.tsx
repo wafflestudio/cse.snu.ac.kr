@@ -8,8 +8,16 @@ import { createNonce, getCSPHeaders } from './utils/csp';
 // nonce는 router.options.ssr.nonce로 들어가 TanStack이 주입하는 모든 <script>에 스탬프된다
 // (strict CSP에서 hydration이 안 깨지게). 클라에선 nonce 불필요 → undefined.
 // dev(vite)는 HMR 인라인 스크립트가 많아 enforce 시 깨지므로 Report-Only.
+//
+// ISR(nginx 캐싱) 모드(`BEHIND_NGINX=1`): 본문엔 placeholder nonce만 박고 CSP·보안 헤더는
+// 내보내지 않는다 → 캐시된 HTML이라도 nginx가 매 요청 placeholder를 $request_id로 치환 +
+// 같은 값으로 CSP 헤더를 세팅해 nonce를 응답별 고유로 유지(docs/isr-csp-caching-plan.md).
+// dev·E2E preview(nginx 없음)는 게이트 off → 앱이 진짜 nonce를 만들고 헤더도 직접 세팅(현행).
+const NONCE_PLACEHOLDER = '__CSP_NONCE__';
+
 const setupCsp = createIsomorphicFn()
   .server((): string => {
+    if (process.env.BEHIND_NGINX === '1') return NONCE_PLACEHOLDER;
     const nonce = createNonce();
     setResponseHeader(
       import.meta.env.PROD
