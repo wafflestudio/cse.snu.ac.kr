@@ -4,6 +4,15 @@
 # - nginx: 공개 3000, ISR 캐시 + nonce 재주입 + CSP/보안 헤더.
 set -e
 
+# CSP nonce placeholder를 기동마다 랜덤 비밀로 생성(소스에 없음 → public repo로도 못 앎).
+# 고정 마법문자열이면 공격자가 콘텐츠에 그걸 심어 nginx가 유효 nonce를 찍어주는 XSS 우회가
+# 가능 → 비밀 토큰이면 공격자가 못 주입한다. Hono(본문에 박음)와 nginx(sub_filter)가 같은 값 공유.
+# 컨테이너-로컬 캐시는 기동마다 콜드라 placeholder 불일치 없음.
+CSP_NONCE_PLACEHOLDER="__CSPNONCE_$(node -e 'process.stdout.write(require("crypto").randomBytes(16).toString("hex"))')__"
+export CSP_NONCE_PLACEHOLDER
+printf "sub_filter_once off;\nsub_filter '%s' '\$request_id';\n" "$CSP_NONCE_PLACEHOLDER" \
+  > /etc/nginx/sub_filter.conf
+
 term() {
   nginx -s quit 2>/dev/null || true
   kill -TERM "$HONO_PID" 2>/dev/null || true

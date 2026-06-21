@@ -9,6 +9,7 @@
 > - **CSP 정책 단일 출처**: `scripts/gen-nginx-csp.ts`가 `app/utils/csp.ts`에서 빌드 시 `nginx/csp.conf` 생성 → nginx가 include.
 > - **Cache-Control은 `server.ts`** 한 곳에서 경로 기반(비어드민 GET 200 HTML=캐시, admin/.internal=no-store), `BEHIND_NGINX` 게이트(라우트별 `headers()` 대신).
 > - **컨테이너-로컬 캐시**(`/var/cache/nginx/app`): 새 배포=새 컨테이너=콜드 → 릴리스 간 stale 자동 방지.
+> - **placeholder는 기동마다 랜덤 비밀**(entrypoint가 `CSP_NONCE_PLACEHOLDER` 생성 → Hono(env)+nginx(`sub_filter.conf`) 공유): 고정 마법문자열(`__CSP_NONCE__`)이면 공격자가 저장형 콘텐츠에 `<script nonce="__CSP_NONCE__">`를 심어 nginx가 유효 nonce를 찍어주는 **XSS 우회**가 가능(특히 public repo라 값 노출). 비밀이면 공격자가 못 주입 → 주입 스크립트는 유효 nonce를 못 받아 CSP가 차단(=ISR 전 보안 수준 복원). `processHtmlForCsp`는 `<script>`를 안 거르므로 strict CSP nonce가 그 방어를 담당(추가 심층방어로 script 스트립은 별도 검토 가능).
 > - **섹션 단위 능동 무효화(purge)**: staff 수정 직후 `fetchOk`가 현재 페이지에서 섹션을 도출
 >   (로케일+후행 id/edit/create 제거; 예 `/ko/community/notice/edit/123`→`/community/notice`)해
 >   `purgeCache(scope)` serverFn 호출. serverFn은 캐시파일 `KEY`(=`$request_uri`)에 그 섹션을
