@@ -10,6 +10,18 @@ const PORT = Number(process.env.PORT) || 3000;
 // /api 프록시 타깃. 설정 시에만 프록시(local/E2E). prod는 미설정 → 절대 URL 직호출.
 const API_PROXY_TARGET = process.env.API_PROXY_TARGET ?? null;
 
+// ISR: nginx-fronted 배포(BEHIND_NGINX=1)에서만 HTML 응답에 Cache-Control을 부여한다.
+// nginx가 이 헤더로 캐시 여부·TTL을 결정(익명 응답만 저장, JSESSIONID 있으면 우회는 nginx가).
+// 게이트 off(dev·E2E preview)면 헤더 미부여 → 현행 동작 유지.
+const BEHIND_NGINX = process.env.BEHIND_NGINX === '1';
+const NO_STORE_PREFIXES = ['/admin', '/.internal'];
+const cacheControlFor = (pathname: string): string =>
+  NO_STORE_PREFIXES.some((p) => pathname === p || pathname.startsWith(`${p}/`))
+    ? 'no-store'
+    : // s-maxage=공유캐시(nginx) 신선도, SWR=백그라운드 갱신. max-age 미지정(nginx가 max-age=0을
+      // no-cache로 해석하는 것 회피; SSR 응답엔 Last-Modified 없어 브라우저 휴리스틱 캐시도 안 됨).
+      'public, s-maxage=60, stale-while-revalidate=600';
+
 // @ts-expect-error 빌드 산출물엔 타입 선언 없음
 const mod = await import('./dist/server/server.js');
 const handler: { fetch: (req: Request) => Promise<Response> } =
@@ -44,7 +56,16 @@ app.use(
 );
 
 app.use('/*', serveStatic({ root: './dist/client' })); // 정적; 없으면 next()
-app.all('*', (c) => handler.fetch(c.req.raw)); // SSR + server route(/img·/sitemap.xml)
+// SSR + server route(/img·/sitemap.xml). nginx-fronted면 HTML GET 200에 Cache-Control 부여.
+app.all('*', async (c) => {
+  const res = await handler.fetch(c.req.raw);
+  if (!BEHIND_NGINX || c.req.method !== 'GET' || res.status !== 200) return res;
+  if (!(res.headers.get('content-type') ?? '').includes('text/html'))
+    return res;
+  const headers = new Headers(res.headers);
+  headers.set('Cache-Control', cacheControlFor(new URL(c.req.url).pathname));
+  return new Response(res.body, { status: res.status, headers });
+});
 
 serve({ fetch: app.fetch, port: PORT }, (info) => {
   const note = API_PROXY_TARGET

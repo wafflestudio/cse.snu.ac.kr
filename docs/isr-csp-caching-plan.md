@@ -1,8 +1,24 @@
 # ISR(리버스 프록시 캐싱) + strict CSP 양립 설계
 
-> 상태: **설계(미구현)**. 실제 nginx 적용은 인프라 변경이라 배포 담당 확인 후 진행.
-> 작성 맥락: 번들/렌더 부하를 줄이려 ISR 도입을 검토. 이 사이트는 SSR이며, strict
-> CSP(nonce 기반)를 막 복원한 상태라 "nonce ↔ 캐시" 충돌을 먼저 풀어야 한다.
+> 상태: **구현 + 로컬 검증 완료(2026-06-21). staging 배포·측정 대기.** 패턴 A 채택.
+> 작성 맥락: 번들/렌더 부하를 줄이려 ISR 도입. SSR + strict CSP(nonce)라 "nonce ↔ 캐시" 충돌을 먼저 풀어야 한다.
+
+> **구현(이 설계 대비 델타):**
+> - **단일 컨테이너**: 엣지 Caddy는 서버팀 주관이라 못 만짐 → 프론트 컨테이너 안에 nginx(:3000 공개) → Hono(:8787 내부). `docker-entrypoint.sh`가 둘을 기동, Hono는 `BEHIND_NGINX=1`.
+> - **cache key = URL만**(`$scheme$host$request_uri`): 로케일 항상-프리픽스 전환([[i18n-url-strategy]]) 완료로 `$eff_lang` 맵 불필요(아래 §3.3의 lang map은 폐기).
+> - **CSP 정책 단일 출처**: `scripts/gen-nginx-csp.ts`가 `app/utils/csp.ts`에서 빌드 시 `nginx/csp.conf` 생성 → nginx가 include.
+> - **Cache-Control은 `server.ts`** 한 곳에서 경로 기반(비어드민 GET 200 HTML=캐시, admin/.internal=no-store), `BEHIND_NGINX` 게이트(라우트별 `headers()` 대신).
+> - **컨테이너-로컬 캐시**(`/var/cache/nginx/app`): 새 배포=새 컨테이너=콜드 → 릴리스 간 stale 자동 방지.
+> - **placeholder는 기동마다 랜덤 비밀**(entrypoint가 `CSP_NONCE_PLACEHOLDER` 생성 → Hono(env)+nginx(`sub_filter.conf`) 공유): 고정 마법문자열(`__CSP_NONCE__`)이면 공격자가 저장형 콘텐츠에 `<script nonce="__CSP_NONCE__">`를 심어 nginx가 유효 nonce를 찍어주는 **XSS 우회**가 가능(특히 public repo라 값 노출). 비밀이면 공격자가 못 주입 → 주입 스크립트는 유효 nonce를 못 받아 CSP가 차단(=ISR 전 보안 수준 복원). `processHtmlForCsp`는 `<script>`를 안 거르므로 strict CSP nonce가 그 방어를 담당(추가 심층방어로 script 스트립은 별도 검토 가능).
+> - **섹션 단위 능동 무효화(purge)**: staff 수정 직후 `fetchOk`가 현재 페이지에서 섹션을 도출
+>   (로케일+후행 id/edit/create 제거; 예 `/ko/community/notice/edit/123`→`/community/notice`)해
+>   `purgeCache(scope)` serverFn 호출. serverFn은 캐시파일 `KEY`(=`$request_uri`)에 그 섹션을
+>   포함하는 항목(ko/en·상세·목록·페이지네이션)+메인을 삭제. admin 일괄작업은 영향 범위가 넓어
+>   `scope='*'`(flush-all). BEHIND_NGINX·로그인 세션 게이트(익명 abuse 방지). node:fs는 핸들러 내
+>   동적 import. TTL(s-maxage=60)은 purge가 놓친 경로의 백스톱.
+> - 실제 파일: `nginx/nginx.conf`·`scripts/gen-nginx-csp.ts`·`docker-entrypoint.sh`·`Dockerfile`·`server.ts`·`app/router.tsx`·`app/utils/serverFns.ts`·`app/utils/fetch.ts`.
+>
+> **로컬 검증(컨테이너 빌드+curl)**: X-Cache MISS→HIT · Cache-Control s-maxage/SWR · CSP nonce가 헤더·body 일치하며 **캐시 HIT에도 매 요청 신선** · `__CSP_NONCE__` 잔존 0 · JSESSIONID BYPASS · **섹션 purge**(한 섹션만 비우면 그 섹션 MISS·타 섹션 HIT 유지). E2E(비-nginx 경로)는 BEHIND_NGINX 미설정이라 현행 동작 유지.
 
 ## 1. 배경 / 문제
 
