@@ -14,6 +14,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { FutureCareersResponse } from '@/types/api/v2/about/future-careers';
 import { fetchJson, fetchOk } from '@/utils/fetch';
+import { searchLoaderDeps } from '@/utils/loaderDeps';
 
 const COMPANY_LIST = [
   'SAMSUNG',
@@ -145,6 +146,7 @@ function TableBody() {
 
 export const Route = createFileRoute('/$locale/about/future-careers/stat/edit')(
   {
+    loaderDeps: searchLoaderDeps,
     loader: async ({ location }) => {
       const searchStr = location.searchStr;
       const sp = new URLSearchParams(searchStr);

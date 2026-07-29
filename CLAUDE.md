@@ -55,6 +55,7 @@
 - **mutation은 대부분 클라 `fetch`**(same-origin proxy 경유). `action`은 거의 없음.
 - **검색/페이지네이션은 공용 `app/hooks/useSearchParams.ts`**(URLSearchParams 기반). 여러 라우트가 Pagination·SearchBox·TagCheckboxes를 공유해 라우트별 타입(`Route.useSearch`/`validateSearch`)은 부적합 — 표준 URLSearchParams 훅이 맞다.
 - **서버 라우트(Response 직접 반환):** `/img`(이미지 최적화 프록시 — sharp·AVIF·디스크캐시·SSRF 화이트리스트)와 `/sitemap.xml`. `/img`가 **시스템 유일의 이미지 최적화 계층**(백엔드는 원본만 서빙, `Image`가 렌더타임에 `/img?url=...` 생성, DB엔 원본 URL만). 장기적으론 백엔드/CDN(imgproxy) 이관 검토.
+- **⚠️ 검색 파라미터를 읽는 loader는 `loaderDeps: searchLoaderDeps`(`app/utils/loaderDeps.ts`) 필수.** match id가 `routeId+경로+JSON(loaderDeps)`라 선언이 없으면 **검색 파라미터만 바뀌는 클라 네비에서 loader가 아예 재실행되지 않는다**(RR7은 매 네비마다 실행 → 마이그레이션 때 조용히 깨진 채 넘어옴). 증상: URL만 바뀌고 화면 그대로 — 예약 캘린더 날짜 이동·목록 페이지네이션·태그 필터·검색이 전부 해당됐다(2026-07-29 수정, 13개 라우트). `pnpm check:loader-deps`(게이트)가 누락을 잡는다.
 - **TanStack 함정(겪은 것):**
   - 같은 라우트 재진입 시 컴포넌트를 **재마운트 안 할 수 있음** → `useState(props)` 초기화 안 됨(TimelineViewer 연도선택 버그). URL/props 파생으로 처리.
   - 클라 네비 시 **loader가 클라에서 실행** → 합성 request엔 쿠키 없음. 인증 의존 loader는 `forwardAuthHeaders`로 서버 헤더 전달.
@@ -101,6 +102,7 @@
 - ⚠️ **콘텐츠 assert는 모바일에서도 보이는 요소로**: 한 스펙이 데/모바일 두 viewport를 도니 `hidden sm:*`(데스크톱 전용 SubNavbar·메가메뉴) 텍스트를 assert하면 모바일서 깨진다 → 양쪽 다 보이는 본문 PageTitle·콘텐츠를 고른다.
 - **상세 레이아웃이 형제와 다르면 별도 스크린샷**(예: faculty 상세 vs emeritus/staff 상세는 컴포넌트 구성이 달라 각각 캡처).
 - **상태는 URL 우선**(`?keyword=`·`?tag=`·`?pageNum=`·`?selected=`·`?selectedDate=`로 직접 이동); URL로 안 되는 클라 상태(드롭다운·탭·모달)는 read에서 클릭(비변경이면 OK).
+  - ⚠️ **단, URL goto는 전체 문서 로드(SSR)라 클라 네비게이션 경로를 안 탄다** — 그래서 loader 재실행이 깨진 버그(위 `loaderDeps`)를 못 잡았다. 검색 파라미터를 **바꾸는 컨트롤**(페이지네이션·필터·날짜 이동)은 도메인당 1개는 **클릭**으로 검증한다(reservations/room read 스펙이 reference).
 - **여러 상태:** 레이아웃 다른 상태(모달·탭·펼침·빈 상태) → 각각 / 데이터만 다른 반복 → 대표 1장 / **빈 상태**(결과 없음·0개) → 가능한 곳 모두.
 
 **flow.spec.ts** — 로그인(staff) 또는 DB 변경. 데스크톱만, read 의존. 한 파일에 `describe`로 'CRUD'/'게시 설정'/'일괄 관리' 구분.

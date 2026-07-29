@@ -12,6 +12,7 @@
     "preview": "pnpm build:local && API_PROXY_TARGET=http://localhost:8080 tsx server.ts",
     "typecheck": "tsc",
     "lint": "biome check",
+    "check:loader-deps": "node scripts/check-loader-deps.mjs",
     "lint:fix": "biome check --write",
     "knip": "knip",
     "lighthouse": "node scripts/lighthouse.mjs",

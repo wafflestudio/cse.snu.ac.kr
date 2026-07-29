@@ -118,7 +118,11 @@ function ChangeDateButton({
   const handleClick = () => setSelectedDate(targetDate);
 
   return (
-    <SquareButton className="w-7.5" onClick={handleClick}>
+    <SquareButton
+      className="w-7.5"
+      onClick={handleClick}
+      aria-label={direction === 'prev' ? '이전 날짜' : '다음 날짜'}
+    >
       {direction === 'prev' ? (
         <ChevronLeft className="h-[22px] w-[22px]" strokeWidth={1.5} />
       ) : (

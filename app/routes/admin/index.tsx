@@ -12,6 +12,7 @@ import {
   type SlidePreviewList,
 } from '@/types/api/v2/admin';
 import { fetchJson } from '@/utils/fetch';
+import { searchLoaderDeps } from '@/utils/loaderDeps';
 import { forwardAuthHeaders } from '@/utils/ssr';
 import ImageModalManagement from './components/ImageModalManagement';
 import ImportantManagement from './components/ImportantManagement';
@@ -131,6 +132,7 @@ function ImageModalDescription() {
 }
 
 export const Route = createFileRoute('/admin/')({
+  loaderDeps: searchLoaderDeps,
   loader: async ({ location }) => {
     const searchStr = location.searchStr;
     const sp = new URLSearchParams(searchStr);

@@ -10,6 +10,7 @@ import type { Faculty, FacultyStatus } from '@/types/api/v2/professor';
 import type { SimpleResearchLab } from '@/types/api/v2/research/labs';
 import { fetchJson } from '@/utils/fetch';
 import { FormData2 } from '@/utils/form';
+import { searchLoaderDeps } from '@/utils/loaderDeps';
 
 function FacultyCreate() {
   const loaderData = Route.useLoaderData();
@@ -69,6 +70,7 @@ function FacultyCreate() {
 }
 
 export const Route = createFileRoute('/$locale/people/faculty/create')({
+  loaderDeps: searchLoaderDeps,
   loader: async ({ location }) => {
     const searchStr = location.searchStr;
     const sp = new URLSearchParams(searchStr);

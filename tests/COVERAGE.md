@@ -96,7 +96,7 @@ read는 ko 기준(데스크톱+모바일). flow는 staff 편집/추가/삭제가
 | `/reservations` | ✅ | — | 정적 CategoryPage 인덱스 |
 | `/reservations/introduction` | ✅ | — | 정적(하드코딩 HTML, SelectionList 3개). 시드 불필요 |
 | `/reservations/privacy-policy` | ✅ | — | 정적(하드코딩 HTML). 시드 불필요 |
-| `/reservations/:roomType/:roomName` | ✅ | ✅ | 세미나실(301-417, roomId1). read=`?selectedDate=2024-03-15`로 주 고정 + **staff-only 방(302-208) 비로그인 fallback("관리자만 열람 가능합니다") 렌더**. flow=staff '예약하기' 모달→종료시간 마지막 옵션→필수항목+동의→제출(예약 날짜 읽어 그 주로 이동해 검증). **room은 SQL 시드(roomNameToId 1~16)**. [[project_reservation_system]] |
+| `/reservations/:roomType/:roomName` | ✅ | ✅ | 세미나실(301-417, roomId1). read=`?selectedDate=2024-03-15`로 주 고정 + **staff-only 방(302-208) 비로그인 fallback("관리자만 열람 가능합니다") 렌더**. flow=staff '예약하기' 모달→종료시간 마지막 옵션→필수항목+동의→제출(예약 날짜 읽어 그 주로 이동해 검증). **room은 SQL 시드(roomNameToId 1~16)**. read에 **날짜 이동 클릭 회귀**(다음/이전 → 데스크톱 7일·모바일 3일, `time[datetime]`로 검증) 포함 — URL goto만으론 클라 네비 loader 재실행 버그를 못 잡아서 추가(CLAUDE.md §2 loaderDeps). [[project_reservation_system]] |
 
 ### 10-10-project
 | 라우트 | read | flow | 비고 |
