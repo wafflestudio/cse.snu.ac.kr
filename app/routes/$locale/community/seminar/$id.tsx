@@ -15,6 +15,7 @@ import PostFooter from '@/routes/$locale/community/components/PostFooter';
 import type { Seminar } from '@/types/api/v2/seminar';
 import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchOk } from '@/utils/fetch';
+import { searchLoaderDeps } from '@/utils/loaderDeps';
 import { stripHtml, truncateDescription } from '@/utils/metadata';
 
 function SeminarDetailPage() {
@@ -184,6 +185,7 @@ const formatStartEndDate = (
 };
 
 export const Route = createFileRoute('/$locale/community/seminar/$id')({
+  loaderDeps: searchLoaderDeps,
   loader: async ({ params, location }) => {
     const searchStr = location.searchStr;
     const sp = new URLSearchParams(searchStr);

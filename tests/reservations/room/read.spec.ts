@@ -19,6 +19,37 @@ test.describe('시설 예약 캘린더 - 읽기', () => {
     });
   });
 
+  /**
+   * 회귀: 날짜 이동은 **클릭(클라 네비게이션)** 으로 검증한다.
+   *
+   * 다른 read 케이스처럼 `?selectedDate=`로 goto하면 전체 문서 로드라 loader가 항상 SSR에서
+   * 돌아, 클라 네비게이션에서 loader가 재실행되지 않는 버그(loaderDeps 누락)를 못 잡는다.
+   * 실제로 그렇게 URL만 바뀌고 캘린더는 그대로인 버그가 있었다 → app/utils/loaderDeps.ts.
+   */
+  test('다음/이전 버튼 클릭 시 날짜가 이동한다 (ko)', async ({
+    page,
+  }, testInfo) => {
+    // 데스크톱은 주(7칸) 단위·주의 시작 기준, 모바일은 3일 단위·선택일 기준으로 움직인다.
+    const step = testInfo.project.name.includes('mobile') ? 3 : 7;
+    const column = (date: string) => page.locator(`time[datetime="${date}"]`);
+
+    await setLocale(page, 'ko');
+    await page.goto(
+      '/reservations/seminar-room/301-417?selectedDate=2024-03-15',
+    );
+    await expect(column('2024-03-15')).toBeVisible();
+
+    const next = step === 7 ? '2024-03-22' : '2024-03-18';
+    await page.getByRole('button', { name: '다음 날짜' }).click();
+    await page.waitForURL(new RegExp(`selectedDate=${next}`));
+    await expect(column(next)).toBeVisible();
+    await expect(column('2024-03-15')).toHaveCount(0);
+
+    await page.getByRole('button', { name: '이전 날짜' }).click();
+    await page.waitForURL(/selectedDate=2024-03-15/);
+    await expect(column('2024-03-15')).toBeVisible();
+  });
+
   // staff-only 방(302-208/209, id 15·16)은 비-staff에게 캘린더 대신 fallback을 렌더한다
   // (`isStaffOnlyRoom ? <LoginVisible allow=ROLE_STAFF fallback={NonStaffFallback}>`).
   // 비로그인 사용자 기준 = 프론트 조건부 렌더(인가 강제는 백엔드 몫, 여기선 렌더만 검증).

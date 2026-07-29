@@ -53,9 +53,14 @@ const ColumnIndex = ({
       <p className="text-xs font-medium text-neutral-800">
         {weekdayStrArr[date.day()]}
       </p>
-      <p className="text-base font-bold leading-4 text-neutral-800">
+      {/* RowIndex의 시간 셀과 동일하게 <time>. 날짜 칼럼을 값으로 특정할 수 있게 dateTime을 준다
+          (E2E가 "며칠 주가 그려졌는가"를 행 인덱스 숫자와 헷갈리지 않고 assert). */}
+      <time
+        dateTime={date.format('YYYY-MM-DD')}
+        className="text-base font-bold leading-4 text-neutral-800"
+      >
         {date.date()}
-      </p>
+      </time>
     </div>
   );
 };

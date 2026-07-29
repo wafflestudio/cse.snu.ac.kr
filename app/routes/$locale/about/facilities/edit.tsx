@@ -18,6 +18,7 @@ import type {
 import type { EditorImage } from '@/types/form';
 import { fetchJson, fetchOk } from '@/utils/fetch';
 import { FormData2 } from '@/utils/form';
+import { searchLoaderDeps } from '@/utils/loaderDeps';
 
 interface FacilityFormData {
   ko: { name: string; description: string; locations: string[] };
@@ -214,6 +215,7 @@ function FacilitiesEdit() {
 }
 
 export const Route = createFileRoute('/$locale/about/facilities/edit')({
+  loaderDeps: searchLoaderDeps,
   loader: async ({ location }) => {
     const searchStr = location.searchStr;
     const sp = new URLSearchParams(searchStr);

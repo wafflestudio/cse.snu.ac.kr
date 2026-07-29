@@ -9,6 +9,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useSearchParams } from '@/hooks/useSearchParams';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import type { SeminarPreviewList } from '@/types/api/v2/seminar';
+import { searchLoaderDeps } from '@/utils/loaderDeps';
 import SeminarRow from './components/SeminarRow';
 import SeminarSearchBar from './components/SeminarSearchBar';
 
@@ -104,6 +105,7 @@ function SeminarPage() {
 }
 
 export const Route = createFileRoute('/$locale/community/seminar/')({
+  loaderDeps: searchLoaderDeps,
   loader: async ({ params, location }) => {
     const searchStr = location.searchStr;
     const sp = new URLSearchParams(searchStr);

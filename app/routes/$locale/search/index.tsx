@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import SearchBox from '@/components/feature/SearchBox';
 import PageLayout from '@/components/layout/PageLayout';
 import { useLanguage } from '@/hooks/useLanguage';
+import { searchLoaderDeps } from '@/utils/loaderDeps';
 import MagnificentGlass from './assets/magnificent_glass.svg?react';
 import AboutSection from './components/sections/AboutSection';
 import AcademicSection from './components/sections/AcademicSection';
@@ -89,6 +90,7 @@ function SearchPage() {
 }
 
 export const Route = createFileRoute('/$locale/search/')({
+  loaderDeps: searchLoaderDeps,
   loader: async ({ params, location }) => {
     const searchStr = location.searchStr;
     const sp = new URLSearchParams(searchStr);

@@ -16,6 +16,7 @@ import PostFooter from '@/routes/$locale/community/components/PostFooter';
 import type { Notice } from '@/types/api/v2/notice';
 import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchOk } from '@/utils/fetch';
+import { searchLoaderDeps } from '@/utils/loaderDeps';
 import { stripHtml, truncateDescription } from '@/utils/metadata';
 
 function NoticeDetailPage() {
@@ -112,6 +113,7 @@ function NoticeDetailPage() {
 }
 
 export const Route = createFileRoute('/$locale/community/notice/$id')({
+  loaderDeps: searchLoaderDeps,
   loader: async ({ params, location }) => {
     const searchStr = location.searchStr;
     const sp = new URLSearchParams(searchStr);

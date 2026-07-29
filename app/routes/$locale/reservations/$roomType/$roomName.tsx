@@ -17,6 +17,7 @@ import {
   STAFF_ONLY_ROOM_ID,
 } from '@/routes/$locale/reservations/constants';
 import { kstDayjs } from '@/utils/kstDayjs';
+import { searchLoaderDeps } from '@/utils/loaderDeps';
 import {
   formatDateParam,
   getStartOfWeek,
@@ -87,6 +88,7 @@ function NonStaffFallback() {
 export const Route = createFileRoute(
   '/$locale/reservations/$roomType/$roomName',
 )({
+  loaderDeps: searchLoaderDeps,
   loader: async ({ params, location }) => {
     const searchStr = location.searchStr;
     const roomId = roomNameToId[params.roomName];

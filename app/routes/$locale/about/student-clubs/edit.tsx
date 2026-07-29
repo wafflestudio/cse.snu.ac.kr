@@ -14,6 +14,7 @@ import type { StudentClubsResponse } from '@/types/api/v2/about/student-clubs';
 import type { EditorImage } from '@/types/form';
 import { fetchJson, fetchOk } from '@/utils/fetch';
 import { FormData2 } from '@/utils/form';
+import { searchLoaderDeps } from '@/utils/loaderDeps';
 
 interface ClubFormData {
   ko: { name: string; description: string };
@@ -133,6 +134,7 @@ function StudentClubsEdit() {
 }
 
 export const Route = createFileRoute('/$locale/about/student-clubs/edit')({
+  loaderDeps: searchLoaderDeps,
   loader: async ({ location }) => {
     const searchStr = location.searchStr;
     const sp = new URLSearchParams(searchStr);

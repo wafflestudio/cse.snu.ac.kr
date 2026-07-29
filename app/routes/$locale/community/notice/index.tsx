@@ -12,6 +12,7 @@ import { useSetToggle } from '@/hooks/useSetToggle';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import type { NoticePreviewList } from '@/types/api/v2/notice';
 import { fetchJson } from '@/utils/fetch';
+import { searchLoaderDeps } from '@/utils/loaderDeps';
 import { forwardAuthHeaders } from '@/utils/ssr';
 import AdminFeatures from './components/AdminFeatures';
 import NoticeListRow, {
@@ -124,6 +125,7 @@ function NoticePage() {
 }
 
 export const Route = createFileRoute('/$locale/community/notice/')({
+  loaderDeps: searchLoaderDeps,
   loader: async ({ params, location }) => {
     const searchStr = location.searchStr;
     const sp = new URLSearchParams(searchStr);

@@ -13,6 +13,7 @@ import PostFooter from '@/routes/$locale/community/components/PostFooter';
 import type { News } from '@/types/api/v2/news';
 import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchOk } from '@/utils/fetch';
+import { searchLoaderDeps } from '@/utils/loaderDeps';
 import { stripHtml, truncateDescription } from '@/utils/metadata';
 import { forwardAuthHeaders } from '@/utils/ssr';
 
@@ -109,6 +110,7 @@ function NewsDetailPage() {
 }
 
 export const Route = createFileRoute('/$locale/community/news/$id')({
+  loaderDeps: searchLoaderDeps,
   loader: async ({ params, location }) => {
     const searchStr = location.searchStr;
     const sp = new URLSearchParams(searchStr);
