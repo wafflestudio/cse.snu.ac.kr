@@ -39,6 +39,9 @@ source "$ENV_FILE"
 CONTAINER_NAME="frontend"
 GHCR_IMAGE="ghcr.io/wafflestudio/cse.snu.ac.kr"
 PORT="3000"
+# 컨테이너 안에서 이 호스트명을 엣지(호스트)로 해석시킨다 — 이유는 remote-deploy.sh 주석 참고.
+# 배포와 롤백 안내가 같은 값을 쓰도록 여기서 한 번만 정의한다.
+SITE_HOST="${SITE_HOST:-cse.snu.ac.kr}"
 
 if [ "$ENV" == "staging" ]; then
     SSH_KEY="${CSEREAL_STAGING_SSH_KEY}"
@@ -142,7 +145,7 @@ if [ ! -f "$REMOTE_DEPLOY_SCRIPT" ]; then
 fi
 
 # 변수를 치환하여 원격 스크립트 실행
-PREV_IMAGE=$(ssh $SSH_OPTS "$SSH_USER@$SSH_HOST" "CONTAINER_NAME='$CONTAINER_NAME' IMAGE='$GHCR_IMAGE:$IMAGE_TAG' PORT='$PORT' bash -s" < "$REMOTE_DEPLOY_SCRIPT")
+PREV_IMAGE=$(ssh $SSH_OPTS "$SSH_USER@$SSH_HOST" "CONTAINER_NAME='$CONTAINER_NAME' IMAGE='$GHCR_IMAGE:$IMAGE_TAG' PORT='$PORT' SITE_HOST='$SITE_HOST' bash -s" < "$REMOTE_DEPLOY_SCRIPT")
 
 echo -e "${YELLOW}[4/5] 배포 확인 중...${NC}"
 ssh $SSH_OPTS "$SSH_USER@$SSH_HOST" << ENDSSH
@@ -173,8 +176,8 @@ if [ -n "$PREV_IMAGE" ]; then
     echo ""
     echo -e "${BLUE}⏮️  롤백이 필요한 경우:${NC}"
     echo ""
-    # ⚠️ --add-host는 롤백에도 필수(remote-deploy.sh 주석 참고). 빠뜨리면 되돌린 이미지가
-    #    절대 API URL을 해석하지 못해 전 페이지 500이 된다 — 2026-08-22에 실제로 겪었다.
-    echo "ssh -i \"$SSH_KEY\" -p $SSH_PORT $SSH_USER@$SSH_HOST 'docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME && docker run -d --name $CONTAINER_NAME --restart unless-stopped -p $PORT:$PORT --add-host cse.snu.ac.kr:host-gateway -v /home/\$(whoami)/frontend-data:/frontend-data cse.snu.ac.kr:rollback'"
+    # ⚠️ --add-host는 롤백에도 필수. 빠뜨리면 되돌린 이미지가 절대 API URL을 해석하지 못해
+    #    전 페이지 500이 된다(remote-deploy.sh 주석 참고).
+    echo "ssh -i \"$SSH_KEY\" -p $SSH_PORT $SSH_USER@$SSH_HOST 'docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME && docker run -d --name $CONTAINER_NAME --restart unless-stopped -p $PORT:$PORT --add-host $SITE_HOST:host-gateway -v /home/\$(whoami)/frontend-data:/frontend-data cse.snu.ac.kr:rollback'"
     echo ""
 fi
