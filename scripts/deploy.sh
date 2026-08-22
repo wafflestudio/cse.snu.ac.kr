@@ -173,6 +173,8 @@ if [ -n "$PREV_IMAGE" ]; then
     echo ""
     echo -e "${BLUE}⏮️  롤백이 필요한 경우:${NC}"
     echo ""
-    echo "ssh -i \"$SSH_KEY\" -p $SSH_PORT $SSH_USER@$SSH_HOST 'docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME && docker run -d --name $CONTAINER_NAME --restart unless-stopped -p $PORT:$PORT -v /home/\$(whoami)/frontend-data:/frontend-data cse.snu.ac.kr:rollback'"
+    # ⚠️ --add-host는 롤백에도 필수(remote-deploy.sh 주석 참고). 빠뜨리면 되돌린 이미지가
+    #    절대 API URL을 해석하지 못해 전 페이지 500이 된다 — 2026-08-22에 실제로 겪었다.
+    echo "ssh -i \"$SSH_KEY\" -p $SSH_PORT $SSH_USER@$SSH_HOST 'docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME && docker run -d --name $CONTAINER_NAME --restart unless-stopped -p $PORT:$PORT --add-host cse.snu.ac.kr:host-gateway -v /home/\$(whoami)/frontend-data:/frontend-data cse.snu.ac.kr:rollback'"
     echo ""
 fi
