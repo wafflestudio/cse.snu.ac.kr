@@ -1,5 +1,7 @@
 import { createIsomorphicFn } from '@tanstack/react-start';
 import { getRequestHeaders } from '@tanstack/react-start/server';
+import { BASE_URL } from '@/constants/api';
+import type { Role } from '@/store';
 
 /**
  * 로케일 감지를 위한 요청 헤더(cookie/accept-language).
@@ -33,6 +35,27 @@ export const forwardAuthHeaders = createIsomorphicFn()
     return cookie ? { cookie } : {};
   })
   .client((): HeadersInit => ({}));
+
+/**
+ * 세션의 역할 목록. `ROLE_ANONYMOUS`는 제외하므로 **빈 배열 = 비로그인**이다.
+ * 실패해도 빈 배열을 반환한다(백엔드 장애로 화면이 통째로 죽지 않게).
+ *
+ * `/v2/user/my-role`은 비로그인에도 200 + `ROLE_ANONYMOUS`를 주므로 리다이렉트를 타지 않는다
+ * — 백엔드의 다른 인증 필요 엔드포인트가 302 OAuth로 응답하는 것과 다르다(그쪽은 앱이
+ * 리다이렉트를 따라갈 수 없어 loader가 실패한다).
+ */
+export async function fetchSessionRoles(): Promise<Role[]> {
+  try {
+    const response = await fetch(`${BASE_URL}/v2/user/my-role`, {
+      headers: forwardAuthHeaders(),
+    });
+    if (!response.ok) return [];
+    const { roles }: { roles: string[] } = await response.json();
+    return roles.filter((r) => r !== 'ROLE_ANONYMOUS') as Role[];
+  } catch {
+    return [];
+  }
+}
 
 /**
  * 사이트 절대 origin(hreflang 등 절대 URL 생성용).
