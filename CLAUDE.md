@@ -43,20 +43,21 @@
 
 ## 브랜치 · CI/CD 컨벤션
 
-- **브랜치:** `main`=production · `develop`=staging · `feature/*`·`fix/*`→`develop` PR · `hotfix/*`→`main` PR(후 develop back-merge). **직접 push 금지(branch protection).**
-- **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`knip`/`build:local`/`build-storybook`, ~1–2분; `knip`=미사용 파일·export·의존성) ② E2E(`pnpm test` = 로컬과 동일 `e2e-docker.sh`; CI는 백엔드 레포를 핀된 `BACKEND_REF`로 체크아웃해 `BACKEND_DIR`로 가리키는 것만 다름 — GHCR `:prod`는 prod 프로파일이라 mock-login이 꺼져 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.**
-- **CD(`deploy.yml`):** `develop` 머지 → `--mode staging` 이미지 → `ghcr.io/wafflestudio/cse.snu.ac.kr:staging` push → **staging 자동 배포**(SSH pull+run). `main` 머지 → `--mode production` → `:prod` push, **배포는 `deploy.sh prod` 수동**(pull 기반, 확인 절차). 환경별 빌드라 이미지가 다름(아티팩트 승격 아님).
+- **브랜치:** `main`=production · `develop`=staging · `feature/*`·`fix/*`→`develop` PR · `hotfix/*`→`main` PR(후 develop back-merge). **직접 push 금지** — ruleset이 main·develop에 PR 필수 + `gate`·`e2e` 필수체크 + force push 금지 강제(admin 포함).
+- **머지 전략:** `feature`→`develop`은 **squash**(WIP 커밋 정리, 기능당 1커밋). `develop`→`main`은 **merge commit**(squash ❌ — develop은 long-lived라 squash하면 main과 히스토리가 갈라져 다음 승격 PR이 깨짐). rebase 머지는 끔, 머지 후 head 브랜치 자동삭제. (레포 설정으로 강제.)
+- **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`knip`/`build:local`/`build-storybook`, ~1–2분; `knip`=미사용 파일·export·의존성) ② E2E(로컬과 동일 `e2e-docker.sh`; CI는 프론트를 서브디렉터리·백엔드를 핀된 `BACKEND_REF` **소스**로 체크아웃 후 `gradlew bootJar`로 JAR 빌드(Dockerfile이 build/libs를 COPY)하는 것만 다름 — GHCR `:prod`는 prod 프로파일이라 mock-login이 꺼져 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.**
+- **CD(`deploy.yml`, push 시):** `develop` push → staging 이미지(**arm64 네이티브 빌드**) → `ghcr.io/wafflestudio/cse.snu.ac.kr:staging` push → **staging 자동 배포**(SSH pull+run). `main` push → prod 이미지(**amd64**) → `:prod` push, **배포는 `deploy.sh prod` 수동**(pull 기반, 확인 절차). **호스트 arch가 staging=arm64·prod=amd64라 브랜치별 네이티브 러너로 빌드**(QEMU 없이; 공개 레포라 `ubuntu-24.04-arm` 무료). 환경별 빌드라 이미지가 다름(아티팩트 승격 아님). 문서만(`**.md`) 바뀐 push는 `paths-ignore`로 재배포 안 함.
 - **호스트 배포는 pull 기반**(`remote-deploy.sh`): 호스트 build 없이 GHCR 이미지 pull+run. 롤백은 `cse.snu.ac.kr:rollback` 로컬 태그.
 - **빌드는 학외(github-hosted)에서 OK — 단 빌드가 학내 API에 의존하지 않는 한.** 현재 SSG/prerender가 없어 빌드는 순수 번들링(API 무호출)이라 안전(검증함: 도달불가 API로도 빌드 성공). **과거 prod 호스트에서 빌드한 이유**는 RR7 시절 prerender가 빌드타임에 학내 API를 때려 학외에서 경계 NGFW SYN drop으로 깨졌기 때문 — 마이그레이션에서 prerender가 빠지며 사라진 제약(`imageOptimizer`의 "prerender hack" 주석은 잔재).
   - **⚠️ 미래(SSG/prerender 재도입 시):** 빌드가 다시 학내 API를 호출 → 학외 러너는 SYN drop(~0.3%, 페이지 수만큼 누적)에 취약. **대응 = `app/utils/fetch.ts`에 재시도(연결 미수립 에러 한정)+keep-alive 추가**(prerender는 GET이라 재시도 안전; 비멱등 POST/DELETE는 응답 후 타임아웃 재시도 금지 — 중복). 인프라 0이고 일반 학외 접근 견고성(미구현 과제)도 같이 해결. self-hosted on-campus 러너는 대안이나 인프라 부담이라 비채택. **이 전제로 설계함 — "빌드는 API 무의존"에 묶지 말 것.**
 
-> **✅ CI/CD 셋업은 완료돼 있다(2026-08-22 확인).** `ci.yml`은 PR마다, `deploy.yml`은 8회 이상 성공했고 `main`에서도 돌았다(2026-06-19). staging은 `ghcr.io/wafflestudio/cse.snu.ac.kr:staging`으로 자동 배포돼 실제 서비스 중이다. 시크릿(`ENV_FILE_*`·`STAGING_SSH_*`)도 설정돼 있다.
+> **활성화 상태(2026-06-20 완료, 2026-08-22 재확인):** ✅ secrets 6개(`ENV_FILE_STAGING`/`PRODUCTION`, `STAGING_SSH_KEY/HOST/USER/PORT`; 백엔드 public이라 토큰 불필요) · `develop` push · **branch protection(ruleset: `main`·`develop` PR필수 + 필수 체크 `gate`·`e2e`, bypass 권한자 없음 → E2E 그린이 아니면 아무것도 머지 불가)** · `BACKEND_REF` 핀(#399 SHA 1661f3d8) · ci.yml · deploy.yml(staging 자동배포).
 >
-> **브랜치 보호는 ruleset으로 걸려 있다** — `main`·`develop` 둘 다 PR 필수 + **필수 status check `gate`·`e2e`** + deletion/non-fast-forward 금지, **bypass 권한자 없음**. 즉 **E2E가 그린이 아니면 아무것도 머지할 수 없다**(승인은 0명이라 셀프 머지는 가능).
+> **남은 것 = prod cutover(수동):** ① prod 호스트 `docker login ghcr.io`(또는 패키지 public) — 2026-08-22 `:prod` pull 성공 확인. ② develop→main 머지로 `:prod` 이미지 생성. ③ `deploy.sh prod`. **순서 필수** — ②(이미지 생성) 전에 ③ 돌리면 `:prod`가 낡은 채로 배포된다.
 >
-> ⚠️ **"설정이 없다"는 결론을 API 404로 내리지 말 것**(이번에 두 번 틀렸다). 브랜치 보호는 `repos/:owner/:repo/rules/branches/:branch`(ruleset)로 조회한다 — 구식 `branches/:branch/protection`은 ruleset만 쓰는 레포에서 404를 반환한다. GHCR 패키지는 **조직 소유**(`orgs/wafflestudio/packages/...`)로 조회한다 — 개인 엔드포인트(`user/packages/...`)는 404, 조직도 토큰에 `read:packages`가 없으면 403이다.
+> ⚠️ **"설정이 없다"는 결론을 API 404로 내리지 말 것**(이번 작업에서 두 번 틀렸다). 브랜치 보호는 `repos/:owner/:repo/rules/branches/:branch`(ruleset)로 조회한다 — 구식 `branches/:branch/protection`은 ruleset만 쓰는 레포에서 404를 반환한다. GHCR 패키지는 **조직 소유**(`orgs/wafflestudio/packages/...`)로 조회한다 — 개인 엔드포인트(`user/packages/...`)는 404, 조직도 토큰에 `read:packages`가 없으면 403이다. (이 문서의 이 항목이 이미 정답을 담고 있었다 — 낡은 브랜치의 사본을 보고 판단하지 말 것.)
 
-> **⚠️ 현재 prod에 배포된 것은 마이그레이션 이전 빌드다.** 배포 커밋 `ad91872`(2026-05-11, RR7)로 main보다 **59커밋 뒤**이고 TanStack Start가 배포된 적 없다. 이미지가 없어서가 아니라 **`deploy.sh prod`를 아무도 돌리지 않아서**다(`:prod` 이미지는 2026-06-19 main 머지 때 빌드돼 있다). 다음 배포가 사실상 마이그레이션 첫 배포이므로 되돌릴 준비(rollback 태그)와 배포 직후 확인을 넉넉히 잡을 것.
+> **⚠️ 현재 prod에 배포된 것은 마이그레이션 이전 빌드다.** 배포 커밋 `ad91872`(2026-05-11, RR7)로 **59커밋 뒤**이고 TanStack Start가 배포된 적 없다. 이미지가 없어서가 아니라 **`deploy.sh prod`를 아무도 돌리지 않아서**다. 다음 배포가 사실상 마이그레이션 첫 배포이므로 되돌릴 준비(rollback 태그)와 배포 직후 확인을 넉넉히 잡을 것.
 
 ---
 
