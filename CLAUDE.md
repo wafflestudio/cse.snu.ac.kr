@@ -26,8 +26,11 @@
 
 ```
 인터넷 ─443─> Caddy(엣지: TLS·HSTS·HTTP/2·라우팅)
-              ├─ 그 외        → :3000  frontend(Hono 컨테이너)
+              ├─ 그 외        → :3000  frontend(Hono 컨테이너, gzip 압축)
               └─ /api/*       → :8080  backend(GHCR 이미지)
+                        ↑
+   frontend SSR이 백엔드를 부를 때도 이 엣지를 탄다(절대 URL 직호출).
+   컨테이너의 `--add-host cse.snu.ac.kr:host-gateway`가 그 경로를 만든다.
 ```
 - 엣지 = **Caddy 컨테이너**(`~/proxy/caddy/Caddyfile`, 이 레포 밖). TLS·라우팅·보안 헤더(`-Server`·`X-XSS-Protection`) 담당.
 - 백엔드는 `ghcr.io/wafflestudio/csereal-server`(CI 빌드→GHCR→pull). 프론트도 같은 패턴으로 통일(아래).
@@ -67,7 +70,7 @@
 마이그레이션에서 확립.
 
 - **라우팅: file-based**(`app/routes/**` → 생성 `routeTree.gen.ts`). loader는 `createFileRoute`에 **인라인**(분리 wiring 안 씀). 컴포넌트는 `Route.useLoaderData()`/`useParams()`를 **직접 호출**(prop 주입 안 함) → params 자동 타입(그래서 `params.id`에 `!` 불필요).
-- **로케일: optional path param `{-$locale}`** — `app/routes/{-$locale}/**`에 1벌만(`/about`=ko, `/en/about`=en). 비로케일 라우트(`admin`·`[.]internal`·`img`·`sitemap`)는 `{-$locale}` 밖. `__root` beforeLoad가 `/ko`→bare redirect + 쿠키(`lang`)·Accept-Language로 판정.
+- **로케일: required path param `$locale`** — `app/routes/$locale/**`에 1벌만(`/ko/about`·`/en/about`). **모든 페이지가 프리픽스를 가진다**(2026-06-21 전환, 이전엔 optional `{-$locale}`이었다). 비로케일 라우트(`admin`·`[.]internal`·`img`·`sitemap`)는 `$locale` 밖. `__root` beforeLoad가 프리픽스 없는 경로를 쿠키(`lang`)·Accept-Language로 판정해 `/{lang}`으로 302. 근거·트레이드오프는 `docs/i18n-url-strategy.md`.
 - **⚠️ 로케일 링크는 항상 `localizedPath()`. 수동 `/${locale}/...` 문자열 금지** — ko에서 `/ko/...`를 **클라 네비로 클릭**하면 `__root`의 `/ko`-strip redirect가 렌더 루프(메인스레드 peg)를 일으킨 실버그가 있었다(notice 상세 wedge). `localizedPath`는 ko에서 프리픽스 없는 경로를 만들어 그 라운드트립을 제거한다.
 - **mutation은 대부분 클라 `fetch`**(same-origin proxy 경유). `action`은 거의 없음.
 - **검색/페이지네이션은 공용 `app/hooks/useSearchParams.ts`**(URLSearchParams 기반). 여러 라우트가 Pagination·SearchBox·TagCheckboxes를 공유해 라우트별 타입(`Route.useSearch`/`validateSearch`)은 부적합 — 표준 URLSearchParams 훅이 맞다.
@@ -81,7 +84,7 @@
 
 ## 디렉터리 · 파일 구조
 
-- **라우트는 URL을 미러링**(`app/routes/{-$locale}/<path>`). 라우트별 비라우트 파일은 같은 폴더에 **co-locate**.
+- **라우트는 URL을 미러링**(`app/routes/$locale/<path>`). 라우트별 비라우트 파일은 같은 폴더에 **co-locate**.
 - **co-location 폴더명은 라우팅 ignore 패턴과 맞물린다.** `vite.config.ts`의 `routeFileIgnorePattern`이 `components`·`sections`·`use[A-Z]`·PascalCase·(`api`/`constants`/`fetchContent`)를 라우트에서 제외한다 → 비라우트 파일은 **`components/`(복수)·`hooks/`(`useX`)·`sections/`·`assets/`** 또는 PascalCase로 둔다. ⚠️ 단수 `component/`처럼 패턴에 안 맞는 이름은 **라우트로 샐 수 있다**(실제 outlier 1건 → 복수로 통일함). 새 co-location 폴더는 반드시 패턴에 맞는 이름으로.
 - **공용 `app/components/`**: `ui`(제어 프리미티브, value/onChange) · `form`(RHF 어댑터, name+useFormContext) · `layout`(앱 셸: Header/Footer/Nav/PageLayout + 404 `NotFound`) · `feature`(도메인 위젯: auth/category/content/SearchBox/selection). **route-specific → co-locate, 여러 라우트서 재사용 → 여기로 승격.**
 - **헬퍼는 `app/utils/` 한 곳**(과거 `lib/`와 분리했으나 경계가 모호하고 폴더가 아무것도 강제하지 않아 합침). **서버 전용 보장은 폴더가 아니라 `createServerFn`·서버 라우트 핸들러가 한다** — 무거운 서버 전용 deps(cheerio→`cspServerFn`/`processHtmlForCsp`, sharp→`imageOptimizer`)는 그 경계 안에서만 돌려 클라 번들에서 빠진다.
@@ -114,6 +117,10 @@
 ## 분류: read / flow
 
 **`read` = 비로그인 AND DB 변경 없음 · `flow` = 로그인 필요 OR DB 변경.** 모든 케이스가 둘 중 하나(검색=read, admin=flow). 전 라우트가 `read.spec.ts`(데스크톱 `read` + 모바일 `read-mobile` 프로젝트가 같은 스펙 공유) + `flow.spec.ts` 구조다(smoke/visual 폐기). 구조·시더·헬퍼 위치는 `tests/` 디렉터리와 `tests/research/labs/`(reference 구현) 참고.
+
+라우트별 스펙 외에 **크로스커팅 스펙**이 둘 있다. 라우트마다 반복하지 않고 **와이어링 모양당 1번**만 검증하며, 각각 전용 프로젝트로 read 단계에서 병렬 실행되고 `flow`의 선행이다.
+- `tests/language.spec.ts`(`language` 프로젝트) — 로케일 리다이렉트·우선순위·토글·hreflang.
+- `tests/security.spec.ts`(`security` 프로젝트) — **상태 코드와 보안 헤더**. 렌더만 보는 read 스펙은 "화면은 맞는데 HTTP 응답이 틀린" 상태를 통과시킨다(2026-08 교내 취약점 점검에서 없는 경로가 200을 반환하던 것이 그렇게 오래 남아 있었다). DB에 의존하지 않아 baseURL만 바꾸면 staging·prod 실환경에도 쏠 수 있다.
 
 **read.spec.ts** — 비로그인이 도달 가능한 모든 화면. 핵심 콘텐츠 1~2개 assert + `toHaveScreenshot`(콘텐츠 계약 + 픽셀). **ko 전용**(en 읽기는 안 찍음 — 번역 텍스트만 바뀌어 가치 낮음).
 - ⚠️ **콘텐츠 assert는 모바일에서도 보이는 요소로**: 한 스펙이 데/모바일 두 viewport를 도니 `hidden sm:*`(데스크톱 전용 SubNavbar·메가메뉴) 텍스트를 assert하면 모바일서 깨진다 → 양쪽 다 보이는 본문 PageTitle·콘텐츠를 고른다.
@@ -204,4 +211,4 @@ E2E가 실제 버그를 잡는다. 예: DELETE가 200 빈 본문을 반환하는
 
 ---
 
-**마지막 업데이트:** 2026-06-19 (① **문서 슬림화**: 코드·config에서 확인되는 구현 상세(명령어 덤프·코드 예제·파일/함수 열거)를 제거하고 결정 이유·히스토리·컨벤션·함정만 유지. ② **폴더 구조 컨벤션 문서화**(§2 "디렉터리·파일 구조": co-location 명명 ↔ `routeFileIgnorePattern` 연결, components 택소노미, lib/utils 의도) + `system/`(NotFound 1개) → `layout/`로 폴딩. ③ **Biome 강화**: 벤더드 CSS·생성물 린트 제외, 전 레포 경고 0 정리, `--error-on-warnings` 게이트 + `pnpm lint`. ④ 코드 컨벤션: faculty/create 수동 로케일→`localizedPath`, research/labs `component/`→`components/`. 이전: 4부 재편, CI 제거·main 백엔드·Linux baseline, Storybook CSF Next, 2026-06-16 마이그레이션·디자인 시스템 완료.)
+**마지막 업데이트:** 2026-08-22 (① **교내 웹취약점 점검(wscan) 대응**: 없는 경로 404·CSP `http:` 제거·`/admin` 익명 차단 + `tests/security.spec.ts` 신설. 20건 중 13건은 코드가 아니라 **배포**로 해소됐다 — prod가 마이그레이션 이전 RR7 빌드에 59커밋 뒤처져 있었다. ② **prod 네트워크 상태 섹션 신설**: IP 이전(147.46.92.120)·웹 포트 개방 리셋·`--add-host` 함정·`@backend_denied` 재검토 필요. ③ **압축 귀속 정정**: 프록시 제거로 상위 br 압축 계층이 사라져 앱의 `hono/compress`가 담당(README 아키텍처도 정정). ④ **ISR 보류**(#8 revert) — 배포 전 컨테이너 토폴로지까지 바꾸면 장애 시 원인 분리가 안 되고 캐시 효율이 미실측. ⑤ **E2E 부팅 의존성 제거**: 백엔드가 기동 시 학내 전용 `id.snucse.org` OIDC discovery를 타 학외에서 스위트 전체가 막히던 것을 compose의 nginx stub으로 끊음. ⑥ **문서 전수 점검**: §2 로케일 서술이 옛 optional `{-$locale}`에 머물러 있던 것 정정, 크로스커팅 스펙(`language`·`security`) 반영, `docs/` 두 편에 현재 상태 주석. 이전: 2026-06-19 문서 슬림화·폴더 구조 컨벤션·Biome 강화.)

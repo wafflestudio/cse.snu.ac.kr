@@ -6,6 +6,8 @@
 
 표 컬럼: **read** = `read.spec.ts`(비로그인·비변경, ko, 데스크톱 `read`+모바일 `read-mobile` 한 스펙). **flow** = `flow.spec.ts`(로그인 OR 변경, 데스크톱). 옛 smoke/visual 컬럼은 read로 통합됨.
 
+라우트 표에 없는 **크로스커팅 스펙**이 둘 있다(와이어링 모양당 1번만 검증, 각각 전용 프로젝트로 read 단계 병렬 → `flow` 선행): `tests/language.spec.ts`(로케일 라우팅)·`tests/security.spec.ts`(상태 코드·보안 헤더).
+
 작성 방법은 `CLAUDE.md`의 "확장 가이드"와 "다음 라우트 추가 런북" 참고. 패턴 reference는 `tests/research/labs/`.
 
 ## 진행 요약

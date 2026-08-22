@@ -32,6 +32,22 @@ cp env/.env.example env/.env
 - staging/프로덕션 서버 배포 시 필요
 - 관련자에게 전달받아 설정
 
+### 백엔드는 언제 필요한가
+
+| 스크립트 | 백엔드 |
+|---|---|
+| `pnpm dev` | **불필요** — staging 백엔드를 본다(`env/.env.development`) |
+| `pnpm test`·`pnpm preview` | **로컬 docker 백엔드 필요** |
+
+로컬 백엔드는 **형제 디렉터리의 백엔드 레포 체크아웃**에서 뜬다. 없으면 `pnpm test`가 기동 단계에서 실패한다.
+
+```sh
+cd ..
+git clone https://github.com/wafflestudio/csereal-server csereal-server-main
+```
+
+`pnpm test`가 이 체크아웃의 compose로 백엔드를 자동 기동한다(이미 떠 있으면 재사용). 디렉터리명이 중요하다 — 비주얼 baseline이 이 main 체크아웃 기준이라, 다른 작업본을 띄우면 baseline이 어긋난다. 버전 동기화 절차는 `CLAUDE.md` §3 "백엔드 버전 동기화".
+
 ## 환경 (백엔드 기준)
 
 | 이름 | 백엔드 | 정체 |
@@ -39,6 +55,18 @@ cp env/.env.example env/.env
 | production | `cse.snu.ac.kr` | 실서비스 (⚠️ IP 이전 중 — 아래 "현재 접속 경로") |
 | staging | `168.107.16.249.nip.io` | 배포된 프리-프로드(공개 접근) |
 | local | `localhost:8080` (docker) | 로컬 E2E/개발 |
+
+## 현재 접속 경로 (2026-08, IP 이전 진행 중)
+
+| 대상 | URL | 접근 |
+|---|---|---|
+| production | `https://cse.snu.ac.kr` | ❌ **DNS 미해석** — 도메인 연결 대기 중 |
+| production (IP) | `https://147.46.92.120` | 🏫 학내에서만. IP 직접 접속이라 인증서 경고가 뜬다(자체서명) |
+| staging | `https://168.107.16.249.nip.io` | ✅ 학외 포함 접속 가능 |
+
+바쿠스가 프록시를 걷어내며 prod IP가 `147.46.92.120`으로 바뀌었고, 웹 포트(80/443) 개방 승인이 리셋된 상태다. 교내 웹취약점 점검 조치가 끝나면 재개방된다. 자세한 상황은 `CLAUDE.md` §1 "prod 네트워크 상태".
+
+> ⚠️ 학외에서 prod에 접속할 때 첫 시도가 실패할 수 있다(경계 장비의 간헐적 SYN drop — `docs/offcampus-intermittent-tls-drops.md`).
 
 ## 아키텍처
 
@@ -60,6 +88,28 @@ flowchart LR
 
 - **prod:** Caddy(엣지)가 TLS·라우팅·보안 헤더(`-Server`·`X-XSS-Protection`)를 맡고 `/api/*`는 백엔드로, 그 외는 frontend 컨테이너로 보낸다. **압축은 앱(`hono/compress`)이 한다** — 예전엔 Caddy 위 상위 계층이 br 압축을 해줬으나 2026-08 프록시 제거로 사라졌다.
 - **local / E2E:** Caddy 대신 루트 `server.ts`(Hono)가 prod 빌드를 서빙하고 `API_PROXY_TARGET` 설정 시 `/api`를 로컬 docker 백엔드(:8080)로 프록시한다. (자세한 이유·트레이드오프는 `CLAUDE.md` §1.)
+
+## 코드 구조
+
+```
+app/
+  routes/          URL을 그대로 미러링하는 file-based 라우팅 (→ routeTree.gen.ts 자동 생성)
+    $locale/         /ko·/en 프리픽스가 붙는 페이지 전부
+    admin/  [.]internal/  img.ts  sitemap[.]xml.ts    로케일 없는 라우트
+    __root.tsx       문서 셸 · 로케일 리다이렉트 · 세션 역할
+  components/      여러 라우트가 공유하는 것만
+    ui/              제어 프리미티브 (value/onChange)
+    form/            react-hook-form 어댑터 (name + useFormContext)
+    layout/          앱 셸 — Header/Footer/Nav/PageLayout/NotFound
+    feature/         도메인 위젯 (auth·category·content·SearchBox·selection)
+  hooks/  utils/  types/  constants/
+server.ts          Hono 진입점 — 빌드 산출물 서빙 + /storybook + (local) /api 프록시
+tests/             E2E. 라우트별 read.spec.ts / flow.spec.ts
+```
+
+**라우트별 파일은 그 라우트 폴더에 co-locate한다.** 단 폴더명이 `components/`·`hooks/`·`sections/`·`assets/`(또는 PascalCase)여야 한다 — `vite.config.ts`의 `routeFileIgnorePattern`이 그 이름만 라우트에서 제외하므로, `component/`처럼 단수로 만들면 **라우트로 샌다.** 여러 라우트에서 재사용하게 되면 `app/components/`로 승격한다.
+
+**모든 페이지 URL은 `/ko`·`/en`으로 시작한다.** 프리픽스 없는 주소(`/about`)는 쿠키·`Accept-Language`로 언어를 감지해 302로 리다이렉트된다. 링크를 만들 땐 문자열로 `/${locale}/...`를 조립하지 말고 **`localizedPath()`** 를 쓴다(근거: `docs/i18n-url-strategy.md`).
 
 ## 스크립트
 
@@ -113,20 +163,6 @@ flowchart TD
 
 - **`CLAUDE.md`** — 에이전트/기여자용 단일 가이드. 4부 구성: ①아키텍처·환경 ②라우팅·코드 컨벤션 ③E2E 테스트 ④Storybook·디자인 시스템. 작업 전 참고.
 - **`tests/COVERAGE.md`** — E2E 라우트 커버리지 추적(단일 출처).
-
-## 현재 접속 경로 (2026-08, IP 이전 진행 중)
-
-| 대상 | URL | 접근 |
-|---|---|---|
-| production | `https://cse.snu.ac.kr` | ❌ **DNS 미해석** — 도메인 연결 대기 중 |
-| production (IP) | `https://147.46.92.120` | 🏫 학내에서만. IP 직접 접속이라 인증서 경고가 뜬다(자체서명) |
-| staging | `https://168.107.16.249.nip.io` | ✅ 학외 포함 접속 가능 |
-
-바쿠스가 프록시를 걷어내며 prod IP가 `147.46.92.120`으로 바뀌었고, 웹 포트(80/443) 개방 승인이 리셋된 상태다. 교내 웹취약점 점검 조치가 끝나면 재개방된다. 자세한 상황은 `CLAUDE.md` §1 "prod 네트워크 상태".
-
-## 참고사항
-
-- ⚠️ 학외망에서 prod 서버 접속시 첫번째 시도는 실패할 수 있습니다(경계 장비의 간헐적 SYN drop — `docs/offcampus-intermittent-tls-drops.md`).
 
 ## 관련 레포
 
