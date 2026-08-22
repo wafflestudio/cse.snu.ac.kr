@@ -11,9 +11,10 @@ import {
   type ImportantPreviewList,
   type SlidePreviewList,
 } from '@/types/api/v2/admin';
+import { fetchSessionRoles } from '@/utils/auth';
 import { fetchJson } from '@/utils/fetch';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
-import { fetchSessionRoles, forwardAuthHeaders } from '@/utils/ssr';
+import { forwardAuthHeaders } from '@/utils/ssr';
 import ImageModalManagement from './components/ImageModalManagement';
 import ImportantManagement from './components/ImportantManagement';
 import SlideManagement from './components/SlideManagement';
@@ -52,8 +53,7 @@ function AdminPage() {
       <SelectionList items={selectionItems} />
 
       {(() => {
-        // TODO: 문구
-        if (!loaderData) return <p>로그인이 필요합니다.</p>;
+        // 비로그인은 beforeLoad에서 404로 걸러지므로 여기선 항상 데이터가 있다.
         if (loaderData.type === 'slide') {
           return (
             <>
@@ -133,16 +133,17 @@ function ImageModalDescription() {
 
 export const Route = createFileRoute('/admin/')({
   /**
-   * 비로그인에게는 관리자 페이지의 존재 자체를 드러내지 않는다.
+   * 비로그인에게는 관리자 페이지의 존재를 드러내지 않는다(404). 인가 강제는 백엔드 몫이고
+   * 여기서는 "무엇을 렌더할지"만 정한다.
    *
-   * 2026-08 교내 웹취약점 점검이 `/admin` 200을 "관리자 페이지 노출"로 잡았다. 게이트가
-   * 없으면 아래 loader가 백엔드를 부르는데, 백엔드는 비로그인 요청에 401/403이 아니라
-   * **302 OAuth 리다이렉트**를 준다(`/oauth2/authorization/idsnucse` → identity provider).
-   * 앱 서버가 그 최종 URL에 도달하지 못해 loader가 실패하고 **500**이 나가는데, 스캐너
-   * 프로파일에 `[높음] 애플리케이션 오류` 규칙이 있어 500도 그대로 둘 수 없다.
+   * 게이트 없이 loader가 그냥 백엔드를 부르면 **500**이 나간다 — 백엔드가 비로그인에
+   * 401/403이 아니라 302 OAuth 리다이렉트를 주는데 앱이 그 최종 URL에 도달할 수 없기
+   * 때문이다. SSR 시점엔 store의 roles가 비어 있어 `LoginVisible`로는 서버 상태를 못 정한다.
    *
-   * 그래서 리다이렉트를 타지 않는 `my-role`로 먼저 판정한다. 인가 강제는 여전히 백엔드
-   * 몫이고, 여기서는 "무엇을 렌더할지"만 정한다(프론트 소유 경계).
+   * ⚠️ `__root` loader도 my-role을 부르므로 이 페이지는 my-role을 두 번 탄다. 자식
+   * beforeLoad에서 부모 loader 결과를 읽을 방법이 없어서다. root의 beforeLoad로 올리면
+   * 중복은 사라지지만 loader의 staleTime(5분)을 잃어 **모든 네비게이션**이 my-role을 타므로,
+   * 저빈도 스태프 페이지인 여기서 한 번 더 부르는 편이 전체 비용이 낮다.
    */
   beforeLoad: async () => {
     const roles = await fetchSessionRoles();

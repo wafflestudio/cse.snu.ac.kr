@@ -21,8 +21,9 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useNonce } from '@/hooks/useNonce';
 import useIsMobile from '@/hooks/useResponsive';
 import { type Role, useStore } from '@/store';
+import { fetchSessionRoles } from '@/utils/auth';
 import { detectLangFromHeaders } from '@/utils/lang';
-import { fetchSessionRoles, getSiteOrigin, readLangHeaders } from '@/utils/ssr';
+import { getSiteOrigin, readLangHeaders } from '@/utils/ssr';
 
 // 로케일 프리픽스를 부여하지 않는 최상위(비로케일) 라우트. 정적 에셋은 SSR 전에 서빙돼 여기 도달 안 함.
 const NON_LOCALE_SEGMENTS = new Set([

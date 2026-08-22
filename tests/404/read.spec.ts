@@ -7,9 +7,8 @@ test.describe('404 - 읽기', () => {
     await setLocale(page, 'ko');
     const response = await page.goto('/this-path-does-not-exist-xyz');
 
-    // 화면만이 아니라 HTTP 상태도 404여야 한다. 렌더 단언만 있던 탓에 "본문은 404인데
-    // 상태는 200"인 상태가 오래 통과했다(soft 404 → 크롤러 색인, 취약점 점검 오탐).
-    // 상세 근거는 tests/security.spec.ts.
+    // 화면과 상태 코드가 같이 맞아야 한다. 렌더 단언만으로는 soft 404(본문은 404, 상태는
+    // 200)를 못 잡는다 — 상태 코드 층 전반은 tests/security.spec.ts가 담당한다.
     expect(response?.status()).toBe(404);
 
     await expect(page.getByText('존재하지 않는 경로입니다')).toBeVisible();
