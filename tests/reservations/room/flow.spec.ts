@@ -5,29 +5,31 @@ import { setLocale } from '../../helpers/locale';
 
 /**
  * 시설 예약 플로우. STAFF는 예약 권한(hasAnyRole STAFF/RESERVATION/LABMASTER) 보유.
- * 모달 date/시간은 기본값(오늘 가장 이른 가용 슬롯)을 그대로 쓰고 필수 항목만 채운다.
  *
- * 결정론: 기본 슬롯은 시각에 따라 다음 날(=다음 주)로 롤오버될 수 있다(예: 늦은 일요일 밤 →
- * 월요일). 캘린더는 selectedDate의 주(week)만 보여주므로, 검증은 **모달이 잡은 예약 날짜를 읽어
- * 그 날짜의 주로 캘린더를 이동(`?selectedDate=`)** 한 뒤 수행한다 → 시각/요일과 무관하게 노출.
- * (실서버라 page.clock으로 앱 시각만 고정하면 백엔드 시각과 어긋나 거부됨 → 시각 고정 대신 주 이동.)
+ * 결정론: 모달 기본값은 "오늘 가장 이른 가용 슬롯"이라 **시각 의존**(늦은 밤엔 익일 8:00로 롤오버,
+ * 종일 슬롯·캘린더 가장자리 블록이 클릭 불안정)이었다. 시각 무관하게 만들려고 날짜 피커에서
+ * **다음 달 15일**(항상 미래·월중앙)을 명시 선택하고 **14:00–15:00**(짧은 mid-day 블록)로 예약한다.
+ * (page.clock은 실서버 시각과 어긋나 거부되므로 못 씀 → 미래 날짜를 UI로 직접 고른다.)
  */
 const ROOM = '/reservations/seminar-room/301-417';
 
-/** 예약 모달을 열어 필수 항목을 채우고 제출. 모달이 잡은 기본 예약 날짜를 반환한다. */
+/** 다음 달 15일 14:00–15:00로 예약(결정론적). 잡은 예약 날짜를 반환한다. */
 async function reserve(page: Page, title: string, recurringWeeks = 1) {
+  // 다음 달 15일(로컬). 캘린더는 selected(오늘)의 달로 열리므로 "다음 달" nav 1회 후 15일.
+  const t = new Date();
+  t.setMonth(t.getMonth() + 1, 15);
+  const y = t.getFullYear();
+  const mo = t.getMonth() + 1;
+  const date = `${y}-${String(mo).padStart(2, '0')}-15`;
+
   await page.getByRole('button', { name: '예약하기' }).click();
   const dialog = page.getByRole('dialog');
+  const dateFs = dialog.locator('fieldset').filter({ hasText: '예약 날짜' });
 
-  // 기본 예약 날짜 읽기('YYYY.MM.DD.' → 파트). 검증 시 이 날짜의 주로 이동.
-  const dateText =
-    (await dialog
-      .locator('fieldset')
-      .filter({ hasText: '예약 날짜' })
-      .getByRole('button')
-      .textContent()) ?? '';
-  const m = dateText.match(/(\d{4})\.(\d{2})\.(\d{2})/);
-  if (!m) throw new Error(`예약 날짜 파싱 실패: "${dateText}"`);
+  // 날짜: 피커 열기 → 다음 달 → 15일(접근명은 전체날짜라 본문 텍스트 '15'로 선택).
+  await dateFs.getByRole('button').first().click();
+  await dialog.getByRole('button', { name: '다음 달로 이동' }).click();
+  await dateFs.getByText('15', { exact: true }).click();
 
   if (recurringWeeks > 1) {
     const recurFs = dialog.locator('fieldset').filter({ hasText: '매주 반복' });
@@ -37,14 +39,13 @@ async function reserve(page: Page, title: string, recurringWeeks = 1) {
       .click();
   }
 
-  // 종료 시간을 가장 늦은 옵션으로(기본 endTime==startTime인 0분 예약 회피)
+  // 시작 14:00 / 종료 15:00 (미래 날짜라 과거시간 필터 없음 → 항상 선택 가능).
+  const startFs = dialog.locator('fieldset').filter({ hasText: '시작 시간' });
+  await startFs.getByRole('button').first().click();
+  await startFs.getByRole('button', { name: '14:00', exact: true }).click();
   const endFs = dialog.locator('fieldset').filter({ hasText: '종료 시간' });
   await endFs.getByRole('button').first().click();
-  await endFs
-    .getByRole('button')
-    .filter({ hasText: /\d{1,2}:\d{2}/ })
-    .last()
-    .click();
+  await endFs.getByRole('button', { name: '15:00', exact: true }).click();
 
   await fillTextInput(page, 'title', title);
   await fillTextInput(page, 'contactEmail', 'auto@snu.ac.kr');
@@ -56,11 +57,10 @@ async function reserve(page: Page, title: string, recurringWeeks = 1) {
   const submit = dialog.getByRole('button', { name: '예약하기' });
   await expect(submit).toBeEnabled();
   await submit.click();
-  // 성공 시 모달이 닫힘(onSuccess). ephemeral 토스트 대신 모달 닫힘으로 완료를 대기한다
-  // (부하 시 POST가 느려도 견고하도록 타임아웃 넉넉히). 이후 caller가 해당 주로 이동해 검증.
+  // 성공 시 모달이 닫힘(onSuccess). ephemeral 토스트 대신 모달 닫힘으로 완료를 대기한다.
   await expect(dialog).toBeHidden({ timeout: 15_000 });
 
-  return { y: +m[1], mo: +m[2], d: +m[3], date: `${m[1]}-${m[2]}-${m[3]}` };
+  return { y, mo, d: 15, date };
 }
 
 test.describe('시설 예약 - 예약 플로우', () => {

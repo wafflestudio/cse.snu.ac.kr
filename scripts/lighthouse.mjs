@@ -6,21 +6,22 @@
 // 페이지 목록은 read.spec.ts의 `goto('/...')`에서 자동 추출 → 비주얼 테스트가 보는
 // 페이지와 항상 일치(스펙이 늘면 자동 반영). 404·빈상태·내부 페이지만 denylist로 제외.
 //
-// 환경: prod 빌드를 서빙하는 `pnpm preview`(:3000, /api→로컬 docker 백엔드 :8080)를 띄워둔 뒤 실행.
-//   터미널 A: pnpm preview          (백엔드 docker :8080도 떠 있어야 함)
-//   터미널 B: pnpm lighthouse
+// 환경: 기본 타깃은 배포된 staging 서버(공개 접근, 프론트+백엔드 동일 오리진)다.
+// 별도 로컬 서버·백엔드 docker가 필요 없고, 실제 배포 산출물(빌드·CDN·네트워크 포함)을
+// 대표적으로 측정한다. 로컬 빌드를 재고 싶으면 LH_BASE_URL로 오버라이드한다.
 // Lighthouse는 호스트 Chrome을 띄운다(perf 점수는 CPU 민감 → 네이티브가 컨테이너보다 안정·대표적).
 // lighthouse는 `pnpm dlx`로 받는다(별도 devDep 없음). 버전 고정이 필요하면 devDep으로 추가.
 //
 // 사용:
-//   pnpm lighthouse                 # 추출된 전 페이지
+//   pnpm lighthouse                 # staging의 추출된 전 페이지
 //   pnpm lighthouse /about /research/labs   # 특정 경로만
-//   LH_BASE_URL=http://localhost:3000 pnpm lighthouse
+//   LH_BASE_URL=http://localhost:3000 pnpm lighthouse   # 로컬 prod 프리뷰 측정(pnpm preview 선행)
 
 import { execFileSync, spawnSync } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 
-const BASE_URL = process.env.LH_BASE_URL ?? 'http://localhost:3000';
+// staging = 배포된 프리-프로드(README 환경 표). 프론트·백엔드 동일 도메인.
+const BASE_URL = process.env.LH_BASE_URL ?? 'https://168.107.16.249.nip.io';
 const OUT_DIR = 'lighthouse-reports';
 const CATEGORIES = ['performance', 'accessibility', 'best-practices', 'seo'];
 
@@ -59,8 +60,8 @@ async function assertServerUp() {
   } catch {
     console.error(
       `\n✗ ${BASE_URL} 에 연결할 수 없습니다.\n` +
-        '  먼저 prod 프리뷰 서버를 띄우세요(백엔드 docker :8080도 필요):\n' +
-        '    pnpm preview\n',
+        '  기본 타깃은 배포된 staging 서버입니다 — 네트워크/배포 상태를 확인하세요.\n' +
+        '  로컬을 측정하려면: pnpm preview 후 LH_BASE_URL=http://localhost:3000 pnpm lighthouse\n',
     );
     process.exit(1);
   }

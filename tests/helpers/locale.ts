@@ -27,10 +27,14 @@ export async function setLocale(page: Page, locale: 'ko' | 'en') {
  * 목록 인라인 상세(centers/groups)나 싱글톤(admissions/greetings)은 경로가 달라 스펙에서 직접 검증.
  */
 export async function expectEnDetailHeading(page: Page, enValue: string) {
-  const detailPath = new URL(page.url()).pathname;
+  // 모든 경로가 로케일 프리픽스를 가지므로(/ko·/en) 현재 경로에서 로케일을 떼고 반대로 붙인다.
+  const pathWithoutLocale = new URL(page.url()).pathname.replace(
+    /^\/(ko|en)/,
+    '',
+  );
   await setLocale(page, 'en');
-  await page.goto(`/en${detailPath}`);
+  await page.goto(`/en${pathWithoutLocale}`);
   await expect(page.getByRole('heading', { name: enValue })).toBeVisible();
   await setLocale(page, 'ko');
-  await page.goto(detailPath);
+  await page.goto(`/ko${pathWithoutLocale}`);
 }

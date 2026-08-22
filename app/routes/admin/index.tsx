@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, notFound } from '@tanstack/react-router';
 import SelectionList from '@/components/feature/selection/SelectionList';
 import PageLayout from '@/components/layout/PageLayout';
 import { BASE_URL } from '@/constants/api';
@@ -12,7 +12,8 @@ import {
   type SlidePreviewList,
 } from '@/types/api/v2/admin';
 import { fetchJson } from '@/utils/fetch';
-import { forwardAuthHeaders } from '@/utils/ssr';
+import { searchLoaderDeps } from '@/utils/loaderDeps';
+import { fetchSessionRoles, forwardAuthHeaders } from '@/utils/ssr';
 import ImageModalManagement from './components/ImageModalManagement';
 import ImportantManagement from './components/ImportantManagement';
 import SlideManagement from './components/SlideManagement';
@@ -131,6 +132,23 @@ function ImageModalDescription() {
 }
 
 export const Route = createFileRoute('/admin/')({
+  /**
+   * 비로그인에게는 관리자 페이지의 존재 자체를 드러내지 않는다.
+   *
+   * 2026-08 교내 웹취약점 점검이 `/admin` 200을 "관리자 페이지 노출"로 잡았다. 게이트가
+   * 없으면 아래 loader가 백엔드를 부르는데, 백엔드는 비로그인 요청에 401/403이 아니라
+   * **302 OAuth 리다이렉트**를 준다(`/oauth2/authorization/idsnucse` → identity provider).
+   * 앱 서버가 그 최종 URL에 도달하지 못해 loader가 실패하고 **500**이 나가는데, 스캐너
+   * 프로파일에 `[높음] 애플리케이션 오류` 규칙이 있어 500도 그대로 둘 수 없다.
+   *
+   * 그래서 리다이렉트를 타지 않는 `my-role`로 먼저 판정한다. 인가 강제는 여전히 백엔드
+   * 몫이고, 여기서는 "무엇을 렌더할지"만 정한다(프론트 소유 경계).
+   */
+  beforeLoad: async () => {
+    const roles = await fetchSessionRoles();
+    if (roles.length === 0) throw notFound();
+  },
+  loaderDeps: searchLoaderDeps,
   loader: async ({ location }) => {
     const searchStr = location.searchStr;
     const sp = new URLSearchParams(searchStr);

@@ -1,6 +1,7 @@
 import { serve } from '@hono/node-server';
 import { serveStatic } from '@hono/node-server/serve-static';
 import { Hono } from 'hono';
+import { compress } from 'hono/compress';
 import { proxy } from 'hono/proxy';
 
 // prod 빌드(`dist/`)를 서빙하는 Node 서버. prod 컨테이너와 E2E가 공유.
@@ -15,6 +16,10 @@ const handler: { fetch: (req: Request) => Promise<Response> } =
   mod.default ?? mod;
 
 const app = new Hono();
+
+// 텍스트 응답(SSR HTML·JS·CSS) gzip 압축. 비압축이면 느린망에서 다운로드가 FCP/LCP를
+// 지배(문서 ~320KB·JS ~700KB 비압축이 병목이었음). staging Caddy엔 encode가 없어 여기서 압축.
+app.use(compress());
 
 // /api/** → 백엔드 프록시. `raw`로 원본 요청(쿠키 포함)·응답 Set-Cookie 그대로 전달(세션 유지).
 if (API_PROXY_TARGET) {
