@@ -39,10 +39,24 @@ echo "🚀 새 컨테이너 시작…" >&2
 FRONTEND_DATA_DIR="/home/$(whoami)/frontend-data"
 mkdir -p "$FRONTEND_DATA_DIR/img-optimized" "$FRONTEND_DATA_DIR/analytics"
 
+# 배포 환경의 사이트 호스트명을 컨테이너 안에서 엣지(= docker 호스트)로 해석시킨다.
+#
+# prod 빌드는 API_PROXY_TARGET 없이 **절대 URL 직호출**이라(VITE_API_BASE_URL이 번들에 박힘)
+# SSR이 `https://cse.snu.ac.kr/api/...`를 부른다. 그런데 도메인 연결 전(2026-08 IP 이전 중)
+# 에는 이 호스트명이 어디서도 해석되지 않아 **모든 페이지가 500**이 된다(getaddrinfo 실패).
+# 11일 된 컨테이너가 살아 있는 동안엔 드러나지 않다가 재생성 시점에 터진다 — 실제로
+# 2026-08-22 배포에서 겪었고, 롤백해도 같은 증상이라 코드가 아닌 환경 문제임이 드러났다.
+#
+# host-gateway로 매핑하면 컨테이너 → 호스트 Caddy → 백엔드로 정상 도달한다(호스트 IP를
+# 하드코딩하지 않아 IP가 또 바뀌어도 유효). 도메인이 연결된 뒤에도 무해하다 — 공인 DNS
+# 대신 같은 목적지를 가리킬 뿐이고, 오히려 SSR이 외부를 한 바퀴 돌지 않는다.
+SITE_HOST="${SITE_HOST:-cse.snu.ac.kr}"
+
 docker run -d \
   --name "$CONTAINER_NAME" \
   --restart unless-stopped \
   -p "$PORT:$PORT" \
+  --add-host "$SITE_HOST:host-gateway" \
   -v "$FRONTEND_DATA_DIR:/frontend-data" \
   "$IMAGE"
 
