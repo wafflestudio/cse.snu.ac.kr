@@ -106,6 +106,7 @@ flowchart TD
 
 - **PR 게이트(`ci.yml`):** 모든 PR에서 타입/린트/knip/빌드/스토리북 + E2E(핀 컨테이너, 백엔드는 고정 SHA로 체크아웃). 통과해야 머지.
 - **빌드·배포(`deploy.yml`):** 머지 시 환경별 이미지를 호스트 arch에 맞춰 네이티브 빌드(staging=arm64, prod=amd64) → GHCR push. **staging은 자동 배포**, **prod는 `deploy.sh prod`로 수동**. 호스트는 빌드 없이 이미지를 pull만 한다.
+- **머지 전략:** `feature`→`develop`은 **squash**(기능당 1커밋), `develop`→`main`은 **merge commit**(squash 금지 — long-lived 브랜치라 히스토리가 갈라짐). rebase 머지는 끔.
 - **원칙:** CI는 로컬과 같은 스크립트(`pnpm test`·`pnpm lint` 등)를 호출만 한다 — 두 벌 관리하지 않는다. 상세·셋업(시크릿·branch protection)은 `CLAUDE.md` §1 "브랜치·CI/CD 컨벤션".
 
 ## 문서
