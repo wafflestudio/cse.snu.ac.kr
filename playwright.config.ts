@@ -92,9 +92,16 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
     {
+      // 취약점 점검(wscan) 회귀 가드 — 상태 코드·보안 헤더 층. 비로그인·DB 비변경이라
+      // read 단계에서 병렬 실행. 렌더가 아니라 HTTP 응답만 보므로 viewport 무관.
+      name: 'security',
+      testMatch: /security\.spec\.ts$/,
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
       name: 'flow',
       testMatch: /flow\.spec\.ts$/,
-      dependencies: ['read', 'read-mobile', 'language'],
+      dependencies: ['read', 'read-mobile', 'language', 'security'],
       use: { ...devices['Desktop Chrome'] },
     },
   ],

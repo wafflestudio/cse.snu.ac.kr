@@ -17,17 +17,12 @@ import MobileNav from '@/components/layout/MobileNav';
 import NotFound from '@/components/layout/NotFound';
 import ErrorState from '@/components/ui/ErrorState';
 import { Toaster } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useNonce } from '@/hooks/useNonce';
 import useIsMobile from '@/hooks/useResponsive';
 import { type Role, useStore } from '@/store';
 import { detectLangFromHeaders } from '@/utils/lang';
-import {
-  forwardAuthHeaders,
-  getSiteOrigin,
-  readLangHeaders,
-} from '@/utils/ssr';
+import { fetchSessionRoles, getSiteOrigin, readLangHeaders } from '@/utils/ssr';
 
 // 로케일 프리픽스를 부여하지 않는 최상위(비로케일) 라우트. 정적 에셋은 SSR 전에 서빙돼 여기 도달 안 함.
 const NON_LOCALE_SEGMENTS = new Set([
@@ -70,22 +65,10 @@ export const Route = createRootRoute({
     throw redirect({ href: `/${lang}${base}${search}` });
   },
   // my-role: 세션 역할(전 라우트 공통). 세션 내 안정적이라 staleTime으로 네비게이션마다 재요청 방지.
-  loader: async (): Promise<{ roles: Role[]; origin: string }> => {
-    const origin = getSiteOrigin();
-    try {
-      const response = await fetch(`${BASE_URL}/v2/user/my-role`, {
-        headers: forwardAuthHeaders(),
-      });
-      if (!response.ok) return { roles: [], origin };
-      const { roles }: { roles: string[] } = await response.json();
-      return {
-        roles: roles.filter((r) => r !== 'ROLE_ANONYMOUS') as Role[],
-        origin,
-      };
-    } catch {
-      return { roles: [], origin };
-    }
-  },
+  loader: async (): Promise<{ roles: Role[]; origin: string }> => ({
+    roles: await fetchSessionRoles(),
+    origin: getSiteOrigin(),
+  }),
   staleTime: 5 * 60_000,
   head: () => ({
     meta: [

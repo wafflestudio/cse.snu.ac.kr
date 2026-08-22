@@ -29,8 +29,17 @@
               ├─ 그 외        → :3000  frontend(Hono 컨테이너)
               └─ /api/*       → :8080  backend(GHCR 이미지)
 ```
-- 엣지 = **Caddy 컨테이너**(`~/proxy/caddy/Caddyfile`, 이 레포 밖). TLS·라우팅 담당. **압축(br)·`immutable` 캐시는 Caddy 위 상위 계층(SNU 인프라 추정)이 처리** → 프론트/이 레포는 압축 안 함(중복이라 `hono/compress` 안 넣음).
+- 엣지 = **Caddy 컨테이너**(`~/proxy/caddy/Caddyfile`, 이 레포 밖). TLS·라우팅·보안 헤더(`-Server`·`X-XSS-Protection`) 담당.
 - 백엔드는 `ghcr.io/wafflestudio/csereal-server`(CI 빌드→GHCR→pull). 프론트도 같은 패턴으로 통일(아래).
+- **⚠️ 압축은 이제 앱이 한다(`hono/compress`).** 예전엔 Caddy 위 상위 계층(바쿠스 프록시)이 br 압축을 해줘서 이 레포는 압축을 안 넣었는데, **2026-08 프록시 제거로 그 계층이 사라졌다**(실측: prod가 HTML을 무압축 94KB로 서빙). `immutable` 캐시 헤더는 앱이 원래부터 내고 있어 무관.
+
+## prod 네트워크 상태 (2026-08, 이전 진행 중)
+
+- prod IP가 **147.46.92.120**으로 이전(구 프록시 경유 → 공인 IP 직결). `env/.env`의 `CSEREAL_PROD_SSH_HOST`가 아직 옛 호스트(`waiter.bacchus.io` → 147.46.92.174)를 가리키면 갱신할 것. 포트 9122·키는 동일.
+- **웹 포트(80/443) 개방 승인이 리셋된 상태** — 학외에서 147.46.92.120·147.46.92.174 둘 다 443 차단, SSH 9122만 열림(`147.46.10.129`=www.snu.ac.kr은 정상 → SNU 전체 차단 아님). 취약점 조치 완료 후 재개방된다.
+- **이것 때문에 E2E가 한때 통째로 막혔다(해결됨).** 백엔드가 기동 시 `id.snucse.org`(→147.46.92.174) OIDC discovery를 하는데 타임아웃으로 크래시 루프(실측 RestartCount 28, CI e2e 잡도 동일 원인 실패). **테스트 스위트가 외부 서비스의 부팅 응답에 의존하던 구조**가 문제였고, `tests/setup/backend/docker-compose-fe-test.yml`에 discovery 문서만 응답하는 nginx stub을 띄워 끊었다 → 학내/학외 무관하게 돈다. 자세한 건 그 파일 주석.
+- **⚠️ 도메인 연결 시 확인**: OAuth 로그인은 사용자 브라우저가 `id.snucse.org`에 직접 접속해야 한다 → 그 호스트도 학외 접근이 되는지 확인해야 학외 로그인이 동작한다(바쿠스 소유).
+- Caddyfile의 `@backend_denied`가 관리 엔드포인트 3개를 `not remote_ip 10.91.1.1`로 막는데, 10.91.1.1은 사설 주소라 **구 프록시 주소로 보인다**. 직결 전환 후 의미가 달라지므로 도메인 연결 전 재검토 필요.
 
 ## 브랜치 · CI/CD 컨벤션
 
@@ -41,7 +50,13 @@
 - **빌드는 학외(github-hosted)에서 OK — 단 빌드가 학내 API에 의존하지 않는 한.** 현재 SSG/prerender가 없어 빌드는 순수 번들링(API 무호출)이라 안전(검증함: 도달불가 API로도 빌드 성공). **과거 prod 호스트에서 빌드한 이유**는 RR7 시절 prerender가 빌드타임에 학내 API를 때려 학외에서 경계 NGFW SYN drop으로 깨졌기 때문 — 마이그레이션에서 prerender가 빠지며 사라진 제약(`imageOptimizer`의 "prerender hack" 주석은 잔재).
   - **⚠️ 미래(SSG/prerender 재도입 시):** 빌드가 다시 학내 API를 호출 → 학외 러너는 SYN drop(~0.3%, 페이지 수만큼 누적)에 취약. **대응 = `app/utils/fetch.ts`에 재시도(연결 미수립 에러 한정)+keep-alive 추가**(prerender는 GET이라 재시도 안전; 비멱등 POST/DELETE는 응답 후 타임아웃 재시도 금지 — 중복). 인프라 0이고 일반 학외 접근 견고성(미구현 과제)도 같이 해결. self-hosted on-campus 러너는 대안이나 인프라 부담이라 비채택. **이 전제로 설계함 — "빌드는 API 무의존"에 묶지 말 것.**
 
-> **⚠️ 활성화 전 셋업(미완 — 레포 설정/시크릿 필요):** ① `develop` 브랜치 push(워크플로 파일 포함 → `workflow` 스코프 PAT 필요) + branch protection(PR 필수·체크 필수). ② secrets: `ENV_FILE_STAGING`/`ENV_FILE_PRODUCTION`(빌드 시 `env/.env.<mode>` 복원), `STAGING_SSH_KEY/HOST/USER/PORT`. (백엔드 repo가 public이라 토큰 불필요.) ③ 호스트가 GHCR pull 가능하게(`docker login ghcr.io` 또는 패키지 public). ④ ~~`BACKEND_REF` 핀~~ 완료(#399 SHA 1661f3d8). ⑤ E2E는 첫 그린 확인 후 required 체크로 승격. **⑥ cutover 순서: CI의 GHCR push가 동작함을 먼저 확인한 뒤에야 pull 기반 `deploy.sh`를 처음 돌릴 것**(그 전엔 이미지가 없어 실패).
+> **✅ CI/CD 셋업은 완료돼 있다(2026-08-22 확인).** `ci.yml`은 PR마다, `deploy.yml`은 8회 이상 성공했고 `main`에서도 돌았다(2026-06-19). staging은 `ghcr.io/wafflestudio/cse.snu.ac.kr:staging`으로 자동 배포돼 실제 서비스 중이다. 시크릿(`ENV_FILE_*`·`STAGING_SSH_*`)도 설정돼 있다.
+>
+> **브랜치 보호는 ruleset으로 걸려 있다** — `main`·`develop` 둘 다 PR 필수 + **필수 status check `gate`·`e2e`** + deletion/non-fast-forward 금지, **bypass 권한자 없음**. 즉 **E2E가 그린이 아니면 아무것도 머지할 수 없다**(승인은 0명이라 셀프 머지는 가능).
+>
+> ⚠️ **"설정이 없다"는 결론을 API 404로 내리지 말 것**(이번에 두 번 틀렸다). 브랜치 보호는 `repos/:owner/:repo/rules/branches/:branch`(ruleset)로 조회한다 — 구식 `branches/:branch/protection`은 ruleset만 쓰는 레포에서 404를 반환한다. GHCR 패키지는 **조직 소유**(`orgs/wafflestudio/packages/...`)로 조회한다 — 개인 엔드포인트(`user/packages/...`)는 404, 조직도 토큰에 `read:packages`가 없으면 403이다.
+
+> **⚠️ 현재 prod에 배포된 것은 마이그레이션 이전 빌드다.** 배포 커밋 `ad91872`(2026-05-11, RR7)로 main보다 **59커밋 뒤**이고 TanStack Start가 배포된 적 없다. 이미지가 없어서가 아니라 **`deploy.sh prod`를 아무도 돌리지 않아서**다(`:prod` 이미지는 2026-06-19 main 머지 때 빌드돼 있다). 다음 배포가 사실상 마이그레이션 첫 배포이므로 되돌릴 준비(rollback 태그)와 배포 직후 확인을 넉넉히 잡을 것.
 
 ---
 
