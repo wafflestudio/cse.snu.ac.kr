@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, type Page, test } from '@playwright/test';
 import { loginAsStaff } from '../../helpers/auth';
 import {
   deleteItem,
@@ -7,6 +7,41 @@ import {
   submitForm,
 } from '../../helpers/forms';
 import { setLocale } from '../../helpers/locale';
+
+async function createNoticeViaApi(page: Page, title: string) {
+  const response = await page.request.post('/api/v2/notice', {
+    multipart: {
+      request: {
+        name: 'request.json',
+        mimeType: 'application/json',
+        buffer: Buffer.from(
+          JSON.stringify({
+            title,
+            titleForMain: null,
+            description: '<p>페이지네이션 본문</p>',
+            isPrivate: false,
+            isPinned: false,
+            pinnedUntil: null,
+            isImportant: false,
+            importantUntil: null,
+            tags: [],
+          }),
+        ),
+      },
+    },
+  });
+  expect(response.ok()).toBe(true);
+  return ((await response.json()) as { id: number }).id;
+}
+
+async function deleteNoticesViaApi(page: Page, ids: number[]) {
+  if (ids.length === 0) return;
+
+  const response = await page.request.delete('/api/v2/notice', {
+    data: { idList: ids },
+  });
+  expect(response.ok()).toBe(true);
+}
 
 /**
  * 공지 CRUD: 작성→상세→편집→상세 반영→삭제→목록에서 사라짐.
@@ -136,6 +171,34 @@ test.describe('공지사항 - 게시 설정', () => {
     // 목록에는 원 제목으로 노출
     await page.goto('/community/notice');
     await expect(page.getByRole('link', { name: title })).toBeVisible();
+  });
+
+  test('페이지네이션 query는 따옴표 없이 갱신된다', async ({ page }) => {
+    const prefix = `페이지쿼리 ${Date.now()}`;
+    const noticeIds: number[] = [];
+
+    await setLocale(page, 'ko');
+    await page.goto('/community/notice');
+    await loginAsStaff(page);
+
+    try {
+      noticeIds.push(
+        ...(await Promise.all(
+          Array.from({ length: 21 }, (_, i) =>
+            createNoticeViaApi(page, `${prefix}-${i}`),
+          ),
+        )),
+      );
+
+      await page.goto('/community/notice');
+      await page.getByRole('button', { name: '2', exact: true }).click();
+      await page.waitForURL((url) => url.searchParams.get('pageNum') === '2');
+
+      expect(page.url()).toContain('pageNum=2');
+      expect(page.url()).not.toContain('pageNum=%222%22');
+    } finally {
+      await deleteNoticesViaApi(page, noticeIds);
+    }
   });
 });
 

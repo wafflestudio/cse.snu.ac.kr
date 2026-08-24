@@ -23,7 +23,8 @@ export function useSearchParams(): [
   URLSearchParams,
   (next: SetSearchParamsArg, options?: SetOptions) => void,
 ] {
-  const searchStr = useRouterState({ select: (s) => s.location.searchStr });
+  const location = useRouterState({ select: (s) => s.location });
+  const { pathname, searchStr, hash } = location;
   const navigate = useNavigate();
 
   const searchParams = useMemo(
@@ -41,14 +42,14 @@ export function useSearchParams(): [
       } else {
         resolved = new URLSearchParams(next);
       }
+      const query = resolved.toString();
       navigate({
-        to: '.',
-        search: () => Object.fromEntries(resolved),
+        href: `${pathname}${query ? `?${query}` : ''}${hash ? `#${hash}` : ''}`,
         resetScroll: options?.preventScrollReset ? false : undefined,
         replace: options?.replace,
       });
     },
-    [navigate, searchStr],
+    [hash, navigate, pathname, searchStr],
   );
 
   return [searchParams, setSearchParams];
