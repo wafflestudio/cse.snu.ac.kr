@@ -15,7 +15,14 @@ const here = path.dirname(fileURLToPath(import.meta.url));
  */
 const BACKEND_URL = process.env.E2E_BACKEND_URL ?? 'http://localhost:8080';
 const APP_URL = 'http://localhost:3000';
-const BACKEND_DIR = path.resolve(here, '../csereal-server');
+// ⚠️ `scripts/e2e-docker.sh`·`ci.yml`과 **같은 기본값이어야 한다**. baseline은 이 main
+// 체크아웃 기준이고, 형제 `../csereal-server`는 v3 등 다른 작업본이라 그쪽을 띄우면 엉뚱한
+// 백엔드로 검증하게 된다. 보통은 e2e-docker.sh가 백엔드를 먼저 띄워 아래 command가
+// reuseExistingServer로 건너뛰지만, 안 떠 있을 때 이 값이 실제로 쓰인다.
+const BACKEND_DIR = path.resolve(
+  here,
+  process.env.BACKEND_DIR ?? '../csereal-server-main',
+);
 
 const backendServer = {
   // 베이스 compose는 백엔드 레포 소유, E2E 부팅 오버라이드는 FE 레포 소유(tests/setup/backend/).
