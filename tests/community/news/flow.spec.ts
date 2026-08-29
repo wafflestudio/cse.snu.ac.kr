@@ -54,13 +54,13 @@ test.describe('새 소식 - 작성/편집/삭제 플로우', () => {
 });
 
 /**
- * 게시 설정(어드민): 비공개 새소식.
- * news 목록 loader는 notice와 달리 쿠키를 전달하지 않아(프론트 비일관) 비공개 글이
- * staff에게도 목록에 안 보인다 → "비공개 글은 (로그인 여부와 무관하게) 목록에서 빠진다"만 검증.
- * (private→staff 노출의 정상 동작 검증은 notice 게시 설정 스펙에서 수행)
+ * 게시 설정(어드민): 비공개 새소식 — notice와 동일 의미론(staff에게만 노출).
+ * 과거엔 news 목록 loader가 쿠키를 안 넘겨 staff에게도 숨겨지는 동작을 박제했었다
+ * → forwardAuthHeaders 통일(2026-08-30) 후 notice 스펙과 같은 형태로 갱신.
+ * goto(SSR 경로)로 검증해야 loader의 쿠키 포워딩이 실제로 검증된다.
  */
 test.describe('새 소식 - 게시 설정', () => {
-  test('비공개 새소식은 목록에 노출되지 않는다', async ({ page }) => {
+  test('비공개 새소식은 staff에게만 보인다', async ({ page }) => {
     const title = `비공개소식 ${Date.now()}`;
 
     await setLocale(page, 'ko');
@@ -76,7 +76,13 @@ test.describe('새 소식 - 게시 설정', () => {
     await expect(page.getByText('새소식을 게시했습니다.')).toBeVisible();
     await page.waitForURL(/\/community\/news\/\d+/);
 
-    // 목록에는 비공개 글이 노출되지 않음
+    // staff 목록(SSR)에는 보인다
+    await page.goto('/community/news');
+    await expect(page.getByRole('heading', { name: title })).toBeVisible();
+
+    // 로그아웃(쿠키 제거) → 비공개 글은 숨겨진다
+    await page.context().clearCookies();
+    await setLocale(page, 'ko');
     await page.goto('/community/news');
     await expect(page.getByRole('heading', { name: title })).toHaveCount(0);
   });
