@@ -1,6 +1,23 @@
+import type { FileRouteTypes } from '@/routeTree.gen';
+
+type StripLocale<T> = T extends `/$locale${infer Rest}`
+  ? Rest extends ''
+    ? '/'
+    : Rest
+  : never;
+
+// 파라미터 세그먼트($studentType 등)는 구체값을 넣으므로 그 자리만 string으로 넓힌다.
+type Segment<S extends string> = S extends `$${string}` ? string : S;
+type ExpandParams<T extends string> = T extends `${infer A}/${infer B}`
+  ? `${Segment<A>}/${ExpandParams<B>}`
+  : Segment<T>;
+
+/** 등록된 라우트에서 /$locale를 벗긴 경로. 정적 세그먼트 오타·삭제된 라우트 참조 = 컴파일 에러. */
+export type NavPath = ExpandParams<StripLocale<FileRouteTypes['to']>>;
+
 export interface NavItem {
   key: string; // unique, 번역 키 (예: "소개")
-  path?: string; // 페이지 경로 (있으면 Link, 없으면 카테고리 헤더)
+  path?: NavPath; // 페이지 경로 (있으면 Link, 없으면 카테고리 헤더)
   children?: NavItem[]; // 하위 메뉴
 }
 
