@@ -11,7 +11,7 @@ import { toast } from '@/components/ui/sonner';
 import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
-import PostFooter from '@/routes/$locale/community/components/PostFooter';
+import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import type { Seminar } from '@/types/api/v2/seminar';
 import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchOk } from '@/utils/fetch';

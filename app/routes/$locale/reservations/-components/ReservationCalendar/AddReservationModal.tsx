@@ -6,7 +6,7 @@ import Form from '@/components/form/Form';
 import Button from '@/components/ui/Button';
 import Dialog from '@/components/ui/Dialog';
 import { useLanguage } from '@/hooks/useLanguage';
-import useReservationForm from '@/routes/$locale/reservations/hooks/useReservationForm';
+import useReservationForm from '@/routes/$locale/reservations/-hooks/useReservationForm';
 
 interface AddReservationModalProps {
   roomId: number;

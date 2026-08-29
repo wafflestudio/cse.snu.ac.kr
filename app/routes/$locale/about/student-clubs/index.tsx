@@ -11,7 +11,7 @@ import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { StudentClubsResponse } from '@/types/api/v2/about/student-clubs';
 import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchJson } from '@/utils/fetch';
-import ClubDetails from './components/ClubDetails';
+import ClubDetails from './-components/ClubDetails';
 
 const META = {
   ko: {

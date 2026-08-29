@@ -5,7 +5,7 @@ import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import ScholarshipEditor, {
   type ScholarshipFormData,
-} from '@/routes/$locale/academics/components/scholarship/ScholarshipEditor';
+} from '@/routes/$locale/academics/-components/scholarship/ScholarshipEditor';
 import { fetchOk } from '@/utils/fetch';
 
 function ScholarshipCreatePage() {

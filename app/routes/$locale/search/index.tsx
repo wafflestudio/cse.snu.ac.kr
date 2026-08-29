@@ -3,16 +3,16 @@ import SearchBox from '@/components/feature/SearchBox';
 import PageLayout from '@/components/layout/PageLayout';
 import { useLanguage } from '@/hooks/useLanguage';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
+import AboutSection from './-components/sections/AboutSection';
+import AcademicSection from './-components/sections/AcademicSection';
+import AdmissionSection from './-components/sections/AdmissionSection';
+import CommunitySection from './-components/sections/CommunitySection';
+import MemberSection from './-components/sections/MemberSection';
+import ResearchSection from './-components/sections/ResearchSection';
+import NoSearchResult from './-components/ui/NoSearchResult';
+import SearchSubNavbar from './-components/ui/SearchSubNavbar';
+import fetchContent from './-fetchContent';
 import MagnificentGlass from './assets/magnificent_glass.svg?react';
-import AboutSection from './components/sections/AboutSection';
-import AcademicSection from './components/sections/AcademicSection';
-import AdmissionSection from './components/sections/AdmissionSection';
-import CommunitySection from './components/sections/CommunitySection';
-import MemberSection from './components/sections/MemberSection';
-import ResearchSection from './components/sections/ResearchSection';
-import NoSearchResult from './components/ui/NoSearchResult';
-import SearchSubNavbar from './components/ui/SearchSubNavbar';
-import fetchContent from './fetchContent';
 
 const SEARCH_TAGS = [
   '소개',

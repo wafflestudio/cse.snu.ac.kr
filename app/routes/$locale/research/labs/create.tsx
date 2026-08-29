@@ -5,7 +5,7 @@ import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import ResearchLabEditor, {
   type ResearchLabFormData,
-} from '@/routes/$locale/research/labs/components/ResearchLabEditor';
+} from '@/routes/$locale/research/labs/-components/ResearchLabEditor';
 import type { SimpleFaculty } from '@/types/api/v2/professor';
 import type { ResearchGroup } from '@/types/api/v2/research/groups';
 import { fetchJson } from '@/utils/fetch';

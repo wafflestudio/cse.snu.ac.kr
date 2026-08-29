@@ -1,5 +1,5 @@
 import type dayjs from 'dayjs';
-import useSelectedDate from '@/routes/$locale/reservations/hooks/useSelectedDate';
+import useSelectedDate from '@/routes/$locale/reservations/-hooks/useSelectedDate';
 import type {
   ReservationPreview,
   ReserveTerm,

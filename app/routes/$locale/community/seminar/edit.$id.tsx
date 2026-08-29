@@ -9,7 +9,7 @@ import { fetchJson, fetchOk } from '@/utils/fetch';
 import { FormData2, getDeleteIds } from '@/utils/form';
 import SeminarEditor, {
   type SeminarFormData,
-} from './components/SeminarEditor';
+} from './-components/SeminarEditor';
 
 function SeminarEditPage() {
   const loaderData = Route.useLoaderData();

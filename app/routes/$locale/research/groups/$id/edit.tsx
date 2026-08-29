@@ -8,7 +8,7 @@ import { fetchJson, fetchOk } from '@/utils/fetch';
 import { FormData2 } from '@/utils/form';
 import ResearchGroupEditor, {
   type ResearchGroupFormData,
-} from '../components/ResearchGroupEditor';
+} from '../-components/ResearchGroupEditor';
 
 interface ResearchGroupData {
   ko: ResearchGroup;

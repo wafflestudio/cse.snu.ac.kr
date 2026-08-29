@@ -7,7 +7,7 @@ import {
   CareerCompanyEditor,
   type CareerCompanyFormData,
   CompanyTableRow,
-} from '@/routes/$locale/about/future-careers/components/CompanyRow';
+} from '@/routes/$locale/about/future-careers/-components/CompanyRow';
 import type { Company } from '@/types/api/v2/about/future-careers';
 import { fetchOk } from '@/utils/fetch';
 

@@ -5,7 +5,7 @@ import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import TimelineEditor, {
   type TimelineFormData,
-} from '@/routes/$locale/academics/components/timeline/TimelineEditor';
+} from '@/routes/$locale/academics/-components/timeline/TimelineEditor';
 import type { TimelineContent } from '@/types/api/v2/academics';
 import { fetchJson, fetchOk } from '@/utils/fetch';
 import { FormData2, getDeleteIds } from '@/utils/form';

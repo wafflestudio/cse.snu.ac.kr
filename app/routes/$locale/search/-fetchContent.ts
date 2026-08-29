@@ -9,7 +9,7 @@ import type {
   ResearchSearchResult,
 } from '@/types/api/v2/search';
 import type { SeminarPreviewList } from '@/types/api/v2/seminar';
-import type { TreeNode } from './components/ui/SearchSubNavbar';
+import type { TreeNode } from './-components/ui/SearchSubNavbar';
 
 export type SectionContent = {
   about?: AboutSearchResult;

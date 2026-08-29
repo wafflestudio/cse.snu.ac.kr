@@ -7,7 +7,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { isLocalFile } from '@/types/form';
 import { fetchOk } from '@/utils/fetch';
 import { FormData2 } from '@/utils/form';
-import NewsEditor, { type NewsFormData } from './components/NewsEditor';
+import NewsEditor, { type NewsFormData } from './-components/NewsEditor';
 
 function NewsCreatePage() {
   const navigate = useNavigate();

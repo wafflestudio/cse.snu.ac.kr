@@ -5,7 +5,7 @@ import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import FacultyEditor, {
   type FacultyFormData,
-} from '@/routes/$locale/people/components/FacultyEditor';
+} from '@/routes/$locale/people/-components/FacultyEditor';
 import type { Faculty, FacultyStatus } from '@/types/api/v2/professor';
 import type { SimpleResearchLab } from '@/types/api/v2/research/labs';
 import { fetchJson } from '@/utils/fetch';

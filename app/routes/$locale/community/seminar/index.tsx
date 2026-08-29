@@ -10,8 +10,8 @@ import { useSearchParams } from '@/hooks/useSearchParams';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import type { SeminarPreviewList } from '@/types/api/v2/seminar';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
-import SeminarRow from './components/SeminarRow';
-import SeminarSearchBar from './components/SeminarSearchBar';
+import SeminarRow from './-components/SeminarRow';
+import SeminarSearchBar from './-components/SeminarSearchBar';
 
 const POSTS_COUNT_PER_PAGE = 10;
 

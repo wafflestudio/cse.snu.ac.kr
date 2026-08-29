@@ -3,7 +3,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
-import TimelineViewer from '@/routes/$locale/academics/components/timeline/TimelineViewer';
+import TimelineViewer from '@/routes/$locale/academics/-components/timeline/TimelineViewer';
 import type { TimelineContent } from '@/types/api/v2/academics';
 import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchJson } from '@/utils/fetch';

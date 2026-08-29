@@ -7,7 +7,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { isLocalFile } from '@/types/form';
 import { fetchOk } from '@/utils/fetch';
 import { FormData2 } from '@/utils/form';
-import NoticeEditor, { type NoticeFormData } from './components/NoticeEditor';
+import NoticeEditor, { type NoticeFormData } from './-components/NoticeEditor';
 
 function NoticeCreatePage() {
   const navigate = useNavigate();

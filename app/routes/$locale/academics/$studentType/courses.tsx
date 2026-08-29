@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { BASE_URL } from '@/constants/api';
-import CoursesPage from '@/routes/$locale/academics/components/courses/CoursesPage';
+import CoursesPage from '@/routes/$locale/academics/-components/courses/CoursesPage';
 import type { Course, StudentType } from '@/types/api/v2/academics';
 import { fetchJson } from '@/utils/fetch';
 

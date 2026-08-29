@@ -1,11 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { processHtmlForCsp } from '@/utils/cspServerFn';
-import AdmissionsPageContent from '../../components/AdmissionsPageContent';
+import AdmissionsPageContent from '../../-components/AdmissionsPageContent';
 import {
   fetchAdmissions,
   type MainType,
   type PostType,
-} from '../../components/fetchAdmissions';
+} from '../../-components/fetchAdmissions';
 
 // Mapping for page configuration
 const ADMISSIONS_PAGES: Record<

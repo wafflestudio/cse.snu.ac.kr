@@ -11,7 +11,7 @@ import { useSearchParams } from '@/hooks/useSearchParams';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import type { NewsPreview, NewsPreviewList } from '@/types/api/v2/news';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
-import NewsListRow from './components/NewsListRow';
+import NewsListRow from './-components/NewsListRow';
 
 const POST_LIMIT = 10;
 

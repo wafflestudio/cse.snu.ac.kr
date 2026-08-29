@@ -7,7 +7,7 @@ import { fetchOk } from '@/utils/fetch';
 import { FormData2 } from '@/utils/form';
 import ResearchCenterEditor, {
   type ResearchCenterFormData,
-} from './components/ResearchCenterEditor';
+} from './-components/ResearchCenterEditor';
 
 function ResearchCenterCreate() {
   const navigate = useNavigate();

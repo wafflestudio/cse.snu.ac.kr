@@ -9,8 +9,8 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { FutureCareersResponse } from '@/types/api/v2/about/future-careers';
 import { processHtmlForCsp } from '@/utils/cspServerFn';
-import CareerCompanies from './components/CareerCompanies';
-import CareerStat from './components/CareerStat';
+import CareerCompanies from './-components/CareerCompanies';
+import CareerStat from './-components/CareerStat';
 
 const META = {
   ko: {

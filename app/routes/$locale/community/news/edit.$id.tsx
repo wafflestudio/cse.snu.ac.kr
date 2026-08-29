@@ -8,7 +8,7 @@ import type { News } from '@/types/api/v2/news';
 import { isLocalFile } from '@/types/form';
 import { fetchJson, fetchOk } from '@/utils/fetch';
 import { FormData2, getDeleteIds } from '@/utils/form';
-import NewsEditor, { type NewsFormData } from './components/NewsEditor';
+import NewsEditor, { type NewsFormData } from './-components/NewsEditor';
 
 function NewsEditPage() {
   const loaderData = Route.useLoaderData();

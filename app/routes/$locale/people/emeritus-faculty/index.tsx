@@ -8,7 +8,7 @@ import { usePeopleSubNav } from '@/hooks/useSubNav';
 import PeopleGrid, {
   type PeopleCardContentItem,
   type PeopleCardProps,
-} from '@/routes/$locale/people/components/PeopleGrid';
+} from '@/routes/$locale/people/-components/PeopleGrid';
 import type { SimpleEmeritusFaculty } from '@/types/api/v2/professor';
 
 const META = {

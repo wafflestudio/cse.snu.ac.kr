@@ -15,7 +15,7 @@ import LoginVisible from '@/components/feature/auth/LoginVisible';
 import Button from '@/components/ui/Button';
 import Calendar from '@/components/ui/Calendar';
 import { useClickOutside } from '@/hooks/useClickOutside';
-import useSelectedDate from '@/routes/$locale/reservations/hooks/useSelectedDate';
+import useSelectedDate from '@/routes/$locale/reservations/-hooks/useSelectedDate';
 import { kstDayjs } from '@/utils/kstDayjs';
 import AddReservationModal from './AddReservationModal';
 

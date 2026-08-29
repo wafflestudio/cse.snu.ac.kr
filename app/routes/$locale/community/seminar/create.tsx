@@ -8,7 +8,7 @@ import { fetchOk } from '@/utils/fetch';
 import { FormData2 } from '@/utils/form';
 import SeminarEditor, {
   type SeminarFormData,
-} from './components/SeminarEditor';
+} from './-components/SeminarEditor';
 
 function SeminarCreatePage() {
   const navigate = useNavigate();

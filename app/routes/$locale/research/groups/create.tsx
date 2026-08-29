@@ -7,7 +7,7 @@ import { fetchOk } from '@/utils/fetch';
 import { FormData2 } from '@/utils/form';
 import ResearchGroupEditor, {
   type ResearchGroupFormData,
-} from './components/ResearchGroupEditor';
+} from './-components/ResearchGroupEditor';
 
 function ResearchGroupCreate() {
   const navigate = useNavigate();

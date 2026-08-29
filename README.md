@@ -80,7 +80,7 @@ server.ts          Hono 진입점 — 빌드 산출물 서빙 + (local) /api 프
 tests/             E2E. 라우트별 read.spec.ts / flow.spec.ts
 ```
 
-**라우트별 파일은 그 라우트 폴더에 co-locate합니다.** 단 폴더명이 `components/`·`hooks/`·`sections/`·`assets/`(또는 PascalCase)여야 합니다 — `vite.config.ts`의 `routeFileIgnorePattern`이 그 이름만 라우트에서 제외하므로, `component/`처럼 단수로 만들면 라우트로 취급되니 주의합니다. 여러 라우트에서 재사용하게 되면 `app/components/`로 승격합니다.
+**라우트별 파일은 그 라우트 폴더에 co-locate합니다.** 비라우트 파일/폴더는 이름을 **`-`로 시작**하게 둡니다 — `-components/`·`-hooks/`·`-api.ts` 등. TanStack Router가 `-` 프리픽스로 시작하는 항목을 라우트 생성에서 자동 제외하므로(프레임워크 기본값 `routeFileIgnorePrefix='-'`), 커스텀 정규식 없이 이름 규칙 하나로 끝납니다. 여러 라우트에서 재사용하게 되면 `app/components/`로 승격합니다.
 
 **모든 페이지 URL은 `/ko`·`/en`으로 시작합니다.** 프리픽스 없는 주소(`/about`)는 쿠키·`Accept-Language`로 언어를 감지해 302로 리다이렉트됩니다. 링크를 만들 땐 문자열로 `/${locale}/...`를 조립하지 말고 **`localizedPath()`** 를 씁니다.
 

@@ -6,7 +6,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
-import ScholarshipList from '@/routes/$locale/academics/components/ScholarshipList';
+import ScholarshipList from '@/routes/$locale/academics/-components/ScholarshipList';
 import type { StudentType } from '@/types/api/v2/academics';
 import type { ScholarshipList as ScholarshipListType } from '@/types/api/v2/academics/scholarship';
 import { processHtmlForCsp } from '@/utils/cspServerFn';

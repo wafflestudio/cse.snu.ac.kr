@@ -9,7 +9,7 @@ import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import StaffEditor, {
   type StaffFormData,
-} from '@/routes/$locale/people/components/StaffEditor';
+} from '@/routes/$locale/people/-components/StaffEditor';
 import type { Staff } from '@/types/api/v2/staff';
 import { fetchJson, fetchOk } from '@/utils/fetch';
 import { FormData2 } from '@/utils/form';

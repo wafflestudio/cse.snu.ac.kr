@@ -5,7 +5,7 @@ import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useResearchSubNav } from '@/hooks/useSubNav';
 import type { TopConferenceListResponse } from '@/types/api/v2/conference';
-import ConferenceListTable from './components/ConferenceListTable';
+import ConferenceListTable from './-components/ConferenceListTable';
 
 const META = {
   ko: {

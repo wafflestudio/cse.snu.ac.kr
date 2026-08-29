@@ -8,12 +8,12 @@ import { useLanguage } from '@/hooks/useLanguage';
 import type { MainResponse } from '@/types/api/v2';
 import type { ImageModal as ImageModalData } from '@/types/api/v2/admin';
 import { SITE_NAME } from '@/utils/metadata';
+import GraphicSection from './-components/GraphicSection';
+import ImportantSection from './-components/ImportantSection';
+import LinkSection from './-components/LinkSection';
+import NoticeSection from './-components/NoticeSection';
+import NewsSection from './-components/news/NewsSection';
 import backgroundImg from './assets/background.avif';
-import GraphicSection from './components/GraphicSection';
-import ImportantSection from './components/ImportantSection';
-import LinkSection from './components/LinkSection';
-import NoticeSection from './components/NoticeSection';
-import NewsSection from './components/news/NewsSection';
 
 const META = {
   ko: {

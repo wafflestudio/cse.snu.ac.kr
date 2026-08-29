@@ -11,7 +11,7 @@ import type { FacultyList, SimpleFaculty } from '@/types/api/v2/professor';
 import PeopleGrid, {
   type PeopleCardContentItem,
   type PeopleCardProps,
-} from '../components/PeopleGrid';
+} from '../-components/PeopleGrid';
 
 type SortType = 'name' | 'department';
 

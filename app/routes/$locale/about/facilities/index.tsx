@@ -7,7 +7,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { FacilitiesResponse } from '@/types/api/v2/about/facilities';
 import { processHtmlForCsp } from '@/utils/cspServerFn';
-import FacilitiesList from './components/FacilitiesList';
+import FacilitiesList from './-components/FacilitiesList';
 
 const META = {
   ko: {

@@ -9,7 +9,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import {
   deleteRecurringReservation,
   deleteReservation,
-} from '@/routes/$locale/reservations/api';
+} from '@/routes/$locale/reservations/-api';
 import type { Reservation } from '@/types/api/v2/reservation';
 import { kstDayjs } from '@/utils/kstDayjs';
 

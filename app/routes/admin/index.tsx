@@ -15,9 +15,9 @@ import { fetchSessionRoles } from '@/utils/auth';
 import { fetchJson } from '@/utils/fetch';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
 import { forwardAuthHeaders } from '@/utils/ssr';
-import ImageModalManagement from './components/ImageModalManagement';
-import ImportantManagement from './components/ImportantManagement';
-import SlideManagement from './components/SlideManagement';
+import ImageModalManagement from './-components/ImageModalManagement';
+import ImportantManagement from './-components/ImportantManagement';
+import SlideManagement from './-components/SlideManagement';
 
 const MENU_LABELS = {
   [ADMIN_MENU_SLIDE]: '슬라이드쇼 관리',

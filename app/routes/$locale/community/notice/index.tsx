@@ -14,10 +14,10 @@ import type { NoticePreviewList } from '@/types/api/v2/notice';
 import { fetchJson } from '@/utils/fetch';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
 import { forwardAuthHeaders } from '@/utils/ssr';
-import AdminFeatures from './components/AdminFeatures';
+import AdminFeatures from './-components/AdminFeatures';
 import NoticeListRow, {
   NOTICE_ROW_CELL_WIDTH,
-} from './components/NoticeListRow';
+} from './-components/NoticeListRow';
 
 const POST_LIMIT = 20;
 

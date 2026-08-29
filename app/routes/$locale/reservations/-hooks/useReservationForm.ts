@@ -6,7 +6,7 @@ import { toast } from '@/components/ui/sonner';
 import {
   postReservation,
   ReservationError,
-} from '@/routes/$locale/reservations/api';
+} from '@/routes/$locale/reservations/-api';
 import type { ReservationPostBody } from '@/types/api/v2/reservation';
 import {
   getEarliestStartTimeFrom,

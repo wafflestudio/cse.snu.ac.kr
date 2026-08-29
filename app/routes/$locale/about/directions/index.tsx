@@ -12,7 +12,7 @@ import { useSelectionList } from '@/hooks/useSelectionList';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { DirectionsResponse } from '@/types/api/v2/about/directions';
 import { processHtmlForCsp } from '@/utils/cspServerFn';
-import KakaoMap from './components/KakaoMap';
+import KakaoMap from './-components/KakaoMap';
 
 const META = {
   ko: {

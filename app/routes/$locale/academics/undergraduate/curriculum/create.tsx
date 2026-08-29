@@ -6,7 +6,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import TimelineEditor, {
   type TimelineFormData,
-} from '@/routes/$locale/academics/components/timeline/TimelineEditor';
+} from '@/routes/$locale/academics/-components/timeline/TimelineEditor';
 import { fetchOk } from '@/utils/fetch';
 import { FormData2 } from '@/utils/form';
 

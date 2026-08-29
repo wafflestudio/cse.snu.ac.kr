@@ -8,14 +8,14 @@ import { useReservationsSubNav } from '@/hooks/useSubNav';
 import {
   fetchReserveTerms,
   fetchWeeklyReservation,
-} from '@/routes/$locale/reservations/api';
+} from '@/routes/$locale/reservations/-api';
 import ReservationCalendar, {
   type ReservationCalendarProps,
-} from '@/routes/$locale/reservations/components/ReservationCalendar';
+} from '@/routes/$locale/reservations/-components/ReservationCalendar';
 import {
   roomNameToId,
   STAFF_ONLY_ROOM_ID,
-} from '@/routes/$locale/reservations/constants';
+} from '@/routes/$locale/reservations/-constants';
 import { kstDayjs } from '@/utils/kstDayjs';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
 import {

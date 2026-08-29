@@ -7,7 +7,7 @@ import type {
   NoticeSearchResult,
 } from '@/types/api/v2/search';
 import type { SeminarPreviewList } from '@/types/api/v2/seminar';
-import SeminarRow from '../../../community/seminar/components/SeminarRow';
+import SeminarRow from '../../../community/seminar/-components/SeminarRow';
 import CircleTitle from '../ui/CircleTitle';
 import NewsRow from '../ui/NewsRow';
 import NoticeRow from '../ui/NoticeRow';

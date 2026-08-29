@@ -10,7 +10,7 @@ import { isLocalFile } from '@/types/form';
 import { fetchJson, fetchOk } from '@/utils/fetch';
 import { FormData2, getDeleteIds } from '@/utils/form';
 import { forwardAuthHeaders } from '@/utils/ssr';
-import NoticeEditor, { type NoticeFormData } from './components/NoticeEditor';
+import NoticeEditor, { type NoticeFormData } from './-components/NoticeEditor';
 
 dayjs.extend(customParseFormat);
 

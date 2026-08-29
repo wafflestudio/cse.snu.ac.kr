@@ -9,7 +9,7 @@ import { Tag } from '@/components/ui/Tag';
 import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
-import PostFooter from '@/routes/$locale/community/components/PostFooter';
+import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import type { News } from '@/types/api/v2/news';
 import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchOk } from '@/utils/fetch';

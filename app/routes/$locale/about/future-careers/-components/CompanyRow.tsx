@@ -6,7 +6,7 @@ import Form from '@/components/form/Form';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import { toast } from '@/components/ui/sonner';
-import { TABLE_COLUMN_SIZE } from '@/routes/$locale/about/future-careers/components/CareerCompanies';
+import { TABLE_COLUMN_SIZE } from '@/routes/$locale/about/future-careers/-components/CareerCompanies';
 import type { Company } from '@/types/api/v2/about/future-careers';
 import { fetchOk } from '@/utils/fetch';
 
