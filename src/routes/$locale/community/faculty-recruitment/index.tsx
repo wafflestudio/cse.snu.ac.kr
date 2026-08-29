@@ -8,8 +8,8 @@ import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import type { FacultyRecruitment } from '@/types/api/v2/recruit';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchJson } from '@/utils/fetch';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 const META = {
   ko: {
@@ -73,7 +73,7 @@ export const Route = createFileRoute('/$locale/community/faculty-recruitment/')(
 
       return {
         ...data,
-        description: await processHtmlForCsp(data.description),
+        description: await processHtmlForCsp({ data: data.description }),
       };
     },
     component: FacultyRecruitmentPage,

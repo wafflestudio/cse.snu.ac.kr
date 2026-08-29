@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 const META = {
   ko: {
@@ -104,9 +104,9 @@ export const Route = createFileRoute('/$locale/10-10-project/participants')({
     const localizedPath = locale === 'en' ? '/en' : '';
 
     return {
-      htmlContent: await processHtmlForCsp(
-        buildHtmlContent(`${localizedPath}/people/faculty`),
-      ),
+      htmlContent: await processHtmlForCsp({
+        data: buildHtmlContent(`${localizedPath}/people/faculty`),
+      }),
     };
   },
   component: TenTenParticipantsPage,

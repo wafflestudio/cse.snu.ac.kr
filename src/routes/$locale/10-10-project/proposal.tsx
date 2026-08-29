@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 const META = {
   ko: {
@@ -179,12 +179,12 @@ export const Route = createFileRoute('/$locale/10-10-project/proposal')({
     const prefix = locale === 'en' ? '/en' : '';
 
     return {
-      htmlContent: await processHtmlForCsp(
-        buildHtmlContent(
+      htmlContent: await processHtmlForCsp({
+        data: buildHtmlContent(
           `${prefix}/10-10-project/manager`,
           `${prefix}/10-10-project/participants`,
         ),
-      ),
+      }),
     };
   },
   component: TenTenProposalPage,

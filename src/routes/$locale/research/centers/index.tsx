@@ -13,8 +13,8 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useResearchSubNav } from '@/hooks/useSubNav';
 import type { ResearchCentersResponse } from '@/types/api/v2/research/centers';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchJson, fetchOk } from '@/utils/fetch';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import LinkIcon from './assets/link_icon.svg?react';
 
 const META = {
@@ -181,7 +181,7 @@ export const Route = createFileRoute('/$locale/research/centers/')({
     return Promise.all(
       data.map(async (center) => ({
         ...center,
-        description: await processHtmlForCsp(center.description),
+        description: await processHtmlForCsp({ data: center.description }),
       })),
     );
   },

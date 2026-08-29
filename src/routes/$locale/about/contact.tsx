@@ -6,7 +6,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import ContentSection from './-components/ContentSection';
 
 import './assets/contactfix.css';
@@ -85,7 +85,7 @@ export const Route = createFileRoute('/$locale/about/contact')({
 
     return {
       ...data,
-      description: await processHtmlForCsp(data.description),
+      description: await processHtmlForCsp({ data: data.description }),
     };
   },
   component: ContactPage,

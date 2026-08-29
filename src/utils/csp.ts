@@ -1,5 +1,5 @@
 // 클라이언트 안전한 CSP 유틸/타입만 둔다(무거운 deps 없음).
-// HTML 변환(cheerio·autolinker)은 processHtmlForCsp.ts(순수) + cspServerFn.ts(serverFn)로 분리해
+// HTML 변환(cheerio·autolinker)은 processHtmlForCsp.ts(serverFn, handler 안 dynamic import)에 있어
 // 라우트 loader가 클라에서 실행돼도 cheerio가 클라 번들에 들어가지 않게 한다.
 
 /** 16바이트 랜덤 hex(Web Crypto, 서버/클라 공통). */

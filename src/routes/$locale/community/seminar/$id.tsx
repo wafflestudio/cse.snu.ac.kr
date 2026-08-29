@@ -13,10 +13,10 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import type { Seminar } from '@/types/api/v2/seminar';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchOk } from '@/utils/fetch';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
 import { stripHtml, truncateDescription } from '@/utils/metadata';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import { forwardAuthHeaders } from '@/utils/ssr';
 
 function SeminarDetailPage() {
@@ -217,10 +217,10 @@ export const Route = createFileRoute('/$locale/community/seminar/$id')({
     return {
       ...seminar,
       description: seminar.description
-        ? await processHtmlForCsp(seminar.description)
+        ? await processHtmlForCsp({ data: seminar.description })
         : null,
       introduction: seminar.introduction
-        ? await processHtmlForCsp(seminar.introduction)
+        ? await processHtmlForCsp({ data: seminar.introduction })
         : null,
     };
   },

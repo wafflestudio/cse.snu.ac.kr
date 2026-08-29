@@ -14,10 +14,10 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import type { Notice } from '@/types/api/v2/notice';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchOk } from '@/utils/fetch';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
 import { stripHtml, truncateDescription } from '@/utils/metadata';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 function NoticeDetailPage() {
   const notice = Route.useLoaderData();
@@ -145,7 +145,7 @@ export const Route = createFileRoute('/$locale/community/notice/$id')({
 
     return {
       ...notice,
-      description: await processHtmlForCsp(notice.description),
+      description: await processHtmlForCsp({ data: notice.description }),
     };
   },
   component: NoticeDetailPage,

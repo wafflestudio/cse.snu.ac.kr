@@ -13,8 +13,8 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useResearchSubNav } from '@/hooks/useSubNav';
 import type { ResearchGroupsResponse } from '@/types/api/v2/research/groups';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchJson, fetchOk } from '@/utils/fetch';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 const META = {
   ko: {
@@ -179,7 +179,7 @@ export const Route = createFileRoute('/$locale/research/groups/')({
     return Promise.all(
       data.map(async (group) => ({
         ...group,
-        description: await processHtmlForCsp(group.description),
+        description: await processHtmlForCsp({ data: group.description }),
       })),
     );
   },

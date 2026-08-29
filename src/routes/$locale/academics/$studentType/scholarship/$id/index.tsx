@@ -10,9 +10,9 @@ import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import type { Scholarship } from '@/types/api/v2/academics/scholarship';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchJson, fetchOk } from '@/utils/fetch';
 import { stripHtml, truncateDescription } from '@/utils/metadata';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 function ScholarshipDetailPage() {
   const loaderData = Route.useLoaderData();
@@ -102,8 +102,14 @@ export const Route = createFileRoute(
     const en = isFirstKo ? res.second : res.first;
 
     return {
-      ko: { ...ko, description: await processHtmlForCsp(ko.description) },
-      en: { ...en, description: await processHtmlForCsp(en.description) },
+      ko: {
+        ...ko,
+        description: await processHtmlForCsp({ data: ko.description }),
+      },
+      en: {
+        ...en,
+        description: await processHtmlForCsp({ data: en.description }),
+      },
     };
   },
   component: ScholarshipDetailPage,

@@ -8,7 +8,7 @@ import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { AboutContent } from '@/types/api/v2/about/content';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import ContentSection from './-components/ContentSection';
 
 const META = {
@@ -85,7 +85,7 @@ export const Route = createFileRoute('/$locale/about/greetings')({
 
     return {
       ...data,
-      description: await processHtmlForCsp(data.description),
+      description: await processHtmlForCsp({ data: data.description }),
     };
   },
   component: GreetingsPage,

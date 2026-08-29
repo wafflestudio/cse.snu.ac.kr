@@ -10,8 +10,8 @@ import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import type { DegreeRequirements } from '@/types/api/v2/academics/undergraduate/degree-requirements';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchJson } from '@/utils/fetch';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 const META = {
   ko: {
@@ -73,7 +73,7 @@ export const Route = createFileRoute(
 
     return {
       ...data,
-      description: await processHtmlForCsp(data.description),
+      description: await processHtmlForCsp({ data: data.description }),
     };
   },
   component: DegreeRequirementsPage,

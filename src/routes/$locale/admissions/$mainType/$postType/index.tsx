@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import AdmissionsPageContent from '../../-components/AdmissionsPageContent';
 import {
   fetchAdmissions,
@@ -60,7 +60,7 @@ export const Route = createFileRoute(
     );
 
     return {
-      description: await processHtmlForCsp(data[locale].description),
+      description: await processHtmlForCsp({ data: data[locale].description }),
       layout: config.layout,
     };
   },

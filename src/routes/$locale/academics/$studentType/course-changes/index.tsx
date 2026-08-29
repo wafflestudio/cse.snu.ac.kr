@@ -5,8 +5,8 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import TimelineViewer from '@/routes/$locale/academics/-components/timeline/TimelineViewer';
 import type { TimelineContent } from '@/types/api/v2/academics';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchJson } from '@/utils/fetch';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 const META = {
   undergraduate: {
@@ -74,7 +74,7 @@ export const Route = createFileRoute(
     return Promise.all(
       data.map(async (item) => ({
         ...item,
-        description: await processHtmlForCsp(item.description),
+        description: await processHtmlForCsp({ data: item.description }),
       })),
     );
   },

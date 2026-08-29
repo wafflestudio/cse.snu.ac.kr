@@ -9,8 +9,8 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { StudentClubsResponse } from '@/types/api/v2/about/student-clubs';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchJson } from '@/utils/fetch';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import ClubDetails from './-components/ClubDetails';
 
 const META = {
@@ -80,11 +80,11 @@ export const Route = createFileRoute('/$locale/about/student-clubs/')({
       response.map(async (club) => ({
         ko: {
           ...club.ko,
-          description: await processHtmlForCsp(club.ko.description),
+          description: await processHtmlForCsp({ data: club.ko.description }),
         },
         en: {
           ...club.en,
-          description: await processHtmlForCsp(club.en.description),
+          description: await processHtmlForCsp({ data: club.en.description }),
         },
       })),
     );

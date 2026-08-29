@@ -7,7 +7,7 @@ import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { FutureCareersResponse } from '@/types/api/v2/about/future-careers';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import ContentSection from '../-components/ContentSection';
 import CareerCompanies from './-components/CareerCompanies';
 import CareerStat from './-components/CareerStat';
@@ -76,7 +76,7 @@ export const Route = createFileRoute('/$locale/about/future-careers/')({
 
     return {
       ...data,
-      description: await processHtmlForCsp(data.description),
+      description: await processHtmlForCsp({ data: data.description }),
     };
   },
   component: FutureCareersPage,

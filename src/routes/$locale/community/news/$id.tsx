@@ -11,10 +11,10 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import type { News } from '@/types/api/v2/news';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchOk } from '@/utils/fetch';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
 import { stripHtml, truncateDescription } from '@/utils/metadata';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import { forwardAuthHeaders } from '@/utils/ssr';
 
 function NewsDetailPage() {
@@ -142,7 +142,7 @@ export const Route = createFileRoute('/$locale/community/news/$id')({
 
     return {
       ...news,
-      description: await processHtmlForCsp(news.description),
+      description: await processHtmlForCsp({ data: news.description }),
     };
   },
   component: NewsDetailPage,

@@ -6,7 +6,7 @@ import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { FacilitiesResponse } from '@/types/api/v2/about/facilities';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import FacilitiesList from './-components/FacilitiesList';
 
 const META = {
@@ -66,7 +66,9 @@ export const Route = createFileRoute('/$locale/about/facilities/')({
     return Promise.all(
       facilities.map(async (facility) => ({
         ...facility[locale],
-        description: await processHtmlForCsp(facility[locale].description),
+        description: await processHtmlForCsp({
+          data: facility[locale].description,
+        }),
       })),
     );
   },
