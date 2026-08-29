@@ -8,8 +8,7 @@
     ".storybook/{main,preview}.{ts,tsx}",
     "tests/**/*.spec.ts"
   ],
-  "project": ["src/**/*.{ts,tsx}", "scripts/*.mjs", "tests/**/*.ts"],
-  "ignore": ["src/routeTree.gen.ts"],
+  "project": ["src/**/*.{ts,tsx}", "tests/**/*.ts"],
   "ignoreBinaries": ["scripts/deploy.sh"],
   "ignoreDependencies": ["tailwindcss"]
 }

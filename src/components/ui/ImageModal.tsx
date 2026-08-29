@@ -11,6 +11,7 @@ const CheckboxUnchecked = ({ className }: { className?: string }) => (
     height="20"
     viewBox="0 0 20 20"
     className={className}
+    aria-hidden="true"
   >
     <mask
       id="mask0_10305_21737"
@@ -35,6 +36,7 @@ const CheckboxChecked = ({ className }: { className?: string }) => (
     height="20"
     viewBox="0 0 20 20"
     className={className}
+    aria-hidden="true"
   >
     <mask
       id="mask0_10305_21810"

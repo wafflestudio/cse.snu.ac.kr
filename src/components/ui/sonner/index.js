@@ -6,6 +6,7 @@
 /** biome-ignore-all lint/a11y/useButtonType: sonner source code */
 /** biome-ignore-all lint/correctness/noInnerDeclarations: sonner source code */
 /** biome-ignore-all lint/correctness/useExhaustiveDependencies: sonner source code */
+/** biome-ignore-all lint/suspicious/useIterableCallbackReturn: sonner source code */
 'use client';
 
 import React from 'react';

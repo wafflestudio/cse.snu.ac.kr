@@ -28,7 +28,9 @@ export class FormData2 extends FormData {
   }
   appendIfLocal(key: string, value: EditorImage | EditorFile | EditorFile[]) {
     if (Array.isArray(value)) {
-      value.forEach((file) => this.appendIfLocal(key, file));
+      value.forEach((file) => {
+        this.appendIfLocal(key, file);
+      });
       return;
     }
     if (isFalsy(value)) return;
