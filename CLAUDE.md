@@ -33,35 +33,33 @@
    컨테이너의 `--add-host cse.snu.ac.kr:host-gateway`가 그 경로를 만든다.
 ```
 - 엣지 = **Caddy 컨테이너**(`~/proxy/caddy/Caddyfile`, 이 레포 밖). TLS·라우팅·보안 헤더(`-Server`·`X-XSS-Protection`) 담당.
-- 백엔드는 `ghcr.io/wafflestudio/csereal-server`(CI 빌드→GHCR→pull). 프론트도 같은 패턴으로 통일(아래).
+- 백엔드는 `ghcr.io/wafflestudio/csereal-server`(CI 빌드→GHCR→pull). **프론트는 호스트 빌드**(레지스트리 없음 — 호스트가 git URL로 `docker build`, 아래).
 - **⚠️ 압축은 이제 앱이 한다(`hono/compress`).** 예전엔 Caddy 위 상위 계층(바쿠스 프록시)이 br 압축을 해줘서 이 레포는 압축을 안 넣었는데, **2026-08 프록시 제거로 그 계층이 사라졌다**(실측: prod가 HTML을 무압축 94KB로 서빙). `immutable` 캐시 헤더는 앱이 원래부터 내고 있어 무관.
 
-## prod 네트워크 상태 (2026-08, 이전 진행 중)
+## prod 네트워크 상태 (2026-08-29 갱신 — 도메인 연결·cutover 완료)
 
-- prod IP가 **147.46.92.120**으로 이전(구 프록시 경유 → 공인 IP 직결). `env/.env`의 `CSEREAL_PROD_SSH_HOST`가 아직 옛 호스트(`waiter.bacchus.io` → 147.46.92.174)를 가리키면 갱신할 것. 포트 9122·키는 동일.
-- **웹 포트(80/443) 개방 승인이 리셋된 상태** — 학외에서 147.46.92.120·147.46.92.174 둘 다 443 차단, SSH 9122만 열림(`147.46.10.129`=www.snu.ac.kr은 정상 → SNU 전체 차단 아님). 취약점 조치 완료 후 재개방된다.
-- **이것 때문에 E2E가 한때 통째로 막혔다(해결됨).** 백엔드가 기동 시 `id.snucse.org`(→147.46.92.174) OIDC discovery를 하는데 타임아웃으로 크래시 루프(실측 RestartCount 28, CI e2e 잡도 동일 원인 실패). **테스트 스위트가 외부 서비스의 부팅 응답에 의존하던 구조**가 문제였고, `tests/setup/backend/docker-compose-fe-test.yml`에 discovery 문서만 응답하는 nginx stub을 띄워 끊었다 → 학내/학외 무관하게 돈다. 자세한 건 그 파일 주석.
-- **⚠️ 도메인 연결 시 확인**: OAuth 로그인은 사용자 브라우저가 `id.snucse.org`에 직접 접속해야 한다 → 그 호스트도 학외 접근이 되는지 확인해야 학외 로그인이 동작한다(바쿠스 소유).
-- **⚠️ 컨테이너에 `--add-host cse.snu.ac.kr:host-gateway`가 필요하다(`remote-deploy.sh`가 붙인다).** prod 빌드는 API_PROXY_TARGET 없이 **절대 URL 직호출**이라 SSR이 `https://cse.snu.ac.kr/api/...`를 부르는데, 도메인 연결 전에는 그 호스트명이 해석되지 않아 **전 페이지 500**이 된다(getaddrinfo 실패). 오래 떠 있는 컨테이너에선 안 드러나다가 **재생성 시점에 터진다** — 2026-08-22 배포에서 겪었고 롤백해도 같은 증상이라 코드가 아닌 환경 문제임이 드러났다. **롤백 명령에도 같은 옵션을 넣어야 한다.**
-- Caddyfile의 `@backend_denied`가 관리 엔드포인트 3개를 `not remote_ip 10.91.1.1`로 막는데, 10.91.1.1은 사설 주소라 **구 프록시 주소로 보인다**. 직결 전환 후 의미가 달라지므로 도메인 연결 전 재검토 필요.
+- prod IP = **147.46.92.120**(구 프록시 경유 → 공인 IP 직결). `env/.env`의 `CSEREAL_PROD_SSH_HOST` 갱신 완료(옛 `waiter.bacchus.io`→147.46.92.174에서 이전). 포트 9122·키 동일.
+- **도메인 연결 완료** — `cse.snu.ac.kr` DNS 해석(→147.46.92.120)·443 학외 개방·마이그레이션 빌드 라이브를 실측 확인(2026-08-29). 한때 리셋됐던 웹 포트 개방 승인도 재개방됨. cutover 자체는 아래 활성화 블록 참고.
+  - 학외 접속이 드물게 실패할 수 있다 — 재시도하면 붙는다(앱 버그 아님, 하드 차단 아님).
+- **⚠️ 학외 OAuth 로그인은 아직 불가.** OAuth는 사용자 브라우저가 `id.snucse.org`(→147.46.92.174)에 직접 붙어야 하는데 그 호스트가 학외 443을 막고 있다(2026-08-29 실측 4/4 timeout — SYN drop과 달리 재시도로도 안 붙는 하드 차단). **바쿠스가 그 호스트를 학외 개방해야 학외 로그인이 동작한다**(앱 문제 아님, 바쿠스 소유). 학내에선 정상.
+- **E2E OIDC 부팅 의존(해결됨, 영구).** 백엔드가 기동 시 `id.snucse.org` OIDC discovery를 하다 타임아웃으로 크래시 루프(실측 RestartCount 28, CI e2e 잡도 동일 원인 실패)던 것을, `tests/setup/backend/docker-compose-fe-test.yml`에 discovery 문서만 응답하는 nginx stub을 띄워 끊었다 → 학내/학외 무관하게 돈다. 자세한 건 그 파일 주석.
+- **⚠️ 컨테이너에 `--add-host cse.snu.ac.kr:host-gateway`가 필요하다(`remote-deploy.sh`가 붙인다, 롤백 명령에도).** prod 빌드는 API_PROXY_TARGET 없이 **절대 URL 직호출**이라 SSR이 `https://cse.snu.ac.kr/api/...`를 부르는데 컨테이너가 그 호스트명을 자기 게이트웨이로 풀어야 한다. 빠지면 **전 페이지 500**(getaddrinfo 실패) — 오래 떠 있는 컨테이너에선 안 드러나다가 **재생성 시점에 터진다**(2026-08-22에 겪음).
+- **⚠️ `@backend_denied` IP 직결 우회 = 실제 열린 갭(2026-08-29 확인, 미조치).** Caddyfile이 관리 엔드포인트 3개(`/api/v1/search/refresh`·`/api/v2/reservation/terms/custom`·`/api/v2/reservation/terms/defaults`)를 `not remote_ip {$LOCAL_IP}`로 막는데 **그 deny가 도메인 블록에만 있고 `147.46.92.120` IP 직결 블록엔 없다** → 학외에서 `https://147.46.92.120/api/...`로 치면 통과(도메인으로는 000 abort). 게다가 `LOCAL_IP=10.91.1.1`은 **구 프록시 사설 주소**라 직결 전환 후 정상 관리자도 통과 못 시킨다. **조치 = IP 직결 블록에도 같은 `abort @backend_denied` 추가 + `LOCAL_IP`를 직결 토폴로지 기준으로 재정의**(`~/proxy/caddy/Caddyfile`, 이 레포 밖).
 
 ## 브랜치 · CI/CD 컨벤션
 
 - **브랜치:** `main`=production · `develop`=staging · `feature/*`·`fix/*`→`develop` PR · `hotfix/*`→`main` PR(후 develop back-merge). **직접 push 금지** — ruleset이 main·develop에 PR 필수 + `gate`·`e2e` 필수체크 + force push 금지 강제(admin 포함).
 - **머지 전략:** `feature`→`develop`은 **squash**(WIP 커밋 정리, 기능당 1커밋). `develop`→`main`은 **merge commit**(squash ❌ — develop은 long-lived라 squash하면 main과 히스토리가 갈라져 다음 승격 PR이 깨짐). rebase 머지는 끔, 머지 후 head 브랜치 자동삭제. (레포 설정으로 강제.)
 - **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`knip`/`build:local`/`build-storybook`, ~1–2분; `knip`=미사용 파일·export·의존성) ② E2E(로컬과 동일 `e2e-docker.sh`; CI는 프론트를 서브디렉터리·백엔드를 핀된 `BACKEND_REF` **소스**로 체크아웃 후 `gradlew bootJar`로 JAR 빌드(Dockerfile이 build/libs를 COPY)하는 것만 다름 — GHCR `:prod`는 prod 프로파일이라 mock-login이 꺼져 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.**
-- **CD(`deploy.yml`, push 시):** `develop` push → staging 이미지(**arm64 네이티브 빌드**) → `ghcr.io/wafflestudio/cse.snu.ac.kr:staging` push → **staging 자동 배포**(SSH pull+run). `main` push → prod 이미지(**amd64**) → `:prod` push, **배포는 `deploy.sh prod` 수동**(pull 기반, 확인 절차). **호스트 arch가 staging=arm64·prod=amd64라 브랜치별 네이티브 러너로 빌드**(QEMU 없이; 공개 레포라 `ubuntu-24.04-arm` 무료). 환경별 빌드라 이미지가 다름(아티팩트 승격 아님). 문서만(`**.md`) 바뀐 push는 `paths-ignore`로 재배포 안 함.
-- **호스트 배포는 pull 기반**(`remote-deploy.sh`): 호스트 build 없이 GHCR 이미지 pull+run. 롤백은 `cse.snu.ac.kr:rollback` 로컬 태그.
-- **빌드는 학외(github-hosted)에서 OK — 단 빌드가 학내 API에 의존하지 않는 한.** 현재 SSG/prerender가 없어 빌드는 순수 번들링(API 무호출)이라 안전(검증함: 도달불가 API로도 빌드 성공). **과거 prod 호스트에서 빌드한 이유**는 RR7 시절 prerender가 빌드타임에 학내 API를 때려 학외에서 경계 NGFW SYN drop으로 깨졌기 때문 — 마이그레이션에서 prerender가 빠지며 사라진 제약(`imageOptimizer`의 "prerender hack" 주석은 잔재).
-  - **⚠️ 미래(SSG/prerender 재도입 시):** 빌드가 다시 학내 API를 호출 → 학외 러너는 SYN drop(~0.3%, 페이지 수만큼 누적)에 취약. **대응 = `app/utils/fetch.ts`에 재시도(연결 미수립 에러 한정)+keep-alive 추가**(prerender는 GET이라 재시도 안전; 비멱등 POST/DELETE는 응답 후 타임아웃 재시도 금지 — 중복). 인프라 0이고 일반 학외 접근 견고성(미구현 과제)도 같이 해결. self-hosted on-campus 러너는 대안이나 인프라 부담이라 비채택. **이 전제로 설계함 — "빌드는 API 무의존"에 묶지 말 것.**
+- **CD(`deploy.yml`, `develop` push):** deploy.yml이 staging 호스트에 SSH로 `remote-deploy.sh`를 보내 **호스트에서 빌드+교체**를 트리거한다. `main` push는 자동 배포 없음 — prod는 `deploy.sh prod`로 **수동**(같은 호스트 빌드 흐름). **레지스트리(GHCR) 없음 — 빌드==배포**, 호스트가 자기 arch로 네이티브 빌드. CI(ci.yml)는 게이트만, 배포 이미지는 안 만든다. 문서만(`**.md`) push는 `paths-ignore`로 스킵.
+- **호스트 빌드 흐름**(`remote-deploy.sh`, 호스트에서 실행): **`docker build "<git-url>#<REF>"`** — docker가 소스를 직접 클론해 빌드 컨텍스트로 쓴다 → **호스트엔 docker만 있으면 된다**(레포 체크아웃·env 파일 불필요). **빌드 성공 후에만** 컨테이너 교체(빌드 중엔 구버전 서빙 → 무중단). 카맵키는 `--build-arg VITE_KAKAO_MAP_API_KEY`(git 밖 시크릿). **롤백 = machinery 없이 이전 커밋 sha로 다시 빌드**: `deploy.sh <env> <sha>`(빌드가 빠르니 재빌드가 곧 롤백). `deploy.sh`는 로컬 `env/.env`에서, `deploy.yml`은 `KAKAO_MAP_KEY` 시크릿에서 카맵키를 받아 넘긴다.
+- **왜 호스트 빌드(학외 CI 아님):** ① 빌드가 곧 배포라 레지스트리 분리가 무의미 ② **프리렌더 대비** — 프리렌더는 빌드타임에 페이지마다 백엔드를 부르는데 prod API(`cse.snu.ac.kr`)는 경계 뒤라 학외 CI 빌드는 SYN drop이 **페이지 수만큼 누적**돼 플레이키. **학내 호스트 빌드면 안정적으로 닿는다.** (RR7도 같은 이유로 호스트 빌드였다 → 마이그레이션에서 prerender가 빠져 한때 CI 빌드 → 프리렌더 재도입을 위해 호스트 빌드로 통일.) 트레이드오프: 서빙 호스트에 빌드 부하가 생기나 `docker build`는 격리·무중단 swap이라 감내. `imageOptimizer`의 "prerender hack" 주석은 프리렌더 재도입 시 다시 검토.
 
-> **활성화 상태(2026-06-20 완료, 2026-08-22 재확인):** ✅ secrets 6개(`ENV_FILE_STAGING`/`PRODUCTION`, `STAGING_SSH_KEY/HOST/USER/PORT`; 백엔드 public이라 토큰 불필요) · `develop` push · **branch protection(ruleset: `main`·`develop` PR필수 + 필수 체크 `gate`·`e2e`, bypass 권한자 없음 → E2E 그린이 아니면 아무것도 머지 불가)** · `BACKEND_REF` 핀(#399 SHA 1661f3d8) · ci.yml · deploy.yml(staging 자동배포).
+> **활성화 상태(2026-08-29 갱신):** ✅ **secret 2개**(`STAGING_SSH_KEY` + `KAKAO_MAP_KEY` — CI 빌드가 카맵키를 build-arg로 주입). host/user/port·API URL은 코드에 두어 시크릿에서 뺐다. 옛 `ENV_FILE_*`·`STAGING_SSH_HOST/USER/PORT`는 **삭제 대상**. · `develop` push 시 staging 호스트 빌드 자동배포 · **branch protection(ruleset: `main`·`develop` PR필수 + 필수 체크 `gate`·`e2e`, bypass 권한자 없음)** · `BACKEND_REF` 핀(#399 SHA 1661f3d8) · ci.yml · deploy.yml.
 >
-> **남은 것 = prod cutover(수동):** ① prod 호스트 `docker login ghcr.io`(또는 패키지 public) — 2026-08-22 `:prod` pull 성공 확인. ② develop→main 머지로 `:prod` 이미지 생성. ③ `deploy.sh prod`. **순서 필수** — ②(이미지 생성) 전에 ③ 돌리면 `:prod`가 낡은 채로 배포된다.
+> **prod cutover 완료(2026-08-29 확인).** 마이그레이션 빌드가 라이브다 — strict CSP(요청마다 nonce 회전)·gzip(`hono/compress`)·wscan 경로 404·`/admin` 익명 404를 실측(전부 마이그레이션+wscan 대응 이후에만 존재하는 특징). (당시엔 GHCR pull 배포였고 `/storybook`도 서빙됐으나 이후 **호스트 빌드**로 전환 + Storybook 배포 제거 — 위 CD 참고.)
 >
 > ⚠️ **"설정이 없다"는 결론을 API 404로 내리지 말 것**(이번 작업에서 두 번 틀렸다). 브랜치 보호는 `repos/:owner/:repo/rules/branches/:branch`(ruleset)로 조회한다 — 구식 `branches/:branch/protection`은 ruleset만 쓰는 레포에서 404를 반환한다. GHCR 패키지는 **조직 소유**(`orgs/wafflestudio/packages/...`)로 조회한다 — 개인 엔드포인트(`user/packages/...`)는 404, 조직도 토큰에 `read:packages`가 없으면 403이다. (이 문서의 이 항목이 이미 정답을 담고 있었다 — 낡은 브랜치의 사본을 보고 판단하지 말 것.)
-
-> **⚠️ 현재 prod에 배포된 것은 마이그레이션 이전 빌드다.** 배포 커밋 `ad91872`(2026-05-11, RR7)로 **59커밋 뒤**이고 TanStack Start가 배포된 적 없다. 이미지가 없어서가 아니라 **`deploy.sh prod`를 아무도 돌리지 않아서**다. 다음 배포가 사실상 마이그레이션 첫 배포이므로 되돌릴 준비(rollback 태그)와 배포 직후 확인을 넉넉히 잡을 것.
 
 ---
 
@@ -70,12 +68,12 @@
 마이그레이션에서 확립.
 
 - **라우팅: file-based**(`app/routes/**` → 생성 `routeTree.gen.ts`). loader는 `createFileRoute`에 **인라인**(분리 wiring 안 씀). 컴포넌트는 `Route.useLoaderData()`/`useParams()`를 **직접 호출**(prop 주입 안 함) → params 자동 타입(그래서 `params.id`에 `!` 불필요).
-- **로케일: required path param `$locale`** — `app/routes/$locale/**`에 1벌만(`/ko/about`·`/en/about`). **모든 페이지가 프리픽스를 가진다**(2026-06-21 전환, 이전엔 optional `{-$locale}`이었다). 비로케일 라우트(`admin`·`[.]internal`·`img`·`sitemap`)는 `$locale` 밖. `__root` beforeLoad가 프리픽스 없는 경로를 쿠키(`lang`)·Accept-Language로 판정해 `/{lang}`으로 302. 근거·트레이드오프는 `docs/i18n-url-strategy.md`.
+- **로케일: required path param `$locale`** — `app/routes/$locale/**`에 1벌만(`/ko/about`·`/en/about`). **모든 페이지가 프리픽스를 가진다**(2026-06-21 전환, 이전엔 optional `{-$locale}`이었다). 비로케일 라우트(`admin`·`[.]internal`·`img`·`sitemap`)는 `$locale` 밖. `__root` beforeLoad가 프리픽스 없는 경로를 쿠키(`lang`)·Accept-Language로 판정해 `/{lang}`으로 302.
 - **⚠️ 로케일 링크는 항상 `localizedPath()`. 수동 `/${locale}/...` 문자열 금지** — ko에서 `/ko/...`를 **클라 네비로 클릭**하면 `__root`의 `/ko`-strip redirect가 렌더 루프(메인스레드 peg)를 일으킨 실버그가 있었다(notice 상세 wedge). `localizedPath`는 ko에서 프리픽스 없는 경로를 만들어 그 라운드트립을 제거한다.
 - **mutation은 대부분 클라 `fetch`**(same-origin proxy 경유). `action`은 거의 없음.
 - **검색/페이지네이션은 공용 `app/hooks/useSearchParams.ts`**(URLSearchParams 기반). 여러 라우트가 Pagination·SearchBox·TagCheckboxes를 공유해 라우트별 타입(`Route.useSearch`/`validateSearch`)은 부적합 — 표준 URLSearchParams 훅이 맞다.
 - **서버 라우트(Response 직접 반환):** `/img`(이미지 최적화 프록시 — sharp·AVIF·디스크캐시·SSRF 화이트리스트)와 `/sitemap.xml`. `/img`가 **시스템 유일의 이미지 최적화 계층**(백엔드는 원본만 서빙, `Image`가 렌더타임에 `/img?url=...` 생성, DB엔 원본 URL만). 장기적으론 백엔드/CDN(imgproxy) 이관 검토.
-- **⚠️ 검색 파라미터를 읽는 loader는 `loaderDeps: searchLoaderDeps`(`app/utils/loaderDeps.ts`) 필수.** match id가 `routeId+경로+JSON(loaderDeps)`라 선언이 없으면 **검색 파라미터만 바뀌는 클라 네비에서 loader가 아예 재실행되지 않는다**(RR7은 매 네비마다 실행 → 마이그레이션 때 조용히 깨진 채 넘어옴). 증상: URL만 바뀌고 화면 그대로 — 예약 캘린더 날짜 이동·목록 페이지네이션·태그 필터·검색이 전부 해당됐다(2026-07-29 수정, 13개 라우트). `pnpm check:loader-deps`(게이트)가 누락을 잡는다.
+- **⚠️ 검색 파라미터를 읽는 loader는 `loaderDeps: searchLoaderDeps`(`app/utils/loaderDeps.ts`) 필수.** match id가 `routeId+경로+JSON(loaderDeps)`라 선언이 없으면 **검색 파라미터만 바뀌는 클라 네비에서 loader가 아예 재실행되지 않는다**(RR7은 매 네비마다 실행 → 마이그레이션 때 조용히 깨진 채 넘어옴). 증상: URL만 바뀌고 화면 그대로 — 예약 캘린더 날짜 이동·목록 페이지네이션·태그 필터·검색이 전부 해당됐다(2026-07-29 수정, 13개 라우트). 누락은 **E2E 클릭 테스트**로 잡는다 — 검색 파라미터를 바꾸는 컨트롤을 도메인당 1개 클릭으로 검증(reservations 날짜·notice 페이지네이션이 reference, §3). 새 검색 파라미터 라우트엔 그 클릭 테스트를 반드시 추가할 것.
 - **TanStack 함정(겪은 것):**
   - 같은 라우트 재진입 시 컴포넌트를 **재마운트 안 할 수 있음** → `useState(props)` 초기화 안 됨(TimelineViewer 연도선택 버그). URL/props 파생으로 처리.
   - 클라 네비 시 **loader가 클라에서 실행** → 합성 request엔 쿠키 없음. 인증 의존 loader는 `forwardAuthHeaders`로 서버 헤더 전달.
@@ -159,7 +157,6 @@
 - **모든 테스트는 핀된 Playwright 컨테이너에서 돈다**(`pnpm test` = `scripts/e2e-docker.sh`). 호스트 직접 실행 정식 경로 없음 — 렌더 환경을 컨테이너로 고정해야 baseline이 머신 무관하게 픽셀 동일. **솔로 레포라 (GitHub) CI 없음 — 로컬 `pnpm test`가 단일 게이트.** (컨테이너 런은 `CI=1`로 워커1·retries2 모드 선택.)
 - **비주얼 baseline = Linux 단일(`*-linux.png`)**, 컨테이너가 정본 렌더 환경이라 머신 무관.
 - **백엔드 기준 = `../csereal-server-main`(origin/main)** — baseline은 이 main 백엔드에서 찍고, E2E가 main 백엔드 스모크도 겸한다. 트레이드오프: main이 floating이라 **백엔드만 바뀌어도 baseline이 깨질 수 있음** → 백엔드를 최신 main으로 올리고(아래) `--update-snapshots`로 재생성.
-- **Lighthouse 점수**(`pnpm lighthouse`, `scripts/lighthouse.mjs`): 측정 전용. read.spec.ts의 `goto` 경로를 자동 추출해 **비주얼 테스트 페이지 == 측정 페이지**로 맞춘다(404·빈상태·내부 제외). 픽셀과 달리 perf는 CPU 민감이라 **컨테이너 아닌 호스트 Chrome**으로 돌려 점수가 안정적이게 한다(`pnpm preview` 실행 중에). 최적화는 사용자와 함께.
 
 ## 백엔드 버전 동기화(cross-repo 런북)
 
@@ -189,9 +186,9 @@ E2E가 실제 버그를 잡는다. 예: DELETE가 200 빈 본문을 반환하는
 
 # 4. Storybook · 디자인 시스템
 
-- **설정:** SB 10.4 `@storybook/tanstack-react`(라우터 컨텍스트 내장), 스토리 컴포넌트 코로케이션. Chromatic 제거(픽셀 회귀는 E2E 담당). 스토리 빌드 회귀는 CI가 없어 로컬 `build-storybook`/배포 빌드에서만 드러남.
+- **설정:** SB 10.4 `@storybook/tanstack-react`(라우터 컨텍스트 내장), 스토리 컴포넌트 코로케이션. Chromatic 제거(픽셀 회귀는 E2E 담당). 스토리 빌드 회귀는 CI 게이트(`build-storybook`)가 잡는다.
 - **포맷: CSF Next(CSF Factories)** — `preview.meta(...)` → `meta.story(...)`. default export·`satisfies Meta` 안 씀. 핸들러는 `storybook/test`의 `fn()`(단 `useArgs`/`useState`로 덮이면 noop). a11y는 `test:'todo'`(수동).
-- **배포:** Dockerfile이 `storybook-static`을 이미지에 포함 → `server.ts`가 **`/storybook`**으로 서빙(prod·staging). 에셋 상대경로라 서브패스 OK(앱 `/assets`와 안 섞임).
+- **배포 안 함(로컬 전용):** Storybook은 `pnpm storybook`으로 로컬에서만 본다 — 배포 이미지엔 안 넣는다. (예전엔 `storybook-static`을 이미지에 포함해 `server.ts`가 `/storybook`으로 서빙했으나 제거. 빌드 검증은 CI 게이트 `build-storybook`가 담당.)
 - **함정(재발 주의):**
   - **addon-vitest 설치 금지** — `playwright@1.60`을 끌어와 앱 E2E `@playwright/test@1.57`와 충돌. 그래서 `sb.mock` 대신 **Vite alias**로 `@/lib/serverFns`를 no-op로 대체(useLanguage의 `createServerFn` `.validator`가 SB 브라우저서 throw → 빈 렌더 회피).
   - **viewport는 SB10 코어 내장** — 별도 애드온 없이 `parameters.viewport.options` + `globals.viewport`.
@@ -211,4 +208,4 @@ E2E가 실제 버그를 잡는다. 예: DELETE가 200 빈 본문을 반환하는
 
 ---
 
-**마지막 업데이트:** 2026-08-22 (① **교내 웹취약점 점검(wscan) 대응**: 없는 경로 404·CSP `http:` 제거·`/admin` 익명 차단 + `tests/security.spec.ts` 신설. 20건 중 13건은 코드가 아니라 **배포**로 해소됐다 — prod가 마이그레이션 이전 RR7 빌드에 59커밋 뒤처져 있었다. ② **prod 네트워크 상태 섹션 신설**: IP 이전(147.46.92.120)·웹 포트 개방 리셋·`--add-host` 함정·`@backend_denied` 재검토 필요. ③ **압축 귀속 정정**: 프록시 제거로 상위 br 압축 계층이 사라져 앱의 `hono/compress`가 담당(README 아키텍처도 정정). ④ **ISR 보류**(#8 revert) — 배포 전 컨테이너 토폴로지까지 바꾸면 장애 시 원인 분리가 안 되고 캐시 효율이 미실측. ⑤ **E2E 부팅 의존성 제거**: 백엔드가 기동 시 학내 전용 `id.snucse.org` OIDC discovery를 타 학외에서 스위트 전체가 막히던 것을 compose의 nginx stub으로 끊음. ⑥ **문서 전수 점검**: §2 로케일 서술이 옛 optional `{-$locale}`에 머물러 있던 것 정정, 크로스커팅 스펙(`language`·`security`) 반영, `docs/` 두 편에 현재 상태 주석. 이전: 2026-06-19 문서 슬림화·폴더 구조 컨벤션·Biome 강화.)
+**마지막 업데이트:** 2026-08-29 (도메인 연결 후 실측 갱신: ① **prod cutover 완료** — 마이그레이션 빌드 라이브 확인(strict CSP·gzip·`/storybook`·wscan 404), "prod=RR7 이전 빌드" 경고 제거. ② **도메인 연결 완료** — DNS 해석·443 학외 개방 확인, "IP 이전 진행 중" 서술을 현재 상태로 교체. ③ **학외 OAuth 로그인 불가 확정** — `id.snucse.org`(147.46.92.174)가 학외 443 하드 차단(4/4 timeout), 바쿠스 개방 필요. ④ **`@backend_denied` IP 직결 우회 = 실제 열린 갭 확인** — deny가 도메인 블록에만 있어 `147.46.92.120` 직결로 관리 엔드포인트 통과, `LOCAL_IP=10.91.1.1`도 구 프록시 주소. 조치는 Caddyfile(레포 밖). README도 기술스택·IP 이전 섹션 제거·SSH 접근 문구 정정. 이전: 2026-08-22 (① **교내 웹취약점 점검(wscan) 대응**: 없는 경로 404·CSP `http:` 제거·`/admin` 익명 차단 + `tests/security.spec.ts` 신설. 20건 중 13건은 코드가 아니라 **배포**로 해소됐다 — prod가 마이그레이션 이전 RR7 빌드에 59커밋 뒤처져 있었다. ② **prod 네트워크 상태 섹션 신설**: IP 이전(147.46.92.120)·웹 포트 개방 리셋·`--add-host` 함정·`@backend_denied` 재검토 필요. ③ **압축 귀속 정정**: 프록시 제거로 상위 br 압축 계층이 사라져 앱의 `hono/compress`가 담당(README 아키텍처도 정정). ④ **ISR 보류**(#8 revert) — 배포 전 컨테이너 토폴로지까지 바꾸면 장애 시 원인 분리가 안 되고 캐시 효율이 미실측. ⑤ **E2E 부팅 의존성 제거**: 백엔드가 기동 시 학내 전용 `id.snucse.org` OIDC discovery를 타 학외에서 스위트 전체가 막히던 것을 compose의 nginx stub으로 끊음. ⑥ **문서 전수 점검**: §2 로케일 서술이 옛 optional `{-$locale}`에 머물러 있던 것 정정, 크로스커팅 스펙(`language`·`security`) 반영, `docs/` 두 편에 현재 상태 주석. 이전: 2026-06-19 문서 슬림화·폴더 구조 컨벤션·Biome 강화.)

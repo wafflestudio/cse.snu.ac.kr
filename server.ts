@@ -17,8 +17,7 @@ const handler: { fetch: (req: Request) => Promise<Response> } =
 
 const app = new Hono();
 
-// 텍스트 응답(SSR HTML·JS·CSS) gzip 압축. 비압축이면 느린망에서 다운로드가 FCP/LCP를
-// 지배(문서 ~320KB·JS ~700KB 비압축이 병목이었음). staging Caddy엔 encode가 없어 여기서 압축.
+// SSR HTML·JS·CSS gzip 압축(비압축이면 느린망에서 FCP/LCP 지배). staging Caddy엔 encode 없어 여기서.
 app.use(compress());
 
 // /api/** → 백엔드 프록시. `raw`로 원본 요청(쿠키 포함)·응답 Set-Cookie 그대로 전달(세션 유지).
@@ -30,18 +29,6 @@ if (API_PROXY_TARGET) {
     });
   });
 }
-
-// Storybook 컴포넌트 카탈로그(/storybook). storybook-static의 에셋이 상대경로(`./assets`)라
-// 트레일링 슬래시가 있어야 /storybook/ 하위로 올바로 해석된다 → 슬래시 없으면 리다이렉트.
-// (storybook-static이 없으면 serveStatic이 next()→404. prod/staging 이미지엔 빌드해 포함.)
-app.get('/storybook', (c) => c.redirect('/storybook/'));
-app.use(
-  '/storybook/*',
-  serveStatic({
-    root: './storybook-static',
-    rewriteRequestPath: (p) => p.replace(/^\/storybook/, '') || '/',
-  }),
-);
 
 app.use('/*', serveStatic({ root: './dist/client' })); // 정적; 없으면 next()
 app.all('*', (c) => handler.fetch(c.req.raw)); // SSR + server route(/img·/sitemap.xml)

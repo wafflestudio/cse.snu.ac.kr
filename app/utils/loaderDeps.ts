@@ -12,6 +12,6 @@
  * loader 실행)해서 검증하므로 클라 네비게이션 경로를 타지 않는다.
  *
  * → `location.searchStr`을 읽는 loader는 반드시 이 deps를 함께 선언한다.
- *   (`scripts/check-loader-deps.mjs`가 게이트에서 강제)
+ *   (검색 파라미터를 바꾸는 컨트롤을 도메인당 1개 클릭하는 E2E가 재실행을 검증한다)
  */
 export const searchLoaderDeps = <T>({ search }: { search: T }): T => search;

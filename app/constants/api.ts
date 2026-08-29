@@ -1,13 +1,11 @@
-// Environment configuration
 const PHASE = import.meta.env.MODE;
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const IS_DEV = import.meta.env.DEV;
-
 export const IS_STAGING = PHASE === 'staging';
 export const IS_PROD = PHASE === 'production';
 
-// In dev mode, route API calls through Vite's proxy to avoid CORS.
+// 바라볼 백엔드는 vite.config가 mode로 정해 __API_BASE_URL__로 주입한다(단일 출처).
+// dev는 CORS 회피 위해 vite 프록시(localhost:3000/api)를 경유한다.
 export const BASE_URL = IS_DEV
   ? 'http://localhost:3000/api'
-  : `${API_BASE_URL}/api`;
+  : `${__API_BASE_URL__}/api`;

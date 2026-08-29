@@ -6,13 +6,23 @@ import { defineConfig, loadEnv } from 'vite';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
+const API_BASE_URL_BY_MODE: Record<string, string> = {
+  production: 'https://cse.snu.ac.kr',
+  staging: 'https://168.107.16.249.nip.io',
+  development: 'https://168.107.16.249.nip.io',
+};
+
 export default defineConfig(({ mode }) => {
-  // Load env file based on mode from env/ directory
   const env = loadEnv(mode, 'env');
-  const API_TARGET = env.VITE_API_BASE_URL;
+  const apiBaseUrl =
+    env.VITE_API_BASE_URL ||
+    API_BASE_URL_BY_MODE[mode] ||
+    API_BASE_URL_BY_MODE.production;
 
   return {
     envDir: 'env',
+    // 앱(api.ts)이 읽을 백엔드 base URL 주입.
+    define: { __API_BASE_URL__: JSON.stringify(apiBaseUrl) },
     plugins: [
       tailwindcss(),
       tanstackStart({
@@ -48,7 +58,7 @@ export default defineConfig(({ mode }) => {
       port: 3000,
       proxy: {
         '/api': {
-          target: API_TARGET,
+          target: apiBaseUrl,
           changeOrigin: true,
           secure: true,
           configure: (proxy) => {
