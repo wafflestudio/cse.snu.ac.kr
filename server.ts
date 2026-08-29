@@ -11,12 +11,9 @@ const API_PROXY_TARGET = process.env.API_PROXY_TARGET ?? null;
 
 // @ts-expect-error 빌드 산출물엔 타입 선언 없음
 const mod = await import('./dist/server/server.js');
-const handler: { fetch: (req: Request) => Promise<Response> } =
-  mod.default ?? mod;
+const handler: { fetch: (req: Request) => Promise<Response> } = mod.default;
 
 const app = new Hono();
-
-// SSR HTML·JS·CSS gzip 압축(비압축이면 느린망에서 FCP/LCP 지배). staging Caddy엔 encode 없어 여기서.
 app.use(compress());
 
 // /api/** → 백엔드 프록시. `raw`로 원본 요청(쿠키 포함)·응답 Set-Cookie 그대로 전달(세션 유지).
