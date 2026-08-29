@@ -1,5 +1,4 @@
-# 로컬 백엔드 환경: db + oidc-stub + backend (pnpm backend:up/down). E2E 러너는
-# scripts/e2e-docker.sh가 이 스택의 네트워크에 붙인다. 테스트 세팅(시딩)은 tests/setup/.
+# 로컬 백엔드 환경: db + oidc-stub + backend (pnpm backend:up/down). 
 name: csereal-local
 
 services:
