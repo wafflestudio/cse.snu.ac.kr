@@ -27,15 +27,7 @@ jobs:
           SSH_PORT: "22"
         run: |
           install -m 600 /dev/stdin key <<< "$SSH_KEY"
-          # 학외(Actions)→호스트 연결이 가끔 SYN drop → 재시도. remote-deploy.sh는 build+swap이라 재실행 안전.
-          OPTS="-i key -p $SSH_PORT -o StrictHostKeyChecking=no -o ConnectTimeout=15 -o ServerAliveInterval=15 -o ServerAliveCountMax=4"
-          for attempt in 1 2 3; do
-            if ssh $OPTS "$SSH_USER@$SSH_HOST" \
-                 "REF='${{ github.sha }}' BUILD_MODE=staging KAKAO='$KAKAO' bash -s" \
-                 < scripts/remote-deploy.sh; then
-              exit 0
-            fi
-            echo "::warning::staging 배포 SSH 시도 ${attempt}/3 실패, 재시도…"
-            sleep 10
-          done
-          echo "::error::staging 배포 3회 모두 실패"; exit 1
+          ssh -i key -p "$SSH_PORT" -o StrictHostKeyChecking=no -o ConnectTimeout=15 \
+            "$SSH_USER@$SSH_HOST" \
+            "REF='${{ github.sha }}' BUILD_MODE=staging KAKAO='$KAKAO' bash -s" \
+            < scripts/remote-deploy.sh

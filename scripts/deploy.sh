@@ -9,7 +9,6 @@ if [ "$ENV" != "staging" ] && [ "$ENV" != "prod" ]; then
   echo -e "${RED}사용법: ./deploy.sh <staging|prod> [git-ref]${NC}"; exit 1
 fi
 
-# host/user/port·브랜치는 비밀이 아니라 여기 직접 둔다(커밋·리뷰됨, 드리프트 없음).
 if [ "$ENV" == "staging" ]; then
   SSH_USER=ubuntu;  SSH_HOST=168.107.16.249;  SSH_PORT=22;    BRANCH=develop; BUILD_MODE=staging
 else
