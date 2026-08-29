@@ -1,10 +1,10 @@
 # csereal-web-v2 작업 가이드 (에이전트용)
 
-코드만 봐선 알 수 없는 것 — **결정의 이유·히스토리·컨벤션·재발 함정**만 적는다. 구현 상세(파일 목록·시그니처·명령어)는 코드/`package.json`/config에서 확인. 4부: **①아키텍처·환경 → ②라우팅·코드 컨벤션 → ③E2E 테스트 → ④Storybook·디자인 시스템.** 사람용 온보딩·스크립트·환경 표는 `README.md`.
+코드만 봐선 알 수 없는 것 — **결정의 이유·히스토리·컨벤션·재발 함정**만 적는다. 구현 상세(파일 목록·시그니처·명령어)는 코드/`package.json`/config에서 확인. 4부: **①아키텍처·환경 → ②라우팅·코드 컨벤션 → ③E2E 테스트 → ④디자인 시스템.** 사람용 온보딩·스크립트·환경 표는 `README.md`.
 
 > **상태:** RR7 → TanStack Start 마이그레이션 **완료(2026-06-15)**, Storybook + 디자인 시스템 감사 **완료(2026-06-16)**. E2E는 마이그레이션 전용이 아니라 **일반 회귀 안전망**.
 
-**목차** — [1. 아키텍처·환경](#1-아키텍처--환경) · [2. 라우팅·코드 컨벤션](#2-라우팅--코드-컨벤션) · [3. E2E 테스트](#3-e2e-테스트) · [4. Storybook·디자인 시스템](#4-storybook--디자인-시스템)
+**목차** — [1. 아키텍처·환경](#1-아키텍처--환경) · [2. 라우팅·코드 컨벤션](#2-라우팅--코드-컨벤션) · [3. E2E 테스트](#3-e2e-테스트) · [4. 디자인 시스템](#4-디자인-시스템)
 
 ---
 
@@ -50,7 +50,7 @@
 
 - **브랜치:** `main`=production · `develop`=staging · `feature/*`·`fix/*`→`develop` PR · `hotfix/*`→`main` PR(후 develop back-merge). **직접 push 금지** — ruleset이 main·develop에 PR 필수 + `gate`·`e2e` 필수체크 + force push 금지 강제(admin 포함).
 - **머지 전략:** `feature`→`develop`은 **squash**(WIP 커밋 정리, 기능당 1커밋). `develop`→`main`은 **merge commit**(squash ❌ — develop은 long-lived라 squash하면 main과 히스토리가 갈라져 다음 승격 PR이 깨짐). rebase 머지는 끔, 머지 후 head 브랜치 자동삭제. (레포 설정으로 강제.)
-- **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`knip`/`build:local`/`build-storybook`, ~1–2분; `knip`=미사용 파일·export·의존성) ② E2E(로컬과 동일 `e2e-docker.sh`; CI는 프론트를 서브디렉터리·백엔드를 핀된 `BACKEND_REF` **소스**로 체크아웃 후 `gradlew bootJar`로 JAR 빌드(Dockerfile이 build/libs를 COPY)하는 것만 다름 — GHCR `:prod`는 prod 프로파일이라 mock-login이 꺼져 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.**
+- **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`knip`/`build:local`, ~1–2분; `knip`=미사용 파일·export·의존성) ② E2E(로컬과 동일 `e2e-docker.sh`; CI는 프론트를 서브디렉터리·백엔드를 핀된 `BACKEND_REF` **소스**로 체크아웃 후 `gradlew bootJar`로 JAR 빌드(Dockerfile이 build/libs를 COPY)하는 것만 다름 — GHCR `:prod`는 prod 프로파일이라 mock-login이 꺼져 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.**
 - **CD(`deploy.yml`, `develop` push):** deploy.yml이 staging 호스트에 SSH로 `remote-deploy.sh`를 보내 **호스트에서 빌드+교체**를 트리거한다. `main` push는 자동 배포 없음 — prod는 `deploy.sh prod`로 **수동**(같은 호스트 빌드 흐름). **레지스트리(GHCR) 없음 — 빌드==배포**, 호스트가 자기 arch로 네이티브 빌드. CI(ci.yml)는 게이트만, 배포 이미지는 안 만든다. 문서만(`**.md`) push는 `paths-ignore`로 스킵.
 - **호스트 빌드 흐름**(`remote-deploy.sh`, 호스트에서 실행): **`docker build "<git-url>#<REF>"`** — docker가 소스를 직접 클론해 빌드 컨텍스트로 쓴다 → **호스트엔 docker만 있으면 된다**(레포 체크아웃·env 파일 불필요). **빌드 성공 후에만** 컨테이너 교체(빌드 중엔 구버전 서빙 → 무중단). 카맵키는 `--build-arg VITE_KAKAO_MAP_API_KEY`(git 밖 시크릿). **롤백 = machinery 없이 이전 커밋 sha로 다시 빌드**: `deploy.sh <env> <sha>`(빌드가 빠르니 재빌드가 곧 롤백). `deploy.sh`는 로컬 `env/.env`에서, `deploy.yml`은 `KAKAO_MAP_KEY` 시크릿에서 카맵키를 받아 넘긴다.
 - **왜 호스트 빌드(학외 CI 아님):** ① 빌드가 곧 배포라 레지스트리 분리가 무의미 ② **프리렌더 대비** — 프리렌더는 빌드타임에 페이지마다 백엔드를 부르는데 prod API(`cse.snu.ac.kr`)는 경계 뒤라 학외 CI 빌드는 SYN drop이 **페이지 수만큼 누적**돼 플레이키. **학내 호스트 빌드면 안정적으로 닿는다.** (RR7도 같은 이유로 호스트 빌드였다 → 마이그레이션에서 prerender가 빠져 한때 CI 빌드 → 프리렌더 재도입을 위해 호스트 빌드로 통일.) 트레이드오프: 서빙 호스트에 빌드 부하가 생기나 `docker build`는 격리·무중단 swap이라 감내. `imageOptimizer`의 "prerender hack" 주석은 프리렌더 재도입 시 다시 검토.
@@ -183,24 +183,13 @@ E2E가 실제 버그를 잡는다. 예: DELETE가 200 빈 본문을 반환하는
 
 ---
 
-# 4. Storybook · 디자인 시스템
+# 4. 디자인 시스템
 
-- **설정:** SB 10.4 `@storybook/tanstack-react`(라우터 컨텍스트 내장), 스토리 컴포넌트 코로케이션. Chromatic 제거(픽셀 회귀는 E2E 담당). 스토리 빌드 회귀는 CI 게이트(`build-storybook`)가 잡는다.
-- **포맷: CSF Next(CSF Factories)** — `preview.meta(...)` → `meta.story(...)`. default export·`satisfies Meta` 안 씀. 핸들러는 `storybook/test`의 `fn()`(단 `useArgs`/`useState`로 덮이면 noop). a11y는 `test:'todo'`(수동).
-- **배포 안 함(로컬 전용):** Storybook은 `pnpm storybook`으로 로컬에서만 본다 — 배포 이미지엔 안 넣는다. (예전엔 `storybook-static`을 이미지에 포함해 `server.ts`가 `/storybook`으로 서빙했으나 제거. 빌드 검증은 CI 게이트 `build-storybook`가 담당.)
-- **함정(재발 주의):**
-  - **addon-vitest 설치 금지** — `playwright@1.60`을 끌어와 앱 E2E `@playwright/test@1.57`와 충돌. 그래서 `sb.mock` 대신 **Vite alias**로 `@/lib/serverFns`를 no-op로 대체(useLanguage의 `createServerFn` `.validator`가 SB 브라우저서 throw → 빈 렌더 회피).
-  - **viewport는 SB10 코어 내장** — 별도 애드온 없이 `parameters.viewport.options` + `globals.viewport`.
-  - **union 필수 prop은 스토리에 args 명시** — string-literal union 필수 prop이 하나라도 있으면 CSF4가 `meta.args`만으론 "충족"을 인식 못 해 `children` 포함 필수 args 전체를 각 스토리에서 재요구. discriminated-union 합성 render는 무인자로 둬 추론 회피. typed parameters라 `docs.story.iframeHeight`는 **string**.
-  - **모달/오버레이는 `open` 강제 대신 트리거+`play`** — `open:true`로 열어두면 portal 오버레이가 Docs 전체를 덮어 `inline:false`(독립 iframe)를 강요하는데 **그 iframe은 컨트롤 라이브 업데이트를 못 받는다**(실제 버그). 닫힌 채 렌더(트리거+`useState`) + `play`로 연다 — `play`는 canvas만 자동 실행(Docs 기본 미실행)이라 Docs는 컨트롤 정상·canvas는 자동으로 열림. controlled 모달은 `useState`로, 마운트형(ImageModal)은 `key`로 재마운트, 클릭 트리거 있는 것(Dropdown·DatePicker)은 `play`로 누르고 `inline:false`만 제거.
-- **현황:** 전 공용 컴포넌트가 스토리 **또는 제외 사유** 보유. 제외: `Form`·`html/HTMLEditor`·`CategoryPage`·`PageLayout`(합성/외부 의존), `LoginVisible`(역할 게이팅 로직, 자체 시각 없음 — 가짜 placeholder 필요해 '실사용만' 위반), `ContentSection`(레이아웃 래퍼), `NotFound`(Header+ErrorState 합성, 둘 다 개별 스토리 있음). 모두 E2E가 실동작 커버.
-- **폼 스토리:** `withForm` 데코가 `parameters.formValues`로 `defaultValues` 주입(DatePicker=Date·File=배열 등 값 shape 가정 컴포넌트는 필수). Radio·Checkbox는 같은 `name` 공유 그룹으로(실사용). `Image`는 `/img`(SB에 없음) 회피 위해 data-URI.
-- **스토리 작성 원칙(사용자 지시):**
-  1. **실사용 조합만.** 서비스에서 안 쓰는 variant/state를 창조하지 않는다(사용처 grep 확인).
-  2. **DS에 우겨넣지 않는다.** 일관성 깨지는 사용처는 비주얼이 깨지더라도 **앱 코드를 고친다**(컴포넌트 API 확장 X). 이렇게 잡은 실버그: Tag 삭제버튼 `aria-label`→`ariaLabel`.
-  3. **편집 불가 prop은 컨트롤에 욱여넣지 않는다.** 함수/복합 union·ReactNode는 `control:false`로 숨기고 상태는 별도 스토리/`mapping`으로. ↔ **제어 컴포넌트 value/onChange는 `useArgs`로 묶어** 컨트롤이 실제로 먹게(로컬 `useState`면 컨트롤 무시 — Calendar·AlertDialog에서 겪음).
+> **Storybook은 2026-08-30 제거** — 마이그레이션 감사(2026-06-16, 전 공용 컴포넌트 스토리화 + 실버그 수정) 이후 실사용이 없었고, 픽셀 회귀는 E2E 소유라 유지비(스토리 36개 동기화·SB 메이저 업그레이드·CSF 함정·CI build-storybook)만 남아서다. 스토리·설정·CSF Next 노하우는 git 히스토리(2026-08-30 이전) 참고. 감사가 잡은 수정들은 코드에 남아 있다.
+
 - **디자인 토큰:** `src/app.css`의 `@theme`. **가로 페이지 거터는 `.page-gutter-x` 단일 출처**(좌 100/우 360/모바일 20px). 토큰화/스케일화는 **픽셀 동일할 때만 자율**; 값이 바뀌는 정규화는 디자인 결정 → 합의.
 - **API 레이어 분리:** `ui/*`=제어 프리미티브(value/onChange), `form/*`=RHF 어댑터(name+useFormContext). **의도된 분리 — 통합 금지.**
+- **DS에 우겨넣지 않는다.** 일관성 깨지는 사용처는 컴포넌트 API 확장이 아니라 **앱 코드를 고친다**. 이렇게 잡은 실버그: Tag 삭제버튼 `aria-label`→`ariaLabel`.
 - **단일 선택은 Button 토글이 아니라 네이티브 radiogroup**(`fieldset`+`radio` pill) — 그룹 시맨틱·화살표 키 이동을 브라우저가 준다(faculty 정렬·공지 필터). 그 결과 Button `variant`(과거 `kind`서 개명 — Tag와 통일)는 상태 없는 5개(primary/neutral/secondary/quiet/nav). **아이콘은 children에 직접**(shadcn식, base `gap-2`가 간격).
 - **a11y:** form Radio/Checkbox=네이티브, Dialog/AlertDialog/Select/ImageModal=Radix(ARIA 자동). Button **icon-only는 `ariaLabel` 필수.**
 - **합의 대기(자율 실행 금지):** ① `#202020`(공지 필터 pill 비선택 배경) 신규 색 토큰 — 매칭 토큰 없어 디자인 결정. ② 패딩 세로/내부 임의값 + `.62`/`.625` 근접중복 정규화(가로 거터는 완료).

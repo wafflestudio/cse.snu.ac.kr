@@ -106,20 +106,20 @@ flowchart TD
 
   feat -. "PR마다" .-> ci
   dev -. "PR마다" .-> ci
-  ci["ci.yml<br/>게이트(typecheck·lint·knip·build·storybook) + E2E"]
+  ci["ci.yml<br/>게이트(typecheck·lint·knip·build) + E2E"]
 
   dev ==>|"머지 push"| dstg["deploy.yml → staging 호스트 SSH 트리거"] ==> stg[["staging 자동 배포<br/>(호스트가 빌드)"]]
   main ==>|"수동"| prd[["deploy.sh prod<br/>prod 호스트가 빌드+교체"]]
 ```
 
-- **PR 게이트(`ci.yml`):** 모든 PR에서 타입/린트/knip/빌드/스토리북 + E2E(핀 컨테이너, 백엔드는 고정 SHA로 체크아웃)를 돌리고, 통과해야 머지됩니다.
+- **PR 게이트(`ci.yml`):** 모든 PR에서 타입/린트/knip/빌드 + E2E(핀 컨테이너, 백엔드는 고정 SHA로 체크아웃)를 돌리고, 통과해야 머지됩니다.
 - **빌드·배포:** 빌드는 **호스트에서** 합니다(레지스트리 없음, "빌드==배포"). `develop` 머지 시 `deploy.yml`이 staging 호스트에 SSH로 트리거해 git URL로 `docker build` + 컨테이너 교체하고, **prod는 `deploy.sh prod`로 수동**(같은 호스트 빌드)입니다. CI는 배포 이미지를 만들지 않고 게이트만 담당합니다. 롤백은 이전 커밋 sha로 재빌드(`deploy.sh <env> <sha>`).
 - **머지 전략:** `feature`→`develop`은 **squash**(기능당 1커밋), `develop`→`main`은 **merge commit**입니다(squash 금지 — long-lived 브랜치라 히스토리가 갈라짐). rebase 머지는 끕니다.
 - **원칙:** CI는 로컬과 같은 스크립트(`pnpm test`·`pnpm lint` 등)를 호출만 합니다 — 두 벌 관리하지 않습니다. 
 
 ## 문서
 
-- **`CLAUDE.md`** — 에이전트/기여자용 단일 가이드. 4부 구성: ①아키텍처·환경 ②라우팅·코드 컨벤션 ③E2E 테스트 ④Storybook·디자인 시스템. 작업 전에 참고하세요.
+- **`CLAUDE.md`** — 에이전트/기여자용 단일 가이드. 4부 구성: ①아키텍처·환경 ②라우팅·코드 컨벤션 ③E2E 테스트 ④디자인 시스템. 작업 전에 참고하세요.
 - **`tests/COVERAGE.md`** — E2E 라우트 커버리지 추적(단일 출처).
 
 ## 관련 레포

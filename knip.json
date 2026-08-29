@@ -4,8 +4,6 @@
     "src/routes/**/*.{ts,tsx}",
     "src/router.tsx",
     "src/sitemap.tsx",
-    "src/**/*.stories.tsx",
-    ".storybook/{main,preview}.{ts,tsx}",
     "tests/**/*.spec.ts"
   ],
   "project": ["src/**/*.{ts,tsx}", "tests/**/*.ts"],

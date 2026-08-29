@@ -19,9 +19,7 @@
     "backend:up": "docker compose up -d --wait backend",
     "backend:down": "docker compose down",
     "deploy:staging": "scripts/deploy.sh staging",
-    "deploy:prod": "scripts/deploy.sh prod",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "deploy:prod": "scripts/deploy.sh prod"
   },
   "dependencies": {
     "@hono/node-server": "^2.0.5",
@@ -50,9 +48,6 @@
   "devDependencies": {
     "@biomejs/biome": "2.3.9",
     "@playwright/test": "^1.57.0",
-    "@storybook/addon-a11y": "^10.4.4",
-    "@storybook/addon-docs": "^10.4.4",
-    "@storybook/tanstack-react": "^10.4.4",
     "@tailwindcss/vite": "^4.1.13",
     "@types/node": "^22",
     "@types/react": "^19.2.7",
@@ -63,7 +58,6 @@
     "lint-staged": "^16.2.7",
     "mysql2": "^3.24.2",
     "rollup-plugin-visualizer": "^7.0.1",
-    "storybook": "^10.4.4",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2",
     "vite": "^7.1.7",
