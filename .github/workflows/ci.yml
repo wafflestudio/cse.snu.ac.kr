@@ -17,9 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4 # packageManager 필드에서 버전 읽음
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6 # packageManager 필드에서 버전 읽음
+      - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
           cache: pnpm
@@ -44,17 +44,17 @@ jobs:
       # baseline 생성 시점 백엔드 SHA로 핀(#399). 백엔드 올릴 땐 baseline 재생성 + 이 값 갱신.
       BACKEND_REF: 1661f3d8fe409ee17359c0683cd6fca8a558ec1a
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           path: cse.snu.ac.kr # 로컬과 동일한 형제 레이아웃 재현
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: wafflestudio/csereal-server # public → 토큰 불필요(GITHUB_TOKEN)
           ref: ${{ env.BACKEND_REF }}
           path: csereal-server # = BACKEND_DIR 기본값 ../csereal-server
       # 백엔드 Dockerfile은 prebuilt JAR(build/libs)를 COPY한다 → 컴포즈 빌드 전에 JAR을 만들어야 함
       # (로컬도 동일: CLAUDE.md §백엔드 동기화. JDK 21 필요).
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '21'

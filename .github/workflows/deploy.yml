@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4 # remote-deploy.sh를 호스트로 보내기 위해서만 체크아웃(빌드는 호스트가 함)
+      - uses: actions/checkout@v7 # remote-deploy.sh를 호스트로 보내기 위해서만 체크아웃(빌드는 호스트가 함)
       - name: staging 배포(SSH → 호스트에서 git URL 빌드 + 교체)
         env:
           # host/user/port는 비밀 아님(공개키 전용). 진짜 비밀은 둘: SSH 키, 카맵키(build-arg로 주입).
