@@ -3,10 +3,10 @@
 #
 # 두 경로를 분기한다(접속 방식만 다르고 자격증명·DB명 컨벤션은 동일):
 #   - 로컬(기본):    docker exec "$E2E_DB_CONTAINER" mysql ...   (소켓 인증, docker 필요)
-#   - CI/컨테이너:   E2E_DB_HOST 설정 시 mysql -h$E2E_DB_HOST    (TCP, docker 불필요)
+#   - CI/컨테이너:   E2E_DB_HOST 설정 시 mysql -h$E2E_DB_HOST (TCP — e2e 컨테이너의 정식 경로)
 #
 # Playwright를 핀된 컨테이너 안에서 돌릴 때(scripts/e2e-docker.sh), 컨테이너에는 docker
-# 소켓을 넣지 않고 host.docker.internal:3306으로 TCP 접속한다. MySQL 8 기본 인증
+# 소켓을 넣지 않고 같은 compose 네트워크의 db:3306으로 TCP 접속한다. MySQL 8 기본 인증
 # (caching_sha2_password)은 비-TLS TCP에서 서버 공개키가 필요하므로 --get-server-public-key.
 
 CONTAINER="${E2E_DB_CONTAINER:-csereal-server-db-1}"

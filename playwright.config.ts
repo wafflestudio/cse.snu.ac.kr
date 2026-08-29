@@ -1,8 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
-// E2E는 로컬 docker 백엔드(../csereal-server)를 실서버로 띄우고, 앱은 프로덕션 빌드를
-// same-origin proxy(server.ts)로 서빙해 검증합니다. 전략·범위 기준은 CLAUDE.md §3.
-// 백엔드 기동·health 대기는 진입점 scripts/e2e-docker.sh가 전담합니다(이 config는 앱만 띄움).
+// E2E는 로컬 docker 백엔드를 실서버로 띄우고, 앱은 프로덕션 빌드를 same-origin proxy
+// (server.ts)로 서빙해 검증합니다. 전략·범위 기준은 CLAUDE.md §3.
+// 스택 기동·health 대기는 tests/setup/compose.yml이 보장합니다(이 config는 앱만 띄움).
 // staging/프로덕션 서버는 절대 건드리지 않습니다(로컬 docker 전용).
 
 const APP_URL = 'http://localhost:3000';
@@ -10,20 +10,19 @@ const BACKEND_URL = process.env.E2E_BACKEND_URL ?? 'http://localhost:8080';
 
 export default defineConfig({
   testDir: './tests',
-  fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  reporter: 'html',
+  // 정식 실행 경로가 컨테이너 하나뿐이라(로컬·CI 동일) 조건 분기 없이 고정값.
+  // 컨테이너는 CI=1을 받는다 — playwright 내부 CI 동작(html 리포트 자동 오픈 억제 등)용.
+  forbidOnly: true,
+  reporter: 'html', // 실패 시 playwright-report/ (CI는 아티팩트 업로드)
 
-  // 아래 타임아웃·워커·retries는 모두 같은 원인 대응: 병렬 flow가 단일 docker 백엔드
-  // (MySQL+Spring)를 경합시키면 heavy multipart 생성(labs PI+PDF 등)과 mutation 후 로더가
-  // 느려진다(앱은 정상 — 결과는 결국 반영). TanStack은 페이지 로더를 클라에서 돌려 RR의 서버
-  // single-fetch보다 경합에 더 민감하므로 여유를 둔다.
+  // 단일 docker 백엔드(MySQL+Spring)는 병렬 mutation 경합에 민감하고 flow가 stateful이라
+  // 워커 1 직렬 실행. 그래도 heavy multipart 생성(labs PI+PDF 등)·mutation 후 로더가 느릴
+  // 수 있어(앱은 정상 — 결과는 결국 반영) 타임아웃에 여유. TanStack은 페이지 로더를 클라에서
+  // 돌려 RR의 서버 single-fetch보다 경합에 더 민감하다.
   timeout: 60_000, // 테스트 전체(기본 30s)
   expect: { timeout: 10_000 }, // 단언(기본 5s)
-  // 로컬 retries 0: flow는 stateful(고정 연도 등)이라 실패한 시도가 데이터를 남겨 재시도가
-  // 오히려 충돌한다. 경합 flaky는 워커 수로 낮춘다. CI는 1워커 + retries 2.
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : 2,
+  retries: 2, // flow 고유 이름(Date.now())으로 재시도 충돌 회피
+  workers: 1,
 
   use: {
     baseURL: APP_URL,
@@ -75,7 +74,8 @@ export default defineConfig({
     // build:local → BASE_URL=:3000/api(브라우저 same-origin), server.ts가 /api를 :8080으로 프록시.
     command: `pnpm build:local && PORT=3000 API_PROXY_TARGET=${BACKEND_URL} tsx server.ts`,
     url: `${APP_URL}/research/labs`,
-    reuseExistingServer: !process.env.CI,
+    // 매 런 새 컨테이너에서 새로 빌드(현재 소스 검증). 컨테이너 안 :3000이라 충돌 없음.
+    reuseExistingServer: false,
     timeout: 120_000,
   },
 });
