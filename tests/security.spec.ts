@@ -88,7 +88,7 @@ test.describe('CSP·보안 헤더', () => {
   });
 
   test('보안 응답 헤더가 붙는다', async ({ request }) => {
-    // `app/router.tsx`가 마감한다. 엣지(Caddy)도 일부를 내지만, 엣지 구성이 바뀌어도
+    // `src/router.tsx`가 마감한다. 엣지(Caddy)도 일부를 내지만, 엣지 구성이 바뀌어도
     // 앱이 자립적으로 내는지를 여기서 지킨다.
     const headers = (await request.get('/ko')).headers();
     expect(headers['x-content-type-options']).toBe('nosniff');

@@ -1,90 +1,46 @@
 #!/usr/bin/env bash
-# E2E의 단일 진입점. `pnpm test`가 이걸 부른다. 모든 테스트 실행은 핀된 Playwright
-# 컨테이너 안에서 일어난다(로컬 직접 실행 없음 → 호스트 OS와 무관하게 결정론적).
-#
-# 왜 컨테이너인가: 비주얼 baseline(*-linux.png)은 폰트 렌더 환경에 종속이라, 호스트
-# (macOS 등)와 무관하게 같은 PNG를 내려면 렌더 환경을 고정해야 한다. 이 핀된 이미지가
-# 그 단일 정본 환경이다(머신이 달라도 픽셀 동일).
-#
-# 역할 분담:
-#   - 백엔드(MySQL+Spring)는 호스트 docker로 띄운다(컨테이너 안엔 docker가 없음).
-#     이 스크립트가 호스트에서 보장하고, 컨테이너는 host.docker.internal로 TCP 접근한다.
-#   - 앱 빌드·서빙·시드·브라우저·테스트는 전부 컨테이너 안.
+# E2E 단일 진입점 — `pnpm test`가 부른다.
+#   1) 백엔드 스택(루트 compose.yml: db·oidc-stub·backend)을 `up --wait`로 보장
+#   2) 핀된 Playwright 컨테이너를 스택 네트워크에 붙여 테스트 실행
+# 컨테이너 고정 이유: 비주얼 baseline(*-linux.png)은 폰트 렌더 환경 종속 — 이 이미지가 정본.
 #
 # 사용:
 #   pnpm test                       # 전체 검증(Linux baseline 대조)
 #   pnpm test --update-snapshots    # baseline 재생성(호스트 tests/에 PNG 기록)
 #   pnpm test tests/research/labs   # 특정 경로/프로젝트 등 인자 패스스루
-#   pnpm test:ui                    # UI 모드 — 호스트 브라우저에서 http://localhost:$UI_PORT
+#   pnpm test:ui                    # UI 모드 — 호스트 브라우저에서 http://localhost:43210
 set -eo pipefail
-
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
-# @playwright/test 버전과 컨테이너 태그 일치(버전 올릴 때 함께 수정).
+# 태그는 @playwright/test 버전과 일치(버전 올릴 때 함께 수정).
 IMAGE="mcr.microsoft.com/playwright:v1.57.0-jammy"
-# 백엔드 소스 디렉터리 = main 체크아웃(baseline은 항상 main 백엔드 기준).
-# v3 등 다른 작업본은 형제 ../csereal-server 에 따로 두고, 테스트는 늘 이 main 체크아웃으로 띄운다.
-BACKEND_DIR="${BACKEND_DIR:-../csereal-server-main}"
-BACKEND_URL="http://localhost:8080"
-PNPM_STORE="${PNPM_STORE:-$PWD/.pnpm-store}"
-UI_PORT="${UI_PORT:-43210}"
-COMPOSE="-f $BACKEND_DIR/docker-compose-local-full.yml -f tests/setup/backend/docker-compose-fe-test.yml"
-mkdir -p "$PNPM_STORE"
 
-# 1) 백엔드 보장(호스트). 항상 main 체크아웃의 compose로 띄운다 — 프로젝트명이 첫 compose
-#    파일의 디렉터리 기준 'csereal-server-main'으로 고정돼, 이미 떠 있으면 no-op·없으면 기동.
-#    "떠 있는 :8080 아무거나 재사용"을 안 하므로 어느 백엔드인지 모호함이 없다(baseline=main 보장).
-#    v3 등 다른 백엔드가 :8080을 점유 중이면 포트 충돌로 즉시 드러난다 → 그걸 내려야 한다.
-backend_healthy() { curl -fsS "$BACKEND_URL/api/v2/research/lab?language=ko" >/dev/null 2>&1; }
-echo "[e2e] 백엔드 보장(docker compose up -d)…"
-docker compose $COMPOSE up -d
-echo "[e2e] 백엔드 health 대기…"
-for i in $(seq 1 60); do
-  backend_healthy && break
-  if [ "$i" = 60 ]; then
-    echo "::error::[e2e] 백엔드 기동 실패"
-    docker compose $COMPOSE logs my_server || true
-    exit 1
-  fi
-  sleep 5
-done
+echo "[e2e] 백엔드 스택 보장(compose up --wait)…"
+docker compose up -d --wait backend
 
-# 2) 인자 처리. --ui면 UI 포트를 공개해 호스트 브라우저에서 본다.
-docker_ui_args=()
+docker_args=(--rm --network csereal-local_default)
 pw_args=("$@")
 for a in "$@"; do
   if [ "$a" = "--ui" ]; then
-    docker_ui_args=(-p "$UI_PORT:$UI_PORT")
-    pw_args+=("--ui-host=0.0.0.0" "--ui-port=$UI_PORT")
-    echo "[e2e] UI 모드 — 호스트 브라우저에서 http://localhost:$UI_PORT 열기"
+    docker_args+=(-p 43210:43210)
+    pw_args+=("--ui-host=0.0.0.0" "--ui-port=43210")
+    echo "[e2e] UI 모드 — 호스트 브라우저에서 http://localhost:43210 열기"
   fi
 done
+[ -t 1 ] && docker_args+=(-it) # CI 등 TTY 없는 환경에선 비대화형
 
-# TTY가 있을 때만 -it(로컬 대화형·UI). CI는 TTY 없음 → 비대화형.
-tty_args=()
-[ -t 1 ] && tty_args=(-it)
-
-# 3) 핀된 컨테이너에서 실행. 백엔드·DB는 host.docker.internal로(소켓 불필요).
-#    node_modules는 named volume으로 격리 — 호스트 macOS 바이너리를 덮어쓰지 않게.
-exec docker run --rm "${tty_args[@]}" \
-  --add-host=host.docker.internal:host-gateway \
-  "${docker_ui_args[@]}" \
+exec docker run "${docker_args[@]}" \
   -v "$PWD":/work -w /work \
   -v csereal-e2e-node-modules:/work/node_modules \
-  -v "$PNPM_STORE":/pnpm-store \
+  -v csereal-e2e-pnpm-store:/pnpm-store \
   -e CI=1 \
-  -e E2E_BACKEND_URL=http://host.docker.internal:8080 \
-  -e E2E_DB_HOST=host.docker.internal \
-  "$IMAGE" \
-  bash -lc '
+  -e GITHUB_ACTIONS \
+  -e E2E_BACKEND_URL=http://backend:8080 \
+  -e E2E_DB_HOST=db \
+  "$IMAGE" bash -c '
     set -eo pipefail
     corepack enable
     pnpm config set store-dir /pnpm-store
     pnpm install --frozen-lockfile
-    # 시드 스크립트가 host.docker.internal:3306으로 TCP 접속(caching_sha2 → mysql 8 클라이언트).
-    command -v mysql >/dev/null 2>&1 || {
-      apt-get update -qq
-      apt-get install -y -qq --no-install-recommends mysql-client-core-8.0
-    }
     exec pnpm exec playwright test "$@"
-  ' bash "${pw_args[@]}"
+  ' bash "${pw_args[@]}" # bash -c의 첫 인자가 $0이 되므로 자리채움 "bash" 뒤에 실제 인자

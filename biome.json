@@ -19,12 +19,8 @@
   },
   "linter": {
     "rules": {
-      "a11y": {
-        "noSvgWithoutTitle": "off"
-      },
       "suspicious": {
-        "noArrayIndexKey": "off",
-        "useIterableCallbackReturn": "off"
+        "noArrayIndexKey": "off"
       }
     }
   },

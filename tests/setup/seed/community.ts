@@ -1,4 +1,4 @@
-import { NEWS_TAGS, NOTICE_TAGS } from '../../../app/constants/tag';
+import { NEWS_TAGS, NOTICE_TAGS } from '../../../src/constants/tag';
 import { postJson, postMultipart } from './client';
 
 /**

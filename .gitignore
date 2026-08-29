@@ -13,9 +13,6 @@
 # 빌드 산출물 (TanStack Start)
 /dist/
 
-# Lighthouse 리포트
-/lighthouse-reports/
-
 # 이미지 최적화 디스크 캐시
 .cache/
 
@@ -28,8 +25,6 @@
 .playwright-mcp/
 
 # Storybook
-*storybook.log
-storybook-static
 
 # Claude Code 로컬 작업 상태
 .claude/

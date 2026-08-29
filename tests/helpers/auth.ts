@@ -9,7 +9,7 @@ import { expect, type Page } from '@playwright/test';
  *
  * ⚠️ mock-login은 **앱과 same-origin**(baseURL=:3000 의 `/api` 프록시 경유)으로 호출해야
  * JSESSIONID 쿠키가 앱 origin(localhost)으로 스코프돼 reload 때 실린다. 백엔드를 직접
- * (컨테이너에선 host.docker.internal:8080) 호출하면 쿠키 도메인이 달라 세션이 안 잡힌다.
+ * (컨테이너에선 backend:8080) 호출하면 쿠키 도메인이 달라 세션이 안 잡힌다.
  *
  * 전제: 이미 앱 페이지에 진입한 상태에서 호출(reload로 세션 반영).
  */
