@@ -84,7 +84,7 @@
 
 - **라우트는 URL을 미러링**(`src/routes/$locale/<path>`). 라우트별 비라우트 파일은 같은 폴더에 **co-locate**.
 - **co-location은 프레임워크 표준 `-` 프리픽스로 제외한다.** TanStack Router 기본값 `routeFileIgnorePrefix='-'` — `-`로 시작하는 파일/폴더는 라우트 생성에서 자동 제외된다. 그래서 비라우트 파일은 **`-components/`·`-hooks/`·`-api.ts`·`-constants.ts`·`-fetchContent.ts`**처럼 `-`로 시작하는 이름에 둔다(하위 `news/`·`sections/`·`ui/`·`assets/` 등은 부모가 `-`면 따라 제외되니 각각 프리픽스 불필요). `vite.config.ts`에 **커스텀 `routeFileIgnorePattern`은 두지 않는다**(2026-08 제거). ✅ 이름 규칙(복수/단수·PascalCase)과 무관하게 오직 `-` 프리픽스만 보므로, 과거 단수 `component/`가 라우트로 새던 함정이 원천적으로 사라졌다. 새 co-location 폴더/파일은 `-`로 시작하기만 하면 된다.
-- **공용 `src/components/`**: `ui`(제어 프리미티브, value/onChange) · `form`(RHF 어댑터, name+useFormContext) · `layout`(앱 셸: Header/Footer/Nav/PageLayout + 404 `NotFound`) · `feature`(도메인 위젯: auth/category/SearchBox/selection). **route-specific → co-locate, 여러 라우트서 재사용 → 여기로 승격.** 예외: DS 프리미티브는 사용처 1곳이어도 `ui/` 유지(Dropdown·ImageModal이 해당).
+- **공용 `src/components/`**: `ui`(제어 프리미티브, value/onChange) · `form`(폼 전용 위젯 — `FormProvider` 전제, 대부분 `Form.*` compound의 내부 부품) · `layout`(앱 셸: Header/Footer/Nav/PageLayout + 404 `NotFound`) · `feature`(도메인 위젯: auth/category/SearchBox/selection). **route-specific → co-locate, 여러 라우트서 재사용 → 여기로 승격.** 예외: DS 프리미티브는 사용처 1곳이어도 `ui/` 유지(Dropdown·ImageModal이 해당).
 - **헬퍼는 `src/utils/` 한 곳**(과거 `lib/`와 분리했으나 경계가 모호하고 폴더가 아무것도 강제하지 않아 합침). **서버 전용 보장은 폴더가 아니라 `createServerFn`·서버 라우트 핸들러가 한다** — 무거운 서버 전용 deps(cheerio→`cspServerFn`/`processHtmlForCsp`, sharp→`imageOptimizer`)는 그 경계 안에서만 돌려 클라 번들에서 빠진다.
 
 ---
@@ -188,7 +188,7 @@ E2E가 실제 버그를 잡는다. 예: DELETE가 200 빈 본문을 반환하는
 > **Storybook은 2026-08-30 제거** — 마이그레이션 감사(2026-06-16, 전 공용 컴포넌트 스토리화 + 실버그 수정) 이후 실사용이 없었고, 픽셀 회귀는 E2E 소유라 유지비(스토리 36개 동기화·SB 메이저 업그레이드·CSF 함정·CI build-storybook)만 남아서다. 스토리·설정·CSF Next 노하우는 git 히스토리(2026-08-30 이전) 참고. 감사가 잡은 수정들은 코드에 남아 있다.
 
 - **디자인 토큰:** `src/app.css`의 `@theme`. **가로 페이지 거터는 `.page-gutter-x` 단일 출처**(좌 100/우 360/모바일 20px). 토큰화/스케일화는 **픽셀 동일할 때만 자율**; 값이 바뀌는 정규화는 디자인 결정 → 합의.
-- **API 레이어 분리:** `ui/*`=제어 프리미티브(value/onChange), `form/*`=RHF 어댑터(name+useFormContext). **의도된 분리 — 통합 금지.**
+- **API 레이어 분리:** `ui/*`=제어 프리미티브(value/onChange, 어디서나) vs `form/*`=폼 전용(name+useFormContext, `FormProvider` 밖에선 크래시). ui/form 동명 컴포넌트는 어댑터 관계가 아니라 독립 구현(2026-08-30 확인). **의도된 분리 — 통합 금지.**
 - **DS에 우겨넣지 않는다.** 일관성 깨지는 사용처는 컴포넌트 API 확장이 아니라 **앱 코드를 고친다**. 이렇게 잡은 실버그: Tag 삭제버튼 `aria-label`→`ariaLabel`.
 - **단일 선택은 Button 토글이 아니라 네이티브 radiogroup**(`fieldset`+`radio` pill) — 그룹 시맨틱·화살표 키 이동을 브라우저가 준다(faculty 정렬·공지 필터). 그 결과 Button `variant`(과거 `kind`서 개명 — Tag와 통일)는 상태 없는 5개(primary/neutral/secondary/quiet/nav). **아이콘은 children에 직접**(shadcn식, base `gap-2`가 간격).
 - **a11y:** form Radio/Checkbox=네이티브, Dialog/AlertDialog/Select/ImageModal=Radix(ARIA 자동). Button **icon-only는 `ariaLabel` 필수.**
