@@ -16,7 +16,7 @@
                                   └─ 그 외     → TanStack Start SSR (프로덕션 빌드 dist/)
 ```
 
-- **백엔드 = 로컬 docker 실서버**(`../csereal-server`, :8080). MySQL+Spring, mock-login은 `@Profile("!prod")` 실엔드포인트(진짜 JSESSIONID 세션). **로컬 전용이라 리셋·시드 자유 — staging·프로덕션 서버는 절대 건드리지 않는다.** `pnpm test` 시 `tests/setup/compose.yml`이 자동 기동(기동 순서·health 대기를 compose 선언으로 보장 — playwright.config는 앱만 띄운다).
+- **백엔드 = 로컬 docker 실서버**(`../csereal-server`, :8080). MySQL+Spring, mock-login은 `@Profile("!prod")` 실엔드포인트(진짜 JSESSIONID 세션). **로컬 전용이라 리셋·시드 자유 — staging·프로덕션 서버는 절대 건드리지 않는다.** `pnpm test` 시 루트 `compose.yml`이 자동 기동(기동 순서·health 대기를 compose 선언으로 보장 — playwright.config는 앱만 띄운다).
 - **프론트 = 프로덕션 빌드**를 루트 `server.ts`(Hono)로 서빙. MSW/mock 안 씀. prod 컨테이너와 동일 서버(`pnpm start`).
   - **왜 server.ts가 필요한가:** TanStack Start 기본 빌드는 `dist/server/server.js`를 **Web fetch 핸들러**로 내놓는데 Node HTTP 서버는 `IncomingMessage`/`ServerResponse`라 **Node↔Web 다리가 필연**. Hono(+@hono/node-server)가 그 변환·정적서빙·`/api` 프록시를 맡는다. (Bun/Deno는 불필요하지만 우리는 Node self-host.)
   - **왜 prod 빌드(dev 아님):** 비주얼 회귀가 dev≠prod면 무의미하고, E2E 정석은 배포 산출물 검증. dev 콜드 컴파일 플레이키도 없음.
@@ -42,7 +42,7 @@
 - **도메인 연결 완료** — `cse.snu.ac.kr` DNS 해석(→147.46.92.120)·443 학외 개방·마이그레이션 빌드 라이브를 실측 확인(2026-08-29). 한때 리셋됐던 웹 포트 개방 승인도 재개방됨. cutover 자체는 아래 활성화 블록 참고.
   - 학외 접속이 드물게 실패할 수 있다 — 재시도하면 붙는다(앱 버그 아님, 하드 차단 아님).
 - **⚠️ 학외 OAuth 로그인은 아직 불가.** OAuth는 사용자 브라우저가 `id.snucse.org`(→147.46.92.174)에 직접 붙어야 하는데 그 호스트가 학외 443을 막고 있다(2026-08-29 실측 4/4 timeout — SYN drop과 달리 재시도로도 안 붙는 하드 차단). **바쿠스가 그 호스트를 학외 개방해야 학외 로그인이 동작한다**(앱 문제 아님, 바쿠스 소유). 학내에선 정상.
-- **E2E OIDC 부팅 의존(해결됨, 영구).** 백엔드가 기동 시 `id.snucse.org` OIDC discovery를 하다 타임아웃으로 크래시 루프(실측 RestartCount 28, CI e2e 잡도 동일 원인 실패)던 것을, `tests/setup/compose.yml`의 oidc-stub(nginx, `oidc-stub.conf`)이 discovery 문서만 응답해 끊었다 → 학내/학외 무관하게 돈다. local 프로파일도 issuer-uri를 등록해 부팅 시 discovery가 강제되는 게 원인 — **근본 해결 = 백엔드 local 프로파일에서 OIDC 등록 제거(업스트림 PR 대상)**, 머지되면 stub 삭제 가능.
+- **E2E OIDC 부팅 의존(해결됨, 영구).** 백엔드가 기동 시 `id.snucse.org` OIDC discovery를 하다 타임아웃으로 크래시 루프(실측 RestartCount 28, CI e2e 잡도 동일 원인 실패)던 것을, 루트 `compose.yml`의 oidc-stub(nginx, 인라인 config)이 discovery 문서만 응답해 끊었다 → 학내/학외 무관하게 돈다. local 프로파일도 issuer-uri를 등록해 부팅 시 discovery가 강제되는 게 원인 — **근본 해결 = 백엔드 local 프로파일에서 OIDC 등록 제거(업스트림 PR 대상)**, 머지되면 stub 삭제 가능.
 - **⚠️ 컨테이너에 `--add-host cse.snu.ac.kr:host-gateway`가 필요하다(`remote-deploy.sh`가 붙인다, 롤백 명령에도).** prod 빌드는 API_PROXY_TARGET 없이 **절대 URL 직호출**이라 SSR이 `https://cse.snu.ac.kr/api/...`를 부르는데 컨테이너가 그 호스트명을 자기 게이트웨이로 풀어야 한다. 빠지면 **전 페이지 500**(getaddrinfo 실패) — 오래 떠 있는 컨테이너에선 안 드러나다가 **재생성 시점에 터진다**(2026-08-22에 겪음).
 - **⚠️ `@backend_denied` IP 직결 우회 = 실제 열린 갭(2026-08-29 확인, 미조치).** Caddyfile이 관리 엔드포인트 3개(`/api/v1/search/refresh`·`/api/v2/reservation/terms/custom`·`/api/v2/reservation/terms/defaults`)를 `not remote_ip {$LOCAL_IP}`로 막는데 **그 deny가 도메인 블록에만 있고 `147.46.92.120` IP 직결 블록엔 없다** → 학외에서 `https://147.46.92.120/api/...`로 치면 통과(도메인으로는 000 abort). 게다가 `LOCAL_IP=10.91.1.1`은 **구 프록시 사설 주소**라 직결 전환 후 정상 관리자도 통과 못 시킨다. **조치 = IP 직결 블록에도 같은 `abort @backend_denied` 추가 + `LOCAL_IP`를 직결 토폴로지 기준으로 재정의**(`~/proxy/caddy/Caddyfile`, 이 레포 밖).
 
@@ -165,7 +165,7 @@ docker가 **소스의 prebuilt JAR를 COPY**하므로 `../csereal-server` 소스
 cd ../csereal-server && git fetch origin && git merge --ff-only origin/main
 docker run --rm -v "$PWD":/app -v csereal-gradle-cache:/root/.gradle -w /app \
   eclipse-temurin:21-jdk ./gradlew bootJar -x test               # 호스트 JDK 11이라 Java21 컨테이너로 빌드
-cd ../cse.snu.ac.kr && docker compose -f tests/setup/compose.yml up -d --build backend  # 새 JAR로 이미지 재빌드
+cd ../cse.snu.ac.kr && docker compose up -d --build backend  # 새 JAR로 이미지 재빌드
 ```
 올린 뒤 `pnpm test --update-snapshots`로 baseline 재생성.
 

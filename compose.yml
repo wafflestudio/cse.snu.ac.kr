@@ -1,12 +1,6 @@
-# E2E 백엔드 스택(FE 소유): db + oidc-stub + backend. 테스트 대상 환경만 정의하고
-# 테스트 러너(playwright)는 모른다 — scripts/e2e-docker.sh가 이 스택을 `up --wait`로
-# 보장한 뒤 러너 컨테이너를 이 네트워크(csereal-e2e_default)에 붙여 실행한다.
-# 독립 조작: pnpm backend:up / backend:down, 로그는 `docker compose -f <이 파일> logs -f backend`.
-#
-# 과거엔 백엔드 레포의 docker-compose-local-full.yml에 override를 -f 2개로 얹었지만,
-# 상대경로가 첫 -f 파일 기준으로 풀리는 함정(FE 파일 마운트 불가) 때문에 단일 파일로
-# vendoring했다. 백엔드와의 실질 계약은 "mysql 8(+ngram 설정) + 백엔드 이미지"뿐.
-name: csereal-e2e
+# 로컬 백엔드 환경: db + oidc-stub + backend (pnpm backend:up/down). E2E 러너는
+# scripts/e2e-docker.sh가 이 스택의 네트워크에 붙인다. 테스트 세팅(시딩)은 tests/setup/.
+name: csereal-local
 
 services:
   db:
@@ -20,28 +14,30 @@ services:
     volumes:
       - db:/var/lib/mysql
       # ngram_token_size=2 — 백엔드 FTS 검색이 의존(백엔드 레포 소유 설정을 그대로 마운트)
-      - ${BACKEND_DIR:-../../../csereal-server}/db_config:/etc/mysql/conf.d
+      - ${BACKEND_DIR:-../csereal-server}/db_config:/etc/mysql/conf.d
     healthcheck:
       test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-ppassword']
       interval: 2s
       timeout: 5s
       retries: 60
 
-  # 부팅 시 OIDC discovery 한 번만 응답하는 stub(oidc-stub.conf). 왜 필요한가: 백엔드
-  # application.yaml이 local 프로파일에도 issuer-uri(id.snucse.org — 학내 전용)를 등록해
-  # Spring이 부팅 시 discovery를 하는데, 학외·CI에선 타임아웃 → 크래시 루프. 테스트는
-  # mock-login이라 discovery 결과를 안 쓰므로 도달 가능한 issuer로만 돌린다.
-  # (근본 해결 = 백엔드 local 프로파일에서 OIDC 등록 제거 — 업스트림 PR 대상.)
+  # 부팅 시 OIDC discovery 한 번만 응답하는 stub. 왜 필요한가: 백엔드 application.yaml이
+  # local 프로파일에도 issuer-uri(id.snucse.org — 학내 전용)를 등록해 Spring이 부팅 시
+  # discovery를 하는데, 학외·CI에선 타임아웃 → 크래시 루프. 테스트는 mock-login이라
+  # discovery 결과를 안 쓰므로 도달 가능한 issuer로만 돌린다. issuer 값은 요청 URI와
+  # 정확히 일치해야 한다(Spring이 검증). (근본 해결 = 백엔드 local 프로파일에서 OIDC
+  # 등록 제거 — 업스트림 PR 대상, 머지되면 이 서비스 삭제.)
   oidc-stub:
     image: nginx:1.27-alpine
-    volumes:
-      - ./oidc-stub.conf:/etc/nginx/conf.d/default.conf:ro
+    configs:
+      - source: oidc_stub_conf
+        target: /etc/nginx/conf.d/default.conf
 
   backend:
     image: my_server_image:1.0 # 로컬 빌드 이미지(기존 태그 유지 — 재빌드 회피)
     build:
       # prebuilt JAR(build/libs)를 COPY하는 Dockerfile — JAR 빌드는 CLAUDE.md §백엔드 동기화
-      context: ${BACKEND_DIR:-../../../csereal-server}
+      context: ${BACKEND_DIR:-../csereal-server}
     environment:
       profile: local # 런타임 프로파일 — mock-login(@Profile("!prod")) 활성
       OIDC_CLIENT_SECRET_DEV: dummy
@@ -61,6 +57,17 @@ services:
       timeout: 5s
       retries: 60 # 첫 부팅(mysql 초기화 + flyway 전체 마이그레이션)이 느릴 수 있어 여유
       start_period: 20s
+
+configs:
+  oidc_stub_conf:
+    content: |
+      server {
+        listen 8081;
+        location = /.well-known/openid-configuration {
+          default_type application/json;
+          return 200 '{"issuer":"http://oidc-stub:8081","authorization_endpoint":"http://oidc-stub:8081/authorize","token_endpoint":"http://oidc-stub:8081/token","userinfo_endpoint":"http://oidc-stub:8081/userinfo","jwks_uri":"http://oidc-stub:8081/jwks","response_types_supported":["code"],"subject_types_supported":["public"],"id_token_signing_alg_values_supported":["RS256"]}';
+        }
+      }
 
 volumes:
   db:
