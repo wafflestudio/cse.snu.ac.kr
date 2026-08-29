@@ -17,12 +17,12 @@
 - **테스트 컨벤션 리팩토링 완료**(2026-06-14): 라우트별 `smoke.spec.ts`+`visual.spec.ts`를 **`read.spec.ts` 하나로 통합**(콘텐츠 계약 assert + `toHaveScreenshot`). Playwright 프로젝트는 `read`(데스크톱)·`read-mobile`(390px)·`flow`(데스크톱, deps=[read,read-mobile]). 모바일 baseline(`*-read-mobile-linux.png`) 생성, 검색 빈/결과 read 추가, 이중언어 flow에 en round-trip(`/en` 상세/목록 노출 확인) 추가. 데스크톱 baseline은 스냅샷 디렉터리만 `read.spec.ts-snapshots`로 이동해 재사용. (이후 baseline은 핀된 Linux 컨테이너 단일 세트 `*-linux.png`로 전환 — CLAUDE.md §3 "비주얼 baseline은 Linux 단일" 참고.)
 - **백엔드 #399로 업그레이드 완료**(image-modal/FTS/교수en 수정 반영). 향후 origin/main 갱신 시 JAR 재빌드 필요.
 - **전 라우트 커버리지 달성**(읽기 전 라우트 + 편집 가능 라우트 flow). 남은 건 선택적 심화(추가 조합/엣지)뿐.
-- 참고(시드 인프라): 게시물 표시 날짜가 createdAt이면 normalize-dates.sh에 테이블 추가, payload 날짜면 불필요. 태그 있으면 enrollTag 재시드. PUT 업서트 싱글톤은 `postMultipart(...,'PUT')`. 다국어 엔티티 ko/en POST는 `{ko,en}` 구조(단 professor는 en 이름 버그).
+- 참고(시드 인프라): 게시물 표시 날짜가 createdAt이면 db.ts(normalizeDates)에 테이블 추가, payload 날짜면 불필요. 태그 있으면 enrollTag 재시드. PUT 업서트 싱글톤은 `postMultipart(...,'PUT')`. 다국어 엔티티 ko/en POST는 `{ko,en}` 구조(단 professor는 en 이름 버그).
 - 도메인 순서: about(나머지) → community → people → research(나머지) → academics → admissions → reservations → 10-10-project → main/misc → admin/internal
 
 ### 시드 원칙 (중요)
 - **API 우선**: 생성 가능한 엔티티는 `tests/setup/seed/<domain>.ts`에서 `postMultipart`로 시드.
-- **SQL은 예외적으로만**: API 생성 경로가 **없는** content 싱글톤(about overview/greetings/history/contact 등 — PUT만 있고 POST 없음, 빈 DB면 500)은 `tests/setup/seed-content.sh`가 SQL로 직접 시드. utf8mb4 필수. 텍스트는 `seed/about.ts`의 상수와 일치시킬 것.
+- **SQL은 예외적으로만**: API 생성 경로가 **없는** content 싱글톤(about overview/greetings/history/contact 등 — PUT만 있고 POST 없음, 빈 DB면 500)은 `tests/setup/db.ts`(seedContent)가 SQL로 직접 시드. utf8mb4 필수. 텍스트는 `seed/about.ts`의 상수와 일치시킬 것.
 
 ## 도메인별 체크리스트
 
@@ -72,7 +72,7 @@ read는 ko 기준(데스크톱+모바일). flow는 staff 편집/추가/삭제가
 | `/research/groups` | ✅ | ✅ | 인덱스 인라인 상세(SelectionList). `/api/v2/research` type=groups. seed/research.ts(시스템). 선택 id=그룹명 |
 | `/research/centers` | ✅ | ✅ | 인덱스 인라인 상세. type=centers + websiteURL. seed/research.ts(인공지능 연구센터). 선택 id=숫자 |
 | `/research/labs` (+`/:id`) | ✅ | ✅ | **reference 구현** |
-| `/research/top-conference-list` | ✅ | — | 읽기 전용(편집 UI 없음). conference_page 싱글톤은 SQL로 빈 행(seed-content.sh) → 시더가 PATCH로 conference 추가(author=staff). modifiedAt은 normalize-dates.sh로 고정. 페이지가 language 무시(ko/en 동일) |
+| `/research/top-conference-list` | ✅ | — | 읽기 전용(편집 UI 없음). conference_page 싱글톤은 SQL로 빈 행(db.ts seedContent) → 시더가 PATCH로 conference 추가(author=staff). modifiedAt은 db.ts(normalizeDates)로 고정. 페이지가 language 무시(ko/en 동일) |
 
 ### admissions (동적 `:mainType/:postType`)
 | 라우트 | read | flow | 비고 |
@@ -116,7 +116,7 @@ read는 ko 기준(데스크톱+모바일). flow는 staff 편집/추가/삭제가
 
 ## 시드 모듈 현황 (`tests/setup/seed/`)
 - ✅ `research.ts` — group/professor/lab
-- ✅ `about.ts` — clubs/facilities/future-careers(stat·company). content 싱글톤은 `seed-content.sh`(SQL)
+- ✅ `about.ts` — clubs/facilities/future-careers(stat·company). content 싱글톤은 `db.ts`(seedContent, SQL)
 - ✅ `client.ts` — `postMultipart`(multipart) + `postJson`(application/json, 평문 응답도 허용)
 - ✅ `community.ts` — notice/news/seminar(+enrollTag 재시드) + recruit(PUT 업서트)
 - ✅ `people.ts` — emeritus(professor INACTIVE) + staff. faculty(ACTIVE)는 research.ts가 시드
@@ -160,7 +160,7 @@ read는 ko 기준(데스크톱+모바일). flow는 staff 편집/추가/삭제가
   labs/scholarship(상세 heading) · centers/groups(목록·제목) · admissions/greetings(싱글톤 본문, 동일 $type/edit
   형제는 greetings로 대표).
 - **게시물 날짜 비결정성**: notice/news/seminar의 created_at은 서버가 박아 매 런 달라짐 →
-  `tests/setup/normalize-dates.sh`가 globalSetup에서 고정값('2024-03-15 09:00:00')으로 정규화.
+  `tests/setup/db.ts`(normalizeDates)가 globalSetup에서 고정값('2024-03-15 09:00:00')으로 정규화.
   새 게시물 도메인(news/seminar) 추가 시 이 스크립트의 UPDATE에 테이블 한 줄 추가할 것. 마스킹 불필요.
 - **태그 참조 테이블**: notice/news 태그(tag_in_notice 등)는 Flyway가 아니라 enrollTag API로 채워지는데
   reset-db가 truncate함. baseline 시더가 매 런 enrollTag로 재등록(없으면 태그 단 글 생성이 500).

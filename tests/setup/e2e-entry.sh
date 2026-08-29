@@ -7,10 +7,4 @@ corepack enable
 pnpm config set store-dir /pnpm-store
 pnpm install --frozen-lockfile
 
-# 시드/리셋 스크립트가 mysql 클라이언트로 db:3306 TCP 접속(caching_sha2 → mysql 8 클라이언트).
-command -v mysql >/dev/null 2>&1 || {
-  apt-get update -qq
-  apt-get install -y -qq --no-install-recommends mysql-client-core-8.0
-}
-
 exec pnpm exec playwright test "$@"

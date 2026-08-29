@@ -136,7 +136,7 @@
 ## 결정론
 
 - `globalSetup`이 매 런 **DB 리셋 → SQL 시드 → API 시드 → 날짜 정규화**. 빈 DB라 auto-increment id 고정. read 스펙은 baseline만 검증(도메인 `*_SEED` 상수를 기대값 단일 출처로 import). **flow 스펙은 baseline 안 건드리고 자기 항목만** 생성/편집/삭제(`Date.now()` 고유 이름).
-- **날짜:** payload 날짜는 고정값. **서버가 박는 created_at/modifiedAt이 화면에 노출되면**(notice·메인 NewsCard·conference_page) `normalize-dates.sh`가 globalSetup에서 고정값으로 정규화 — 새 게시물 테이블 추가 시 UPDATE 한 줄 추가. **마스킹보다 정규화 우선**(시:분 글자폭이 마스크 박스를 흔들어 불안정).
+- **날짜:** payload 날짜는 고정값. **서버가 박는 created_at/modifiedAt이 화면에 노출되면**(notice·메인 NewsCard·conference_page) `db.ts`(normalizeDates)가 globalSetup에서 고정값으로 정규화 — 새 게시물 테이블 추가 시 UPDATE 한 줄 추가. **마스킹보다 정규화 우선**(시:분 글자폭이 마스크 박스를 흔들어 불안정).
 - **마스킹**은 정규화 불가한 비결정만 — 외부 SDK(KakaoMap), 백엔드 비정렬 컬렉션(groups 상세 labs Set). 상대시간 렌더 시 `page.clock`(현재 해당 없음).
 
 ## flow = stateful(실서버 영속성)
@@ -172,7 +172,7 @@ cd ../cse.snu.ac.kr && docker compose -f tests/setup/compose.yml up -d --build b
 ## 새 라우트 추가 / 확장
 
 진행 상태·커버리지는 **`tests/COVERAGE.md`가 단일 출처**(라우트 끝낼 때마다 갱신). reference 구현 `tests/research/labs/` + `tests/setup/seed/research.ts`를 본뜬다.
-- **시드는 API 우선**: 생성 API가 있으면 `tests/setup/seed/<domain>.ts`에 `<DOMAIN>_SEED` + 시더 만들고 `seed/index.ts`에 등록. **SQL은 예외** — 생성 API가 없는 content 싱글톤(PUT만 있고 POST 없어 빈 DB 500)만 `seed-content.sh`에 INSERT. **API로 되면 절대 SQL 안 씀.**
+- **시드는 API 우선**: 생성 API가 있으면 `tests/setup/seed/<domain>.ts`에 `<DOMAIN>_SEED` + 시더 만들고 `seed/index.ts`에 등록. **SQL은 예외** — 생성 API가 없는 content 싱글톤(PUT만 있고 POST 없어 빈 DB 500)만 `db.ts`(seedContent)에 INSERT. **API로 되면 절대 SQL 안 씀.**
 - 도메인별 시드 모듈 + 중앙 조합(`seed/index.ts`), cross-domain 참조는 앞 시더 반환 id를 명시적으로 전달. 표시 문자열은 `*_SEED`에만(단일 출처).
 - **복합 페이지는 편집 기능마다 별도 flow**(탭/섹션/테이블 인라인 편집 놓치기 쉬움). **POM 미사용** — 함수형 헬퍼 유지.
 - 자율 진행 시 **묻지 말고 진행**하되 라우트마다 `COVERAGE.md` 갱신(컨텍스트 끊겨도 이어지게). 실서버가 실버그를 잡으면 **증상 우회 말고 원인을 시스템 차원에서** 고치고 기록.

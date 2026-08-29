@@ -1,17 +1,12 @@
 import { defineConfig, devices } from '@playwright/test';
 
-// E2E는 로컬 docker 백엔드를 실서버로 띄우고, 앱은 프로덕션 빌드를 same-origin proxy
-// (server.ts)로 서빙해 검증합니다. 전략·범위 기준은 CLAUDE.md §3.
-// 스택 기동·health 대기는 tests/setup/compose.yml이 보장합니다(이 config는 앱만 띄움).
-// staging/프로덕션 서버는 절대 건드리지 않습니다(로컬 docker 전용).
+// E2E는 로컬 docker 백엔드를 띄워 검증합니다.
 
 const APP_URL = 'http://localhost:3000';
 const BACKEND_URL = process.env.E2E_BACKEND_URL ?? 'http://localhost:8080';
 
 export default defineConfig({
   testDir: './tests',
-  // 정식 실행 경로가 컨테이너 하나뿐이라(로컬·CI 동일) 조건 분기 없이 고정값.
-  // 컨테이너는 CI=1을 받는다 — playwright 내부 CI 동작(html 리포트 자동 오픈 억제 등)용.
   forbidOnly: true,
   reporter: 'html', // 실패 시 playwright-report/ (CI는 아티팩트 업로드)
 
