@@ -67,13 +67,13 @@
 
 마이그레이션에서 확립.
 
-- **라우팅: file-based**(`app/routes/**` → 생성 `routeTree.gen.ts`). loader는 `createFileRoute`에 **인라인**(분리 wiring 안 씀). 컴포넌트는 `Route.useLoaderData()`/`useParams()`를 **직접 호출**(prop 주입 안 함) → params 자동 타입(그래서 `params.id`에 `!` 불필요).
-- **로케일: required path param `$locale`** — `app/routes/$locale/**`에 1벌만(`/ko/about`·`/en/about`). **모든 페이지가 프리픽스를 가진다**(2026-06-21 전환, 이전엔 optional `{-$locale}`이었다). 비로케일 라우트(`admin`·`[.]internal`·`img`·`sitemap`)는 `$locale` 밖. `__root` beforeLoad가 프리픽스 없는 경로를 쿠키(`lang`)·Accept-Language로 판정해 `/{lang}`으로 302.
+- **라우팅: file-based**(`src/routes/**` → 생성 `routeTree.gen.ts`). loader는 `createFileRoute`에 **인라인**(분리 wiring 안 씀). 컴포넌트는 `Route.useLoaderData()`/`useParams()`를 **직접 호출**(prop 주입 안 함) → params 자동 타입(그래서 `params.id`에 `!` 불필요).
+- **로케일: required path param `$locale`** — `src/routes/$locale/**`에 1벌만(`/ko/about`·`/en/about`). **모든 페이지가 프리픽스를 가진다**(2026-06-21 전환, 이전엔 optional `{-$locale}`이었다). 비로케일 라우트(`admin`·`[.]internal`·`img`·`sitemap`)는 `$locale` 밖. `__root` beforeLoad가 프리픽스 없는 경로를 쿠키(`lang`)·Accept-Language로 판정해 `/{lang}`으로 302.
 - **⚠️ 로케일 링크는 항상 `localizedPath()`. 수동 `/${locale}/...` 문자열 금지** — ko에서 `/ko/...`를 **클라 네비로 클릭**하면 `__root`의 `/ko`-strip redirect가 렌더 루프(메인스레드 peg)를 일으킨 실버그가 있었다(notice 상세 wedge). `localizedPath`는 ko에서 프리픽스 없는 경로를 만들어 그 라운드트립을 제거한다.
 - **mutation은 대부분 클라 `fetch`**(same-origin proxy 경유). `action`은 거의 없음.
-- **검색/페이지네이션은 공용 `app/hooks/useSearchParams.ts`**(URLSearchParams 기반). 여러 라우트가 Pagination·SearchBox·TagCheckboxes를 공유해 라우트별 타입(`Route.useSearch`/`validateSearch`)은 부적합 — 표준 URLSearchParams 훅이 맞다.
+- **검색/페이지네이션은 공용 `src/hooks/useSearchParams.ts`**(URLSearchParams 기반). 여러 라우트가 Pagination·SearchBox·TagCheckboxes를 공유해 라우트별 타입(`Route.useSearch`/`validateSearch`)은 부적합 — 표준 URLSearchParams 훅이 맞다.
 - **서버 라우트(Response 직접 반환):** `/img`(이미지 최적화 프록시 — sharp·AVIF·디스크캐시·SSRF 화이트리스트)와 `/sitemap.xml`. `/img`가 **시스템 유일의 이미지 최적화 계층**(백엔드는 원본만 서빙, `Image`가 렌더타임에 `/img?url=...` 생성, DB엔 원본 URL만). 장기적으론 백엔드/CDN(imgproxy) 이관 검토.
-- **⚠️ 검색 파라미터를 읽는 loader는 `loaderDeps: searchLoaderDeps`(`app/utils/loaderDeps.ts`) 필수.** match id가 `routeId+경로+JSON(loaderDeps)`라 선언이 없으면 **검색 파라미터만 바뀌는 클라 네비에서 loader가 아예 재실행되지 않는다**(RR7은 매 네비마다 실행 → 마이그레이션 때 조용히 깨진 채 넘어옴). 증상: URL만 바뀌고 화면 그대로 — 예약 캘린더 날짜 이동·목록 페이지네이션·태그 필터·검색이 전부 해당됐다(2026-07-29 수정, 13개 라우트). 누락은 **E2E 클릭 테스트**로 잡는다 — 검색 파라미터를 바꾸는 컨트롤을 도메인당 1개 클릭으로 검증(reservations 날짜·notice 페이지네이션이 reference, §3). 새 검색 파라미터 라우트엔 그 클릭 테스트를 반드시 추가할 것.
+- **⚠️ 검색 파라미터를 읽는 loader는 `loaderDeps: searchLoaderDeps`(`src/utils/loaderDeps.ts`) 필수.** match id가 `routeId+경로+JSON(loaderDeps)`라 선언이 없으면 **검색 파라미터만 바뀌는 클라 네비에서 loader가 아예 재실행되지 않는다**(RR7은 매 네비마다 실행 → 마이그레이션 때 조용히 깨진 채 넘어옴). 증상: URL만 바뀌고 화면 그대로 — 예약 캘린더 날짜 이동·목록 페이지네이션·태그 필터·검색이 전부 해당됐다(2026-07-29 수정, 13개 라우트). 누락은 **E2E 클릭 테스트**로 잡는다 — 검색 파라미터를 바꾸는 컨트롤을 도메인당 1개 클릭으로 검증(reservations 날짜·notice 페이지네이션이 reference, §3). 새 검색 파라미터 라우트엔 그 클릭 테스트를 반드시 추가할 것.
 - **TanStack 함정(겪은 것):**
   - 같은 라우트 재진입 시 컴포넌트를 **재마운트 안 할 수 있음** → `useState(props)` 초기화 안 됨(TimelineViewer 연도선택 버그). URL/props 파생으로 처리.
   - 클라 네비 시 **loader가 클라에서 실행** → 합성 request엔 쿠키 없음. 인증 의존 loader는 `forwardAuthHeaders`로 서버 헤더 전달.
@@ -82,10 +82,10 @@
 
 ## 디렉터리 · 파일 구조
 
-- **라우트는 URL을 미러링**(`app/routes/$locale/<path>`). 라우트별 비라우트 파일은 같은 폴더에 **co-locate**.
+- **라우트는 URL을 미러링**(`src/routes/$locale/<path>`). 라우트별 비라우트 파일은 같은 폴더에 **co-locate**.
 - **co-location은 프레임워크 표준 `-` 프리픽스로 제외한다.** TanStack Router 기본값 `routeFileIgnorePrefix='-'` — `-`로 시작하는 파일/폴더는 라우트 생성에서 자동 제외된다. 그래서 비라우트 파일은 **`-components/`·`-hooks/`·`-api.ts`·`-constants.ts`·`-fetchContent.ts`**처럼 `-`로 시작하는 이름에 둔다(하위 `news/`·`sections/`·`ui/`·`assets/` 등은 부모가 `-`면 따라 제외되니 각각 프리픽스 불필요). `vite.config.ts`에 **커스텀 `routeFileIgnorePattern`은 두지 않는다**(2026-08 제거). ✅ 이름 규칙(복수/단수·PascalCase)과 무관하게 오직 `-` 프리픽스만 보므로, 과거 단수 `component/`가 라우트로 새던 함정이 원천적으로 사라졌다. 새 co-location 폴더/파일은 `-`로 시작하기만 하면 된다.
-- **공용 `app/components/`**: `ui`(제어 프리미티브, value/onChange) · `form`(RHF 어댑터, name+useFormContext) · `layout`(앱 셸: Header/Footer/Nav/PageLayout + 404 `NotFound`) · `feature`(도메인 위젯: auth/category/content/SearchBox/selection). **route-specific → co-locate, 여러 라우트서 재사용 → 여기로 승격.**
-- **헬퍼는 `app/utils/` 한 곳**(과거 `lib/`와 분리했으나 경계가 모호하고 폴더가 아무것도 강제하지 않아 합침). **서버 전용 보장은 폴더가 아니라 `createServerFn`·서버 라우트 핸들러가 한다** — 무거운 서버 전용 deps(cheerio→`cspServerFn`/`processHtmlForCsp`, sharp→`imageOptimizer`)는 그 경계 안에서만 돌려 클라 번들에서 빠진다.
+- **공용 `src/components/`**: `ui`(제어 프리미티브, value/onChange) · `form`(RHF 어댑터, name+useFormContext) · `layout`(앱 셸: Header/Footer/Nav/PageLayout + 404 `NotFound`) · `feature`(도메인 위젯: auth/category/content/SearchBox/selection). **route-specific → co-locate, 여러 라우트서 재사용 → 여기로 승격.**
+- **헬퍼는 `src/utils/` 한 곳**(과거 `lib/`와 분리했으나 경계가 모호하고 폴더가 아무것도 강제하지 않아 합침). **서버 전용 보장은 폴더가 아니라 `createServerFn`·서버 라우트 핸들러가 한다** — 무거운 서버 전용 deps(cheerio→`cspServerFn`/`processHtmlForCsp`, sharp→`imageOptimizer`)는 그 경계 안에서만 돌려 클라 번들에서 빠진다.
 
 ---
 
@@ -200,7 +200,7 @@ E2E가 실제 버그를 잡는다. 예: DELETE가 200 빈 본문을 반환하는
   1. **실사용 조합만.** 서비스에서 안 쓰는 variant/state를 창조하지 않는다(사용처 grep 확인).
   2. **DS에 우겨넣지 않는다.** 일관성 깨지는 사용처는 비주얼이 깨지더라도 **앱 코드를 고친다**(컴포넌트 API 확장 X). 이렇게 잡은 실버그: Tag 삭제버튼 `aria-label`→`ariaLabel`.
   3. **편집 불가 prop은 컨트롤에 욱여넣지 않는다.** 함수/복합 union·ReactNode는 `control:false`로 숨기고 상태는 별도 스토리/`mapping`으로. ↔ **제어 컴포넌트 value/onChange는 `useArgs`로 묶어** 컨트롤이 실제로 먹게(로컬 `useState`면 컨트롤 무시 — Calendar·AlertDialog에서 겪음).
-- **디자인 토큰:** `app/app.css`의 `@theme`. **가로 페이지 거터는 `.page-gutter-x` 단일 출처**(좌 100/우 360/모바일 20px). 토큰화/스케일화는 **픽셀 동일할 때만 자율**; 값이 바뀌는 정규화는 디자인 결정 → 합의.
+- **디자인 토큰:** `src/app.css`의 `@theme`. **가로 페이지 거터는 `.page-gutter-x` 단일 출처**(좌 100/우 360/모바일 20px). 토큰화/스케일화는 **픽셀 동일할 때만 자율**; 값이 바뀌는 정규화는 디자인 결정 → 합의.
 - **API 레이어 분리:** `ui/*`=제어 프리미티브(value/onChange), `form/*`=RHF 어댑터(name+useFormContext). **의도된 분리 — 통합 금지.**
 - **단일 선택은 Button 토글이 아니라 네이티브 radiogroup**(`fieldset`+`radio` pill) — 그룹 시맨틱·화살표 키 이동을 브라우저가 준다(faculty 정렬·공지 필터). 그 결과 Button `variant`(과거 `kind`서 개명 — Tag와 통일)는 상태 없는 5개(primary/neutral/secondary/quiet/nav). **아이콘은 children에 직접**(shadcn식, base `gap-2`가 간격).
 - **a11y:** form Radio/Checkbox=네이티브, Dialog/AlertDialog/Select/ImageModal=Radix(ARIA 자동). Button **icon-only는 `ariaLabel` 필수.**

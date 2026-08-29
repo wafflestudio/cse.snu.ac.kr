@@ -6,7 +6,7 @@ import sharp from 'sharp';
 /**
  * 이미지 최적화 프록시(`/img?url=...&q=...&w=...`)의 코어 로직.
  *
- * `app/routes/img.ts`(TanStack Start server route)가 호출한다. dev 여부는 호출부가
+ * `src/routes/img.ts`(TanStack Start server route)가 호출한다. dev 여부는 호출부가
  * `import.meta.env.DEV`로 주입(캐시 경로·허용 도메인·prod fallback 분기).
  *
  * 참고: 현재 시스템에서 이미지 최적화(리사이즈·AVIF·디스크 캐시)는 여기 한 곳뿐이다.

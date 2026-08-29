@@ -21,5 +21,4 @@ ENV TZ=Asia/Seoul
 COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/dist /app/dist
 # pnpm start = tsx server.ts: dist/ 서빙. prod는 API_PROXY_TARGET 미설정 → 절대 URL 직호출.
-# (Storybook은 로컬 전용 `pnpm storybook` — 배포 이미지엔 안 넣는다.)
 CMD [ "pnpm", "start" ]

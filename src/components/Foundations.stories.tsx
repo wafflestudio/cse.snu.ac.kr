@@ -1,6 +1,6 @@
 import preview from '../../.storybook/preview';
 
-// 디자인 토큰(app/app.css의 @theme)과 레이아웃 규약을 Storybook에 노출하는 문서용 스토리.
+// 디자인 토큰(src/app.css의 @theme)과 레이아웃 규약을 Storybook에 노출하는 문서용 스토리.
 // 토큰 값이 바뀌면 이 스와치가 자동으로 따라간다(같은 Tailwind 클래스를 쓰므로).
 const meta = preview.meta({
   title: 'Foundations/Design Tokens',

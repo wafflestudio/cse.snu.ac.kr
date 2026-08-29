@@ -4,10 +4,9 @@ import { Hono } from 'hono';
 import { compress } from 'hono/compress';
 import { proxy } from 'hono/proxy';
 
-// prod 빌드(`dist/`)를 서빙하는 Node 서버. prod 컨테이너와 E2E가 공유.
+// 빌드(`dist/`)를 서빙하는 Node 서버. prod·staging 컨테이너와 E2E가 공유(같은 이미지).
 // dist/server/server.js는 Web fetch 핸들러 → Hono가 Node↔Web 변환을 맡는다.
 const PORT = Number(process.env.PORT) || 3000;
-// /api 프록시 타깃. 설정 시에만 프록시(local/E2E). prod는 미설정 → 절대 URL 직호출.
 const API_PROXY_TARGET = process.env.API_PROXY_TARGET ?? null;
 
 // @ts-expect-error 빌드 산출물엔 타입 선언 없음

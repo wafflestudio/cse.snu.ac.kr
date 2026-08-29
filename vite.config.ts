@@ -26,7 +26,6 @@ export default defineConfig(({ mode }) => {
     plugins: [
       tailwindcss(),
       tanstackStart({
-        srcDirectory: 'app',
         router: {
           routesDirectory: 'routes',
           generatedRouteTree: 'routeTree.gen.ts',
