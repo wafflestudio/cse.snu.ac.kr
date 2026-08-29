@@ -171,11 +171,12 @@ cd ../cse.snu.ac.kr && docker compose up -d --build backend  # 새 JAR로 이미
 
 ## 새 라우트 추가 / 확장
 
-진행 상태·커버리지는 **`tests/COVERAGE.md`가 단일 출처**(라우트 끝낼 때마다 갱신). reference 구현 `tests/research/labs/` + `tests/setup/seed/research.ts`를 본뜬다.
+**전 라우트 커버 완료(2026-06)** — 커버리지 출처는 스펙 파일 자체(옛 COVERAGE.md는 임무 종료로 삭제). reference 구현 `tests/research/labs/` + `tests/setup/seed/research.ts`를 본뜬다.
 - **시드는 API 우선**: 생성 API가 있으면 `tests/setup/seed/<domain>.ts`에 `<DOMAIN>_SEED` + 시더 만들고 `seed/index.ts`에 등록. **SQL은 예외** — 생성 API가 없는 content 싱글톤(PUT만 있고 POST 없어 빈 DB 500)만 `db.ts`(seedContent)에 INSERT. **API로 되면 절대 SQL 안 씀.**
 - 도메인별 시드 모듈 + 중앙 조합(`seed/index.ts`), cross-domain 참조는 앞 시더 반환 id를 명시적으로 전달. 표시 문자열은 `*_SEED`에만(단일 출처).
 - **복합 페이지는 편집 기능마다 별도 flow**(탭/섹션/테이블 인라인 편집 놓치기 쉬움). **POM 미사용** — 함수형 헬퍼 유지.
-- 자율 진행 시 **묻지 말고 진행**하되 라우트마다 `COVERAGE.md` 갱신(컨텍스트 끊겨도 이어지게). 실서버가 실버그를 잡으면 **증상 우회 말고 원인을 시스템 차원에서** 고치고 기록.
+- 자율 진행 시 **묻지 말고 진행**. 실서버가 실버그를 잡으면 **증상 우회 말고 원인을 시스템 차원에서** 고치고 기록.
+- **함정(겪은 것):** ① 태그 참조 테이블(tag_in_notice 등)은 Flyway가 아니라 enrollTag API로 채워지는데 reset이 비우므로 시더가 매 런 재등록해야 한다(없으면 태그 단 글 생성 500). ② SelectionList 인덱스(groups 등)는 en 정렬상 첫 항목이 자동 선택돼 링크가 아닌 제목으로 렌더 → en round-trip은 link 역할 대신 `getByText`로. ③ 의도적 보류: 만료일 날짜피커 입력 와이어링·suneditor 본문 이미지 업로드(에디터 구동 비용). ④ 알려진 프론트 비일관: news 목록 loader가 쿠키를 안 넘겨 staff에게도 비공개 새소식이 목록에서 숨겨짐(notice는 넘김) — 개선 여지.
 
 ## 발견된 실버그(참고)
 
@@ -196,4 +197,4 @@ E2E가 실제 버그를 잡는다. 예: DELETE가 200 빈 본문을 반환하는
 
 ---
 
-**마지막 업데이트:** 2026-08-29 (도메인 연결 후 실측 갱신: ① **prod cutover 완료** — 마이그레이션 빌드 라이브 확인(strict CSP·gzip·`/storybook`·wscan 404), "prod=RR7 이전 빌드" 경고 제거. ② **도메인 연결 완료** — DNS 해석·443 학외 개방 확인, "IP 이전 진행 중" 서술을 현재 상태로 교체. ③ **학외 OAuth 로그인 불가 확정** — `id.snucse.org`(147.46.92.174)가 학외 443 하드 차단(4/4 timeout), 바쿠스 개방 필요. ④ **`@backend_denied` IP 직결 우회 = 실제 열린 갭 확인** — deny가 도메인 블록에만 있어 `147.46.92.120` 직결로 관리 엔드포인트 통과, `LOCAL_IP=10.91.1.1`도 구 프록시 주소. 조치는 Caddyfile(레포 밖). README도 기술스택·IP 이전 섹션 제거·SSH 접근 문구 정정. 이전: 2026-08-22 (① **교내 웹취약점 점검(wscan) 대응**: 없는 경로 404·CSP `http:` 제거·`/admin` 익명 차단 + `tests/security.spec.ts` 신설. 20건 중 13건은 코드가 아니라 **배포**로 해소됐다 — prod가 마이그레이션 이전 RR7 빌드에 59커밋 뒤처져 있었다. ② **prod 네트워크 상태 섹션 신설**: IP 이전(147.46.92.120)·웹 포트 개방 리셋·`--add-host` 함정·`@backend_denied` 재검토 필요. ③ **압축 귀속 정정**: 프록시 제거로 상위 br 압축 계층이 사라져 앱의 `hono/compress`가 담당(README 아키텍처도 정정). ④ **ISR 보류**(#8 revert) — 배포 전 컨테이너 토폴로지까지 바꾸면 장애 시 원인 분리가 안 되고 캐시 효율이 미실측. ⑤ **E2E 부팅 의존성 제거**: 백엔드가 기동 시 학내 전용 `id.snucse.org` OIDC discovery를 타 학외에서 스위트 전체가 막히던 것을 compose의 nginx stub으로 끊음. ⑥ **문서 전수 점검**: §2 로케일 서술이 옛 optional `{-$locale}`에 머물러 있던 것 정정, 크로스커팅 스펙(`language`·`security`) 반영, `docs/` 두 편에 현재 상태 주석. 이전: 2026-06-19 문서 슬림화·폴더 구조 컨벤션·Biome 강화.)
+**마지막 업데이트:** 2026-08-30 (배포·E2E 인프라 정리 머지 #20: 호스트 git-URL 빌드 전환·시크릿 2개·compose 루트 이관·E2E 러너 분리·워커/타임아웃 실측 확정·Storybook 제거·COVERAGE.md 삭제. 상세 히스토리는 git log — 이 로그는 최신 1건만 유지한다.)
