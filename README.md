@@ -90,10 +90,10 @@ tests/             E2E. 라우트별 read.spec.ts / flow.spec.ts
 
 ```sh
 cd ..
-git clone https://github.com/wafflestudio/csereal-server csereal-server-main
+git clone https://github.com/wafflestudio/csereal-server
 ```
 
-`pnpm test`가 이 체크아웃의 compose로 백엔드를 자동 기동합니다(이미 떠 있으면 재사용). 디렉터리명이 중요합니다 — 비주얼 baseline이 이 main 체크아웃 기준이라, 다른 작업본을 띄우면 baseline이 어긋납니다. 버전 동기화 절차는 `CLAUDE.md` §3 "백엔드 버전 동기화"를 참고하세요.
+`pnpm test`가 이 체크아웃의 compose로 백엔드를 자동 기동합니다(이미 떠 있으면 재사용). 비주얼 baseline이 이 체크아웃의 백엔드 버전 기준이므로, 버전 동기화 절차는 `CLAUDE.md` §3 "백엔드 버전 동기화"를 참고하세요.
 
 ## CI/CD
 

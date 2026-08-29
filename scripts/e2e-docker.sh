@@ -22,19 +22,17 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
 # @playwright/test 버전과 컨테이너 태그 일치(버전 올릴 때 함께 수정).
 IMAGE="mcr.microsoft.com/playwright:v1.57.0-jammy"
-# 백엔드 소스 디렉터리 = main 체크아웃(baseline은 항상 main 백엔드 기준).
-# v3 등 다른 작업본은 형제 ../csereal-server 에 따로 두고, 테스트는 늘 이 main 체크아웃으로 띄운다.
-BACKEND_DIR="${BACKEND_DIR:-../csereal-server-main}"
+# 백엔드 소스 = 형제 체크아웃 ../csereal-server (origin/main — 비주얼 baseline이 이 버전 기준).
+BACKEND_DIR="${BACKEND_DIR:-../csereal-server}"
 BACKEND_URL="http://localhost:8080"
 PNPM_STORE="${PNPM_STORE:-$PWD/.pnpm-store}"
 UI_PORT="${UI_PORT:-43210}"
 COMPOSE="-f $BACKEND_DIR/docker-compose-local-full.yml -f tests/setup/backend/docker-compose-fe-test.yml"
 mkdir -p "$PNPM_STORE"
 
-# 1) 백엔드 보장(호스트). 항상 main 체크아웃의 compose로 띄운다 — 프로젝트명이 첫 compose
-#    파일의 디렉터리 기준 'csereal-server-main'으로 고정돼, 이미 떠 있으면 no-op·없으면 기동.
-#    "떠 있는 :8080 아무거나 재사용"을 안 하므로 어느 백엔드인지 모호함이 없다(baseline=main 보장).
-#    v3 등 다른 백엔드가 :8080을 점유 중이면 포트 충돌로 즉시 드러난다 → 그걸 내려야 한다.
+# 1) 백엔드 보장(호스트). compose 프로젝트명이 첫 -f 파일의 디렉터리('csereal-server') 기준으로
+#    고정돼, 이미 떠 있으면 no-op·없으면 기동. "떠 있는 :8080 아무거나 재사용"을 안 하므로
+#    어느 백엔드로 검증하는지 모호하지 않고, 다른 서버가 :8080 점유 중이면 포트 충돌로 즉시 드러난다.
 backend_healthy() { curl -fsS "$BACKEND_URL/api/v2/research/lab?language=ko" >/dev/null 2>&1; }
 echo "[e2e] 백엔드 보장(docker compose up -d)…"
 docker compose $COMPOSE up -d

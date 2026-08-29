@@ -1,82 +1,42 @@
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { defineConfig, devices } from '@playwright/test';
 
-const here = path.dirname(fileURLToPath(import.meta.url));
+// E2E는 로컬 docker 백엔드(../csereal-server)를 실서버로 띄우고, 앱은 프로덕션 빌드를
+// same-origin proxy(server.ts)로 서빙해 검증합니다. 전략·범위 기준은 CLAUDE.md §3.
+// 백엔드 기동·health 대기는 진입점 scripts/e2e-docker.sh가 전담합니다(이 config는 앱만 띄움).
+// staging/프로덕션 서버는 절대 건드리지 않습니다(로컬 docker 전용).
 
-/**
- * E2E는 로컬 docker 백엔드(csereal-server, local 프로파일)를 실서버로 띄워 검증합니다.
- * - mock 없이 진짜 백엔드(multipart·세션·영속성)를 사용 → flow를 stateful하게 검증.
- * - globalSetup이 매 런 DB를 리셋하고 결정론적 baseline을 시드합니다.
- * - 앱은 프로덕션 빌드를 same-origin proxy 서버(루트 server.ts, prod와 공유)로 서빙합니다.
- *   브라우저는 :3000만 호출하고 /api는 서버사이드에서 :8080으로 프록시되므로, 실서버
- *   세션 쿠키(Secure)가 first-party로 유지됩니다. → 앱 CSP/CORS 수정 불필요, 콜드 컴파일 없음.
- * - 절대 staging/프로덕션 서버를 건드리지 않습니다(로컬 docker 전용).
- */
-const BACKEND_URL = process.env.E2E_BACKEND_URL ?? 'http://localhost:8080';
 const APP_URL = 'http://localhost:3000';
-// ⚠️ `scripts/e2e-docker.sh`·`ci.yml`과 **같은 기본값이어야 한다**. baseline은 이 main
-// 체크아웃 기준이고, 형제 `../csereal-server`는 v3 등 다른 작업본이라 그쪽을 띄우면 엉뚱한
-// 백엔드로 검증하게 된다. 보통은 e2e-docker.sh가 백엔드를 먼저 띄워 아래 command가
-// reuseExistingServer로 건너뛰지만, 안 떠 있을 때 이 값이 실제로 쓰인다.
-const BACKEND_DIR = path.resolve(
-  here,
-  process.env.BACKEND_DIR ?? '../csereal-server-main',
-);
-
-const backendServer = {
-  // 베이스 compose는 백엔드 레포 소유, E2E 부팅 오버라이드는 FE 레포 소유(tests/setup/backend/).
-  // 로컬·CI가 같은 오버라이드 파일을 써 드리프트를 막는다(CI는 scripts/e2e-docker.sh + 워크플로).
-  command: `docker compose -f ${BACKEND_DIR}/docker-compose-local-full.yml -f ${here}/tests/setup/backend/docker-compose-fe-test.yml up -d`,
-  url: `${BACKEND_URL}/api/v2/research/lab?language=ko`,
-  reuseExistingServer: true,
-  timeout: 180_000,
-};
-
-const appServer = {
-  // BASE_URL을 :3000/api로 빌드(local) → 브라우저는 same-origin, server.ts가 /api를 :8080으로 프록시
-  command: `pnpm build:local && PORT=3000 API_PROXY_TARGET=${BACKEND_URL} tsx server.ts`,
-  url: `${APP_URL}/research/labs`,
-  reuseExistingServer: !process.env.CI,
-  timeout: 120_000,
-};
+const BACKEND_URL = process.env.E2E_BACKEND_URL ?? 'http://localhost:8080';
 
 export default defineConfig({
   testDir: './tests',
-  // 테스트 타임아웃 헤드룸: 단일 docker 백엔드 경합 시 heavy multipart 생성(research/labs PI+
-  // PDF 등)이 기본 30s를 간헐적으로 초과(앱은 정상, 결과는 결국 반영 — 실서버 지연). 60s로 완화.
-  timeout: 60_000,
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  // 로컬은 retries 0: flow는 stateful(고정 연도 등)이라 실패한 시도가 데이터를 남겨 재시도가
-  // 오히려 충돌한다(idempotent하지 않음). 경합 flaky는 워커 수로 낮춘다. CI는 1워커+retries.
-  retries: process.env.CI ? 2 : 0,
-  // 단일 docker 백엔드(MySQL+Spring) 경합 방지: 워커를 2로 낮춰 동시 mutation 부하를 줄인다
-  // (TanStack은 클라에서 페이지 로더를 돌려 RR보다 경합에 민감 → labs multipart 등이 30s 초과).
-  workers: process.env.CI ? 1 : 2,
   reporter: 'html',
 
-  // 병렬 flow가 단일 docker 백엔드를 경합시켜 mutation 후 네비게이션 로더가 간헐적으로
-  // 5초(기본 expect 타임아웃)를 넘길 수 있다. TanStack은 클라이언트에서 페이지 로더를
-  // 돌려(RR의 서버 single-fetch와 타이밍이 달라) 경합 시 살짝 더 느릴 수 있으므로 단언
-  // 타임아웃에 헤드룸을 둔다(앱은 정상 동작 — 결과는 결국 반영됨).
-  expect: { timeout: 10_000 },
+  // 아래 타임아웃·워커·retries는 모두 같은 원인 대응: 병렬 flow가 단일 docker 백엔드
+  // (MySQL+Spring)를 경합시키면 heavy multipart 생성(labs PI+PDF 등)과 mutation 후 로더가
+  // 느려진다(앱은 정상 — 결과는 결국 반영). TanStack은 페이지 로더를 클라에서 돌려 RR의 서버
+  // single-fetch보다 경합에 더 민감하므로 여유를 둔다.
+  timeout: 60_000, // 테스트 전체(기본 30s)
+  expect: { timeout: 10_000 }, // 단언(기본 5s)
+  // 로컬 retries 0: flow는 stateful(고정 연도 등)이라 실패한 시도가 데이터를 남겨 재시도가
+  // 오히려 충돌한다. 경합 flaky는 워커 수로 낮춘다. CI는 1워커 + retries 2.
+  retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 1 : 2,
 
   use: {
     baseURL: APP_URL,
     trace: 'on-first-retry',
   },
 
-  /* 매 런 1회: DB 리셋 + baseline 시드 */
+  // 매 런 1회: DB 리셋 + 결정론적 baseline 시드.
   globalSetup: './tests/setup/global-setup.ts',
 
-  /*
-   * read(읽기) → flow(변경) 순서 보장.
-   * read.spec.ts(비로그인·비변경)는 데스크톱(read)과 모바일 390px(read-mobile)에서
-   * 같은 스펙을 돌려 baseline을 자동 분리합니다(`*-read-darwin.png` / `*-read-mobile-darwin.png`).
-   * flow가 DB를 변경하므로, read가 깨끗한 baseline을 먼저 검증한 뒤 flow가 실행되도록
-   * project dependency로 분리합니다(데스크톱 전용).
-   */
+  // read(비로그인·비변경) → flow(로그인·DB 변경) 순서를 project dependency로 보장한다.
+  // read.spec.ts는 데스크톱(read)·모바일 390px(read-mobile)에서 같은 스펙을 돌려 baseline을
+  // 자동 분리한다(*-read-linux.png / *-read-mobile-linux.png — 핀 컨테이너가 정본 렌더 환경이라
+  // Linux 단일). language·security는 DB 비변경이라 read 단계에서 병렬로 돌고 flow의 선행이다.
   projects: [
     {
       name: 'read',
@@ -92,15 +52,13 @@ export default defineConfig({
       },
     },
     {
-      // 로케일 라우팅 동작(리다이렉트·우선순위·토글·hreflang). DB 비변경이라 read 단계에서
-      // 병렬 실행. viewport는 스펙 내부에서 모바일 토글만 test.use로 따로 잡는다.
+      // 로케일 라우팅(리다이렉트·우선순위·토글·hreflang). 모바일 토글은 스펙 내부 test.use.
       name: 'language',
       testMatch: /language\.spec\.ts$/,
       use: { ...devices['Desktop Chrome'] },
     },
     {
-      // 취약점 점검(wscan) 회귀 가드 — 상태 코드·보안 헤더 층. 비로그인·DB 비변경이라
-      // read 단계에서 병렬 실행. 렌더가 아니라 HTTP 응답만 보므로 viewport 무관.
+      // 취약점 점검(wscan) 회귀 가드 — 상태 코드·보안 헤더. 렌더가 아니라 HTTP 응답만 본다.
       name: 'security',
       testMatch: /security\.spec\.ts$/,
       use: { ...devices['Desktop Chrome'] },
@@ -113,5 +71,11 @@ export default defineConfig({
     },
   ],
 
-  webServer: [backendServer, appServer],
+  webServer: {
+    // build:local → BASE_URL=:3000/api(브라우저 same-origin), server.ts가 /api를 :8080으로 프록시.
+    command: `pnpm build:local && PORT=3000 API_PROXY_TARGET=${BACKEND_URL} tsx server.ts`,
+    url: `${APP_URL}/research/labs`,
+    reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
+  },
 });

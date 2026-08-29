@@ -16,7 +16,7 @@
                                   └─ 그 외     → TanStack Start SSR (프로덕션 빌드 dist/)
 ```
 
-- **백엔드 = 로컬 docker 실서버**(`../csereal-server-main`, :8080). MySQL+Spring, mock-login은 `@Profile("!prod")` 실엔드포인트(진짜 JSESSIONID 세션). **로컬 전용이라 리셋·시드 자유 — staging·프로덕션 서버는 절대 건드리지 않는다.** Playwright가 자동 기동.
+- **백엔드 = 로컬 docker 실서버**(`../csereal-server`, :8080). MySQL+Spring, mock-login은 `@Profile("!prod")` 실엔드포인트(진짜 JSESSIONID 세션). **로컬 전용이라 리셋·시드 자유 — staging·프로덕션 서버는 절대 건드리지 않는다.** `pnpm test`(e2e-docker.sh)가 자동 기동(기동·health 대기의 단일 소유자 — playwright.config는 앱만 띄운다).
 - **프론트 = 프로덕션 빌드**를 루트 `server.ts`(Hono)로 서빙. MSW/mock 안 씀. prod 컨테이너와 동일 서버(`pnpm start`).
   - **왜 server.ts가 필요한가:** TanStack Start 기본 빌드는 `dist/server/server.js`를 **Web fetch 핸들러**로 내놓는데 Node HTTP 서버는 `IncomingMessage`/`ServerResponse`라 **Node↔Web 다리가 필연**. Hono(+@hono/node-server)가 그 변환·정적서빙·`/api` 프록시를 맡는다. (Bun/Deno는 불필요하지만 우리는 Node self-host.)
   - **왜 prod 빌드(dev 아님):** 비주얼 회귀가 dev≠prod면 무의미하고, E2E 정석은 배포 산출물 검증. dev 콜드 컴파일 플레이키도 없음.
@@ -156,19 +156,19 @@
 
 - **모든 테스트는 핀된 Playwright 컨테이너에서 돈다**(`pnpm test` = `scripts/e2e-docker.sh`). 호스트 직접 실행 정식 경로 없음 — 렌더 환경을 컨테이너로 고정해야 baseline이 머신 무관하게 픽셀 동일. **솔로 레포라 (GitHub) CI 없음 — 로컬 `pnpm test`가 단일 게이트.** (컨테이너 런은 `CI=1`로 워커1·retries2 모드 선택.)
 - **비주얼 baseline = Linux 단일(`*-linux.png`)**, 컨테이너가 정본 렌더 환경이라 머신 무관.
-- **백엔드 기준 = `../csereal-server-main`(origin/main)** — baseline은 이 main 백엔드에서 찍고, E2E가 main 백엔드 스모크도 겸한다. 트레이드오프: main이 floating이라 **백엔드만 바뀌어도 baseline이 깨질 수 있음** → 백엔드를 최신 main으로 올리고(아래) `--update-snapshots`로 재생성.
+- **백엔드 기준 = `../csereal-server`(origin/main)** — baseline은 이 main 백엔드에서 찍고, E2E가 main 백엔드 스모크도 겸한다. 트레이드오프: main이 floating이라 **백엔드만 바뀌어도 baseline이 깨질 수 있음** → 백엔드를 최신 main으로 올리고(아래) `--update-snapshots`로 재생성.
 
 ## 백엔드 버전 동기화(cross-repo 런북)
 
-docker가 **소스의 prebuilt JAR를 COPY**하므로 `../csereal-server-main` 소스가 낡으면 docker도 낡는다. 뒤처졌으면:
+docker가 **소스의 prebuilt JAR를 COPY**하므로 `../csereal-server` 소스가 낡으면 docker도 낡는다. 뒤처졌으면:
 ```bash
-cd ../csereal-server-main && git fetch origin && git merge --ff-only origin/main
+cd ../csereal-server && git fetch origin && git merge --ff-only origin/main
 docker run --rm -v "$PWD":/app -v csereal-gradle-cache:/root/.gradle -w /app \
   eclipse-temurin:21-jdk ./gradlew bootJar -x test               # 호스트 JDK 11이라 Java21 컨테이너로 빌드
-cd ../cse.snu.ac.kr && docker compose -f ../csereal-server-main/docker-compose-local-full.yml \
+cd ../cse.snu.ac.kr && docker compose -f ../csereal-server/docker-compose-local-full.yml \
   -f tests/setup/backend/docker-compose-fe-test.yml up -d --build  # 새 JAR로 이미지 재빌드
 ```
-올린 뒤 `pnpm test --update-snapshots`로 baseline 재생성. (v3 등 다른 작업본은 형제 `../csereal-server`에.)
+올린 뒤 `pnpm test --update-snapshots`로 baseline 재생성.
 
 ## 새 라우트 추가 / 확장
 

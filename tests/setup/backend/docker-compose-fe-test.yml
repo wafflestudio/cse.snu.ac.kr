@@ -38,7 +38,7 @@ services:
       - oidc-stub
 
   # 기동 시 discovery 한 번만 응답하면 되는 최소 stub. 파일 마운트를 쓰지 않는 이유는
-  # compose의 상대경로가 **첫 번째 -f 파일 기준**으로 풀려(= csereal-server-main/) 이 레포의
+  # compose의 상대경로가 **첫 번째 -f 파일 기준**으로 풀려(= csereal-server/) 이 레포의
   # 파일을 가리킬 수 없기 때문. 설정을 entrypoint에서 만들어 self-contained로 둔다.
   oidc-stub:
     image: nginx:1.27-alpine
