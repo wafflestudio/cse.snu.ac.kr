@@ -8,6 +8,7 @@ import type { News } from '@/types/api/v2/news';
 import { isLocalFile } from '@/types/form';
 import { fetchJson, fetchOk } from '@/utils/fetch';
 import { FormData2, getDeleteIds } from '@/utils/form';
+import { forwardAuthHeaders } from '@/utils/ssr';
 import NewsEditor, { type NewsFormData } from './-components/NewsEditor';
 
 function NewsEditPage() {
@@ -114,7 +115,9 @@ function NewsEditPage() {
 export const Route = createFileRoute('/$locale/community/news/edit/$id')({
   loader: async ({ params }) => {
     const id = Number(params.id);
-    const data = await fetchJson<News>(`${BASE_URL}/v2/news/${id}`);
+    const data = await fetchJson<News>(`${BASE_URL}/v2/news/${id}`, {
+      headers: forwardAuthHeaders(),
+    });
     return { id, data };
   },
   component: NewsEditPage,

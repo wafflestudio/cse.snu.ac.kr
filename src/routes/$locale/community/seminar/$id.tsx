@@ -17,6 +17,7 @@ import { processHtmlForCsp } from '@/utils/cspServerFn';
 import { fetchOk } from '@/utils/fetch';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
 import { stripHtml, truncateDescription } from '@/utils/metadata';
+import { forwardAuthHeaders } from '@/utils/ssr';
 
 function SeminarDetailPage() {
   const seminar = Route.useLoaderData();
@@ -204,6 +205,7 @@ export const Route = createFileRoute('/$locale/community/seminar/$id')({
 
     const response = await fetch(
       `${BASE_URL}/v2/seminar/${id}?${searchParams.toString()}`,
+      { headers: forwardAuthHeaders() },
     );
 
     if (!response.ok) {

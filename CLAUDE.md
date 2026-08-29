@@ -176,7 +176,7 @@ cd ../cse.snu.ac.kr && docker compose up -d --build backend  # 새 JAR로 이미
 - 도메인별 시드 모듈 + 중앙 조합(`seed/index.ts`), cross-domain 참조는 앞 시더 반환 id를 명시적으로 전달. 표시 문자열은 `*_SEED`에만(단일 출처).
 - **복합 페이지는 편집 기능마다 별도 flow**(탭/섹션/테이블 인라인 편집 놓치기 쉬움). **POM 미사용** — 함수형 헬퍼 유지.
 - 자율 진행 시 **묻지 말고 진행**. 실서버가 실버그를 잡으면 **증상 우회 말고 원인을 시스템 차원에서** 고치고 기록.
-- **함정(겪은 것):** ① 태그 참조 테이블(tag_in_notice 등)은 Flyway가 아니라 enrollTag API로 채워지는데 reset이 비우므로 시더가 매 런 재등록해야 한다(없으면 태그 단 글 생성 500). ② SelectionList 인덱스(groups 등)는 en 정렬상 첫 항목이 자동 선택돼 링크가 아닌 제목으로 렌더 → en round-trip은 link 역할 대신 `getByText`로. ③ 의도적 보류: 만료일 날짜피커 입력 와이어링·suneditor 본문 이미지 업로드(에디터 구동 비용). ④ 알려진 프론트 비일관: news 목록 loader가 쿠키를 안 넘겨 staff에게도 비공개 새소식이 목록에서 숨겨짐(notice는 넘김) — 개선 여지.
+- **함정(겪은 것):** ① 태그 참조 테이블(tag_in_notice 등)은 Flyway가 아니라 enrollTag API로 채워지는데 reset이 비우므로 시더가 매 런 재등록해야 한다(없으면 태그 단 글 생성 500). ② SelectionList 인덱스(groups 등)는 en 정렬상 첫 항목이 자동 선택돼 링크가 아닌 제목으로 렌더 → en round-trip은 link 역할 대신 `getByText`로. ③ 의도적 보류: 만료일 날짜피커 입력 와이어링·suneditor 본문 이미지 업로드(에디터 구동 비용). ④ **세션 의존 loader는 `forwardAuthHeaders` 필수** — news·seminar 목록/상세/edit 5곳이 누락돼 SSR에선 비공개 글이 staff에게도 숨고 클라 네비에선 보이는 유령 동작이었다(2026-08-30 수정). 교훈: 게시설정을 notice만 대표 검증하는 트레이드오프는 백엔드 메커니즘엔 유효하지만 **라우트별 프론트 와이어링 차이는 못 잡는다** — 비공개 개념 있는 도메인의 loader를 새로 만들면 forwardAuthHeaders부터.
 
 ## 발견된 실버그(참고)
 

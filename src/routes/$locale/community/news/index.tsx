@@ -11,6 +11,7 @@ import { useSearchParams } from '@/hooks/useSearchParams';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import type { NewsPreview, NewsPreviewList } from '@/types/api/v2/news';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
+import { forwardAuthHeaders } from '@/utils/ssr';
 import NewsListRow from './-components/NewsListRow';
 
 const POST_LIMIT = 10;
@@ -115,7 +116,9 @@ export const Route = createFileRoute('/$locale/community/news/')({
       query.append('tag', t);
     }
 
-    const response = await fetch(`${BASE_URL}/v2/news?${query.toString()}`);
+    const response = await fetch(`${BASE_URL}/v2/news?${query.toString()}`, {
+      headers: forwardAuthHeaders(),
+    });
     if (!response.ok) throw new Error('Failed to fetch news posts');
 
     return (await response.json()) as NewsPreviewList;
