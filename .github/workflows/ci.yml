@@ -69,9 +69,3 @@ jobs:
       - name: E2E (e2e-docker.sh)
         working-directory: cse.snu.ac.kr
         run: bash scripts/e2e-docker.sh
-      - uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: playwright-report
-          path: cse.snu.ac.kr/playwright-report/
-          retention-days: 7

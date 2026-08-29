@@ -154,7 +154,7 @@
 
 ## 실행 / baseline
 
-- **모든 테스트는 핀된 Playwright 컨테이너에서 돈다**(`pnpm test` = `scripts/e2e-docker.sh`). 호스트 직접 실행 정식 경로 없음 — 렌더 환경을 컨테이너로 고정해야 baseline이 머신 무관하게 픽셀 동일. **솔로 레포라 (GitHub) CI 없음 — 로컬 `pnpm test`가 단일 게이트.** (컨테이너 런은 `CI=1`로 워커1·retries2 모드 선택.)
+- **모든 테스트는 핀된 Playwright 컨테이너에서 돈다**(`pnpm test` = `scripts/e2e-docker.sh`: 백엔드 스택 `up --wait` 후 러너 컨테이너를 스택 네트워크에 붙임). 호스트 직접 실행 정식 경로 없음 — 렌더 환경을 컨테이너로 고정해야 baseline이 머신 무관하게 픽셀 동일. 로컬·CI가 같은 스크립트를 타는 단일 경로라 config도 조건 분기 없는 고정값(워커4·retries2 — 2026-08-29 실측으로 확정, 상세는 config 주석).
 - **비주얼 baseline = Linux 단일(`*-linux.png`)**, 컨테이너가 정본 렌더 환경이라 머신 무관.
 - **백엔드 기준 = `../csereal-server`(origin/main)** — baseline은 이 main 백엔드에서 찍고, E2E가 main 백엔드 스모크도 겸한다. 트레이드오프: main이 floating이라 **백엔드만 바뀌어도 baseline이 깨질 수 있음** → 백엔드를 최신 main으로 올리고(아래) `--update-snapshots`로 재생성.
 

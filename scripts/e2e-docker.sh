@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-# E2E 단일 진입점 — `pnpm test`가 부른다. 스택 정의·기동 순서·health 대기는 전부
-# tests/setup/compose.yml이 선언한다(db → backend healthy → e2e). 여기는 호스트 UX만:
-# --ui 포트 공개와 TTY 처리.
+# E2E 단일 진입점 — `pnpm test`가 부른다.
+#   1) 백엔드 스택(tests/setup/compose.yml: db·oidc-stub·backend)을 `up --wait`로 보장
+#   2) 핀된 Playwright 컨테이너를 스택 네트워크에 붙여 테스트 실행(부트스트랩은 e2e-entry.sh)
+# 컨테이너 고정 이유: 비주얼 baseline(*-linux.png)은 폰트 렌더 환경 종속 — 이 이미지가 정본.
 #
 # 사용:
 #   pnpm test                       # 전체 검증(Linux baseline 대조)
@@ -11,15 +12,28 @@
 set -eo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
-run_flags=(--rm)
-args=("$@")
+# 태그는 @playwright/test 버전과 일치(버전 올릴 때 함께 수정).
+IMAGE="mcr.microsoft.com/playwright:v1.57.0-jammy"
+
+echo "[e2e] 백엔드 스택 보장(compose up --wait)…"
+docker compose -f tests/setup/compose.yml up -d --wait backend
+
+docker_args=(--rm --network csereal-e2e_default)
+pw_args=("$@")
 for a in "$@"; do
   if [ "$a" = "--ui" ]; then
-    run_flags+=(--service-ports) # compose.yml의 e2e ports(43210) 공개
-    args+=("--ui-host=0.0.0.0" "--ui-port=43210")
+    docker_args+=(-p 43210:43210)
+    pw_args+=("--ui-host=0.0.0.0" "--ui-port=43210")
     echo "[e2e] UI 모드 — 호스트 브라우저에서 http://localhost:43210 열기"
   fi
 done
-[ -t 1 ] || run_flags+=(-T) # CI 등 TTY 없는 환경
+[ -t 1 ] && docker_args+=(-it) # CI 등 TTY 없는 환경에선 비대화형
 
-exec docker compose -f tests/setup/compose.yml run "${run_flags[@]}" e2e "${args[@]}"
+exec docker run "${docker_args[@]}" \
+  -v "$PWD":/work -w /work \
+  -v csereal-e2e-node-modules:/work/node_modules \
+  -v csereal-e2e-pnpm-store:/pnpm-store \
+  -e CI=1 \
+  -e E2E_BACKEND_URL=http://backend:8080 \
+  -e E2E_DB_HOST=db \
+  "$IMAGE" bash tests/setup/e2e-entry.sh "${pw_args[@]}"

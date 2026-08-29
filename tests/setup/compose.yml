@@ -1,11 +1,11 @@
-# E2E 스택 전체(FE 소유 단일 파일): db + oidc-stub + backend + e2e(테스트 러너).
-# 기동 순서·health 대기·네트워크·볼륨을 전부 여기 선언으로 조율한다(스크립트 대기 루프 없음).
-# 진입점은 scripts/e2e-docker.sh(`pnpm test`) — `docker compose run e2e`만 한다.
+# E2E 백엔드 스택(FE 소유): db + oidc-stub + backend. 테스트 대상 환경만 정의하고
+# 테스트 러너(playwright)는 모른다 — scripts/e2e-docker.sh가 이 스택을 `up --wait`로
+# 보장한 뒤 러너 컨테이너를 이 네트워크(csereal-e2e_default)에 붙여 실행한다.
+# 독립 조작: pnpm backend:up / backend:down, 로그는 `docker compose -f <이 파일> logs -f backend`.
 #
 # 과거엔 백엔드 레포의 docker-compose-local-full.yml에 override를 -f 2개로 얹었지만,
-# 상대경로가 첫 -f 파일 기준으로 풀리는 함정(FE 파일 마운트 불가)과 테스트 러너가 스택 밖
-# (host.docker.internal 경유)에 있는 구조적 비용이 컸다. 백엔드와의 실질 계약은
-# "mysql 8(+ngram 설정) + 백엔드 이미지"뿐이라 단일 파일로 vendoring했다.
+# 상대경로가 첫 -f 파일 기준으로 풀리는 함정(FE 파일 마운트 불가) 때문에 단일 파일로
+# vendoring했다. 백엔드와의 실질 계약은 "mysql 8(+ngram 설정) + 백엔드 이미지"뿐.
 name: csereal-e2e
 
 services:
@@ -62,28 +62,5 @@ services:
       retries: 60 # 첫 부팅(mysql 초기화 + flyway 전체 마이그레이션)이 느릴 수 있어 여유
       start_period: 20s
 
-  # 테스트 러너. 태그는 @playwright/test 버전과 일치(버전 올릴 때 함께 수정).
-  # 컨테이너 고정 이유: 비주얼 baseline(*-linux.png)은 폰트 렌더 환경 종속 — 이 이미지가
-  # 정본 렌더 환경(호스트 OS 무관 픽셀 동일). 앱 빌드·서빙·시드·테스트 전부 이 안에서 실행.
-  e2e:
-    image: mcr.microsoft.com/playwright:v1.57.0-jammy
-    working_dir: /work
-    entrypoint: ['bash', 'tests/setup/e2e-entry.sh']
-    depends_on:
-      backend: { condition: service_healthy } # 백엔드 준비를 compose가 보장
-    environment:
-      CI: 1 # 컨테이너 런 = 워커1·retries2·forbidOnly(playwright.config가 분기)
-      E2E_BACKEND_URL: http://backend:8080
-      E2E_DB_HOST: db
-    volumes:
-      - ../..:/work
-      - node_modules:/work/node_modules # 호스트(macOS) 바이너리를 덮지 않게 격리
-      - pnpm-store:/pnpm-store
-    ports:
-      - '43210:43210' # --ui 모드 전용(`run --service-ports`일 때만 공개됨)
-
 volumes:
   db:
-  node_modules:
-    name: csereal-e2e-node-modules # 기존 볼륨 이름 유지(재설치 회피)
-  pnpm-store:
