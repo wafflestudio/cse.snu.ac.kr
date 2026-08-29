@@ -13,7 +13,7 @@
     "lint": "biome check",
     "lint:fix": "biome check --write",
     "knip": "knip",
-    "prepare": "node .husky/install.mjs",
+    "prepare": "node .husky/install.mjs || true",
     "test": "bash scripts/e2e-docker.sh",
     "test:ui": "bash scripts/e2e-docker.sh --ui",
     "deploy:staging": "scripts/deploy.sh staging",
