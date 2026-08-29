@@ -84,7 +84,7 @@
 
 - **라우트는 URL을 미러링**(`src/routes/$locale/<path>`). 라우트별 비라우트 파일은 같은 폴더에 **co-locate**.
 - **co-location은 프레임워크 표준 `-` 프리픽스로 제외한다.** TanStack Router 기본값 `routeFileIgnorePrefix='-'` — `-`로 시작하는 파일/폴더는 라우트 생성에서 자동 제외된다. 그래서 비라우트 파일은 **`-components/`·`-hooks/`·`-api.ts`·`-constants.ts`·`-fetchContent.ts`**처럼 `-`로 시작하는 이름에 둔다(하위 `news/`·`sections/`·`ui/`·`assets/` 등은 부모가 `-`면 따라 제외되니 각각 프리픽스 불필요). `vite.config.ts`에 **커스텀 `routeFileIgnorePattern`은 두지 않는다**(2026-08 제거). ✅ 이름 규칙(복수/단수·PascalCase)과 무관하게 오직 `-` 프리픽스만 보므로, 과거 단수 `component/`가 라우트로 새던 함정이 원천적으로 사라졌다. 새 co-location 폴더/파일은 `-`로 시작하기만 하면 된다.
-- **공용 `src/components/`**: `ui`(제어 프리미티브, value/onChange) · `form`(RHF 어댑터, name+useFormContext) · `layout`(앱 셸: Header/Footer/Nav/PageLayout + 404 `NotFound`) · `feature`(도메인 위젯: auth/category/content/SearchBox/selection). **route-specific → co-locate, 여러 라우트서 재사용 → 여기로 승격.**
+- **공용 `src/components/`**: `ui`(제어 프리미티브, value/onChange) · `form`(RHF 어댑터, name+useFormContext) · `layout`(앱 셸: Header/Footer/Nav/PageLayout + 404 `NotFound`) · `feature`(도메인 위젯: auth/category/SearchBox/selection). **route-specific → co-locate, 여러 라우트서 재사용 → 여기로 승격.** 예외: DS 프리미티브는 사용처 1곳이어도 `ui/` 유지(Dropdown·ImageModal이 해당).
 - **헬퍼는 `src/utils/` 한 곳**(과거 `lib/`와 분리했으나 경계가 모호하고 폴더가 아무것도 강제하지 않아 합침). **서버 전용 보장은 폴더가 아니라 `createServerFn`·서버 라우트 핸들러가 한다** — 무거운 서버 전용 deps(cheerio→`cspServerFn`/`processHtmlForCsp`, sharp→`imageOptimizer`)는 그 경계 안에서만 돌려 클라 번들에서 빠진다.
 
 ---
