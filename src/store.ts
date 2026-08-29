@@ -20,6 +20,7 @@ interface Store {
   expandNavbar: () => void;
   closeNavbar: () => void;
   hoverNavItem: (navItem: NavItem) => void;
+  
   // Session actions
   login: () => void;
   logout: () => Promise<void>;
@@ -41,7 +42,8 @@ export const useStore = create<Store>()((set) => ({
     await fetch(`${BASE_URL}/v1/logout`, {
       method: 'GET',
       credentials: 'include',
-    });
+      redirect: 'manual',
+    }).catch(() => {});
     window.location.reload();
   },
   mockLogin: async (...roles: Role[]) => {
