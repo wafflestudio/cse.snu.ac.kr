@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import { forwardAuthHeaders } from '@/utils/ssr';
+import { api } from '@/utils/api';
 import 'dayjs/locale/ko';
 import { useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
@@ -9,12 +9,10 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import Node from '@/components/ui/Nodes';
 import { toast } from '@/components/ui/sonner';
 import { Tag } from '@/components/ui/Tag';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import type { Notice } from '@/types/api/v2/notice';
-import { fetchOk } from '@/utils/fetch';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
 import { stripHtml, truncateDescription } from '@/utils/metadata';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
@@ -41,9 +39,7 @@ function NoticeDetailPage() {
 
   const handleDelete = async () => {
     try {
-      await fetchOk(`${BASE_URL}/v2/notice/${notice.id}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2/notice/${notice.id}`);
       toast.success('게시글을 삭제했습니다.');
       navigate({ to: localizedPath('/community/notice') });
     } catch {
@@ -130,18 +126,9 @@ export const Route = createFileRoute('/$locale/community/notice/$id')({
     const pageNum = sp.get('pageNum');
     if (pageNum) searchParams.append('pageNum', pageNum);
 
-    const headers = forwardAuthHeaders();
-
-    const response = await fetch(
-      `${BASE_URL}/v2/notice/${id}?${searchParams.toString()}`,
-      { headers },
-    );
-
-    if (!response.ok) {
-      throw new Response('Not Found', { status: 404 });
-    }
-
-    const notice = (await response.json()) as Notice;
+    const notice = await api
+      .get(`v2/notice/${id}?${searchParams.toString()}`)
+      .json<Notice>();
 
     return {
       ...notice,

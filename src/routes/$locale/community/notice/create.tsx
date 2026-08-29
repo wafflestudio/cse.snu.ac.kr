@@ -2,10 +2,9 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { isLocalFile } from '@/types/form';
-import { fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 import { FormData2 } from '@/utils/form';
 import NoticeEditor, { type NoticeFormData } from './-components/NoticeEditor';
 
@@ -42,12 +41,9 @@ function NoticeCreatePage() {
     );
 
     try {
-      const response = await fetchOk(`${BASE_URL}/v2/notice`, {
-        method: 'POST',
-        body: formData,
-      });
-
-      const { id } = await response.json();
+      const { id } = await api
+        .post('v2/notice', { body: formData })
+        .json<{ id: number }>();
       toast.success('공지사항을 게시했습니다.');
       navigate({ to: `/community/notice/${id}` });
     } catch {

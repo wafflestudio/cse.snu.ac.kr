@@ -2,10 +2,9 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { isLocalFile } from '@/types/form';
-import { fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 import { FormData2 } from '@/utils/form';
 import NewsEditor, { type NewsFormData } from './-components/NewsEditor';
 
@@ -41,12 +40,9 @@ function NewsCreatePage() {
     );
 
     try {
-      const response = await fetchOk(`${BASE_URL}/v2/news`, {
-        method: 'POST',
-        body: formData,
-      });
-
-      const { id } = await response.json();
+      const { id } = await api
+        .post('v2/news', { body: formData })
+        .json<{ id: number }>();
       toast.success('새소식을 게시했습니다.');
       navigate({ to: `/community/news/${id}` });
     } catch {

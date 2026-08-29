@@ -4,16 +4,14 @@ import LoginVisible from '@/components/feature/auth/LoginVisible';
 import SearchBox from '@/components/feature/SearchBox';
 import PageLayout from '@/components/layout/PageLayout';
 import Pagination from '@/components/ui/Pagination';
-import { BASE_URL } from '@/constants/api';
 import { NOTICE_TAGS } from '@/constants/tag';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSearchParams } from '@/hooks/useSearchParams';
 import { useSetToggle } from '@/hooks/useSetToggle';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import type { NoticePreviewList } from '@/types/api/v2/notice';
-import { fetchJson } from '@/utils/fetch';
+import { api } from '@/utils/api';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
-import { forwardAuthHeaders } from '@/utils/ssr';
 import AdminFeatures from './-components/AdminFeatures';
 import NoticeListRow, {
   NOTICE_ROW_CELL_WIDTH,
@@ -143,12 +141,7 @@ export const Route = createFileRoute('/$locale/community/notice/')({
       query.append('tag', t);
     }
 
-    const headers = forwardAuthHeaders();
-
-    return fetchJson<NoticePreviewList>(
-      `${BASE_URL}/v2/notice?${query.toString()}`,
-      { headers },
-    );
+    return api.get(`v2/notice?${query.toString()}`).json<NoticePreviewList>();
   },
   component: NoticePage,
 });

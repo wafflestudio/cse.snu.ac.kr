@@ -4,9 +4,8 @@ import { useState } from 'react';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
-import { fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 
 interface AdminFeaturesProps {
   selectedIds: Set<number>;
@@ -28,10 +27,8 @@ export default function AdminFeatures({
     if (selectedIds.size === 0) return;
 
     try {
-      await fetchOk(`${BASE_URL}/v2/notice`, {
-        method: 'DELETE',
-        body: JSON.stringify({ idList: Array.from(selectedIds) }),
-        headers: { 'Content-Type': 'application/json' },
+      await api.delete('v2/notice', {
+        json: { idList: Array.from(selectedIds) },
       });
 
       toast.success('선택된 공지를 삭제했습니다.');
@@ -46,10 +43,8 @@ export default function AdminFeatures({
     if (selectedIds.size === 0) return;
 
     try {
-      await fetchOk(`${BASE_URL}/v2/notice`, {
-        method: 'PATCH',
-        body: JSON.stringify({ idList: Array.from(selectedIds) }),
-        headers: { 'Content-Type': 'application/json' },
+      await api.patch('v2/notice', {
+        json: { idList: Array.from(selectedIds) },
       });
 
       toast.success('선택된 공지를 고정 해제했습니다.');

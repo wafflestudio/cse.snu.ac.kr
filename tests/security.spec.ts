@@ -49,6 +49,16 @@ test.describe('없는 경로는 404 상태를 반환한다', () => {
     expect((await request.get('/ko/없는길')).status()).toBe(404);
     expect((await request.get('/en/no-such-path')).status()).toBe(404);
   });
+
+  test('없는 게시물 id 상세도 404 (백엔드 404 → notFound 전역 변환)', async ({
+    request,
+  }) => {
+    // api 클라이언트의 beforeError 훅이 백엔드 404를 라우트 notFound로 바꾸는 체인을 잠근다
+    // (렌더만 보면 soft 404를 못 잡는다 — 상태 코드까지 404여야 한다).
+    expect((await request.get('/ko/community/notice/99999999')).status()).toBe(
+      404,
+    );
+  });
 });
 
 test.describe('관리자 페이지', () => {

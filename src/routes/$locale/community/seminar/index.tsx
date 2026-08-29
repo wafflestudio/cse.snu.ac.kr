@@ -4,13 +4,12 @@ import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import Pagination from '@/components/ui/Pagination';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSearchParams } from '@/hooks/useSearchParams';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import type { SeminarPreviewList } from '@/types/api/v2/seminar';
+import { api } from '@/utils/api';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
-import { forwardAuthHeaders } from '@/utils/ssr';
 import SeminarRow from './-components/SeminarRow';
 import SeminarSearchBar from './-components/SeminarSearchBar';
 
@@ -120,12 +119,7 @@ export const Route = createFileRoute('/$locale/community/seminar/')({
     query.append('language', locale);
     if (keyword) query.append('keyword', keyword);
 
-    const response = await fetch(`${BASE_URL}/v2/seminar?${query.toString()}`, {
-      headers: forwardAuthHeaders(),
-    });
-    if (!response.ok) throw new Error('Failed to fetch seminar posts');
-
-    return (await response.json()) as SeminarPreviewList;
+    return api.get(`v2/seminar?${query.toString()}`).json<SeminarPreviewList>();
   },
   component: SeminarPage,
 });

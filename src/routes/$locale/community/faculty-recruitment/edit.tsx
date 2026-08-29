@@ -4,11 +4,10 @@ import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { FacultyRecruitment } from '@/types/api/v2/recruit';
 import type { EditorImage } from '@/types/form';
-import { fetchJson, fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 import { FormData2 } from '@/utils/form';
 
 interface FormData {
@@ -49,10 +48,7 @@ function FacultyRecruitmentEditPage() {
         });
         formData.appendIfLocal('newMainImage', image);
 
-        await fetchOk(`${BASE_URL}/v2/recruit`, {
-          method: 'PUT',
-          body: formData,
-        });
+        await api.put('v2/recruit', { body: formData });
 
         toast.success('신임교수초빙을 수정했습니다.');
         navigate({ to: localizedPath('/community/faculty-recruitment') });
@@ -98,7 +94,7 @@ export const Route = createFileRoute(
   '/$locale/community/faculty-recruitment/edit',
 )({
   loader: async () => {
-    return fetchJson<FacultyRecruitment>(`${BASE_URL}/v2/recruit`);
+    return api.get('v2/recruit').json<FacultyRecruitment>();
   },
   component: FacultyRecruitmentEditPage,
 });

@@ -1,5 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import dayjs from 'dayjs';
+import { api } from '@/utils/api';
 import 'dayjs/locale/ko';
 import type { ReactNode } from 'react';
 import PageLayout from '@/components/layout/PageLayout';
@@ -8,16 +9,13 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import Image from '@/components/ui/Image';
 import Node from '@/components/ui/Nodes';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import type { Seminar } from '@/types/api/v2/seminar';
-import { fetchOk } from '@/utils/fetch';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
 import { stripHtml, truncateDescription } from '@/utils/metadata';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
-import { forwardAuthHeaders } from '@/utils/ssr';
 
 function SeminarDetailPage() {
   const seminar = Route.useLoaderData();
@@ -51,9 +49,7 @@ function SeminarDetailPage() {
 
   const handleDelete = async () => {
     try {
-      await fetchOk(`${BASE_URL}/v2/seminar/${seminar.id}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2/seminar/${seminar.id}`);
       toast.success('게시글을 삭제했습니다.');
       navigate({ to: localizedPath('/community/seminar') });
     } catch {
@@ -203,16 +199,9 @@ export const Route = createFileRoute('/$locale/community/seminar/$id')({
     const pageNum = sp.get('pageNum');
     if (pageNum) searchParams.append('pageNum', pageNum);
 
-    const response = await fetch(
-      `${BASE_URL}/v2/seminar/${id}?${searchParams.toString()}`,
-      { headers: forwardAuthHeaders() },
-    );
-
-    if (!response.ok) {
-      throw new Response('Not Found', { status: 404 });
-    }
-
-    const seminar = (await response.json()) as Seminar;
+    const seminar = await api
+      .get(`v2/seminar/${id}?${searchParams.toString()}`)
+      .json<Seminar>();
 
     return {
       ...seminar,

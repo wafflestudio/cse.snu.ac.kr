@@ -1,13 +1,11 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { Seminar } from '@/types/api/v2/seminar';
 import { isLocalFile } from '@/types/form';
-import { fetchJson, fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 import { FormData2, getDeleteIds } from '@/utils/form';
-import { forwardAuthHeaders } from '@/utils/ssr';
 import SeminarEditor, {
   type SeminarFormData,
 } from './-components/SeminarEditor';
@@ -84,10 +82,7 @@ function SeminarEditPage() {
     );
 
     try {
-      await fetchOk(`${BASE_URL}/v2/seminar/${id}`, {
-        method: 'PATCH',
-        body: formData,
-      });
+      await api.patch(`v2/seminar/${id}`, { body: formData });
 
       toast.success('세미나를 수정했습니다.');
       navigate({ to: localizedPath(`/community/seminar/${id}`) });
@@ -98,9 +93,7 @@ function SeminarEditPage() {
 
   const onDelete = async () => {
     try {
-      await fetchOk(`${BASE_URL}/v2/seminar/${id}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2/seminar/${id}`);
 
       toast.success('세미나를 삭제했습니다.');
       navigate({ to: localizedPath('/community/seminar') });
@@ -124,9 +117,7 @@ function SeminarEditPage() {
 export const Route = createFileRoute('/$locale/community/seminar/edit/$id')({
   loader: async ({ params }) => {
     const id = Number(params.id);
-    const data = await fetchJson<Seminar>(`${BASE_URL}/v2/seminar/${id}`, {
-      headers: forwardAuthHeaders(),
-    });
+    const data = await api.get(`v2/seminar/${id}`).json<Seminar>();
     return { id, data };
   },
   component: SeminarEditPage,

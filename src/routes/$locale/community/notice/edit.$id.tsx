@@ -3,13 +3,11 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { Notice } from '@/types/api/v2/notice';
 import { isLocalFile } from '@/types/form';
-import { fetchJson, fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 import { FormData2, getDeleteIds } from '@/utils/form';
-import { forwardAuthHeaders } from '@/utils/ssr';
 import NoticeEditor, { type NoticeFormData } from './-components/NoticeEditor';
 
 dayjs.extend(customParseFormat);
@@ -78,10 +76,7 @@ function NoticeEditPage() {
     );
 
     try {
-      await fetchOk(`${BASE_URL}/v2/notice/${id}`, {
-        method: 'PATCH',
-        body: formData,
-      });
+      await api.patch(`v2/notice/${id}`, { body: formData });
 
       toast.success('공지사항을 수정했습니다.');
       navigate({ to: `/community/notice/${id}` });
@@ -92,9 +87,7 @@ function NoticeEditPage() {
 
   const onDelete = async () => {
     try {
-      await fetchOk(`${BASE_URL}/v2/notice/${id}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2/notice/${id}`);
 
       toast.success('공지사항을 삭제했습니다.');
       navigate({ to: localizedPath('/community/notice') });
@@ -119,9 +112,7 @@ export const Route = createFileRoute('/$locale/community/notice/edit/$id')({
   loader: async ({ params }) => {
     const id = Number(params.id);
 
-    const data = await fetchJson<Notice>(`${BASE_URL}/v2/notice/${id}`, {
-      headers: forwardAuthHeaders(),
-    });
+    const data = await api.get(`v2/notice/${id}`).json<Notice>();
 
     return { id, data };
   },

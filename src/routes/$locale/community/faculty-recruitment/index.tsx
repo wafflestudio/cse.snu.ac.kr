@@ -1,14 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router';
-
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import type { FacultyRecruitment } from '@/types/api/v2/recruit';
-import { fetchJson } from '@/utils/fetch';
+import { api } from '@/utils/api';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 const META = {
@@ -67,9 +65,7 @@ function FacultyRecruitmentPage() {
 export const Route = createFileRoute('/$locale/community/faculty-recruitment/')(
   {
     loader: async () => {
-      const data = await fetchJson<FacultyRecruitment>(
-        `${BASE_URL}/v2/recruit`,
-      );
+      const data = await api.get('v2/recruit').json<FacultyRecruitment>();
 
       return {
         ...data,
