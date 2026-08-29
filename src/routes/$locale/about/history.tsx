@@ -1,6 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
-import ContentSection from '@/components/feature/content/ContentSection';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
@@ -9,6 +8,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { AboutContent } from '@/types/api/v2/about/content';
 import { processHtmlForCsp } from '@/utils/cspServerFn';
+import ContentSection from './-components/ContentSection';
 
 const META = {
   ko: {

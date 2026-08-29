@@ -10,11 +10,11 @@ export default defineConfig({
   forbidOnly: true,
   reporter: 'html', // 실패 시 playwright-report/ — 스크린샷 diff·trace 열람
 
-  // 타임아웃은 기본값(테스트 30s·단언 5s), 워커 4 — 2026-08-29 실측으로 확정: retries 0으로
-  // 전수 6런(w2×3·w4×3) 중 flake 1회뿐이라 과거의 "경합 헤드룸"(60s/10s·워커1)은 낡은 값.
-  // 드문 경합 flake(directions 등)는 retries가 흡수하고 trace가 포렌식을 남긴다.
-  retries: 2, // flow 고유 이름(Date.now())으로 재시도 충돌 회피
-  workers: 4, // 스위트 2.5m(w1) → ~1m
+  retries: 2,
+  // CI 러너는 로컬보다 느려 타임아웃 실패(PR #20) → 보수 분기. CI=1은 우리가 항상 넣으므로 신호는 GITHUB_ACTIONS.
+  timeout: process.env.GITHUB_ACTIONS ? 60_000 : 30_000,
+  expect: { timeout: process.env.GITHUB_ACTIONS ? 10_000 : 5_000 },
+  workers: process.env.GITHUB_ACTIONS ? 1 : 4,
 
   use: {
     baseURL: APP_URL,

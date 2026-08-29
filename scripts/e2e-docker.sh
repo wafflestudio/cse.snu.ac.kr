@@ -34,6 +34,7 @@ exec docker run "${docker_args[@]}" \
   -v csereal-e2e-node-modules:/work/node_modules \
   -v csereal-e2e-pnpm-store:/pnpm-store \
   -e CI=1 \
+  -e GITHUB_ACTIONS \
   -e E2E_BACKEND_URL=http://backend:8080 \
   -e E2E_DB_HOST=db \
   "$IMAGE" bash -c '
