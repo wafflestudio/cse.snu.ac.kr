@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # E2E 단일 진입점 — `pnpm test`가 부른다.
 #   1) 백엔드 스택(루트 compose.yml: db·oidc-stub·backend)을 `up --wait`로 보장
-#   2) 핀된 Playwright 컨테이너를 스택 네트워크에 붙여 테스트 실행(부트스트랩은 e2e-entry.sh)
+#   2) 핀된 Playwright 컨테이너를 스택 네트워크에 붙여 테스트 실행
 # 컨테이너 고정 이유: 비주얼 baseline(*-linux.png)은 폰트 렌더 환경 종속 — 이 이미지가 정본.
 #
 # 사용:
@@ -36,4 +36,10 @@ exec docker run "${docker_args[@]}" \
   -e CI=1 \
   -e E2E_BACKEND_URL=http://backend:8080 \
   -e E2E_DB_HOST=db \
-  "$IMAGE" bash tests/setup/e2e-entry.sh "${pw_args[@]}"
+  "$IMAGE" bash -c '
+    set -eo pipefail
+    corepack enable
+    pnpm config set store-dir /pnpm-store
+    pnpm install --frozen-lockfile
+    exec pnpm exec playwright test "$@"
+  ' bash "${pw_args[@]}" # bash -c의 첫 인자가 $0이 되므로 자리채움 "bash" 뒤에 실제 인자
