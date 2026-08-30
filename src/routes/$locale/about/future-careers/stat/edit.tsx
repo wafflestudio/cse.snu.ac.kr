@@ -13,7 +13,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { FutureCareersResponse } from '@/types/api/v2/about/future-careers';
 import { api } from '@/utils/api';
-import { searchLoaderDeps } from '@/utils/loaderDeps';
+import { stringParam } from '@/utils/searchSchema';
 
 const COMPANY_LIST = [
   'SAMSUNG',
@@ -144,11 +144,12 @@ function TableBody() {
 
 export const Route = createFileRoute('/$locale/about/future-careers/stat/edit')(
   {
-    loaderDeps: searchLoaderDeps,
-    loader: async ({ location }) => {
-      const searchStr = location.searchStr;
-      const sp = new URLSearchParams(searchStr);
-      const year = sp.get('year');
+    validateSearch: (search: Record<string, unknown>) => ({
+      year: stringParam(search.year),
+    }),
+    loaderDeps: ({ search }) => search,
+    loader: async ({ deps }) => {
+      const year = deps.year;
 
       const data = await api
         .get(`v2/about/future-careers`)

@@ -17,7 +17,7 @@ import type {
 import type { EditorImage } from '@/types/form';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
-import { searchLoaderDeps } from '@/utils/loaderDeps';
+import { stringParam } from '@/utils/searchSchema';
 
 interface FacilityFormData {
   ko: { name: string; description: string; locations: string[] };
@@ -213,11 +213,12 @@ function FacilitiesEdit() {
 }
 
 export const Route = createFileRoute('/$locale/about/facilities/edit')({
-  loaderDeps: searchLoaderDeps,
-  loader: async ({ location }) => {
-    const searchStr = location.searchStr;
-    const sp = new URLSearchParams(searchStr);
-    const idParam = sp.get('id');
+  validateSearch: (search: Record<string, unknown>) => ({
+    id: stringParam(search.id),
+  }),
+  loaderDeps: ({ search }) => search,
+  loader: async ({ deps }) => {
+    const idParam = deps.id;
 
     const facilities = await api
       .get(`v2/about/facilities`)

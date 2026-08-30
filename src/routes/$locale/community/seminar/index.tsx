@@ -9,7 +9,7 @@ import { useSearchParams } from '@/hooks/useSearchParams';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import type { SeminarPreviewList } from '@/types/api/v2/seminar';
 import { api } from '@/utils/api';
-import { searchLoaderDeps } from '@/utils/loaderDeps';
+import { pageNumParam, stringParam } from '@/utils/searchSchema';
 import SeminarRow from './-components/SeminarRow';
 import SeminarSearchBar from './-components/SeminarSearchBar';
 
@@ -27,6 +27,11 @@ const META = {
       'Check the seminar schedule from the Department of Computer Science and Engineering at Seoul National University. Attend lectures by renowned researchers and learn about the latest research trends.',
   },
 };
+
+interface SeminarSearch {
+  pageNum?: number;
+  keyword?: string;
+}
 
 function SeminarPage() {
   const data = Route.useLoaderData();
@@ -105,21 +110,22 @@ function SeminarPage() {
 }
 
 export const Route = createFileRoute('/$locale/community/seminar/')({
-  loaderDeps: searchLoaderDeps,
-  loader: async ({ params, location }) => {
-    const searchStr = location.searchStr;
-    const sp = new URLSearchParams(searchStr);
+  validateSearch: (search: Record<string, unknown>): SeminarSearch => ({
+    pageNum: pageNumParam(search.pageNum),
+    keyword: stringParam(search.keyword),
+  }),
+  loaderDeps: ({ search }) => search,
+  loader: ({ params, deps }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
-
-    const pageNum = sp.get('pageNum') || '1';
-    const keyword = sp.get('keyword');
-
-    const query = new URLSearchParams();
-    query.append('pageNum', pageNum);
-    query.append('language', locale);
-    if (keyword) query.append('keyword', keyword);
-
-    return api.get(`v2/seminar?${query.toString()}`).json<SeminarPreviewList>();
+    return api
+      .get('v2/seminar', {
+        searchParams: [
+          ['pageNum', String(deps.pageNum ?? 1)],
+          ['language', locale],
+          ...(deps.keyword ? [['keyword', deps.keyword]] : []),
+        ] as [string, string][],
+      })
+      .json<SeminarPreviewList>();
   },
   component: SeminarPage,
 });

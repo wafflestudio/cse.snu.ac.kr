@@ -12,7 +12,7 @@ import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { News } from '@/types/api/v2/news';
 import { api } from '@/utils/api';
-import { searchLoaderDeps } from '@/utils/loaderDeps';
+import { pageNumParam } from '@/utils/searchSchema';
 import { stripHtml, truncateDescription } from '@/utils/string';
 
 function NewsDetailPage() {
@@ -106,10 +106,11 @@ function NewsDetailPage() {
 }
 
 export const Route = createFileRoute('/$locale/community/news/$id')({
-  loaderDeps: searchLoaderDeps,
-  loader: async ({ params, location }) => {
-    const searchStr = location.searchStr;
-    const sp = new URLSearchParams(searchStr);
+  validateSearch: (search: Record<string, unknown>) => ({
+    pageNum: pageNumParam(search.pageNum),
+  }),
+  loaderDeps: ({ search }) => search,
+  loader: async ({ params, deps }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
     const id = Number(params.id);
 
@@ -120,8 +121,8 @@ export const Route = createFileRoute('/$locale/community/news/$id')({
     const searchParams = new URLSearchParams();
     searchParams.append('language', locale);
 
-    const pageNum = sp.get('pageNum');
-    if (pageNum) searchParams.append('pageNum', pageNum);
+    const pageNum = deps.pageNum;
+    if (pageNum) searchParams.append('pageNum', String(pageNum));
 
     const news = await api
       .get(`v2/news/${id}?${searchParams.toString()}`)

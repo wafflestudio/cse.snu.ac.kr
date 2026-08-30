@@ -9,7 +9,7 @@ import type { Faculty, FacultyStatus } from '@/types/api/v2/professor';
 import type { SimpleResearchLab } from '@/types/api/v2/research/labs';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
-import { searchLoaderDeps } from '@/utils/loaderDeps';
+import { stringParam } from '@/utils/searchSchema';
 
 function FacultyCreate() {
   const loaderData = Route.useLoaderData();
@@ -68,11 +68,12 @@ function FacultyCreate() {
 }
 
 export const Route = createFileRoute('/$locale/people/faculty/create')({
-  loaderDeps: searchLoaderDeps,
-  loader: async ({ location }) => {
-    const searchStr = location.searchStr;
-    const sp = new URLSearchParams(searchStr);
-    const status = (sp.get('status') as FacultyStatus) ?? 'ACTIVE';
+  validateSearch: (search: Record<string, unknown>) => ({
+    status: stringParam(search.status),
+  }),
+  loaderDeps: ({ search }) => search,
+  loader: async ({ deps }) => {
+    const status = (deps.status as FacultyStatus) ?? 'ACTIVE';
 
     const [labsKo, labsEn] = await Promise.all([
       api.get(`v2/research/lab?language=ko`).json<SimpleResearchLab[]>(),

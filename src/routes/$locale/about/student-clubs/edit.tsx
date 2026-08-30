@@ -13,7 +13,7 @@ import type { StudentClubsResponse } from '@/types/api/v2/about/student-clubs';
 import type { EditorImage } from '@/types/form';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
-import { searchLoaderDeps } from '@/utils/loaderDeps';
+import { stringParam } from '@/utils/searchSchema';
 
 interface ClubFormData {
   ko: { name: string; description: string };
@@ -129,11 +129,12 @@ function StudentClubsEdit() {
 }
 
 export const Route = createFileRoute('/$locale/about/student-clubs/edit')({
-  loaderDeps: searchLoaderDeps,
-  loader: async ({ location }) => {
-    const searchStr = location.searchStr;
-    const sp = new URLSearchParams(searchStr);
-    const selectedParam = sp.get('selected');
+  validateSearch: (search: Record<string, unknown>) => ({
+    selected: stringParam(search.selected),
+  }),
+  loaderDeps: ({ search }) => search,
+  loader: async ({ deps }) => {
+    const selectedParam = deps.selected;
 
     const clubs = await api
       .get(`v2/about/student-clubs`)

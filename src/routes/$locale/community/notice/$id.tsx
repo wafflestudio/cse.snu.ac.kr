@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { api } from '@/utils/api';
+import { pageNumParam } from '@/utils/searchSchema';
 import 'dayjs/locale/ko';
 import { useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
@@ -14,7 +15,6 @@ import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { Notice } from '@/types/api/v2/notice';
-import { searchLoaderDeps } from '@/utils/loaderDeps';
 import { stripHtml, truncateDescription } from '@/utils/string';
 
 function NoticeDetailPage() {
@@ -109,10 +109,11 @@ function NoticeDetailPage() {
 }
 
 export const Route = createFileRoute('/$locale/community/notice/$id')({
-  loaderDeps: searchLoaderDeps,
-  loader: async ({ params, location }) => {
-    const searchStr = location.searchStr;
-    const sp = new URLSearchParams(searchStr);
+  validateSearch: (search: Record<string, unknown>) => ({
+    pageNum: pageNumParam(search.pageNum),
+  }),
+  loaderDeps: ({ search }) => search,
+  loader: async ({ params, deps }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
     const id = Number(params.id);
 
@@ -123,8 +124,8 @@ export const Route = createFileRoute('/$locale/community/notice/$id')({
     const searchParams = new URLSearchParams();
     searchParams.append('language', locale);
 
-    const pageNum = sp.get('pageNum');
-    if (pageNum) searchParams.append('pageNum', pageNum);
+    const pageNum = deps.pageNum;
+    if (pageNum) searchParams.append('pageNum', String(pageNum));
 
     const notice = await api
       .get(`v2/notice/${id}?${searchParams.toString()}`)

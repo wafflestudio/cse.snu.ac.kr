@@ -9,6 +9,11 @@ import { useSetToggle } from '@/hooks/useSetToggle';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import type { NoticePreviewList } from '@/types/api/v2/notice';
 import { api } from '@/utils/api';
+import {
+  pageNumParam,
+  stringArrayParam,
+  stringParam,
+} from '@/utils/searchSchema';
 import AdminFeatures from './-components/AdminFeatures';
 import NoticeListRow, {
   NOTICE_ROW_CELL_WIDTH,
@@ -17,21 +22,11 @@ import { NOTICE_TAGS } from './-constants';
 
 const POST_LIMIT = 20;
 
-// 빈 값은 undefined로 둔다 — validateSearch 결과가 URL로 재직렬화되므로, 기본값을
-// 채워 넣으면 `/community/notice`가 `?pageNum=1&keyword=&tag=[]`로 오염된다.
 interface NoticeSearch {
   pageNum?: number;
   keyword?: string;
   tag?: string[];
 }
-
-/** 반복 키(`?tag=a&tag=b`)는 배열, 1개면 문자열로 파싱돼 온다 → 항상 배열로. */
-const toStringArray = (value: unknown): string[] =>
-  Array.isArray(value)
-    ? value.filter((v): v is string => typeof v === 'string')
-    : typeof value === 'string' && value
-      ? [value]
-      : [];
 
 const META = {
   ko: {
@@ -136,16 +131,11 @@ function NoticePage() {
 }
 
 export const Route = createFileRoute('/$locale/community/notice/')({
-  validateSearch: (search: Record<string, unknown>): NoticeSearch => {
-    const pageNum = Number(search.pageNum) || 1;
-    const keyword = typeof search.keyword === 'string' ? search.keyword : '';
-    const tag = toStringArray(search.tag);
-    return {
-      pageNum: pageNum > 1 ? pageNum : undefined,
-      keyword: keyword || undefined,
-      tag: tag.length > 0 ? tag : undefined,
-    };
-  },
+  validateSearch: (search: Record<string, unknown>): NoticeSearch => ({
+    pageNum: pageNumParam(search.pageNum),
+    keyword: stringParam(search.keyword),
+    tag: stringArrayParam(search.tag),
+  }),
   // loader가 실제로 쓰는 것만 선언한다(전체를 넘기면 무관한 파라미터 변경에도 재실행).
   loaderDeps: ({ search }) => search,
   loader: ({ params, deps }) => {

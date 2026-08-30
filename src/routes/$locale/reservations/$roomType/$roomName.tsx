@@ -17,7 +17,7 @@ import {
   STAFF_ONLY_ROOM_ID,
 } from '@/routes/$locale/reservations/-constants';
 import { kstDayjs } from '@/utils/date';
-import { searchLoaderDeps } from '@/utils/loaderDeps';
+import { stringParam } from '@/utils/searchSchema';
 import { formatDateParam, getStartOfWeek, parseDateParam } from '../-utils';
 
 function RoomReservationPage() {
@@ -84,14 +84,15 @@ function NonStaffFallback() {
 export const Route = createFileRoute(
   '/$locale/reservations/$roomType/$roomName',
 )({
-  loaderDeps: searchLoaderDeps,
-  loader: async ({ params, location }) => {
-    const searchStr = location.searchStr;
+  validateSearch: (search: Record<string, unknown>) => ({
+    selectedDate: stringParam(search.selectedDate),
+  }),
+  loaderDeps: ({ search }) => search,
+  loader: async ({ params, deps }) => {
     const roomId = roomNameToId[params.roomName];
     if (roomId === undefined) throw new Error('Invalid room');
 
-    const sp = new URLSearchParams(searchStr);
-    const selectedDateParam = sp.get('selectedDate');
+    const selectedDateParam = deps.selectedDate;
     const selectedDate = selectedDateParam
       ? parseDateParam(selectedDateParam)
       : kstDayjs();

@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import SearchBox from '@/components/feature/SearchBox';
 import PageLayout from '@/components/layout/PageLayout';
 import { useLanguage } from '@/hooks/useLanguage';
-import { searchLoaderDeps } from '@/utils/loaderDeps';
+import { stringArrayParam, stringParam } from '@/utils/searchSchema';
 import AboutSection from './-components/sections/AboutSection';
 import AcademicSection from './-components/sections/AcademicSection';
 import AdmissionSection from './-components/sections/AdmissionSection';
@@ -90,12 +90,14 @@ function SearchPage() {
 }
 
 export const Route = createFileRoute('/$locale/search/')({
-  loaderDeps: searchLoaderDeps,
-  loader: async ({ params, location }) => {
-    const searchStr = location.searchStr;
-    const sp = new URLSearchParams(searchStr);
-    const keyword = sp.get('keyword') ?? undefined;
-    const tag = sp.getAll('tag');
+  validateSearch: (search: Record<string, unknown>) => ({
+    keyword: stringParam(search.keyword),
+    tag: stringArrayParam(search.tag),
+  }),
+  loaderDeps: ({ search }) => search,
+  loader: async ({ params, deps }) => {
+    const keyword = deps.keyword;
+    const tag = deps.tag ?? [];
     const locale = params.locale === 'en' ? 'en' : 'ko';
 
     if (!keyword) return { keyword, tag };
