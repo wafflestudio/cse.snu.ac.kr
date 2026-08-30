@@ -12,7 +12,6 @@ import Text from './Text';
 import TextArea from './TextArea';
 import TextList from './TextList';
 
-// TODO: https://reactrouter.com/how-to/navigation-blocking
 function Form({ children }: { children: ReactNode }) {
   return <form className="flex flex-col">{children}</form>;
 }

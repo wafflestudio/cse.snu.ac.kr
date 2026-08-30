@@ -156,10 +156,8 @@ export const Route = createFileRoute('/admin/')({
     const pageNum = sp.get('pageNum') || '1';
 
     // 인증 헤더: 서버(SSR)는 요청 쿠키를 포워딩, 클라(revalidate/SPA)는 same-origin
-    // fetch가 JSESSIONID를 자동 첨부한다. RR은 loader가 항상 서버 실행이라 request.headers
-    // 에 쿠키가 있었지만, TanStack은 클라에서도 loader가 돌아 synthetic request엔 쿠키가
-    // 없다 → forwardAuthHeaders로 양쪽 모두 인증되게 한다(이 early-return이 admin 목록
-    // revalidate 미반영 버그의 원인이었음).
+    // fetch가 JSESSIONID를 자동 첨부한다. 클라에서도 loader가 돌아 synthetic request엔
+    // 쿠키가 없으므로 forwardAuthHeaders로 양쪽 모두 인증되게 한다.
     const _headers = forwardAuthHeaders();
 
     if (selected === ADMIN_MENU_SLIDE) {

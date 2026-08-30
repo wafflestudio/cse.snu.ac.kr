@@ -2,7 +2,7 @@
 
 코드만 봐선 알 수 없는 것 — **결정의 이유·히스토리·컨벤션·재발 함정**만 적는다. 구현 상세(파일 목록·시그니처·명령어)는 코드/`package.json`/config에서 확인. 4부: **①아키텍처·환경 → ②라우팅·코드 컨벤션 → ③E2E 테스트 → ④디자인 시스템.** 사람용 온보딩·스크립트·환경 표는 `README.md`.
 
-> **상태:** RR7 → TanStack Start 마이그레이션 **완료(2026-06-15)**, Storybook + 디자인 시스템 감사 **완료(2026-06-16)**. E2E는 마이그레이션 전용이 아니라 **일반 회귀 안전망**.
+> **상태:** TanStack Start 기반. E2E는 전 라우트 회귀 안전망(§3).
 
 **목차** — [1. 아키텍처·환경](#1-아키텍처--환경) · [2. 라우팅·코드 컨벤션](#2-라우팅--코드-컨벤션) · [3. E2E 테스트](#3-e2e-테스트) · [4. 디자인 시스템](#4-디자인-시스템)
 
@@ -39,7 +39,7 @@
 ## prod 네트워크 상태 (2026-08-29 갱신 — 도메인 연결·cutover 완료)
 
 - prod IP = **147.46.92.120**(구 프록시 경유 → 공인 IP 직결). `env/.env`의 `CSEREAL_PROD_SSH_HOST` 갱신 완료(옛 `waiter.bacchus.io`→147.46.92.174에서 이전). 포트 9122·키 동일.
-- **도메인 연결 완료** — `cse.snu.ac.kr` DNS 해석(→147.46.92.120)·443 학외 개방·마이그레이션 빌드 라이브를 실측 확인(2026-08-29). 한때 리셋됐던 웹 포트 개방 승인도 재개방됨. cutover 자체는 아래 활성화 블록 참고.
+- **도메인 연결 완료** — `cse.snu.ac.kr` DNS 해석(→147.46.92.120)·443 학외 개방을 실측 확인(2026-08-29). 한때 리셋됐던 웹 포트 개방 승인도 재개방됨. cutover 자체는 아래 활성화 블록 참고.
   - 학외 접속이 드물게 실패할 수 있다 — 재시도하면 붙는다(앱 버그 아님, 하드 차단 아님).
 - **⚠️ 학외 OAuth 로그인은 아직 불가.** OAuth는 사용자 브라우저가 `id.snucse.org`(→147.46.92.174)에 직접 붙어야 하는데 그 호스트가 학외 443을 막고 있다(2026-08-29 실측 4/4 timeout — SYN drop과 달리 재시도로도 안 붙는 하드 차단). **바쿠스가 그 호스트를 학외 개방해야 학외 로그인이 동작한다**(앱 문제 아님, 바쿠스 소유). 학내에선 정상.
 - **E2E OIDC 부팅 의존(해결됨, 영구).** 백엔드가 기동 시 `id.snucse.org` OIDC discovery를 하다 타임아웃으로 크래시 루프(실측 RestartCount 28, CI e2e 잡도 동일 원인 실패)던 것을, 루트 `compose.yml`의 oidc-stub(nginx, 인라인 config)이 discovery 문서만 응답해 끊었다 → 학내/학외 무관하게 돈다. local 프로파일도 issuer-uri를 등록해 부팅 시 discovery가 강제되는 게 원인 — **근본 해결 = 백엔드 local 프로파일에서 OIDC 등록 제거(업스트림 PR 대상)**, 머지되면 stub 삭제 가능.
@@ -53,11 +53,11 @@
 - **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`knip`/`build:local`, ~1–2분; `knip`=미사용 파일·export·의존성) ② E2E(로컬과 동일 `e2e-docker.sh`; CI는 프론트를 서브디렉터리·백엔드를 핀된 `BACKEND_REF` **소스**로 체크아웃 후 `gradlew bootJar`로 JAR 빌드(Dockerfile이 build/libs를 COPY)하는 것만 다름 — GHCR `:prod`는 prod 프로파일이라 mock-login이 꺼져 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.**
 - **CD(`deploy.yml`, `develop` push):** deploy.yml이 staging 호스트에 SSH로 `remote-deploy.sh`를 보내 **호스트에서 빌드+교체**를 트리거한다. `main` push는 자동 배포 없음 — prod는 `deploy.sh prod`로 **수동**(같은 호스트 빌드 흐름). **레지스트리(GHCR) 없음 — 빌드==배포**, 호스트가 자기 arch로 네이티브 빌드. CI(ci.yml)는 게이트만, 배포 이미지는 안 만든다. 문서만(`**.md`) push는 `paths-ignore`로 스킵.
 - **호스트 빌드 흐름**(`remote-deploy.sh`, 호스트에서 실행): **`docker build "<git-url>#<REF>"`** — docker가 소스를 직접 클론해 빌드 컨텍스트로 쓴다 → **호스트엔 docker만 있으면 된다**(레포 체크아웃·env 파일 불필요). **빌드 성공 후에만** 컨테이너 교체(빌드 중엔 구버전 서빙 → 무중단). 카맵키는 `--build-arg VITE_KAKAO_MAP_API_KEY`(git 밖 시크릿). **롤백 = machinery 없이 이전 커밋 sha로 다시 빌드**: `deploy.sh <env> <sha>`(빌드가 빠르니 재빌드가 곧 롤백). `deploy.sh`는 로컬 `env/.env`에서, `deploy.yml`은 `KAKAO_MAP_KEY` 시크릿에서 카맵키를 받아 넘긴다.
-- **왜 호스트 빌드(학외 CI 아님):** ① 빌드가 곧 배포라 레지스트리 분리가 무의미 ② **프리렌더 대비** — 프리렌더는 빌드타임에 페이지마다 백엔드를 부르는데 prod API(`cse.snu.ac.kr`)는 경계 뒤라 학외 CI 빌드는 SYN drop이 **페이지 수만큼 누적**돼 플레이키. **학내 호스트 빌드면 안정적으로 닿는다.** (RR7도 같은 이유로 호스트 빌드였다 → 마이그레이션에서 prerender가 빠져 한때 CI 빌드 → 프리렌더 재도입을 위해 호스트 빌드로 통일.) 트레이드오프: 서빙 호스트에 빌드 부하가 생기나 `docker build`는 격리·무중단 swap이라 감내. `imageOptimizer`의 "prerender hack" 주석은 프리렌더 재도입 시 다시 검토.
+- **왜 호스트 빌드(학외 CI 아님):** ① 빌드가 곧 배포라 레지스트리 분리가 무의미 ② **프리렌더 대비** — 프리렌더는 빌드타임에 페이지마다 백엔드를 부르는데 prod API(`cse.snu.ac.kr`)는 경계 뒤라 학외 CI 빌드는 SYN drop이 **페이지 수만큼 누적**돼 플레이키. **학내 호스트 빌드면 안정적으로 닿는다.** 트레이드오프: 서빙 호스트에 빌드 부하가 생기나 `docker build`는 격리·무중단 swap이라 감내. `imageOptimizer`의 "prerender hack" 주석은 프리렌더 재도입 시 다시 검토.
 
 > **활성화 상태(2026-08-29 갱신):** ✅ **secret 2개**(`STAGING_SSH_KEY` + `KAKAO_MAP_KEY` — CI 빌드가 카맵키를 build-arg로 주입). host/user/port·API URL은 코드에 두어 시크릿에서 뺐다. 옛 `ENV_FILE_*`·`STAGING_SSH_HOST/USER/PORT`는 **삭제 대상**. · `develop` push 시 staging 호스트 빌드 자동배포 · **branch protection(ruleset: `main`·`develop` PR필수 + 필수 체크 `gate`·`e2e`, bypass 권한자 없음)** · `BACKEND_REF` 핀(#399 SHA 1661f3d8) · ci.yml · deploy.yml.
 >
-> **prod cutover 완료(2026-08-29 확인).** 마이그레이션 빌드가 라이브다 — strict CSP(요청마다 nonce 회전)·gzip(`hono/compress`)·wscan 경로 404·`/admin` 익명 404를 실측(전부 마이그레이션+wscan 대응 이후에만 존재하는 특징). (당시엔 GHCR pull 배포였고 `/storybook`도 서빙됐으나 이후 **호스트 빌드**로 전환 + Storybook 배포 제거 — 위 CD 참고.)
+> **prod 라이브 확인(2026-08-29).** strict CSP(요청마다 nonce 회전)·gzip(`hono/compress`)·wscan 경로 404·`/admin` 익명 404를 실측.
 >
 > ⚠️ **"설정이 없다"는 결론을 API 404로 내리지 말 것**(이번 작업에서 두 번 틀렸다). 브랜치 보호는 `repos/:owner/:repo/rules/branches/:branch`(ruleset)로 조회한다 — 구식 `branches/:branch/protection`은 ruleset만 쓰는 레포에서 404를 반환한다. GHCR 패키지는 **조직 소유**(`orgs/wafflestudio/packages/...`)로 조회한다 — 개인 엔드포인트(`user/packages/...`)는 404, 조직도 토큰에 `read:packages`가 없으면 403이다. (이 문서의 이 항목이 이미 정답을 담고 있었다 — 낡은 브랜치의 사본을 보고 판단하지 말 것.)
 
@@ -65,15 +65,13 @@
 
 # 2. 라우팅 · 코드 컨벤션
 
-마이그레이션에서 확립.
-
 - **라우팅: file-based**(`src/routes/**` → 생성 `routeTree.gen.ts`). loader는 `createFileRoute`에 **인라인**(분리 wiring 안 씀). 컴포넌트는 `Route.useLoaderData()`/`useParams()`를 **직접 호출**(prop 주입 안 함) → params 자동 타입(그래서 `params.id`에 `!` 불필요).
 - **로케일: required path param `$locale`** — `src/routes/$locale/**`에 1벌만(`/ko/about`·`/en/about`). **모든 페이지가 프리픽스를 가진다**(2026-06-21 전환, 이전엔 optional `{-$locale}`이었다). 비로케일 라우트(`admin`·`[.]internal`·`img`·`sitemap`)는 `$locale` 밖. `__root` beforeLoad가 프리픽스 없는 경로를 쿠키(`lang`)·Accept-Language로 판정해 `/{lang}`으로 302.
 - **⚠️ 로케일 링크는 항상 `localizedPath()`. 수동 `/${locale}/...` 문자열 금지** — ko에서 `/ko/...`를 **클라 네비로 클릭**하면 `__root`의 `/ko`-strip redirect가 렌더 루프(메인스레드 peg)를 일으킨 실버그가 있었다(notice 상세 wedge). `localizedPath`는 ko에서 프리픽스 없는 경로를 만들어 그 라운드트립을 제거한다.
 - **mutation은 대부분 클라 `fetch`**(same-origin proxy 경유). `action`은 거의 없음.
 - **검색/페이지네이션은 공용 `src/hooks/useSearchParams.ts`**(URLSearchParams 기반). 여러 라우트가 Pagination·SearchBox·TagCheckboxes를 공유해 라우트별 타입(`Route.useSearch`/`validateSearch`)은 부적합 — 표준 URLSearchParams 훅이 맞다.
 - **서버 라우트(Response 직접 반환):** `/img`(이미지 최적화 프록시 — sharp·AVIF·디스크캐시·SSRF 화이트리스트)와 `/sitemap.xml`. `/img`가 **시스템 유일의 이미지 최적화 계층**(백엔드는 원본만 서빙, `Image`가 렌더타임에 `/img?url=...` 생성, DB엔 원본 URL만). 장기적으론 백엔드/CDN(imgproxy) 이관 검토.
-- **⚠️ 검색 파라미터를 읽는 loader는 `loaderDeps: searchLoaderDeps`(`src/utils/loaderDeps.ts`) 필수.** match id가 `routeId+경로+JSON(loaderDeps)`라 선언이 없으면 **검색 파라미터만 바뀌는 클라 네비에서 loader가 아예 재실행되지 않는다**(RR7은 매 네비마다 실행 → 마이그레이션 때 조용히 깨진 채 넘어옴). 증상: URL만 바뀌고 화면 그대로 — 예약 캘린더 날짜 이동·목록 페이지네이션·태그 필터·검색이 전부 해당됐다(2026-07-29 수정, 13개 라우트). 누락은 **E2E 클릭 테스트**로 잡는다 — 검색 파라미터를 바꾸는 컨트롤을 도메인당 1개 클릭으로 검증(reservations 날짜·notice 페이지네이션이 reference, §3). 새 검색 파라미터 라우트엔 그 클릭 테스트를 반드시 추가할 것.
+- **⚠️ 검색 파라미터를 읽는 loader는 `loaderDeps: searchLoaderDeps`(`src/utils/loaderDeps.ts`) 필수.** match id가 `routeId+경로+JSON(loaderDeps)`라 선언이 없으면 **검색 파라미터만 바뀌는 클라 네비에서 loader가 아예 재실행되지 않는다**. 증상: URL만 바뀌고 화면 그대로 — 예약 캘린더 날짜 이동·목록 페이지네이션·태그 필터·검색이 전부 해당됐다(2026-07-29 수정, 13개 라우트). 누락은 **E2E 클릭 테스트**로 잡는다 — 검색 파라미터를 바꾸는 컨트롤을 도메인당 1개 클릭으로 검증(reservations 날짜·notice 페이지네이션이 reference, §3). 새 검색 파라미터 라우트엔 그 클릭 테스트를 반드시 추가할 것.
 - **TanStack 함정(겪은 것):**
   - 같은 라우트 재진입 시 컴포넌트를 **재마운트 안 할 수 있음** → `useState(props)` 초기화 안 됨(TimelineViewer 연도선택 버그). URL/props 파생으로 처리.
   - 클라 네비 시 **loader가 클라에서 실행** → 합성 request엔 쿠키 없음. 인증 의존 loader는 `forwardAuthHeaders`로 서버 헤더 전달.
@@ -95,7 +93,7 @@
 
 ## 범위 기준 — 단일 잣대
 
-> **"마이그레이션이 이걸 깨뜨린다면, 깨진 코드는 프론트 레포에 있나?"** 예 → E2E. 아니오(백엔드) → 백엔드를 신뢰(테스트 추가 금지).
+> **"이게 깨진다면 깨진 코드가 프론트 레포에 있나?"** 예 → E2E. 아니오(백엔드) → 백엔드를 신뢰(테스트 추가 금지).
 
 백엔드는 **고정된 실서버**라 그 소유 동작은 전후 불변 → E2E로 재면 비용(느림·flaky·stateful)만 들고 안전망 가치 없음.
 
@@ -186,7 +184,7 @@ E2E가 실제 버그를 잡는다. 예: DELETE가 200 빈 본문을 반환하는
 
 # 4. 디자인 시스템
 
-> **Storybook은 2026-08-30 제거** — 마이그레이션 감사(2026-06-16, 전 공용 컴포넌트 스토리화 + 실버그 수정) 이후 실사용이 없었고, 픽셀 회귀는 E2E 소유라 유지비(스토리 36개 동기화·SB 메이저 업그레이드·CSF 함정·CI build-storybook)만 남아서다. 스토리·설정·CSF Next 노하우는 git 히스토리(2026-08-30 이전) 참고. 감사가 잡은 수정들은 코드에 남아 있다.
+> **Storybook은 2026-08-30 제거** — 2026-06 감사(전 공용 컴포넌트 스토리화 + 실버그 수정) 이후 실사용이 없었고, 픽셀 회귀는 E2E 소유라 유지비(스토리 36개 동기화·SB 메이저 업그레이드·CSF 함정·CI build-storybook)만 남아서다. 스토리·설정·CSF Next 노하우는 git 히스토리(2026-08-30 이전) 참고. 감사가 잡은 수정들은 코드에 남아 있다.
 
 - **디자인 토큰:** `src/app.css`의 `@theme`. **가로 페이지 거터는 `.page-gutter-x` 단일 출처**(좌 100/우 360/모바일 20px). 토큰화/스케일화는 **픽셀 동일할 때만 자율**; 값이 바뀌는 정규화는 디자인 결정 → 합의.
 - **API 레이어 분리:** `ui/*`=제어 프리미티브(value/onChange, 어디서나) vs `form/*`=폼 전용(name+useFormContext, `FormProvider` 밖에선 크래시). ui/form 동명 컴포넌트는 어댑터 관계가 아니라 독립 구현(2026-08-30 확인). **의도된 분리 — 통합 금지.**

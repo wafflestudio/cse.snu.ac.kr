@@ -53,11 +53,13 @@ export const processHtmlForCsp = createServerFn({ method: 'POST' })
       const styleAttr = $el.attr('style');
       if (styleAttr === undefined) return;
 
-      // CSS 속성들을 개별적으로 파싱
+      // CSS 속성들을 개별적으로 파싱.
+      // `{`·`}`·`@`가 든 선언은 버린다 — 아래에서 `.class { ... }` 안에 그대로 삽입하므로
+      // 규칙 밖으로 탈출해 임의 CSS(예: body{display:none})를 nonce 달고 주입할 수 있다.
       const properties = styleAttr
         .split(';')
         .map((prop) => prop.trim())
-        .filter((prop) => prop.length > 0)
+        .filter((prop) => prop.length > 0 && !/[{}@]/.test(prop))
         .map((prop) => `${prop};`);
       const classNames = properties.map((property) => {
         const cached = propertyToClassMap.get(property);
