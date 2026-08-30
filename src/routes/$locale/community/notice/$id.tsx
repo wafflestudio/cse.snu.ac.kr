@@ -14,8 +14,8 @@ import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import type { Notice } from '@/types/api/v2/notice';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
-import { stripHtml, truncateDescription } from '@/utils/metadata';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
+import { stripHtml, truncateDescription } from '@/utils/string';
 
 function NoticeDetailPage() {
   const notice = Route.useLoaderData();

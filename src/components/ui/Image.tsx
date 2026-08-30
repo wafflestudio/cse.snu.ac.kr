@@ -1,7 +1,11 @@
 import type { ImgHTMLAttributes, SyntheticEvent } from 'react';
 import { useState } from 'react';
 import SnuLogo from '@/components/layout/LeftNav/assets/SNU_Logo.svg?react';
-import { buildOptimizedUrl, shouldOptimize } from '@/utils/image';
+import {
+  buildOptimizedUrl,
+  buildResponsiveSrc,
+  shouldOptimize,
+} from '@/utils/imageUrl';
 
 type ImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & {
   src?: string | null;
@@ -9,6 +13,7 @@ type ImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & {
   width?: number;
 };
 
+/** 로드 실패·src 없음이면 로고 플레이스홀더. 최적화 URL 조립은 utils/imageUrl. */
 export default function Image({
   src: _src,
   onError,
@@ -44,49 +49,18 @@ export default function Image({
     );
   }
 
-  if (!shouldOptimize(_src)) {
-    return (
-      <img
-        {...props}
-        src={_src}
-        alt={props.alt}
-        width={width}
-        height={height}
-        className={className}
-        onError={handleError}
-      />
-    );
-  }
+  // 최적화 대상이 아니면 원본 그대로. width가 있으면 1x·2x·3x srcSet까지.
+  const { src, srcSet } = !shouldOptimize(_src)
+    ? { src: _src, srcSet: undefined }
+    : width
+      ? buildResponsiveSrc(_src, width, quality)
+      : { src: buildOptimizedUrl(_src, quality), srcSet: undefined };
 
-  // width가 있으면 srcset 생성 (1x, 2x, 3x)
-  if (width) {
-    const src1x = buildOptimizedUrl(_src, quality, width);
-    const src2x = buildOptimizedUrl(_src, quality, width * 2);
-    const src3x = buildOptimizedUrl(_src, quality, width * 3);
-    const srcset = `${src1x} ${width}w, ${src2x} ${width * 2}w, ${src3x} ${
-      width * 3
-    }w`;
-
-    return (
-      <img
-        {...props}
-        src={src1x}
-        srcSet={srcset}
-        alt={props.alt}
-        width={width}
-        height={height}
-        className={className}
-        onError={handleError}
-      />
-    );
-  }
-
-  // width가 없으면 기존 방식
-  const src = buildOptimizedUrl(_src, quality);
   return (
     <img
       {...props}
       src={src}
+      srcSet={srcSet}
       alt={props.alt}
       width={width}
       height={height}

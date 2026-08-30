@@ -9,8 +9,8 @@ import { createSelectionUrl } from '@/hooks/useSelectionList';
 import { useResearchSubNav } from '@/hooks/useSubNav';
 import type { ResearchLabWithLanguage } from '@/types/api/v2/research/labs';
 import { api } from '@/utils/api';
-import { stripHtml, truncateDescription } from '@/utils/metadata';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
+import { stripHtml, truncateDescription } from '@/utils/string';
 import PentagonLong from '../assets/pentagon_long.svg?react';
 import PentagonShort from '../assets/pentagon_short.svg?react';
 

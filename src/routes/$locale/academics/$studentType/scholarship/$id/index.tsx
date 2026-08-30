@@ -10,8 +10,8 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import type { Scholarship } from '@/types/api/v2/academics/scholarship';
 import { api } from '@/utils/api';
-import { stripHtml, truncateDescription } from '@/utils/metadata';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
+import { stripHtml, truncateDescription } from '@/utils/string';
 
 function ScholarshipDetailPage() {
   const loaderData = Route.useLoaderData();

@@ -14,8 +14,8 @@ import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import type { Seminar } from '@/types/api/v2/seminar';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
-import { stripHtml, truncateDescription } from '@/utils/metadata';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
+import { stripHtml, truncateDescription } from '@/utils/string';
 
 function SeminarDetailPage() {
   const seminar = Route.useLoaderData();

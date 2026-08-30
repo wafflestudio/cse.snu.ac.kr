@@ -12,8 +12,8 @@ import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import type { News } from '@/types/api/v2/news';
 import { api } from '@/utils/api';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
-import { stripHtml, truncateDescription } from '@/utils/metadata';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
+import { stripHtml, truncateDescription } from '@/utils/string';
 
 function NewsDetailPage() {
   const news = Route.useLoaderData();
