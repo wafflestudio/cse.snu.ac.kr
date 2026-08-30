@@ -1,6 +1,6 @@
+import { useNavigate, useSearch } from '@tanstack/react-router';
 import { Tag } from '@/components/ui/Tag';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import type { SortOption, ViewOption } from '@/types/academics';
 import translations from './translations.json';
 
@@ -13,22 +13,18 @@ export default function CourseToolbar({
   hideViewOption = false,
   hideSortOption = false,
 }: CourseToolbarProps) {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const viewOption = getViewOption(searchParams);
-  const sortOption = getSortOption(searchParams);
+  const navigate = useNavigate();
+  const search = useSearch({ strict: false });
+  const viewOption = getViewOption(search.view);
+  const sortOption = getSortOption(search.sort);
 
   const changeOption = (
     type: 'view' | 'sort',
     option: ViewOption | SortOption,
   ) => {
-    setSearchParams((prev) => {
-      const next = new URLSearchParams(prev);
-      if (type === 'view') {
-        next.set('view', option as ViewOption);
-      } else {
-        next.set('sort', option as SortOption);
-      }
-      return next;
+    navigate({
+      to: '.',
+      search: (prev) => ({ ...prev, [type]: option }),
     });
   };
 
@@ -108,15 +104,13 @@ function SortOptions({ selectedOption, changeOption }: SortOptionsProps) {
   );
 }
 
-const getViewOption = (params: URLSearchParams): ViewOption => {
-  const view = params.get('view');
+const getViewOption = (view: unknown): ViewOption => {
   return VIEW_OPTIONS.includes(view as ViewOption)
     ? (view as ViewOption)
     : '목록형';
 };
 
-const getSortOption = (params: URLSearchParams): SortOption => {
-  const sort = params.get('sort');
+const getSortOption = (sort: unknown): SortOption => {
   return SORT_OPTIONS.includes(sort as SortOption)
     ? (sort as SortOption)
     : '학년';

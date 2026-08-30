@@ -1,6 +1,6 @@
+import { useNavigate, useSearch } from '@tanstack/react-router';
 import clsx from 'clsx';
 import Node from '@/components/ui/Nodes';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import Input from './Input';
 import SelectedTags from './SelectedTags';
 import TagCheckBoxes from './TagCheckboxes';
@@ -16,22 +16,24 @@ export default function SearchBox({
   disabled = false,
   formOnly = false,
 }: SearchBoxProps) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const search = useSearch({ strict: false });
 
-  const selectedTags = searchParams.getAll('tag');
-  const initialKeyword = searchParams.get('keyword') ?? '';
+  const selectedTags = search.tag ?? [];
+  const initialKeyword = search.keyword ?? '';
 
   const handleSearch = (form: HTMLFormElement) => {
     const formData = new FormData(form);
     const keyword = String(formData.get('keyword') ?? '').trim();
 
-    const newParams = new URLSearchParams();
-    newParams.set('keyword', keyword);
-    for (const tag of selectedTags) {
-      newParams.append('tag', tag);
-    }
-
-    setSearchParams(newParams);
+    // 검색 실행 시 페이지는 1로(=생략). 태그는 유지.
+    navigate({
+      to: '.',
+      search: {
+        keyword: keyword || undefined,
+        tag: selectedTags.length > 0 ? selectedTags : undefined,
+      },
+    });
   };
 
   return (

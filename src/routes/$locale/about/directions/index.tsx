@@ -11,6 +11,7 @@ import { useAboutSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { DirectionsResponse } from '@/types/api/v2/about/directions';
 import { api } from '@/utils/api';
+import { stringParam } from '@/utils/searchSchema';
 import KakaoMap from './-components/KakaoMap';
 
 const META = {
@@ -112,6 +113,9 @@ function DirectionsPage() {
 }
 
 export const Route = createFileRoute('/$locale/about/directions/')({
+  validateSearch: (search: Record<string, unknown>) => ({
+    selected: stringParam(search.selected),
+  }),
   loader: async () => {
     const data = await api
       .get(`v2/about/directions`)

@@ -12,14 +12,20 @@ export const pageNumParam = (value: unknown): number | undefined => {
   return Number.isInteger(n) && n > 1 ? n : undefined;
 };
 
-/** 비어 있지 않을 때만 남기는 문자열. */
-export const stringParam = (value: unknown): string | undefined =>
-  typeof value === 'string' && value ? value : undefined;
+/**
+ * 비어 있지 않을 때만 남기는 문자열.
+ * ⚠️ 숫자도 받는다 — 기본 파서가 `?selected=123`을 JSON.parse해 number로 주기 때문에
+ * 문자열만 받으면 숫자 id 선택이 조용히 사라진다(연구 센터/그룹에서 겪음).
+ */
+export const stringParam = (value: unknown): string | undefined => {
+  if (typeof value === 'number') return String(value);
+  return typeof value === 'string' && value ? value : undefined;
+};
 
 /** 반복 키(`?tag=a&tag=b`)는 배열, 1개면 문자열로 들어온다 → 비어 있지 않을 때만 배열로. */
 export const stringArrayParam = (value: unknown): string[] | undefined => {
   const arr = Array.isArray(value)
-    ? value.filter((v): v is string => typeof v === 'string' && v !== '')
+    ? value.map(String).filter((v) => v !== '')
     : typeof value === 'string' && value
       ? [value]
       : [];

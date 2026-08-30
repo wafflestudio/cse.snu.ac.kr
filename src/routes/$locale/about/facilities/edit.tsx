@@ -9,7 +9,6 @@ import LanguagePicker, {
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import type {
   FacilitiesResponse,
   Facility,
@@ -32,7 +31,6 @@ function FacilitiesEdit() {
   const navigate = useNavigate();
   const { localizedPath } = useLanguage({});
   const [language, setLanguage] = useState<Language>('ko');
-  const [_searchParams, setSearchParams] = useSearchParams();
 
   const defaultValues: FacilityFormData = {
     ko: {
@@ -83,7 +81,7 @@ function FacilitiesEdit() {
     ko: Facility;
     en: Facility;
   }) => {
-    setSearchParams({ id: newFacility.ko.id.toString() });
+    navigate({ to: '.', search: { id: String(newFacility.ko.id) } });
     methods.reset({
       ko: {
         name: newFacility.ko.name,

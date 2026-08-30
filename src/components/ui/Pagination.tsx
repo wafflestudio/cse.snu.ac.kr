@@ -1,3 +1,4 @@
+import { useNavigate } from '@tanstack/react-router';
 import clsx from 'clsx';
 import type { LucideIcon } from 'lucide-react';
 import {
@@ -7,7 +8,6 @@ import {
   ChevronsRight,
 } from 'lucide-react';
 import useIsMobile from '@/hooks/useResponsive';
-import { useSearchParams } from '@/hooks/useSearchParams';
 
 interface PaginationProps {
   page: number;
@@ -23,7 +23,7 @@ export default function Pagination({
   totalPages,
   disabled = false,
 }: PaginationProps) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const isMobile = useIsMobile();
   const pageLimit = isMobile ? MOBILE_PAGE_COUNT : DESKTOP_PAGE_COUNT;
   const safeTotalPages = Math.max(1, totalPages);
@@ -32,9 +32,13 @@ export default function Pagination({
 
   const handleChange = (nextPage: number) => {
     if (disabled || nextPage === page) return;
-    const newParams = new URLSearchParams(searchParams);
-    newParams.set('pageNum', nextPage.toString());
-    setSearchParams(newParams);
+    navigate({
+      to: '.',
+      search: (prev) => ({
+        ...prev,
+        pageNum: nextPage > 1 ? nextPage : undefined,
+      }),
+    });
   };
 
   return (

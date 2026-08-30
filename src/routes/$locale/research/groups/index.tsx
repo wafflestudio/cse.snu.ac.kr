@@ -14,6 +14,7 @@ import { useResearchSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { ResearchGroupsResponse } from '@/types/api/v2/research/groups';
 import { api } from '@/utils/api';
+import { stringParam } from '@/utils/searchSchema';
 
 const META = {
   ko: {
@@ -161,6 +162,9 @@ function ResearchGroupsPage() {
 }
 
 export const Route = createFileRoute('/$locale/research/groups/')({
+  validateSearch: (search: Record<string, unknown>) => ({
+    selected: stringParam(search.selected),
+  }),
   loader: async ({ params }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
     const query = new URLSearchParams();

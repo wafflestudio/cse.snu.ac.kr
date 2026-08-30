@@ -1,7 +1,7 @@
+import { useNavigate } from '@tanstack/react-router';
 import { RefreshCw } from 'lucide-react';
 import { Tag } from '@/components/ui/Tag';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useSearchParams } from '@/hooks/useSearchParams';
 
 interface SelectedTagsProps {
   tags: string[];
@@ -9,28 +9,29 @@ interface SelectedTagsProps {
 }
 
 export default function SelectedTags({ tags, disabled }: SelectedTagsProps) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const isTagExist = tags.length > 0;
   const { tUnsafe } = useLanguage();
 
   const deleteTag = (targetTag: string) => {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.delete('tag');
-    newParams.delete('pageNum');
-
     const filteredTags = tags.filter((tag) => tag !== targetTag);
-    for (const tag of filteredTags) {
-      newParams.append('tag', tag);
-    }
-
-    setSearchParams(newParams, { preventScrollReset: true });
+    navigate({
+      to: '.',
+      search: (prev) => ({
+        ...prev,
+        tag: filteredTags.length > 0 ? filteredTags : undefined,
+        pageNum: undefined,
+      }),
+      resetScroll: false,
+    });
   };
 
   const resetTags = () => {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.delete('tag');
-    newParams.delete('pageNum');
-    setSearchParams(newParams, { preventScrollReset: true });
+    navigate({
+      to: '.',
+      search: (prev) => ({ ...prev, tag: undefined, pageNum: undefined }),
+      resetScroll: false,
+    });
   };
 
   return (

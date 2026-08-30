@@ -1,9 +1,8 @@
-import { Link } from '@tanstack/react-router';
+import { Link, useSearch } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import Checkbox from '@/components/ui/Checkbox';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import type { NoticePreview } from '@/types/api/v2/notice';
 import ClipIcon from '../assets/clip.svg?react';
 import LockIcon from '../assets/lock.svg?react';
@@ -28,7 +27,7 @@ export default function NoticeListRow({
   isSelected = false,
   onToggleSelect,
 }: NoticeListRowProps) {
-  const [searchParams] = useSearchParams();
+  const search = useSearch({ strict: false });
   const { locale } = useLanguage();
 
   return (
@@ -60,7 +59,7 @@ export default function NoticeListRow({
         hasAttachment={post.hasAttachment}
         id={post.id}
         isPinned={post.isPinned}
-        pageNum={searchParams.get('pageNum')}
+        pageNum={search.pageNum ? String(search.pageNum) : null}
         isEditMode={isEditMode}
       />
 

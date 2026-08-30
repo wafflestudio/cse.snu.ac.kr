@@ -1,5 +1,5 @@
+import { useSearch } from '@tanstack/react-router';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useSearchParams } from '@/hooks/useSearchParams';
 
 // 훅 내부에서만 사용하는 인코딩/디코딩 함수
 const encodeParam = (words: string) => words.replace(/\s+/g, '-');
@@ -38,7 +38,7 @@ export function useSelectionList<T>(
   options: UseSelectionListOptions<T>,
 ): UseSelectionListReturn<T> {
   const { items, getItem } = options;
-  const [searchParams] = useSearchParams();
+  const search = useSearch({ strict: false });
   const { pathWithoutLocale, localizedPath } = useLanguage();
 
   // ID를 string으로 변환하는 헬퍼
@@ -48,7 +48,7 @@ export function useSelectionList<T>(
   };
 
   // 선택된 항목 찾기
-  const selectedParam = searchParams.get('selected');
+  const selectedParam = search.selected;
   const defaultItem = items[0];
 
   let selectedItem: T | undefined;

@@ -9,6 +9,7 @@ import { useAboutSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { StudentClubsResponse } from '@/types/api/v2/about/student-clubs';
 import { api } from '@/utils/api';
+import { stringParam } from '@/utils/searchSchema';
 import ClubDetails from './-components/ClubDetails';
 
 const META = {
@@ -69,6 +70,9 @@ function StudentClubsPage() {
 }
 
 export const Route = createFileRoute('/$locale/about/student-clubs/')({
+  validateSearch: (search: Record<string, unknown>) => ({
+    selected: stringParam(search.selected),
+  }),
   loader: async () => {
     const response = await api
       .get(`v2/about/student-clubs`)

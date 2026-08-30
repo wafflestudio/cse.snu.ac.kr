@@ -14,6 +14,7 @@ import { useResearchSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { ResearchCentersResponse } from '@/types/api/v2/research/centers';
 import { api } from '@/utils/api';
+import { stringParam } from '@/utils/searchSchema';
 import LinkIcon from './assets/link_icon.svg?react';
 
 const META = {
@@ -163,6 +164,9 @@ function ResearchCenterTitle({ name, link }: { name: string; link: string }) {
 }
 
 export const Route = createFileRoute('/$locale/research/centers/')({
+  validateSearch: (search: Record<string, unknown>) => ({
+    selected: stringParam(search.selected),
+  }),
   loader: async ({ params }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
     const query = new URLSearchParams();

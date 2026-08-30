@@ -1,6 +1,6 @@
+import { useNavigate } from '@tanstack/react-router';
 import Checkbox from '@/components/ui/Checkbox';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useSearchParams } from '@/hooks/useSearchParams';
 
 interface TagFilterProps {
   tags: string[];
@@ -14,22 +14,22 @@ export default function TagCheckBoxes({
   disabled,
 }: TagFilterProps) {
   const { t, tUnsafe } = useLanguage({ 태그: 'Tags' });
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const toggleCheck = (tag: string, isChecked: boolean) => {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.delete('tag');
-    newParams.delete('pageNum');
-
     const newTags = isChecked
       ? [...selectedTags, tag]
       : selectedTags.filter((t) => t !== tag);
 
-    for (const t of newTags) {
-      newParams.append('tag', t);
-    }
-
-    setSearchParams(newParams, { preventScrollReset: true });
+    navigate({
+      to: '.',
+      search: (prev) => ({
+        ...prev,
+        tag: newTags.length > 0 ? newTags : undefined,
+        pageNum: undefined, // 필터가 바뀌면 1페이지로
+      }),
+      resetScroll: false,
+    });
   };
 
   const longestTag = Math.max(...tags.map((tag) => tag.length));

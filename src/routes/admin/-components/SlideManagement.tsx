@@ -1,11 +1,10 @@
-import { useRouter } from '@tanstack/react-router';
+import { useRouter, useSearch } from '@tanstack/react-router';
 import { SquareCheck } from 'lucide-react';
 import { useState } from 'react';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import Pagination from '@/components/ui/Pagination';
 import { toast } from '@/components/ui/sonner';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import { useSetToggle } from '@/hooks/useSetToggle';
 import type { SlidePreview } from '@/types/api/v2/admin';
 import { api } from '@/utils/api';
@@ -23,12 +22,12 @@ export default function SlideManagement({
   total,
 }: SlideManagementProps) {
   const router = useRouter();
-  const [searchParams] = useSearchParams();
+  const search = useSearch({ strict: false });
   const { selected: selectedKeys, toggle: toggleSelection } =
     useSetToggle<string>();
   const [showDialog, setShowDialog] = useState(false);
 
-  const pageNum = parseInt(searchParams.get('pageNum') || '1', 10);
+  const pageNum = search.pageNum ?? 1;
   const totalPages = Math.ceil(total / POST_LIMIT);
 
   const handleBatchUnslide = async () => {

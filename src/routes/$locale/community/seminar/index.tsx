@@ -5,7 +5,6 @@ import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import Pagination from '@/components/ui/Pagination';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import type { SeminarPreviewList } from '@/types/api/v2/seminar';
 import { api } from '@/utils/api';
@@ -36,7 +35,7 @@ interface SeminarSearch {
 function SeminarPage() {
   const data = Route.useLoaderData();
 
-  const [searchParams] = useSearchParams();
+  const search = Route.useSearch();
   const { t, localizedPath, locale } = useLanguage({
     세미나: 'Seminars',
     소식: 'Community',
@@ -45,7 +44,7 @@ function SeminarPage() {
   const subNav = useCommunitySubNav();
   const meta = META[locale];
 
-  const pageNum = Math.max(1, parseInt(searchParams.get('pageNum') || '1', 10));
+  const pageNum = search.pageNum ?? 1;
   const totalPages = Math.ceil(data.total / POSTS_COUNT_PER_PAGE);
 
   return (

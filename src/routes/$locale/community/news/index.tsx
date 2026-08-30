@@ -5,7 +5,6 @@ import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import Pagination from '@/components/ui/Pagination';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import type { NewsPreview, NewsPreviewList } from '@/types/api/v2/news';
 import { api } from '@/utils/api';
@@ -41,7 +40,7 @@ const META = {
 function NewsPage() {
   const data = Route.useLoaderData();
 
-  const [searchParams] = useSearchParams();
+  const search = Route.useSearch();
   const { t, localizedPath, locale } = useLanguage({
     '새 소식': 'News',
     커뮤니티: 'Community',
@@ -49,7 +48,7 @@ function NewsPage() {
   const subNav = useCommunitySubNav();
   const meta = META[locale];
 
-  const pageNum = parseInt(searchParams.get('pageNum') || '1', 10);
+  const { pageNum = 1 } = search;
   const totalPages = Math.ceil(data.total / POST_LIMIT);
 
   return (

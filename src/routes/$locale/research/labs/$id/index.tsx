@@ -10,6 +10,7 @@ import { useResearchSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { ResearchLabWithLanguage } from '@/types/api/v2/research/labs';
 import { api } from '@/utils/api';
+import { stringParam } from '@/utils/searchSchema';
 import { stripHtml, truncateDescription } from '@/utils/string';
 import PentagonLong from '../assets/pentagon_long.svg?react';
 import PentagonShort from '../assets/pentagon_short.svg?react';
@@ -196,6 +197,9 @@ function StreamLink({
 }
 
 export const Route = createFileRoute('/$locale/research/labs/$id/')({
+  validateSearch: (search: Record<string, unknown>) => ({
+    selected: stringParam(search.selected),
+  }),
   loader: async ({ params }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
     const id = Number(params.id);

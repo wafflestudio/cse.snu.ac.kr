@@ -1,10 +1,9 @@
-import { Link } from '@tanstack/react-router';
+import { Link, useSearch } from '@tanstack/react-router';
 import dayjs, { type Dayjs } from 'dayjs';
 import type { ElementType, ReactNode } from 'react';
 import 'dayjs/locale/ko';
 import Image from '@/components/ui/Image';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import type { SeminarPreview } from '@/types/api/v2/seminar';
 import CalendarIcon from '../assets/calendar.svg?react';
 import DistanceIcon from '../assets/distance.svg?react';
@@ -17,9 +16,9 @@ interface SeminarRowProps {
 export default function SeminarRow({
   seminar: { id, imageURL, title, name, affiliation, startDate, location },
 }: SeminarRowProps) {
-  const [searchParams] = useSearchParams();
+  const search = useSearch({ strict: false });
   const { locale, localizedPath } = useLanguage();
-  const pageNum = searchParams.get('pageNum');
+  const pageNum = search.pageNum;
   const detailPath = pageNum
     ? `${localizedPath(`/community/seminar/${id}`)}?pageNum=${pageNum}`
     : localizedPath(`/community/seminar/${id}`);

@@ -1,3 +1,4 @@
+import { useSearch } from '@tanstack/react-router';
 import { Info } from 'lucide-react';
 import { useState } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
@@ -5,7 +6,6 @@ import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/hooks/useLanguage';
 import useIsMobile from '@/hooks/useResponsive';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import AddCourseModal from '@/routes/$locale/academics/-components/courses/AddCourseModal';
 import CourseCardGrid from '@/routes/$locale/academics/-components/courses/CourseCardGrid';
@@ -69,12 +69,12 @@ export default function CoursesPage({
   const _studentLabel = studentType === 'graduate' ? t('대학원') : t('학부');
   const meta = META[studentType][locale];
   const isMobile = useIsMobile();
-  const [searchParams] = useSearchParams();
+  const search = useSearch({ strict: false });
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [isAddCourseModalOpen, setIsAddCourseModalOpen] = useState(false);
 
-  const viewOption = getViewOption(searchParams);
-  const sortOption = getSortOption(searchParams);
+  const viewOption = getViewOption(search.view);
+  const sortOption = getSortOption(search.sort);
   const shouldHideSort = hideSortOption ?? studentType === 'graduate';
   const effectiveSortOption = shouldHideSort ? '학년' : sortOption;
   const effectiveViewOption = isMobile ? '목록형' : viewOption;
@@ -131,15 +131,13 @@ export default function CoursesPage({
   );
 }
 
-const getViewOption = (params: URLSearchParams): ViewOption => {
-  const view = params.get('view');
+const getViewOption = (view: unknown): ViewOption => {
   return VIEW_OPTIONS.includes(view as ViewOption)
     ? (view as ViewOption)
     : '목록형';
 };
 
-const getSortOption = (params: URLSearchParams): SortOption => {
-  const sort = params.get('sort');
+const getSortOption = (sort: unknown): SortOption => {
   return SORT_OPTIONS.includes(sort as SortOption)
     ? (sort as SortOption)
     : '학년';
