@@ -69,14 +69,13 @@ export default function CourseEditor({
           placeholder={t('교과목명')}
           options={{ required: { value: true, message: t('교과목명') } }}
         />
-        {/** biome-ignore lint/a11y/noStaticElementInteractions: TODO */}
-        {/** biome-ignore lint/a11y/useKeyWithClickEvents: TODO */}
-        <div
-          className="h-8 w-[120px] cursor-default rounded-sm border border-neutral-300 pl-2 text-sm leading-[31px] text-neutral-400"
+        <button
+          type="button"
+          className="h-8 w-[120px] cursor-default rounded-sm border border-neutral-300 pl-2 text-left text-sm leading-[31px] text-neutral-400"
           onClick={() => toast.error(t('교과목 코드는 수정할 수 없습니다'))}
         >
           {defaultValues.code}
-        </div>
+        </button>
         <Form.Dropdown
           contents={Object.keys(CLASSIFICATION).map((value) => ({
             label: value,

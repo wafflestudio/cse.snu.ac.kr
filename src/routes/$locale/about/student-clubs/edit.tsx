@@ -49,7 +49,6 @@ function StudentClubsEdit() {
 
     const removeImage = !!defaultValues.image && !image;
     formData.appendJson('request', {
-      // TODO: 이거 prod에는 없었던거같은데...
       ko: { ...ko, id: club.ko.id },
       en: { ...en, id: club.en.id },
       removeImage,
