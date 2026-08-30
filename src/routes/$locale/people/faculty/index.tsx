@@ -4,10 +4,10 @@ import { useState } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { usePeopleSubNav } from '@/hooks/useSubNav';
 import type { FacultyList, SimpleFaculty } from '@/types/api/v2/professor';
+import { api } from '@/utils/api';
 import PeopleGrid, {
   type PeopleCardContentItem,
   type PeopleCardProps,
@@ -175,12 +175,9 @@ const toCard = (
 export const Route = createFileRoute('/$locale/people/faculty/')({
   loader: async ({ params }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
-    const response = await fetch(
-      `${BASE_URL}/v2/professor/active?language=${locale}`,
-    );
-    if (!response.ok) throw new Error('Failed to fetch faculty list');
-
-    return (await response.json()) as FacultyList;
+    return api
+      .get(`v2/professor/active?language=${locale}`)
+      .json<FacultyList>();
   },
   component: FacultyPage,
 });

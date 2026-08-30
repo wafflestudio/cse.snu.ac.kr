@@ -1,12 +1,13 @@
+import { useNavigate, useSearch } from '@tanstack/react-router';
 import { Search } from 'lucide-react';
 import { type ChangeEvent, type FormEvent, useEffect, useState } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useSearchParams } from '@/hooks/useSearchParams';
 
 export default function SeminarSearchBar() {
   const { t } = useLanguage({ 검색: 'Search' });
-  const [searchParams, setSearchParams] = useSearchParams();
-  const keyword = searchParams.get('keyword') ?? '';
+  const navigate = useNavigate();
+  const search = useSearch({ strict: false });
+  const keyword = search.keyword ?? '';
   const [text, setText] = useState(keyword);
 
   useEffect(() => {
@@ -20,16 +21,14 @@ export default function SeminarSearchBar() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const trimmedText = text.trim();
-    const params = new URLSearchParams(searchParams);
-
-    if (trimmedText) {
-      params.set('keyword', trimmedText);
-    } else {
-      params.delete('keyword');
-    }
-
-    params.set('pageNum', '1');
-    setSearchParams(params);
+    navigate({
+      to: '.',
+      search: (prev) => ({
+        ...prev,
+        keyword: trimmedText || undefined,
+        pageNum: undefined, // 검색하면 1페이지로
+      }),
+    });
   };
 
   return (

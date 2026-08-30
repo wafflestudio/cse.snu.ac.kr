@@ -6,16 +6,14 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import Node from '@/components/ui/Nodes';
 import { toast } from '@/components/ui/sonner';
 import { Tag } from '@/components/ui/Tag';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { News } from '@/types/api/v2/news';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
-import { fetchOk } from '@/utils/fetch';
-import { searchLoaderDeps } from '@/utils/loaderDeps';
-import { stripHtml, truncateDescription } from '@/utils/metadata';
-import { forwardAuthHeaders } from '@/utils/ssr';
+import { api } from '@/utils/api';
+import { pageNumParam } from '@/utils/searchSchema';
+import { stripHtml, truncateDescription } from '@/utils/string';
 
 function NewsDetailPage() {
   const news = Route.useLoaderData();
@@ -36,9 +34,7 @@ function NewsDetailPage() {
 
   const handleDelete = async () => {
     try {
-      await fetchOk(`${BASE_URL}/v2/news/${news.id}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2/news/${news.id}`);
       toast.success('게시글을 삭제했습니다.');
       navigate({ to: localizedPath('/community/news') });
     } catch {
@@ -110,10 +106,11 @@ function NewsDetailPage() {
 }
 
 export const Route = createFileRoute('/$locale/community/news/$id')({
-  loaderDeps: searchLoaderDeps,
-  loader: async ({ params, location }) => {
-    const searchStr = location.searchStr;
-    const sp = new URLSearchParams(searchStr);
+  validateSearch: (search: Record<string, unknown>) => ({
+    pageNum: pageNumParam(search.pageNum),
+  }),
+  loaderDeps: ({ search }) => search,
+  loader: async ({ params, deps }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
     const id = Number(params.id);
 
@@ -124,25 +121,16 @@ export const Route = createFileRoute('/$locale/community/news/$id')({
     const searchParams = new URLSearchParams();
     searchParams.append('language', locale);
 
-    const pageNum = sp.get('pageNum');
-    if (pageNum) searchParams.append('pageNum', pageNum);
+    const pageNum = deps.pageNum;
+    if (pageNum) searchParams.append('pageNum', String(pageNum));
 
-    const headers = forwardAuthHeaders();
-
-    const response = await fetch(
-      `${BASE_URL}/v2/news/${id}?${searchParams.toString()}`,
-      { headers },
-    );
-
-    if (!response.ok) {
-      throw new Response('Not Found', { status: 404 });
-    }
-
-    const news = (await response.json()) as News;
+    const news = await api
+      .get(`v2/news/${id}?${searchParams.toString()}`)
+      .json<News>();
 
     return {
       ...news,
-      description: await processHtmlForCsp(news.description),
+      description: await processHtmlForCsp({ data: news.description }),
     };
   },
   component: NewsDetailPage,

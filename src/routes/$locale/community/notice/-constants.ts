@@ -1,3 +1,4 @@
+/** 공지 태그 목록(필터·편집기 공용). 백엔드 enrollTag와 문자열이 일치해야 한다. */
 export const NOTICE_TAGS = [
   '수업',
   '장학',
@@ -12,17 +13,4 @@ export const NOTICE_TAGS = [
   '외부행사/프로그램',
   '내부행사/프로그램',
   'international',
-];
-
-export const NEWS_TAGS = [
-  '행사',
-  '연구',
-  '수상',
-  '채용',
-  '칼럼',
-  '강연',
-  '교육',
-  '인터뷰',
-  '진로',
-  '과거 미분류',
 ];

@@ -8,13 +8,13 @@ import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import Node from '@/components/ui/Nodes';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useResearchSubNav } from '@/hooks/useSubNav';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { ResearchCentersResponse } from '@/types/api/v2/research/centers';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
-import { fetchJson, fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
+import { stringParam } from '@/utils/searchSchema';
 import LinkIcon from './assets/link_icon.svg?react';
 
 const META = {
@@ -51,13 +51,11 @@ function ResearchCentersPage() {
 
     try {
       // 상세 정보를 가져와서 ko, en ID를 얻음
-      const data = await fetchJson<{ ko: { id: number }; en: { id: number } }>(
-        `${BASE_URL}/v2/research/${selectedCenter.id}`,
-      );
+      const data = await api
+        .get(`v2/research/${selectedCenter.id}`)
+        .json<{ ko: { id: number }; en: { id: number } }>();
 
-      await fetchOk(`/api/v2/research/${data.ko.id}/${data.en.id}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2/research/${data.ko.id}/${data.en.id}`);
 
       toast.success('연구 센터를 삭제했습니다.');
       router.invalidate();
@@ -166,22 +164,22 @@ function ResearchCenterTitle({ name, link }: { name: string; link: string }) {
 }
 
 export const Route = createFileRoute('/$locale/research/centers/')({
+  validateSearch: (search: Record<string, unknown>) => ({
+    selected: stringParam(search.selected),
+  }),
   loader: async ({ params }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
     const query = new URLSearchParams();
     query.append('language', locale);
 
-    const response = await fetch(
-      `${BASE_URL}/v2/research/centers?${query.toString()}`,
-    );
-    if (!response.ok) throw new Error('Failed to fetch research centers');
-
-    const data = (await response.json()) as ResearchCentersResponse;
+    const data = await api
+      .get(`v2/research/centers?${query.toString()}`)
+      .json<ResearchCentersResponse>();
 
     return Promise.all(
       data.map(async (center) => ({
         ...center,
-        description: await processHtmlForCsp(center.description),
+        description: await processHtmlForCsp({ data: center.description }),
       })),
     );
   },

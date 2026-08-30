@@ -8,13 +8,12 @@ import LanguagePicker, {
 } from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { AboutContent } from '@/types/api/v2/about/content';
 import type { EditorFile, EditorImage } from '@/types/form';
 import { LOCALES } from '@/types/i18n';
-import { fetchJson, fetchOk } from '@/utils/fetch';
-import { FormData2, getDeleteIds } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';
 
 interface AboutFormData {
   htmlKo: string;
@@ -55,7 +54,7 @@ function AboutEdit() {
 
   const onSubmit = methods.handleSubmit(
     async ({ htmlKo, htmlEn, image, files }) => {
-      const formData = new FormData2();
+      const formData = new ApiFormData();
 
       const deleteIds = getDeleteIds({ prev: defaultValues.files, cur: files });
 
@@ -68,10 +67,7 @@ function AboutEdit() {
       formData.appendIfLocal('newAttachments', files);
 
       try {
-        await fetchOk(`/api/v2/about/${endpoint}`, {
-          method: 'PUT',
-          body: formData,
-        });
+        await api.put(`v2/about/${endpoint}`, { body: formData });
 
         navigate({ to: localizedPath(`/about/${type}`) });
       } catch {
@@ -136,9 +132,7 @@ export const Route = createFileRoute('/$locale/about/$type/edit')({
 
     const [koData, enData] = await Promise.all(
       LOCALES.map((locale) =>
-        fetchJson<AboutContent>(
-          `${BASE_URL}/v2/about/${endpoint}?language=${locale}`,
-        ),
+        api.get(`v2/about/${endpoint}?language=${locale}`).json<AboutContent>(),
       ),
     );
 

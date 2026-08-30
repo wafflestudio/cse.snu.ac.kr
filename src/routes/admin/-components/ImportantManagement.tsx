@@ -1,15 +1,13 @@
-import { useRouter } from '@tanstack/react-router';
+import { useRouter, useSearch } from '@tanstack/react-router';
 import { SquareCheck } from 'lucide-react';
 import { useState } from 'react';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import Pagination from '@/components/ui/Pagination';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import { useSetToggle } from '@/hooks/useSetToggle';
 import type { ImportantPreview } from '@/types/api/v2/admin';
-import { fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 import AdminTable from './AdminTable';
 
 const POST_LIMIT = 40;
@@ -24,12 +22,12 @@ export default function ImportantManagement({
   total,
 }: ImportantManagementProps) {
   const router = useRouter();
-  const [searchParams] = useSearchParams();
+  const search = useSearch({ strict: false });
   const { selected: selectedKeys, toggle: toggleSelection } =
     useSetToggle<string>();
   const [showDialog, setShowDialog] = useState(false);
 
-  const pageNum = parseInt(searchParams.get('pageNum') || '1', 10);
+  const pageNum = search.pageNum ?? 1;
   const totalPages = Math.ceil(total / POST_LIMIT);
 
   const handleBatchUnimportant = async () => {
@@ -38,8 +36,7 @@ export default function ImportantManagement({
         const [category, id] = key.split('-');
         return { category, id: parseInt(id, 10) };
       });
-      await fetchOk(`${BASE_URL}/v2/admin/important`, {
-        method: 'PATCH',
+      await api.patch(`v2/admin/important`, {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ targetInfos }),
       });

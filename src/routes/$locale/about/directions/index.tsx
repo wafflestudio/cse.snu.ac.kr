@@ -1,17 +1,17 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import SelectionList from '@/components/feature/selection/SelectionList';
 import footerTranslations from '@/components/layout/Footer/translations.json';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useAboutSubNav } from '@/hooks/useSubNav';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { DirectionsResponse } from '@/types/api/v2/about/directions';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { api } from '@/utils/api';
+import { stringParam } from '@/utils/searchSchema';
 import KakaoMap from './-components/KakaoMap';
 
 const META = {
@@ -113,21 +113,27 @@ function DirectionsPage() {
 }
 
 export const Route = createFileRoute('/$locale/about/directions/')({
+  validateSearch: (search: Record<string, unknown>) => ({
+    selected: stringParam(search.selected),
+  }),
   loader: async () => {
-    const response = await fetch(`${BASE_URL}/v2/about/directions`);
-    if (!response.ok) throw new Error('Failed to fetch directions');
-
-    const data = (await response.json()) as DirectionsResponse;
+    const data = await api
+      .get(`v2/about/directions`)
+      .json<DirectionsResponse>();
 
     return Promise.all(
       data.map(async (direction) => ({
         ko: {
           ...direction.ko,
-          description: await processHtmlForCsp(direction.ko.description),
+          description: await processHtmlForCsp({
+            data: direction.ko.description,
+          }),
         },
         en: {
           ...direction.en,
-          description: await processHtmlForCsp(direction.en.description),
+          description: await processHtmlForCsp({
+            data: direction.en.description,
+          }),
         },
       })),
     );

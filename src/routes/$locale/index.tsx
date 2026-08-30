@@ -1,13 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router';
-
 import Header from '@/components/layout/Header';
 import Image from '@/components/ui/Image';
 import ImageModal from '@/components/ui/ImageModal';
-import { BASE_URL } from '@/constants/api';
+import { SITE_NAME } from '@/constants/site';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { MainResponse } from '@/types/api/v2';
 import type { ImageModal as ImageModalData } from '@/types/api/v2/admin';
-import { SITE_NAME } from '@/utils/metadata';
+import { api } from '@/utils/api';
 import GraphicSection from './-components/GraphicSection';
 import ImportantSection from './-components/ImportantSection';
 import LinkSection from './-components/LinkSection';
@@ -72,23 +71,21 @@ function MainPage() {
 
 export const Route = createFileRoute('/$locale/')({
   loader: async () => {
-    const [mainRes, modalRes] = await Promise.all([
-      fetch(`${BASE_URL}/v2`),
-      fetch(`${BASE_URL}/v2/image-modal`),
+    // 이미지 팝업은 선택적 — 실패해도 메인은 렌더한다(빈 배열로 폴백).
+    const [main, modals] = await Promise.all([
+      api.get('v2').json<MainResponse>(),
+      api
+        .get('v2/image-modal')
+        .json<ImageModalData[]>()
+        .catch(() => []),
     ]);
-    if (!mainRes.ok) throw new Error('Failed to fetch main data');
 
-    const main = (await mainRes.json()) as MainResponse;
-
-    let imageModal: ImageModalData | null = null;
-    if (modalRes.ok) {
-      const [modal] = (await modalRes.json()) as ImageModalData[];
-      const isActive =
-        modal &&
-        (!modal.displayUntil ||
-          new Date(modal.displayUntil).getTime() > Date.now());
-      imageModal = isActive ? modal : null;
-    }
+    const [modal] = modals;
+    const isActive =
+      modal &&
+      (!modal.displayUntil ||
+        new Date(modal.displayUntil).getTime() > Date.now());
+    const imageModal = isActive ? modal : null;
 
     return { ...main, imageModal };
   },

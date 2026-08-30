@@ -4,12 +4,11 @@ import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import Pagination from '@/components/ui/Pagination';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import type { SeminarPreviewList } from '@/types/api/v2/seminar';
-import { searchLoaderDeps } from '@/utils/loaderDeps';
+import { api } from '@/utils/api';
+import { pageNumParam, stringParam } from '@/utils/searchSchema';
 import SeminarRow from './-components/SeminarRow';
 import SeminarSearchBar from './-components/SeminarSearchBar';
 
@@ -28,10 +27,15 @@ const META = {
   },
 };
 
+interface SeminarSearch {
+  pageNum?: number;
+  keyword?: string;
+}
+
 function SeminarPage() {
   const data = Route.useLoaderData();
 
-  const [searchParams] = useSearchParams();
+  const search = Route.useSearch();
   const { t, localizedPath, locale } = useLanguage({
     세미나: 'Seminars',
     소식: 'Community',
@@ -40,7 +44,7 @@ function SeminarPage() {
   const subNav = useCommunitySubNav();
   const meta = META[locale];
 
-  const pageNum = Math.max(1, parseInt(searchParams.get('pageNum') || '1', 10));
+  const pageNum = search.pageNum ?? 1;
   const totalPages = Math.ceil(data.total / POSTS_COUNT_PER_PAGE);
 
   return (
@@ -105,24 +109,22 @@ function SeminarPage() {
 }
 
 export const Route = createFileRoute('/$locale/community/seminar/')({
-  loaderDeps: searchLoaderDeps,
-  loader: async ({ params, location }) => {
-    const searchStr = location.searchStr;
-    const sp = new URLSearchParams(searchStr);
+  validateSearch: (search: Record<string, unknown>): SeminarSearch => ({
+    pageNum: pageNumParam(search.pageNum),
+    keyword: stringParam(search.keyword),
+  }),
+  loaderDeps: ({ search }) => search,
+  loader: ({ params, deps }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
-
-    const pageNum = sp.get('pageNum') || '1';
-    const keyword = sp.get('keyword');
-
-    const query = new URLSearchParams();
-    query.append('pageNum', pageNum);
-    query.append('language', locale);
-    if (keyword) query.append('keyword', keyword);
-
-    const response = await fetch(`${BASE_URL}/v2/seminar?${query.toString()}`);
-    if (!response.ok) throw new Error('Failed to fetch seminar posts');
-
-    return (await response.json()) as SeminarPreviewList;
+    return api
+      .get('v2/seminar', {
+        searchParams: [
+          ['pageNum', String(deps.pageNum ?? 1)],
+          ['language', locale],
+          ...(deps.keyword ? [['keyword', deps.keyword]] : []),
+        ] as [string, string][],
+      })
+      .json<SeminarPreviewList>();
   },
   component: SeminarPage,
 });

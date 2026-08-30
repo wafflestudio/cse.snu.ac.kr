@@ -1,3 +1,4 @@
+import { api } from '@/utils/api';
 import './suneditor.css';
 import './suneditor-contents.css';
 
@@ -5,8 +6,6 @@ import { useEffect, useState } from 'react';
 import type { RegisterOptions } from 'react-hook-form';
 import { useFormContext } from 'react-hook-form';
 import type SunEditorCore from 'suneditor/src/lib/core';
-
-import { BASE_URL } from '@/constants/api';
 
 // https://github.com/JiHong88/SunEditor/issues/199
 const isContentEmpty = (editor: SunEditorCore) => {
@@ -103,20 +102,13 @@ const handleImageUploadBefore = (files, _info, _core, uploadHandler) => {
     formData.append(newFile.name, newFile);
   });
 
-  fetch(`${BASE_URL}/v1/file/upload`, {
-    method: 'POST',
-    body: formData,
-    credentials: 'include',
-  })
-    .then(async (response) => {
-      if (!response.ok) {
-        throw new Error('Image upload failed');
-      }
-      return response.json();
-    })
+  api
+    .post('v1/file/upload', { body: formData })
+    .json()
     .then((resp) => {
       uploadHandler(resp);
     })
+    // suneditor는 에러를 문자열로 받아 에디터에 표시한다.
     .catch((reason) => uploadHandler(`${reason}`));
 
   return undefined;

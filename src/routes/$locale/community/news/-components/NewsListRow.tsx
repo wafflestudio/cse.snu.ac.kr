@@ -1,10 +1,9 @@
-import { Link } from '@tanstack/react-router';
+import { Link, useSearch } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import Image from '@/components/ui/Image';
 import { Tag } from '@/components/ui/Tag';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import type { NewsPreview } from '@/types/api/v2/news';
 
 interface NewsListRowProps {
@@ -13,10 +12,10 @@ interface NewsListRowProps {
 
 export default function NewsListRow({ post }: NewsListRowProps) {
   const { locale, localizedPath, tUnsafe } = useLanguage();
-  const [searchParams] = useSearchParams();
+  const search = useSearch({ strict: false });
 
   const detailPathBase = localizedPath(`/community/news/${post.id}`);
-  const pageNum = searchParams.get('pageNum');
+  const pageNum = search.pageNum;
   const detailPath = pageNum
     ? `${detailPathBase}?pageNum=${pageNum}`
     : detailPathBase;

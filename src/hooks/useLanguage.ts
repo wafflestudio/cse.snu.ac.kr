@@ -1,7 +1,7 @@
 import { useLocation } from '@tanstack/react-router';
+import { setLangCookie } from '@/serverFns/setLangCookie';
 import commonTranslations from '@/translations.json';
 import type { Locale } from '@/types/i18n';
-import { setLangCookie } from '@/utils/serverFns';
 
 interface UseLanguageBase {
   locale: Locale;
@@ -41,7 +41,7 @@ export function useLanguage<T extends Record<string, string>>(
     const newLocale: Locale = isEnglish ? 'ko' : 'en';
 
     // 쿠키 설정(서버) 후 반대 로케일 프리픽스로 전체 네비게이트 → root beforeLoad가
-    // 새 로케일로 렌더(RR의 /lang action + revalidate 리다이렉트 대체).
+    // 새 로케일로 렌더.
     setLangCookie({ data: newLocale }).then(() => {
       const rest = pathWithoutLocale === '/' ? '' : pathWithoutLocale;
       window.location.assign(`/${newLocale}${rest}`);

@@ -3,11 +3,11 @@ import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { AboutContent } from '@/types/api/v2/about/content';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { api } from '@/utils/api';
 import ContentSection from './-components/ContentSection';
 
 const META = {
@@ -71,16 +71,13 @@ function HistoryPage() {
 export const Route = createFileRoute('/$locale/about/history')({
   loader: async ({ params }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
-    const response = await fetch(
-      `${BASE_URL}/v2/about/history?language=${locale}`,
-    );
-    if (!response.ok) throw new Error('Failed to fetch history');
-
-    const data = (await response.json()) as AboutContent;
+    const data = await api
+      .get(`v2/about/history?language=${locale}`)
+      .json<AboutContent>();
 
     return {
       ...data,
-      description: await processHtmlForCsp(data.description),
+      description: await processHtmlForCsp({ data: data.description }),
     };
   },
   component: HistoryPage,

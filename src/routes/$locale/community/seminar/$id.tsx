@@ -1,5 +1,7 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import dayjs from 'dayjs';
+import { api } from '@/utils/api';
+import { pageNumParam } from '@/utils/searchSchema';
 import 'dayjs/locale/ko';
 import type { ReactNode } from 'react';
 import PageLayout from '@/components/layout/PageLayout';
@@ -8,15 +10,12 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import Image from '@/components/ui/Image';
 import Node from '@/components/ui/Nodes';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { Seminar } from '@/types/api/v2/seminar';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
-import { fetchOk } from '@/utils/fetch';
-import { searchLoaderDeps } from '@/utils/loaderDeps';
-import { stripHtml, truncateDescription } from '@/utils/metadata';
+import { stripHtml, truncateDescription } from '@/utils/string';
 
 function SeminarDetailPage() {
   const seminar = Route.useLoaderData();
@@ -50,9 +49,7 @@ function SeminarDetailPage() {
 
   const handleDelete = async () => {
     try {
-      await fetchOk(`${BASE_URL}/v2/seminar/${seminar.id}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2/seminar/${seminar.id}`);
       toast.success('게시글을 삭제했습니다.');
       navigate({ to: localizedPath('/community/seminar') });
     } catch {
@@ -185,10 +182,11 @@ const formatStartEndDate = (
 };
 
 export const Route = createFileRoute('/$locale/community/seminar/$id')({
-  loaderDeps: searchLoaderDeps,
-  loader: async ({ params, location }) => {
-    const searchStr = location.searchStr;
-    const sp = new URLSearchParams(searchStr);
+  validateSearch: (search: Record<string, unknown>) => ({
+    pageNum: pageNumParam(search.pageNum),
+  }),
+  loaderDeps: ({ search }) => search,
+  loader: async ({ params, deps }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
     const id = Number(params.id);
 
@@ -199,26 +197,20 @@ export const Route = createFileRoute('/$locale/community/seminar/$id')({
     const searchParams = new URLSearchParams();
     searchParams.append('language', locale);
 
-    const pageNum = sp.get('pageNum');
-    if (pageNum) searchParams.append('pageNum', pageNum);
+    const pageNum = deps.pageNum;
+    if (pageNum) searchParams.append('pageNum', String(pageNum));
 
-    const response = await fetch(
-      `${BASE_URL}/v2/seminar/${id}?${searchParams.toString()}`,
-    );
-
-    if (!response.ok) {
-      throw new Response('Not Found', { status: 404 });
-    }
-
-    const seminar = (await response.json()) as Seminar;
+    const seminar = await api
+      .get(`v2/seminar/${id}?${searchParams.toString()}`)
+      .json<Seminar>();
 
     return {
       ...seminar,
       description: seminar.description
-        ? await processHtmlForCsp(seminar.description)
+        ? await processHtmlForCsp({ data: seminar.description })
         : null,
       introduction: seminar.introduction
-        ? await processHtmlForCsp(seminar.introduction)
+        ? await processHtmlForCsp({ data: seminar.introduction })
         : null,
     };
   },

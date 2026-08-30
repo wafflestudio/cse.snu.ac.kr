@@ -28,9 +28,6 @@ interface UploadedFile {
 export const isLocalFile = (file: EditorFile): file is LocalFile =>
   file.type === 'LOCAL_FILE';
 
-export const isUploadedFile = (file: EditorFile): file is UploadedFile =>
-  file.type === 'UPLOADED_FILE';
-
 export type EditorImage = LocalImage | UploadedImage | Falsy;
 
 export interface LocalImage {
@@ -42,6 +39,3 @@ export interface UploadedImage {
   type: 'UPLOADED_IMAGE';
   url: string;
 }
-
-export const isLocalImage = (image: EditorImage): image is LocalImage =>
-  !!image && image.type === 'LOCAL_IMAGE';

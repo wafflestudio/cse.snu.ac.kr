@@ -4,16 +4,25 @@ import SearchBox from '@/components/feature/SearchBox';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import Pagination from '@/components/ui/Pagination';
-import { BASE_URL } from '@/constants/api';
-import { NEWS_TAGS } from '@/constants/tag';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import type { NewsPreview, NewsPreviewList } from '@/types/api/v2/news';
-import { searchLoaderDeps } from '@/utils/loaderDeps';
+import { api } from '@/utils/api';
+import {
+  pageNumParam,
+  stringArrayParam,
+  stringParam,
+} from '@/utils/searchSchema';
 import NewsListRow from './-components/NewsListRow';
+import { NEWS_TAGS } from './-constants';
 
 const POST_LIMIT = 10;
+
+interface NewsSearch {
+  pageNum?: number;
+  keyword?: string;
+  tag?: string[];
+}
 
 const META = {
   ko: {
@@ -31,7 +40,7 @@ const META = {
 function NewsPage() {
   const data = Route.useLoaderData();
 
-  const [searchParams] = useSearchParams();
+  const search = Route.useSearch();
   const { t, localizedPath, locale } = useLanguage({
     '새 소식': 'News',
     커뮤니티: 'Community',
@@ -39,7 +48,7 @@ function NewsPage() {
   const subNav = useCommunitySubNav();
   const meta = META[locale];
 
-  const pageNum = parseInt(searchParams.get('pageNum') || '1', 10);
+  const { pageNum = 1 } = search;
   const totalPages = Math.ceil(data.total / POST_LIMIT);
 
   return (
@@ -97,28 +106,24 @@ function NewsList({ posts }: NewsListProps) {
 }
 
 export const Route = createFileRoute('/$locale/community/news/')({
-  loaderDeps: searchLoaderDeps,
-  loader: async ({ params, location }) => {
-    const searchStr = location.searchStr;
-    const sp = new URLSearchParams(searchStr);
+  validateSearch: (search: Record<string, unknown>): NewsSearch => ({
+    pageNum: pageNumParam(search.pageNum),
+    keyword: stringParam(search.keyword),
+    tag: stringArrayParam(search.tag),
+  }),
+  loaderDeps: ({ search }) => search,
+  loader: ({ params, deps }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
-
-    const pageNum = sp.get('pageNum') || '1';
-    const keyword = sp.get('keyword') || '';
-    const tag = sp.getAll('tag');
-
-    const query = new URLSearchParams();
-    query.append('pageNum', pageNum);
-    query.append('language', locale);
-    if (keyword) query.append('keyword', keyword);
-    for (const t of tag) {
-      query.append('tag', t);
-    }
-
-    const response = await fetch(`${BASE_URL}/v2/news?${query.toString()}`);
-    if (!response.ok) throw new Error('Failed to fetch news posts');
-
-    return (await response.json()) as NewsPreviewList;
+    return api
+      .get('v2/news', {
+        searchParams: [
+          ['pageNum', String(deps.pageNum ?? 1)],
+          ['language', locale],
+          ...(deps.keyword ? [['keyword', deps.keyword]] : []),
+          ...(deps.tag ?? []).map((t) => ['tag', t]),
+        ] as [string, string][],
+      })
+      .json<NewsPreviewList>();
   },
   component: NewsPage,
 });

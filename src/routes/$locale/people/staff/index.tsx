@@ -2,7 +2,6 @@ import { createFileRoute } from '@tanstack/react-router';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { usePeopleSubNav } from '@/hooks/useSubNav';
 import PeopleGrid, {
@@ -10,6 +9,7 @@ import PeopleGrid, {
   type PeopleCardProps,
 } from '@/routes/$locale/people/-components/PeopleGrid';
 import type { SimpleStaff } from '@/types/api/v2/staff';
+import { api } from '@/utils/api';
 
 const META = {
   ko: {
@@ -87,10 +87,7 @@ const toCard = (
 export const Route = createFileRoute('/$locale/people/staff/')({
   loader: async ({ params }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
-    const response = await fetch(`${BASE_URL}/v2/staff?language=${locale}`);
-    if (!response.ok) throw new Error('Failed to fetch staff list');
-
-    return (await response.json()) as SimpleStaff[];
+    return api.get(`v2/staff?language=${locale}`).json<SimpleStaff[]>();
   },
   component: StaffPage,
 });

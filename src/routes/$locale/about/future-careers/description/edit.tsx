@@ -8,11 +8,10 @@ import LanguagePicker, {
 } from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { FutureCareersResponse } from '@/types/api/v2/about/future-careers';
 import { LOCALES } from '@/types/i18n';
-import { fetchJson, fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 
 interface CareerDescriptionFormData {
   ko: string;
@@ -37,8 +36,7 @@ function CareerDescriptionEdit() {
 
   const onSubmit = methods.handleSubmit(async ({ ko, en }) => {
     try {
-      await fetchOk(`/api/v2/about/future-careers`, {
-        method: 'PUT',
+      await api.put(`v2/about/future-careers`, {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           koDescription: ko,
@@ -92,9 +90,9 @@ export const Route = createFileRoute(
   loader: async () => {
     const [koData, enData] = await Promise.all(
       LOCALES.map((locale) =>
-        fetchJson<FutureCareersResponse>(
-          `${BASE_URL}/v2/about/future-careers?language=${locale}`,
-        ),
+        api
+          .get(`v2/about/future-careers?language=${locale}`)
+          .json<FutureCareersResponse>(),
       ),
     );
 

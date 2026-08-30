@@ -9,7 +9,7 @@ import {
   CompanyTableRow,
 } from '@/routes/$locale/about/future-careers/-components/CompanyRow';
 import type { Company } from '@/types/api/v2/about/future-careers';
-import { fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 
 export const TABLE_COLUMN_SIZE = [
   'sm:w-[3rem]',
@@ -29,8 +29,7 @@ export default function CareerCompanies({
 
   const onCreate = async (content: CareerCompanyFormData) => {
     try {
-      await fetchOk('/api/v2/about/future-careers/company', {
-        method: 'POST',
+      await api.post('v2/about/future-careers/company', {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(content),
       });

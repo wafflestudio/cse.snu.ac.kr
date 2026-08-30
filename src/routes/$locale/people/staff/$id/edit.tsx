@@ -5,14 +5,13 @@ import {
 } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import StaffEditor, {
   type StaffFormData,
 } from '@/routes/$locale/people/-components/StaffEditor';
 import type { Staff } from '@/types/api/v2/staff';
-import { fetchJson, fetchOk } from '@/utils/fetch';
-import { FormData2 } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData } from '@/utils/apiFormData';
 
 function StaffEdit() {
   const loaderData = Route.useLoaderData();
@@ -28,7 +27,7 @@ function StaffEdit() {
   };
 
   const onSubmit = async (content: StaffFormData) => {
-    const formData = new FormData2();
+    const formData = new ApiFormData();
     const removeImage =
       defaultValues.ko?.imageURL !== null && content.ko.image === null;
 
@@ -39,8 +38,7 @@ function StaffEdit() {
     formData.appendIfLocal('newMainImage', content.ko.image);
 
     try {
-      await fetchOk(`${BASE_URL}/v2/staff/${staff.ko.id}/${staff.en.id}`, {
-        method: 'PUT',
+      await api.put(`v2/staff/${staff.ko.id}/${staff.en.id}`, {
         body: formData,
       });
 
@@ -53,9 +51,7 @@ function StaffEdit() {
 
   const onDelete = async () => {
     try {
-      await fetchOk(`${BASE_URL}/v2/staff/${staff.ko.id}/${staff.en.id}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2/staff/${staff.ko.id}/${staff.en.id}`);
 
       toast.success('행정직원을 삭제했습니다.');
       navigate({ to: localizedPath('/people/staff') });
@@ -80,9 +76,9 @@ export const Route = createFileRoute('/$locale/people/staff/$id/edit')({
   loader: async ({ params }) => {
     const id = parseInt(params.id, 10);
 
-    const staff = await fetchJson<{ ko: Staff; en: Staff }>(
-      `${BASE_URL}/v2/staff/${id}`,
-    );
+    const staff = await api
+      .get(`v2/staff/${id}`)
+      .json<{ ko: Staff; en: Staff }>();
 
     return { staff };
   },

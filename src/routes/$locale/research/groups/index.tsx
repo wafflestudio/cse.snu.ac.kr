@@ -8,13 +8,13 @@ import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import Image from '@/components/ui/Image';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useResearchSubNav } from '@/hooks/useSubNav';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { ResearchGroupsResponse } from '@/types/api/v2/research/groups';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
-import { fetchJson, fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
+import { stringParam } from '@/utils/searchSchema';
 
 const META = {
   ko: {
@@ -54,13 +54,11 @@ function ResearchGroupsPage() {
 
     try {
       // 상세 정보를 가져와서 ko, en ID를 얻음
-      const data = await fetchJson<{ ko: { id: number }; en: { id: number } }>(
-        `${BASE_URL}/v2/research/${item.id}`,
-      );
+      const data = await api
+        .get(`v2/research/${item.id}`)
+        .json<{ ko: { id: number }; en: { id: number } }>();
 
-      await fetchOk(`/api/v2/research/${data.ko.id}/${data.en.id}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2/research/${data.ko.id}/${data.en.id}`);
 
       toast.success('연구 스트림을 삭제했습니다.');
       router.invalidate();
@@ -164,22 +162,22 @@ function ResearchGroupsPage() {
 }
 
 export const Route = createFileRoute('/$locale/research/groups/')({
+  validateSearch: (search: Record<string, unknown>) => ({
+    selected: stringParam(search.selected),
+  }),
   loader: async ({ params }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
     const query = new URLSearchParams();
     query.append('language', locale);
 
-    const response = await fetch(
-      `${BASE_URL}/v2/research/groups?${query.toString()}`,
-    );
-    if (!response.ok) throw new Error('Failed to fetch research groups');
-
-    const data = (await response.json()) as ResearchGroupsResponse;
+    const data = await api
+      .get(`v2/research/groups?${query.toString()}`)
+      .json<ResearchGroupsResponse>();
 
     return Promise.all(
       data.map(async (group) => ({
         ...group,
-        description: await processHtmlForCsp(group.description),
+        description: await processHtmlForCsp({ data: group.description }),
       })),
     );
   },

@@ -2,13 +2,13 @@ import { createFileRoute } from '@tanstack/react-router';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { usePeopleSubNav } from '@/hooks/useSubNav';
 import PeopleInfoList from '@/routes/$locale/people/-components/PeopleInfoList';
 import PeopleLabNode from '@/routes/$locale/people/-components/PeopleLabNode';
 import PeopleProfileInfo from '@/routes/$locale/people/-components/PeopleProfileInfo';
 import type { Faculty } from '@/types/api/v2/professor';
+import { api } from '@/utils/api';
 
 function FacultyDetailPage() {
   const faculty = Route.useLoaderData();
@@ -89,10 +89,9 @@ export const Route = createFileRoute('/$locale/people/faculty/$id/')({
     const id = Number(params.id);
     if (Number.isNaN(id)) throw new Error('Invalid faculty id');
 
-    const response = await fetch(`${BASE_URL}/v2/professor/${id}`);
-    if (!response.ok) throw new Error('Failed to fetch faculty');
-
-    const data = (await response.json()) as { ko: Faculty; en: Faculty };
+    const data = await api
+      .get(`v2/professor/${id}`)
+      .json<{ ko: Faculty; en: Faculty }>();
     return data[locale];
   },
   component: FacultyDetailPage,

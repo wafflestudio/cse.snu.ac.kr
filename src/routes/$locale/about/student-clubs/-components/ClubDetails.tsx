@@ -8,8 +8,8 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { Club } from '@/types/api/v2/about/student-clubs';
+import { api } from '@/utils/api';
 import type { ProcessedHtml } from '@/utils/csp';
-import { fetchOk } from '@/utils/fetch';
 
 interface ClubDetailsProps {
   club: { ko: ProcessedClub; en: ProcessedClub };
@@ -35,9 +35,7 @@ export default function ClubDetails({ club, locale }: ClubDetailsProps) {
 
   const handleDelete = async () => {
     try {
-      await fetchOk(`/api/v2/about/student-clubs/${club.ko.id}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2/about/student-clubs/${club.ko.id}`);
 
       setShowDeleteDialog(false);
       toast.success('동아리를 삭제했습니다.');

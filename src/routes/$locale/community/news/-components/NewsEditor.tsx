@@ -2,8 +2,8 @@ import { FormProvider, useForm, useWatch } from 'react-hook-form';
 
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
-import { NEWS_TAGS } from '@/constants/tag';
 import type { EditorFile, EditorImage } from '@/types/form';
+import { NEWS_TAGS } from '../-constants';
 
 export interface NewsFormData {
   title: string;

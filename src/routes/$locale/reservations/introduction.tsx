@@ -1,5 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router';
-
 import SelectionList from '@/components/feature/selection/SelectionList';
 import SelectionTitle from '@/components/feature/selection/SelectionTitle';
 import PageLayout from '@/components/layout/PageLayout';
@@ -7,7 +6,8 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useReservationsSubNav } from '@/hooks/useSubNav';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { stringParam } from '@/utils/searchSchema';
 
 const META = {
   ko: {
@@ -64,16 +64,21 @@ function ReservationsIntroductionPage() {
 }
 
 export const Route = createFileRoute('/$locale/reservations/introduction')({
+  validateSearch: (search: Record<string, unknown>) => ({
+    selected: stringParam(search.selected),
+  }),
   loader: async () => {
     return {
       contents: {
-        '세미나실 예약': await processHtmlForCsp(
-          HTML_CONTENTS['세미나실 예약'],
-        ),
-        '실습실 예약': await processHtmlForCsp(HTML_CONTENTS['실습실 예약']),
-        '공과대학 강의실 예약': await processHtmlForCsp(
-          HTML_CONTENTS['공과대학 강의실 예약'],
-        ),
+        '세미나실 예약': await processHtmlForCsp({
+          data: HTML_CONTENTS['세미나실 예약'],
+        }),
+        '실습실 예약': await processHtmlForCsp({
+          data: HTML_CONTENTS['실습실 예약'],
+        }),
+        '공과대학 강의실 예약': await processHtmlForCsp({
+          data: HTML_CONTENTS['공과대학 강의실 예약'],
+        }),
       },
     };
   },

@@ -2,13 +2,13 @@ import { createFileRoute } from '@tanstack/react-router';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { usePeopleSubNav } from '@/hooks/useSubNav';
 import PeopleContactList from '@/routes/$locale/people/-components/PeopleContactList';
 import PeopleInfoList from '@/routes/$locale/people/-components/PeopleInfoList';
 import PeopleProfileImage from '@/routes/$locale/people/-components/PeopleProfileImage';
 import type { EmeritusFaculty } from '@/types/api/v2/professor';
+import { api } from '@/utils/api';
 
 function EmeritusFacultyDetailPage() {
   const faculty = Route.useLoaderData();
@@ -104,13 +104,10 @@ export const Route = createFileRoute('/$locale/people/emeritus-faculty/$id/')({
     const id = Number(params.id);
     if (Number.isNaN(id)) throw new Error('Invalid emeritus faculty id');
 
-    const response = await fetch(`${BASE_URL}/v2/professor/${id}`);
-    if (!response.ok) throw new Error('Failed to fetch emeritus faculty');
-
-    const data = (await response.json()) as {
+    const data = await api.get(`v2/professor/${id}`).json<{
       ko: EmeritusFaculty;
       en: EmeritusFaculty;
-    };
+    }>();
     return data[locale];
   },
   component: EmeritusFacultyDetailPage,

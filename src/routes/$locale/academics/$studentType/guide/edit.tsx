@@ -4,12 +4,11 @@ import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { Guide } from '@/types/api/v2/academics/guide';
 import type { EditorFile } from '@/types/form';
-import { fetchJson, fetchOk } from '@/utils/fetch';
-import { FormData2, getDeleteIds } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';
 
 interface GuideFormData {
   description: string;
@@ -52,7 +51,7 @@ function GuideEditPage() {
       cur: data.file,
     });
 
-    const formData = new FormData2();
+    const formData = new ApiFormData();
     formData.appendJson('request', {
       description: data.description,
       deleteIds,
@@ -60,10 +59,7 @@ function GuideEditPage() {
     formData.appendIfLocal('newAttachments', data.file);
 
     try {
-      await fetchOk(`${BASE_URL}/v2/academics/${studentType}/guide`, {
-        method: 'PUT',
-        body: formData,
-      });
+      await api.put(`v2/academics/${studentType}/guide`, { body: formData });
 
       navigate({ to: `/academics/${studentType}/guide` });
       toast.success(t('수정에 성공했습니다.'));
@@ -97,7 +93,7 @@ export const Route = createFileRoute(
 )({
   loader: async ({ params }) => {
     const { studentType } = params;
-    return fetchJson<Guide>(`${BASE_URL}/v2/academics/${studentType}/guide`);
+    return api.get(`v2/academics/${studentType}/guide`).json<Guide>();
   },
   component: GuideEditPage,
 });

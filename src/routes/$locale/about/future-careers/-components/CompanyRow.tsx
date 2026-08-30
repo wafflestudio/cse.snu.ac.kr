@@ -8,7 +8,7 @@ import Button from '@/components/ui/Button';
 import { toast } from '@/components/ui/sonner';
 import { TABLE_COLUMN_SIZE } from '@/routes/$locale/about/future-careers/-components/CareerCompanies';
 import type { Company } from '@/types/api/v2/about/future-careers';
-import { fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 
 interface CompanyTableRowProps {
   index: number;
@@ -21,8 +21,7 @@ export function CompanyTableRow({ index, company }: CompanyTableRowProps) {
 
   const onSubmit = async (content: CareerCompanyFormData) => {
     try {
-      await fetchOk(`/api/v2/about/future-careers/company/${company.id}`, {
-        method: 'PUT',
+      await api.put(`v2/about/future-careers/company/${company.id}`, {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: company.id, ...content }),
       });
@@ -62,9 +61,7 @@ function CareerCompanyViewer({
 
   const handleDelete = async () => {
     try {
-      await fetchOk(`/api/v2/about/future-careers/company/${id}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2/about/future-careers/company/${id}`);
 
       setShowDeleteDialog(false);
       toast.success('졸업생 창업 기업을 삭제했습니다.');

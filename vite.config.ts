@@ -1,7 +1,6 @@
 import tailwindcss from '@tailwindcss/vite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import viteReact from '@vitejs/plugin-react';
-import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, loadEnv } from 'vite';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -35,16 +34,6 @@ export default defineConfig(({ mode }) => {
       viteReact(),
       tsconfigPaths(),
       svgr(),
-      ...(process.env.ANALYZE
-        ? [
-            visualizer({
-              filename: 'dist/stats.html',
-              gzipSize: true,
-              brotliSize: true,
-              template: 'treemap',
-            }),
-          ]
-        : []),
     ],
     server: {
       port: 3000,

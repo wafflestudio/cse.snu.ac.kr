@@ -2,12 +2,11 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { News } from '@/types/api/v2/news';
 import { isLocalFile } from '@/types/form';
-import { fetchJson, fetchOk } from '@/utils/fetch';
-import { FormData2, getDeleteIds } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';
 import NewsEditor, { type NewsFormData } from './-components/NewsEditor';
 
 function NewsEditPage() {
@@ -49,7 +48,7 @@ function NewsEditPage() {
       cur: content.attachments,
     });
 
-    const formData = new FormData2();
+    const formData = new ApiFormData();
 
     formData.appendJson('request', {
       title: content.title,
@@ -74,10 +73,7 @@ function NewsEditPage() {
     );
 
     try {
-      await fetchOk(`${BASE_URL}/v2/news/${id}`, {
-        method: 'PATCH',
-        body: formData,
-      });
+      await api.patch(`v2/news/${id}`, { body: formData });
 
       toast.success('새소식을 수정했습니다.');
       navigate({ to: `/community/news/${id}` });
@@ -88,9 +84,7 @@ function NewsEditPage() {
 
   const onDelete = async () => {
     try {
-      await fetchOk(`${BASE_URL}/v2/news/${id}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2/news/${id}`);
 
       toast.success('새소식을 삭제했습니다.');
       navigate({ to: localizedPath('/community/news') });
@@ -114,7 +108,7 @@ function NewsEditPage() {
 export const Route = createFileRoute('/$locale/community/news/edit/$id')({
   loader: async ({ params }) => {
     const id = Number(params.id);
-    const data = await fetchJson<News>(`${BASE_URL}/v2/news/${id}`);
+    const data = await api.get(`v2/news/${id}`).json<News>();
     return { id, data };
   },
   component: NewsEditPage,

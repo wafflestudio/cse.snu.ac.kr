@@ -11,7 +11,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
-import { fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 
 const COMPANY_LIST = [
   'SAMSUNG',
@@ -72,8 +72,7 @@ function CareerStatCreatePage() {
 
   const onSubmit = async (content: CareerStat) => {
     try {
-      await fetchOk('/api/v2/about/future-careers/stats', {
-        method: 'POST',
+      await api.post('v2/about/future-careers/stats', {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(content),
       });

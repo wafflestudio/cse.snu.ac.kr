@@ -1,12 +1,14 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import ky from 'ky';
 import sharp from 'sharp';
 
 /**
  * 이미지 최적화 프록시(`/img?url=...&q=...&w=...`)의 코어 로직.
  *
- * `src/routes/img.ts`(TanStack Start server route)가 호출한다. dev 여부는 호출부가
+ * `src/routes/img.ts`(TanStack Start server route)가 호출한다. 요청 URL을 만드는 클라이언트
+ * 측 짝은 `utils/imageUrl.ts`(<Image>가 사용). dev 여부는 호출부가
  * `import.meta.env.DEV`로 주입(캐시 경로·허용 도메인·prod fallback 분기).
  *
  * 참고: 현재 시스템에서 이미지 최적화(리사이즈·AVIF·디스크 캐시)는 여기 한 곳뿐이다.
@@ -114,12 +116,14 @@ async function fetchImageWithProdFallback(
   let actualImageUrl = imageUrl;
 
   try {
-    imageResponse = await fetch(imageUrl);
+    // api 인스턴스가 아닌 기본 ky — 백엔드 API가 아니라 임의 이미지 URL(화이트리스트 검증
+    // 완료)을 가져오는 자리라 prefix·쿠키 포워딩·404→notFound 정책이 모두 부적합하다.
+    imageResponse = await ky.get(imageUrl, { throwHttpErrors: false });
 
     // dev 모드에서 404 발생 시 prod 환경으로 fallback
     if (dev && imageResponse.status === 404) {
       actualImageUrl = replaceHostWithProd(imageUrl);
-      imageResponse = await fetch(actualImageUrl);
+      imageResponse = await ky.get(actualImageUrl, { throwHttpErrors: false });
     }
   } catch {
     throw new Response(`Failed to fetch image: ${imageUrl}`, { status: 502 });

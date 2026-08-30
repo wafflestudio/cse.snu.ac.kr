@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import type { ReactNode } from 'react';
 import Header from '@/components/layout/Header';
 import navbarTranslations from '@/components/layout/LeftNav/translations.json';
 import type { NavItem } from '@/constants/navigation';
@@ -21,12 +22,12 @@ const tentenProjectNavItem: NavItem = {
 
 interface MajorCategoryPageLayoutProps {
   subtitle?: string;
-  description?: string;
+  description?: ReactNode;
 }
 
 export default function CategoryPage({
   subtitle = '',
-  description = '',
+  description,
 }: MajorCategoryPageLayoutProps) {
   const { tUnsafe, pathWithoutLocale } = useLanguage(navbarTranslations);
   const { activeItem } = useNavItem();
@@ -49,33 +50,37 @@ export default function CategoryPage({
           {resolvedTitle}
         </div>
         {description && (
-          <HtmlContent
-            html={description}
+          <Description
             className="mb-6 mt-8 hidden sm:block"
             contentClassName="max-w-[960px] !text-[#f5f5f5]"
-          />
+          >
+            {description}
+          </Description>
         )}
       </div>
       <CategoryGrid currentPage={currentPage} theme="dark" />
       {description && (
         <div className="px-5 pb-14 pt-7 sm:hidden">
-          <HtmlContent
-            html={description}
-            contentClassName="!text-[#a3a3a3] text-[13px] font-light"
-          />
+          <Description contentClassName="!text-[#a3a3a3] text-[13px] font-light">
+            {description}
+          </Description>
         </div>
       )}
     </div>
   );
 }
 
-interface HtmlContentProps {
-  html: string;
+interface DescriptionProps {
+  children: ReactNode;
   className?: string;
   contentClassName?: string;
 }
 
-function HtmlContent({ html, className, contentClassName }: HtmlContentProps) {
+function Description({
+  children,
+  className,
+  contentClassName,
+}: DescriptionProps) {
   return (
     <div className={clsx('flow-root', className)}>
       <div
@@ -83,9 +88,9 @@ function HtmlContent({ html, className, contentClassName }: HtmlContentProps) {
           'whitespace-pre-wrap text-sm leading-7',
           contentClassName,
         )}
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: TODO 근데 대안이 있나?
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+      >
+        {children}
+      </div>
     </div>
   );
 }

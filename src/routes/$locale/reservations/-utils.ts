@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import '@/utils/kstDayjs';
+import '@/utils/date';
 
 dayjs.extend(customParseFormat);
 

@@ -3,7 +3,6 @@ import { FormProvider, useForm } from 'react-hook-form';
 import Form from '@/components/form/Form';
 import Button from '@/components/ui/Button';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import {
   CLASSIFICATION,
@@ -11,7 +10,7 @@ import {
   type Course,
   GRADE,
 } from '@/types/api/v2/academics';
-import { fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 import BookmarkIcon from './assets/bookmark_icon.svg?react';
 
 const CREDIT = [1, 2, 3, 4];
@@ -47,8 +46,7 @@ export default function CourseEditor({
 
   const onSubmit = async (course: Course) => {
     try {
-      await fetchOk(`${BASE_URL}/v2/academics/courses`, {
-        method: 'PUT',
+      await api.put(`v2/academics/courses`, {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(course),
       });
@@ -71,14 +69,13 @@ export default function CourseEditor({
           placeholder={t('교과목명')}
           options={{ required: { value: true, message: t('교과목명') } }}
         />
-        {/** biome-ignore lint/a11y/noStaticElementInteractions: TODO */}
-        {/** biome-ignore lint/a11y/useKeyWithClickEvents: TODO */}
-        <div
-          className="h-8 w-[120px] cursor-default rounded-sm border border-neutral-300 pl-2 text-sm leading-[31px] text-neutral-400"
+        <button
+          type="button"
+          className="h-8 w-[120px] cursor-default rounded-sm border border-neutral-300 pl-2 text-left text-sm leading-[31px] text-neutral-400"
           onClick={() => toast.error(t('교과목 코드는 수정할 수 없습니다'))}
         >
           {defaultValues.code}
-        </div>
+        </button>
         <Form.Dropdown
           contents={Object.keys(CLASSIFICATION).map((value) => ({
             label: value,

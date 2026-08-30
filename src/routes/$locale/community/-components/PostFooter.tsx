@@ -1,11 +1,10 @@
-import { Link } from '@tanstack/react-router';
+import { Link, useSearch } from '@tanstack/react-router';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { type ReactNode, useState } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useSearchParams } from '@/hooks/useSearchParams';
 
 interface PostFooterProps {
   post: {
@@ -30,7 +29,7 @@ export default function PostFooter({
     이전글: 'Previous',
     목록: 'List',
   });
-  const [searchParams] = useSearchParams();
+  const search = useSearch({ strict: false });
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   const nextPost =
@@ -42,7 +41,7 @@ export default function PostFooter({
       ? { id: post.prevId, title: post.prevTitle }
       : null;
 
-  const pageNum = searchParams.get('pageNum');
+  const pageNum = search.pageNum;
   const listHref = pageNum
     ? `${localizedPath(listPath)}?pageNum=${pageNum}`
     : localizedPath(listPath);

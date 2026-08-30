@@ -1,13 +1,12 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import ScholarshipEditor, {
   type ScholarshipFormData,
 } from '@/routes/$locale/academics/-components/scholarship/ScholarshipEditor';
 import type { Scholarship } from '@/types/api/v2/academics/scholarship';
-import { fetchJson, fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 
 function ScholarshipEditPage() {
   const loaderData = Route.useLoaderData();
@@ -29,8 +28,7 @@ function ScholarshipEditPage() {
 
   const onSubmit = async (content: ScholarshipFormData) => {
     try {
-      await fetchOk(`${BASE_URL}/v2/academics/scholarship`, {
-        method: 'PUT',
+      await api.put(`v2/academics/scholarship`, {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ko: {
@@ -73,9 +71,9 @@ export const Route = createFileRoute(
 )({
   loader: async ({ params }) => {
     const { id } = params;
-    const res = await fetchJson<{ first: Scholarship; second: Scholarship }>(
-      `${BASE_URL}/v2/academics/scholarship/${id}`,
-    );
+    const res = await api
+      .get(`v2/academics/scholarship/${id}`)
+      .json<{ first: Scholarship; second: Scholarship }>();
     const isFirstKo = res.first.language === 'ko';
     return isFirstKo
       ? { ko: res.first, en: res.second }

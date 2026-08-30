@@ -6,13 +6,12 @@ import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { Scholarship } from '@/types/api/v2/academics/scholarship';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
-import { fetchJson, fetchOk } from '@/utils/fetch';
-import { stripHtml, truncateDescription } from '@/utils/metadata';
+import { api } from '@/utils/api';
+import { stripHtml, truncateDescription } from '@/utils/string';
 
 function ScholarshipDetailPage() {
   const loaderData = Route.useLoaderData();
@@ -48,9 +47,7 @@ function ScholarshipDetailPage() {
 
   const handleDelete = async () => {
     try {
-      await fetchOk(`${BASE_URL}/v2/academics/scholarship/${id}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2/academics/scholarship/${id}`);
       toast.success(t('장학금을 삭제했습니다.'));
       navigate({ to: `/academics/${studentType}/scholarship` });
     } catch {
@@ -94,16 +91,22 @@ export const Route = createFileRoute(
 )({
   loader: async ({ params }) => {
     const { id } = params;
-    const res = await fetchJson<{ first: Scholarship; second: Scholarship }>(
-      `${BASE_URL}/v2/academics/scholarship/${id}`,
-    );
+    const res = await api
+      .get(`v2/academics/scholarship/${id}`)
+      .json<{ first: Scholarship; second: Scholarship }>();
     const isFirstKo = res.first.language === 'ko';
     const ko = isFirstKo ? res.first : res.second;
     const en = isFirstKo ? res.second : res.first;
 
     return {
-      ko: { ...ko, description: await processHtmlForCsp(ko.description) },
-      en: { ...en, description: await processHtmlForCsp(en.description) },
+      ko: {
+        ...ko,
+        description: await processHtmlForCsp({ data: ko.description }),
+      },
+      en: {
+        ...en,
+        description: await processHtmlForCsp({ data: en.description }),
+      },
     };
   },
   component: ScholarshipDetailPage,

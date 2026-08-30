@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import { forwardAuthHeaders } from '@/utils/ssr';
+import { api } from '@/utils/api';
+import { pageNumParam } from '@/utils/searchSchema';
 import 'dayjs/locale/ko';
 import { useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
@@ -9,15 +10,12 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import Node from '@/components/ui/Nodes';
 import { toast } from '@/components/ui/sonner';
 import { Tag } from '@/components/ui/Tag';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { Notice } from '@/types/api/v2/notice';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
-import { fetchOk } from '@/utils/fetch';
-import { searchLoaderDeps } from '@/utils/loaderDeps';
-import { stripHtml, truncateDescription } from '@/utils/metadata';
+import { stripHtml, truncateDescription } from '@/utils/string';
 
 function NoticeDetailPage() {
   const notice = Route.useLoaderData();
@@ -41,9 +39,7 @@ function NoticeDetailPage() {
 
   const handleDelete = async () => {
     try {
-      await fetchOk(`${BASE_URL}/v2/notice/${notice.id}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2/notice/${notice.id}`);
       toast.success('게시글을 삭제했습니다.');
       navigate({ to: localizedPath('/community/notice') });
     } catch {
@@ -113,10 +109,11 @@ function NoticeDetailPage() {
 }
 
 export const Route = createFileRoute('/$locale/community/notice/$id')({
-  loaderDeps: searchLoaderDeps,
-  loader: async ({ params, location }) => {
-    const searchStr = location.searchStr;
-    const sp = new URLSearchParams(searchStr);
+  validateSearch: (search: Record<string, unknown>) => ({
+    pageNum: pageNumParam(search.pageNum),
+  }),
+  loaderDeps: ({ search }) => search,
+  loader: async ({ params, deps }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
     const id = Number(params.id);
 
@@ -127,25 +124,16 @@ export const Route = createFileRoute('/$locale/community/notice/$id')({
     const searchParams = new URLSearchParams();
     searchParams.append('language', locale);
 
-    const pageNum = sp.get('pageNum');
-    if (pageNum) searchParams.append('pageNum', pageNum);
+    const pageNum = deps.pageNum;
+    if (pageNum) searchParams.append('pageNum', String(pageNum));
 
-    const headers = forwardAuthHeaders();
-
-    const response = await fetch(
-      `${BASE_URL}/v2/notice/${id}?${searchParams.toString()}`,
-      { headers },
-    );
-
-    if (!response.ok) {
-      throw new Response('Not Found', { status: 404 });
-    }
-
-    const notice = (await response.json()) as Notice;
+    const notice = await api
+      .get(`v2/notice/${id}?${searchParams.toString()}`)
+      .json<Notice>();
 
     return {
       ...notice,
-      description: await processHtmlForCsp(notice.description),
+      description: await processHtmlForCsp({ data: notice.description }),
     };
   },
   component: NoticeDetailPage,

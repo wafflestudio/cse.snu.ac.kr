@@ -8,17 +8,15 @@ import LanguagePicker, {
 } from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import type {
   FacilitiesResponse,
   Facility,
 } from '@/types/api/v2/about/facilities';
 import type { EditorImage } from '@/types/form';
-import { fetchJson, fetchOk } from '@/utils/fetch';
-import { FormData2 } from '@/utils/form';
-import { searchLoaderDeps } from '@/utils/loaderDeps';
+import { api } from '@/utils/api';
+import { ApiFormData } from '@/utils/apiFormData';
+import { stringParam } from '@/utils/searchSchema';
 
 interface FacilityFormData {
   ko: { name: string; description: string; locations: string[] };
@@ -33,7 +31,6 @@ function FacilitiesEdit() {
   const navigate = useNavigate();
   const { localizedPath } = useLanguage({});
   const [language, setLanguage] = useState<Language>('ko');
-  const [_searchParams, setSearchParams] = useSearchParams();
 
   const defaultValues: FacilityFormData = {
     ko: {
@@ -59,7 +56,7 @@ function FacilitiesEdit() {
   };
 
   const onSubmit = methods.handleSubmit(async ({ ko, en, imageURL }) => {
-    const formData = new FormData2();
+    const formData = new ApiFormData();
 
     formData.appendJson('request', {
       ko,
@@ -69,8 +66,7 @@ function FacilitiesEdit() {
     formData.appendIfLocal('newMainImage', imageURL);
 
     try {
-      await fetchOk(`/api/v2/about/facilities/${facility.ko.id}`, {
-        method: 'PUT',
+      await api.put(`v2/about/facilities/${facility.ko.id}`, {
         body: formData,
       });
 
@@ -85,7 +81,7 @@ function FacilitiesEdit() {
     ko: Facility;
     en: Facility;
   }) => {
-    setSearchParams({ id: newFacility.ko.id.toString() });
+    navigate({ to: '.', search: { id: String(newFacility.ko.id) } });
     methods.reset({
       ko: {
         name: newFacility.ko.name,
@@ -215,15 +211,16 @@ function FacilitiesEdit() {
 }
 
 export const Route = createFileRoute('/$locale/about/facilities/edit')({
-  loaderDeps: searchLoaderDeps,
-  loader: async ({ location }) => {
-    const searchStr = location.searchStr;
-    const sp = new URLSearchParams(searchStr);
-    const idParam = sp.get('id');
+  validateSearch: (search: Record<string, unknown>) => ({
+    id: stringParam(search.id),
+  }),
+  loaderDeps: ({ search }) => search,
+  loader: async ({ deps }) => {
+    const idParam = deps.id;
 
-    const facilities = await fetchJson<FacilitiesResponse>(
-      `${BASE_URL}/v2/about/facilities`,
-    );
+    const facilities = await api
+      .get(`v2/about/facilities`)
+      .json<FacilitiesResponse>();
 
     // id param으로 facility 찾기
     let selectedFacility = facilities[0];

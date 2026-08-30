@@ -1,7 +1,6 @@
 import { createFileRoute, notFound } from '@tanstack/react-router';
 import SelectionList from '@/components/feature/selection/SelectionList';
 import PageLayout from '@/components/layout/PageLayout';
-import { BASE_URL } from '@/constants/api';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import {
   ADMIN_MENU_IMAGE_MODAL,
@@ -11,9 +10,9 @@ import {
   type ImportantPreviewList,
   type SlidePreviewList,
 } from '@/types/api/v2/admin';
+import { api } from '@/utils/api';
 import { fetchSessionRoles } from '@/utils/auth';
-import { fetchJson } from '@/utils/fetch';
-import { searchLoaderDeps } from '@/utils/loaderDeps';
+import { pageNumParam, stringParam } from '@/utils/searchSchema';
 import { forwardAuthHeaders } from '@/utils/ssr';
 import ImageModalManagement from './-components/ImageModalManagement';
 import ImportantManagement from './-components/ImportantManagement';
@@ -149,36 +148,32 @@ export const Route = createFileRoute('/admin/')({
     const roles = await fetchSessionRoles();
     if (roles.length === 0) throw notFound();
   },
-  loaderDeps: searchLoaderDeps,
-  loader: async ({ location }) => {
-    const searchStr = location.searchStr;
-    const sp = new URLSearchParams(searchStr);
-    const selected = sp.get('selected') || ADMIN_MENU_SLIDE;
-    const pageNum = sp.get('pageNum') || '1';
+  validateSearch: (search: Record<string, unknown>) => ({
+    selected: stringParam(search.selected),
+    pageNum: pageNumParam(search.pageNum),
+  }),
+  loaderDeps: ({ search }) => search,
+  loader: async ({ deps }) => {
+    const selected = deps.selected || ADMIN_MENU_SLIDE;
+    const pageNum = String(deps.pageNum ?? 1);
 
     // 인증 헤더: 서버(SSR)는 요청 쿠키를 포워딩, 클라(revalidate/SPA)는 same-origin
-    // fetch가 JSESSIONID를 자동 첨부한다. RR은 loader가 항상 서버 실행이라 request.headers
-    // 에 쿠키가 있었지만, TanStack은 클라에서도 loader가 돌아 synthetic request엔 쿠키가
-    // 없다 → forwardAuthHeaders로 양쪽 모두 인증되게 한다(이 early-return이 admin 목록
-    // revalidate 미반영 버그의 원인이었음).
-    const headers = forwardAuthHeaders();
+    // fetch가 JSESSIONID를 자동 첨부한다. 클라에서도 loader가 돌아 synthetic request엔
+    // 쿠키가 없으므로 forwardAuthHeaders로 양쪽 모두 인증되게 한다.
+    const _headers = forwardAuthHeaders();
 
     if (selected === ADMIN_MENU_SLIDE) {
-      const data = await fetchJson<SlidePreviewList>(
-        `${BASE_URL}/v2/admin/slide?pageNum=${pageNum}`,
-        { headers },
-      );
+      const data = await api
+        .get(`v2/admin/slide?pageNum=${pageNum}`)
+        .json<SlidePreviewList>();
       return { type: 'slide' as const, data };
     } else if (selected === ADMIN_MENU_IMAGE_MODAL) {
-      const data = await fetchJson<ImageModal[]>(`${BASE_URL}/v2/image-modal`, {
-        headers,
-      });
+      const data = await api.get('v2/image-modal').json<ImageModal[]>();
       return { type: 'imageModal' as const, data };
     } else {
-      const data = await fetchJson<ImportantPreviewList>(
-        `${BASE_URL}/v2/admin/important?pageNum=${pageNum}`,
-        { headers },
-      );
+      const data = await api
+        .get(`v2/admin/important?pageNum=${pageNum}`)
+        .json<ImportantPreviewList>();
       return { type: 'important' as const, data };
     }
   },

@@ -5,11 +5,11 @@ import Attachments from '@/components/ui/Attachments';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import Image from '@/components/ui/Image';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import commonTranslations from '@/translations.json';
 import type { AboutContent } from '@/types/api/v2/about/content';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { api } from '@/utils/api';
 import ContentSection from '../-components/ContentSection';
 import brochure1 from '../assets/brochure1.avif';
 import brochure2 from '../assets/brochure2.avif';
@@ -105,17 +105,13 @@ function Overview() {
 export const Route = createFileRoute('/$locale/about/overview/')({
   loader: async ({ params }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
-    const response = await fetch(
-      `${BASE_URL}/v2/about/overview?language=${locale}`,
-    );
-    if (!response.ok)
-      throw new Error('Failed to fetch overview data', { cause: response });
-
-    const data = (await response.json()) as AboutContent;
+    const data = await api
+      .get(`v2/about/overview?language=${locale}`)
+      .json<AboutContent>();
 
     return {
       ...data,
-      description: await processHtmlForCsp(data.description),
+      description: await processHtmlForCsp({ data: data.description }),
     };
   },
   component: Overview,

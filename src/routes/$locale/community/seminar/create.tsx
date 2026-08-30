@@ -1,11 +1,10 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { isLocalFile } from '@/types/form';
-import { fetchOk } from '@/utils/fetch';
-import { FormData2 } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData } from '@/utils/apiFormData';
 import SeminarEditor, {
   type SeminarFormData,
 } from './-components/SeminarEditor';
@@ -19,7 +18,7 @@ function SeminarCreatePage() {
   };
 
   const onSubmit = async (content: SeminarFormData) => {
-    const formData = new FormData2();
+    const formData = new ApiFormData();
 
     formData.appendJson('request', {
       title: content.title,
@@ -46,10 +45,7 @@ function SeminarCreatePage() {
     );
 
     try {
-      await fetchOk(`${BASE_URL}/v2/seminar`, {
-        method: 'POST',
-        body: formData,
-      });
+      await api.post('v2/seminar', { body: formData });
 
       toast.success('세미나를 게시했습니다.');
       navigate({ to: localizedPath('/community/seminar') });

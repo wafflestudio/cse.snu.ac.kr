@@ -1,9 +1,8 @@
-import { useLocation, useNavigate } from '@tanstack/react-router';
+import { useLocation, useNavigate, useSearch } from '@tanstack/react-router';
 import { Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useSearchParams } from '@/hooks/useSearchParams';
 
 const translations = {
   통합검색: 'Search',
@@ -12,11 +11,11 @@ const translations = {
 export default function HeaderSearchBar() {
   const [text, setText] = useState('');
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const search = useSearch({ strict: false });
   const location = useLocation();
   const { t } = useLanguage(translations);
 
-  const keyword = searchParams.get('keyword');
+  const keyword = search.keyword;
   const pathname = location.pathname;
 
   useEffect(() => {
@@ -25,7 +24,7 @@ export default function HeaderSearchBar() {
     }
   }, [keyword, pathname]);
 
-  const search = () => {
+  const submitSearch = () => {
     const query = text.trim();
     if (query !== '') {
       navigate({ to: `/search?keyword=${query}` });
@@ -37,7 +36,7 @@ export default function HeaderSearchBar() {
       className="flex h-7.5 w-54 justify-center rounded-[.0625rem] bg-neutral-200 pr-1 outline-none"
       onSubmit={(e) => {
         e.preventDefault();
-        search();
+        submitSearch();
       }}
     >
       <input

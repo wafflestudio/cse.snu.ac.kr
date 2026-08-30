@@ -1,13 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router';
-
 import PageLayout from '@/components/layout/PageLayout';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import TimelineViewer from '@/routes/$locale/academics/-components/timeline/TimelineViewer';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { TimelineContent } from '@/types/api/v2/academics';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
-import { fetchJson } from '@/utils/fetch';
+import { api } from '@/utils/api';
 
 const OVERVIEW =
   '컴퓨터공학부 학생이 졸업을 하기 위해 반드시 들어야 하는 영역별 교양과목 학점 배분 구조표입니다. 학부생들은 아래의 구조표를 참고하여 수강에 차질이 없도록 하여야 합니다.';
@@ -61,14 +59,14 @@ export const Route = createFileRoute(
   '/$locale/academics/undergraduate/general-studies-requirements/',
 )({
   loader: async () => {
-    const data = await fetchJson<TimelineContent[]>(
-      `${BASE_URL}/v2/academics/undergraduate/general-studies-requirements`,
-    );
+    const data = await api
+      .get(`v2/academics/undergraduate/general-studies-requirements`)
+      .json<TimelineContent[]>();
 
     return Promise.all(
       data.map(async (item) => ({
         ...item,
-        description: await processHtmlForCsp(item.description),
+        description: await processHtmlForCsp({ data: item.description }),
       })),
     );
   },

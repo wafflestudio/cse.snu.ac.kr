@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
-import { processHtmlForCsp } from '@/utils/cspServerFn';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 
 const META = {
   ko: {
@@ -81,9 +81,9 @@ export const Route = createFileRoute('/$locale/10-10-project/manager')({
     const prefix = locale === 'en' ? '/en' : '';
 
     return {
-      htmlContent: await processHtmlForCsp(
-        buildHtmlContent(`${prefix}/about/greetings`),
-      ),
+      htmlContent: await processHtmlForCsp({
+        data: buildHtmlContent(`${prefix}/about/greetings`),
+      }),
     };
   },
   component: TenTenManagerPage,

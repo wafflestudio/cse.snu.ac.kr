@@ -2,11 +2,10 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { isLocalFile } from '@/types/form';
-import { fetchOk } from '@/utils/fetch';
-import { FormData2 } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData } from '@/utils/apiFormData';
 import NewsEditor, { type NewsFormData } from './-components/NewsEditor';
 
 function NewsCreatePage() {
@@ -18,7 +17,7 @@ function NewsCreatePage() {
   };
 
   const onSubmit = async (content: NewsFormData) => {
-    const formData = new FormData2();
+    const formData = new ApiFormData();
 
     formData.appendJson('request', {
       title: content.title,
@@ -41,12 +40,9 @@ function NewsCreatePage() {
     );
 
     try {
-      const response = await fetchOk(`${BASE_URL}/v2/news`, {
-        method: 'POST',
-        body: formData,
-      });
-
-      const { id } = await response.json();
+      const { id } = await api
+        .post('v2/news', { body: formData })
+        .json<{ id: number }>();
       toast.success('새소식을 게시했습니다.');
       navigate({ to: `/community/news/${id}` });
     } catch {

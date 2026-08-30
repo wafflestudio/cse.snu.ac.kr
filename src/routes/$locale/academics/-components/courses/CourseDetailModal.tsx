@@ -5,11 +5,10 @@ import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import Dialog from '@/components/ui/Dialog';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { Course } from '@/types/api/v2/academics';
 import { GRADE } from '@/types/api/v2/academics';
-import { fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 import BookmarkIcon from './assets/bookmark_icon.svg?react';
 import CourseEditor from './CourseEditor';
 import translations from './translations.json';
@@ -71,9 +70,7 @@ function CourseViewer({
 
   const handleDelete = async () => {
     try {
-      await fetchOk(`${BASE_URL}/v2/academics/courses/${course.code}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2/academics/courses/${course.code}`);
       setShowDeleteDialog(false);
       toast.success('교과목을 삭제했습니다.');
       router.invalidate();

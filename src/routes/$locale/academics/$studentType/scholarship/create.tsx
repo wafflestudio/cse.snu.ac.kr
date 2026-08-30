@@ -1,12 +1,11 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import ScholarshipEditor, {
   type ScholarshipFormData,
 } from '@/routes/$locale/academics/-components/scholarship/ScholarshipEditor';
-import { fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 
 function ScholarshipCreatePage() {
   const { studentType } = Route.useParams();
@@ -25,8 +24,7 @@ function ScholarshipCreatePage() {
 
   const onSubmit = async (content: ScholarshipFormData) => {
     try {
-      await fetchOk(`${BASE_URL}/v2/academics/${studentType}/scholarship`, {
-        method: 'POST',
+      await api.post(`v2/academics/${studentType}/scholarship`, {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(content),
       });

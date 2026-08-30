@@ -9,16 +9,13 @@ import clsx from 'clsx';
 import { useEffect } from 'react';
 import '@/app.css';
 import '@/components/ui/sonner/styles.css';
-import { useNavigate } from '@tanstack/react-router';
 import Footer from '@/components/layout/Footer';
-import Header from '@/components/layout/Header';
 import LNB from '@/components/layout/LeftNav';
 import MobileNav from '@/components/layout/MobileNav';
 import NotFound from '@/components/layout/NotFound';
-import ErrorState from '@/components/ui/ErrorState';
+import RootErrorBoundary from '@/components/layout/RootErrorBoundary';
 import { Toaster } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useNonce } from '@/hooks/useNonce';
 import useIsMobile from '@/hooks/useResponsive';
 import { type Role, useStore } from '@/store';
 import { fetchSessionRoles } from '@/utils/auth';
@@ -92,7 +89,6 @@ export const Route = createRootRoute({
 });
 
 function RootDocument() {
-  const nonce = useNonce();
   const { roles, origin } = Route.useLoaderData();
   useEffect(() => {
     useStore.setState({ roles: roles ?? [] });
@@ -119,8 +115,6 @@ function RootDocument() {
           hrefLang="x-default"
           href={`${origin}/ko${altPath}`}
         />
-        {/* 클라가 SPA 네비 시 주입 스타일에 쓸 nonce 전달(useNonce가 읽음) */}
-        {nonce ? <meta name="csp-nonce" content={nonce} /> : null}
       </head>
       <body className="sm:min-w-[1200px] bg-neutral-900 font-normal text-neutral-950">
         <LNB />
@@ -136,47 +130,6 @@ function RootDocument() {
           <Footer />
           <Toaster />
         </main>
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-
-/** 던져진 Response류({ status, statusText }) 판별(RR isRouteErrorResponse 대체). */
-function isErrorResponse(
-  error: unknown,
-): error is { status: number; statusText: string } {
-  return (
-    typeof error === 'object' &&
-    error != null &&
-    'status' in error &&
-    'statusText' in error
-  );
-}
-
-function RootErrorBoundary({ error }: { error: unknown }) {
-  const { t, localizedPath } = useLanguage({ '메인으로 이동': 'Go to home' });
-  const navigate = useNavigate();
-  const message = isErrorResponse(error)
-    ? `${error.status} ${error.statusText}`
-    : error instanceof Error
-      ? error.message
-      : 'Unknown error';
-  return (
-    <html lang="ko">
-      <head>
-        <HeadContent />
-      </head>
-      <body className="sm:min-w-[1200px] bg-neutral-900 font-normal text-neutral-950">
-        <Header />
-        <ErrorState
-          title="500"
-          message={`Error: ${message}`}
-          action={{
-            label: t('메인으로 이동'),
-            onClick: () => navigate({ to: localizedPath('/') }),
-          }}
-        />
         <Scripts />
       </body>
     </html>

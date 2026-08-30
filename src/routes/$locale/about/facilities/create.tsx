@@ -10,8 +10,8 @@ import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { EditorImage } from '@/types/form';
-import { fetchOk } from '@/utils/fetch';
-import { FormData2 } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData } from '@/utils/apiFormData';
 
 interface FacilityFormData {
   ko: { name: string; description: string; locations: string[] };
@@ -37,16 +37,13 @@ function FacilitiesCreate() {
   };
 
   const onSubmit = methods.handleSubmit(async ({ ko, en, imageURL }) => {
-    const formData = new FormData2();
+    const formData = new ApiFormData();
 
     formData.appendJson('request', { ko, en });
     formData.appendIfLocal('newMainImage', imageURL);
 
     try {
-      await fetchOk('/api/v2/about/facilities', {
-        method: 'POST',
-        body: formData,
-      });
+      await api.post('v2/about/facilities', { body: formData });
 
       toast.success('시설을 추가했습니다.');
       navigate({ to: localizedPath('/about/facilities') });

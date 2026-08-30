@@ -1,6 +1,11 @@
-import { type NavItem, navigationTree } from '@/constants/navigation';
+import {
+  type NavItem,
+  type NavPath,
+  navigationTree,
+} from '@/constants/navigation';
 
-const EXTRA_PATHS = [
+// 내비에 없는 수록 대상. NavPath라 라우트가 사라지면 컴파일 에러.
+const EXTRA_PATHS: NavPath[] = [
   '/',
   '/search',
   '/10-10-project',

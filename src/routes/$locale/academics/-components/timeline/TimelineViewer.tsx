@@ -9,8 +9,8 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { TimelineContent } from '@/types/api/v2/academics';
+import { api } from '@/utils/api';
 import type { ProcessedHtml } from '@/utils/csp';
-import { fetchOk } from '@/utils/fetch';
 import Timeline from './Timeline';
 
 type ProcessedTimelineContent = Omit<TimelineContent, 'description'> & {
@@ -34,9 +34,8 @@ export default function TimelineViewer<T extends ProcessedTimelineContent>({
     '연도 추가': 'Add Year',
   });
   const [selectedYear, setSelectedYear] = useState(contents[0]?.year ?? 0);
-  // contents[0](최신 연도)가 바뀌면 선택을 그쪽으로 재동기화. RR은 네비게이션마다 컴포넌트를
-  // 재마운트해 useState가 초기화됐지만, TanStack은 같은 라우트로 돌아올 때 인스턴스를 유지할 수
-  // 있어 추가/삭제 후 selectedYear가 옛 값에 머문다(추가 직후 최신 연도 자동선택이 깨짐).
+  // contents[0](최신 연도)가 바뀌면 선택을 그쪽으로 재동기화. 같은 라우트로 돌아올 때
+  // 컴포넌트 인스턴스가 유지될 수 있어, 없으면 추가/삭제 후 selectedYear가 옛 값에 머문다.
   const [prevFirstYear, setPrevFirstYear] = useState(contents[0]?.year ?? 0);
   if ((contents[0]?.year ?? 0) !== prevFirstYear) {
     setPrevFirstYear(contents[0]?.year ?? 0);
@@ -119,9 +118,7 @@ function ActionButtons({ year, pathname }: { year: number; pathname: string }) {
   const handleDelete = async () => {
     try {
       // 백엔드 API 경로엔 로케일 프리픽스(/ko·/en)가 없어야 한다(pathname은 링크용).
-      await fetchOk(`/api/v2${pathWithoutLocale}/${year}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2${pathWithoutLocale}/${year}`);
       setShowDeleteDialog(false);
       toast.success('삭제에 성공했습니다.');
       router.invalidate();
