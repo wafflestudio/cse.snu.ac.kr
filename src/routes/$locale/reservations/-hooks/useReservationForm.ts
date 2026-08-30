@@ -14,7 +14,7 @@ import {
   getOptimalEndTime,
   getStartTimeOptions,
   isChecked,
-} from '@/utils/reservation';
+} from '../-utils';
 
 type ReservationFormValues = Omit<
   ReservationPostBody,

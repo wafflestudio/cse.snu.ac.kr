@@ -18,11 +18,7 @@ import {
 } from '@/routes/$locale/reservations/-constants';
 import { kstDayjs } from '@/utils/date';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
-import {
-  formatDateParam,
-  getStartOfWeek,
-  parseDateParam,
-} from '@/utils/reservation';
+import { formatDateParam, getStartOfWeek, parseDateParam } from '../-utils';
 
 function RoomReservationPage() {
   const {

@@ -1,7 +1,7 @@
 import type dayjs from 'dayjs';
 import { useSearchParams } from '@/hooks/useSearchParams';
 import { kstDayjs } from '@/utils/date';
-import { formatDateParam, parseDateParam } from '@/utils/reservation';
+import { formatDateParam, parseDateParam } from '../-utils';
 
 export default function useSelectedDate() {
   const [searchParams, setSearchParams] = useSearchParams();

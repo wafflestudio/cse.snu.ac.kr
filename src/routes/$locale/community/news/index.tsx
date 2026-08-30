@@ -4,7 +4,6 @@ import SearchBox from '@/components/feature/SearchBox';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import Pagination from '@/components/ui/Pagination';
-import { NEWS_TAGS } from '@/constants/tag';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSearchParams } from '@/hooks/useSearchParams';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
@@ -12,6 +11,7 @@ import type { NewsPreview, NewsPreviewList } from '@/types/api/v2/news';
 import { api } from '@/utils/api';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
 import NewsListRow from './-components/NewsListRow';
+import { NEWS_TAGS } from './-constants';
 
 const POST_LIMIT = 10;
 

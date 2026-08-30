@@ -4,7 +4,6 @@ import LoginVisible from '@/components/feature/auth/LoginVisible';
 import SearchBox from '@/components/feature/SearchBox';
 import PageLayout from '@/components/layout/PageLayout';
 import Pagination from '@/components/ui/Pagination';
-import { NOTICE_TAGS } from '@/constants/tag';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSearchParams } from '@/hooks/useSearchParams';
 import { useSetToggle } from '@/hooks/useSetToggle';
@@ -16,6 +15,7 @@ import AdminFeatures from './-components/AdminFeatures';
 import NoticeListRow, {
   NOTICE_ROW_CELL_WIDTH,
 } from './-components/NoticeListRow';
+import { NOTICE_TAGS } from './-constants';
 
 const POST_LIMIT = 20;
 
