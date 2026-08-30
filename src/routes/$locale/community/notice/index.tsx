@@ -5,12 +5,10 @@ import SearchBox from '@/components/feature/SearchBox';
 import PageLayout from '@/components/layout/PageLayout';
 import Pagination from '@/components/ui/Pagination';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import { useSetToggle } from '@/hooks/useSetToggle';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import type { NoticePreviewList } from '@/types/api/v2/notice';
 import { api } from '@/utils/api';
-import { searchLoaderDeps } from '@/utils/loaderDeps';
 import AdminFeatures from './-components/AdminFeatures';
 import NoticeListRow, {
   NOTICE_ROW_CELL_WIDTH,
@@ -18,6 +16,22 @@ import NoticeListRow, {
 import { NOTICE_TAGS } from './-constants';
 
 const POST_LIMIT = 20;
+
+// 빈 값은 undefined로 둔다 — validateSearch 결과가 URL로 재직렬화되므로, 기본값을
+// 채워 넣으면 `/community/notice`가 `?pageNum=1&keyword=&tag=[]`로 오염된다.
+interface NoticeSearch {
+  pageNum?: number;
+  keyword?: string;
+  tag?: string[];
+}
+
+/** 반복 키(`?tag=a&tag=b`)는 배열, 1개면 문자열로 파싱돼 온다 → 항상 배열로. */
+const toStringArray = (value: unknown): string[] =>
+  Array.isArray(value)
+    ? value.filter((v): v is string => typeof v === 'string')
+    : typeof value === 'string' && value
+      ? [value]
+      : [];
 
 const META = {
   ko: {
@@ -35,7 +49,7 @@ const META = {
 function NoticePage() {
   const data = Route.useLoaderData();
 
-  const [searchParams] = useSearchParams();
+  const { pageNum = 1 } = Route.useSearch();
   const { t, locale } = useLanguage({
     제목: 'Title',
     날짜: 'Date',
@@ -56,7 +70,6 @@ function NoticePage() {
     clear();
   };
 
-  const pageNum = parseInt(searchParams.get('pageNum') || '1', 10);
   const totalPages = Math.ceil(data.total / POST_LIMIT);
 
   return (
@@ -123,25 +136,30 @@ function NoticePage() {
 }
 
 export const Route = createFileRoute('/$locale/community/notice/')({
-  loaderDeps: searchLoaderDeps,
-  loader: async ({ params, location }) => {
-    const searchStr = location.searchStr;
-    const sp = new URLSearchParams(searchStr);
+  validateSearch: (search: Record<string, unknown>): NoticeSearch => {
+    const pageNum = Number(search.pageNum) || 1;
+    const keyword = typeof search.keyword === 'string' ? search.keyword : '';
+    const tag = toStringArray(search.tag);
+    return {
+      pageNum: pageNum > 1 ? pageNum : undefined,
+      keyword: keyword || undefined,
+      tag: tag.length > 0 ? tag : undefined,
+    };
+  },
+  // loader가 실제로 쓰는 것만 선언한다(전체를 넘기면 무관한 파라미터 변경에도 재실행).
+  loaderDeps: ({ search }) => search,
+  loader: ({ params, deps }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
-
-    const pageNum = sp.get('pageNum') || '1';
-    const keyword = sp.get('keyword') || '';
-    const tag = sp.getAll('tag');
-
-    const query = new URLSearchParams();
-    query.append('pageNum', pageNum);
-    query.append('language', locale);
-    if (keyword) query.append('keyword', keyword);
-    for (const t of tag) {
-      query.append('tag', t);
-    }
-
-    return api.get(`v2/notice?${query.toString()}`).json<NoticePreviewList>();
+    return api
+      .get('v2/notice', {
+        searchParams: [
+          ['pageNum', String(deps.pageNum ?? 1)],
+          ['language', locale],
+          ...(deps.keyword ? [['keyword', deps.keyword]] : []),
+          ...(deps.tag ?? []).map((t) => ['tag', t]),
+        ] as [string, string][],
+      })
+      .json<NoticePreviewList>();
   },
   component: NoticePage,
 });
