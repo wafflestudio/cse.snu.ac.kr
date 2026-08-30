@@ -8,7 +8,12 @@ const BACKEND_URL = process.env.E2E_BACKEND_URL ?? 'http://localhost:8080';
 export default defineConfig({
   testDir: './tests',
   forbidOnly: true,
-  reporter: 'html', // 실패 시 playwright-report/ — 스크린샷 diff·trace 열람
+  // list: 진행 상황을 실시간으로 출력(CI 로그에서 지금 뭘 도는지 보이게).
+  // github: 실패를 PR의 소스 라인에 annotation으로 표시.
+  // html: 실패 시 playwright-report/ — 스크린샷 diff·trace 열람.
+  reporter: process.env.GITHUB_ACTIONS
+    ? [['github'], ['list'], ['html', { open: 'never' }]]
+    : [['list'], ['html', { open: 'never' }]],
 
   retries: 2,
   // CI 러너는 로컬보다 느려 타임아웃 실패(PR #20) → 보수 분기. CI=1은 우리가 항상 넣으므로 신호는 GITHUB_ACTIONS.
