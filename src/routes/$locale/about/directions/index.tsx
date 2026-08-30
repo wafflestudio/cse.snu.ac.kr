@@ -8,9 +8,9 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useAboutSubNav } from '@/hooks/useSubNav';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { DirectionsResponse } from '@/types/api/v2/about/directions';
 import { api } from '@/utils/api';
-import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import KakaoMap from './-components/KakaoMap';
 
 const META = {

@@ -6,9 +6,9 @@ import Button from '@/components/ui/Button';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useAboutSubNav } from '@/hooks/useSubNav';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { StudentClubsResponse } from '@/types/api/v2/about/student-clubs';
 import { api } from '@/utils/api';
-import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import ClubDetails from './-components/ClubDetails';
 
 const META = {

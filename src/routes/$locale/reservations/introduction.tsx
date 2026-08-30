@@ -7,7 +7,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useReservationsSubNav } from '@/hooks/useSubNav';
-import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 
 const META = {
   ko: {

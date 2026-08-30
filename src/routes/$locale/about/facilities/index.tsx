@@ -4,9 +4,9 @@ import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { FacilitiesResponse } from '@/types/api/v2/about/facilities';
 import { api } from '@/utils/api';
-import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import FacilitiesList from './-components/FacilitiesList';
 
 const META = {

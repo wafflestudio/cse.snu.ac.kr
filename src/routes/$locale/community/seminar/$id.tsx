@@ -12,9 +12,9 @@ import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { Seminar } from '@/types/api/v2/seminar';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
-import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import { stripHtml, truncateDescription } from '@/utils/string';
 
 function SeminarDetailPage() {

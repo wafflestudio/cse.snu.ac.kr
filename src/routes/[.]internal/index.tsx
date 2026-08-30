@@ -3,8 +3,8 @@ import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import { api } from '@/utils/api';
-import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 function InternalPage() {
   const loaderData = Route.useLoaderData();

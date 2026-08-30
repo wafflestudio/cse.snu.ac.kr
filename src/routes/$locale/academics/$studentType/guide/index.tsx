@@ -6,9 +6,9 @@ import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { Guide } from '@/types/api/v2/academics';
 import { api } from '@/utils/api';
-import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 const META = {
   undergraduate: {

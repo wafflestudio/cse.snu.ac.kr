@@ -11,9 +11,9 @@ import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useResearchSubNav } from '@/hooks/useSubNav';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { ResearchGroupsResponse } from '@/types/api/v2/research/groups';
 import { api } from '@/utils/api';
-import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 const META = {
   ko: {

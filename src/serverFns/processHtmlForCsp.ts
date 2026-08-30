@@ -1,5 +1,5 @@
 import { createServerFn } from '@tanstack/react-start';
-import type { ProcessedHtml } from './csp';
+import type { ProcessedHtml } from '@/utils/csp';
 
 // 백엔드 HTML(suneditor 산출물)을 strict CSP에서 렌더 가능한 형태로 변환.
 // - 링크 autolink + rel 보안 속성

@@ -11,9 +11,9 @@ import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useResearchSubNav } from '@/hooks/useSubNav';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { ResearchCentersResponse } from '@/types/api/v2/research/centers';
 import { api } from '@/utils/api';
-import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import LinkIcon from './assets/link_icon.svg?react';
 
 const META = {

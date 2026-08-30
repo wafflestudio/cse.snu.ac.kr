@@ -3,7 +3,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
-import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 
 const META = {
   ko: {

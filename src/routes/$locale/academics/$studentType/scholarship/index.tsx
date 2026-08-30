@@ -6,10 +6,10 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import ScholarshipList from '@/routes/$locale/academics/-components/ScholarshipList';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { StudentType } from '@/types/api/v2/academics';
 import type { ScholarshipList as ScholarshipListType } from '@/types/api/v2/academics/scholarship';
 import { api } from '@/utils/api';
-import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 const META = {
   undergraduate: {

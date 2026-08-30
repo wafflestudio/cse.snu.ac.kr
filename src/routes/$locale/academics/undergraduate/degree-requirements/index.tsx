@@ -7,9 +7,9 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import Node from '@/components/ui/Nodes';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { DegreeRequirements } from '@/types/api/v2/academics/undergraduate/degree-requirements';
 import { api } from '@/utils/api';
-import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 const META = {
   ko: {

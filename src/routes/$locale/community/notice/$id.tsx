@@ -12,9 +12,9 @@ import { Tag } from '@/components/ui/Tag';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { Notice } from '@/types/api/v2/notice';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
-import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import { stripHtml, truncateDescription } from '@/utils/string';
 
 function NoticeDetailPage() {

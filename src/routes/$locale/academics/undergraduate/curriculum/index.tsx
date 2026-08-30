@@ -3,9 +3,9 @@ import PageLayout from '@/components/layout/PageLayout';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import TimelineViewer from '@/routes/$locale/academics/-components/timeline/TimelineViewer';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { TimelineContent } from '@/types/api/v2/academics';
 import { api } from '@/utils/api';
-import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 import './assets/curriculumfix.css';
 

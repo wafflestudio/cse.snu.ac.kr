@@ -6,9 +6,9 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import Image from '@/components/ui/Image';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import type { AboutContent } from '@/types/api/v2/about/content';
 import { api } from '@/utils/api';
-import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import ContentSection from './-components/ContentSection';
 
 const META = {
