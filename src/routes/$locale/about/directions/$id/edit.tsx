@@ -8,10 +8,9 @@ import LanguagePicker, {
 } from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { DirectionsResponse } from '@/types/api/v2/about/directions';
-import { fetchJson, fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 
 interface DirectionFormData {
   htmlKo: string;
@@ -39,8 +38,7 @@ function DirectionsEdit() {
 
   const onSubmit = methods.handleSubmit(async ({ htmlKo, htmlEn }) => {
     try {
-      await fetchOk(`/api/v2/about/directions/${direction.ko.id}`, {
-        method: 'PUT',
+      await api.put(`v2/about/directions/${direction.ko.id}`, {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           koDescription: htmlKo,
@@ -100,9 +98,9 @@ export const Route = createFileRoute('/$locale/about/directions/$id/edit')({
       throw new Response('Invalid ID', { status: 400 });
     }
 
-    const directions = await fetchJson<DirectionsResponse>(
-      `${BASE_URL}/v2/about/directions`,
-    );
+    const directions = await api
+      .get(`v2/about/directions`)
+      .json<DirectionsResponse>();
 
     const direction = directions.find((d) => d.ko.id === id);
 

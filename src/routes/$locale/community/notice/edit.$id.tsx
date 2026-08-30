@@ -7,7 +7,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import type { Notice } from '@/types/api/v2/notice';
 import { isLocalFile } from '@/types/form';
 import { api } from '@/utils/api';
-import { FormData2, getDeleteIds } from '@/utils/form';
+import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';
 import NoticeEditor, { type NoticeFormData } from './-components/NoticeEditor';
 
 dayjs.extend(customParseFormat);
@@ -51,7 +51,7 @@ function NoticeEditPage() {
       cur: content.attachments,
     });
 
-    const formData = new FormData2();
+    const formData = new ApiFormData();
 
     formData.appendJson('request', {
       title: content.title,

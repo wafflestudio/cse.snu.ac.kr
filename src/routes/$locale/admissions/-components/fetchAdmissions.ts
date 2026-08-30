@@ -1,5 +1,5 @@
-import { BASE_URL } from '@/constants/api';
 import type { AdmissionsResponse } from '@/types/api/v2/admissions';
+import { api } from '@/utils/api';
 
 export type MainType = 'undergraduate' | 'graduate' | 'international';
 export type PostType =
@@ -14,9 +14,7 @@ export async function fetchAdmissions(
   mainType: MainType,
   postType: PostType,
 ): Promise<AdmissionsResponse> {
-  const response = await fetch(
-    `${BASE_URL}/v2/admissions/${mainType}/${postType}`,
-  );
-  if (!response.ok) throw new Error('Failed to fetch admissions');
-  return (await response.json()) as AdmissionsResponse;
+  return api
+    .get(`v2/admissions/${mainType}/${postType}`)
+    .json<AdmissionsResponse>();
 }

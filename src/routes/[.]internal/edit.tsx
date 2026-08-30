@@ -4,8 +4,7 @@ import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
-import { fetchJson, fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 
 interface InternalFormData {
   description: string;
@@ -28,8 +27,7 @@ function InternalEdit() {
 
   const onSubmit = methods.handleSubmit(async ({ description }) => {
     try {
-      await fetchOk(`/api/v2/internal`, {
-        method: 'PUT',
+      await api.put(`v2/internal`, {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ description }),
       });
@@ -62,9 +60,7 @@ function InternalEdit() {
 
 export const Route = createFileRoute('/.internal/edit')({
   loader: async () => {
-    const data = await fetchJson<{ description: string }>(
-      `${BASE_URL}/v2/internal`,
-    );
+    const data = await api.get(`v2/internal`).json<{ description: string }>();
     return { description: data.description };
   },
   component: InternalEdit,

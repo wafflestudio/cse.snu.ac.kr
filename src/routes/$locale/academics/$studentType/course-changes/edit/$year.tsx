@@ -1,14 +1,13 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import TimelineEditor, {
   type TimelineFormData,
 } from '@/routes/$locale/academics/-components/timeline/TimelineEditor';
 import type { TimelineContent } from '@/types/api/v2/academics';
-import { fetchJson, fetchOk } from '@/utils/fetch';
-import { FormData2, getDeleteIds } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';
 
 function CourseChangesEditPage() {
   const loaderData = Route.useLoaderData();
@@ -43,7 +42,7 @@ function CourseChangesEditPage() {
       cur: data.file,
     });
 
-    const formData = new FormData2();
+    const formData = new ApiFormData();
     formData.appendJson('request', {
       description: data.description,
       deleteIds,
@@ -51,13 +50,9 @@ function CourseChangesEditPage() {
     formData.appendIfLocal('newAttachments', data.file);
 
     try {
-      await fetchOk(
-        `${BASE_URL}/v2/academics/${studentType}/course-changes/${year}`,
-        {
-          method: 'PUT',
-          body: formData,
-        },
-      );
+      await api.put(`v2/academics/${studentType}/course-changes/${year}`, {
+        body: formData,
+      });
       toast.success(t('수정에 성공했습니다.'));
       navigate({ to: `/academics/${studentType}/course-changes` });
     } catch {
@@ -81,9 +76,9 @@ export const Route = createFileRoute(
 )({
   loader: async ({ params }) => {
     const { studentType, year } = params;
-    const data = await fetchJson<TimelineContent[]>(
-      `${BASE_URL}/v2/academics/${studentType}/course-changes`,
-    );
+    const data = await api
+      .get(`v2/academics/${studentType}/course-changes`)
+      .json<TimelineContent[]>();
     const yearNum = Number(year);
     const selected = data.find((x) => x.year === yearNum);
 

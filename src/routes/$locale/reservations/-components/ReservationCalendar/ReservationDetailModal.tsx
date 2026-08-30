@@ -11,7 +11,8 @@ import {
   deleteReservation,
 } from '@/routes/$locale/reservations/-api';
 import type { Reservation } from '@/types/api/v2/reservation';
-import { kstDayjs } from '@/utils/kstDayjs';
+import { api } from '@/utils/api';
+import { kstDayjs } from '@/utils/date';
 
 interface ReservationDetailModalProps {
   reservationId: number | null;
@@ -57,11 +58,9 @@ export default function ReservationDetailModal({
     setReservation(null);
 
     (async () => {
-      const response = await fetch(`/api/v2/reservation/${reservationId}`, {
-        credentials: 'include',
-      });
-      if (!response.ok) throw new Error('Failed to fetch reservation detail');
-      const data = (await response.json()) as Reservation;
+      const data = await api
+        .get(`v2/reservation/${reservationId}`)
+        .json<Reservation>();
       setReservation(data);
     })();
   }, [open, reservationId]);

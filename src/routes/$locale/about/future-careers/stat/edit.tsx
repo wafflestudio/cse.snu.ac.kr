@@ -9,11 +9,10 @@ import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { FutureCareersResponse } from '@/types/api/v2/about/future-careers';
-import { fetchJson, fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
 
 const COMPANY_LIST = [
@@ -67,8 +66,7 @@ function CareerStatEditPage() {
 
   const onSubmit = async (content: CareerStat) => {
     try {
-      await fetchOk('/api/v2/about/future-careers/stats', {
-        method: 'PUT',
+      await api.put('v2/about/future-careers/stats', {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(content),
       });
@@ -152,9 +150,9 @@ export const Route = createFileRoute('/$locale/about/future-careers/stat/edit')(
       const sp = new URLSearchParams(searchStr);
       const year = sp.get('year');
 
-      const data = await fetchJson<FutureCareersResponse>(
-        `${BASE_URL}/v2/about/future-careers`,
-      );
+      const data = await api
+        .get(`v2/about/future-careers`)
+        .json<FutureCareersResponse>();
       const selectedStat =
         data.stat.find((x) => x.year.toString() === year) ?? data.stat[0];
 

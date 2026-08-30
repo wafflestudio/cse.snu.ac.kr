@@ -16,7 +16,7 @@ import Button from '@/components/ui/Button';
 import Calendar from '@/components/ui/Calendar';
 import { useClickOutside } from '@/hooks/useClickOutside';
 import useSelectedDate from '@/routes/$locale/reservations/-hooks/useSelectedDate';
-import { kstDayjs } from '@/utils/kstDayjs';
+import { kstDayjs } from '@/utils/date';
 import AddReservationModal from './AddReservationModal';
 
 export default function CalendarToolbar({

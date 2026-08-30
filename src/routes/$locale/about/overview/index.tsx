@@ -5,10 +5,10 @@ import Attachments from '@/components/ui/Attachments';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import Image from '@/components/ui/Image';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import commonTranslations from '@/translations.json';
 import type { AboutContent } from '@/types/api/v2/about/content';
+import { api } from '@/utils/api';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import ContentSection from '../-components/ContentSection';
 import brochure1 from '../assets/brochure1.avif';
@@ -105,13 +105,9 @@ function Overview() {
 export const Route = createFileRoute('/$locale/about/overview/')({
   loader: async ({ params }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
-    const response = await fetch(
-      `${BASE_URL}/v2/about/overview?language=${locale}`,
-    );
-    if (!response.ok)
-      throw new Error('Failed to fetch overview data', { cause: response });
-
-    const data = (await response.json()) as AboutContent;
+    const data = await api
+      .get(`v2/about/overview?language=${locale}`)
+      .json<AboutContent>();
 
     return {
       ...data,

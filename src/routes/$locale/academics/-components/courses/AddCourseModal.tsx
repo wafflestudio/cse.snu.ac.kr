@@ -5,11 +5,10 @@ import Form from '@/components/form/Form';
 import Button from '@/components/ui/Button';
 import Dialog from '@/components/ui/Dialog';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { Course, StudentType } from '@/types/api/v2/academics';
 import { CLASSIFICATION, GRADE } from '@/types/api/v2/academics';
-import { fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 
 const CREDIT = [1, 2, 3, 4];
 
@@ -54,8 +53,7 @@ export default function AddCourseModal({
 
   const onSubmit = async (course: Course) => {
     try {
-      await fetchOk(`${BASE_URL}/v2/academics/courses`, {
-        method: 'POST',
+      await api.post(`v2/academics/courses`, {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(course),
       });

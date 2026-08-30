@@ -1,7 +1,6 @@
 import { createFileRoute, notFound } from '@tanstack/react-router';
 import SelectionList from '@/components/feature/selection/SelectionList';
 import PageLayout from '@/components/layout/PageLayout';
-import { BASE_URL } from '@/constants/api';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import {
   ADMIN_MENU_IMAGE_MODAL,
@@ -11,8 +10,8 @@ import {
   type ImportantPreviewList,
   type SlidePreviewList,
 } from '@/types/api/v2/admin';
+import { api } from '@/utils/api';
 import { fetchSessionRoles } from '@/utils/auth';
-import { fetchJson } from '@/utils/fetch';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
 import { forwardAuthHeaders } from '@/utils/ssr';
 import ImageModalManagement from './-components/ImageModalManagement';
@@ -161,24 +160,20 @@ export const Route = createFileRoute('/admin/')({
     // 에 쿠키가 있었지만, TanStack은 클라에서도 loader가 돌아 synthetic request엔 쿠키가
     // 없다 → forwardAuthHeaders로 양쪽 모두 인증되게 한다(이 early-return이 admin 목록
     // revalidate 미반영 버그의 원인이었음).
-    const headers = forwardAuthHeaders();
+    const _headers = forwardAuthHeaders();
 
     if (selected === ADMIN_MENU_SLIDE) {
-      const data = await fetchJson<SlidePreviewList>(
-        `${BASE_URL}/v2/admin/slide?pageNum=${pageNum}`,
-        { headers },
-      );
+      const data = await api
+        .get(`v2/admin/slide?pageNum=${pageNum}`)
+        .json<SlidePreviewList>();
       return { type: 'slide' as const, data };
     } else if (selected === ADMIN_MENU_IMAGE_MODAL) {
-      const data = await fetchJson<ImageModal[]>(`${BASE_URL}/v2/image-modal`, {
-        headers,
-      });
+      const data = await api.get('v2/image-modal').json<ImageModal[]>();
       return { type: 'imageModal' as const, data };
     } else {
-      const data = await fetchJson<ImportantPreviewList>(
-        `${BASE_URL}/v2/admin/important?pageNum=${pageNum}`,
-        { headers },
-      );
+      const data = await api
+        .get(`v2/admin/important?pageNum=${pageNum}`)
+        .json<ImportantPreviewList>();
       return { type: 'important' as const, data };
     }
   },

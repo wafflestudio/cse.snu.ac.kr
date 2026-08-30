@@ -1,11 +1,10 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { ResearchGroup } from '@/types/api/v2/research/groups';
-import { fetchJson, fetchOk } from '@/utils/fetch';
-import { FormData2 } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData } from '@/utils/apiFormData';
 import ResearchGroupEditor, {
   type ResearchGroupFormData,
 } from '../-components/ResearchGroupEditor';
@@ -35,7 +34,7 @@ function ResearchGroupEdit() {
   };
 
   const onSubmit = async (formData: ResearchGroupFormData) => {
-    const data = new FormData2();
+    const data = new ApiFormData();
 
     const removeImage = defaultValues.image !== null && formData.image === null;
 
@@ -46,10 +45,7 @@ function ResearchGroupEdit() {
     data.appendIfLocal('newMainImage', formData.image);
 
     try {
-      await fetchOk(`/api/v2/research/${ko.id}/${en.id}`, {
-        method: 'PUT',
-        body: data,
-      });
+      await api.put(`v2/research/${ko.id}/${en.id}`, { body: data });
 
       toast.success('연구 스트림을 수정했습니다.');
       navigate({ to: localizedPath('/research/groups') });
@@ -73,9 +69,7 @@ export const Route = createFileRoute('/$locale/research/groups/$id/edit')({
   loader: async ({ params }) => {
     const id = params.id;
 
-    const data = await fetchJson<ResearchGroupData>(
-      `${BASE_URL}/v2/research/${id}`,
-    );
+    const data = await api.get(`v2/research/${id}`).json<ResearchGroupData>();
 
     return data;
   },

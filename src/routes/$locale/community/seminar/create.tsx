@@ -4,7 +4,7 @@ import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { isLocalFile } from '@/types/form';
 import { api } from '@/utils/api';
-import { FormData2 } from '@/utils/form';
+import { ApiFormData } from '@/utils/apiFormData';
 import SeminarEditor, {
   type SeminarFormData,
 } from './-components/SeminarEditor';
@@ -18,7 +18,7 @@ function SeminarCreatePage() {
   };
 
   const onSubmit = async (content: SeminarFormData) => {
-    const formData = new FormData2();
+    const formData = new ApiFormData();
 
     formData.appendJson('request', {
       title: content.title,

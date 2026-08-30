@@ -1,6 +1,6 @@
 import type dayjs from 'dayjs';
 import type { ReservationPreview } from '@/types/api/v2/reservation';
-import { kstDayjs } from '@/utils/kstDayjs';
+import { kstDayjs } from '@/utils/date';
 import styles from './cellstyle.module.css';
 
 const UNIT_HEIGHT_IN_REM = 1.5;

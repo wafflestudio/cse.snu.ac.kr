@@ -1,4 +1,3 @@
-import { BASE_URL } from '@/constants/api';
 import type {
   AboutSearchResult,
   AcademicsSearchResult,
@@ -9,6 +8,7 @@ import type {
   ResearchSearchResult,
 } from '@/types/api/v2/search';
 import type { SeminarPreviewList } from '@/types/api/v2/seminar';
+import { api } from '@/utils/api';
 import type { TreeNode } from './-components/ui/SearchSubNavbar';
 
 export type SectionContent = {
@@ -41,11 +41,9 @@ export default async function fetchContent(
       ...(params.amount ? { amount: `${params.amount}` } : {}),
     });
 
-    const response = await fetch(
-      `${BASE_URL}${path}?${searchParams.toString()}`,
-    );
-    if (!response.ok) throw new Error('Failed to fetch search data');
-    return (await response.json()) as T;
+    return api
+      .get(`${path.replace(/^\//, '')}?${searchParams.toString()}`)
+      .json<T>();
   };
 
   const fetchSeminar = async (keywordValue: string, localeValue: string) => {
@@ -55,11 +53,9 @@ export default async function fetchContent(
       language: localeValue,
     });
 
-    const response = await fetch(
-      `${BASE_URL}/v2/seminar?${searchParams.toString()}`,
-    );
-    if (!response.ok) throw new Error('Failed to fetch seminar data');
-    return (await response.json()) as SeminarPreviewList;
+    return api
+      .get(`v2/seminar?${searchParams.toString()}`)
+      .json<SeminarPreviewList>();
   };
 
   const [about, notice, news, seminar, member, research, admission, academics] =

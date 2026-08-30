@@ -1,6 +1,7 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import ky from 'ky';
 import sharp from 'sharp';
 
 /**
@@ -114,12 +115,14 @@ async function fetchImageWithProdFallback(
   let actualImageUrl = imageUrl;
 
   try {
-    imageResponse = await fetch(imageUrl);
+    // api 인스턴스가 아닌 기본 ky — 백엔드 API가 아니라 임의 이미지 URL(화이트리스트 검증
+    // 완료)을 가져오는 자리라 prefix·쿠키 포워딩·404→notFound 정책이 모두 부적합하다.
+    imageResponse = await ky.get(imageUrl, { throwHttpErrors: false });
 
     // dev 모드에서 404 발생 시 prod 환경으로 fallback
     if (dev && imageResponse.status === 404) {
       actualImageUrl = replaceHostWithProd(imageUrl);
-      imageResponse = await fetch(actualImageUrl);
+      imageResponse = await ky.get(actualImageUrl, { throwHttpErrors: false });
     }
   } catch {
     throw new Response(`Failed to fetch image: ${imageUrl}`, { status: 502 });

@@ -1,11 +1,10 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { ResearchCenter } from '@/types/api/v2/research/centers';
-import { fetchJson, fetchOk } from '@/utils/fetch';
-import { FormData2 } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData } from '@/utils/apiFormData';
 import ResearchCenterEditor, {
   type ResearchCenterFormData,
 } from '../-components/ResearchCenterEditor';
@@ -45,7 +44,7 @@ function ResearchCenterEdit() {
   };
 
   const onSubmit = async (formData: ResearchCenterFormData) => {
-    const data = new FormData2();
+    const data = new ApiFormData();
 
     const removeImage = defaultValues.image !== null && formData.image === null;
 
@@ -56,10 +55,7 @@ function ResearchCenterEdit() {
     data.appendIfLocal('newMainImage', formData.image);
 
     try {
-      await fetchOk(`/api/v2/research/${ko.id}/${en.id}`, {
-        method: 'PUT',
-        body: data,
-      });
+      await api.put(`v2/research/${ko.id}/${en.id}`, { body: data });
 
       toast.success('연구 센터를 수정했습니다.');
       navigate({ to: localizedPath('/research/centers') });
@@ -83,9 +79,7 @@ export const Route = createFileRoute('/$locale/research/centers/$id/edit')({
   loader: async ({ params }) => {
     const id = params.id;
 
-    const data = await fetchJson<ResearchCenterData>(
-      `${BASE_URL}/v2/research/${id}`,
-    );
+    const data = await api.get(`v2/research/${id}`).json<ResearchCenterData>();
 
     return data;
   },

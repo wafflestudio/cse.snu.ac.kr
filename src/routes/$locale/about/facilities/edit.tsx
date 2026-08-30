@@ -8,7 +8,6 @@ import LanguagePicker, {
 } from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSearchParams } from '@/hooks/useSearchParams';
 import type {
@@ -16,8 +15,8 @@ import type {
   Facility,
 } from '@/types/api/v2/about/facilities';
 import type { EditorImage } from '@/types/form';
-import { fetchJson, fetchOk } from '@/utils/fetch';
-import { FormData2 } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData } from '@/utils/apiFormData';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
 
 interface FacilityFormData {
@@ -59,7 +58,7 @@ function FacilitiesEdit() {
   };
 
   const onSubmit = methods.handleSubmit(async ({ ko, en, imageURL }) => {
-    const formData = new FormData2();
+    const formData = new ApiFormData();
 
     formData.appendJson('request', {
       ko,
@@ -69,8 +68,7 @@ function FacilitiesEdit() {
     formData.appendIfLocal('newMainImage', imageURL);
 
     try {
-      await fetchOk(`/api/v2/about/facilities/${facility.ko.id}`, {
-        method: 'PUT',
+      await api.put(`v2/about/facilities/${facility.ko.id}`, {
         body: formData,
       });
 
@@ -221,9 +219,9 @@ export const Route = createFileRoute('/$locale/about/facilities/edit')({
     const sp = new URLSearchParams(searchStr);
     const idParam = sp.get('id');
 
-    const facilities = await fetchJson<FacilitiesResponse>(
-      `${BASE_URL}/v2/about/facilities`,
-    );
+    const facilities = await api
+      .get(`v2/about/facilities`)
+      .json<FacilitiesResponse>();
 
     // id param으로 facility 찾기
     let selectedFacility = facilities[0];

@@ -1,11 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import TimelineViewer from '@/routes/$locale/academics/-components/timeline/TimelineViewer';
 import type { TimelineContent } from '@/types/api/v2/academics';
-import { fetchJson } from '@/utils/fetch';
+import { api } from '@/utils/api';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 const META = {
@@ -67,9 +66,9 @@ export const Route = createFileRoute(
 )({
   loader: async ({ params }) => {
     const { studentType } = params;
-    const data = await fetchJson<TimelineContent[]>(
-      `${BASE_URL}/v2/academics/${studentType}/course-changes`,
-    );
+    const data = await api
+      .get(`v2/academics/${studentType}/course-changes`)
+      .json<TimelineContent[]>();
 
     return Promise.all(
       data.map(async (item) => ({

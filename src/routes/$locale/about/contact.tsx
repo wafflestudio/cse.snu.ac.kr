@@ -3,9 +3,9 @@ import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
+import { api } from '@/utils/api';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import ContentSection from './-components/ContentSection';
 
@@ -76,12 +76,9 @@ function ContactPage() {
 export const Route = createFileRoute('/$locale/about/contact')({
   loader: async ({ params }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
-    const response = await fetch(
-      `${BASE_URL}/v2/about/contact?language=${locale}`,
-    );
-    if (!response.ok) throw new Error('Failed to fetch contact');
-
-    const data = (await response.json()) as ContactResponse;
+    const data = await api
+      .get(`v2/about/contact?language=${locale}`)
+      .json<ContactResponse>();
 
     return {
       ...data,

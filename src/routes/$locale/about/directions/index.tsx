@@ -1,16 +1,15 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import SelectionList from '@/components/feature/selection/SelectionList';
 import footerTranslations from '@/components/layout/Footer/translations.json';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { DirectionsResponse } from '@/types/api/v2/about/directions';
+import { api } from '@/utils/api';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import KakaoMap from './-components/KakaoMap';
 
@@ -114,10 +113,9 @@ function DirectionsPage() {
 
 export const Route = createFileRoute('/$locale/about/directions/')({
   loader: async () => {
-    const response = await fetch(`${BASE_URL}/v2/about/directions`);
-    if (!response.ok) throw new Error('Failed to fetch directions');
-
-    const data = (await response.json()) as DirectionsResponse;
+    const data = await api
+      .get(`v2/about/directions`)
+      .json<DirectionsResponse>();
 
     return Promise.all(
       data.map(async (direction) => ({

@@ -4,10 +4,10 @@ import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import Image from '@/components/ui/Image';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { AboutContent } from '@/types/api/v2/about/content';
+import { api } from '@/utils/api';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import ContentSection from './-components/ContentSection';
 
@@ -76,12 +76,9 @@ function GreetingsPage() {
 export const Route = createFileRoute('/$locale/about/greetings')({
   loader: async ({ params }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
-    const response = await fetch(
-      `${BASE_URL}/v2/about/greetings?language=${locale}`,
-    );
-    if (!response.ok) throw new Error('Failed to fetch greetings');
-
-    const data = (await response.json()) as AboutContent;
+    const data = await api
+      .get(`v2/about/greetings?language=${locale}`)
+      .json<AboutContent>();
 
     return {
       ...data,

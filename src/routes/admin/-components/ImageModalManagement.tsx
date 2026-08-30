@@ -5,8 +5,8 @@ import Form from '@/components/form/Form';
 import { toast } from '@/components/ui/sonner';
 import type { ImageModal } from '@/types/api/v2/admin';
 import type { EditorImage } from '@/types/form';
-import { fetchOk } from '@/utils/fetch';
-import { FormData2 } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData } from '@/utils/apiFormData';
 
 interface ImageModalManagementProps {
   modal: ImageModal | null;
@@ -67,7 +67,7 @@ export default function ImageModalManagement({
       externalLink: blankToNull(values.externalLink),
     };
 
-    const formData = new FormData2();
+    const formData = new ApiFormData();
     formData.appendJson('request', request);
 
     try {
@@ -75,10 +75,7 @@ export default function ImageModalManagement({
         if (values.image && values.image.type === 'LOCAL_IMAGE') {
           formData.append('newMainImage', values.image.file);
         }
-        await fetchOk(`/api/v2/image-modal/${modal.id}`, {
-          method: 'PATCH',
-          body: formData,
-        });
+        await api.patch(`v2/image-modal/${modal.id}`, { body: formData });
         toast.success('이미지 팝업을 수정했습니다.');
       } else {
         if (!values.image || values.image.type !== 'LOCAL_IMAGE') {
@@ -86,10 +83,7 @@ export default function ImageModalManagement({
           return;
         }
         formData.append('mainImage', values.image.file);
-        await fetchOk(`/api/v2/image-modal`, {
-          method: 'POST',
-          body: formData,
-        });
+        await api.post(`v2/image-modal`, { body: formData });
         toast.success('이미지 팝업을 등록했습니다.');
       }
       router.invalidate();
@@ -101,7 +95,7 @@ export default function ImageModalManagement({
   const onDelete = async () => {
     if (!isEditing) return;
     try {
-      await fetchOk(`/api/v2/image-modal/${modal.id}`, { method: 'DELETE' });
+      await api.delete(`v2/image-modal/${modal.id}`);
       toast.success('이미지 팝업을 삭제했습니다.');
       router.invalidate();
     } catch {

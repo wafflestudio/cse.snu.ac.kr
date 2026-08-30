@@ -8,12 +8,11 @@ import LanguagePicker, {
 } from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { StudentClubsResponse } from '@/types/api/v2/about/student-clubs';
 import type { EditorImage } from '@/types/form';
-import { fetchJson, fetchOk } from '@/utils/fetch';
-import { FormData2 } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData } from '@/utils/apiFormData';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
 
 interface ClubFormData {
@@ -46,7 +45,7 @@ function StudentClubsEdit() {
   };
 
   const onSubmit = methods.handleSubmit(async ({ ko, en, image }) => {
-    const formData = new FormData2();
+    const formData = new ApiFormData();
 
     const removeImage = !!defaultValues.image && !image;
     formData.appendJson('request', {
@@ -58,10 +57,7 @@ function StudentClubsEdit() {
     formData.appendIfLocal('newMainImage', image);
 
     try {
-      await fetchOk(`/api/v2/about/student-clubs`, {
-        method: 'PUT',
-        body: formData,
-      });
+      await api.put(`v2/about/student-clubs`, { body: formData });
 
       toast.success('동아리를 수정했습니다.');
       navigate({ to: localizedPath('/about/student-clubs') });
@@ -140,9 +136,9 @@ export const Route = createFileRoute('/$locale/about/student-clubs/edit')({
     const sp = new URLSearchParams(searchStr);
     const selectedParam = sp.get('selected');
 
-    const clubs = await fetchJson<StudentClubsResponse>(
-      `${BASE_URL}/v2/about/student-clubs`,
-    );
+    const clubs = await api
+      .get(`v2/about/student-clubs`)
+      .json<StudentClubsResponse>();
 
     // selected param으로 club 찾기
     const selectedClub =

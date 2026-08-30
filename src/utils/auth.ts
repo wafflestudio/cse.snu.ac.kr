@@ -1,6 +1,5 @@
-import { BASE_URL } from '@/constants/api';
 import type { Role } from '@/store';
-import { forwardAuthHeaders } from '@/utils/ssr';
+import { api } from '@/utils/api';
 
 /**
  * 세션의 역할 목록. `ROLE_ANONYMOUS`를 걸러내므로 **빈 배열 = 비로그인**이다.
@@ -13,11 +12,12 @@ import { forwardAuthHeaders } from '@/utils/ssr';
  */
 export async function fetchSessionRoles(): Promise<Role[]> {
   try {
-    const response = await fetch(`${BASE_URL}/v2/user/my-role`, {
-      headers: forwardAuthHeaders(),
-    });
+    // 여기선 실패가 예외가 아니라 '익명'이라는 정상 결과라 throwHttpErrors만 끈다.
+    const response = await api
+      .extend({ throwHttpErrors: false })
+      .get('v2/user/my-role');
     if (!response.ok) return [];
-    const { roles }: { roles: string[] } = await response.json();
+    const { roles } = await response.json<{ roles: string[] }>();
     return roles.filter((r) => r !== 'ROLE_ANONYMOUS') as Role[];
   } catch {
     return [];

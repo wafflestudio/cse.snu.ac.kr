@@ -1,14 +1,13 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import TimelineEditor, {
   type TimelineFormData,
 } from '@/routes/$locale/academics/-components/timeline/TimelineEditor';
-import { fetchOk } from '@/utils/fetch';
-import { FormData2 } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData } from '@/utils/apiFormData';
 
 function CurriculumCreatePage() {
   const { localizedPath, t } = useLanguage({
@@ -19,7 +18,7 @@ function CurriculumCreatePage() {
 
   const title = t('전공 이수 표준 형태 추가');
   const onSubmit = async (data: TimelineFormData) => {
-    const formData = new FormData2();
+    const formData = new ApiFormData();
     formData.appendJson('request', {
       year: data.year,
       description: data.description,
@@ -28,8 +27,7 @@ function CurriculumCreatePage() {
     formData.appendIfLocal('attachments', data.file);
 
     try {
-      await fetchOk(`${BASE_URL}/v2/academics/undergraduate/curriculum`, {
-        method: 'POST',
+      await api.post(`v2/academics/undergraduate/curriculum`, {
         body: formData,
       });
       toast.success('추가에 성공했습니다.');

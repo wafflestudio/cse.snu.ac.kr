@@ -8,8 +8,8 @@ import Image from '@/components/ui/Image';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { Facility } from '@/types/api/v2/about/facilities';
+import { api } from '@/utils/api';
 import type { ProcessedHtml } from '@/utils/csp';
-import { fetchOk } from '@/utils/fetch';
 import DistanceIcon from '../assets/distance.svg?react';
 
 export default function FacilitiesList({
@@ -33,9 +33,7 @@ function FacilitiesRow({ facility }: { facility: ProcessedFacility }) {
 
   const handleDelete = async () => {
     try {
-      await fetchOk(`/api/v2/about/facilities/${facility.id}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2/about/facilities/${facility.id}`);
 
       setShowDeleteDialog(false);
       toast.success('시설을 삭제했습니다.');

@@ -8,7 +8,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import type { FacultyRecruitment } from '@/types/api/v2/recruit';
 import type { EditorImage } from '@/types/form';
 import { api } from '@/utils/api';
-import { FormData2 } from '@/utils/form';
+import { ApiFormData } from '@/utils/apiFormData';
 
 interface FormData {
   title: string;
@@ -40,7 +40,7 @@ function FacultyRecruitmentEditPage() {
   const onSubmit = methods.handleSubmit(
     async ({ title, description, image }) => {
       try {
-        const formData = new FormData2();
+        const formData = new ApiFormData();
         formData.appendJson('request', {
           title,
           description,

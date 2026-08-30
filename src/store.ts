@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { BASE_URL } from '@/constants/api';
 import type { NavItem } from '@/constants/navigation';
+import { api } from '@/utils/api';
 
 type NavbarState =
   | { type: 'closed' }
@@ -35,30 +36,26 @@ export const useStore = create<Store>()((set) => ({
 
   roles: [],
   login: () => {
+    // fetch가 아니라 브라우저 top-level 네비게이션(OAuth) — URL 문자열이 필요하다.
     window.location.href = `${BASE_URL}/v1/login`;
   },
   logout: async () => {
-    await fetch(`${BASE_URL}/v1/logout`, {
-      method: 'GET',
-      credentials: 'include',
-      redirect: 'manual',
-    }).catch(() => {});
+    await api
+      .get('v1/logout', { redirect: 'manual', throwHttpErrors: false })
+      .catch(() => {});
     window.location.reload();
   },
   mockLogin: async (...roles: Role[]) => {
     const params = roles.map((r) => `role=${r}`).join('&');
-    const response = await fetch(`${BASE_URL}/v2/mock-login?${params}`, {
-      method: 'GET',
-      credentials: 'include',
+    const response = await api.get(`v2/mock-login?${params}`, {
+      throwHttpErrors: false,
     });
     if (response.ok) set({ roles });
   },
   mockLogout: async () => {
-    await fetch(`${BASE_URL}/v1/logout`, {
-      method: 'GET',
-      credentials: 'include',
-      redirect: 'manual',
-    }).catch(() => {});
+    await api
+      .get('v1/logout', { redirect: 'manual', throwHttpErrors: false })
+      .catch(() => {});
     set({ roles: [] });
   },
 }));

@@ -5,7 +5,7 @@ import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { isLocalFile } from '@/types/form';
 import { api } from '@/utils/api';
-import { FormData2 } from '@/utils/form';
+import { ApiFormData } from '@/utils/apiFormData';
 import NoticeEditor, { type NoticeFormData } from './-components/NoticeEditor';
 
 function NoticeCreatePage() {
@@ -17,7 +17,7 @@ function NoticeCreatePage() {
   };
 
   const onSubmit = async (content: NoticeFormData) => {
-    const formData = new FormData2();
+    const formData = new ApiFormData();
 
     formData.appendJson('request', {
       title: content.title,

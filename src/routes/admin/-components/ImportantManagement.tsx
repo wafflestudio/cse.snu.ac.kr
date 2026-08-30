@@ -5,11 +5,10 @@ import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import Pagination from '@/components/ui/Pagination';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useSearchParams } from '@/hooks/useSearchParams';
 import { useSetToggle } from '@/hooks/useSetToggle';
 import type { ImportantPreview } from '@/types/api/v2/admin';
-import { fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 import AdminTable from './AdminTable';
 
 const POST_LIMIT = 40;
@@ -38,8 +37,7 @@ export default function ImportantManagement({
         const [category, id] = key.split('-');
         return { category, id: parseInt(id, 10) };
       });
-      await fetchOk(`${BASE_URL}/v2/admin/important`, {
-        method: 'PATCH',
+      await api.patch(`v2/admin/important`, {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ targetInfos }),
       });

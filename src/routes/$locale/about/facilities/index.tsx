@@ -2,10 +2,10 @@ import { createFileRoute } from '@tanstack/react-router';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { FacilitiesResponse } from '@/types/api/v2/about/facilities';
+import { api } from '@/utils/api';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import FacilitiesList from './-components/FacilitiesList';
 
@@ -59,10 +59,9 @@ function FacilitiesPage() {
 export const Route = createFileRoute('/$locale/about/facilities/')({
   loader: async ({ params }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
-    const response = await fetch(`${BASE_URL}/v2/about/facilities`);
-    if (!response.ok) throw new Error('Failed to fetch facilities');
-
-    const facilities = (await response.json()) as FacilitiesResponse;
+    const facilities = await api
+      .get(`v2/about/facilities`)
+      .json<FacilitiesResponse>();
     return Promise.all(
       facilities.map(async (facility) => ({
         ...facility[locale],

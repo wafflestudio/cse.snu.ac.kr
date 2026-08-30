@@ -1,15 +1,14 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import FacultyEditor, {
   type FacultyFormData,
 } from '@/routes/$locale/people/-components/FacultyEditor';
 import type { Faculty, FacultyStatus } from '@/types/api/v2/professor';
 import type { SimpleResearchLab } from '@/types/api/v2/research/labs';
-import { fetchJson } from '@/utils/fetch';
-import { FormData2 } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData } from '@/utils/apiFormData';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
 
 function FacultyCreate() {
@@ -20,7 +19,7 @@ function FacultyCreate() {
   const { localizedPath } = useLanguage({});
 
   const onSubmit = async (content: FacultyFormData) => {
-    const formData = new FormData2();
+    const formData = new ApiFormData();
 
     formData.appendJson('request', {
       ko: {
@@ -41,10 +40,9 @@ function FacultyCreate() {
     formData.appendIfLocal('mainImage', content.ko.image);
 
     try {
-      const response = await fetchJson<{ ko: Faculty; en: Faculty }>(
-        `${BASE_URL}/v2/professor`,
-        { method: 'POST', body: formData },
-      );
+      const response = await api
+        .post('v2/professor', { body: formData })
+        .json<{ ko: Faculty; en: Faculty }>();
       toast.success('교수진을 추가했습니다.');
 
       const path =
@@ -77,8 +75,8 @@ export const Route = createFileRoute('/$locale/people/faculty/create')({
     const status = (sp.get('status') as FacultyStatus) ?? 'ACTIVE';
 
     const [labsKo, labsEn] = await Promise.all([
-      fetchJson<SimpleResearchLab[]>(`${BASE_URL}/v2/research/lab?language=ko`),
-      fetchJson<SimpleResearchLab[]>(`${BASE_URL}/v2/research/lab?language=en`),
+      api.get(`v2/research/lab?language=ko`).json<SimpleResearchLab[]>(),
+      api.get(`v2/research/lab?language=en`).json<SimpleResearchLab[]>(),
     ]);
 
     return { status, labs: { ko: labsKo, en: labsEn } };

@@ -4,11 +4,10 @@ import PageLayout from '@/components/layout/PageLayout';
 import Attachments from '@/components/ui/Attachments';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import type { Guide } from '@/types/api/v2/academics';
-import { fetchJson } from '@/utils/fetch';
+import { api } from '@/utils/api';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 const META = {
@@ -80,9 +79,9 @@ function GuidePage() {
 export const Route = createFileRoute('/$locale/academics/$studentType/guide/')({
   loader: async ({ params }) => {
     const { studentType } = params;
-    const data = await fetchJson<Guide>(
-      `${BASE_URL}/v2/academics/${studentType}/guide`,
-    );
+    const data = await api
+      .get(`v2/academics/${studentType}/guide`)
+      .json<Guide>();
 
     return {
       ...data,

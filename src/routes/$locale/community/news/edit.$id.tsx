@@ -6,7 +6,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import type { News } from '@/types/api/v2/news';
 import { isLocalFile } from '@/types/form';
 import { api } from '@/utils/api';
-import { FormData2, getDeleteIds } from '@/utils/form';
+import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';
 import NewsEditor, { type NewsFormData } from './-components/NewsEditor';
 
 function NewsEditPage() {
@@ -48,7 +48,7 @@ function NewsEditPage() {
       cur: content.attachments,
     });
 
-    const formData = new FormData2();
+    const formData = new ApiFormData();
 
     formData.appendJson('request', {
       title: content.title,

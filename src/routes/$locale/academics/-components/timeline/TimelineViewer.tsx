@@ -9,8 +9,8 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { TimelineContent } from '@/types/api/v2/academics';
+import { api } from '@/utils/api';
 import type { ProcessedHtml } from '@/utils/csp';
-import { fetchOk } from '@/utils/fetch';
 import Timeline from './Timeline';
 
 type ProcessedTimelineContent = Omit<TimelineContent, 'description'> & {
@@ -119,9 +119,7 @@ function ActionButtons({ year, pathname }: { year: number; pathname: string }) {
   const handleDelete = async () => {
     try {
       // 백엔드 API 경로엔 로케일 프리픽스(/ko·/en)가 없어야 한다(pathname은 링크용).
-      await fetchOk(`/api/v2${pathWithoutLocale}/${year}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2${pathWithoutLocale}/${year}`);
       setShowDeleteDialog(false);
       toast.success('삭제에 성공했습니다.');
       router.invalidate();

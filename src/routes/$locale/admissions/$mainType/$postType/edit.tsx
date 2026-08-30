@@ -8,9 +8,8 @@ import LanguagePicker, {
 } from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import type { AdmissionsResponse } from '@/types/api/v2/admissions';
-import { fetchJson, fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 
 const ADMISSIONS_PAGES: Record<
   string,
@@ -80,8 +79,7 @@ function AdmissionsEdit() {
 
   const onSubmit = methods.handleSubmit(async ({ ko, en }) => {
     try {
-      await fetchOk(`/api/v2/admissions/${mainType}/${apiPostType}`, {
-        method: 'PUT',
+      await api.put(`v2/admissions/${mainType}/${apiPostType}`, {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ko, en }),
       });
@@ -134,9 +132,9 @@ export const Route = createFileRoute(
       throw new Error(`Invalid admissions page: ${mainType}/${postType}`);
     }
 
-    const data = await fetchJson<AdmissionsResponse>(
-      `${BASE_URL}/v2/admissions/${mainType}/${config.apiPostType}`,
-    );
+    const data = await api
+      .get(`v2/admissions/${mainType}/${config.apiPostType}`)
+      .json<AdmissionsResponse>();
 
     return {
       ko: data.ko.description,

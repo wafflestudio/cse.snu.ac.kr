@@ -3,7 +3,6 @@ import { FormProvider, useForm } from 'react-hook-form';
 import Form from '@/components/form/Form';
 import Button from '@/components/ui/Button';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import {
   CLASSIFICATION,
@@ -11,7 +10,7 @@ import {
   type Course,
   GRADE,
 } from '@/types/api/v2/academics';
-import { fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 import BookmarkIcon from './assets/bookmark_icon.svg?react';
 
 const CREDIT = [1, 2, 3, 4];
@@ -47,8 +46,7 @@ export default function CourseEditor({
 
   const onSubmit = async (course: Course) => {
     try {
-      await fetchOk(`${BASE_URL}/v2/academics/courses`, {
-        method: 'PUT',
+      await api.put(`v2/academics/courses`, {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(course),
       });

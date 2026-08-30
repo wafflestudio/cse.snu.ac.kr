@@ -1,7 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import ResearchLabEditor, {
   type ResearchLabFormData,
@@ -9,8 +8,8 @@ import ResearchLabEditor, {
 import type { SimpleFaculty } from '@/types/api/v2/professor';
 import type { ResearchGroup } from '@/types/api/v2/research/groups';
 import type { ResearchLabWithLanguage } from '@/types/api/v2/research/labs';
-import { fetchJson } from '@/utils/fetch';
-import { FormData2 } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData } from '@/utils/apiFormData';
 
 function ResearchLabEdit() {
   const loaderData = Route.useLoaderData();
@@ -44,7 +43,7 @@ function ResearchLabEdit() {
   const onSubmit = async ({ ko, en, ...common }: ResearchLabFormData) => {
     const removePdf = lab.ko.pdf !== null && common.pdf.length === 0;
 
-    const formData = new FormData2();
+    const formData = new ApiFormData();
 
     formData.appendJson('request', {
       ko: {
@@ -64,8 +63,7 @@ function ResearchLabEdit() {
     formData.appendIfLocal('pdf', common.pdf);
 
     try {
-      await fetchJson(`${BASE_URL}/v2/research/lab/${lab.ko.id}/${lab.en.id}`, {
-        method: 'PUT',
+      await api.put(`v2/research/lab/${lab.ko.id}/${lab.en.id}`, {
         body: formData,
       });
 
@@ -78,9 +76,7 @@ function ResearchLabEdit() {
 
   const onDelete = async () => {
     try {
-      await fetchJson(`${BASE_URL}/v2/research/lab/${lab.ko.id}/${lab.en.id}`, {
-        method: 'DELETE',
-      });
+      await api.delete(`v2/research/lab/${lab.ko.id}/${lab.en.id}`);
 
       toast.success('연구실을 삭제했습니다.');
       navigate({ to: localizedPath('/research/labs') });
@@ -112,19 +108,15 @@ export const Route = createFileRoute('/$locale/research/labs/$id/edit')({
 
     const [lab, groupsKo, groupsEn, professorsKo, professorsEn] =
       await Promise.all([
-        fetchJson<ResearchLabWithLanguage>(`${BASE_URL}/v2/research/lab/${id}`),
-        fetchJson<ResearchGroup[]>(
-          `${BASE_URL}/v2/research/groups?language=ko`,
-        ),
-        fetchJson<ResearchGroup[]>(
-          `${BASE_URL}/v2/research/groups?language=en`,
-        ),
-        fetchJson<{ description: string; professors: SimpleFaculty[] }>(
-          `${BASE_URL}/v2/professor/active?language=ko`,
-        ),
-        fetchJson<{ description: string; professors: SimpleFaculty[] }>(
-          `${BASE_URL}/v2/professor/active?language=en`,
-        ),
+        api.get(`v2/research/lab/${id}`).json<ResearchLabWithLanguage>(),
+        api.get(`v2/research/groups?language=ko`).json<ResearchGroup[]>(),
+        api.get(`v2/research/groups?language=en`).json<ResearchGroup[]>(),
+        api
+          .get(`v2/professor/active?language=ko`)
+          .json<{ description: string; professors: SimpleFaculty[] }>(),
+        api
+          .get(`v2/professor/active?language=en`)
+          .json<{ description: string; professors: SimpleFaculty[] }>(),
       ]);
 
     if (!lab || !lab.ko || !lab.en) {

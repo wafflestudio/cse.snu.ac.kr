@@ -1,15 +1,14 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import TimelineEditor, {
   type TimelineFormData,
 } from '@/routes/$locale/academics/-components/timeline/TimelineEditor';
 import type { TimelineContent } from '@/types/api/v2/academics';
-import { fetchJson, fetchOk } from '@/utils/fetch';
-import { FormData2, getDeleteIds } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';
 
 function CurriculumEditPage() {
   const initContent = Route.useLoaderData();
@@ -36,7 +35,7 @@ function CurriculumEditPage() {
       cur: data.file,
     });
 
-    const formData = new FormData2();
+    const formData = new ApiFormData();
     formData.appendJson('request', {
       description: data.description,
       deleteIds,
@@ -44,12 +43,9 @@ function CurriculumEditPage() {
     formData.appendIfLocal('newAttachments', data.file);
 
     try {
-      await fetchOk(
-        `${BASE_URL}/v2/academics/undergraduate/curriculum/${initContent.year}`,
-        {
-          method: 'PUT',
-          body: formData,
-        },
+      await api.put(
+        `v2/academics/undergraduate/curriculum/${initContent.year}`,
+        { body: formData },
       );
 
       toast.success('수정에 성공했습니다.');
@@ -80,9 +76,9 @@ export const Route = createFileRoute(
       throw new Error('Year parameter is required');
     }
 
-    const data = await fetchJson<TimelineContent[]>(
-      `${BASE_URL}/v2/academics/undergraduate/curriculum`,
-    );
+    const data = await api
+      .get(`v2/academics/undergraduate/curriculum`)
+      .json<TimelineContent[]>();
     const yearNum = Number(year);
     const selected = data.find((item) => item.year === yearNum);
 

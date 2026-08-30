@@ -23,8 +23,6 @@ export const readLangHeaders = createIsomorphicFn()
  * 백엔드 fetch에 전달할 인증 헤더(쿠키).
  * - 서버(SSR): 들어온 요청의 cookie를 백엔드로 포워딩(세션 유지).
  * - 클라: same-origin fetch가 쿠키를 자동으로 싣는다 → 빈 객체.
- *
- * RR loader의 `headers: request.headers` 패턴을 대체한다.
  */
 export const forwardAuthHeaders = createIsomorphicFn()
   .server((): HeadersInit => {

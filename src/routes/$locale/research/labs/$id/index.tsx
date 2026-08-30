@@ -4,11 +4,11 @@ import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import CornerFoldedRectangle from '@/components/ui/CornerFoldedRectangle';
 import HTMLViewer from '@/components/ui/HTMLViewer';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { createSelectionUrl } from '@/hooks/useSelectionList';
 import { useResearchSubNav } from '@/hooks/useSubNav';
 import type { ResearchLabWithLanguage } from '@/types/api/v2/research/labs';
+import { api } from '@/utils/api';
 import { stripHtml, truncateDescription } from '@/utils/metadata';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import PentagonLong from '../assets/pentagon_long.svg?react';
@@ -204,13 +204,9 @@ export const Route = createFileRoute('/$locale/research/labs/$id/')({
       throw new Response('Invalid ID', { status: 400 });
     }
 
-    const response = await fetch(`${BASE_URL}/v2/research/lab/${id}`);
-
-    if (!response.ok) {
-      throw new Response('Not Found', { status: 404 });
-    }
-
-    const data = (await response.json()) as ResearchLabWithLanguage;
+    const data = await api
+      .get(`v2/research/lab/${id}`)
+      .json<ResearchLabWithLanguage>();
 
     return {
       ...data[locale],

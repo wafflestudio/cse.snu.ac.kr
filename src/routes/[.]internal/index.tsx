@@ -1,10 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router';
-
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
-import { BASE_URL } from '@/constants/api';
+import { api } from '@/utils/api';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 function InternalPage() {
@@ -26,9 +25,7 @@ function InternalPage() {
 
 export const Route = createFileRoute('/.internal/')({
   loader: async () => {
-    const response = await fetch(`${BASE_URL}/v2/internal`);
-    if (!response.ok) throw new Error('Failed to fetch internal');
-    const data = (await response.json()) as { description: string };
+    const data = await api.get('v2/internal').json<{ description: string }>();
     return { description: await processHtmlForCsp({ data: data.description }) };
   },
   component: InternalPage,

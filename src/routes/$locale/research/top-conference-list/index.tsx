@@ -1,10 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import PageLayout from '@/components/layout/PageLayout';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useResearchSubNav } from '@/hooks/useSubNav';
 import type { TopConferenceListResponse } from '@/types/api/v2/conference';
+import { api } from '@/utils/api';
 import ConferenceListTable from './-components/ConferenceListTable';
 
 const META = {
@@ -68,12 +68,9 @@ function TopConferenceListPage() {
 export const Route = createFileRoute('/$locale/research/top-conference-list/')({
   loader: async ({ params }) => {
     const locale = params.locale === 'en' ? 'en' : 'ko';
-    const response = await fetch(
-      `${BASE_URL}/v2/conference/page?language=${locale}`,
-    );
-    if (!response.ok) throw new Error('Failed to fetch top conference list');
-
-    return (await response.json()) as TopConferenceListResponse;
+    return api
+      .get(`v2/conference/page?language=${locale}`)
+      .json<TopConferenceListResponse>();
   },
   component: TopConferenceListPage,
 });

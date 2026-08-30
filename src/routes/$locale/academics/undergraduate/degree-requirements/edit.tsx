@@ -4,14 +4,12 @@ import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import type { DegreeRequirements } from '@/types/api/v2/academics/undergraduate/degree-requirements';
 import type { EditorFile } from '@/types/form';
-import { isUploadedFile } from '@/types/form';
-import { fetchJson, fetchOk } from '@/utils/fetch';
-import { contentToFormData, getAttachmentDeleteIds } from '@/utils/formData';
+import { api } from '@/utils/api';
+import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';
 
 interface DegreeRequirementsFormData {
   description: string;
@@ -43,26 +41,17 @@ function DegreeRequirementsEditPage() {
     });
 
   const onSubmit = async (content: DegreeRequirementsFormData) => {
-    const formData = contentToFormData('EDIT', {
-      requestObject: {
-        description: content.description,
-        deleteIds: getAttachmentDeleteIds(
-          content.files,
-          loaderData.files
-            .filter(isUploadedFile)
-            .map(
-              (x: { type: 'UPLOADED_FILE'; file: { id: number } }) => x.file.id,
-            ),
-        ),
-      },
-      attachments: content.files,
+    const formData = new ApiFormData();
+    formData.appendJson('request', {
+      description: content.description,
+      deleteIds: getDeleteIds({ prev: loaderData.files, cur: content.files }),
     });
+    formData.appendIfLocal('newAttachments', content.files);
 
     try {
-      await fetchOk(
-        `${BASE_URL}/v2/academics/undergraduate/degree-requirements`,
-        { method: 'PUT', body: formData },
-      );
+      await api.put(`v2/academics/undergraduate/degree-requirements`, {
+        body: formData,
+      });
       toast.success(t('학부 졸업규정을 수정했습니다.'));
       navigate({
         to: localizedPath('/academics/undergraduate/degree-requirements'),
@@ -93,9 +82,9 @@ export const Route = createFileRoute(
   '/$locale/academics/undergraduate/degree-requirements/edit',
 )({
   loader: async () => {
-    const data = await fetchJson<DegreeRequirements>(
-      `${BASE_URL}/v2/academics/undergraduate/degree-requirements`,
-    );
+    const data = await api
+      .get(`v2/academics/undergraduate/degree-requirements`)
+      .json<DegreeRequirements>();
 
     return {
       description: data.description,

@@ -16,7 +16,7 @@ import {
   roomNameToId,
   STAFF_ONLY_ROOM_ID,
 } from '@/routes/$locale/reservations/-constants';
-import { kstDayjs } from '@/utils/kstDayjs';
+import { kstDayjs } from '@/utils/date';
 import { searchLoaderDeps } from '@/utils/loaderDeps';
 import {
   formatDateParam,

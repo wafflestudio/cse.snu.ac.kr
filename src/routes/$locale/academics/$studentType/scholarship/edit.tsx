@@ -4,11 +4,10 @@ import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import type { ScholarshipList } from '@/types/api/v2/academics/scholarship';
-import { fetchJson, fetchOk } from '@/utils/fetch';
+import { api } from '@/utils/api';
 
 interface ScholarshipGuideFormData {
   description: string;
@@ -39,8 +38,7 @@ function ScholarshipEditPage() {
 
   const onSubmit = async (content: ScholarshipGuideFormData) => {
     try {
-      await fetchOk(`${BASE_URL}/v2/academics/${studentType}/scholarship`, {
-        method: 'PUT',
+      await api.put(`v2/academics/${studentType}/scholarship`, {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ description: content.description }),
       });
@@ -70,9 +68,9 @@ export const Route = createFileRoute(
 )({
   loader: async ({ params }) => {
     const { studentType } = params;
-    const data = await fetchJson<ScholarshipList>(
-      `${BASE_URL}/v2/academics/${studentType}/scholarship`,
-    );
+    const data = await api
+      .get(`v2/academics/${studentType}/scholarship`)
+      .json<ScholarshipList>();
 
     return {
       description: data.description,

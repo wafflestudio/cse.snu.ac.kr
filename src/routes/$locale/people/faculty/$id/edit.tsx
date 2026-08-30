@@ -5,15 +5,14 @@ import {
 } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import FacultyEditor, {
   type FacultyFormData,
 } from '@/routes/$locale/people/-components/FacultyEditor';
 import type { Faculty } from '@/types/api/v2/professor';
 import type { SimpleResearchLab } from '@/types/api/v2/research/labs';
-import { fetchJson, fetchOk } from '@/utils/fetch';
-import { FormData2 } from '@/utils/form';
+import { api } from '@/utils/api';
+import { ApiFormData } from '@/utils/apiFormData';
 
 function FacultyEdit() {
   const loaderData = Route.useLoaderData();
@@ -30,7 +29,7 @@ function FacultyEdit() {
   };
 
   const onSubmit = async (content: FacultyFormData) => {
-    const formData = new FormData2();
+    const formData = new ApiFormData();
     const removeImage =
       defaultValues.ko?.imageURL !== null && content.ko.image === null;
 
@@ -55,10 +54,9 @@ function FacultyEdit() {
     formData.appendIfLocal('newMainImage', content.ko.image);
 
     try {
-      await fetchOk(
-        `${BASE_URL}/v2/professor/${faculty.ko.id}/${faculty.en.id}`,
-        { method: 'PUT', body: formData },
-      );
+      await api.put(`v2/professor/${faculty.ko.id}/${faculty.en.id}`, {
+        body: formData,
+      });
 
       toast.success('교수진을 수정했습니다.');
       const path =
@@ -73,12 +71,7 @@ function FacultyEdit() {
 
   const onDelete = async () => {
     try {
-      await fetchOk(
-        `${BASE_URL}/v2/professor/${faculty.ko.id}/${faculty.en.id}`,
-        {
-          method: 'DELETE',
-        },
-      );
+      await api.delete(`v2/professor/${faculty.ko.id}/${faculty.en.id}`);
 
       toast.success('교수진을 삭제했습니다.');
       navigate({ to: localizedPath('/people/faculty') });
@@ -105,9 +98,9 @@ export const Route = createFileRoute('/$locale/people/faculty/$id/edit')({
     const id = parseInt(params.id, 10);
 
     const [faculty, labsKo, labsEn] = await Promise.all([
-      fetchJson<{ ko: Faculty; en: Faculty }>(`${BASE_URL}/v2/professor/${id}`),
-      fetchJson<SimpleResearchLab[]>(`${BASE_URL}/v2/research/lab?language=ko`),
-      fetchJson<SimpleResearchLab[]>(`${BASE_URL}/v2/research/lab?language=en`),
+      api.get(`v2/professor/${id}`).json<{ ko: Faculty; en: Faculty }>(),
+      api.get(`v2/research/lab?language=ko`).json<SimpleResearchLab[]>(),
+      api.get(`v2/research/lab?language=en`).json<SimpleResearchLab[]>(),
     ]);
 
     return {

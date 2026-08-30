@@ -1,12 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router';
-
 import PageLayout from '@/components/layout/PageLayout';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import TimelineViewer from '@/routes/$locale/academics/-components/timeline/TimelineViewer';
 import type { TimelineContent } from '@/types/api/v2/academics';
-import { fetchJson } from '@/utils/fetch';
+import { api } from '@/utils/api';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 
 const OVERVIEW =
@@ -61,9 +59,9 @@ export const Route = createFileRoute(
   '/$locale/academics/undergraduate/general-studies-requirements/',
 )({
   loader: async () => {
-    const data = await fetchJson<TimelineContent[]>(
-      `${BASE_URL}/v2/academics/undergraduate/general-studies-requirements`,
-    );
+    const data = await api
+      .get(`v2/academics/undergraduate/general-studies-requirements`)
+      .json<TimelineContent[]>();
 
     return Promise.all(
       data.map(async (item) => ({

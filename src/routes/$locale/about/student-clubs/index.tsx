@@ -1,15 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router';
-
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import SelectionList from '@/components/feature/selection/SelectionList';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
-import { BASE_URL } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { StudentClubsResponse } from '@/types/api/v2/about/student-clubs';
-import { fetchJson } from '@/utils/fetch';
+import { api } from '@/utils/api';
 import { processHtmlForCsp } from '@/utils/processHtmlForCsp';
 import ClubDetails from './-components/ClubDetails';
 
@@ -72,9 +70,9 @@ function StudentClubsPage() {
 
 export const Route = createFileRoute('/$locale/about/student-clubs/')({
   loader: async () => {
-    const response = await fetchJson<StudentClubsResponse>(
-      `${BASE_URL}/v2/about/student-clubs`,
-    );
+    const response = await api
+      .get(`v2/about/student-clubs`)
+      .json<StudentClubsResponse>();
 
     return Promise.all(
       response.map(async (club) => ({
