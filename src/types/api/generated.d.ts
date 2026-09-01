@@ -2206,6 +2206,9 @@ export interface components {
             undergraduate: components["schemas"]["MainNoticeResponse"][];
             graduate: components["schemas"]["MainNoticeResponse"][];
         };
+        MyRoleResponse: {
+            roles: ("ROLE_STAFF" | "ROLE_RESERVE" | "ROLE_RESERVE_PROFESSOR_ROOM" | "ROLE_COUNCIL" | "ROLE_LABMASTER")[];
+        };
         AboutSearchElementDto: {
             /** Format: int64 */
             id: number;
@@ -5111,9 +5114,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": {
-                        [key: string]: unknown;
-                    };
+                    "*/*": components["schemas"]["MyRoleResponse"];
                 };
             };
         };

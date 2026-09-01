@@ -44,9 +44,7 @@ export default function CalendarToolbar({
         />
         {todayButtonVisible && <TodayButton />}
       </div>
-      <LoginVisible
-        allow={['ROLE_STAFF', 'ROLE_RESERVATION', 'ROLE_LABMASTER']}
-      >
+      <LoginVisible allow={['ROLE_STAFF', 'ROLE_RESERVE', 'ROLE_LABMASTER']}>
         <Button
           variant="primary"
           size="md"

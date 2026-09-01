@@ -57,6 +57,10 @@ export type TopConferenceListResponse = Res<'/api/v2/conference/page'>;
 
 export type FacultyRecruitment = Res<'/api/v2/recruit'>;
 
+/* ── 사용자 ─────────────────────────────────────────────── */
+
+export type MyRole = Res<'/api/v2/user/my-role'>;
+
 /* ── 예약 ───────────────────────────────────────────────── */
 
 export type ReservationPreview = Res<'/api/v2/reservation/week'>[number];
