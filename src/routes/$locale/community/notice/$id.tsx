@@ -14,7 +14,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { Notice } from '@/types/api/v2/notice';
+import type { Notice } from '@/types/api';
 import { stripHtml, truncateDescription } from '@/utils/string';
 
 function NoticeDetailPage() {
@@ -74,7 +74,7 @@ function NoticeDetailPage() {
       </div>
 
       <div className="bg-neutral-50 page-gutter-x pt-9 pb-36">
-        <Attachments files={notice.attachments} />
+        <Attachments files={notice.attachments ?? []} />
 
         <HTMLViewer html={notice.description} />
 

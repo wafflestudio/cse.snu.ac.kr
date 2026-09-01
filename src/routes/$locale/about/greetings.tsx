@@ -7,7 +7,7 @@ import Image from '@/components/ui/Image';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { AboutContent } from '@/types/api/v2/about/content';
+import type { AboutContent } from '@/types/api';
 import { api } from '@/utils/api';
 import ContentSection from './-components/ContentSection';
 

@@ -9,7 +9,7 @@ import LanguagePicker, {
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { DirectionsResponse } from '@/types/api/v2/about/directions';
+import type { DirectionsResponse } from '@/types/api';
 import { api } from '@/utils/api';
 
 interface DirectionFormData {

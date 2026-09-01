@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button';
 import Pagination from '@/components/ui/Pagination';
 import { toast } from '@/components/ui/sonner';
 import { useSetToggle } from '@/hooks/useSetToggle';
-import type { ImportantPreview } from '@/types/api/v2/admin';
+import type { ImportantPreview } from '@/types/api';
 import { api } from '@/utils/api';
 import AdminTable from './AdminTable';
 

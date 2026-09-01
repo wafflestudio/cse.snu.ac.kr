@@ -3,13 +3,15 @@ import clsx from 'clsx';
 import dayjs from 'dayjs';
 import Checkbox from '@/components/ui/Checkbox';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { ImportantPreview, SlidePreview } from '@/types/api/v2/admin';
+import type { ImportantPreview, SlidePreview } from '@/types/api';
 
-const CATEGORY_PATHS = {
+// 백엔드가 category를 enum이 아닌 String으로 내보내 스펙에 값 목록이 없다.
+// 백엔드에서 enum으로 조이면 Record<string, …>을 좁힐 수 있다.
+const CATEGORY_PATHS: Record<string, string> = {
   notice: '/community/notice',
   news: '/community/news',
   seminar: '/community/seminar',
-} as const;
+};
 
 const CATEGORY_LABELS: Record<string, string> = {
   notice: '공지사항',

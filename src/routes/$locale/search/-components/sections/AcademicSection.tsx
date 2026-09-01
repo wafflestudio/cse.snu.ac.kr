@@ -1,5 +1,5 @@
 import { useLanguage } from '@/hooks/useLanguage';
-import type { Academic, AcademicsSearchResult } from '@/types/api/v2/search';
+import type { Academic, AcademicsSearchResult } from '@/types/api';
 import BasicRow from '../ui/BasicRow';
 import Section from '../ui/Section';
 
@@ -103,10 +103,7 @@ const toAcademicInfo = (
     };
   }
 
-  if (
-    academic.academicType === 'GENERAL_STUDIES_REQUIREMENTS' ||
-    academic.academicType === 'GENERAL_STUDIES_REQUIREMENTS_SUBJECT_CHANGES'
-  ) {
+  if (academic.academicType === 'GENERAL_STUDIES_REQUIREMENTS') {
     return {
       path: '/academics/undergraduate/general-studies-requirements',
       itemLabel: '필수 교양 과목',
@@ -114,10 +111,7 @@ const toAcademicInfo = (
     };
   }
 
-  if (
-    academic.academicType === 'DEGREE_REQUIREMENTS' ||
-    academic.academicType === 'DEGREE_REQUIREMENTS_YEAR_LIST'
-  ) {
+  if (academic.academicType === 'DEGREE_REQUIREMENTS') {
     return {
       path: '/academics/undergraduate/degree-requirements',
       itemLabel: '졸업 규정',

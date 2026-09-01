@@ -8,7 +8,7 @@ import LanguagePicker, {
 } from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
-import type { AdmissionsResponse } from '@/types/api/v2/admissions';
+import type { AdmissionsResponse } from '@/types/api';
 import { api } from '@/utils/api';
 
 const ADMISSIONS_PAGES: Record<

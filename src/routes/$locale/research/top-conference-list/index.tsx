@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import PageLayout from '@/components/layout/PageLayout';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useResearchSubNav } from '@/hooks/useSubNav';
-import type { TopConferenceListResponse } from '@/types/api/v2/conference';
+import type { TopConferenceListResponse } from '@/types/api';
 import { api } from '@/utils/api';
 import ConferenceListTable from './-components/ConferenceListTable';
 

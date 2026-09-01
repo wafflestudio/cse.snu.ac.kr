@@ -7,7 +7,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { StudentClubsResponse } from '@/types/api/v2/about/student-clubs';
+import type { StudentClubsResponse } from '@/types/api';
 import { api } from '@/utils/api';
 import { stringParam } from '@/utils/searchSchema';
 import ClubDetails from './-components/ClubDetails';

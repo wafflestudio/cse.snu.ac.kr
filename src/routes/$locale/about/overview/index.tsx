@@ -8,7 +8,7 @@ import Image from '@/components/ui/Image';
 import { useLanguage } from '@/hooks/useLanguage';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
 import commonTranslations from '@/translations.json';
-import type { AboutContent } from '@/types/api/v2/about/content';
+import type { AboutContent } from '@/types/api';
 import { api } from '@/utils/api';
 import ContentSection from '../-components/ContentSection';
 import brochure1 from '../assets/brochure1.avif';
@@ -96,7 +96,7 @@ function Overview() {
           <Image src={brochure1} width={227} height={320} alt="소개 책자" />
           <Image src={brochure2} width={227} height={320} alt="소개 책자" />
         </div>
-        <Attachments files={attachments} />
+        <Attachments files={attachments ?? []} />
       </ContentSection>
     </PageLayout>
   );

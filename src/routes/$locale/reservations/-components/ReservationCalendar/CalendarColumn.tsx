@@ -1,5 +1,5 @@
 import type dayjs from 'dayjs';
-import type { ReservationPreview } from '@/types/api/v2/reservation';
+import type { ReservationPreview } from '@/types/api';
 import { kstDayjs } from '@/utils/date';
 import styles from './cellstyle.module.css';
 

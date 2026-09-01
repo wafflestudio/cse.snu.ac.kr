@@ -11,7 +11,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
-import type { FutureCareersResponse } from '@/types/api/v2/about/future-careers';
+import type { FutureCareersResponse } from '@/types/api';
 import { api } from '@/utils/api';
 import { stringParam } from '@/utils/searchSchema';
 

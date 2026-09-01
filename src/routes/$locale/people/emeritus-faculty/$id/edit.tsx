@@ -9,8 +9,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import FacultyEditor, {
   type FacultyFormData,
 } from '@/routes/$locale/people/-components/FacultyEditor';
-import type { Faculty } from '@/types/api/v2/professor';
-import type { SimpleResearchLab } from '@/types/api/v2/research/labs';
+import type { Faculty, SimpleResearchLab } from '@/types/api';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
 

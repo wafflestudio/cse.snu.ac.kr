@@ -5,7 +5,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import TimelineEditor, {
   type TimelineFormData,
 } from '@/routes/$locale/academics/-components/timeline/TimelineEditor';
-import type { TimelineContent } from '@/types/api/v2/academics';
+import type { TimelineContent } from '@/types/api';
 import { api } from '@/utils/api';
 import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';
 

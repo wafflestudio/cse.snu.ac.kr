@@ -13,8 +13,11 @@ import CourseDetailModal from '@/routes/$locale/academics/-components/courses/Co
 import CourseList from '@/routes/$locale/academics/-components/courses/CourseList';
 import CourseToolbar from '@/routes/$locale/academics/-components/courses/CourseToolbar';
 import courseTranslations from '@/routes/$locale/academics/-components/courses/translations.json';
-import type { Classification, SortOption, ViewOption } from '@/types/academics';
-import type { Course } from '@/types/api/v2/academics';
+import type {
+  SortOption,
+  ViewOption,
+} from '@/routes/$locale/academics/-constants';
+import type { Course } from '@/types/api';
 
 interface CoursesPageProps {
   courses: Course[];
@@ -25,7 +28,8 @@ interface CoursesPageProps {
 const VIEW_OPTIONS: ViewOption[] = ['카드형', '목록형'];
 const SORT_OPTIONS: SortOption[] = ['학년', '교과목 구분', '학점'];
 
-const classificationToIndexMap: { [key in Classification]: number } = {
+// 백엔드가 classification을 enum이 아닌 String으로 내보내 스펙에 값 목록이 없다.
+const classificationToIndexMap: Record<string, number> = {
   전공필수: 0,
   전공선택: 1,
   교양: 2,

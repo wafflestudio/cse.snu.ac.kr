@@ -9,7 +9,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { DirectionsResponse } from '@/types/api/v2/about/directions';
+import type { DirectionsResponse } from '@/types/api';
 import { api } from '@/utils/api';
 import { stringParam } from '@/utils/searchSchema';
 import KakaoMap from './-components/KakaoMap';

@@ -6,7 +6,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { FacultyRecruitment } from '@/types/api/v2/recruit';
+import type { FacultyRecruitment } from '@/types/api';
 import { api } from '@/utils/api';
 
 const META = {

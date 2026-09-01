@@ -4,7 +4,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { Notice } from '@/types/api/v2/notice';
+import type { Notice } from '@/types/api';
 import { isLocalFile } from '@/types/form';
 import { api } from '@/utils/api';
 import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';
@@ -23,7 +23,7 @@ function NoticeEditPage() {
     title: data.title,
     titleForMain: data.titleForMain ?? '',
     description: data.description,
-    attachments: data.attachments.map((file) => ({
+    attachments: (data.attachments ?? []).map((file) => ({
       type: 'UPLOADED_FILE',
       file,
     })),

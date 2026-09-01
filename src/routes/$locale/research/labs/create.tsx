@@ -5,8 +5,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import ResearchLabEditor, {
   type ResearchLabFormData,
 } from '@/routes/$locale/research/labs/-components/ResearchLabEditor';
-import type { SimpleFaculty } from '@/types/api/v2/professor';
-import type { ResearchGroup } from '@/types/api/v2/research/groups';
+import type { ResearchGroup, SimpleFaculty } from '@/types/api';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
 

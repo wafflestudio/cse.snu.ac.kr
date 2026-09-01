@@ -4,7 +4,7 @@ import type { ElementType, ReactNode } from 'react';
 import 'dayjs/locale/ko';
 import Image from '@/components/ui/Image';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { SeminarPreview } from '@/types/api/v2/seminar';
+import type { SeminarPreview } from '@/types/api';
 import CalendarIcon from '../assets/calendar.svg?react';
 import DistanceIcon from '../assets/distance.svg?react';
 import PersonIcon from '../assets/person.svg?react';

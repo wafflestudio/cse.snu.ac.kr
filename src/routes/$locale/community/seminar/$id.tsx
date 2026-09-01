@@ -14,7 +14,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { Seminar } from '@/types/api/v2/seminar';
+import type { Seminar } from '@/types/api';
 import { stripHtml, truncateDescription } from '@/utils/string';
 
 function SeminarDetailPage() {
@@ -70,7 +70,7 @@ function SeminarDetailPage() {
         {seminar.title}
       </h2>
       <div className="bg-neutral-50 page-gutter-x pb-36 pt-9">
-        <Attachments files={seminar.attachments} />
+        <Attachments files={seminar.attachments ?? []} />
         <div className="mb-9 flex flex-col-reverse justify-between gap-5 text-md sm:flex-row">
           <div className="flex flex-col gap-3">
             <div>

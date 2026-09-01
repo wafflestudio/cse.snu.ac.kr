@@ -8,7 +8,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { createSelectionUrl } from '@/hooks/useSelectionList';
 import { useResearchSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { ResearchLabWithLanguage } from '@/types/api/v2/research/labs';
+import type { ResearchLabWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 import { stringParam } from '@/utils/searchSchema';
 import { stripHtml, truncateDescription } from '@/utils/string';
@@ -214,7 +214,9 @@ export const Route = createFileRoute('/$locale/research/labs/$id/')({
 
     return {
       ...data[locale],
-      description: await processHtmlForCsp({ data: data[locale].description }),
+      description: await processHtmlForCsp({
+        data: data[locale].description ?? '',
+      }),
     };
   },
   component: ResearchLabDetailPage,

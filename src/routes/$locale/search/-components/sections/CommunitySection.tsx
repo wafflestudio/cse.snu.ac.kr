@@ -5,8 +5,8 @@ import { useLanguage } from '@/hooks/useLanguage';
 import type {
   NewsSearchResult,
   NoticeSearchResult,
-} from '@/types/api/v2/search';
-import type { SeminarPreviewList } from '@/types/api/v2/seminar';
+  SeminarPreviewList,
+} from '@/types/api';
 import SeminarRow from '../../../community/seminar/-components/SeminarRow';
 import CircleTitle from '../ui/CircleTitle';
 import NewsRow from '../ui/NewsRow';
@@ -67,7 +67,7 @@ export default function CommunitySection({
             partialDescription={result.partialDescription}
             boldStartIndex={result.boldStartIndex}
             boldEndIndex={result.boldEndIndex}
-            date={result.date}
+            date={result.date ?? ''}
             imageURL={result.imageUrl}
           />
         ))}

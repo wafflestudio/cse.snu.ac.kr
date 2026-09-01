@@ -1,7 +1,10 @@
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { Tag } from '@/components/ui/Tag';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { SortOption, ViewOption } from '@/types/academics';
+import type {
+  SortOption,
+  ViewOption,
+} from '@/routes/$locale/academics/-constants';
 import translations from './translations.json';
 
 interface CourseToolbarProps {

@@ -2,7 +2,7 @@ import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
 import type { ButtonHTMLAttributes } from 'react';
 import { useCallback, useEffect, useState } from 'react';
-import type { MainNews } from '@/types/api/v2';
+import type { MainNews } from '@/types/api';
 import PauseIcon from './assets/pause.svg?react';
 import PlayIcon from './assets/play.svg?react';
 import { AUTO_SCROLL_MS, CARD_GAP_TAILWIND } from './constants';

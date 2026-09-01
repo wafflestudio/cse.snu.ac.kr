@@ -5,7 +5,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import StaffEditor, {
   type StaffFormData,
 } from '@/routes/$locale/people/-components/StaffEditor';
-import type { Staff } from '@/types/api/v2/staff';
+import type { Staff } from '@/types/api';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
 

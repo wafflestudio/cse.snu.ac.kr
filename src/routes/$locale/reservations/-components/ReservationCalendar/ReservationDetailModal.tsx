@@ -10,7 +10,7 @@ import {
   deleteRecurringReservation,
   deleteReservation,
 } from '@/routes/$locale/reservations/-api';
-import type { Reservation } from '@/types/api/v2/reservation';
+import type { Reservation } from '@/types/api';
 import { api } from '@/utils/api';
 import { kstDayjs } from '@/utils/date';
 

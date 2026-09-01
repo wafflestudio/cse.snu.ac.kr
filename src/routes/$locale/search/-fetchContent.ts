@@ -6,8 +6,8 @@ import type {
   NewsSearchResult,
   NoticeSearchResult,
   ResearchSearchResult,
-} from '@/types/api/v2/search';
-import type { SeminarPreviewList } from '@/types/api/v2/seminar';
+  SeminarPreviewList,
+} from '@/types/api';
 import { api } from '@/utils/api';
 import type { TreeNode } from './-components/ui/SearchSubNavbar';
 

@@ -9,7 +9,7 @@ import LanguagePicker, {
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { StudentClubsResponse } from '@/types/api/v2/about/student-clubs';
+import type { StudentClubsResponse } from '@/types/api';
 import type { EditorImage } from '@/types/form';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';

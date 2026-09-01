@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button';
 import Pagination from '@/components/ui/Pagination';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
-import type { SeminarPreviewList } from '@/types/api/v2/seminar';
+import type { SeminarPreviewList } from '@/types/api';
 import { api } from '@/utils/api';
 import { pageNumParam, stringParam } from '@/utils/searchSchema';
 import SeminarRow from './-components/SeminarRow';

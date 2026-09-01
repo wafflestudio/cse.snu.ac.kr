@@ -7,7 +7,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { Guide } from '@/types/api/v2/academics';
+import type { Guide } from '@/types/api';
 import { api } from '@/utils/api';
 
 const META = {

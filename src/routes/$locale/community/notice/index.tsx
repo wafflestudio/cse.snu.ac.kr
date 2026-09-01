@@ -7,7 +7,7 @@ import Pagination from '@/components/ui/Pagination';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSetToggle } from '@/hooks/useSetToggle';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
-import type { NoticePreviewList } from '@/types/api/v2/notice';
+import type { NoticePreviewList } from '@/types/api';
 import { api } from '@/utils/api';
 import {
   pageNumParam,

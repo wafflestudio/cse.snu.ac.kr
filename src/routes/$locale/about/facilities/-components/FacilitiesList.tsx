@@ -7,7 +7,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import Image from '@/components/ui/Image';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { Facility } from '@/types/api/v2/about/facilities';
+import type { Facility } from '@/types/api';
 import { api } from '@/utils/api';
 import type { ProcessedHtml } from '@/utils/csp';
 import DistanceIcon from '../assets/distance.svg?react';

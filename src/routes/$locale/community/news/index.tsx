@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button';
 import Pagination from '@/components/ui/Pagination';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
-import type { NewsPreview, NewsPreviewList } from '@/types/api/v2/news';
+import type { NewsPreview, NewsPreviewList } from '@/types/api';
 import { api } from '@/utils/api';
 import {
   pageNumParam,

@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { FileText } from 'lucide-react';
 import { Fragment } from 'react';
 import { LAB_ROW_ITEM_WIDTH } from '@/routes/$locale/research/labs';
-import type { SimpleResearchLab } from '@/types/api/v2/research/labs';
+import type { SimpleResearchLab } from '@/types/api';
 import YoutubeIcon from '../assets/youtube_icon.svg?react';
 
 export default function ResearchLabListRow({

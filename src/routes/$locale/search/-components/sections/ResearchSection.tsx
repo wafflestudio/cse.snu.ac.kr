@@ -1,5 +1,5 @@
 import { useLanguage } from '@/hooks/useLanguage';
-import type { ResearchSearchResult, ResearchType } from '@/types/api/v2/search';
+import type { ResearchSearchResult, ResearchType } from '@/types/api';
 import BasicRow from '../ui/BasicRow';
 import Section from '../ui/Section';
 
@@ -33,8 +33,8 @@ export default function ResearchSection({
               metaLabel={metaLabel}
               metaHref={basePath}
               partialDescription={result.partialDescription}
-              boldStartIndex={result.boldStartIndex}
-              boldEndIndex={result.boldEndIndex}
+              boldStartIndex={result.boldStartIdx}
+              boldEndIndex={result.boldEndIdx}
             />
           );
         })}

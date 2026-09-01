@@ -41,8 +41,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     env:
-      # baseline 생성 시점 백엔드 SHA로 핀(#399). 백엔드 올릴 땐 baseline 재생성 + 이 값 갱신.
-      BACKEND_REF: 1661f3d8fe409ee17359c0683cd6fca8a558ec1a
+      # baseline 생성 시점 백엔드 SHA로 핀(#410 머지 시점 develop). 백엔드 올릴 땐 baseline 재생성 + 이 값 갱신.
+      BACKEND_REF: e936d69967eec5ffe22161748dcbef9267b7a46d
     steps:
       - uses: actions/checkout@v7
         with:
@@ -65,6 +65,12 @@ jobs:
       # 호스트엔 pnpm/node 불필요 — e2e-docker.sh가 모든 걸 핀된 컨테이너 안에서 한다(corepack·
       # pnpm install·빌드·시드·브라우저). 백엔드는 ../csereal-server(체크아웃됨)에서 compose가
       # 빌드. host.docker.internal은 Linux 러너에서도 --add-host=host-gateway로 동작(스크립트가 처리).
+      # 커밋된 OpenAPI 생성 타입이 이 백엔드의 실제 스펙과 맞는지 검사한다.
+      # 어긋나면 `pnpm gen:api` 후 커밋 → typecheck가 깨진 호출부를 짚어준다.
+      # e2e보다 먼저 둔다(빠르고, 백엔드 스택을 어차피 띄운다).
+      - name: OpenAPI 타입 드리프트 검사
+        working-directory: cse.snu.ac.kr
+        run: bash scripts/check-api-drift.sh
       - name: E2E (e2e-docker.sh)
         working-directory: cse.snu.ac.kr
         run: bash scripts/e2e-docker.sh

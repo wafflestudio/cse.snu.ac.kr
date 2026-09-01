@@ -6,7 +6,7 @@ import { useState } from 'react';
 import Image from '@/components/ui/Image';
 import { useLanguage } from '@/hooks/useLanguage';
 import useIsMobile from '@/hooks/useResponsive';
-import type { AllMainNotice } from '@/types/api/v2';
+import type { AllMainNotice } from '@/types/api';
 import noticeGraphicImg from '../assets/noticeGraphic.avif';
 import PlusIcon from '../assets/plus.svg?react';
 

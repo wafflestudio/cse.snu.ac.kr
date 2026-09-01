@@ -1,9 +1,6 @@
 import type dayjs from 'dayjs';
 import useSelectedDate from '@/routes/$locale/reservations/-hooks/useSelectedDate';
-import type {
-  ReservationPreview,
-  ReserveTerm,
-} from '@/types/api/v2/reservation';
+import type { ReservationPreview, ReserveTerm } from '@/types/api';
 import CalendarContent from './CalendarContent';
 import CalendarToolbar from './CalendarToolbar';
 import ReserveTermBanner from './ReserveTermBanner';

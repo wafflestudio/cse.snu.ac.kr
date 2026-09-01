@@ -3,7 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import { toast } from '@/components/ui/sonner';
-import type { ImageModal } from '@/types/api/v2/admin';
+import type { ImageModal } from '@/types/api';
 import type { EditorImage } from '@/types/form';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';

@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import Checkbox from '@/components/ui/Checkbox';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { NoticePreview } from '@/types/api/v2/notice';
+import type { NoticePreview } from '@/types/api';
 import ClipIcon from '../assets/clip.svg?react';
 import LockIcon from '../assets/lock.svg?react';
 import PinIcon from '../assets/pin.svg?react';

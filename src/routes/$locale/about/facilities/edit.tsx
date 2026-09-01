@@ -9,10 +9,7 @@ import LanguagePicker, {
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type {
-  FacilitiesResponse,
-  Facility,
-} from '@/types/api/v2/about/facilities';
+import type { FacilitiesResponse, Facility } from '@/types/api';
 import type { EditorImage } from '@/types/form';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';

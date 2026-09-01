@@ -8,7 +8,7 @@ import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { TimelineContent } from '@/types/api/v2/academics';
+import type { TimelineContent } from '@/types/api';
 import { api } from '@/utils/api';
 import type { ProcessedHtml } from '@/utils/csp';
 import Timeline from './Timeline';

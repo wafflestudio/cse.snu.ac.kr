@@ -7,7 +7,7 @@ import { usePeopleSubNav } from '@/hooks/useSubNav';
 import PeopleInfoList from '@/routes/$locale/people/-components/PeopleInfoList';
 import PeopleLabNode from '@/routes/$locale/people/-components/PeopleLabNode';
 import PeopleProfileInfo from '@/routes/$locale/people/-components/PeopleProfileInfo';
-import type { Faculty } from '@/types/api/v2/professor';
+import type { Faculty } from '@/types/api';
 import { api } from '@/utils/api';
 
 function FacultyDetailPage() {
