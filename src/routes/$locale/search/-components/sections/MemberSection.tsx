@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import Image from '@/components/ui/Image';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { Member, MemberSearchResult } from '@/types/api/v2/search';
+import type { Member, MemberSearchResult } from '@/types/api';
 import styles from '../../style.module.css';
 import CircleTitle from '../ui/CircleTitle';
 import Section from '../ui/Section';

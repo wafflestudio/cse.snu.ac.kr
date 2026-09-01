@@ -5,7 +5,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import ScholarshipEditor, {
   type ScholarshipFormData,
 } from '@/routes/$locale/academics/-components/scholarship/ScholarshipEditor';
-import type { Scholarship } from '@/types/api/v2/academics/scholarship';
+import type { Scholarship } from '@/types/api';
 import { api } from '@/utils/api';
 
 function ScholarshipEditPage() {

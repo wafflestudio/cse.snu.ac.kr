@@ -6,8 +6,8 @@ import Button from '@/components/ui/Button';
 import Dialog from '@/components/ui/Dialog';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { Course, StudentType } from '@/types/api/v2/academics';
-import { CLASSIFICATION, GRADE } from '@/types/api/v2/academics';
+import { CLASSIFICATION, GRADE } from '@/routes/$locale/academics/-constants';
+import type { Course, StudentType } from '@/types/api';
 import { api } from '@/utils/api';
 
 const CREDIT = [1, 2, 3, 4];

@@ -7,7 +7,7 @@ import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import { toast } from '@/components/ui/sonner';
 import { TABLE_COLUMN_SIZE } from '@/routes/$locale/about/future-careers/-components/CareerCompanies';
-import type { Company } from '@/types/api/v2/about/future-careers';
+import type { Company } from '@/types/api';
 import { api } from '@/utils/api';
 
 interface CompanyTableRowProps {
@@ -88,7 +88,7 @@ function CareerCompanyViewer({
         <a
           className={`order-last col-span-2 col-start-2 w-fit text-xs text-link hover:underline sm:order-0 sm:mt-0 sm:pl-2
             ${url && 'mt-1'} ${TABLE_COLUMN_SIZE[2]}`}
-          href={url}
+          href={url ?? undefined}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -145,7 +145,7 @@ export function CareerCompanyEditor({
     defaultValues: {
       name: company?.name ?? '',
       url: company?.url ?? '',
-      year: company?.year,
+      year: company?.year ?? undefined,
     },
   });
   const { handleSubmit } = formMethods;

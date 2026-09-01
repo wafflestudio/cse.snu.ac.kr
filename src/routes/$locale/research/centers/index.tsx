@@ -12,7 +12,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useResearchSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { ResearchCentersResponse } from '@/types/api/v2/research/centers';
+import type { ResearchCentersResponse } from '@/types/api';
 import { api } from '@/utils/api';
 import { stringParam } from '@/utils/searchSchema';
 import LinkIcon from './assets/link_icon.svg?react';
@@ -114,7 +114,7 @@ function ResearchCentersPage() {
           </LoginVisible>
           <ResearchCenterTitle
             name={selectedCenter.name}
-            link={selectedCenter.websiteURL}
+            link={selectedCenter.websiteURL ?? ''}
           />
           <div className="px-2.5">
             <HTMLViewer

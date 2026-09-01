@@ -7,7 +7,7 @@ import { usePeopleSubNav } from '@/hooks/useSubNav';
 import PeopleContactList from '@/routes/$locale/people/-components/PeopleContactList';
 import PeopleInfoList from '@/routes/$locale/people/-components/PeopleInfoList';
 import PeopleProfileImage from '@/routes/$locale/people/-components/PeopleProfileImage';
-import type { Staff } from '@/types/api/v2/staff';
+import type { Staff } from '@/types/api';
 import { api } from '@/utils/api';
 
 function StaffDetailPage() {

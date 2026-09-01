@@ -8,7 +8,7 @@ import PeopleGrid, {
   type PeopleCardContentItem,
   type PeopleCardProps,
 } from '@/routes/$locale/people/-components/PeopleGrid';
-import type { SimpleStaff } from '@/types/api/v2/staff';
+import type { SimpleStaff } from '@/types/api';
 import { api } from '@/utils/api';
 
 const META = {

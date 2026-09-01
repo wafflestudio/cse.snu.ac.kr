@@ -50,12 +50,12 @@
 
 - **브랜치:** `main`=production · `develop`=staging · `feature/*`·`fix/*`→`develop` PR · `hotfix/*`→`main` PR(후 develop back-merge). **직접 push 금지** — ruleset이 main·develop에 PR 필수 + `gate`·`e2e` 필수체크 + force push 금지 강제(admin 포함).
 - **머지 전략:** `feature`→`develop`은 **squash**(WIP 커밋 정리, 기능당 1커밋). `develop`→`main`은 **merge commit**(squash ❌ — develop은 long-lived라 squash하면 main과 히스토리가 갈라져 다음 승격 PR이 깨짐). rebase 머지는 끔, 머지 후 head 브랜치 자동삭제. (레포 설정으로 강제.)
-- **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`knip`/`build:local`, ~1–2분; `knip`=미사용 파일·export·의존성) ② E2E(로컬과 동일 `e2e-docker.sh`; CI는 프론트를 서브디렉터리·백엔드를 핀된 `BACKEND_REF` **소스**로 체크아웃 후 `gradlew bootJar`로 JAR 빌드(Dockerfile이 build/libs를 COPY)하는 것만 다름 — GHCR `:prod`는 prod 프로파일이라 mock-login이 꺼져 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.**
+- **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`knip`/`build:local`, ~1–2분; `knip`=미사용 파일·export·의존성) ② E2E(로컬과 동일 `e2e-docker.sh`; CI는 프론트를 서브디렉터리·백엔드를 핀된 `BACKEND_REF` **소스**로 체크아웃 후 `gradlew bootJar`로 JAR 빌드(Dockerfile이 build/libs를 COPY)하는 것만 다름 — GHCR `:prod`는 prod 프로파일이라 mock-login이 꺼져 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.** e2e 잡은 E2E 앞에 **OpenAPI 드리프트 검사**(`scripts/check-api-drift.sh`)를 돌린다 — 커밋된 `generated.d.ts`가 `BACKEND_REF` 백엔드의 실제 스펙과 어긋나면 빨간불. ⚠️ 생성물이 untracked면 `git diff`가 무조건 통과하므로 스크립트가 추적 여부를 먼저 본다.
 - **CD(`deploy.yml`, `develop` push):** deploy.yml이 staging 호스트에 SSH로 `remote-deploy.sh`를 보내 **호스트에서 빌드+교체**를 트리거한다. `main` push는 자동 배포 없음 — prod는 `deploy.sh prod`로 **수동**(같은 호스트 빌드 흐름). **레지스트리(GHCR) 없음 — 빌드==배포**, 호스트가 자기 arch로 네이티브 빌드. CI(ci.yml)는 게이트만, 배포 이미지는 안 만든다. 문서만(`**.md`) push는 `paths-ignore`로 스킵.
 - **호스트 빌드 흐름**(`remote-deploy.sh`, 호스트에서 실행): **`docker build "<git-url>#<REF>"`** — docker가 소스를 직접 클론해 빌드 컨텍스트로 쓴다 → **호스트엔 docker만 있으면 된다**(레포 체크아웃·env 파일 불필요). **빌드 성공 후에만** 컨테이너 교체(빌드 중엔 구버전 서빙 → 무중단). 카맵키는 `--build-arg VITE_KAKAO_MAP_API_KEY`(git 밖 시크릿). **롤백 = machinery 없이 이전 커밋 sha로 다시 빌드**: `deploy.sh <env> <sha>`(빌드가 빠르니 재빌드가 곧 롤백). `deploy.sh`는 로컬 `env/.env`에서, `deploy.yml`은 `KAKAO_MAP_KEY` 시크릿에서 카맵키를 받아 넘긴다.
 - **왜 호스트 빌드(학외 CI 아님):** ① 빌드가 곧 배포라 레지스트리 분리가 무의미 ② **프리렌더 대비** — 프리렌더는 빌드타임에 페이지마다 백엔드를 부르는데 prod API(`cse.snu.ac.kr`)는 경계 뒤라 학외 CI 빌드는 SYN drop이 **페이지 수만큼 누적**돼 플레이키. **학내 호스트 빌드면 안정적으로 닿는다.** 트레이드오프: 서빙 호스트에 빌드 부하가 생기나 `docker build`는 격리·무중단 swap이라 감내. `imageOptimizer`의 "prerender hack" 주석은 프리렌더 재도입 시 다시 검토.
 
-> **활성화 상태(2026-08-29 갱신):** ✅ **secret 2개**(`STAGING_SSH_KEY` + `KAKAO_MAP_KEY` — CI 빌드가 카맵키를 build-arg로 주입). host/user/port·API URL은 코드에 두어 시크릿에서 뺐다. 옛 `ENV_FILE_*`·`STAGING_SSH_HOST/USER/PORT`는 **삭제 대상**. · `develop` push 시 staging 호스트 빌드 자동배포 · **branch protection(ruleset: `main`·`develop` PR필수 + 필수 체크 `gate`·`e2e`, bypass 권한자 없음)** · `BACKEND_REF` 핀(#399 SHA 1661f3d8) · ci.yml · deploy.yml.
+> **활성화 상태(2026-08-29 갱신):** ✅ **secret 2개**(`STAGING_SSH_KEY` + `KAKAO_MAP_KEY` — CI 빌드가 카맵키를 build-arg로 주입). host/user/port·API URL은 코드에 두어 시크릿에서 뺐다. 옛 `ENV_FILE_*`·`STAGING_SSH_HOST/USER/PORT`는 **삭제 대상**. · `develop` push 시 staging 호스트 빌드 자동배포 · **branch protection(ruleset: `main`·`develop` PR필수 + 필수 체크 `gate`·`e2e`, bypass 권한자 없음)** · `BACKEND_REF` 핀(#410 머지 시점 develop SHA e936d699) · ci.yml · deploy.yml.
 >
 > **prod 라이브 확인(2026-08-29).** strict CSP(요청마다 nonce 회전)·gzip(`hono/compress`)·wscan 경로 404·`/admin` 익명 404를 실측.
 >
@@ -70,13 +70,18 @@
 - **⚠️ 로케일 링크는 항상 `localizedPath()`. 수동 `/${locale}/...` 문자열 금지** — ko에서 `/ko/...`를 **클라 네비로 클릭**하면 `__root`의 `/ko`-strip redirect가 렌더 루프(메인스레드 peg)를 일으킨 실버그가 있었다(notice 상세 wedge). `localizedPath`는 ko에서 프리픽스 없는 경로를 만들어 그 라운드트립을 제거한다.
 - **mutation은 대부분 클라 `fetch`**(same-origin proxy 경유). `action`은 거의 없음.
 - **검색/페이지네이션은 공용 `src/hooks/useSearchParams.ts`**(URLSearchParams 기반). 여러 라우트가 Pagination·SearchBox·TagCheckboxes를 공유해 라우트별 타입(`Route.useSearch`/`validateSearch`)은 부적합 — 표준 URLSearchParams 훅이 맞다.
+- **API 응답 타입은 손으로 쓰지 않는다 — 백엔드 OpenAPI 스펙에서 생성**(2026-09-01 전환, 옛 `types/api/v2/**` 수기 트리 26파일 폐기). `pnpm gen:api`(openapi-typescript)가 `src/types/api/generated.d.ts`를 만들고, `src/types/api/index.ts`가 도메인별 별칭만 한 파일에 모은다. 추출은 `src/types/api/helpers.ts`의 `Res<'/api/v2/notice/{noticeId}'>`.
+  - **경로로 주소를 잡는 이유:** operationId는 springdoc이 중복 메서드명에 번호를 붙여(`searchTop`·`searchTop_1`) 컨트롤러가 하나 늘면 밀린다 — 타입이 말없이 다른 엔드포인트에 붙는다. 스키마 이름도 `{total, searchList}` 같은 공용 래퍼가 겹쳐 부적합.
+  - ⚠️ **요청 바디엔 `Res`를 쓰지 않는다.** 응답의 optional은 "값이 null", 요청의 optional은 "생략 가능"이라 뜻이 다르다. 요청은 `components['schemas'][...]`를 그대로.
+  - ⚠️ **`Res`가 `?`를 떼는 전제:** 백엔드 Jackson이 `default-property-inclusion=ALWAYS`(기본값)라 응답에 선언된 키가 항상 온다. 백엔드가 `non_null` 직렬화로 바꾸면 이 매핑을 지워야 한다.
+  - **전제: 백엔드 springdoc 2.8.17+.** 2.4.0은 Kotlin `T?`를 스펙에 nullable로 안 적어 생성 타입이 런타임과 어긋났다(springdoc #906 → #3256). Boot 3.2.3에선 `-ui` 스타터가 부팅 실패해 `-api`를 쓴다.
 - **서버 라우트(Response 직접 반환):** `/img`(이미지 최적화 프록시 — sharp·AVIF·디스크캐시·SSRF 화이트리스트)와 `/sitemap.xml`. `/img`가 **시스템 유일의 이미지 최적화 계층**(백엔드는 원본만 서빙, `Image`가 렌더타임에 `/img?url=...` 생성, DB엔 원본 URL만). 장기적으론 백엔드/CDN(imgproxy) 이관 검토.
 - **⚠️ 검색 파라미터를 읽는 loader는 `loaderDeps: searchLoaderDeps`(`src/utils/loaderDeps.ts`) 필수.** match id가 `routeId+경로+JSON(loaderDeps)`라 선언이 없으면 **검색 파라미터만 바뀌는 클라 네비에서 loader가 아예 재실행되지 않는다**. 증상: URL만 바뀌고 화면 그대로 — 예약 캘린더 날짜 이동·목록 페이지네이션·태그 필터·검색이 전부 해당됐다(2026-07-29 수정, 13개 라우트). 누락은 **E2E 클릭 테스트**로 잡는다 — 검색 파라미터를 바꾸는 컨트롤을 도메인당 1개 클릭으로 검증(reservations 날짜·notice 페이지네이션이 reference, §3). 새 검색 파라미터 라우트엔 그 클릭 테스트를 반드시 추가할 것.
 - **TanStack 함정(겪은 것):**
   - 같은 라우트 재진입 시 컴포넌트를 **재마운트 안 할 수 있음** → `useState(props)` 초기화 안 됨(TimelineViewer 연도선택 버그). URL/props 파생으로 처리.
   - 클라 네비 시 **loader가 클라에서 실행** → 합성 request엔 쿠키 없음. 인증 의존 loader는 `forwardAuthHeaders`로 서버 헤더 전달.
   - `getRequestHeaders()`는 **Headers 객체**(`.get()` 사용, 프로퍼티 접근 금지).
-- **린트/포맷: Biome.** 커밋 전 `lint-staged`가 staged 파일에 `biome check --write --error-on-warnings`(+`typecheck`)를 돌려 **경고도 커밋을 막는다**. 전체 점검은 `pnpm lint`. 벤더드 CSS(suneditor·sonner)·생성물 `routeTree.gen.ts`는 `biome.json`에서 린트 제외. `!` 비널 단언·`any`는 경고라 회피.
+- **린트/포맷: Biome.** 커밋 전 `lint-staged`가 staged 파일에 `biome check --write --error-on-warnings`(+`typecheck`)를 돌려 **경고도 커밋을 막는다**. 전체 점검은 `pnpm lint`. 벤더드 CSS(suneditor·sonner)·생성물 `routeTree.gen.ts`·`src/types/api/generated.d.ts`는 `biome.json`에서 린트 제외(**생성물을 빼지 않으면 `lint:fix`가 재포맷해 API 드리프트 게이트가 깨진다**). `!` 비널 단언·`any`는 경고라 회피.
 
 ## 디렉터리 · 파일 구조
 
@@ -154,7 +159,7 @@
 
 - **모든 테스트는 핀된 Playwright 컨테이너에서 돈다**(`pnpm test` = `scripts/e2e-docker.sh`: 백엔드 스택 `up --wait` 후 러너 컨테이너를 스택 네트워크에 붙임). 호스트 직접 실행 정식 경로 없음 — 렌더 환경을 컨테이너로 고정해야 baseline이 머신 무관하게 픽셀 동일. 로컬·CI가 같은 스크립트를 타는 단일 경로라 config도 조건 분기 없는 고정값(워커4·retries2 — 2026-08-29 실측으로 확정, 상세는 config 주석).
 - **비주얼 baseline = Linux 단일(`*-linux.png`)**, 컨테이너가 정본 렌더 환경이라 머신 무관.
-- **백엔드 기준 = `../csereal-server`(origin/main)** — baseline은 이 main 백엔드에서 찍고, E2E가 main 백엔드 스모크도 겸한다. 트레이드오프: main이 floating이라 **백엔드만 바뀌어도 baseline이 깨질 수 있음** → 백엔드를 최신 main으로 올리고(아래) `--update-snapshots`로 재생성.
+- **백엔드 기준 = `../csereal-server`(origin/develop)** — baseline은 이 백엔드에서 찍고, E2E가 백엔드 스모크도 겸한다. 트레이드오프: develop이 floating이라 **백엔드만 바뀌어도 baseline이 깨질 수 있음** → 백엔드를 올리고(아래) `--update-snapshots`로 재생성.
 
 ## 백엔드 버전 동기화(cross-repo 런북)
 
@@ -165,7 +170,12 @@ docker run --rm -v "$PWD":/app -v csereal-gradle-cache:/root/.gradle -w /app \
   eclipse-temurin:21-jdk ./gradlew bootJar -x test               # 호스트 JDK 11이라 Java21 컨테이너로 빌드
 cd ../cse.snu.ac.kr && docker compose up -d --build backend  # 새 JAR로 이미지 재빌드
 ```
-올린 뒤 `pnpm test --update-snapshots`로 baseline 재생성.
+올린 뒤 **세 가지를 함께** 한다:
+1. `pnpm gen:api` → `src/types/api/generated.d.ts` 재생성 후 커밋 (안 하면 CI 드리프트 게이트가 빨간불)
+2. `.github/workflows/ci.yml`의 `BACKEND_REF`를 새 백엔드 SHA로 갱신
+3. `pnpm test --update-snapshots`로 baseline 재생성 (렌더가 바뀐 경우만)
+
+⚠️ **백엔드 기준은 이제 `origin/develop`이다**(백엔드 기본 브랜치가 develop). `BACKEND_REF`도 develop SHA로 핀한다.
 
 ## 새 라우트 추가 / 확장
 
@@ -195,4 +205,4 @@ E2E가 실제 버그를 잡는다. 예: DELETE가 200 빈 본문을 반환하는
 
 ---
 
-**마지막 업데이트:** 2026-08-30 (배포·E2E 인프라 정리 머지 #20: 호스트 git-URL 빌드 전환·시크릿 2개·compose 루트 이관·E2E 러너 분리·워커/타임아웃 실측 확정·Storybook 제거·COVERAGE.md 삭제. 상세 히스토리는 git log — 이 로그는 최신 1건만 유지한다.)
+**마지막 업데이트:** 2026-09-01 (OpenAPI codegen 전환: 수기 API 타입 26파일 폐기·`pnpm gen:api`·드리프트 게이트·백엔드 springdoc 2.8.17. 그 전 2026-08-30 배포·E2E 인프라 정리 #20: 호스트 git-URL 빌드 전환·시크릿 2개·compose 루트 이관·E2E 러너 분리·워커/타임아웃 실측 확정·Storybook 제거·COVERAGE.md 삭제. 상세 히스토리는 git log — 이 로그는 최신 1건만 유지한다.)

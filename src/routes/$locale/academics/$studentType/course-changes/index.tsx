@@ -4,7 +4,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import TimelineViewer from '@/routes/$locale/academics/-components/timeline/TimelineViewer';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { TimelineContent } from '@/types/api/v2/academics';
+import type { TimelineContent } from '@/types/api';
 import { api } from '@/utils/api';
 
 const META = {

@@ -10,7 +10,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { News } from '@/types/api/v2/news';
+import type { News } from '@/types/api';
 import { api } from '@/utils/api';
 import { pageNumParam } from '@/utils/searchSchema';
 import { stripHtml, truncateDescription } from '@/utils/string';
@@ -61,7 +61,7 @@ function NewsDetailPage() {
       </div>
 
       <div className="bg-neutral-50 page-gutter-x pt-9 pb-36">
-        <Attachments files={news.attachments} />
+        <Attachments files={news.attachments ?? []} />
 
         <HTMLViewer
           html={news.description}

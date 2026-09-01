@@ -9,7 +9,7 @@ import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { Scholarship } from '@/types/api/v2/academics/scholarship';
+import type { Scholarship } from '@/types/api';
 import { api } from '@/utils/api';
 import { stripHtml, truncateDescription } from '@/utils/string';
 

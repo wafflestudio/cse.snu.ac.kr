@@ -5,7 +5,7 @@ import Form from '@/components/form/Form';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { Guide } from '@/types/api/v2/academics/guide';
+import type { Guide } from '@/types/api';
 import type { EditorFile } from '@/types/form';
 import { api } from '@/utils/api';
 import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';

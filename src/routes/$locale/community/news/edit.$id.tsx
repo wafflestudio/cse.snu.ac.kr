@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { News } from '@/types/api/v2/news';
+import type { News } from '@/types/api';
 import { isLocalFile } from '@/types/form';
 import { api } from '@/utils/api';
 import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';
@@ -24,7 +24,7 @@ function NewsEditPage() {
     image: data.imageURL
       ? { type: 'UPLOADED_IMAGE', url: data.imageURL }
       : null,
-    attachments: data.attachments.map((file) => ({
+    attachments: (data.attachments ?? []).map((file) => ({
       type: 'UPLOADED_FILE',
       file,
     })),

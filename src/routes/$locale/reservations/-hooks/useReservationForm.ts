@@ -7,7 +7,7 @@ import {
   postReservation,
   ReservationError,
 } from '@/routes/$locale/reservations/-api';
-import type { ReservationPostBody } from '@/types/api/v2/reservation';
+import type { ReservationPostBody } from '@/types/api';
 import {
   getEarliestStartTimeFrom,
   getEndTimeOptions,

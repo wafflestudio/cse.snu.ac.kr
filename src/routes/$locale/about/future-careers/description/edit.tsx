@@ -9,7 +9,7 @@ import LanguagePicker, {
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { FutureCareersResponse } from '@/types/api/v2/about/future-careers';
+import type { FutureCareersResponse } from '@/types/api';
 import { LOCALES } from '@/types/i18n';
 import { api } from '@/utils/api';
 

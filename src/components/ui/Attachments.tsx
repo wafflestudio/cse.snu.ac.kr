@@ -1,4 +1,4 @@
-import type { Attachment } from '@/types/api/v2/attachment';
+import type { Attachment } from '@/types/api';
 import { formatBytes } from '@/utils/string';
 import ClipIcon from './assets/clip.svg?react';
 

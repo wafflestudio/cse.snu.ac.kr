@@ -5,7 +5,7 @@ import Button from '@/components/ui/Button';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { FacilitiesResponse } from '@/types/api/v2/about/facilities';
+import type { FacilitiesResponse } from '@/types/api';
 import { api } from '@/utils/api';
 import FacilitiesList from './-components/FacilitiesList';
 

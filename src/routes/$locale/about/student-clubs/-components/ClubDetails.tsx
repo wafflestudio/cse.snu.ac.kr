@@ -7,7 +7,7 @@ import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { Club } from '@/types/api/v2/about/student-clubs';
+import type { Club } from '@/types/api';
 import { api } from '@/utils/api';
 import type { ProcessedHtml } from '@/utils/csp';
 

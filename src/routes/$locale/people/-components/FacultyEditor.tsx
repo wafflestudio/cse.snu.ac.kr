@@ -13,10 +13,9 @@ import LanguagePicker, {
 } from '@/components/form/LanguagePicker';
 import {
   FACULTY_STATUS,
-  type Faculty,
   type FacultyStatus,
-} from '@/types/api/v2/professor';
-import type { SimpleResearchLab } from '@/types/api/v2/research/labs';
+} from '@/routes/$locale/people/-constants';
+import type { Faculty, SimpleResearchLab } from '@/types/api';
 import type { EditorImage } from '@/types/form';
 
 interface FacultyFormFields {

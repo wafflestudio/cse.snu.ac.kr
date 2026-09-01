@@ -8,7 +8,7 @@ import Node from '@/components/ui/Nodes';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { DegreeRequirements } from '@/types/api/v2/academics/undergraduate/degree-requirements';
+import type { DegreeRequirements } from '@/types/api';
 import { api } from '@/utils/api';
 
 const META = {

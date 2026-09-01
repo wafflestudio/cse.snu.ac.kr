@@ -7,8 +7,10 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import ScholarshipList from '@/routes/$locale/academics/-components/ScholarshipList';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { StudentType } from '@/types/api/v2/academics';
-import type { ScholarshipList as ScholarshipListType } from '@/types/api/v2/academics/scholarship';
+import type {
+  ScholarshipList as ScholarshipListType,
+  StudentType,
+} from '@/types/api';
 import { api } from '@/utils/api';
 
 const META = {

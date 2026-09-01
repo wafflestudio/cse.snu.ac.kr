@@ -6,10 +6,12 @@ import {
   ADMIN_MENU_IMAGE_MODAL,
   ADMIN_MENU_IMPORTANT,
   ADMIN_MENU_SLIDE,
-  type ImageModal,
-  type ImportantPreviewList,
-  type SlidePreviewList,
-} from '@/types/api/v2/admin';
+} from '@/routes/admin/-constants';
+import type {
+  ImageModal,
+  ImportantPreviewList,
+  SlidePreviewList,
+} from '@/types/api';
 import { api } from '@/utils/api';
 import { fetchSessionRoles } from '@/utils/auth';
 import { pageNumParam, stringParam } from '@/utils/searchSchema';

@@ -6,7 +6,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
-import type { ScholarshipList } from '@/types/api/v2/academics/scholarship';
+import type { ScholarshipList } from '@/types/api';
 import { api } from '@/utils/api';
 
 interface ScholarshipGuideFormData {

@@ -6,7 +6,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/hooks/useLanguage';
 import { usePeopleSubNav } from '@/hooks/useSubNav';
-import type { FacultyList, SimpleFaculty } from '@/types/api/v2/professor';
+import type { FacultyList, SimpleFaculty } from '@/types/api';
 import { api } from '@/utils/api';
 import PeopleGrid, {
   type PeopleCardContentItem,

@@ -4,7 +4,7 @@ import 'dayjs/locale/ko';
 import Image from '@/components/ui/Image';
 import { Tag } from '@/components/ui/Tag';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { NewsPreview } from '@/types/api/v2/news';
+import type { NewsPreview } from '@/types/api';
 
 interface NewsListRowProps {
   post: NewsPreview;
@@ -42,7 +42,7 @@ export default function NewsListRow({ post }: NewsListRowProps) {
 
         <div className="flex items-center justify-between gap-2.5">
           <div className="flex flex-wrap items-center gap-2.5">
-            {post.tags.map((tag) => (
+            {(post.tags ?? []).map((tag) => (
               <Tag
                 key={tag}
                 label={tUnsafe(tag)}

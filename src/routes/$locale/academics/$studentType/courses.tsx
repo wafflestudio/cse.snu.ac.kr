@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import CoursesPage from '@/routes/$locale/academics/-components/courses/CoursesPage';
-import type { Course, StudentType } from '@/types/api/v2/academics';
+import type { Course, StudentType } from '@/types/api';
 import { api } from '@/utils/api';
 import { stringParam } from '@/utils/searchSchema';
 

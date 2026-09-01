@@ -4,7 +4,7 @@ import type {
   ReservationPostBody,
   ReservationPreview,
   ReserveTerm,
-} from '@/types/api/v2/reservation';
+} from '@/types/api';
 import { api } from '@/utils/api';
 
 export class ReservationError extends Error {

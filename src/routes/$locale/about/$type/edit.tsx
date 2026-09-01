@@ -9,7 +9,7 @@ import LanguagePicker, {
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { AboutContent } from '@/types/api/v2/about/content';
+import type { AboutContent } from '@/types/api';
 import type { EditorFile, EditorImage } from '@/types/form';
 import { LOCALES } from '@/types/i18n';
 import { api } from '@/utils/api';
@@ -43,7 +43,10 @@ function AboutEdit() {
     htmlKo: koData.description,
     htmlEn: enData.description,
     image: koData.imageURL && { type: 'UPLOADED_IMAGE', url: koData.imageURL },
-    files: koData.attachments.map((file) => ({ type: 'UPLOADED_FILE', file })),
+    files: (koData.attachments ?? []).map((file) => ({
+      type: 'UPLOADED_FILE',
+      file,
+    })),
   };
 
   const methods = useForm({ defaultValues, shouldFocusError: false });

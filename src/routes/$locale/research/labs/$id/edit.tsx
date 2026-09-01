@@ -5,9 +5,11 @@ import { useLanguage } from '@/hooks/useLanguage';
 import ResearchLabEditor, {
   type ResearchLabFormData,
 } from '@/routes/$locale/research/labs/-components/ResearchLabEditor';
-import type { SimpleFaculty } from '@/types/api/v2/professor';
-import type { ResearchGroup } from '@/types/api/v2/research/groups';
-import type { ResearchLabWithLanguage } from '@/types/api/v2/research/labs';
+import type {
+  ResearchGroup,
+  ResearchLabWithLanguage,
+  SimpleFaculty,
+} from '@/types/api';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
 
@@ -21,19 +23,19 @@ function ResearchLabEdit() {
   const defaultValues: ResearchLabFormData = {
     ko: {
       name: lab.ko.name,
-      description: lab.ko.description,
+      description: lab.ko.description ?? '',
       groupId: lab.ko.group?.id ?? null,
       professorId: lab.ko.professors[0]?.id ?? null,
       location: lab.ko.location || '',
     },
     en: {
       name: lab.en.name,
-      description: lab.en.description,
+      description: lab.en.description ?? '',
       groupId: lab.en.group?.id ?? null,
       professorId: lab.en.professors[0]?.id ?? null,
       location: lab.en.location || '',
     },
-    acronym: lab.ko.acronym,
+    acronym: lab.ko.acronym ?? '',
     tel: lab.ko.tel || '',
     websiteURL: lab.ko.websiteURL || '',
     youtube: lab.ko.youtube || '',

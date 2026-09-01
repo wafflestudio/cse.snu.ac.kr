@@ -6,7 +6,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { FutureCareersResponse } from '@/types/api/v2/about/future-careers';
+import type { FutureCareersResponse } from '@/types/api';
 import { api } from '@/utils/api';
 import ContentSection from '../-components/ContentSection';
 import CareerCompanies from './-components/CareerCompanies';

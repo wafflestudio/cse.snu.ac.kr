@@ -7,9 +7,9 @@ import { useLanguage } from '@/hooks/useLanguage';
 import {
   CLASSIFICATION,
   type ClassificationEn,
-  type Course,
   GRADE,
-} from '@/types/api/v2/academics';
+} from '@/routes/$locale/academics/-constants';
+import type { Course } from '@/types/api';
 import { api } from '@/utils/api';
 import BookmarkIcon from './assets/bookmark_icon.svg?react';
 

@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { ResearchCenter } from '@/types/api/v2/research/centers';
+import type { ResearchCenter } from '@/types/api';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
 import ResearchCenterEditor, {
@@ -24,13 +24,13 @@ function ResearchCenterEdit() {
   const defaultValues: ResearchCenterFormData = {
     ko: {
       name: ko.name,
-      websiteURL: ko.websiteURL,
+      websiteURL: ko.websiteURL ?? '',
       description: ko.description,
       type: 'centers',
     },
     en: {
       name: en.name,
-      websiteURL: en.websiteURL,
+      websiteURL: en.websiteURL ?? '',
       description: en.description,
       type: 'centers',
     },

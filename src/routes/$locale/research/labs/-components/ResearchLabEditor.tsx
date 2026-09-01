@@ -8,8 +8,7 @@ import LanguagePicker, {
   type Language,
 } from '@/components/form/LanguagePicker';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { SimpleFaculty } from '@/types/api/v2/professor';
-import type { ResearchGroup } from '@/types/api/v2/research/groups';
+import type { ResearchGroup, SimpleFaculty } from '@/types/api';
 import type { EditorFile } from '@/types/form';
 
 type LanguageSpecificLabData = {

@@ -8,7 +8,7 @@ import {
   type CareerCompanyFormData,
   CompanyTableRow,
 } from '@/routes/$locale/about/future-careers/-components/CompanyRow';
-import type { Company } from '@/types/api/v2/about/future-careers';
+import type { Company } from '@/types/api';
 import { api } from '@/utils/api';
 
 export const TABLE_COLUMN_SIZE = [

@@ -1,4 +1,4 @@
-import type { AdmissionsResponse } from '@/types/api/v2/admissions';
+import type { AdmissionsResponse } from '@/types/api';
 import { api } from '@/utils/api';
 
 export type MainType = 'undergraduate' | 'graduate' | 'international';

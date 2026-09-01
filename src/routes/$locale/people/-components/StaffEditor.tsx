@@ -6,7 +6,7 @@ import Form from '@/components/form/Form';
 import LanguagePicker, {
   type Language,
 } from '@/components/form/LanguagePicker';
-import type { Staff } from '@/types/api/v2/staff';
+import type { Staff } from '@/types/api';
 import type { EditorImage } from '@/types/form';
 
 interface StaffFormFields {

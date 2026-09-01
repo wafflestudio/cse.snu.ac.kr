@@ -1,5 +1,5 @@
 import { useLanguage } from '@/hooks/useLanguage';
-import type { AboutPreview, AboutSearchResult } from '@/types/api/v2/search';
+import type { AboutPreview, AboutSearchResult } from '@/types/api';
 import BasicRow from '../ui/BasicRow';
 import Section from '../ui/Section';
 
