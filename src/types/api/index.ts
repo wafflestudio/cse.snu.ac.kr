@@ -59,7 +59,7 @@ export type FacultyRecruitment = Res<'/api/v2/recruit'>;
 
 /* ── 예약 ───────────────────────────────────────────────── */
 
-export type ReservationPreview = Res<'/api/v2/reservation/month'>[number];
+export type ReservationPreview = Res<'/api/v2/reservation/week'>[number];
 export type Reservation = Res<'/api/v2/reservation/{reservationId}'>;
 export type ReserveTerm = Res<'/api/v2/reservation/terms'>[number];
 // 요청 바디 — 응답과 달리 optional이 "생략 가능"이라 Res를 쓰지 않는다.
@@ -133,16 +133,18 @@ export type SimpleResearchLab = Res<'/api/v2/research/lab'>[number];
 export type ResearchLabWithLanguage = Res<'/api/v2/research/lab/{labId}'>;
 
 /* ── 통합 검색 ──────────────────────────────────────────── */
+// 통합검색 화면은 도메인마다 `/search/top`(상위 N개)을 부른다.
+// 페이지 단위 `/{domain}/search`는 응답 스키마가 같지만 프론트가 쓰지 않는다.
 
-export type AboutSearchResult = Res<'/api/v2/about/search'>;
+export type AboutSearchResult = Res<'/api/v2/about/search/top'>;
 export type AboutPreview = AboutSearchResult['results'][number];
 export type NoticeSearchResult = Res<'/api/v2/notice/totalSearch'>;
 export type NewsSearchResult = Res<'/api/v2/news/totalSearch'>;
-export type MemberSearchResult = Res<'/api/v2/member/search'>;
+export type MemberSearchResult = Res<'/api/v2/member/search/top'>;
 export type Member = MemberSearchResult['results'][number];
-export type ResearchSearchResult = Res<'/api/v2/research/search'>;
-export type AcademicsSearchResult = Res<'/api/v2/academics/search'>;
+export type ResearchSearchResult = Res<'/api/v2/research/search/top'>;
+export type AcademicsSearchResult = Res<'/api/v2/academics/search/top'>;
 export type Academic = AcademicsSearchResult['results'][number];
-export type AdmissionsSearchResult = Res<'/api/v2/admissions/search'>;
+export type AdmissionsSearchResult = Res<'/api/v2/admissions/search/top'>;
 export type ResearchType =
   ResearchSearchResult['results'][number]['researchType'];
