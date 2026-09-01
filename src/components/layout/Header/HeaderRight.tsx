@@ -82,18 +82,14 @@ function DevLogin() {
         STAFF
       </Button>
       <Divider />
-      <Button
-        variant="nav"
-        size="sm"
-        onClick={() => mockLogin('ROLE_RESERVATION')}
-      >
+      <Button variant="nav" size="sm" onClick={() => mockLogin('ROLE_RESERVE')}>
         RESERV
       </Button>
       <Divider />
       <Button
         variant="nav"
         size="sm"
-        onClick={() => mockLogin('ROLE_LABMASTER', 'ROLE_RESERVATION')}
+        onClick={() => mockLogin('ROLE_LABMASTER', 'ROLE_RESERVE')}
       >
         LAB+RESERV
       </Button>

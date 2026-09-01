@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { BASE_URL } from '@/constants/api';
 import type { NavItem } from '@/constants/navigation';
+import type { MyRole } from '@/types/api';
 import { api } from '@/utils/api';
 
 type NavbarState =
@@ -8,11 +9,7 @@ type NavbarState =
   | { type: 'expanded' }
   | { type: 'hovered'; navItem: NavItem };
 
-export type Role =
-  | 'ROLE_STAFF'
-  | 'ROLE_RESERVATION'
-  | 'ROLE_LABMASTER'
-  | 'ROLE_COUNCIL';
+export type Role = MyRole['roles'][number];
 
 interface Store {
   navbarState: NavbarState;
