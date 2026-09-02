@@ -4,7 +4,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import TimelineViewer from '@/routes/$locale/academics/-components/timeline/TimelineViewer';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { TimelineContent } from '@/types/api';
+import type { StudentType, TimelineContent } from '@/types/api';
 import { api } from '@/utils/api';
 
 const META = {
@@ -43,7 +43,7 @@ function CourseChangesPage() {
   const subNav = useAcademicsSubNav();
 
   const title = t('교과목 변경 내역');
-  const meta = META[studentType as 'undergraduate' | 'graduate'][locale];
+  const meta = META[studentType as StudentType][locale];
 
   return (
     <PageLayout

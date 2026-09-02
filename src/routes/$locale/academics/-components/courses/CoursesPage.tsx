@@ -17,11 +17,11 @@ import type {
   SortOption,
   ViewOption,
 } from '@/routes/$locale/academics/-constants';
-import type { Course } from '@/types/api';
+import type { Course, StudentType } from '@/types/api';
 
 interface CoursesPageProps {
   courses: Course[];
-  studentType: 'undergraduate' | 'graduate';
+  studentType: StudentType;
   hideSortOption?: boolean;
 }
 

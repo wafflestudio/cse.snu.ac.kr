@@ -39,8 +39,8 @@ export default function AcademicSection({
 const toAcademicInfo = (
   academic: Academic,
 ): { path: string; itemLabel: TranslationKey; parentLabel: TranslationKey } => {
-  if (academic.academicType === 'GUIDE') {
-    return academic.studentType === 'UNDERGRADUATE'
+  if (academic.academicType === 'guide') {
+    return academic.studentType === 'undergraduate'
       ? {
           path: '/academics/undergraduate/guide',
           itemLabel: '학부 안내',
@@ -53,8 +53,8 @@ const toAcademicInfo = (
         };
   }
 
-  if (academic.postType === 'COURSE') {
-    return academic.studentType === 'UNDERGRADUATE'
+  if (academic.postType === 'course') {
+    return academic.studentType === 'undergraduate'
       ? {
           path: '/academics/undergraduate/courses',
           itemLabel: '교과과정',
@@ -67,8 +67,8 @@ const toAcademicInfo = (
         };
   }
 
-  if (academic.academicType === 'COURSE_CHANGES') {
-    return academic.studentType === 'UNDERGRADUATE'
+  if (academic.academicType === 'course-changes') {
+    return academic.studentType === 'undergraduate'
       ? {
           path: '/academics/undergraduate/course-changes',
           itemLabel: '교과목 변경 내역',
@@ -81,8 +81,8 @@ const toAcademicInfo = (
         };
   }
 
-  if (academic.postType === 'SCHOLARSHIP') {
-    return academic.studentType === 'UNDERGRADUATE'
+  if (academic.postType === 'scholarship') {
+    return academic.studentType === 'undergraduate'
       ? {
           path: '/academics/undergraduate/scholarship',
           itemLabel: '장학 제도',
@@ -95,7 +95,7 @@ const toAcademicInfo = (
         };
   }
 
-  if (academic.academicType === 'CURRICULUM') {
+  if (academic.academicType === 'curriculum') {
     return {
       path: '/academics/undergraduate/curriculum',
       itemLabel: '전공 이수 표준 형태',
@@ -103,7 +103,7 @@ const toAcademicInfo = (
     };
   }
 
-  if (academic.academicType === 'GENERAL_STUDIES_REQUIREMENTS') {
+  if (academic.academicType === 'general-studies-requirements') {
     return {
       path: '/academics/undergraduate/general-studies-requirements',
       itemLabel: '필수 교양 과목',
@@ -111,7 +111,7 @@ const toAcademicInfo = (
     };
   }
 
-  if (academic.academicType === 'DEGREE_REQUIREMENTS') {
+  if (academic.academicType === 'degree-requirements') {
     return {
       path: '/academics/undergraduate/degree-requirements',
       itemLabel: '졸업 규정',

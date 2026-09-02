@@ -7,7 +7,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { Guide } from '@/types/api';
+import type { Guide, StudentType } from '@/types/api';
 import { api } from '@/utils/api';
 
 const META = {
@@ -48,7 +48,7 @@ function GuidePage() {
   const isGraduate = studentType === 'graduate';
   const title = isGraduate ? t('대학원 안내') : t('학부 안내');
   const _studentLabel = isGraduate ? t('대학원') : t('학부');
-  const meta = META[studentType as 'undergraduate' | 'graduate'][locale];
+  const meta = META[studentType as StudentType][locale];
 
   return (
     <PageLayout

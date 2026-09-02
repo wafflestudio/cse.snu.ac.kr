@@ -1,11 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import type { AdmissionsMainType, AdmissionsPostType } from '@/types/api';
 import AdmissionsPageContent from '../../-components/AdmissionsPageContent';
-import {
-  fetchAdmissions,
-  type MainType,
-  type PostType,
-} from '../../-components/fetchAdmissions';
+import { fetchAdmissions } from '../../-components/fetchAdmissions';
 
 // Mapping for page configuration
 const ADMISSIONS_PAGES: Record<
@@ -55,8 +52,8 @@ export const Route = createFileRoute(
 
     const locale = params.locale === 'en' ? 'en' : 'ko';
     const data = await fetchAdmissions(
-      mainType as MainType,
-      config.apiPostType as PostType,
+      mainType as AdmissionsMainType,
+      config.apiPostType as AdmissionsPostType,
     );
 
     return {
