@@ -42,7 +42,7 @@ jobs:
     timeout-minutes: 40
     env:
       # baseline 생성 시점 백엔드 SHA로 핀(#410 머지 시점 develop). 백엔드 올릴 땐 baseline 재생성 + 이 값 갱신.
-      BACKEND_REF: 5fac48f8e427cf9efa656397fa16a5e70db87b99
+      BACKEND_REF: a988136fa7af5b34c4e1f4f7741cbf65e2dec5c7
     steps:
       - uses: actions/checkout@v7
         with:
