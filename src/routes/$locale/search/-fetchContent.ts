@@ -6,7 +6,9 @@ import type {
   NewsSearchResult,
   NoticeSearchResult,
   ResearchSearchResult,
+  SeminarPreview,
   SeminarPreviewList,
+  TotalSearchResult,
 } from '@/types/api';
 import { api } from '@/utils/api';
 import type { TreeNode } from './-components/ui/SearchSubNavbar';
@@ -31,86 +33,39 @@ export default async function fetchContent(
   const isSectionVisible = (sectionName: string) =>
     noTag || tag.includes(sectionName);
 
-  const fetchSearch = async <T>(
-    path: string,
-    params: { keyword: string; number: number; amount?: number },
-  ) => {
-    const searchParams = new URLSearchParams({
-      keyword: params.keyword,
-      number: `${params.number}`,
-      ...(params.amount ? { amount: `${params.amount}` } : {}),
-    });
+  const searchParams = new URLSearchParams({
+    keyword,
+    number: '3', // 도메인별 상위 N개(구성원은 memberNumber로 별도)
+    memberNumber: '10',
+    stringLength: '200', // 강조 주변 미리보기 길이
+    language: locale,
+  });
+  const result = await api
+    .get(`v2/totalSearch?${searchParams.toString()}`)
+    .json<TotalSearchResult>();
 
-    return api
-      .get(`${path.replace(/^\//, '')}?${searchParams.toString()}`)
-      .json<T>();
-  };
-
-  const fetchSeminar = async (keywordValue: string, localeValue: string) => {
-    const searchParams = new URLSearchParams({
-      keyword: keywordValue,
-      pageNum: '1',
-      language: localeValue,
-    });
-
-    return api
-      .get(`v2/seminar?${searchParams.toString()}`)
-      .json<SeminarPreviewList>();
-  };
-
-  const [about, notice, news, seminar, member, research, admission, academics] =
-    await Promise.all([
-      isSectionVisible('소개')
-        ? fetchSearch<AboutSearchResult>('/v2/about/search/top', {
-            keyword,
-            number: 3,
-            amount: 200,
-          })
-        : undefined,
-      isSectionVisible('소식')
-        ? fetchSearch<NoticeSearchResult>('/v2/notice/totalSearch', {
-            keyword,
-            number: 3,
-            amount: 200,
-          })
-        : undefined,
-      isSectionVisible('소식')
-        ? fetchSearch<NewsSearchResult>('/v2/news/totalSearch', {
-            keyword,
-            number: 3,
-            amount: 200,
-          })
-        : undefined,
-      isSectionVisible('소식') ? fetchSeminar(keyword, locale) : undefined,
-      isSectionVisible('구성원')
-        ? fetchSearch<MemberSearchResult>('/v2/member/search/top', {
-            keyword,
-            number: 10,
-            amount: 200,
-          })
-        : undefined,
-      isSectionVisible('연구·교육')
-        ? fetchSearch<ResearchSearchResult>('/v2/research/search/top', {
-            keyword,
-            number: 3,
-            amount: 200,
-          })
-        : undefined,
-      isSectionVisible('입학')
-        ? fetchSearch<AdmissionsSearchResult>('/v2/admissions/search/top', {
-            keyword,
-            number: 3,
-            amount: 200,
-          })
-        : undefined,
-      isSectionVisible('학사 및 교과')
-        ? fetchSearch<AcademicsSearchResult>('/v2/academics/search/top', {
-            keyword,
-            number: 3,
-            amount: 200,
-          })
-        : undefined,
-    ]);
+  // 태그 필터는 표시 단계에서만 적용한다 — 통합검색은 항상 전 도메인을 받는다.
+  const about = isSectionVisible('소개') ? result.aboutResult : undefined;
+  const notice = isSectionVisible('소식') ? result.noticeResult : undefined;
+  const news = isSectionVisible('소식') ? result.newsResult : undefined;
+  // seminarResult 요소(SeminarSearchDto)는 목록 endpoint와 동형 — startDate만
+  // 타입상 non-null로 좁혀 SeminarRow에 그대로 넘긴다(기존 .json 단언과 동일).
+  const seminar: SeminarPreviewList | undefined = isSectionVisible('소식')
+    ? {
+        total: result.seminarResult.total,
+        results: result.seminarResult.results as SeminarPreview[],
+      }
+    : undefined;
+  const member = isSectionVisible('구성원') ? result.memberResult : undefined;
+  const research = isSectionVisible('연구·교육')
+    ? result.researchResult
+    : undefined;
+  const admission = isSectionVisible('입학')
+    ? result.admissionsResult
+    : undefined;
+  const academics = isSectionVisible('학사 및 교과')
+    ? result.academicsResult
+    : undefined;
 
   const sectionContent: SectionContent = {
     about,

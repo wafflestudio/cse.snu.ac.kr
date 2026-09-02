@@ -79,7 +79,7 @@ export default function CommunitySection({
         href={`/community/seminar?keyword=${encodeURIComponent(keyword)}`}
         sectionId="seminar"
       >
-        {seminar.searchList.slice(0, 3).map((result) => (
+        {seminar.results.slice(0, 3).map((result) => (
           <SeminarRow key={result.id} seminar={result} />
         ))}
       </CommunitySubSection>

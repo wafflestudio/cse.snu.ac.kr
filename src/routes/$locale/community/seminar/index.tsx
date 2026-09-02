@@ -60,12 +60,12 @@ function SeminarPage() {
       </div>
 
       <div className="mb-8 mt-10 flex flex-col border-b border-neutral-200">
-        {data.searchList.length === 0 ? (
+        {data.results.length === 0 ? (
           <p className="py-8 text-center text-neutral-500">
             {t('검색 결과가 존재하지 않습니다.')}
           </p>
         ) : (
-          data.searchList.map((post, index) => (
+          data.results.map((post, index) => (
             <Fragment key={post.id}>
               {post.isYearLast && (
                 <div

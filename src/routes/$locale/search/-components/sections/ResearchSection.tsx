@@ -33,8 +33,8 @@ export default function ResearchSection({
               metaLabel={metaLabel}
               metaHref={basePath}
               partialDescription={result.partialDescription}
-              boldStartIndex={result.boldStartIdx}
-              boldEndIndex={result.boldEndIdx}
+              boldStartIndex={result.boldStartIndex}
+              boldEndIndex={result.boldEndIndex}
             />
           );
         })}

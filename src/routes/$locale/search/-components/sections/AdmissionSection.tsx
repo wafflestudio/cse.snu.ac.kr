@@ -15,7 +15,7 @@ export default function AdmissionSection({
   return (
     <Section title="입학" size={admission.total} sectionId="admissions">
       <div className="flex flex-col gap-7">
-        {admission.admissions.map((result) => {
+        {admission.results.map((result) => {
           const { path, itemLabel, parentLabel } = toAdmissionInfo(
             result.mainType,
             result.postType,

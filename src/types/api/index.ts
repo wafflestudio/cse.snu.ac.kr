@@ -41,11 +41,9 @@ type NonNullStartDate<T extends { startDate?: string | null }> = Omit<
 > & { startDate: string };
 
 type SeminarList = Res<'/api/v2/seminar'>;
-export type SeminarPreview = NonNullStartDate<
-  SeminarList['searchList'][number]
->;
-export type SeminarPreviewList = Omit<SeminarList, 'searchList'> & {
-  searchList: SeminarPreview[];
+export type SeminarPreview = NonNullStartDate<SeminarList['results'][number]>;
+export type SeminarPreviewList = Omit<SeminarList, 'results'> & {
+  results: SeminarPreview[];
 };
 export type Seminar = NonNullStartDate<Res<'/api/v2/seminar/{seminarId}'>>;
 
@@ -146,18 +144,19 @@ export type SimpleResearchLab = Res<'/api/v2/research/lab'>[number];
 export type ResearchLabWithLanguage = Res<'/api/v2/research/lab/{labId}'>;
 
 /* ── 통합 검색 ──────────────────────────────────────────── */
-// 통합검색 화면은 도메인마다 `/search/top`(상위 N개)을 부른다.
-// 페이지 단위 `/{domain}/search`는 응답 스키마가 같지만 프론트가 쓰지 않는다.
+// 통합검색 화면은 `/totalSearch` 한 번으로 전 도메인 상위 N개를 받는다.
+// 도메인별 결과 타입은 그 응답에서 파생한다 — 개별 `/search/top`이 아니라.
 
-export type AboutSearchResult = Res<'/api/v2/about/search/top'>;
+export type TotalSearchResult = Res<'/api/v2/totalSearch'>;
+export type AboutSearchResult = TotalSearchResult['aboutResult'];
 export type AboutPreview = AboutSearchResult['results'][number];
-export type NoticeSearchResult = Res<'/api/v2/notice/totalSearch'>;
-export type NewsSearchResult = Res<'/api/v2/news/totalSearch'>;
-export type MemberSearchResult = Res<'/api/v2/member/search/top'>;
+export type NoticeSearchResult = TotalSearchResult['noticeResult'];
+export type NewsSearchResult = TotalSearchResult['newsResult'];
+export type MemberSearchResult = TotalSearchResult['memberResult'];
 export type Member = MemberSearchResult['results'][number];
-export type ResearchSearchResult = Res<'/api/v2/research/search/top'>;
-export type AcademicsSearchResult = Res<'/api/v2/academics/search/top'>;
+export type ResearchSearchResult = TotalSearchResult['researchResult'];
+export type AcademicsSearchResult = TotalSearchResult['academicsResult'];
 export type Academic = AcademicsSearchResult['results'][number];
-export type AdmissionsSearchResult = Res<'/api/v2/admissions/search/top'>;
+export type AdmissionsSearchResult = TotalSearchResult['admissionsResult'];
 export type ResearchType =
   ResearchSearchResult['results'][number]['researchType'];
