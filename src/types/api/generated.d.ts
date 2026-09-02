@@ -3286,7 +3286,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     request: components["schemas"]["UpdateYearReq"];
                     newAttachments: string[];
                 };
@@ -3437,7 +3437,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     request: components["schemas"]["UpdateSingleReq"];
                     newAttachments: string[];
                 };
@@ -3486,7 +3486,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     request: components["schemas"]["UpdateSingleReq"];
                     newAttachments: string[];
                 };
@@ -3626,7 +3626,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     request: components["schemas"]["UpdateAboutReq"];
                     /** Format: binary */
                     newMainImage: string;
@@ -3673,7 +3673,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     request: components["schemas"]["UpdateClubReq"];
                     /** Format: binary */
                     newMainImage: string;
@@ -3699,7 +3699,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     request: components["schemas"]["CreateClubReq"];
                     /** Format: binary */
                     mainImage: string;
@@ -3859,7 +3859,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     request: components["schemas"]["UpdateFacReq"];
                     /** Format: binary */
                     newMainImage: string;
@@ -4004,7 +4004,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     request: components["schemas"]["SeminarDto"];
                     /** Format: binary */
                     mainImage: string;
@@ -4233,7 +4233,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     request: components["schemas"]["NoticeDto"];
                     attachments: string[];
                 };
@@ -4356,7 +4356,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     request: components["schemas"]["NewsDto"];
                     /** Format: binary */
                     mainImage: string;
@@ -4431,7 +4431,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     request: components["schemas"]["CreateImageModalReq"];
                     /** Format: binary */
                     mainImage: string;
@@ -4588,7 +4588,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     request: components["schemas"]["CreateYearReq"];
                     attachments: string[];
                 };
@@ -4655,7 +4655,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     request: components["schemas"]["CreateFacReq"];
                     /** Format: binary */
                     mainImage: string;
@@ -4749,7 +4749,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     request: components["schemas"]["SeminarDto"];
                     /** Format: binary */
                     newMainImage: string;
@@ -4822,7 +4822,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     request: components["schemas"]["NoticeDto"];
                     newAttachments: string[];
                 };
@@ -4893,7 +4893,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     request: components["schemas"]["NewsDto"];
                     /** Format: binary */
                     newMainImage: string;
@@ -4944,7 +4944,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     request: components["schemas"]["CreateImageModalReq"];
                     /** Format: binary */
                     newMainImage: string;
