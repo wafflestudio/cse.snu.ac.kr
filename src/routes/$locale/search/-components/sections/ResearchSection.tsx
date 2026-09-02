@@ -45,26 +45,26 @@ export default function ResearchSection({
 
 const toResearchLabel = (researchType: ResearchType): TranslationKey => {
   switch (researchType) {
-    case 'CONFERENCE':
+    case 'conference':
       return 'Top Conference List';
-    case 'LAB':
+    case 'lab':
       return '연구실 목록';
-    case 'RESEARCH_CENTER':
+    case 'research-center':
       return '연구 센터';
-    case 'RESEARCH_GROUP':
+    case 'research-group':
       return '연구·교육 스트림';
   }
 };
 
 const toResearchBasePath = (researchType: ResearchType) => {
   switch (researchType) {
-    case 'CONFERENCE':
+    case 'conference':
       return '/research/top-conference-list';
-    case 'LAB':
+    case 'lab':
       return '/research/labs';
-    case 'RESEARCH_CENTER':
+    case 'research-center':
       return '/research/centers';
-    case 'RESEARCH_GROUP':
+    case 'research-group':
       return '/research/groups';
   }
 };
@@ -75,13 +75,13 @@ const toResearchUrl = (
   name: string,
 ) => {
   switch (researchType) {
-    case 'CONFERENCE':
+    case 'conference':
       return '/research/top-conference-list';
-    case 'LAB':
+    case 'lab':
       return `/research/labs/${id}`;
-    case 'RESEARCH_CENTER':
+    case 'research-center':
       return `/research/centers?selected=${encodeURIComponent(name)}`;
-    case 'RESEARCH_GROUP':
+    case 'research-group':
       return `/research/groups?selected=${encodeURIComponent(name)}`;
   }
 };

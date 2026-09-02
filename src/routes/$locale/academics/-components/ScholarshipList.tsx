@@ -1,9 +1,10 @@
 import { Link } from '@tanstack/react-router';
 import { useLanguage } from '@/hooks/useLanguage';
+import type { StudentType } from '@/types/api';
 
 interface ScholarshipListProps {
   scholarships: { id: number; name: string }[];
-  studentType: 'undergraduate' | 'graduate';
+  studentType: StudentType;
 }
 
 const translations = {

@@ -50,7 +50,7 @@ function ScholarshipPage() {
 
   const title = t('장학 제도');
   const _studentLabel = studentType === 'graduate' ? t('대학원') : t('학부');
-  const meta = META[studentType as 'undergraduate' | 'graduate'][locale];
+  const meta = META[studentType as StudentType][locale];
 
   return (
     <PageLayout

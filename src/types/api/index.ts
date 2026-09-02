@@ -1,5 +1,5 @@
 import type { components } from './generated';
-import type { Res } from './helpers';
+import type { Param, Res } from './helpers';
 
 // 백엔드 OpenAPI 스펙에서 파생한 응답 타입. 필드를 손으로 적지 않는다 —
 // 백엔드가 응답 모양을 바꾸면 `pnpm gen:api` 후 typecheck가 깨진 곳을 짚어준다.
@@ -91,7 +91,15 @@ export type Staff = NonNullable<Res<'/api/v2/staff/{staffId}'>['ko']>;
 /* ── 입학 ───────────────────────────────────────────────── */
 
 export type AdmissionsResponse =
-  Res<'/api/v2/admissions/{mainTypeStr}/{postTypeStr}'>;
+  Res<'/api/v2/admissions/{mainType}/{postType}'>;
+export type AdmissionsMainType = Param<
+  '/api/v2/admissions/{mainType}/{postType}',
+  'mainType'
+>;
+export type AdmissionsPostType = Param<
+  '/api/v2/admissions/{mainType}/{postType}',
+  'postType'
+>;
 
 /* ── 소개 ───────────────────────────────────────────────── */
 
@@ -120,9 +128,10 @@ export type ScholarshipList =
 export type Scholarship =
   Res<'/api/v2/academics/scholarship/{scholarshipId}'>['first'];
 
-// 경로 파라미터 — 백엔드가 String으로 받아 스펙에 enum이 없다.
-// 백엔드에서 enum으로 조이면 생성 타입에서 꺼낼 수 있다.
-export type StudentType = 'undergraduate' | 'graduate';
+export type StudentType = Param<
+  '/api/v2/academics/{studentType}/scholarship',
+  'studentType'
+>;
 
 /* ── 연구 ───────────────────────────────────────────────── */
 

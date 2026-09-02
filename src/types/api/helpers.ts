@@ -32,3 +32,21 @@ type Ok<T> = T extends { responses: { 200: { content: { '*/*': infer B } } } }
 export type Res<P extends keyof paths, M extends keyof paths[P] = 'get'> = Ok<
   paths[P][M]
 >;
+
+/**
+ * 경로 파라미터의 값 유니온(enum). 백엔드가 값을 더하거나 이름을 바꾸면 이 타입이 바뀌어,
+ * 이걸로 키를 잡은 프론트 맵이 typecheck에서 어긋난다.
+ *
+ * ⚠️ URL에서 온 raw 문자열을 이 타입으로 단언하지 말 것 — URL은 임의 문자열이라
+ * 값 보장이 없다(백엔드가 400으로 막는다). 이 타입은 "가능한 값의 목록"이 필요한
+ * 프론트 맵의 **키 제약**에만 쓴다.
+ */
+export type Param<
+  P extends keyof paths,
+  N extends string,
+  M extends keyof paths[P] = 'get',
+> = paths[P][M] extends { parameters: { path: infer PP } }
+  ? N extends keyof PP
+    ? PP[N]
+    : never
+  : never;

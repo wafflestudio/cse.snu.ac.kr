@@ -164,7 +164,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v2/admissions/{mainTypeStr}/{postTypeStr}": {
+    "/api/v2/admissions/{mainType}/{postType}": {
         parameters: {
             query?: never;
             header?: never;
@@ -1555,7 +1555,7 @@ export interface components {
         };
         ModifyResearchSealedReqBody: {
             /** @enum {string} */
-            type: "GROUPS" | "CENTERS";
+            type: "groups" | "centers";
             name: string;
             description: string;
             removeImage: boolean;
@@ -1579,11 +1579,11 @@ export interface components {
         };
         ResearchSealedDto: {
             /** @enum {string} */
-            type: "GROUPS" | "CENTERS";
+            type: "groups" | "centers";
             /** Format: int64 */
             id: number;
             /** @enum {string} */
-            language: "KO" | "EN";
+            language: "ko" | "en";
             name: string;
             description: string;
             mainImageUrl?: string;
@@ -1972,7 +1972,7 @@ export interface components {
         };
         CreateResearchSealedReqBody: {
             /** @enum {string} */
-            type: "GROUPS" | "CENTERS";
+            type: "groups" | "centers";
             name: string;
             description: string;
             mainImageUrl?: string;
@@ -2214,7 +2214,7 @@ export interface components {
             id: number;
             language: string;
             /** @enum {string} */
-            aboutPostType: "OVERVIEW" | "GREETINGS" | "HISTORY" | "FUTURE_CAREERS" | "CONTACT" | "STUDENT_CLUBS" | "FACILITIES" | "DIRECTIONS";
+            aboutPostType: "overview" | "greetings" | "history" | "future-careers" | "contact" | "student-clubs" | "facilities" | "directions";
             name?: string | null;
             partialDescription: string;
             /** Format: int32 */
@@ -2238,11 +2238,11 @@ export interface components {
             language: string;
             name: string;
             /** @enum {string} */
-            postType: "ACADEMICS" | "COURSE" | "SCHOLARSHIP";
+            postType: "academics" | "course" | "scholarship";
             /** @enum {string} */
-            studentType: "UNDERGRADUATE" | "GRADUATE";
+            studentType: "undergraduate" | "graduate";
             /** @enum {string|null} */
-            academicType?: "GUIDE" | "GENERAL_STUDIES_REQUIREMENTS" | "CURRICULUM" | "DEGREE_REQUIREMENTS" | "COURSE_CHANGES" | "SCHOLARSHIP" | null;
+            academicType?: "guide" | "general-studies-requirements" | "curriculum" | "degree-requirements" | "course-changes" | "scholarship" | null;
             partialDescription: string;
             /** Format: int32 */
             boldStartIndex: number;
@@ -2329,7 +2329,7 @@ export interface components {
             language: string;
             name: string;
             /** @enum {string} */
-            researchType: "RESEARCH_GROUP" | "RESEARCH_CENTER" | "LAB" | "CONFERENCE";
+            researchType: "research-group" | "research-center" | "lab" | "conference";
             partialDescription: string;
             /** Format: int32 */
             boldStartIdx: number;
@@ -3228,8 +3228,8 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                mainTypeStr: string;
-                postTypeStr: string;
+                mainType: "undergraduate" | "graduate" | "international";
+                postType: "early-admission" | "regular-admission" | "undergraduate" | "graduate" | "exchange-visiting" | "scholarships";
             };
             cookie?: never;
         };
@@ -3251,8 +3251,8 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                mainTypeStr: string;
-                postTypeStr: string;
+                mainType: "undergraduate" | "graduate" | "international";
+                postType: "early-admission" | "regular-admission" | "undergraduate" | "graduate" | "exchange-visiting" | "scholarships";
             };
             cookie?: never;
         };
@@ -3274,12 +3274,12 @@ export interface operations {
     updateAcademicsYearResponse: {
         parameters: {
             query?: {
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path: {
-                studentType: string;
-                postType: string;
+                studentType: "undergraduate" | "graduate";
+                postType: "guide" | "general-studies-requirements" | "curriculum" | "degree-requirements" | "course-changes" | "scholarship";
                 year: number;
             };
             cookie?: never;
@@ -3305,12 +3305,12 @@ export interface operations {
     deleteAcademicsYearResponse: {
         parameters: {
             query?: {
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path: {
-                studentType: string;
-                postType: string;
+                studentType: "undergraduate" | "graduate";
+                postType: "guide" | "general-studies-requirements" | "curriculum" | "degree-requirements" | "course-changes" | "scholarship";
                 year: number;
             };
             cookie?: never;
@@ -3329,11 +3329,11 @@ export interface operations {
     readAllScholarship: {
         parameters: {
             query?: {
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path: {
-                studentType: string;
+                studentType: "undergraduate" | "graduate";
             };
             cookie?: never;
         };
@@ -3353,11 +3353,11 @@ export interface operations {
     updateScholarshipPage: {
         parameters: {
             query?: {
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path: {
-                studentType: string;
+                studentType: "undergraduate" | "graduate";
             };
             cookie?: never;
         };
@@ -3381,7 +3381,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                studentType: string;
+                studentType: "undergraduate" | "graduate";
             };
             cookie?: never;
         };
@@ -3403,11 +3403,11 @@ export interface operations {
     readGuide: {
         parameters: {
             query?: {
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path: {
-                studentType: string;
+                studentType: "undergraduate" | "graduate";
             };
             cookie?: never;
         };
@@ -3427,11 +3427,11 @@ export interface operations {
     updateGuide: {
         parameters: {
             query?: {
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path: {
-                studentType: string;
+                studentType: "undergraduate" | "graduate";
             };
             cookie?: never;
         };
@@ -3456,7 +3456,7 @@ export interface operations {
     readDegreeRequirements: {
         parameters: {
             query?: {
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path?: never;
@@ -3478,7 +3478,7 @@ export interface operations {
     updateDegreeRequirements: {
         parameters: {
             query?: {
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path?: never;
@@ -3527,7 +3527,7 @@ export interface operations {
     readAllGroupedCourses: {
         parameters: {
             query: {
-                studentType: string;
+                studentType: "undergraduate" | "graduate";
                 sort?: string;
             };
             header?: never;
@@ -3594,11 +3594,11 @@ export interface operations {
     readAbout: {
         parameters: {
             query?: {
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path: {
-                postType: string;
+                postType: "overview" | "greetings" | "history" | "future-careers" | "contact" | "student-clubs" | "facilities" | "directions";
             };
             cookie?: never;
         };
@@ -3620,7 +3620,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                postType: string;
+                postType: "overview" | "greetings" | "history" | "future-careers" | "contact" | "student-clubs" | "facilities" | "directions";
             };
             cookie?: never;
         };
@@ -3719,7 +3719,7 @@ export interface operations {
     readFutureCareers: {
         parameters: {
             query?: {
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path?: never;
@@ -3923,7 +3923,7 @@ export interface operations {
     getAllStaff: {
         parameters: {
             query?: {
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path?: never;
@@ -3976,7 +3976,7 @@ export interface operations {
                 keyword?: string;
                 pageNum?: number;
                 pageSize?: number;
-                sortBy?: string;
+                sortBy?: "date" | "relevance";
             };
             header?: never;
             path?: never;
@@ -4123,7 +4123,7 @@ export interface operations {
     readAllLabs: {
         parameters: {
             query?: {
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path?: never;
@@ -4205,7 +4205,7 @@ export interface operations {
                 keyword?: string;
                 pageNum?: number;
                 pageSize?: number;
-                sortBy?: string;
+                sortBy?: "date" | "relevance";
             };
             header?: never;
             path?: never;
@@ -4328,7 +4328,7 @@ export interface operations {
                 keyword?: string;
                 pageNum?: number;
                 pageSize?: number;
-                sortBy?: string;
+                sortBy?: "date" | "relevance";
             };
             header?: never;
             path?: never;
@@ -4552,12 +4552,12 @@ export interface operations {
     readAcademicsYearResponses: {
         parameters: {
             query?: {
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path: {
-                studentType: string;
-                postType: string;
+                studentType: "undergraduate" | "graduate";
+                postType: "guide" | "general-studies-requirements" | "curriculum" | "degree-requirements" | "course-changes" | "scholarship";
             };
             cookie?: never;
         };
@@ -4577,12 +4577,12 @@ export interface operations {
     createAcademicsYearResponse: {
         parameters: {
             query?: {
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path: {
-                studentType: string;
-                postType: string;
+                studentType: "undergraduate" | "graduate";
+                postType: "guide" | "general-studies-requirements" | "curriculum" | "degree-requirements" | "course-changes" | "scholarship";
             };
             cookie?: never;
         };
@@ -5126,7 +5126,7 @@ export interface operations {
                 number?: number;
                 memberNumber?: number;
                 stringLength?: number;
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path?: never;
@@ -5321,11 +5321,11 @@ export interface operations {
     readAllResearch: {
         parameters: {
             query?: {
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path: {
-                researchType: string;
+                researchType: "groups" | "centers";
             };
             cookie?: never;
         };
@@ -5370,7 +5370,7 @@ export interface operations {
                 keyword: string;
                 pageSize: number;
                 pageNum: number;
-                language?: string;
+                language?: "ko" | "en";
                 amount?: number;
             };
             header?: never;
@@ -5395,7 +5395,7 @@ export interface operations {
             query: {
                 keyword: string;
                 number: number;
-                language?: string;
+                language?: "ko" | "en";
                 amount?: number;
             };
             header?: never;
@@ -5462,7 +5462,7 @@ export interface operations {
     getInactiveProfessors: {
         parameters: {
             query?: {
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path?: never;
@@ -5484,7 +5484,7 @@ export interface operations {
     getActiveProfessors: {
         parameters: {
             query?: {
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path?: never;
@@ -5637,7 +5637,7 @@ export interface operations {
         parameters: {
             query: {
                 keyword: string;
-                language?: string;
+                language?: "ko" | "en";
                 pageSize: number;
                 pageNum: number;
             };
@@ -5663,7 +5663,7 @@ export interface operations {
             query: {
                 keyword: string;
                 number: number;
-                language?: string;
+                language?: "ko" | "en";
             };
             header?: never;
             path?: never;
@@ -5768,7 +5768,7 @@ export interface operations {
         parameters: {
             query: {
                 keyword: string;
-                language?: string;
+                language?: "ko" | "en";
                 pageSize: number;
                 pageNum: number;
                 amount?: number;
@@ -5794,7 +5794,7 @@ export interface operations {
         parameters: {
             query: {
                 keyword: string;
-                language?: string;
+                language?: "ko" | "en";
                 number: number;
                 amount?: number;
             };
@@ -5821,7 +5821,7 @@ export interface operations {
                 keyword: string;
                 pageSize: number;
                 pageNum: number;
-                language?: string;
+                language?: "ko" | "en";
                 amount?: number;
             };
             header?: never;
@@ -5846,7 +5846,7 @@ export interface operations {
             query: {
                 keyword: string;
                 number: number;
-                language?: string;
+                language?: "ko" | "en";
                 amount?: number;
             };
             header?: never;
@@ -5914,7 +5914,7 @@ export interface operations {
                 keyword: string;
                 pageNum: number;
                 pageSize: number;
-                language?: string;
+                language?: "ko" | "en";
                 amount?: number;
             };
             header?: never;
@@ -5939,7 +5939,7 @@ export interface operations {
             query: {
                 keyword: string;
                 number: number;
-                language?: string;
+                language?: "ko" | "en";
                 amount?: number;
             };
             header?: never;
