@@ -1,0 +1,30 @@
+{
+  // 이 레포의 포맷터·린터는 Biome 하나다(`biome.json`).
+  // 커밋 시 lint-staged가 `biome check --write --error-on-warnings`를 강제하므로,
+  // 에디터도 같은 도구를 쓰지 않으면 저장할 때마다 형식이 뒤집혔다가 커밋 때 되돌아온다.
+  // (Prettier 기본값은 큰따옴표, 이 레포는 작은따옴표다.)
+  // 언어별로 못박는 이유: 사용자 설정의 언어별 지정이 워크스페이스의 일반 지정보다 우선한다.
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "biomejs.biome",
+  "[javascript]": { "editor.defaultFormatter": "biomejs.biome" },
+  "[javascriptreact]": { "editor.defaultFormatter": "biomejs.biome" },
+  "[typescript]": { "editor.defaultFormatter": "biomejs.biome" },
+  "[typescriptreact]": { "editor.defaultFormatter": "biomejs.biome" },
+  "[json]": { "editor.defaultFormatter": "biomejs.biome" },
+  "[jsonc]": { "editor.defaultFormatter": "biomejs.biome" },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "explicit",
+    "source.organizeImports.biome": "explicit"
+  },
+
+  // 에디터 TS를 레포 버전에 맞춘다 — CI의 `pnpm typecheck`와 결과가 갈리지 않게.
+  "typescript.tsdk": "node_modules/typescript/lib",
+
+  // 생성물은 검색·탐색에서 뺀다(린트도 biome.json에서 제외돼 있다).
+  "search.exclude": {
+    "**/src/routeTree.gen.ts": true,
+    "**/src/types/api/generated.d.ts": true,
+    "**/test-results": true,
+    "**/playwright-report": true
+  }
+}
