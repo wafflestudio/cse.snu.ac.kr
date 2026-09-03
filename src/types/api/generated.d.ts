@@ -996,38 +996,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v2/research/search": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["searchPage"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/research/search/top": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["searchTop"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/v2/research/lab/{labId}": {
         parameters: {
             query?: never;
@@ -1188,38 +1156,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v2/member/search": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["searchPage_1"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/member/search/top": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["searchTop_1"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/v2/errors": {
         parameters: {
             query?: never;
@@ -1284,70 +1220,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v2/admissions/search": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["searchPageAdmissions"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/admissions/search/top": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["searchTopAdmissions"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/academics/search": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["searchAcademics"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/academics/search/top": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["searchTop_2"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/v2/academics/scholarship/{scholarshipId}": {
         parameters: {
             query?: never;
@@ -1359,38 +1231,6 @@ export interface paths {
         put?: never;
         post?: never;
         delete: operations["deleteScholarship"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/about/search": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["searchPageAbout"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/about/search/top": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["searchTopAbout"];
-        put?: never;
-        post?: never;
-        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
@@ -5364,57 +5204,6 @@ export interface operations {
             };
         };
     };
-    searchPage: {
-        parameters: {
-            query: {
-                keyword: string;
-                pageSize: number;
-                pageNum: number;
-                language?: "ko" | "en";
-                amount?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResearchSearchResBody"];
-                };
-            };
-        };
-    };
-    searchTop: {
-        parameters: {
-            query: {
-                keyword: string;
-                number: number;
-                language?: "ko" | "en";
-                amount?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResearchSearchResBody"];
-                };
-            };
-        };
-    };
     readLab: {
         parameters: {
             query?: never;
@@ -5633,55 +5422,6 @@ export interface operations {
             };
         };
     };
-    searchPage_1: {
-        parameters: {
-            query: {
-                keyword: string;
-                language?: "ko" | "en";
-                pageSize: number;
-                pageNum: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["MemberSearchResBody"];
-                };
-            };
-        };
-    };
-    searchTop_1: {
-        parameters: {
-            query: {
-                keyword: string;
-                number: number;
-                language?: "ko" | "en";
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["MemberSearchResBody"];
-                };
-            };
-        };
-    };
     giveErrorInformation: {
         parameters: {
             query?: never;
@@ -5764,108 +5504,6 @@ export interface operations {
             };
         };
     };
-    searchPageAdmissions: {
-        parameters: {
-            query: {
-                keyword: string;
-                language?: "ko" | "en";
-                pageSize: number;
-                pageNum: number;
-                amount?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["AdmissionSearchResBody"];
-                };
-            };
-        };
-    };
-    searchTopAdmissions: {
-        parameters: {
-            query: {
-                keyword: string;
-                language?: "ko" | "en";
-                number: number;
-                amount?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["AdmissionSearchResBody"];
-                };
-            };
-        };
-    };
-    searchAcademics: {
-        parameters: {
-            query: {
-                keyword: string;
-                pageSize: number;
-                pageNum: number;
-                language?: "ko" | "en";
-                amount?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["AcademicsSearchResBody"];
-                };
-            };
-        };
-    };
-    searchTop_2: {
-        parameters: {
-            query: {
-                keyword: string;
-                number: number;
-                language?: "ko" | "en";
-                amount?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["AcademicsSearchResBody"];
-                };
-            };
-        };
-    };
     getScholarship: {
         parameters: {
             query?: never;
@@ -5905,57 +5543,6 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
-            };
-        };
-    };
-    searchPageAbout: {
-        parameters: {
-            query: {
-                keyword: string;
-                pageNum: number;
-                pageSize: number;
-                language?: "ko" | "en";
-                amount?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["AboutSearchResBody"];
-                };
-            };
-        };
-    };
-    searchTopAbout: {
-        parameters: {
-            query: {
-                keyword: string;
-                number: number;
-                language?: "ko" | "en";
-                amount?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["AboutSearchResBody"];
-                };
             };
         };
     };
