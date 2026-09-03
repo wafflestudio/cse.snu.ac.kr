@@ -1689,7 +1689,29 @@ export interface components {
             email: string;
             tasks: string[];
         };
-        SeminarDto: {
+        CreateSeminarReq: {
+            title: string;
+            titleForMain?: string | null;
+            description: string;
+            introduction: string;
+            name: string;
+            speakerURL?: string | null;
+            speakerTitle?: string | null;
+            affiliation: string;
+            affiliationURL?: string | null;
+            /** Format: date-time */
+            startDate: string;
+            /** Format: date-time */
+            endDate?: string | null;
+            location: string;
+            host?: string | null;
+            additionalNote?: string | null;
+            isPrivate: boolean;
+            isImportant: boolean;
+            /** Format: date */
+            importantUntil?: string | null;
+        };
+        SeminarResponse: {
             /** Format: int64 */
             id: number;
             title: string;
@@ -1724,7 +1746,6 @@ export interface components {
             nextTitle?: string | null;
             imageURL?: string | null;
             attachments?: components["schemas"]["AttachmentResponse"][] | null;
-            attachmentIds?: number[] | null;
         };
         ReserveRequest: {
             /** Format: int64 */
@@ -1858,7 +1879,20 @@ export interface components {
             researchAreas: string[];
             careers: string[];
         };
-        NoticeDto: {
+        CreateNoticeReq: {
+            title: string;
+            titleForMain?: string | null;
+            description: string;
+            isPrivate: boolean;
+            isPinned: boolean;
+            /** Format: date */
+            pinnedUntil?: string | null;
+            isImportant: boolean;
+            /** Format: date */
+            importantUntil?: string | null;
+            tags: string[];
+        };
+        NoticeResponse: {
             /** Format: int64 */
             id: number;
             title: string;
@@ -1884,9 +1918,21 @@ export interface components {
             nextId?: number | null;
             nextTitle?: string | null;
             attachments?: components["schemas"]["AttachmentResponse"][] | null;
-            attachmentIds?: number[] | null;
         };
-        NewsDto: {
+        CreateNewsReq: {
+            title: string;
+            titleForMain?: string | null;
+            description: string;
+            /** Format: date-time */
+            date: string;
+            isPrivate: boolean;
+            isSlide: boolean;
+            isImportant: boolean;
+            /** Format: date */
+            importantUntil?: string | null;
+            tags: string[];
+        };
+        NewsResponse: {
             /** Format: int64 */
             id: number;
             title: string;
@@ -1912,7 +1958,6 @@ export interface components {
             nextTitle?: string | null;
             imageURL?: string | null;
             attachments?: components["schemas"]["AttachmentResponse"][] | null;
-            attachmentIds?: number[] | null;
         };
         CreateImageModalReq: {
             titleKo?: string | null;
@@ -1976,8 +2021,61 @@ export interface components {
             /** Format: int64 */
             size: number;
         };
+        UpdateSeminarReq: {
+            title: string;
+            titleForMain?: string | null;
+            description: string;
+            introduction: string;
+            name: string;
+            speakerURL?: string | null;
+            speakerTitle?: string | null;
+            affiliation: string;
+            affiliationURL?: string | null;
+            /** Format: date-time */
+            startDate: string;
+            /** Format: date-time */
+            endDate?: string | null;
+            location: string;
+            host?: string | null;
+            additionalNote?: string | null;
+            isPrivate: boolean;
+            isImportant: boolean;
+            /** Format: date */
+            importantUntil?: string | null;
+            attachmentIds: number[];
+            removeImage: boolean;
+        };
         NoticeIdListRequest: {
             idList: number[];
+        };
+        UpdateNoticeReq: {
+            title: string;
+            titleForMain?: string | null;
+            description: string;
+            isPrivate: boolean;
+            isPinned: boolean;
+            /** Format: date */
+            pinnedUntil?: string | null;
+            isImportant: boolean;
+            /** Format: date */
+            importantUntil?: string | null;
+            tags: string[];
+            attachmentIds: number[];
+        };
+        UpdateNewsReq: {
+            title: string;
+            titleForMain?: string | null;
+            description: string;
+            /** Format: date-time */
+            date: string;
+            isPrivate: boolean;
+            isSlide: boolean;
+            isImportant: boolean;
+            /** Format: date */
+            importantUntil?: string | null;
+            tags: string[];
+            attachmentIds: number[];
+            removeImage: boolean;
         };
         ConferenceDto: {
             /** Format: int64 */
@@ -3845,7 +3943,7 @@ export interface operations {
         requestBody?: {
             content: {
                 "multipart/form-data": {
-                    request: components["schemas"]["SeminarDto"];
+                    request: components["schemas"]["CreateSeminarReq"];
                     /** Format: binary */
                     mainImage: string;
                     attachments: string[];
@@ -3859,7 +3957,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["SeminarDto"];
+                    "*/*": components["schemas"]["SeminarResponse"];
                 };
             };
         };
@@ -4074,7 +4172,7 @@ export interface operations {
         requestBody?: {
             content: {
                 "multipart/form-data": {
-                    request: components["schemas"]["NoticeDto"];
+                    request: components["schemas"]["CreateNoticeReq"];
                     attachments: string[];
                 };
             };
@@ -4086,7 +4184,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["NoticeDto"];
+                    "*/*": components["schemas"]["NoticeResponse"];
                 };
             };
         };
@@ -4197,7 +4295,7 @@ export interface operations {
         requestBody?: {
             content: {
                 "multipart/form-data": {
-                    request: components["schemas"]["NewsDto"];
+                    request: components["schemas"]["CreateNewsReq"];
                     /** Format: binary */
                     mainImage: string;
                     attachments: string[];
@@ -4211,7 +4309,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["NewsDto"];
+                    "*/*": components["schemas"]["NewsResponse"];
                 };
             };
         };
@@ -4553,7 +4651,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["SeminarDto"];
+                    "*/*": components["schemas"]["SeminarResponse"];
                 };
             };
         };
@@ -4590,7 +4688,7 @@ export interface operations {
         requestBody?: {
             content: {
                 "multipart/form-data": {
-                    request: components["schemas"]["SeminarDto"];
+                    request: components["schemas"]["UpdateSeminarReq"];
                     /** Format: binary */
                     newMainImage: string;
                     attachments: string[];
@@ -4604,7 +4702,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["SeminarDto"];
+                    "*/*": components["schemas"]["SeminarResponse"];
                 };
             };
         };
@@ -4626,7 +4724,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["NoticeDto"];
+                    "*/*": components["schemas"]["NoticeResponse"];
                 };
             };
         };
@@ -4663,7 +4761,7 @@ export interface operations {
         requestBody?: {
             content: {
                 "multipart/form-data": {
-                    request: components["schemas"]["NoticeDto"];
+                    request: components["schemas"]["UpdateNoticeReq"];
                     attachments: string[];
                 };
             };
@@ -4675,7 +4773,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["NoticeDto"];
+                    "*/*": components["schemas"]["NoticeResponse"];
                 };
             };
         };
@@ -4697,7 +4795,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["NewsDto"];
+                    "*/*": components["schemas"]["NewsResponse"];
                 };
             };
         };
@@ -4734,7 +4832,7 @@ export interface operations {
         requestBody?: {
             content: {
                 "multipart/form-data": {
-                    request: components["schemas"]["NewsDto"];
+                    request: components["schemas"]["UpdateNewsReq"];
                     /** Format: binary */
                     newMainImage: string;
                     attachments: string[];
@@ -4748,7 +4846,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["NewsDto"];
+                    "*/*": components["schemas"]["NewsResponse"];
                 };
             };
         };

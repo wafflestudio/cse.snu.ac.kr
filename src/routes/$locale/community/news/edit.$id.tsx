@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { News } from '@/types/api';
+import type { News, NewsPatchBody } from '@/types/api';
 import { isLocalFile } from '@/types/form';
 import { api } from '@/utils/api';
 import { ApiFormData, getAttachmentIds } from '@/utils/apiFormData';
@@ -45,7 +45,7 @@ function NewsEditPage() {
   const onSubmit = async (content: NewsFormData) => {
     const formData = new ApiFormData();
 
-    formData.appendJson('request', {
+    const request: NewsPatchBody = {
       title: content.title,
       titleForMain: content.titleForMain || null,
       description: content.description,
@@ -59,7 +59,9 @@ function NewsEditPage() {
       tags: content.tags,
       attachmentIds: getAttachmentIds(content.attachments),
       removeImage: defaultValues.image !== null && content.image === null,
-    });
+    };
+
+    formData.appendJson('request', request);
 
     formData.appendIfLocal('newMainImage', content.image);
     formData.appendIfLocal(

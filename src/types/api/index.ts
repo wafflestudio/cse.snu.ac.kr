@@ -22,18 +22,24 @@ export type MainImportant = MainResponse['importants'][number];
 export type NoticePreviewList = Res<'/api/v2/notice'>;
 export type NoticePreview = NoticePreviewList['searchList'][number];
 export type Notice = Res<'/api/v2/notice/{noticeId}'>;
+export type NoticePostBody = components['schemas']['CreateNoticeReq'];
+export type NoticePatchBody = components['schemas']['UpdateNoticeReq'];
 
 /* ── 소식 ───────────────────────────────────────────────── */
 
 export type NewsPreviewList = Res<'/api/v2/news'>;
 export type NewsPreview = NewsPreviewList['searchList'][number];
 export type News = Res<'/api/v2/news/{newsId}'>;
+export type NewsPostBody = components['schemas']['CreateNewsReq'];
+export type NewsPatchBody = components['schemas']['UpdateNewsReq'];
 
 /* ── 세미나 ─────────────────────────────────────────────── */
 
 export type SeminarPreviewList = Res<'/api/v2/seminar'>;
 export type SeminarPreview = SeminarPreviewList['results'][number];
 export type Seminar = Res<'/api/v2/seminar/{seminarId}'>;
+export type SeminarPostBody = components['schemas']['CreateSeminarReq'];
+export type SeminarPatchBody = components['schemas']['UpdateSeminarReq'];
 
 /* ── 학술행사 ───────────────────────────────────────────── */
 
