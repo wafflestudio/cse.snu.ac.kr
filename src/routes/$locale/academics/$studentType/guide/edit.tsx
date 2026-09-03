@@ -8,7 +8,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import type { Guide } from '@/types/api';
 import type { EditorFile } from '@/types/form';
 import { api } from '@/utils/api';
-import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';
+import { ApiFormData, getAttachmentIds } from '@/utils/apiFormData';
 
 interface GuideFormData {
   description: string;
@@ -46,17 +46,12 @@ function GuideEditPage() {
   const title = isGraduate ? t('대학원 안내 수정') : t('학부 안내 수정');
 
   const onSubmit = async (data: GuideFormData) => {
-    const deleteIds = getDeleteIds({
-      prev: defaultValues.file,
-      cur: data.file,
-    });
-
     const formData = new ApiFormData();
     formData.appendJson('request', {
       description: data.description,
-      deleteIds,
+      attachmentIds: getAttachmentIds(data.file),
     });
-    formData.appendIfLocal('newAttachments', data.file);
+    formData.appendIfLocal('attachments', data.file);
 
     try {
       await api.put(`v2/academics/${studentType}/guide`, { body: formData });

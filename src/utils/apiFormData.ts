@@ -30,22 +30,10 @@ export class ApiFormData extends FormData {
 }
 
 /**
- * 수정 요청의 `deleteIds` — 편집 전에는 있었는데 지금은 없는 첨부의 id.
- * (백엔드는 "남길 것"이 아니라 "지울 것"을 받는다.)
+ * 수정 요청의 `attachmentIds` — 지금 목록에 남아 있는, 이미 올라간 첨부의 id.
+ * 백엔드가 이 목록에 없는 기존 첨부를 지운다. 편집 전 목록을 기억할 필요가 없다.
  */
-export const getDeleteIds = ({
-  prev,
-  cur,
-}: {
-  prev: EditorFile[];
-  cur: EditorFile[];
-}) => {
-  const ids = (files: EditorFile[]) =>
-    new Set(
-      files.flatMap((file) =>
-        file.type === 'UPLOADED_FILE' ? [file.file.id] : [],
-      ),
-    );
-
-  return [...ids(prev).difference(ids(cur))];
-};
+export const getAttachmentIds = (files: EditorFile[]) =>
+  files.flatMap((file) =>
+    file.type === 'UPLOADED_FILE' ? [file.file.id] : [],
+  );

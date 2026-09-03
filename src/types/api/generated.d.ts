@@ -1552,7 +1552,7 @@ export interface components {
             description: string;
         };
         CouncilFileModifyReq: {
-            deleteIds: number[];
+            attachmentIds: number[];
         };
         CouncilFileRuleResponse: {
             type: string;
@@ -1586,14 +1586,14 @@ export interface components {
         };
         UpdateYearReq: {
             description: string;
-            deleteIds?: number[] | null;
+            attachmentIds: number[];
         };
         UpdateScholarshipPageReq: {
             description: string;
         };
         UpdateSingleReq: {
             description: string;
-            deleteIds: number[];
+            attachmentIds: number[];
         };
         ScholarshipDto: {
             /** Format: int64 */
@@ -1623,7 +1623,7 @@ export interface components {
         };
         BasicAbout: {
             description: string;
-            deleteIds: number[];
+            attachmentIds?: number[] | null;
         };
         UpdateAboutReq: {
             ko: components["schemas"]["BasicAbout"];
@@ -1724,7 +1724,7 @@ export interface components {
             nextTitle?: string | null;
             imageURL?: string | null;
             attachments?: components["schemas"]["AttachmentResponse"][] | null;
-            deleteIds?: number[] | null;
+            attachmentIds?: number[] | null;
         };
         ReserveRequest: {
             /** Format: int64 */
@@ -1884,7 +1884,7 @@ export interface components {
             nextId?: number | null;
             nextTitle?: string | null;
             attachments?: components["schemas"]["AttachmentResponse"][] | null;
-            deleteIds?: number[] | null;
+            attachmentIds?: number[] | null;
         };
         NewsDto: {
             /** Format: int64 */
@@ -1912,7 +1912,7 @@ export interface components {
             nextTitle?: string | null;
             imageURL?: string | null;
             attachments?: components["schemas"]["AttachmentResponse"][] | null;
-            deleteIds?: number[] | null;
+            attachmentIds?: number[] | null;
         };
         CreateImageModalReq: {
             titleKo?: string | null;
@@ -2809,7 +2809,7 @@ export interface operations {
             content: {
                 "multipart/form-data": {
                     request: components["schemas"]["CouncilFileModifyReq"];
-                    newAttachments?: string[];
+                    attachments?: string[];
                 };
             };
         };
@@ -2980,7 +2980,7 @@ export interface operations {
             content: {
                 "multipart/form-data": {
                     request: components["schemas"]["CouncilFileModifyReq"];
-                    newAttachments?: string[];
+                    attachments?: string[];
                 };
             };
         };
@@ -3128,7 +3128,7 @@ export interface operations {
             content: {
                 "multipart/form-data": {
                     request: components["schemas"]["UpdateYearReq"];
-                    newAttachments: string[];
+                    attachments: string[];
                 };
             };
         };
@@ -3279,7 +3279,7 @@ export interface operations {
             content: {
                 "multipart/form-data": {
                     request: components["schemas"]["UpdateSingleReq"];
-                    newAttachments: string[];
+                    attachments: string[];
                 };
             };
         };
@@ -3328,7 +3328,7 @@ export interface operations {
             content: {
                 "multipart/form-data": {
                     request: components["schemas"]["UpdateSingleReq"];
-                    newAttachments: string[];
+                    attachments: string[];
                 };
             };
         };
@@ -3470,7 +3470,7 @@ export interface operations {
                     request: components["schemas"]["UpdateAboutReq"];
                     /** Format: binary */
                     newMainImage: string;
-                    newAttachments: string[];
+                    attachments: string[];
                 };
             };
         };
@@ -4593,7 +4593,7 @@ export interface operations {
                     request: components["schemas"]["SeminarDto"];
                     /** Format: binary */
                     newMainImage: string;
-                    newAttachments: string[];
+                    attachments: string[];
                 };
             };
         };
@@ -4664,7 +4664,7 @@ export interface operations {
             content: {
                 "multipart/form-data": {
                     request: components["schemas"]["NoticeDto"];
-                    newAttachments: string[];
+                    attachments: string[];
                 };
             };
         };
@@ -4737,7 +4737,7 @@ export interface operations {
                     request: components["schemas"]["NewsDto"];
                     /** Format: binary */
                     newMainImage: string;
-                    newAttachments: string[];
+                    attachments: string[];
                 };
             };
         };

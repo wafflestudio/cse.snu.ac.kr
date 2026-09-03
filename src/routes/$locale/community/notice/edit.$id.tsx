@@ -7,7 +7,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import type { Notice } from '@/types/api';
 import { isLocalFile } from '@/types/form';
 import { api } from '@/utils/api';
-import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';
+import { ApiFormData, getAttachmentIds } from '@/utils/apiFormData';
 import NoticeEditor, { type NoticeFormData } from './-components/NoticeEditor';
 
 dayjs.extend(customParseFormat);
@@ -46,11 +46,6 @@ function NoticeEditPage() {
   };
 
   const onSubmit = async (content: NoticeFormData) => {
-    const deleteIds = getDeleteIds({
-      prev: defaultValues.attachments,
-      cur: content.attachments,
-    });
-
     const formData = new ApiFormData();
 
     formData.appendJson('request', {
@@ -67,11 +62,11 @@ function NoticeEditPage() {
         ? dayjs(content.importantUntil).format('YYYY-MM-DD')
         : null,
       tags: content.tags,
-      deleteIds,
+      attachmentIds: getAttachmentIds(content.attachments),
     });
 
     formData.appendIfLocal(
-      'newAttachments',
+      'attachments',
       content.attachments.filter(isLocalFile),
     );
 
