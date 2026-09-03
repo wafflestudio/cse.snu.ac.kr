@@ -1702,7 +1702,7 @@ export interface components {
             affiliation: string;
             affiliationURL?: string | null;
             /** Format: date-time */
-            startDate?: string | null;
+            startDate: string;
             /** Format: date-time */
             endDate?: string | null;
             location: string;
@@ -2184,7 +2184,7 @@ export interface components {
             name: string;
             affiliation: string;
             /** Format: date-time */
-            startDate?: string | null;
+            startDate: string;
             location: string;
             imageURL?: string | null;
             isYearLast: boolean;
