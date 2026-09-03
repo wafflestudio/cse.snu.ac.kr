@@ -6,7 +6,6 @@ import type {
   NewsSearchResult,
   NoticeSearchResult,
   ResearchSearchResult,
-  SeminarPreview,
   SeminarPreviewList,
   TotalSearchResult,
 } from '@/types/api';
@@ -48,14 +47,7 @@ export default async function fetchContent(
   const about = isSectionVisible('소개') ? result.aboutResult : undefined;
   const notice = isSectionVisible('소식') ? result.noticeResult : undefined;
   const news = isSectionVisible('소식') ? result.newsResult : undefined;
-  // seminarResult 요소(SeminarSearchDto)는 목록 endpoint와 동형 — startDate만
-  // 타입상 non-null로 좁혀 SeminarRow에 그대로 넘긴다(기존 .json 단언과 동일).
-  const seminar: SeminarPreviewList | undefined = isSectionVisible('소식')
-    ? {
-        total: result.seminarResult.total,
-        results: result.seminarResult.results as SeminarPreview[],
-      }
-    : undefined;
+  const seminar = isSectionVisible('소식') ? result.seminarResult : undefined;
   const member = isSectionVisible('구성원') ? result.memberResult : undefined;
   const research = isSectionVisible('연구·교육')
     ? result.researchResult

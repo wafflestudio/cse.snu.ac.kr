@@ -31,21 +31,9 @@ export type News = Res<'/api/v2/news/{newsId}'>;
 
 /* ── 세미나 ─────────────────────────────────────────────── */
 
-// ⚠️ 임시 오버라이드 — 백엔드 `SeminarDto.startDate`/`SeminarSearchDto.startDate`가
-// `LocalDateTime?`로 선언돼 있으나, 등록 폼이 시작일을 필수로 받고 목록 연도 구분·상세
-// 날짜 표시가 non-null을 전제한다(null이면 Invalid Date). prod 595건 실측 null 0건.
-// 백엔드에서 non-null로 조이면 이 타입을 지운다.
-type NonNullStartDate<T extends { startDate?: string | null }> = Omit<
-  T,
-  'startDate'
-> & { startDate: string };
-
-type SeminarList = Res<'/api/v2/seminar'>;
-export type SeminarPreview = NonNullStartDate<SeminarList['results'][number]>;
-export type SeminarPreviewList = Omit<SeminarList, 'results'> & {
-  results: SeminarPreview[];
-};
-export type Seminar = NonNullStartDate<Res<'/api/v2/seminar/{seminarId}'>>;
+export type SeminarPreviewList = Res<'/api/v2/seminar'>;
+export type SeminarPreview = SeminarPreviewList['results'][number];
+export type Seminar = Res<'/api/v2/seminar/{seminarId}'>;
 
 /* ── 학술행사 ───────────────────────────────────────────── */
 
