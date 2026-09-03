@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import CoursesPage from '@/routes/$locale/academics/-components/courses/CoursesPage';
-import type { Course, StudentType } from '@/types/api';
+import type { Course } from '@/types/api';
 import { api } from '@/utils/api';
 import { stringParam } from '@/utils/searchSchema';
 
@@ -12,7 +12,7 @@ function CoursesRoute() {
   return (
     <CoursesPage
       courses={loaderData}
-      studentType={studentType as StudentType}
+      studentType={studentType}
       hideSortOption={studentType === 'graduate'}
     />
   );

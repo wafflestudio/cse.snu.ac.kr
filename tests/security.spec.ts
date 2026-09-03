@@ -43,6 +43,17 @@ test.describe('없는 경로는 404 상태를 반환한다', () => {
     });
   }
 
+  test('라우트가 있어도 param 값이 enum 밖이면 404 (params.parse)', async ({
+    request,
+  }) => {
+    // 옛날엔 as 단언으로 백엔드까지 보내 400을 받았다. 지금은 프론트가 라우트 정의에서 거른다.
+    expect((await request.get('/ko/academics/xxx/guide')).status()).toBe(404);
+    expect((await request.get('/ko/admissions/xxx/yyy')).status()).toBe(404);
+    expect(
+      (await request.get('/ko/admissions/undergraduate/no-such')).status(),
+    ).toBe(404);
+  });
+
   test('로케일 프리픽스가 붙은 없는 경로도 404 (ko·en)', async ({
     request,
   }) => {

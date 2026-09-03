@@ -27,6 +27,7 @@ import { Route as LocaleAboutIndexRouteImport } from './routes/$locale/about/ind
 import { Route as Locale1010ProjectIndexRouteImport } from './routes/$locale/10-10-project/index'
 import { Route as LocaleReservationsPrivacyPolicyRouteImport } from './routes/$locale/reservations/privacy-policy'
 import { Route as LocaleReservationsIntroductionRouteImport } from './routes/$locale/reservations/introduction'
+import { Route as LocaleAcademicsStudentTypeRouteImport } from './routes/$locale/academics/$studentType'
 import { Route as LocaleAboutHistoryRouteImport } from './routes/$locale/about/history'
 import { Route as LocaleAboutGreetingsRouteImport } from './routes/$locale/about/greetings'
 import { Route as LocaleAboutContactRouteImport } from './routes/$locale/about/contact'
@@ -197,6 +198,12 @@ const LocaleReservationsIntroductionRoute =
   LocaleReservationsIntroductionRouteImport.update({
     id: '/reservations/introduction',
     path: '/reservations/introduction',
+    getParentRoute: () => LocaleRouteRoute,
+  } as any)
+const LocaleAcademicsStudentTypeRoute =
+  LocaleAcademicsStudentTypeRouteImport.update({
+    id: '/academics/$studentType',
+    path: '/academics/$studentType',
     getParentRoute: () => LocaleRouteRoute,
   } as any)
 const LocaleAboutHistoryRoute = LocaleAboutHistoryRouteImport.update({
@@ -403,9 +410,9 @@ const LocaleCommunityFacultyRecruitmentEditRoute =
   } as any)
 const LocaleAcademicsStudentTypeCoursesRoute =
   LocaleAcademicsStudentTypeCoursesRouteImport.update({
-    id: '/academics/$studentType/courses',
-    path: '/academics/$studentType/courses',
-    getParentRoute: () => LocaleRouteRoute,
+    id: '/courses',
+    path: '/courses',
+    getParentRoute: () => LocaleAcademicsStudentTypeRoute,
   } as any)
 const LocaleAboutStudentClubsEditRoute =
   LocaleAboutStudentClubsEditRouteImport.update({
@@ -493,21 +500,21 @@ const LocaleAcademicsUndergraduateCurriculumIndexRoute =
   } as any)
 const LocaleAcademicsStudentTypeScholarshipIndexRoute =
   LocaleAcademicsStudentTypeScholarshipIndexRouteImport.update({
-    id: '/academics/$studentType/scholarship/',
-    path: '/academics/$studentType/scholarship/',
-    getParentRoute: () => LocaleRouteRoute,
+    id: '/scholarship/',
+    path: '/scholarship/',
+    getParentRoute: () => LocaleAcademicsStudentTypeRoute,
   } as any)
 const LocaleAcademicsStudentTypeGuideIndexRoute =
   LocaleAcademicsStudentTypeGuideIndexRouteImport.update({
-    id: '/academics/$studentType/guide/',
-    path: '/academics/$studentType/guide/',
-    getParentRoute: () => LocaleRouteRoute,
+    id: '/guide/',
+    path: '/guide/',
+    getParentRoute: () => LocaleAcademicsStudentTypeRoute,
   } as any)
 const LocaleAcademicsStudentTypeCourseChangesIndexRoute =
   LocaleAcademicsStudentTypeCourseChangesIndexRouteImport.update({
-    id: '/academics/$studentType/course-changes/',
-    path: '/academics/$studentType/course-changes/',
-    getParentRoute: () => LocaleRouteRoute,
+    id: '/course-changes/',
+    path: '/course-changes/',
+    getParentRoute: () => LocaleAcademicsStudentTypeRoute,
   } as any)
 const LocaleResearchLabsIdEditRoute =
   LocaleResearchLabsIdEditRouteImport.update({
@@ -590,27 +597,27 @@ const LocaleAcademicsUndergraduateCurriculumCreateRoute =
   } as any)
 const LocaleAcademicsStudentTypeScholarshipEditRoute =
   LocaleAcademicsStudentTypeScholarshipEditRouteImport.update({
-    id: '/academics/$studentType/scholarship/edit',
-    path: '/academics/$studentType/scholarship/edit',
-    getParentRoute: () => LocaleRouteRoute,
+    id: '/scholarship/edit',
+    path: '/scholarship/edit',
+    getParentRoute: () => LocaleAcademicsStudentTypeRoute,
   } as any)
 const LocaleAcademicsStudentTypeScholarshipCreateRoute =
   LocaleAcademicsStudentTypeScholarshipCreateRouteImport.update({
-    id: '/academics/$studentType/scholarship/create',
-    path: '/academics/$studentType/scholarship/create',
-    getParentRoute: () => LocaleRouteRoute,
+    id: '/scholarship/create',
+    path: '/scholarship/create',
+    getParentRoute: () => LocaleAcademicsStudentTypeRoute,
   } as any)
 const LocaleAcademicsStudentTypeGuideEditRoute =
   LocaleAcademicsStudentTypeGuideEditRouteImport.update({
-    id: '/academics/$studentType/guide/edit',
-    path: '/academics/$studentType/guide/edit',
-    getParentRoute: () => LocaleRouteRoute,
+    id: '/guide/edit',
+    path: '/guide/edit',
+    getParentRoute: () => LocaleAcademicsStudentTypeRoute,
   } as any)
 const LocaleAcademicsStudentTypeCourseChangesCreateRoute =
   LocaleAcademicsStudentTypeCourseChangesCreateRouteImport.update({
-    id: '/academics/$studentType/course-changes/create',
-    path: '/academics/$studentType/course-changes/create',
-    getParentRoute: () => LocaleRouteRoute,
+    id: '/course-changes/create',
+    path: '/course-changes/create',
+    getParentRoute: () => LocaleAcademicsStudentTypeRoute,
   } as any)
 const LocaleAboutFutureCareersStatEditRoute =
   LocaleAboutFutureCareersStatEditRouteImport.update({
@@ -638,9 +645,9 @@ const LocaleAboutDirectionsIdEditRoute =
   } as any)
 const LocaleAcademicsStudentTypeScholarshipIdIndexRoute =
   LocaleAcademicsStudentTypeScholarshipIdIndexRouteImport.update({
-    id: '/academics/$studentType/scholarship/$id/',
-    path: '/academics/$studentType/scholarship/$id/',
-    getParentRoute: () => LocaleRouteRoute,
+    id: '/scholarship/$id/',
+    path: '/scholarship/$id/',
+    getParentRoute: () => LocaleAcademicsStudentTypeRoute,
   } as any)
 const LocaleAcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute =
   LocaleAcademicsUndergraduateGeneralStudiesRequirementsEditYearRouteImport.update(
@@ -658,15 +665,15 @@ const LocaleAcademicsUndergraduateCurriculumEditYearRoute =
   } as any)
 const LocaleAcademicsStudentTypeScholarshipIdEditRoute =
   LocaleAcademicsStudentTypeScholarshipIdEditRouteImport.update({
-    id: '/academics/$studentType/scholarship/$id/edit',
-    path: '/academics/$studentType/scholarship/$id/edit',
-    getParentRoute: () => LocaleRouteRoute,
+    id: '/scholarship/$id/edit',
+    path: '/scholarship/$id/edit',
+    getParentRoute: () => LocaleAcademicsStudentTypeRoute,
   } as any)
 const LocaleAcademicsStudentTypeCourseChangesEditYearRoute =
   LocaleAcademicsStudentTypeCourseChangesEditYearRouteImport.update({
-    id: '/academics/$studentType/course-changes/edit/$year',
-    path: '/academics/$studentType/course-changes/edit/$year',
-    getParentRoute: () => LocaleRouteRoute,
+    id: '/course-changes/edit/$year',
+    path: '/course-changes/edit/$year',
+    getParentRoute: () => LocaleAcademicsStudentTypeRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -683,6 +690,7 @@ export interface FileRoutesByFullPath {
   '/$locale/about/contact': typeof LocaleAboutContactRoute
   '/$locale/about/greetings': typeof LocaleAboutGreetingsRoute
   '/$locale/about/history': typeof LocaleAboutHistoryRoute
+  '/$locale/academics/$studentType': typeof LocaleAcademicsStudentTypeRouteWithChildren
   '/$locale/reservations/introduction': typeof LocaleReservationsIntroductionRoute
   '/$locale/reservations/privacy-policy': typeof LocaleReservationsPrivacyPolicyRoute
   '/$locale/10-10-project/': typeof Locale1010ProjectIndexRoute
@@ -781,6 +789,7 @@ export interface FileRoutesByTo {
   '/$locale/about/contact': typeof LocaleAboutContactRoute
   '/$locale/about/greetings': typeof LocaleAboutGreetingsRoute
   '/$locale/about/history': typeof LocaleAboutHistoryRoute
+  '/$locale/academics/$studentType': typeof LocaleAcademicsStudentTypeRouteWithChildren
   '/$locale/reservations/introduction': typeof LocaleReservationsIntroductionRoute
   '/$locale/reservations/privacy-policy': typeof LocaleReservationsPrivacyPolicyRoute
   '/$locale/10-10-project': typeof Locale1010ProjectIndexRoute
@@ -881,6 +890,7 @@ export interface FileRoutesById {
   '/$locale/about/contact': typeof LocaleAboutContactRoute
   '/$locale/about/greetings': typeof LocaleAboutGreetingsRoute
   '/$locale/about/history': typeof LocaleAboutHistoryRoute
+  '/$locale/academics/$studentType': typeof LocaleAcademicsStudentTypeRouteWithChildren
   '/$locale/reservations/introduction': typeof LocaleReservationsIntroductionRoute
   '/$locale/reservations/privacy-policy': typeof LocaleReservationsPrivacyPolicyRoute
   '/$locale/10-10-project/': typeof Locale1010ProjectIndexRoute
@@ -982,6 +992,7 @@ export interface FileRouteTypes {
     | '/$locale/about/contact'
     | '/$locale/about/greetings'
     | '/$locale/about/history'
+    | '/$locale/academics/$studentType'
     | '/$locale/reservations/introduction'
     | '/$locale/reservations/privacy-policy'
     | '/$locale/10-10-project/'
@@ -1080,6 +1091,7 @@ export interface FileRouteTypes {
     | '/$locale/about/contact'
     | '/$locale/about/greetings'
     | '/$locale/about/history'
+    | '/$locale/academics/$studentType'
     | '/$locale/reservations/introduction'
     | '/$locale/reservations/privacy-policy'
     | '/$locale/10-10-project'
@@ -1179,6 +1191,7 @@ export interface FileRouteTypes {
     | '/$locale/about/contact'
     | '/$locale/about/greetings'
     | '/$locale/about/history'
+    | '/$locale/academics/$studentType'
     | '/$locale/reservations/introduction'
     | '/$locale/reservations/privacy-policy'
     | '/$locale/10-10-project/'
@@ -1400,6 +1413,13 @@ declare module '@tanstack/react-router' {
       path: '/reservations/introduction'
       fullPath: '/$locale/reservations/introduction'
       preLoaderRoute: typeof LocaleReservationsIntroductionRouteImport
+      parentRoute: typeof LocaleRouteRoute
+    }
+    '/$locale/academics/$studentType': {
+      id: '/$locale/academics/$studentType'
+      path: '/academics/$studentType'
+      fullPath: '/$locale/academics/$studentType'
+      preLoaderRoute: typeof LocaleAcademicsStudentTypeRouteImport
       parentRoute: typeof LocaleRouteRoute
     }
     '/$locale/about/history': {
@@ -1649,10 +1669,10 @@ declare module '@tanstack/react-router' {
     }
     '/$locale/academics/$studentType/courses': {
       id: '/$locale/academics/$studentType/courses'
-      path: '/academics/$studentType/courses'
+      path: '/courses'
       fullPath: '/$locale/academics/$studentType/courses'
       preLoaderRoute: typeof LocaleAcademicsStudentTypeCoursesRouteImport
-      parentRoute: typeof LocaleRouteRoute
+      parentRoute: typeof LocaleAcademicsStudentTypeRoute
     }
     '/$locale/about/student-clubs/edit': {
       id: '/$locale/about/student-clubs/edit'
@@ -1754,24 +1774,24 @@ declare module '@tanstack/react-router' {
     }
     '/$locale/academics/$studentType/scholarship/': {
       id: '/$locale/academics/$studentType/scholarship/'
-      path: '/academics/$studentType/scholarship'
+      path: '/scholarship'
       fullPath: '/$locale/academics/$studentType/scholarship/'
       preLoaderRoute: typeof LocaleAcademicsStudentTypeScholarshipIndexRouteImport
-      parentRoute: typeof LocaleRouteRoute
+      parentRoute: typeof LocaleAcademicsStudentTypeRoute
     }
     '/$locale/academics/$studentType/guide/': {
       id: '/$locale/academics/$studentType/guide/'
-      path: '/academics/$studentType/guide'
+      path: '/guide'
       fullPath: '/$locale/academics/$studentType/guide/'
       preLoaderRoute: typeof LocaleAcademicsStudentTypeGuideIndexRouteImport
-      parentRoute: typeof LocaleRouteRoute
+      parentRoute: typeof LocaleAcademicsStudentTypeRoute
     }
     '/$locale/academics/$studentType/course-changes/': {
       id: '/$locale/academics/$studentType/course-changes/'
-      path: '/academics/$studentType/course-changes'
+      path: '/course-changes'
       fullPath: '/$locale/academics/$studentType/course-changes/'
       preLoaderRoute: typeof LocaleAcademicsStudentTypeCourseChangesIndexRouteImport
-      parentRoute: typeof LocaleRouteRoute
+      parentRoute: typeof LocaleAcademicsStudentTypeRoute
     }
     '/$locale/research/labs/$id/edit': {
       id: '/$locale/research/labs/$id/edit'
@@ -1866,31 +1886,31 @@ declare module '@tanstack/react-router' {
     }
     '/$locale/academics/$studentType/scholarship/edit': {
       id: '/$locale/academics/$studentType/scholarship/edit'
-      path: '/academics/$studentType/scholarship/edit'
+      path: '/scholarship/edit'
       fullPath: '/$locale/academics/$studentType/scholarship/edit'
       preLoaderRoute: typeof LocaleAcademicsStudentTypeScholarshipEditRouteImport
-      parentRoute: typeof LocaleRouteRoute
+      parentRoute: typeof LocaleAcademicsStudentTypeRoute
     }
     '/$locale/academics/$studentType/scholarship/create': {
       id: '/$locale/academics/$studentType/scholarship/create'
-      path: '/academics/$studentType/scholarship/create'
+      path: '/scholarship/create'
       fullPath: '/$locale/academics/$studentType/scholarship/create'
       preLoaderRoute: typeof LocaleAcademicsStudentTypeScholarshipCreateRouteImport
-      parentRoute: typeof LocaleRouteRoute
+      parentRoute: typeof LocaleAcademicsStudentTypeRoute
     }
     '/$locale/academics/$studentType/guide/edit': {
       id: '/$locale/academics/$studentType/guide/edit'
-      path: '/academics/$studentType/guide/edit'
+      path: '/guide/edit'
       fullPath: '/$locale/academics/$studentType/guide/edit'
       preLoaderRoute: typeof LocaleAcademicsStudentTypeGuideEditRouteImport
-      parentRoute: typeof LocaleRouteRoute
+      parentRoute: typeof LocaleAcademicsStudentTypeRoute
     }
     '/$locale/academics/$studentType/course-changes/create': {
       id: '/$locale/academics/$studentType/course-changes/create'
-      path: '/academics/$studentType/course-changes/create'
+      path: '/course-changes/create'
       fullPath: '/$locale/academics/$studentType/course-changes/create'
       preLoaderRoute: typeof LocaleAcademicsStudentTypeCourseChangesCreateRouteImport
-      parentRoute: typeof LocaleRouteRoute
+      parentRoute: typeof LocaleAcademicsStudentTypeRoute
     }
     '/$locale/about/future-careers/stat/edit': {
       id: '/$locale/about/future-careers/stat/edit'
@@ -1922,10 +1942,10 @@ declare module '@tanstack/react-router' {
     }
     '/$locale/academics/$studentType/scholarship/$id/': {
       id: '/$locale/academics/$studentType/scholarship/$id/'
-      path: '/academics/$studentType/scholarship/$id'
+      path: '/scholarship/$id'
       fullPath: '/$locale/academics/$studentType/scholarship/$id/'
       preLoaderRoute: typeof LocaleAcademicsStudentTypeScholarshipIdIndexRouteImport
-      parentRoute: typeof LocaleRouteRoute
+      parentRoute: typeof LocaleAcademicsStudentTypeRoute
     }
     '/$locale/academics/undergraduate/general-studies-requirements/edit/$year': {
       id: '/$locale/academics/undergraduate/general-studies-requirements/edit/$year'
@@ -1943,20 +1963,65 @@ declare module '@tanstack/react-router' {
     }
     '/$locale/academics/$studentType/scholarship/$id/edit': {
       id: '/$locale/academics/$studentType/scholarship/$id/edit'
-      path: '/academics/$studentType/scholarship/$id/edit'
+      path: '/scholarship/$id/edit'
       fullPath: '/$locale/academics/$studentType/scholarship/$id/edit'
       preLoaderRoute: typeof LocaleAcademicsStudentTypeScholarshipIdEditRouteImport
-      parentRoute: typeof LocaleRouteRoute
+      parentRoute: typeof LocaleAcademicsStudentTypeRoute
     }
     '/$locale/academics/$studentType/course-changes/edit/$year': {
       id: '/$locale/academics/$studentType/course-changes/edit/$year'
-      path: '/academics/$studentType/course-changes/edit/$year'
+      path: '/course-changes/edit/$year'
       fullPath: '/$locale/academics/$studentType/course-changes/edit/$year'
       preLoaderRoute: typeof LocaleAcademicsStudentTypeCourseChangesEditYearRouteImport
-      parentRoute: typeof LocaleRouteRoute
+      parentRoute: typeof LocaleAcademicsStudentTypeRoute
     }
   }
 }
+
+interface LocaleAcademicsStudentTypeRouteChildren {
+  LocaleAcademicsStudentTypeCoursesRoute: typeof LocaleAcademicsStudentTypeCoursesRoute
+  LocaleAcademicsStudentTypeCourseChangesCreateRoute: typeof LocaleAcademicsStudentTypeCourseChangesCreateRoute
+  LocaleAcademicsStudentTypeGuideEditRoute: typeof LocaleAcademicsStudentTypeGuideEditRoute
+  LocaleAcademicsStudentTypeScholarshipCreateRoute: typeof LocaleAcademicsStudentTypeScholarshipCreateRoute
+  LocaleAcademicsStudentTypeScholarshipEditRoute: typeof LocaleAcademicsStudentTypeScholarshipEditRoute
+  LocaleAcademicsStudentTypeCourseChangesIndexRoute: typeof LocaleAcademicsStudentTypeCourseChangesIndexRoute
+  LocaleAcademicsStudentTypeGuideIndexRoute: typeof LocaleAcademicsStudentTypeGuideIndexRoute
+  LocaleAcademicsStudentTypeScholarshipIndexRoute: typeof LocaleAcademicsStudentTypeScholarshipIndexRoute
+  LocaleAcademicsStudentTypeCourseChangesEditYearRoute: typeof LocaleAcademicsStudentTypeCourseChangesEditYearRoute
+  LocaleAcademicsStudentTypeScholarshipIdEditRoute: typeof LocaleAcademicsStudentTypeScholarshipIdEditRoute
+  LocaleAcademicsStudentTypeScholarshipIdIndexRoute: typeof LocaleAcademicsStudentTypeScholarshipIdIndexRoute
+}
+
+const LocaleAcademicsStudentTypeRouteChildren: LocaleAcademicsStudentTypeRouteChildren =
+  {
+    LocaleAcademicsStudentTypeCoursesRoute:
+      LocaleAcademicsStudentTypeCoursesRoute,
+    LocaleAcademicsStudentTypeCourseChangesCreateRoute:
+      LocaleAcademicsStudentTypeCourseChangesCreateRoute,
+    LocaleAcademicsStudentTypeGuideEditRoute:
+      LocaleAcademicsStudentTypeGuideEditRoute,
+    LocaleAcademicsStudentTypeScholarshipCreateRoute:
+      LocaleAcademicsStudentTypeScholarshipCreateRoute,
+    LocaleAcademicsStudentTypeScholarshipEditRoute:
+      LocaleAcademicsStudentTypeScholarshipEditRoute,
+    LocaleAcademicsStudentTypeCourseChangesIndexRoute:
+      LocaleAcademicsStudentTypeCourseChangesIndexRoute,
+    LocaleAcademicsStudentTypeGuideIndexRoute:
+      LocaleAcademicsStudentTypeGuideIndexRoute,
+    LocaleAcademicsStudentTypeScholarshipIndexRoute:
+      LocaleAcademicsStudentTypeScholarshipIndexRoute,
+    LocaleAcademicsStudentTypeCourseChangesEditYearRoute:
+      LocaleAcademicsStudentTypeCourseChangesEditYearRoute,
+    LocaleAcademicsStudentTypeScholarshipIdEditRoute:
+      LocaleAcademicsStudentTypeScholarshipIdEditRoute,
+    LocaleAcademicsStudentTypeScholarshipIdIndexRoute:
+      LocaleAcademicsStudentTypeScholarshipIdIndexRoute,
+  }
+
+const LocaleAcademicsStudentTypeRouteWithChildren =
+  LocaleAcademicsStudentTypeRoute._addFileChildren(
+    LocaleAcademicsStudentTypeRouteChildren,
+  )
 
 interface LocaleRouteRouteChildren {
   LocaleIndexRoute: typeof LocaleIndexRoute
@@ -1966,6 +2031,7 @@ interface LocaleRouteRouteChildren {
   LocaleAboutContactRoute: typeof LocaleAboutContactRoute
   LocaleAboutGreetingsRoute: typeof LocaleAboutGreetingsRoute
   LocaleAboutHistoryRoute: typeof LocaleAboutHistoryRoute
+  LocaleAcademicsStudentTypeRoute: typeof LocaleAcademicsStudentTypeRouteWithChildren
   LocaleReservationsIntroductionRoute: typeof LocaleReservationsIntroductionRoute
   LocaleReservationsPrivacyPolicyRoute: typeof LocaleReservationsPrivacyPolicyRoute
   Locale1010ProjectIndexRoute: typeof Locale1010ProjectIndexRoute
@@ -1983,7 +2049,6 @@ interface LocaleRouteRouteChildren {
   LocaleAboutOverviewEditRoute: typeof LocaleAboutOverviewEditRoute
   LocaleAboutStudentClubsCreateRoute: typeof LocaleAboutStudentClubsCreateRoute
   LocaleAboutStudentClubsEditRoute: typeof LocaleAboutStudentClubsEditRoute
-  LocaleAcademicsStudentTypeCoursesRoute: typeof LocaleAcademicsStudentTypeCoursesRoute
   LocaleCommunityFacultyRecruitmentEditRoute: typeof LocaleCommunityFacultyRecruitmentEditRoute
   LocaleCommunityNewsIdRoute: typeof LocaleCommunityNewsIdRoute
   LocaleCommunityNewsCreateRoute: typeof LocaleCommunityNewsCreateRoute
@@ -2017,10 +2082,6 @@ interface LocaleRouteRouteChildren {
   LocaleAboutFutureCareersDescriptionEditRoute: typeof LocaleAboutFutureCareersDescriptionEditRoute
   LocaleAboutFutureCareersStatCreateRoute: typeof LocaleAboutFutureCareersStatCreateRoute
   LocaleAboutFutureCareersStatEditRoute: typeof LocaleAboutFutureCareersStatEditRoute
-  LocaleAcademicsStudentTypeCourseChangesCreateRoute: typeof LocaleAcademicsStudentTypeCourseChangesCreateRoute
-  LocaleAcademicsStudentTypeGuideEditRoute: typeof LocaleAcademicsStudentTypeGuideEditRoute
-  LocaleAcademicsStudentTypeScholarshipCreateRoute: typeof LocaleAcademicsStudentTypeScholarshipCreateRoute
-  LocaleAcademicsStudentTypeScholarshipEditRoute: typeof LocaleAcademicsStudentTypeScholarshipEditRoute
   LocaleAcademicsUndergraduateCurriculumCreateRoute: typeof LocaleAcademicsUndergraduateCurriculumCreateRoute
   LocaleAcademicsUndergraduateDegreeRequirementsEditRoute: typeof LocaleAcademicsUndergraduateDegreeRequirementsEditRoute
   LocaleAcademicsUndergraduateGeneralStudiesRequirementsCreateRoute: typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsCreateRoute
@@ -2034,9 +2095,6 @@ interface LocaleRouteRouteChildren {
   LocaleResearchCentersIdEditRoute: typeof LocaleResearchCentersIdEditRoute
   LocaleResearchGroupsIdEditRoute: typeof LocaleResearchGroupsIdEditRoute
   LocaleResearchLabsIdEditRoute: typeof LocaleResearchLabsIdEditRoute
-  LocaleAcademicsStudentTypeCourseChangesIndexRoute: typeof LocaleAcademicsStudentTypeCourseChangesIndexRoute
-  LocaleAcademicsStudentTypeGuideIndexRoute: typeof LocaleAcademicsStudentTypeGuideIndexRoute
-  LocaleAcademicsStudentTypeScholarshipIndexRoute: typeof LocaleAcademicsStudentTypeScholarshipIndexRoute
   LocaleAcademicsUndergraduateCurriculumIndexRoute: typeof LocaleAcademicsUndergraduateCurriculumIndexRoute
   LocaleAcademicsUndergraduateDegreeRequirementsIndexRoute: typeof LocaleAcademicsUndergraduateDegreeRequirementsIndexRoute
   LocaleAcademicsUndergraduateGeneralStudiesRequirementsIndexRoute: typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsIndexRoute
@@ -2045,11 +2103,8 @@ interface LocaleRouteRouteChildren {
   LocalePeopleFacultyIdIndexRoute: typeof LocalePeopleFacultyIdIndexRoute
   LocalePeopleStaffIdIndexRoute: typeof LocalePeopleStaffIdIndexRoute
   LocaleResearchLabsIdIndexRoute: typeof LocaleResearchLabsIdIndexRoute
-  LocaleAcademicsStudentTypeCourseChangesEditYearRoute: typeof LocaleAcademicsStudentTypeCourseChangesEditYearRoute
-  LocaleAcademicsStudentTypeScholarshipIdEditRoute: typeof LocaleAcademicsStudentTypeScholarshipIdEditRoute
   LocaleAcademicsUndergraduateCurriculumEditYearRoute: typeof LocaleAcademicsUndergraduateCurriculumEditYearRoute
   LocaleAcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute: typeof LocaleAcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute
-  LocaleAcademicsStudentTypeScholarshipIdIndexRoute: typeof LocaleAcademicsStudentTypeScholarshipIdIndexRoute
 }
 
 const LocaleRouteRouteChildren: LocaleRouteRouteChildren = {
@@ -2060,6 +2115,7 @@ const LocaleRouteRouteChildren: LocaleRouteRouteChildren = {
   LocaleAboutContactRoute: LocaleAboutContactRoute,
   LocaleAboutGreetingsRoute: LocaleAboutGreetingsRoute,
   LocaleAboutHistoryRoute: LocaleAboutHistoryRoute,
+  LocaleAcademicsStudentTypeRoute: LocaleAcademicsStudentTypeRouteWithChildren,
   LocaleReservationsIntroductionRoute: LocaleReservationsIntroductionRoute,
   LocaleReservationsPrivacyPolicyRoute: LocaleReservationsPrivacyPolicyRoute,
   Locale1010ProjectIndexRoute: Locale1010ProjectIndexRoute,
@@ -2077,8 +2133,6 @@ const LocaleRouteRouteChildren: LocaleRouteRouteChildren = {
   LocaleAboutOverviewEditRoute: LocaleAboutOverviewEditRoute,
   LocaleAboutStudentClubsCreateRoute: LocaleAboutStudentClubsCreateRoute,
   LocaleAboutStudentClubsEditRoute: LocaleAboutStudentClubsEditRoute,
-  LocaleAcademicsStudentTypeCoursesRoute:
-    LocaleAcademicsStudentTypeCoursesRoute,
   LocaleCommunityFacultyRecruitmentEditRoute:
     LocaleCommunityFacultyRecruitmentEditRoute,
   LocaleCommunityNewsIdRoute: LocaleCommunityNewsIdRoute,
@@ -2118,14 +2172,6 @@ const LocaleRouteRouteChildren: LocaleRouteRouteChildren = {
   LocaleAboutFutureCareersStatCreateRoute:
     LocaleAboutFutureCareersStatCreateRoute,
   LocaleAboutFutureCareersStatEditRoute: LocaleAboutFutureCareersStatEditRoute,
-  LocaleAcademicsStudentTypeCourseChangesCreateRoute:
-    LocaleAcademicsStudentTypeCourseChangesCreateRoute,
-  LocaleAcademicsStudentTypeGuideEditRoute:
-    LocaleAcademicsStudentTypeGuideEditRoute,
-  LocaleAcademicsStudentTypeScholarshipCreateRoute:
-    LocaleAcademicsStudentTypeScholarshipCreateRoute,
-  LocaleAcademicsStudentTypeScholarshipEditRoute:
-    LocaleAcademicsStudentTypeScholarshipEditRoute,
   LocaleAcademicsUndergraduateCurriculumCreateRoute:
     LocaleAcademicsUndergraduateCurriculumCreateRoute,
   LocaleAcademicsUndergraduateDegreeRequirementsEditRoute:
@@ -2144,12 +2190,6 @@ const LocaleRouteRouteChildren: LocaleRouteRouteChildren = {
   LocaleResearchCentersIdEditRoute: LocaleResearchCentersIdEditRoute,
   LocaleResearchGroupsIdEditRoute: LocaleResearchGroupsIdEditRoute,
   LocaleResearchLabsIdEditRoute: LocaleResearchLabsIdEditRoute,
-  LocaleAcademicsStudentTypeCourseChangesIndexRoute:
-    LocaleAcademicsStudentTypeCourseChangesIndexRoute,
-  LocaleAcademicsStudentTypeGuideIndexRoute:
-    LocaleAcademicsStudentTypeGuideIndexRoute,
-  LocaleAcademicsStudentTypeScholarshipIndexRoute:
-    LocaleAcademicsStudentTypeScholarshipIndexRoute,
   LocaleAcademicsUndergraduateCurriculumIndexRoute:
     LocaleAcademicsUndergraduateCurriculumIndexRoute,
   LocaleAcademicsUndergraduateDegreeRequirementsIndexRoute:
@@ -2163,16 +2203,10 @@ const LocaleRouteRouteChildren: LocaleRouteRouteChildren = {
   LocalePeopleFacultyIdIndexRoute: LocalePeopleFacultyIdIndexRoute,
   LocalePeopleStaffIdIndexRoute: LocalePeopleStaffIdIndexRoute,
   LocaleResearchLabsIdIndexRoute: LocaleResearchLabsIdIndexRoute,
-  LocaleAcademicsStudentTypeCourseChangesEditYearRoute:
-    LocaleAcademicsStudentTypeCourseChangesEditYearRoute,
-  LocaleAcademicsStudentTypeScholarshipIdEditRoute:
-    LocaleAcademicsStudentTypeScholarshipIdEditRoute,
   LocaleAcademicsUndergraduateCurriculumEditYearRoute:
     LocaleAcademicsUndergraduateCurriculumEditYearRoute,
   LocaleAcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute:
     LocaleAcademicsUndergraduateGeneralStudiesRequirementsEditYearRoute,
-  LocaleAcademicsStudentTypeScholarshipIdIndexRoute:
-    LocaleAcademicsStudentTypeScholarshipIdIndexRoute,
 }
 
 const LocaleRouteRouteWithChildren = LocaleRouteRoute._addFileChildren(
