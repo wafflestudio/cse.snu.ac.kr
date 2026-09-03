@@ -8,7 +8,7 @@ import TimelineEditor, {
 } from '@/routes/$locale/academics/-components/timeline/TimelineEditor';
 import type { TimelineContent } from '@/types/api';
 import { api } from '@/utils/api';
-import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';
+import { ApiFormData, getAttachmentIds } from '@/utils/apiFormData';
 
 function GeneralStudiesEditPage() {
   const initContent = Route.useLoaderData();
@@ -32,17 +32,12 @@ function GeneralStudiesEditPage() {
   };
 
   const onSubmit = async (data: TimelineFormData) => {
-    const deleteIds = getDeleteIds({
-      prev: defaultValues.file,
-      cur: data.file,
-    });
-
     const formData = new ApiFormData();
     formData.appendJson('request', {
       description: data.description,
-      deleteIds,
+      attachmentIds: getAttachmentIds(data.file),
     });
-    formData.appendIfLocal('newAttachments', data.file);
+    formData.appendIfLocal('attachments', data.file);
 
     try {
       await api.put(

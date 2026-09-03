@@ -13,7 +13,7 @@ import type { AboutContent } from '@/types/api';
 import type { EditorFile, EditorImage } from '@/types/form';
 import { LOCALES } from '@/types/i18n';
 import { api } from '@/utils/api';
-import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';
+import { ApiFormData, getAttachmentIds } from '@/utils/apiFormData';
 
 interface OverviewFormData {
   htmlKo: string;
@@ -49,15 +49,17 @@ function OverviewEdit() {
     async ({ htmlKo, htmlEn, image, files }) => {
       const formData = new ApiFormData();
 
-      const deleteIds = getDeleteIds({ prev: defaultValues.files, cur: files });
-
       formData.appendJson('request', {
-        ko: { description: htmlKo, deleteIds },
-        en: { description: htmlEn, deleteIds: [] },
+        ko: {
+          description: htmlKo,
+          attachmentIds: getAttachmentIds(files),
+        },
+        // en 첨부는 화면에 없어 건드리지 않는다 — attachmentIds를 생략(null)하면 서버가 그대로 둔다.
+        en: { description: htmlEn },
         removeImage: defaultValues.image !== null && image === null,
       });
       formData.appendIfLocal('newMainImage', image);
-      formData.appendIfLocal('newAttachments', files);
+      formData.appendIfLocal('attachments', files);
 
       try {
         await api.put(`v2/about/overview`, { body: formData });

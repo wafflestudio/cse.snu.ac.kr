@@ -5,7 +5,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import type { Seminar } from '@/types/api';
 import { isLocalFile } from '@/types/form';
 import { api } from '@/utils/api';
-import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';
+import { ApiFormData, getAttachmentIds } from '@/utils/apiFormData';
 import SeminarEditor, {
   type SeminarFormData,
 } from './-components/SeminarEditor';
@@ -48,11 +48,6 @@ function SeminarEditPage() {
   };
 
   const onSubmit = async (content: SeminarFormData) => {
-    const deleteIds = getDeleteIds({
-      prev: defaultValues.attachments,
-      cur: content.attachments,
-    });
-
     const formData = new ApiFormData();
 
     formData.appendJson('request', {
@@ -71,13 +66,13 @@ function SeminarEditPage() {
       introduction: content.introduction || null,
       isPrivate: content.isPrivate,
       isImportant: content.isImportant,
-      deleteIds,
+      attachmentIds: getAttachmentIds(content.attachments),
       removeImage: defaultValues.image !== null && content.image === null,
     });
 
     formData.appendIfLocal('newMainImage', content.image);
     formData.appendIfLocal(
-      'newAttachments',
+      'attachments',
       content.attachments.filter(isLocalFile),
     );
 

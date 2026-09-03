@@ -9,7 +9,7 @@ import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import type { DegreeRequirements } from '@/types/api';
 import type { EditorFile } from '@/types/form';
 import { api } from '@/utils/api';
-import { ApiFormData, getDeleteIds } from '@/utils/apiFormData';
+import { ApiFormData, getAttachmentIds } from '@/utils/apiFormData';
 
 interface DegreeRequirementsFormData {
   description: string;
@@ -44,9 +44,9 @@ function DegreeRequirementsEditPage() {
     const formData = new ApiFormData();
     formData.appendJson('request', {
       description: content.description,
-      deleteIds: getDeleteIds({ prev: loaderData.files, cur: content.files }),
+      attachmentIds: getAttachmentIds(content.files),
     });
-    formData.appendIfLocal('newAttachments', content.files);
+    formData.appendIfLocal('attachments', content.files);
 
     try {
       await api.put(`v2/academics/undergraduate/degree-requirements`, {
