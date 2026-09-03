@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
+import type { NewsPostBody } from '@/types/api';
 import { isLocalFile } from '@/types/form';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
@@ -19,11 +20,11 @@ function NewsCreatePage() {
   const onSubmit = async (content: NewsFormData) => {
     const formData = new ApiFormData();
 
-    formData.appendJson('request', {
+    const request: NewsPostBody = {
       title: content.title,
       titleForMain: content.titleForMain || null,
       description: content.description,
-      date: content.date,
+      date: content.date.toISOString(),
       isPrivate: content.isPrivate,
       isImportant: content.isImportant,
       importantUntil: content.importantUntil
@@ -31,7 +32,9 @@ function NewsCreatePage() {
         : null,
       isSlide: content.isSlide,
       tags: content.tags,
-    });
+    };
+
+    formData.appendJson('request', request);
 
     formData.appendIfLocal('mainImage', content.image);
     formData.appendIfLocal(

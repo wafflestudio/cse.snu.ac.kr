@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
+import type { NoticePostBody } from '@/types/api';
 import { isLocalFile } from '@/types/form';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
@@ -19,7 +20,7 @@ function NoticeCreatePage() {
   const onSubmit = async (content: NoticeFormData) => {
     const formData = new ApiFormData();
 
-    formData.appendJson('request', {
+    const request: NoticePostBody = {
       title: content.title,
       titleForMain: content.titleForMain || null,
       description: content.description,
@@ -33,7 +34,9 @@ function NoticeCreatePage() {
         ? dayjs(content.importantUntil).format('YYYY-MM-DD')
         : null,
       tags: content.tags,
-    });
+    };
+
+    formData.appendJson('request', request);
 
     formData.appendIfLocal(
       'attachments',

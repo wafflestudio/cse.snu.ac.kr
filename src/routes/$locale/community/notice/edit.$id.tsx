@@ -4,7 +4,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { Notice } from '@/types/api';
+import type { Notice, NoticePatchBody } from '@/types/api';
 import { isLocalFile } from '@/types/form';
 import { api } from '@/utils/api';
 import { ApiFormData, getAttachmentIds } from '@/utils/apiFormData';
@@ -48,7 +48,7 @@ function NoticeEditPage() {
   const onSubmit = async (content: NoticeFormData) => {
     const formData = new ApiFormData();
 
-    formData.appendJson('request', {
+    const request: NoticePatchBody = {
       title: content.title,
       titleForMain: content.titleForMain || null,
       description: content.description,
@@ -63,7 +63,9 @@ function NoticeEditPage() {
         : null,
       tags: content.tags,
       attachmentIds: getAttachmentIds(content.attachments),
-    });
+    };
+
+    formData.appendJson('request', request);
 
     formData.appendIfLocal(
       'attachments',
