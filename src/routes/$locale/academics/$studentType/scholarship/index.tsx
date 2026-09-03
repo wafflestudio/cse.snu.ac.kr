@@ -7,10 +7,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import ScholarshipList from '@/routes/$locale/academics/-components/ScholarshipList';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type {
-  ScholarshipList as ScholarshipListType,
-  StudentType,
-} from '@/types/api';
+import type { ScholarshipList as ScholarshipListType } from '@/types/api';
 import { api } from '@/utils/api';
 
 const META = {
@@ -50,7 +47,7 @@ function ScholarshipPage() {
 
   const title = t('장학 제도');
   const _studentLabel = studentType === 'graduate' ? t('대학원') : t('학부');
-  const meta = META[studentType as StudentType][locale];
+  const meta = META[studentType][locale];
 
   return (
     <PageLayout
@@ -70,7 +67,7 @@ function ScholarshipPage() {
       <HTMLViewer html={loaderData.description} />
       <ScholarshipList
         scholarships={loaderData.scholarships}
-        studentType={studentType as StudentType}
+        studentType={studentType}
       />
       <LoginVisible allow="ROLE_STAFF">
         <div className="mt-3">
