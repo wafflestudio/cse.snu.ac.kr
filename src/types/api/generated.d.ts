@@ -100,70 +100,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v2/council/rule/{type}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getRuleByType"];
-        put: operations["updateRuleByType"];
-        post: operations["createRuleByType"];
-        delete: operations["deleteRuleByType"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/council/report/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["readReport"];
-        put: operations["updateReport"];
-        post?: never;
-        delete: operations["deleteReport"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/council/meeting-minute/{year}/{index}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getMeetingMinute"];
-        put: operations["updateMeetingMinute"];
-        post?: never;
-        delete: operations["deleteMeetingMinute"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/council/intro": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["readIntro"];
-        put: operations["upsertIntro"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/v2/admissions/{mainType}/{postType}": {
         parameters: {
             query?: never;
@@ -596,38 +532,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v2/council/report": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["readAllReports"];
-        put?: never;
-        post: operations["createReport"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/council/meeting-minute/{year}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getMeetingMinutesOfYear"];
-        put?: never;
-        post: operations["createMeetingMinute"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/v2/academics/{studentType}/{postType}": {
         parameters: {
             query?: never;
@@ -868,22 +772,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v2/seminar/ids": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getAllIds"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/v2/search/refresh": {
         parameters: {
             query?: never;
@@ -1076,22 +964,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v2/notice/ids": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getAllIds_1"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/v2/news/totalSearch": {
         parameters: {
             query?: never;
@@ -1100,22 +972,6 @@ export interface paths {
             cookie?: never;
         };
         get: operations["searchTotalNews"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/news/ids": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getAllIds_2"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1164,38 +1020,6 @@ export interface paths {
             cookie?: never;
         };
         get: operations["giveErrorInformation"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/council/rule": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getRule"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/council/meeting-minute": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getMeetingMinutes"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1550,35 +1374,6 @@ export interface components {
         };
         InternalDto: {
             description: string;
-        };
-        CouncilFileModifyReq: {
-            attachmentIds: number[];
-        };
-        CouncilFileRuleResponse: {
-            type: string;
-            attachments: components["schemas"]["AttachmentResponse"][];
-        };
-        ReportUpdateRequest: {
-            title: string;
-            description: string;
-            removeImage: boolean;
-            /** Format: int32 */
-            sequence: number;
-            name: string;
-        };
-        CouncilFileMeetingMinuteResponse: {
-            /** Format: int32 */
-            year: number;
-            /** Format: int32 */
-            index: number;
-            attachments: components["schemas"]["AttachmentResponse"][];
-        };
-        CouncilIntroUpdateRequest: {
-            description: string;
-            /** Format: int32 */
-            sequence: number;
-            name: string;
-            removeImage: boolean;
         };
         UpdateAdmissionReq: {
             ko: string;
@@ -1980,13 +1775,6 @@ export interface components {
             externalLink?: string | null;
             imageUrl: string;
         };
-        ReportCreateRequest: {
-            title: string;
-            description: string;
-            /** Format: int32 */
-            sequence: number;
-            name: string;
-        };
         CreateYearReq: {
             /** Format: int32 */
             year: number;
@@ -2145,7 +1933,7 @@ export interface components {
             graduate: components["schemas"]["MainNoticeResponse"][];
         };
         MyRoleResponse: {
-            roles: ("ROLE_STAFF" | "ROLE_RESERVE" | "ROLE_RESERVE_PROFESSOR_ROOM" | "ROLE_COUNCIL" | "ROLE_LABMASTER")[];
+            roles: ("ROLE_STAFF" | "ROLE_RESERVE" | "ROLE_RESERVE_PROFESSOR_ROOM" | "ROLE_LABMASTER")[];
         };
         AboutSearchElementDto: {
             /** Format: int64 */
@@ -2372,51 +2160,6 @@ export interface components {
             /** Format: int64 */
             total: number;
             searchList: components["schemas"]["NewsSearchDto"][];
-        };
-        CouncilFileRulesResponse: {
-            constitution?: components["schemas"]["CouncilFileRuleResponse"] | null;
-            bylaw?: components["schemas"]["CouncilFileRuleResponse"] | null;
-        };
-        ReportListDto: {
-            /** Format: int64 */
-            total: number;
-            reports: components["schemas"]["SimpleReportDto"][];
-        };
-        SimpleReportDto: {
-            /** Format: int64 */
-            id: number;
-            title: string;
-            /** Format: int32 */
-            sequence: number;
-            name: string;
-            /** Format: date-time */
-            createdAt: string;
-            imageURL?: string | null;
-        };
-        ReportDto: {
-            /** Format: int64 */
-            id: number;
-            title: string;
-            description: string;
-            imageURL?: string | null;
-            /** Format: int32 */
-            sequence: number;
-            name: string;
-            /** Format: date-time */
-            createdAt: string;
-            /** Format: int64 */
-            prevId?: number | null;
-            prevTitle?: string | null;
-            /** Format: int64 */
-            nextId?: number | null;
-            nextTitle?: string | null;
-        };
-        CouncilIntroDto: {
-            description: string;
-            /** Format: int32 */
-            sequence: number;
-            name: string;
-            imageURL?: string | null;
         };
         AdmissionsDto: {
             /** Format: int64 */
@@ -2869,295 +2612,6 @@ export interface operations {
                 content: {
                     "*/*": components["schemas"]["InternalDto"];
                 };
-            };
-        };
-    };
-    getRuleByType: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                type: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["CouncilFileRuleResponse"];
-                };
-            };
-        };
-    };
-    updateRuleByType: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                type: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "multipart/form-data": {
-                    request: components["schemas"]["CouncilFileModifyReq"];
-                    attachments?: string[];
-                };
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["CouncilFileRuleResponse"];
-                };
-            };
-        };
-    };
-    createRuleByType: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                type: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "multipart/form-data": {
-                    attachments: string[];
-                };
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["CouncilFileRuleResponse"];
-                };
-            };
-        };
-    };
-    deleteRuleByType: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                type: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    readReport: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ReportDto"];
-                };
-            };
-        };
-    };
-    updateReport: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "multipart/form-data": {
-                    request: components["schemas"]["ReportUpdateRequest"];
-                    /** Format: binary */
-                    newMainImage: string;
-                };
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    deleteReport: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    getMeetingMinute: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                year: number;
-                index: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["CouncilFileMeetingMinuteResponse"];
-                };
-            };
-        };
-    };
-    updateMeetingMinute: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                year: number;
-                index: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "multipart/form-data": {
-                    request: components["schemas"]["CouncilFileModifyReq"];
-                    attachments?: string[];
-                };
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["CouncilFileMeetingMinuteResponse"];
-                };
-            };
-        };
-    };
-    deleteMeetingMinute: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                year: number;
-                index: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    readIntro: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["CouncilIntroDto"];
-                };
-            };
-        };
-    };
-    upsertIntro: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "multipart/form-data": {
-                    request: components["schemas"]["CouncilIntroUpdateRequest"];
-                    /** Format: binary */
-                    newMainImage: string;
-                };
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
             };
         };
     };
@@ -4388,105 +3842,6 @@ export interface operations {
             };
         };
     };
-    readAllReports: {
-        parameters: {
-            query?: {
-                pageNum?: number;
-                pageSize?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ReportListDto"];
-                };
-            };
-        };
-    };
-    createReport: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "multipart/form-data": {
-                    request: components["schemas"]["ReportCreateRequest"];
-                    /** Format: binary */
-                    mainImage: string;
-                };
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    getMeetingMinutesOfYear: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                year: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["CouncilFileMeetingMinuteResponse"][];
-                };
-            };
-        };
-    };
-    createMeetingMinute: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                year: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "multipart/form-data": {
-                    attachments: string[];
-                };
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["CouncilFileMeetingMinuteResponse"];
-                };
-            };
-        };
-    };
     readAcademicsYearResponses: {
         parameters: {
             query?: {
@@ -5105,26 +4460,6 @@ export interface operations {
             };
         };
     };
-    getAllIds: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": number[];
-                };
-            };
-        };
-    };
     refreshSearches: {
         parameters: {
             query?: never;
@@ -5414,26 +4749,6 @@ export interface operations {
             };
         };
     };
-    getAllIds_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": number[];
-                };
-            };
-        };
-    };
     searchTotalNews: {
         parameters: {
             query: {
@@ -5454,26 +4769,6 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["NewsTotalSearchDto"];
-                };
-            };
-        };
-    };
-    getAllIds_2: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": number[];
                 };
             };
         };
@@ -5536,48 +4831,6 @@ export interface operations {
                 };
                 content: {
                     "*/*": Record<string, never>;
-                };
-            };
-        };
-    };
-    getRule: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["CouncilFileRulesResponse"];
-                };
-            };
-        };
-    };
-    getMeetingMinutes: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": {
-                        [key: string]: components["schemas"]["CouncilFileMeetingMinuteResponse"][];
-                    };
                 };
             };
         };
