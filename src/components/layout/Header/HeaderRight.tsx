@@ -93,10 +93,6 @@ function DevLogin() {
       >
         LAB+RESERV
       </Button>
-      <Divider />
-      <Button variant="nav" size="sm" onClick={() => mockLogin('ROLE_COUNCIL')}>
-        COUNCIL
-      </Button>
     </>
   );
 }
