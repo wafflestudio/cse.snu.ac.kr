@@ -2252,7 +2252,7 @@ export interface components {
         AdmissionSearchResBody: {
             /** Format: int64 */
             total: number;
-            admissions: components["schemas"]["AdmissionSearchResElem"][];
+            results: components["schemas"]["AdmissionSearchResElem"][];
         };
         AdmissionSearchResElem: {
             /** Format: int64 */
@@ -2332,9 +2332,9 @@ export interface components {
             researchType: "research-group" | "research-center" | "lab" | "conference";
             partialDescription: string;
             /** Format: int32 */
-            boldStartIdx: number;
+            boldStartIndex: number;
             /** Format: int32 */
-            boldEndIdx: number;
+            boldEndIndex: number;
         };
         SeminarSearchDto: {
             /** Format: int64 */
@@ -2353,7 +2353,7 @@ export interface components {
         SeminarSearchResponse: {
             /** Format: int64 */
             total: number;
-            searchList: components["schemas"]["SeminarSearchDto"][];
+            results: components["schemas"]["SeminarSearchDto"][];
         };
         TotalSearchResponse: {
             aboutResult: components["schemas"]["AboutSearchResBody"];
