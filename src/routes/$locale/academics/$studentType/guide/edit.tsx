@@ -1,0 +1,94 @@
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { FormProvider, useForm } from 'react-hook-form';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
+import PageLayout from '@/components/layout/PageLayout';
+import { toast } from '@/components/ui/sonner';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { Guide } from '@/types/api';
+import type { EditorFile } from '@/types/form';
+import { api } from '@/utils/api';
+import { ApiFormData, getAttachmentIds } from '@/utils/apiFormData';
+
+interface GuideFormData {
+  description: string;
+  file: EditorFile[];
+}
+
+function GuideEditPage() {
+  const loaderData = Route.useLoaderData();
+  const params = Route.useParams();
+
+  const { studentType } = params;
+  const { t } = useLanguage({
+    '수정에 성공했습니다.': 'Successfully updated.',
+    '수정에 실패했습니다.': 'Failed to update.',
+    '대학원 안내 수정': 'Edit Graduate Guide',
+    '학부 안내 수정': 'Edit Undergraduate Guide',
+  });
+
+  const defaultValues = {
+    description: loaderData.description,
+    file: loaderData.attachments.map((file) => ({
+      type: 'UPLOADED_FILE' as const,
+      file,
+    })),
+  };
+
+  const methods = useForm<GuideFormData>({
+    defaultValues,
+    shouldFocusError: false,
+  });
+
+  const navigate = useNavigate();
+
+  const isGraduate = studentType === 'graduate';
+  const title = isGraduate ? t('대학원 안내 수정') : t('학부 안내 수정');
+
+  const onSubmit = async (data: GuideFormData) => {
+    const formData = new ApiFormData();
+    formData.appendJson('request', {
+      description: data.description,
+      attachmentIds: getAttachmentIds(data.file),
+    });
+    formData.appendIfLocal('attachments', data.file);
+
+    try {
+      await api.put(`v2/academics/${studentType}/guide`, { body: formData });
+
+      navigate({ to: `/academics/${studentType}/guide` });
+      toast.success(t('수정에 성공했습니다.'));
+    } catch {
+      toast.error(t('수정에 실패했습니다.'));
+    }
+  };
+
+  return (
+    <PageLayout titleSize="xl" title={title}>
+      <FormProvider {...methods}>
+        <Form>
+          <Fieldset.HTML>
+            <Form.HTML name="description" />
+          </Fieldset.HTML>
+          <Fieldset.File>
+            <Form.File name="file" />
+          </Fieldset.File>
+          <Form.Action
+            onCancel={() => navigate({ to: `/academics/${studentType}/guide` })}
+            onSubmit={methods.handleSubmit(onSubmit)}
+          />
+        </Form>
+      </FormProvider>
+    </PageLayout>
+  );
+}
+
+export const Route = createFileRoute(
+  '/$locale/academics/$studentType/guide/edit',
+)({
+  loader: async ({ params }) => {
+    const { studentType } = params;
+    return api.get(`v2/academics/${studentType}/guide`).json<Guide>();
+  },
+  component: GuideEditPage,
+});

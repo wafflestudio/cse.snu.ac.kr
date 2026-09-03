@@ -1,183 +1,34 @@
 #!/bin/bash
+# 배포: 호스트가 git URL로 docker build → 컨테이너 교체(레지스트리 없음).
+# 사용법: ./deploy.sh <staging|prod> [git-ref]   (ref 생략 시 환경 브랜치, 롤백은 이전 sha)
+set -e
+RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; BLUE='\033[0;34m'; NC='\033[0m'
 
-# CSEREAL 배포 스크립트
-# 사용법: ./deploy.sh [staging|prod]
-
-# 색상 코드
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
-
-# 인자 확인
-if [ -z "$1" ]; then
-    echo -e "${RED}오류: 환경 인자가 필요합니다${NC}"
-    echo "사용법: ./deploy.sh [staging|prod]"
-    exit 1
-fi
-
-ENV="$1"
-
+ENV="$1"; REF="$2"
 if [ "$ENV" != "staging" ] && [ "$ENV" != "prod" ]; then
-    echo -e "${RED}오류: 잘못된 환경 '$ENV'${NC}"
-    echo "사용법: ./deploy.sh [staging|prod]"
-    exit 1
+  echo -e "${RED}사용법: ./deploy.sh <staging|prod> [git-ref]${NC}"; exit 1
 fi
-
-# 환경 변수 파일 확인 및 로드
-ENV_FILE="env/.env"
-if [ ! -f "$ENV_FILE" ]; then
-    echo -e "${RED}오류: $ENV_FILE 파일을 찾을 수 없습니다${NC}"
-    echo "env/.env.example 파일을 복사하여 SSH 설정을 입력하세요."
-    exit 1
-fi
-source "$ENV_FILE"
-
-# 환경별 설정
-# 배포는 pull 기반: CI가 GHCR에 올린 이미지를 호스트가 pull(호스트 build 없음).
-CONTAINER_NAME="frontend"
-GHCR_IMAGE="ghcr.io/wafflestudio/cse.snu.ac.kr"
-PORT="3000"
-# 컨테이너 안에서 이 호스트명을 엣지(호스트)로 해석시킨다 — 이유는 remote-deploy.sh 주석 참고.
-# 배포와 롤백 안내가 같은 값을 쓰도록 여기서 한 번만 정의한다.
-SITE_HOST="${SITE_HOST:-cse.snu.ac.kr}"
 
 if [ "$ENV" == "staging" ]; then
-    SSH_KEY="${CSEREAL_STAGING_SSH_KEY}"
-    SSH_USER="${CSEREAL_STAGING_SSH_USER}"
-    SSH_HOST="${CSEREAL_STAGING_SSH_HOST}"
-    SSH_PORT="${CSEREAL_STAGING_SSH_PORT}"
-    IMAGE_TAG="staging"
-    TITLE="CSEREAL staging 서버 배포"
+  SSH_USER=ubuntu;  SSH_HOST=168.107.16.249;  SSH_PORT=22;    BRANCH=develop; BUILD_MODE=staging
 else
-    # PROD 환경
-    SSH_KEY="${CSEREAL_PROD_SSH_KEY}"
-    SSH_USER="${CSEREAL_PROD_SSH_USER}"
-    SSH_HOST="${CSEREAL_PROD_SSH_HOST}"
-    SSH_PORT="${CSEREAL_PROD_SSH_PORT}"
-    IMAGE_TAG="prod"
-    TITLE="🚀 CSEREAL 프로덕션 서버 배포"
+  SSH_USER=waffle;  SSH_HOST=147.46.92.120;   SSH_PORT=9122;  BRANCH=main;    BUILD_MODE=production
 fi
+REF="${REF:-$BRANCH}"
 
-set -e  # 에러 발생 시 스크립트 중단
+# 카맵키(git 밖)는 로컬 env/.env에서 읽어 build-arg로 넘긴다.
+KAKAO=$(grep -E '^VITE_KAKAO_MAP_API_KEY=' env/.env 2>/dev/null | cut -d= -f2-)
+[ -n "$KAKAO" ] || { echo -e "${RED}오류: env/.env에 VITE_KAKAO_MAP_API_KEY(지도 키)가 없습니다.${NC}"; exit 1; }
 
-echo -e "${GREEN}=====================================${NC}"
-echo -e "${GREEN}  $TITLE${NC}"
-echo -e "${GREEN}=====================================${NC}"
-echo ""
-
-# GitHub 원격 저장소 최신 커밋 확인
-echo -e "${BLUE}GitHub 원격 저장소 최신 커밋 가져오는 중...${NC}"
-git fetch origin --quiet
-CURRENT_BRANCH=$(git branch --show-current)
-REMOTE_BRANCH="origin/$CURRENT_BRANCH"
-
-echo -e "${BLUE}배포될 커밋 (GitHub):${NC}"
-echo "브랜치: $CURRENT_BRANCH"
-echo "커밋: $(git log -1 $REMOTE_BRANCH --format='%h - %s')"
-echo "작성자: $(git log -1 $REMOTE_BRANCH --format='%an <%ae>')"
-echo "날짜:   $(git log -1 $REMOTE_BRANCH --format='%cd' --date=format:'%Y-%m-%d %H:%M:%S')"
-echo ""
-
-# 첫 번째 배포 확인 (staging/prod 공통)
+echo -e "${BLUE}배포: ${ENV} ← ${REF}  (호스트 ${SSH_USER}@${SSH_HOST}:${SSH_PORT}에서 빌드+교체)${NC}"
+read -p "계속할까요? (yes/no): " -r; [[ "$REPLY" =~ ^[Yy][Ee][Ss]$ ]] || { echo -e "${BLUE}취소.${NC}"; exit 0; }
 if [ "$ENV" == "prod" ]; then
-    echo -e "${YELLOW}프로덕션 서버에 배포합니다.${NC}"
-else
-    echo -e "${YELLOW}베타 서버에 배포합니다.${NC}"
-fi
-echo -e "${YELLOW}서버: $SSH_USER@$SSH_HOST:$SSH_PORT${NC}"
-echo ""
-read -p "이 배포를 계속 진행하시겠습니까? (yes/no): " -r
-echo ""
-
-if [[ ! $REPLY =~ ^[Yy][Ee][Ss]$ ]]; then
-    echo -e "${BLUE}배포가 취소되었습니다.${NC}"
-    exit 0
+  echo -e "${RED}⚠️  프로덕션 배포입니다.${NC}"
+  read -p "정말로 진행할까요? (yes/no): " -r; [[ "$REPLY" =~ ^[Yy][Ee][Ss]$ ]] || { echo -e "${BLUE}취소.${NC}"; exit 0; }
 fi
 
-# 프로덕션일 경우 두 번째 확인
-if [ "$ENV" == "prod" ]; then
-    echo -e "${RED}⚠️  경고: 프로덕션 서버에 배포합니다!${NC}"
-    echo -e "${RED}정말로 프로덕션 배포를 진행하시겠습니까?${NC}"
-    echo ""
-    read -p "최종 확인 (yes/no): " -r
-    echo ""
+# SSH 인증은 각자 환경(ssh-agent·~/.ssh/config)에 위임 — 스크립트는 키를 안 만진다.
+ssh -p "$SSH_PORT" -o StrictHostKeyChecking=no -o ConnectTimeout=15 "$SSH_USER@$SSH_HOST" \
+  "REF='$REF' BUILD_MODE='$BUILD_MODE' KAKAO='$KAKAO' bash -s" < "$(dirname "$0")/remote-deploy.sh"
 
-    if [[ ! $REPLY =~ ^[Yy][Ee][Ss]$ ]]; then
-        echo -e "${BLUE}배포가 취소되었습니다.${NC}"
-        exit 0
-    fi
-fi
-
-# SSH 키 파일 확인
-if [ ! -f "$SSH_KEY" ]; then
-    echo -e "${RED}오류: SSH 키를 찾을 수 없습니다: $SSH_KEY${NC}"
-    exit 1
-fi
-
-echo -e "${YELLOW}[1/5] SSH 키 확인 완료: $SSH_KEY${NC}"
-
-# SSH ControlMaster 설정 (연결 재사용)
-SSH_CONTROL_PATH="/tmp/ssh-control-$ENV-$$"
-SSH_OPTS="-i $SSH_KEY -p $SSH_PORT -o StrictHostKeyChecking=no -o ControlMaster=auto -o ControlPath=$SSH_CONTROL_PATH -o ControlPersist=300"
-
-# SSH 접속 테스트 및 마스터 연결 생성
-echo -e "${YELLOW}[2/5] SSH 연결 테스트 중...${NC}"
-ssh $SSH_OPTS -o ConnectTimeout=10 "$SSH_USER@$SSH_HOST" "echo 'SSH 연결 성공'" || {
-    echo -e "${RED}오류: $ENV 서버에 연결할 수 없습니다${NC}"
-    exit 1
-}
-
-# 스크립트 종료 시 SSH 연결 정리
-trap "ssh -O exit -o ControlPath=$SSH_CONTROL_PATH $SSH_USER@$SSH_HOST 2>/dev/null" EXIT
-
-# GHCR 이미지 pull + 컨테이너 교체(호스트 build 없음)
-echo -e "${YELLOW}[3/5] $ENV 서버에 배포 중 (pull $GHCR_IMAGE:$IMAGE_TAG)...${NC}"
-
-# 스크립트 파일 경로
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-REMOTE_DEPLOY_SCRIPT="$SCRIPT_DIR/remote-deploy.sh"
-
-if [ ! -f "$REMOTE_DEPLOY_SCRIPT" ]; then
-    echo -e "${RED}오류: 배포 스크립트를 찾을 수 없습니다: $REMOTE_DEPLOY_SCRIPT${NC}"
-    exit 1
-fi
-
-# 변수를 치환하여 원격 스크립트 실행
-PREV_IMAGE=$(ssh $SSH_OPTS "$SSH_USER@$SSH_HOST" "CONTAINER_NAME='$CONTAINER_NAME' IMAGE='$GHCR_IMAGE:$IMAGE_TAG' PORT='$PORT' SITE_HOST='$SITE_HOST' bash -s" < "$REMOTE_DEPLOY_SCRIPT")
-
-echo -e "${YELLOW}[4/5] 배포 확인 중...${NC}"
-ssh $SSH_OPTS "$SSH_USER@$SSH_HOST" << ENDSSH
-# 컨테이너 로그 확인 (마지막 20줄)
-echo "📋 컨테이너 로그 (최근 20줄):"
-docker logs --tail 20 $CONTAINER_NAME
-ENDSSH
-
-echo ""
-echo -e "${YELLOW}[5/5] 컨테이너 상태 확인 중...${NC}"
-sleep 3
-ssh $SSH_OPTS "$SSH_USER@$SSH_HOST" "docker ps --filter name=$CONTAINER_NAME --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'"
-
-echo ""
-echo -e "${GREEN}=====================================${NC}"
-echo -e "${GREEN}  ✅ 배포 완료!${NC}"
-echo -e "${GREEN}=====================================${NC}"
-echo ""
-
-if [ "$ENV" == "staging" ]; then
-    echo "🌐 staging 서버: http://$SSH_HOST:$PORT"
-else
-    echo "🌐 프로덕션 서버: https://cse.snu.ac.kr"
-fi
-
-# 롤백 명령어 안내
-if [ -n "$PREV_IMAGE" ]; then
-    echo ""
-    echo -e "${BLUE}⏮️  롤백이 필요한 경우:${NC}"
-    echo ""
-    # ⚠️ --add-host는 롤백에도 필수. 빠뜨리면 되돌린 이미지가 절대 API URL을 해석하지 못해
-    #    전 페이지 500이 된다(remote-deploy.sh 주석 참고).
-    echo "ssh -i \"$SSH_KEY\" -p $SSH_PORT $SSH_USER@$SSH_HOST 'docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME && docker run -d --name $CONTAINER_NAME --restart unless-stopped -p $PORT:$PORT --add-host $SITE_HOST:host-gateway -v /home/\$(whoami)/frontend-data:/frontend-data cse.snu.ac.kr:rollback'"
-    echo ""
-fi
+echo -e "${GREEN}✅ 완료. 롤백: ./deploy.sh $ENV <이전-sha>${NC}"

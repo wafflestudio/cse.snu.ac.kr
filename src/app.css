@@ -1,0 +1,141 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+
+@font-face {
+  font-family: "Gowun Batang";
+  src: url("/GowunBatang-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+  html,
+  body {
+    @apply h-full;
+    font-family:
+      "Pretendard Variable", Pretendard, -apple-system,
+      BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+      "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    /* 피그마와 줄높이가 다른 문제 조정 */
+    line-height: 1.2;
+  }
+}
+
+@theme {
+  --color-transparent: transparent;
+  --color-white: #ffffff;
+  --color-neutral-50: #fafafa;
+  --color-neutral-75: #f8f8f8;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-850: #1e1e1e;
+  --color-neutral-900: #171717;
+  --color-neutral-950: #0a0a0a;
+  --color-main-orange: #ff6914;
+  --color-main-orange-dark: #e65817;
+  --color-link: #3c7be4;
+
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.8125rem; /* 13px */
+  --text-md: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.375rem; /* 22px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+
+  --text-xs--line-height: initial;
+  --text-sm--line-height: initial;
+  --text-md--line-height: initial;
+  --text-base--line-height: initial;
+  --text-lg--line-height: initial;
+  --text-xl--line-height: initial;
+  --text-2xl--line-height: initial;
+  --text-3xl--line-height: initial;
+}
+
+@keyframes stretch {
+  0% {
+    width: 10px;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes arrowBounce {
+  0%,
+  100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* 표준 페이지 본문 가로 거터 — 단일 출처.
+   좌 100px(pl-25) / 우 360px(pr-90) / 모바일 20px(px-5). PageLayout 문서값 기준.
+   페이지·섹션은 가로 거터를 인라인 재선언하지 말고 이 클래스를 쓴다(세로 패딩만 각자). */
+@layer components {
+  .page-gutter-x {
+    @apply px-5 sm:pl-25 sm:pr-90;
+  }
+}
+
+/* Hide scrollbar for navbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* 드롭다운/스크롤 패널용 얇은 스크롤바(.styled-scrollbar) */
+.styled-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #d4d4d4 transparent;
+}
+.styled-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.styled-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #d4d4d4;
+  border-radius: 9999px;
+}
+.styled-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}

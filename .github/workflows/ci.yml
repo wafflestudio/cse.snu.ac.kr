@@ -17,9 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4 # packageManager 필드에서 버전 읽음
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6 # packageManager 필드에서 버전 읽음
+      - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
           cache: pnpm
@@ -27,9 +27,7 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm lint # biome check (pre-commit과 동일 기준)
       - run: pnpm knip # 미사용 파일·export·의존성(프로젝트 레벨 dead code)
-      - run: pnpm check:loader-deps # 검색 파라미터 읽는 loader의 loaderDeps 누락(재실행 안 됨)
       - run: pnpm build:local # 빌드 깨짐 감지(env 파일 불필요)
-      - run: pnpm build-storybook # 스토리 빌드 회귀 감지(현재 사각지대)
 
   # E2E(비주얼 회귀 포함): 로컬과 "동일한" e2e-docker.sh를 핀된 컨테이너로 실행한다.
   # 유일한 CI 분기 = 백엔드 출처: 로컬은 형제 체크아웃, CI는 백엔드 레포를 핀된 ref로 체크아웃해
@@ -43,36 +41,36 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     env:
-      # baseline 생성 시점 백엔드 SHA로 핀(#399). 백엔드 올릴 땐 baseline 재생성 + 이 값 갱신.
-      BACKEND_REF: 1661f3d8fe409ee17359c0683cd6fca8a558ec1a
+      # baseline 생성 시점 백엔드 SHA로 핀(#410 머지 시점 develop). 백엔드 올릴 땐 baseline 재생성 + 이 값 갱신.
+      BACKEND_REF: 3daeb28d46e3d6d7850adefb46e54245e84eec38
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           path: cse.snu.ac.kr # 로컬과 동일한 형제 레이아웃 재현
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: wafflestudio/csereal-server # public → 토큰 불필요(GITHUB_TOKEN)
           ref: ${{ env.BACKEND_REF }}
-          path: csereal-server-main # = BACKEND_DIR 기본값 ../csereal-server-main
+          path: csereal-server # = BACKEND_DIR 기본값 ../csereal-server
       # 백엔드 Dockerfile은 prebuilt JAR(build/libs)를 COPY한다 → 컴포즈 빌드 전에 JAR을 만들어야 함
       # (로컬도 동일: CLAUDE.md §백엔드 동기화. JDK 21 필요).
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '21'
           cache: gradle
       - name: 백엔드 JAR 빌드
-        working-directory: csereal-server-main
+        working-directory: csereal-server
         run: ./gradlew bootJar -x test
       # 호스트엔 pnpm/node 불필요 — e2e-docker.sh가 모든 걸 핀된 컨테이너 안에서 한다(corepack·
-      # pnpm install·빌드·시드·브라우저). 백엔드는 ../csereal-server-main(체크아웃됨)에서 compose가
+      # pnpm install·빌드·시드·브라우저). 백엔드는 ../csereal-server(체크아웃됨)에서 compose가
       # 빌드. host.docker.internal은 Linux 러너에서도 --add-host=host-gateway로 동작(스크립트가 처리).
+      # 커밋된 OpenAPI 생성 타입이 이 백엔드의 실제 스펙과 맞는지 검사한다.
+      # 어긋나면 `pnpm gen:api` 후 커밋 → typecheck가 깨진 호출부를 짚어준다.
+      # e2e보다 먼저 둔다(빠르고, 백엔드 스택을 어차피 띄운다).
+      - name: OpenAPI 타입 드리프트 검사
+        working-directory: cse.snu.ac.kr
+        run: bash scripts/check-api-drift.sh
       - name: E2E (e2e-docker.sh)
         working-directory: cse.snu.ac.kr
         run: bash scripts/e2e-docker.sh
-      - uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: playwright-report
-          path: cse.snu.ac.kr/playwright-report/
-          retention-days: 7

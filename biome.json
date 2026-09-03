@@ -19,12 +19,8 @@
   },
   "linter": {
     "rules": {
-      "a11y": {
-        "noSvgWithoutTitle": "off"
-      },
       "suspicious": {
-        "noArrayIndexKey": "off",
-        "useIterableCallbackReturn": "off"
+        "noArrayIndexKey": "off"
       }
     }
   },
@@ -32,6 +28,7 @@
     "includes": [
       "**",
       "!**/routeTree.gen.ts",
+      "!**/types/api/generated.d.ts",
       "!**/suneditor.css",
       "!**/suneditor-contents.css",
       "!**/sonner/styles.css"

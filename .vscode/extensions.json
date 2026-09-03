@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "biomejs.biome",
+    "bradlc.vscode-tailwindcss",
+    "ms-playwright.playwright"
+  ],
+  // Biome이 포맷·린트·import 정리를 다 하므로 이 둘은 충돌만 만든다.
+  // (Prettier는 설정 파일이 없어도 자기 기본값으로 포맷한다 — requireConfig 기본값이 false다.)
+  "unwantedRecommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint"
+  ]
+}

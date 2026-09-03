@@ -1,0 +1,95 @@
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import PageLayout from '@/components/layout/PageLayout';
+import { toast } from '@/components/ui/sonner';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useAcademicsSubNav } from '@/hooks/useSubNav';
+import TimelineEditor, {
+  type TimelineFormData,
+} from '@/routes/$locale/academics/-components/timeline/TimelineEditor';
+import type { TimelineContent } from '@/types/api';
+import { api } from '@/utils/api';
+import { ApiFormData, getAttachmentIds } from '@/utils/apiFormData';
+
+function GeneralStudiesEditPage() {
+  const initContent = Route.useLoaderData();
+
+  const { localizedPath, t } = useLanguage({
+    '필수 교양 과목 편집': 'Edit General Studies',
+  });
+  const subNav = useAcademicsSubNav();
+  const navigate = useNavigate();
+
+  const title = t('필수 교양 과목 편집');
+  const defaultValues: TimelineFormData = {
+    year: initContent.year,
+    description: initContent.description,
+    file: initContent.attachments.map(
+      (file: TimelineContent['attachments'][number]) => ({
+        type: 'UPLOADED_FILE' as const,
+        file,
+      }),
+    ),
+  };
+
+  const onSubmit = async (data: TimelineFormData) => {
+    const formData = new ApiFormData();
+    formData.appendJson('request', {
+      description: data.description,
+      attachmentIds: getAttachmentIds(data.file),
+    });
+    formData.appendIfLocal('attachments', data.file);
+
+    try {
+      await api.put(
+        `v2/academics/undergraduate/general-studies-requirements/${initContent.year}`,
+        { body: formData },
+      );
+
+      toast.success('수정에 성공했습니다.');
+      navigate({
+        to: localizedPath(
+          '/academics/undergraduate/general-studies-requirements',
+        ),
+      });
+    } catch {
+      toast.error('수정에 실패했습니다.');
+    }
+  };
+
+  return (
+    <PageLayout title={title} titleSize="xl" subNav={subNav}>
+      <TimelineEditor
+        onSubmit={onSubmit}
+        cancelPath="/academics/undergraduate/general-studies-requirements"
+        defaultValues={defaultValues}
+      />
+    </PageLayout>
+  );
+}
+
+export const Route = createFileRoute(
+  '/$locale/academics/undergraduate/general-studies-requirements/edit/$year',
+)({
+  loader: async ({ params }) => {
+    const { year } = params;
+
+    if (!year) {
+      throw new Error('Year parameter is required');
+    }
+
+    const data = await api
+      .get(`v2/academics/undergraduate/general-studies-requirements`)
+      .json<TimelineContent[]>();
+    const yearNum = Number(year);
+    const selected = data.find((item) => item.year === yearNum);
+
+    if (!selected) {
+      throw new Response('해당 연도 내용이 존재하지 않습니다.', {
+        status: 404,
+      });
+    }
+
+    return selected;
+  },
+  component: GeneralStudiesEditPage,
+});

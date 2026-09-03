@@ -24,7 +24,7 @@ test.describe('시설 예약 캘린더 - 읽기', () => {
    *
    * 다른 read 케이스처럼 `?selectedDate=`로 goto하면 전체 문서 로드라 loader가 항상 SSR에서
    * 돌아, 클라 네비게이션에서 loader가 재실행되지 않는 버그(loaderDeps 누락)를 못 잡는다.
-   * 실제로 그렇게 URL만 바뀌고 캘린더는 그대로인 버그가 있었다 → app/utils/loaderDeps.ts.
+   * 실제로 그렇게 URL만 바뀌고 캘린더는 그대로인 버그가 있었다 → src/utils/loaderDeps.ts.
    */
   test('다음/이전 버튼 클릭 시 날짜가 이동한다 (ko)', async ({
     page,

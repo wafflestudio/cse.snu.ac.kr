@@ -1,0 +1,77 @@
+import { createFileRoute } from '@tanstack/react-router';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import PageLayout from '@/components/layout/PageLayout';
+import Button from '@/components/ui/Button';
+import HTMLViewer from '@/components/ui/HTMLViewer';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useCommunitySubNav } from '@/hooks/useSubNav';
+import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import type { FacultyRecruitment } from '@/types/api';
+import { api } from '@/utils/api';
+
+const META = {
+  ko: {
+    title: '신임교수초빙',
+    description:
+      '서울대학교 컴퓨터공학부의 신임 교수 채용 공고를 확인하세요. 지원 자격, 제출 서류, 전형 일정 등의 상세 정보를 제공합니다.',
+  },
+  en: {
+    title: 'Faculty Recruitment',
+    description:
+      'Faculty recruitment announcements from the Department of Computer Science and Engineering at Seoul National University. Find details on qualifications, required documents, and application timeline.',
+  },
+};
+
+function FacultyRecruitmentPage() {
+  const data = Route.useLoaderData();
+
+  const { t, localizedPath, locale } = useLanguage();
+  const subNav = useCommunitySubNav();
+  const meta = META[locale];
+
+  return (
+    <PageLayout
+      title={t('신임교수초빙')}
+      titleSize="xl"
+      subNav={subNav}
+      pageTitle={meta.title}
+      pageDescription={meta.description}
+    >
+      <LoginVisible allow="ROLE_STAFF">
+        <div className="mb-8 text-right">
+          <Button
+            variant="neutral"
+            size="md"
+            as="link"
+            to={localizedPath('/community/faculty-recruitment/edit')}
+          >
+            편집
+          </Button>
+        </div>
+      </LoginVisible>
+      <h1 className="my-5 text-3xl font-bold">{data.title}</h1>
+      <HTMLViewer
+        html={data.description}
+        image={
+          data.mainImageUrl
+            ? { src: data.mainImageUrl, width: 200, height: 200 }
+            : undefined
+        }
+      />
+    </PageLayout>
+  );
+}
+
+export const Route = createFileRoute('/$locale/community/faculty-recruitment/')(
+  {
+    loader: async () => {
+      const data = await api.get('v2/recruit').json<FacultyRecruitment>();
+
+      return {
+        ...data,
+        description: await processHtmlForCsp({ data: data.description }),
+      };
+    },
+    component: FacultyRecruitmentPage,
+  },
+);
