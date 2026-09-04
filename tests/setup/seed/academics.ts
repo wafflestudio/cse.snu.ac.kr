@@ -1,3 +1,4 @@
+import type { ScholarshipPostBody } from '@/types/api';
 import { postJson, postMultipart } from './client';
 
 /**
@@ -52,12 +53,12 @@ export const ACADEMICS_SEED = {
 /** 학부 장학금 목록을 API로 시드(페이지 description 싱글톤은 seed-content.sh가 SQL). */
 export async function seedAcademics(cookie: string) {
   for (const s of ACADEMICS_SEED.scholarships) {
-    await postJson(cookie, '/api/v2/academics/undergraduate/scholarship', {
-      koName: s.koName,
-      koDescription: s.koDescription,
-      enName: s.enName,
-      enDescription: s.enDescription,
-    });
+    // 요청 타입을 붙인다 — 백엔드 스키마가 바뀌면 typecheck 에서 막힌다.
+    const body: ScholarshipPostBody = {
+      ko: { name: s.koName, description: s.koDescription },
+      en: { name: s.enName, description: s.enDescription },
+    };
+    await postJson(cookie, '/api/v2/academics/undergraduate/scholarship', body);
   }
 
   // 연도별 타임라인(multipart `request`={year, description, name}).

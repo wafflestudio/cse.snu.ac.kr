@@ -43,9 +43,11 @@ function DirectionsPage() {
 
   const { selectedItem: selectedDirection, selectionItems } = useSelectionList({
     items: directions,
+    // 선택 목록의 키는 콘텐츠 자체의 id 다. 예전엔 영어 이름을 먼저 보고 없으면
+    // 한국어로 떨어졌는데, 이름은 번역 대상이라 키로 쓰기에 부적합했다.
     getItem: (direction) => ({
-      id: direction.en.name || direction.ko.name,
-      label: direction[locale]?.name ?? direction.ko.name,
+      id: direction.id,
+      label: direction[locale].name,
     }),
   });
 
@@ -92,7 +94,7 @@ function DirectionsPage() {
               <Button
                 as="link"
                 to={localizedPath(
-                  `/about/directions/${selectedDirection.ko.id}/edit`,
+                  `/about/directions/${selectedDirection.id}/edit`,
                 )}
                 variant="secondary"
                 size="md"
@@ -122,20 +124,26 @@ export const Route = createFileRoute('/$locale/about/directions/')({
       .json<DirectionsResponse>();
 
     return Promise.all(
-      data.map(async (direction) => ({
-        ko: {
-          ...direction.ko,
-          description: await processHtmlForCsp({
-            data: direction.ko.description,
-          }),
-        },
-        en: {
-          ...direction.en,
-          description: await processHtmlForCsp({
-            data: direction.en.description,
-          }),
-        },
-      })),
+      data.map(async (direction) => {
+        if (!direction.ko || !direction.en) {
+          throw new Error('찾아오는 길 번역본이 없습니다.');
+        }
+        return {
+          id: direction.id,
+          ko: {
+            ...direction.ko,
+            description: await processHtmlForCsp({
+              data: direction.ko.description,
+            }),
+          },
+          en: {
+            ...direction.en,
+            description: await processHtmlForCsp({
+              data: direction.en.description,
+            }),
+          },
+        };
+      }),
     );
   },
   component: DirectionsPage,

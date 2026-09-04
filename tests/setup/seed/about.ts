@@ -1,3 +1,4 @@
+import type { ClubPostBody, FacilityPostBody } from '@/types/api';
 import { postJson, postMultipart } from './client';
 
 /**
@@ -45,10 +46,11 @@ export const CLUBS_SEED = [
 
 export async function seedClubs(cookie: string) {
   for (const c of CLUBS_SEED) {
-    await postMultipart(cookie, '/api/v2/about/student-clubs', {
+    const body: ClubPostBody = {
       ko: { name: c.ko, description: `<p>${c.ko} 소개</p>` },
       en: { name: c.en, description: `<p>${c.en} intro</p>` },
-    });
+    };
+    await postMultipart(cookie, '/api/v2/about/student-clubs', body);
   }
 }
 
@@ -60,7 +62,7 @@ export const FACILITIES_SEED = [
 
 export async function seedFacilities(cookie: string) {
   for (const f of FACILITIES_SEED) {
-    await postMultipart(cookie, '/api/v2/about/facilities', {
+    const body: FacilityPostBody = {
       ko: {
         name: f.ko,
         description: `<p>${f.ko} 소개</p>`,
@@ -71,7 +73,8 @@ export async function seedFacilities(cookie: string) {
         description: `<p>${f.en} intro</p>`,
         locations: ['Bldg 301'],
       },
-    });
+    };
+    await postMultipart(cookie, '/api/v2/about/facilities', body);
   }
 }
 

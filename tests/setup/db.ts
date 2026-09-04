@@ -43,7 +43,10 @@ export async function resetDb() {
   });
 }
 
-/** about 계열 ko/en 쌍 + about_language 링크. name은 DIRECTIONS만 필요(DirDto.name!!). */
+/**
+ * about 콘텐츠 하나 + 한/영 번역본 둘. name은 DIRECTIONS만 필요(DirDto.name!!).
+ * 종류(post_type)는 콘텐츠에, 이름·본문은 번역본에 들어간다.
+ */
 async function insertAboutPair(
   conn: Connection,
   postType: string,
@@ -51,23 +54,21 @@ async function insertAboutPair(
   en: string,
   name?: { ko: string; en: string },
 ) {
-  const insert = async (language: string, description: string, n?: string) => {
-    const [res] = await conn.execute<ResultSetHeader>(
-      `INSERT INTO about (post_type, language, ${n !== undefined ? 'name, ' : ''}description, search_content, created_at, modified_at)
-       VALUES (?, ?, ${n !== undefined ? '?, ' : ''}?, '', NOW(), NOW())`,
-      n !== undefined
-        ? [postType, language, n, description]
-        : [postType, language, description],
-    );
-    return res.insertId;
-  };
-  const koId = await insert('KO', ko, name?.ko);
-  const enId = await insert('EN', en, name?.en);
-  await conn.execute(
-    `INSERT INTO about_language (korean_id, english_id, created_at, modified_at)
-     VALUES (?, ?, NOW(), NOW())`,
-    [koId, enId],
+  const [parent] = await conn.execute<ResultSetHeader>(
+    `INSERT INTO about (post_type, created_at, modified_at)
+     VALUES (?, NOW(), NOW())`,
+    [postType],
   );
+  const insert = async (language: string, description: string, n?: string) =>
+    conn.execute(
+      `INSERT INTO about_translation (about_id, language, ${n !== undefined ? 'name, ' : ''}description, locations, search_content, created_at, modified_at)
+       VALUES (?, ?, ${n !== undefined ? '?, ' : ''}?, '[]', '', NOW(), NOW())`,
+      n !== undefined
+        ? [parent.insertId, language, n, description]
+        : [parent.insertId, language, description],
+    );
+  await insert('KO', ko, name?.ko);
+  await insert('EN', en, name?.en);
 }
 
 /**

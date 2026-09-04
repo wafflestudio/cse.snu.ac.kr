@@ -9,7 +9,7 @@ import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { Scholarship } from '@/types/api';
+import type { ScholarshipWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 import { stripHtml, truncateDescription } from '@/utils/string';
 
@@ -93,10 +93,9 @@ export const Route = createFileRoute(
     const { id } = params;
     const res = await api
       .get(`v2/academics/scholarship/${id}`)
-      .json<{ first: Scholarship; second: Scholarship }>();
-    const isFirstKo = res.first.language === 'ko';
-    const ko = isFirstKo ? res.first : res.second;
-    const en = isFirstKo ? res.second : res.first;
+      .json<ScholarshipWithLanguage>();
+    const { ko, en } = res;
+    if (!ko || !en) throw new Error('장학금 번역본이 없습니다.');
 
     return {
       ko: {

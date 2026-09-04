@@ -111,9 +111,15 @@ export type AdmissionsPostType = Param<
 export type AboutContent = Res<'/api/v2/about/{postType}'>;
 export type DirectionsResponse = Res<'/api/v2/about/directions'>;
 export type FacilitiesResponse = Res<'/api/v2/about/facilities'>;
-export type Facility = FacilitiesResponse[number]['ko'];
+export type FacilityWithLanguage = FacilitiesResponse[number];
+export type Facility = NonNullable<FacilityWithLanguage['ko']>;
+export type FacilityPostBody = components['schemas']['CreateFacReq'];
+export type FacilityPutBody = components['schemas']['UpdateFacReq'];
 export type StudentClubsResponse = Res<'/api/v2/about/student-clubs'>;
-export type Club = StudentClubsResponse[number]['ko'];
+export type Club = NonNullable<StudentClubsResponse[number]['ko']>;
+export type ClubPostBody = components['schemas']['CreateClubReq'];
+export type ClubPutBody = components['schemas']['UpdateClubReq'];
+export type AboutPutBody = components['schemas']['UpdateAboutReq'];
 export type FutureCareersResponse = Res<'/api/v2/about/future-careers'>;
 export type YearStat = FutureCareersResponse['stat'][number];
 export type Company = FutureCareersResponse['companies'][number];
@@ -128,10 +134,10 @@ export type TimelineContent =
 export type Course = Res<'/api/v2/academics/courses'>[number];
 export type ScholarshipList =
   Res<'/api/v2/academics/{studentType}/scholarship'>;
-// 백엔드가 Kotlin Pair<ScholarshipDto, ScholarshipDto>를 반환해 `{first, second}`로 나온다.
-// loader가 language 필드를 보고 ko/en으로 가른다.
-export type Scholarship =
-  Res<'/api/v2/academics/scholarship/{scholarshipId}'>['first'];
+export type ScholarshipWithLanguage =
+  Res<'/api/v2/academics/scholarship/{scholarshipId}'>;
+export type ScholarshipPostBody = components['schemas']['CreateScholarshipReq'];
+export type ScholarshipPutBody = components['schemas']['UpdateScholarshipReq'];
 
 export type StudentType = Param<
   '/api/v2/academics/{studentType}/scholarship',

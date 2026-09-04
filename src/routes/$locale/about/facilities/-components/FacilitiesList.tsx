@@ -7,7 +7,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import Image from '@/components/ui/Image';
 import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { Facility } from '@/types/api';
+import type { Facility, FacilityWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 import type { ProcessedHtml } from '@/utils/csp';
 import DistanceIcon from '../assets/distance.svg?react';
@@ -103,6 +103,8 @@ function FacilitiesRowImage({ imageURL }: { imageURL: string }) {
   );
 }
 
-type ProcessedFacility = Omit<Facility, 'description'> & {
-  description: ProcessedHtml;
-};
+// 표시용으로 공유값(id·사진)과 해당 언어값을 합친 모양.
+type ProcessedFacility = Pick<FacilityWithLanguage, 'id' | 'imageURL'> &
+  Omit<Facility, 'description'> & {
+    description: ProcessedHtml;
+  };
