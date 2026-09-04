@@ -14,14 +14,15 @@ import type { EditorFile } from '@/types/form';
 type LanguageSpecificLabData = {
   name: string;
   description: string;
-  groupId: number | null;
-  professorId: number | null;
   location: string;
 };
 
 export type ResearchLabFormData = {
   ko: LanguageSpecificLabData;
   en: LanguageSpecificLabData;
+  // 소속 그룹·지도교수는 연구실에 하나뿐이라 언어 탭 밖에 있다.
+  groupId: number | null;
+  professorId: number | null;
   acronym: string;
   tel: string;
   websiteURL: string;
@@ -40,8 +41,6 @@ interface ResearchLabEditorProps {
 const defaultLabValue: LanguageSpecificLabData = {
   name: '',
   description: '',
-  groupId: null,
-  professorId: null,
   location: '',
 };
 
@@ -56,6 +55,8 @@ export default function ResearchLabEditor({
     defaultValues: defaultValues ?? {
       ko: defaultLabValue,
       en: defaultLabValue,
+      groupId: null,
+      professorId: null,
       tel: '',
       acronym: '',
       youtube: '',
@@ -75,13 +76,11 @@ export default function ResearchLabEditor({
   return (
     <FormProvider {...formMethods}>
       <Form>
+        <SharedEditor professors={professors.ko} groups={groups.ko} />
+
         <LanguagePicker onChange={setLanguage} selected={language} />
-        {language === 'ko' && (
-          <Editor language="ko" professors={professors} groups={groups} />
-        )}
-        {language === 'en' && (
-          <Editor language="en" professors={professors} groups={groups} />
-        )}
+        {language === 'ko' && <TranslationEditor language="ko" />}
+        {language === 'en' && <TranslationEditor language="en" />}
         <Form.Action
           onCancel={onCancel}
           onSubmit={handleSubmit(onSubmit)}
@@ -92,33 +91,22 @@ export default function ResearchLabEditor({
   );
 }
 
-const Editor = ({
-  language,
+const SharedEditor = ({
   professors,
   groups,
 }: {
-  language: Language;
-  professors: { ko: SimpleFaculty[]; en: SimpleFaculty[] };
-  groups: { ko: ResearchGroup[]; en: ResearchGroup[] };
+  professors: SimpleFaculty[];
+  groups: ResearchGroup[];
 }) => {
   return (
     <>
-      <Fieldset title="연구실명" spacing="6" required>
-        <Form.Text
-          name={`${language}.name`}
-          maxWidth="max-w-[30rem]"
-          options={{
-            required: { value: true, message: '연구실명을 입력해주세요.' },
-          }}
-        />
-      </Fieldset>
       <div className="mb-11 flex w-120 gap-6">
         <Fieldset title="지도교수" spacing="2.5">
           <Form.Dropdown
-            name={`${language}.professorId`}
+            name="professorId"
             contents={[
               { label: '선택 안 함', value: null },
-              ...professors[language].map((prof) => ({
+              ...professors.map((prof) => ({
                 label: prof.name,
                 value: prof.id,
               })),
@@ -146,20 +134,12 @@ const Editor = ({
         </Fieldset>
       </div>
 
-      <Fieldset title="연구실 위치" spacing="11">
-        <Form.Text
-          name={`${language}.location`}
-          maxWidth="w-[45rem]"
-          placeholder='복수일 경우 " / "로 구분해주세요. 예: 301동 515호 / 518호 / 551-1호'
-        />
-      </Fieldset>
-
       <Fieldset title="연구·교육 스트림" spacing="11" required>
         <Form.Dropdown
-          name={`${language}.groupId`}
+          name="groupId"
           contents={[
             { label: '선택 안 함', value: null },
-            ...groups[language].map((group) => ({
+            ...groups.map((group) => ({
               label: `${group.name} 스트림`,
               value: group.id,
             })),
@@ -186,6 +166,30 @@ const Editor = ({
             placeholder="예: https://www.youtube.com/watch?v=bCLWYhurBuo"
           />
         </div>
+      </Fieldset>
+    </>
+  );
+};
+
+const TranslationEditor = ({ language }: { language: Language }) => {
+  return (
+    <>
+      <Fieldset title="연구실명" spacing="6" required>
+        <Form.Text
+          name={`${language}.name`}
+          maxWidth="max-w-[30rem]"
+          options={{
+            required: { value: true, message: '연구실명을 입력해주세요.' },
+          }}
+        />
+      </Fieldset>
+
+      <Fieldset title="연구실 위치" spacing="11">
+        <Form.Text
+          name={`${language}.location`}
+          maxWidth="w-[45rem]"
+          placeholder='복수일 경우 " / "로 구분해주세요. 예: 301동 515호 / 518호 / 551-1호'
+        />
       </Fieldset>
 
       <Fieldset title="연구실 설명 및 이미지" spacing="10" required>

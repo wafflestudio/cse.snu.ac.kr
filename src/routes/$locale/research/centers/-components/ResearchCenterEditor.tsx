@@ -7,16 +7,16 @@ import LanguagePicker, {
 } from '@/components/form/LanguagePicker';
 import type { EditorImage } from '@/types/form';
 
+// 웹사이트 주소와 대표이미지는 센터에 하나뿐이라 언어 탭 밖에 있다.
 interface ResearchCenterFormFields {
   name: string;
-  websiteURL: string;
   description: string;
-  type: 'centers';
 }
 
 export interface ResearchCenterFormData {
   ko: ResearchCenterFormFields;
   en: ResearchCenterFormFields;
+  websiteURL: string;
   image: EditorImage | null;
 }
 
@@ -36,8 +36,9 @@ export default function ResearchCenterEditor({
   const [language, setLanguage] = useState<Language>('ko');
   const formMethods = useForm<ResearchCenterFormData>({
     defaultValues: defaultValues ?? {
-      ko: { name: '', websiteURL: '', description: '', type: 'centers' },
-      en: { name: '', websiteURL: '', description: '', type: 'centers' },
+      ko: { name: '', description: '' },
+      en: { name: '', description: '' },
+      websiteURL: '',
       image: null,
     },
     shouldFocusError: false,
@@ -47,6 +48,10 @@ export default function ResearchCenterEditor({
   return (
     <FormProvider {...formMethods}>
       <Form>
+        <Fieldset title="웹사이트 주소" spacing="8" titleSpacing="2">
+          <Form.Text name="websiteURL" />
+        </Fieldset>
+
         <LanguagePicker selected={language} onChange={setLanguage} />
         {language === 'ko' && <Editor language="ko" />}
         {language === 'en' && <Editor language="en" />}
@@ -71,10 +76,6 @@ const Editor = ({ language }: { language: Language }) => {
             required: { value: true, message: '이름을 입력해주세요.' },
           }}
         />
-      </Fieldset>
-
-      <Fieldset title="웹사이트 주소" spacing="8" titleSpacing="2">
-        <Form.Text name={`${language}.websiteURL`} />
       </Fieldset>
 
       <Fieldset.HTML>

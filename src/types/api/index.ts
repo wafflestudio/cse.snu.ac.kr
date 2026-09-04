@@ -73,12 +73,25 @@ export type ImageModal = Res<'/api/v2/image-modal'>[number];
 
 export type FacultyList = Res<'/api/v2/professor/active'>;
 export type SimpleFaculty = FacultyList['professors'][number];
-export type Faculty = NonNullable<Res<'/api/v2/professor/{professorId}'>['ko']>;
+// 편집·상세가 쓰는 응답. 공유값은 최상위, 언어별 값만 ko/en 안에.
+export type ProfessorWithLanguage = Res<'/api/v2/professor/{professorId}'>;
+export type Faculty = NonNullable<ProfessorWithLanguage['ko']>;
+// 상세 화면이 쓰는 모양 — 공유값과 해당 언어 번역본을 합친 것.
+export type FacultyDetail = Omit<ProfessorWithLanguage, 'ko' | 'en'> & Faculty;
 export type SimpleEmeritusFaculty = Res<'/api/v2/professor/inactive'>[number];
-export type EmeritusFaculty = Faculty;
 
 export type SimpleStaff = Res<'/api/v2/staff'>[number];
-export type Staff = NonNullable<Res<'/api/v2/staff/{staffId}'>['ko']>;
+// 편집·상세 화면이 쓰는 응답. 공유값은 최상위, 언어별 값만 ko/en 안에 있다.
+export type StaffWithLanguage = Res<'/api/v2/staff/{staffId}'>;
+export type Staff = NonNullable<StaffWithLanguage['ko']>;
+
+export type ProfessorPostBody =
+  components['schemas']['CreateProfessorLanguagesReqBody'];
+export type ProfessorPutBody =
+  components['schemas']['ModifyProfessorLanguagesReqBody'];
+export type StaffPostBody =
+  components['schemas']['CreateStaffLanguagesReqBody'];
+export type StaffPutBody = components['schemas']['ModifyStaffLanguagesReqBody'];
 
 /* ── 입학 ───────────────────────────────────────────────── */
 
@@ -129,13 +142,29 @@ export type StudentType = Param<
 
 // `/research/{researchType}`는 oneOf라 경로에서 분기별로 꺼낼 수 없다 — 스키마로 직접 지정.
 // 둘 다 응답 전용 스키마다.
-export type ResearchCenter = components['schemas']['ResearchCenterDto'];
+type ResearchCenter = components['schemas']['ResearchCenterDto'];
 export type ResearchCentersResponse = ResearchCenter[];
 export type ResearchGroup = components['schemas']['ResearchGroupDto'];
 export type ResearchGroupsResponse = ResearchGroup[];
 
 export type SimpleResearchLab = Res<'/api/v2/research/lab'>[number];
 export type ResearchLabWithLanguage = Res<'/api/v2/research/lab/{labId}'>;
+type ResearchLab = NonNullable<ResearchLabWithLanguage['ko']>;
+// 상세 화면이 쓰는 모양 — 공유값과 해당 언어 번역본을 합친 것.
+export type ResearchLabDetail = Omit<ResearchLabWithLanguage, 'ko' | 'en'> &
+  ResearchLab;
+
+// 요청 바디. 한/영이 공유하는 값(소속·연락처·종류)은 최상위에 있고
+// 언어별 값만 ko/en 안에 있다 — 폼이 이 타입을 달고 있어야 백엔드가 바뀔 때 컴파일이 막는다.
+// 편집 화면이 쓰는 응답 — 공유값은 최상위, 이름·설명만 ko/en 안에.
+export type ResearchWithLanguage = Res<'/api/v2/research/{researchId}'>;
+
+export type ResearchPostBody =
+  components['schemas']['CreateResearchLanguageReqBody'];
+export type ResearchPutBody =
+  components['schemas']['ModifyResearchLanguageReqBody'];
+export type LabPostBody = components['schemas']['CreateLabLanguageReqBody'];
+export type LabPutBody = components['schemas']['ModifyLabLanguageReqBody'];
 
 /* ── 통합 검색 ──────────────────────────────────────────── */
 // 통합검색 화면은 `/totalSearch` 한 번으로 전 도메인 상위 N개를 받는다.

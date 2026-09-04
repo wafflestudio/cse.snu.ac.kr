@@ -7,10 +7,10 @@ import LanguagePicker, {
 } from '@/components/form/LanguagePicker';
 import type { EditorImage } from '@/types/form';
 
+// 종류는 라우트가 정하고, 대표이미지는 하나뿐이다 — 언어별 값은 이름·설명뿐.
 interface ResearchGroupFormFields {
   name: string;
   description: string;
-  type: 'groups';
 }
 
 export interface ResearchGroupFormData {
@@ -35,8 +35,8 @@ export default function ResearchGroupEditor({
   const [language, setLanguage] = useState<Language>('ko');
   const formMethods = useForm<ResearchGroupFormData>({
     defaultValues: defaultValues ?? {
-      ko: { name: '', description: '', type: 'groups' },
-      en: { name: '', description: '', type: 'groups' },
+      ko: { name: '', description: '' },
+      en: { name: '', description: '' },
       image: null,
     },
     shouldFocusError: false,

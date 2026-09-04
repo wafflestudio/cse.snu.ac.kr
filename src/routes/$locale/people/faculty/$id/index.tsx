@@ -7,7 +7,7 @@ import { usePeopleSubNav } from '@/hooks/useSubNav';
 import PeopleInfoList from '@/routes/$locale/people/-components/PeopleInfoList';
 import PeopleLabNode from '@/routes/$locale/people/-components/PeopleLabNode';
 import PeopleProfileInfo from '@/routes/$locale/people/-components/PeopleProfileInfo';
-import type { Faculty } from '@/types/api';
+import type { ProfessorWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 
 function FacultyDetailPage() {
@@ -91,8 +91,11 @@ export const Route = createFileRoute('/$locale/people/faculty/$id/')({
 
     const data = await api
       .get(`v2/professor/${id}`)
-      .json<{ ko: Faculty; en: Faculty }>();
-    return data[locale];
+      .json<ProfessorWithLanguage>();
+    const translation = data[locale];
+    if (!translation) throw new Error('Professor translation not found');
+    // 표시용으로 공유값과 해당 언어값을 합쳐 넘긴다.
+    return { ...data, ...translation };
   },
   component: FacultyDetailPage,
 });

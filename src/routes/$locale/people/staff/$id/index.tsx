@@ -7,7 +7,7 @@ import { usePeopleSubNav } from '@/hooks/useSubNav';
 import PeopleContactList from '@/routes/$locale/people/-components/PeopleContactList';
 import PeopleInfoList from '@/routes/$locale/people/-components/PeopleInfoList';
 import PeopleProfileImage from '@/routes/$locale/people/-components/PeopleProfileImage';
-import type { Staff } from '@/types/api';
+import type { StaffWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 
 function StaffDetailPage() {
@@ -84,10 +84,11 @@ export const Route = createFileRoute('/$locale/people/staff/$id/')({
     const id = Number(params.id);
     if (Number.isNaN(id)) throw new Error('Invalid staff id');
 
-    const data = await api
-      .get(`v2/staff/${id}`)
-      .json<{ ko: Staff; en: Staff }>();
-    return data[locale];
+    const data = await api.get(`v2/staff/${id}`).json<StaffWithLanguage>();
+    const translation = data[locale];
+    if (!translation) throw new Error('Staff translation not found');
+    // 표시용으로 공유값과 해당 언어값을 합쳐 넘긴다.
+    return { ...data, ...translation };
   },
   component: StaffDetailPage,
 });

@@ -1,3 +1,4 @@
+import type { ProfessorPostBody, StaffPostBody } from '@/types/api';
 import { postMultipart } from './client';
 
 /**
@@ -5,8 +6,11 @@ import { postMultipart } from './client';
  * - 교수진(faculty/ACTIVE)은 seed/research.ts가 이미 시드(연구실이 참조).
  * - 여기선 명예교수(emeritus = professor status INACTIVE)와 행정직원(staff)을 시드.
  *
- * 주의(백엔드 동작): 교수 생성은 en 레코드도 ko 이름으로 저장한다(en.name 무시).
- * → emeritus en 목록도 한글 이름이 렌더된다. read 스펙은 ko 이름을 기대값으로 쓴다.
+ * 전화·이메일은 사람에게 하나뿐이라 요청 최상위에, 위치(office)는 주소 표기가
+ * 언어마다 달라 ko/en 안에 있다.
+ *
+ * ⚠️ 요청 본문에는 반드시 스키마 타입(*PostBody)을 붙인다 — 안 붙이면 백엔드가
+ * 바뀌어도 typecheck 를 통과하고 globalSetup 400 으로 죽어서야 알게 된다.
  */
 export const EMERITUS_SEED = {
   ko: '박명예',
@@ -33,20 +37,16 @@ export const STAFF_SEED = {
   },
 } as const;
 
-function emeritusBody(name: string, isKo: boolean) {
+// 언어별로 다른 값만 담는다. 신분·전화·이메일은 사람에게 하나뿐이라 요청 최상위에 있다.
+function emeritusTranslation(
+  name: string,
+  isKo: boolean,
+): ProfessorPostBody['ko'] {
   return {
     name,
-    status: 'INACTIVE',
     academicRank: isKo ? '명예교수' : 'Emeritus Professor',
     department: isKo ? '컴퓨터공학부' : 'CSE',
-    labId: null,
-    startDate: null,
-    endDate: null,
     office: null,
-    phone: null,
-    fax: null,
-    email: EMERITUS_SEED.email,
-    website: null,
     educations: [],
     researchAreas: [],
     careers: [],
@@ -54,13 +54,35 @@ function emeritusBody(name: string, isKo: boolean) {
 }
 
 export async function seedPeople(cookie: string) {
-  await postMultipart(cookie, '/api/v2/professor', {
-    ko: emeritusBody(EMERITUS_SEED.ko, true),
-    en: emeritusBody(EMERITUS_SEED.en, false),
-  });
+  const emeritus: ProfessorPostBody = {
+    status: 'INACTIVE',
+    labId: null,
+    startDate: null,
+    endDate: null,
+    phone: null,
+    fax: null,
+    email: EMERITUS_SEED.email,
+    website: null,
+    ko: emeritusTranslation(EMERITUS_SEED.ko, true),
+    en: emeritusTranslation(EMERITUS_SEED.en, false),
+  };
+  await postMultipart(cookie, '/api/v2/professor', emeritus);
 
-  await postMultipart(cookie, '/api/v2/staff', {
-    ko: STAFF_SEED.ko,
-    en: STAFF_SEED.en,
-  });
+  const staff: StaffPostBody = {
+    phone: STAFF_SEED.ko.phone,
+    email: STAFF_SEED.ko.email,
+    ko: {
+      name: STAFF_SEED.ko.name,
+      role: STAFF_SEED.ko.role,
+      office: STAFF_SEED.ko.office,
+      tasks: [...STAFF_SEED.ko.tasks],
+    },
+    en: {
+      name: STAFF_SEED.en.name,
+      role: STAFF_SEED.en.role,
+      office: STAFF_SEED.en.office,
+      tasks: [...STAFF_SEED.en.tasks],
+    },
+  };
+  await postMultipart(cookie, '/api/v2/staff', staff);
 }

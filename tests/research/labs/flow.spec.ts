@@ -36,12 +36,13 @@ test.describe('연구실 - 추가/편집/삭제 플로우', () => {
     await page.getByRole('link', { name: '연구실 추가' }).click();
     await page.waitForURL('**/research/labs/create');
 
-    await fillTextInput(page, 'ko.name', koName);
+    // 소속 스트림은 연구실에 하나뿐이라 언어 탭 밖에서 한 번만 고른다.
     await selectDropdown(page, '연구·교육 스트림', stream('ko'));
+
+    await fillTextInput(page, 'ko.name', koName);
     await fillHTMLEditor(page, '<p>한글 설명</p>');
     await switchEditorLanguage(page, 'en');
     await fillTextInput(page, 'en.name', enName);
-    await selectDropdown(page, '연구·교육 스트림', stream('en'));
     await fillHTMLEditor(page, '<p>English description</p>');
 
     await submitForm(page);
