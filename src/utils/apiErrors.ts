@@ -5,7 +5,7 @@ type Locale = 'ko' | 'en';
 type Text = Record<Locale, string>;
 
 /** 백엔드 오류 코드. 스펙(ErrorResponse.code)에서 생성되므로 백엔드 enum 과 항상 같다. */
-export type ErrorCode = components['schemas']['ErrorResponse']['code'];
+type ErrorCode = components['schemas']['ErrorResponse']['code'];
 
 /**
  * 코드 → 사용자 문구. 백엔드는 코드만 보내고 문구는 여기서 조립한다.
