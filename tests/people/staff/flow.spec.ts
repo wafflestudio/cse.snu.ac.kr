@@ -27,11 +27,14 @@ test.describe('행정직원 - 추가/편집/삭제 플로우', () => {
     await page.getByRole('link', { name: '추가하기' }).click();
     await page.waitForURL('**/people/staff/create');
 
+    // 전화·이메일은 사람에게 하나뿐이라 언어 탭 밖에 있다.
+    // 위치는 주소 표기가 한/영이 달라 탭 안에 있다.
+    await fillTextInput(page, 'phone', '02-880-0000');
+    await fillTextInput(page, 'email', 'auto@snu.ac.kr');
+
     await fillTextInput(page, 'ko.name', koName);
     await fillTextInput(page, 'ko.role', '행정');
     await fillTextInput(page, 'ko.office', '301동 316호');
-    await fillTextInput(page, 'ko.phone', '02-880-0000');
-    await fillTextInput(page, 'ko.email', 'auto@snu.ac.kr');
     await fillTextInput(page, 'ko.tasks_new', '학사 업무');
     await page.getByRole('button', { name: '추가', exact: true }).click();
 
@@ -39,8 +42,6 @@ test.describe('행정직원 - 추가/편집/삭제 플로우', () => {
     await fillTextInput(page, 'en.name', enName);
     await fillTextInput(page, 'en.role', 'Admin');
     await fillTextInput(page, 'en.office', 'Bldg 301, Rm 316');
-    await fillTextInput(page, 'en.phone', '02-880-0000');
-    await fillTextInput(page, 'en.email', 'auto@snu.ac.kr');
     await fillTextInput(page, 'en.tasks_new', 'Academic affairs');
     await page.getByRole('button', { name: '추가', exact: true }).click();
 
@@ -50,7 +51,14 @@ test.describe('행정직원 - 추가/편집/삭제 플로우', () => {
     await expect(page.getByRole('heading', { name: koName })).toBeVisible();
 
     // === en round-trip === (/en 상세에 입력한 en 이름이 노출되는지)
+    await expect(page.getByText('위치: 301동 316호')).toBeVisible();
     await expectEnDetailHeading(page, enName);
+    // 위치는 언어별 값이다 — 부모(공유)로 되돌리면 ko 표기가 새어 여기서 깨진다.
+    await setLocale(page, 'en');
+    await page.goto(new URL(page.url()).pathname.replace(/^\/ko/, '/en'));
+    await expect(page.getByText('Office: Bldg 301, Rm 316')).toBeVisible();
+    await setLocale(page, 'ko');
+    await page.goto(new URL(page.url()).pathname.replace(/^\/en/, '/ko'));
 
     // === 편집 ===
     await page.getByRole('link', { name: '편집' }).click();

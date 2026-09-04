@@ -6,7 +6,11 @@ import FacultyEditor, {
   type FacultyFormData,
 } from '@/routes/$locale/people/-components/FacultyEditor';
 import type { FacultyStatus } from '@/routes/$locale/people/-constants';
-import type { Faculty, SimpleResearchLab } from '@/types/api';
+import type {
+  ProfessorPostBody,
+  ProfessorWithLanguage,
+  SimpleResearchLab,
+} from '@/types/api';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
 import { stringParam } from '@/utils/searchSchema';
@@ -21,35 +25,32 @@ function FacultyCreate() {
   const onSubmit = async (content: FacultyFormData) => {
     const formData = new ApiFormData();
 
-    formData.appendJson('request', {
-      ko: {
-        ...content.ko,
-        status: content.status,
-        image: undefined,
-        startDate: content.ko.startDate.toISOString(),
-        endDate: content.ko.endDate.toISOString(),
-      },
-      en: {
-        ...content.en,
-        status: content.status,
-        image: undefined,
-        startDate: content.en.startDate.toISOString(),
-        endDate: content.en.endDate.toISOString(),
-      },
-    });
-    formData.appendIfLocal('mainImage', content.ko.image);
+    const request: ProfessorPostBody = {
+      status: content.status,
+      labId: content.labId,
+      startDate: content.startDate.toISOString(),
+      endDate: content.endDate.toISOString(),
+      phone: content.phone,
+      fax: content.fax,
+      email: content.email,
+      website: content.website,
+      ko: content.ko,
+      en: content.en,
+    };
+    formData.appendJson('request', request);
+    formData.appendIfLocal('mainImage', content.image);
 
     try {
       const response = await api
         .post('v2/professor', { body: formData })
-        .json<{ ko: Faculty; en: Faculty }>();
+        .json<ProfessorWithLanguage>();
       toast.success('교수진을 추가했습니다.');
 
       const path =
         content.status === 'INACTIVE'
           ? '/people/emeritus-faculty'
           : '/people/faculty';
-      navigate({ to: localizedPath(`${path}/${response.ko.id}`) });
+      navigate({ to: localizedPath(`${path}/${response.id}`) });
     } catch (error) {
       toastError(error);
     }

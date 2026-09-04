@@ -2,40 +2,32 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { ResearchCenter } from '@/types/api';
+import type { ResearchPutBody, ResearchWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
 import ResearchCenterEditor, {
   type ResearchCenterFormData,
 } from '../-components/ResearchCenterEditor';
 
-interface ResearchCenterData {
-  ko: ResearchCenter;
-  en: ResearchCenter;
-}
-
 function ResearchCenterEdit() {
   const loaderData = Route.useLoaderData();
 
-  const { ko, en } = loaderData;
+  const research = loaderData;
   const navigate = useNavigate();
   const { localizedPath } = useLanguage({});
 
   const defaultValues: ResearchCenterFormData = {
     ko: {
-      name: ko.name,
-      websiteURL: ko.websiteURL ?? '',
-      description: ko.description,
-      type: 'centers',
+      name: research.ko?.name ?? '',
+      description: research.ko?.description ?? '',
     },
     en: {
-      name: en.name,
-      websiteURL: en.websiteURL ?? '',
-      description: en.description,
-      type: 'centers',
+      name: research.en?.name ?? '',
+      description: research.en?.description ?? '',
     },
-    image: ko.mainImageUrl
-      ? { type: 'UPLOADED_IMAGE', url: ko.mainImageUrl }
+    websiteURL: research.websiteURL ?? '',
+    image: research.mainImageUrl
+      ? { type: 'UPLOADED_IMAGE', url: research.mainImageUrl }
       : null,
   };
 
@@ -48,14 +40,17 @@ function ResearchCenterEdit() {
 
     const removeImage = defaultValues.image !== null && formData.image === null;
 
-    data.appendJson('request', {
-      ko: { ...formData.ko, removeImage },
-      en: { ...formData.en, removeImage },
-    });
+    const request: ResearchPutBody = {
+      websiteURL: formData.websiteURL,
+      removeImage,
+      ko: formData.ko,
+      en: formData.en,
+    };
+    data.appendJson('request', request);
     data.appendIfLocal('newMainImage', formData.image);
 
     try {
-      await api.put(`v2/research/${ko.id}/${en.id}`, { body: data });
+      await api.put(`v2/research/${research.id}`, { body: data });
 
       toast.success('연구 센터를 수정했습니다.');
       navigate({ to: localizedPath('/research/centers') });
@@ -79,7 +74,9 @@ export const Route = createFileRoute('/$locale/research/centers/$id/edit')({
   loader: async ({ params }) => {
     const id = params.id;
 
-    const data = await api.get(`v2/research/${id}`).json<ResearchCenterData>();
+    const data = await api
+      .get(`v2/research/${id}`)
+      .json<ResearchWithLanguage>();
 
     return data;
   },

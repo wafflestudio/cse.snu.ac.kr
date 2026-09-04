@@ -5,7 +5,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import ResearchLabEditor, {
   type ResearchLabFormData,
 } from '@/routes/$locale/research/labs/-components/ResearchLabEditor';
-import type { ResearchGroup, SimpleFaculty } from '@/types/api';
+import type { LabPostBody, ResearchGroup, SimpleFaculty } from '@/types/api';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
 
@@ -19,19 +19,17 @@ function ResearchLabCreate() {
   const onSubmit = async ({ ko, en, ...common }: ResearchLabFormData) => {
     const formData = new ApiFormData();
 
-    formData.appendJson('request', {
-      ko: {
-        ...ko,
-        ...common,
-        professorIds: ko.professorId ? [ko.professorId] : [],
-      },
-      en: {
-        ...en,
-        ...common,
-        professorIds: en.professorId ? [en.professorId] : [],
-      },
-    });
-
+    const request: LabPostBody = {
+      groupId: common.groupId,
+      professorIds: common.professorId ? [common.professorId] : [],
+      acronym: common.acronym,
+      tel: common.tel,
+      youtube: common.youtube,
+      websiteURL: common.websiteURL,
+      ko,
+      en,
+    };
+    formData.appendJson('request', request);
     formData.appendIfLocal('pdf', common.pdf);
 
     try {
