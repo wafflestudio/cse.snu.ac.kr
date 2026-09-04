@@ -15,39 +15,43 @@ import {
   FACULTY_STATUS,
   type FacultyStatus,
 } from '@/routes/$locale/people/-constants';
-import type { Faculty, SimpleResearchLab } from '@/types/api';
+import type {
+  Faculty,
+  ProfessorWithLanguage,
+  SimpleResearchLab,
+} from '@/types/api';
 import type { EditorImage } from '@/types/form';
 
-interface FacultyFormFields {
+// 언어별로 다른 값만 언어 탭 안에 둔다. 사진·연락처·소속 연구실·재직 기간은
+// 사람에게 하나뿐이라 밖에 있다.
+interface FacultyTranslationFields {
   name: string;
   academicRank: string;
   department: string;
-  image: EditorImage | null;
-  phone: string;
-  email: string;
+  // 호실은 주소 표기라 한/영이 다르다.
   office: string;
-  fax: string;
-  website: string;
   educations: string[];
   researchAreas: string[];
   careers: string[];
-  labId: number | null;
-  startDate: Date;
-  endDate: Date;
 }
 
 export interface FacultyFormData {
   status: FacultyStatus;
-  ko: FacultyFormFields;
-  en: FacultyFormFields;
+  image: EditorImage | null;
+  phone: string;
+  email: string;
+  fax: string;
+  website: string;
+  labId: number | null;
+  startDate: Date;
+  endDate: Date;
+  ko: FacultyTranslationFields;
+  en: FacultyTranslationFields;
 }
 
 interface FacultyEditorProps {
-  defaultValues?: {
-    status?: FacultyStatus;
-    ko?: Partial<Faculty>;
-    en?: Partial<Faculty>;
-  };
+  // 응답 그대로 받는다 — 공유값이 최상위에 있다.
+  defaultValues?: Partial<ProfessorWithLanguage>;
   status?: FacultyStatus;
   labs: { ko: SimpleResearchLab[]; en: SimpleResearchLab[] };
   onCancel: () => void;
@@ -55,29 +59,15 @@ interface FacultyEditorProps {
   onDelete?: () => Promise<void>;
 }
 
-const normalizeFacultyData = (
-  faculty?: Partial<Faculty>,
-): FacultyFormFields => {
-  return {
-    name: faculty?.name ?? '',
-    academicRank: faculty?.academicRank ?? '',
-    department: faculty?.department ?? '',
-    image: faculty?.imageURL
-      ? { type: 'UPLOADED_IMAGE', url: faculty.imageURL }
-      : null,
-    email: faculty?.email ?? '',
-    phone: faculty?.phone ?? '',
-    office: faculty?.office ?? '',
-    fax: faculty?.fax ?? '',
-    website: faculty?.website ?? '',
-    educations: faculty?.educations ?? [],
-    researchAreas: faculty?.researchAreas ?? [],
-    careers: faculty?.careers ?? [],
-    labId: faculty?.labId ?? null,
-    startDate: faculty?.startDate ? new Date(faculty.startDate) : new Date(),
-    endDate: faculty?.endDate ? new Date(faculty.endDate) : new Date(),
-  };
-};
+const translationOf = (faculty?: Faculty | null): FacultyTranslationFields => ({
+  name: faculty?.name ?? '',
+  academicRank: faculty?.academicRank ?? '',
+  department: faculty?.department ?? '',
+  office: faculty?.office ?? '',
+  educations: faculty?.educations ?? [],
+  researchAreas: faculty?.researchAreas ?? [],
+  careers: faculty?.careers ?? [],
+});
 
 export default function FacultyEditor({
   defaultValues,
@@ -91,8 +81,22 @@ export default function FacultyEditor({
   const formMethods = useForm<FacultyFormData>({
     defaultValues: {
       status: defaultValues?.status ?? status,
-      ko: normalizeFacultyData(defaultValues?.ko),
-      en: normalizeFacultyData(defaultValues?.en),
+      image: defaultValues?.imageURL
+        ? { type: 'UPLOADED_IMAGE', url: defaultValues.imageURL }
+        : null,
+      phone: defaultValues?.phone ?? '',
+      email: defaultValues?.email ?? '',
+      fax: defaultValues?.fax ?? '',
+      website: defaultValues?.website ?? '',
+      labId: defaultValues?.labId ?? null,
+      startDate: defaultValues?.startDate
+        ? new Date(defaultValues.startDate)
+        : new Date(),
+      endDate: defaultValues?.endDate
+        ? new Date(defaultValues.endDate)
+        : new Date(),
+      ko: translationOf(defaultValues?.ko),
+      en: translationOf(defaultValues?.en),
     },
     shouldFocusError: false,
   });
@@ -114,9 +118,11 @@ export default function FacultyEditor({
           </div>
         </Fieldset>
 
+        <SharedEditor labs={labs.ko} />
+
         <LanguagePicker selected={language} onChange={setLanguage} />
-        {language === 'ko' && <Editor language="ko" labs={labs.ko} />}
-        {language === 'en' && <Editor language="en" labs={labs.en} />}
+        {language === 'ko' && <TranslationEditor language="ko" />}
+        {language === 'en' && <TranslationEditor language="en" />}
 
         <Form.Action
           onCancel={onCancel}
@@ -128,19 +134,84 @@ export default function FacultyEditor({
   );
 }
 
-const Editor = ({
-  language,
-  labs,
-}: {
-  language: Language;
-  labs: SimpleResearchLab[];
-}) => {
+const SharedEditor = ({ labs }: { labs: SimpleResearchLab[] }) => {
   const { control } = useFormContext<FacultyFormData>();
   const status = useWatch({ control, name: 'status' });
 
   return (
     <>
-      {/* 기본 정보 */}
+      {/* 재직 기간 (역대 교수진만 활성화) */}
+      <Form.Section
+        title="재직 기간"
+        spacing="10"
+        titleSpacing="2"
+        hidden={status === 'ACTIVE'}
+      >
+        <div className="flex w-[400px]">
+          <Fieldset title="시작 날짜" titleSpacing="2">
+            <Form.Date name="startDate" hideTime />
+          </Fieldset>
+          <Fieldset title="종료 날짜" titleSpacing="2">
+            <Form.Date name="endDate" hideTime />
+          </Fieldset>
+        </div>
+      </Form.Section>
+
+      <Fieldset title="사진" spacing="12" titleSpacing="2">
+        <label
+          htmlFor="image"
+          className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500"
+        >
+          3:4 비율의 증명사진이 가장 적합합니다.
+        </label>
+        <Form.Image name="image" />
+      </Fieldset>
+
+      {/* 연구실 (현직 교수만 활성화) */}
+      <Fieldset
+        title="연구실"
+        spacing="5"
+        titleSpacing="2"
+        hidden={status !== 'ACTIVE'}
+      >
+        <Form.Dropdown
+          name="labId"
+          contents={[
+            { value: null, label: '선택 안 함' },
+            ...labs.map((lab) => ({ value: lab.id, label: lab.name })),
+          ]}
+        />
+      </Fieldset>
+
+      <Form.Section title="연락처 정보" titleSpacing="3">
+        <div className="flex w-2xl">
+          <Fieldset title="전화번호" spacing="5" titleSpacing="2">
+            <Form.Text
+              name="phone"
+              maxWidth="max-w-[20rem]"
+              placeholder="예: (02) 880-7302"
+            />
+          </Fieldset>
+          <Fieldset title="팩스" spacing="5" titleSpacing="2">
+            <Form.Text name="fax" maxWidth="max-w-[20rem]" />
+          </Fieldset>
+        </div>
+
+        <Fieldset title="이메일" spacing="5" titleSpacing="2">
+          <Form.Text name="email" maxWidth="max-w-[25rem]" />
+        </Fieldset>
+
+        <Fieldset title="웹사이트 URL" spacing="5" titleSpacing="2">
+          <Form.Text name="website" maxWidth="max-w-[25rem]" />
+        </Fieldset>
+      </Form.Section>
+    </>
+  );
+};
+
+const TranslationEditor = ({ language }: { language: Language }) => {
+  return (
+    <>
       <Fieldset title="이름" spacing="5" titleSpacing="2" required>
         <Form.Text
           name={`${language}.name`}
@@ -170,51 +241,14 @@ const Editor = ({
         />
       </Fieldset>
 
-      {/* 재직 기간 (역대 교수진만 활성화) */}
-      <Form.Section
-        title="재직 기간"
-        spacing="10"
-        titleSpacing="2"
-        hidden={status === 'ACTIVE'}
-      >
-        <div className="flex w-[400px]">
-          <Fieldset title="시작 날짜" titleSpacing="2">
-            <Form.Date name={`${language}.startDate`} hideTime />
-          </Fieldset>
-          <Fieldset title="종료 날짜" titleSpacing="2">
-            <Form.Date name={`${language}.endDate`} hideTime />
-          </Fieldset>
-        </div>
-      </Form.Section>
-
-      {/* 사진 */}
-      <Fieldset title="사진" spacing="12" titleSpacing="2">
-        <label
-          htmlFor={`${language}.image`}
-          className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500"
-        >
-          3:4 비율의 증명사진이 가장 적합합니다.
-        </label>
-        <Form.Image name={`${language}.image`} />
-      </Fieldset>
-
-      {/* 연구실 (현직 교수만 활성화) */}
-      <Fieldset
-        title="연구실"
-        spacing="5"
-        titleSpacing="2"
-        hidden={status !== 'ACTIVE'}
-      >
-        <Form.Dropdown
-          name={`${language}.labId`}
-          contents={[
-            { value: null, label: '선택 안 함' },
-            ...labs.map((lab) => ({ value: lab.id, label: lab.name })),
-          ]}
+      <Fieldset title="위치" spacing="10" titleSpacing="2">
+        <Form.Text
+          name={`${language}.office`}
+          maxWidth="max-w-[20rem]"
+          placeholder="예: 301동 504호"
         />
       </Fieldset>
 
-      {/* 학력, 연구 분야, 경력 */}
       <Fieldset title="학력" spacing="2.5" titleSpacing="2">
         <Form.TextList
           name={`${language}.educations`}
@@ -235,37 +269,6 @@ const Editor = ({
           placeholder="예: 2015.09. - 현재: 전임교수, 서울대학교 컴퓨터공학부"
         />
       </Fieldset>
-
-      {/* 연락처 정보 */}
-      <Form.Section title="연락처 정보" titleSpacing="3">
-        <Fieldset title="위치" spacing="5" titleSpacing="2">
-          <Form.Text
-            name={`${language}.office`}
-            maxWidth="max-w-[20rem]"
-            placeholder="예: 301동 504호"
-          />
-        </Fieldset>
-        <div className="flex w-2xl">
-          <Fieldset title="전화번호" spacing="5" titleSpacing="2">
-            <Form.Text
-              name={`${language}.phone`}
-              maxWidth="max-w-[20rem]"
-              placeholder="예: (02) 880-7302"
-            />
-          </Fieldset>
-          <Fieldset title="팩스" spacing="5" titleSpacing="2">
-            <Form.Text name={`${language}.fax`} maxWidth="max-w-[20rem]" />
-          </Fieldset>
-        </div>
-
-        <Fieldset title="이메일" spacing="5" titleSpacing="2">
-          <Form.Text name={`${language}.email`} maxWidth="max-w-[25rem]" />
-        </Fieldset>
-
-        <Fieldset title="웹사이트 URL" spacing="5" titleSpacing="2">
-          <Form.Text name={`${language}.website`} maxWidth="max-w-[25rem]" />
-        </Fieldset>
-      </Form.Section>
     </>
   );
 };

@@ -9,7 +9,11 @@ import LanguagePicker, {
 import PageLayout from '@/components/layout/PageLayout';
 import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { FacilitiesResponse, Facility } from '@/types/api';
+import type {
+  FacilitiesResponse,
+  FacilityPutBody,
+  FacilityWithLanguage,
+} from '@/types/api';
 import type { EditorImage } from '@/types/form';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
@@ -21,6 +25,19 @@ interface FacilityFormData {
   imageURL: EditorImage;
 }
 
+// 사진은 시설 하나에 한 장이라 최상위에서 온다. 이름·설명·위치만 언어별이다.
+function formValuesOf(facility: FacilityWithLanguage): FacilityFormData {
+  const empty = { name: '', description: '', locations: [] };
+  return {
+    ko: facility.ko ?? empty,
+    en: facility.en ?? empty,
+    imageURL: facility.imageURL && {
+      type: 'UPLOADED_IMAGE',
+      url: facility.imageURL,
+    },
+  };
+}
+
 function FacilitiesEdit() {
   const loaderData = Route.useLoaderData();
 
@@ -29,22 +46,7 @@ function FacilitiesEdit() {
   const { localizedPath } = useLanguage({});
   const [language, setLanguage] = useState<Language>('ko');
 
-  const defaultValues: FacilityFormData = {
-    ko: {
-      name: facility.ko.name,
-      description: facility.ko.description,
-      locations: facility.ko.locations,
-    },
-    en: {
-      name: facility.en.name,
-      description: facility.en.description,
-      locations: facility.en.locations,
-    },
-    imageURL: facility.ko.imageURL && {
-      type: 'UPLOADED_IMAGE',
-      url: facility.ko.imageURL,
-    },
-  };
+  const defaultValues = formValuesOf(facility);
 
   const methods = useForm({ defaultValues, shouldFocusError: false });
 
@@ -55,15 +57,17 @@ function FacilitiesEdit() {
   const onSubmit = methods.handleSubmit(async ({ ko, en, imageURL }) => {
     const formData = new ApiFormData();
 
-    formData.appendJson('request', {
+    // 요청 타입을 달아 둔다 — 백엔드 스키마가 바뀌면 여기서 컴파일이 막힌다.
+    const request: FacilityPutBody = {
       ko,
       en,
       removeImage: defaultValues.imageURL !== null && imageURL === null,
-    });
+    };
+    formData.appendJson('request', request);
     formData.appendIfLocal('newMainImage', imageURL);
 
     try {
-      await api.put(`v2/about/facilities/${facility.ko.id}`, {
+      await api.put(`v2/about/facilities/${facility.id}`, {
         body: formData,
       });
 
@@ -74,27 +78,9 @@ function FacilitiesEdit() {
     }
   });
 
-  const handleFacilityChange = (newFacility: {
-    ko: Facility;
-    en: Facility;
-  }) => {
-    navigate({ to: '.', search: { id: String(newFacility.ko.id) } });
-    methods.reset({
-      ko: {
-        name: newFacility.ko.name,
-        description: newFacility.ko.description,
-        locations: newFacility.ko.locations,
-      },
-      en: {
-        name: newFacility.en.name,
-        description: newFacility.en.description,
-        locations: newFacility.en.locations,
-      },
-      imageURL: newFacility.ko.imageURL && {
-        type: 'UPLOADED_IMAGE',
-        url: newFacility.ko.imageURL,
-      },
-    });
+  const handleFacilityChange = (newFacility: FacilityWithLanguage) => {
+    navigate({ to: '.', search: { id: String(newFacility.id) } });
+    methods.reset(formValuesOf(newFacility));
   };
 
   return (
@@ -112,18 +98,18 @@ function FacilitiesEdit() {
               </label>
               <select
                 id="facility-select"
-                value={facility.ko.id}
+                value={facility.id}
                 onChange={(e) => {
                   const selected = allFacilities.find(
-                    (f) => f.ko.id === Number(e.target.value),
+                    (f) => f.id === Number(e.target.value),
                   );
                   if (selected) handleFacilityChange(selected);
                 }}
                 className="w-full max-w-md rounded-md border border-neutral-300 px-3 py-2"
               >
                 {allFacilities.map((f) => (
-                  <option key={f.ko.id} value={f.ko.id}>
-                    {f.ko.name}
+                  <option key={f.id} value={f.id}>
+                    {f.ko?.name}
                   </option>
                 ))}
               </select>
@@ -222,11 +208,7 @@ export const Route = createFileRoute('/$locale/about/facilities/edit')({
     // id param으로 facility 찾기
     let selectedFacility = facilities[0];
     if (idParam) {
-      const found = facilities.find(
-        (item) =>
-          item.ko.id.toString() === idParam ||
-          item.en.id.toString() === idParam,
-      );
+      const found = facilities.find((item) => item.id.toString() === idParam);
       if (found) selectedFacility = found;
     }
 

@@ -7,7 +7,7 @@ import { usePeopleSubNav } from '@/hooks/useSubNav';
 import PeopleContactList from '@/routes/$locale/people/-components/PeopleContactList';
 import PeopleInfoList from '@/routes/$locale/people/-components/PeopleInfoList';
 import PeopleProfileImage from '@/routes/$locale/people/-components/PeopleProfileImage';
-import type { EmeritusFaculty } from '@/types/api';
+import type { ProfessorWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 
 function EmeritusFacultyDetailPage() {
@@ -104,11 +104,13 @@ export const Route = createFileRoute('/$locale/people/emeritus-faculty/$id/')({
     const id = Number(params.id);
     if (Number.isNaN(id)) throw new Error('Invalid emeritus faculty id');
 
-    const data = await api.get(`v2/professor/${id}`).json<{
-      ko: EmeritusFaculty;
-      en: EmeritusFaculty;
-    }>();
-    return data[locale];
+    const data = await api
+      .get(`v2/professor/${id}`)
+      .json<ProfessorWithLanguage>();
+    const translation = data[locale];
+    if (!translation) throw new Error('Professor translation not found');
+    // 표시용으로 공유값과 해당 언어값을 합쳐 넘긴다.
+    return { ...data, ...translation };
   },
   component: EmeritusFacultyDetailPage,
 });

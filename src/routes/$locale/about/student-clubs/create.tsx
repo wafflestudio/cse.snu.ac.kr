@@ -9,6 +9,7 @@ import LanguagePicker, {
 import PageLayout from '@/components/layout/PageLayout';
 import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
+import type { ClubPostBody } from '@/types/api';
 import type { EditorImage } from '@/types/form';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
@@ -39,7 +40,8 @@ function StudentClubsCreate() {
   const onSubmit = methods.handleSubmit(async ({ ko, en, image }) => {
     const formData = new ApiFormData();
 
-    formData.appendJson('request', { ko, en });
+    const request: ClubPostBody = { ko, en };
+    formData.appendJson('request', request);
     formData.appendIfLocal('newMainImage', image);
 
     try {

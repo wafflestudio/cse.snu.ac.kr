@@ -2,30 +2,31 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { ResearchGroup } from '@/types/api';
+import type { ResearchPutBody, ResearchWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
 import ResearchGroupEditor, {
   type ResearchGroupFormData,
 } from '../-components/ResearchGroupEditor';
 
-interface ResearchGroupData {
-  ko: ResearchGroup;
-  en: ResearchGroup;
-}
-
 function ResearchGroupEdit() {
   const loaderData = Route.useLoaderData();
 
-  const { ko, en } = loaderData;
+  const research = loaderData;
   const navigate = useNavigate();
   const { localizedPath } = useLanguage({});
 
   const defaultValues: ResearchGroupFormData = {
-    ko: { name: ko.name, description: ko.description, type: 'groups' },
-    en: { name: en.name, description: en.description, type: 'groups' },
-    image: ko.mainImageUrl
-      ? { type: 'UPLOADED_IMAGE', url: ko.mainImageUrl }
+    ko: {
+      name: research.ko?.name ?? '',
+      description: research.ko?.description ?? '',
+    },
+    en: {
+      name: research.en?.name ?? '',
+      description: research.en?.description ?? '',
+    },
+    image: research.mainImageUrl
+      ? { type: 'UPLOADED_IMAGE', url: research.mainImageUrl }
       : null,
   };
 
@@ -38,14 +39,16 @@ function ResearchGroupEdit() {
 
     const removeImage = defaultValues.image !== null && formData.image === null;
 
-    data.appendJson('request', {
-      ko: { ...formData.ko, removeImage },
-      en: { ...formData.en, removeImage },
-    });
+    const request: ResearchPutBody = {
+      removeImage,
+      ko: formData.ko,
+      en: formData.en,
+    };
+    data.appendJson('request', request);
     data.appendIfLocal('newMainImage', formData.image);
 
     try {
-      await api.put(`v2/research/${ko.id}/${en.id}`, { body: data });
+      await api.put(`v2/research/${research.id}`, { body: data });
 
       toast.success('연구 스트림을 수정했습니다.');
       navigate({ to: localizedPath('/research/groups') });
@@ -69,7 +72,9 @@ export const Route = createFileRoute('/$locale/research/groups/$id/edit')({
   loader: async ({ params }) => {
     const id = params.id;
 
-    const data = await api.get(`v2/research/${id}`).json<ResearchGroupData>();
+    const data = await api
+      .get(`v2/research/${id}`)
+      .json<ResearchWithLanguage>();
 
     return data;
   },

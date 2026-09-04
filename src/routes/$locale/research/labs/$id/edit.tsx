@@ -6,6 +6,7 @@ import ResearchLabEditor, {
   type ResearchLabFormData,
 } from '@/routes/$locale/research/labs/-components/ResearchLabEditor';
 import type {
+  LabPutBody,
   ResearchGroup,
   ResearchLabWithLanguage,
   SimpleFaculty,
@@ -22,55 +23,45 @@ function ResearchLabEdit() {
 
   const defaultValues: ResearchLabFormData = {
     ko: {
-      name: lab.ko.name,
-      description: lab.ko.description ?? '',
-      groupId: lab.ko.group?.id ?? null,
-      professorId: lab.ko.professors[0]?.id ?? null,
-      location: lab.ko.location || '',
+      name: lab.ko?.name ?? '',
+      description: lab.ko?.description ?? '',
+      location: lab.ko?.location ?? '',
     },
     en: {
-      name: lab.en.name,
-      description: lab.en.description ?? '',
-      groupId: lab.en.group?.id ?? null,
-      professorId: lab.en.professors[0]?.id ?? null,
-      location: lab.en.location || '',
+      name: lab.en?.name ?? '',
+      description: lab.en?.description ?? '',
+      location: lab.en?.location ?? '',
     },
-    acronym: lab.ko.acronym ?? '',
-    tel: lab.ko.tel || '',
-    websiteURL: lab.ko.websiteURL || '',
-    youtube: lab.ko.youtube || '',
-    pdf: lab.ko.pdf ? [{ type: 'UPLOADED_FILE', file: lab.ko.pdf }] : [],
+    groupId: lab.groupId,
+    professorId: lab.professorIds[0] ?? null,
+    acronym: lab.acronym ?? '',
+    tel: lab.tel ?? '',
+    websiteURL: lab.websiteURL ?? '',
+    youtube: lab.youtube ?? '',
+    pdf: lab.pdf ? [{ type: 'UPLOADED_FILE', file: lab.pdf }] : [],
   };
 
   const onSubmit = async ({ ko, en, ...common }: ResearchLabFormData) => {
-    const removePdf = lab.ko.pdf !== null && common.pdf.length === 0;
-
     const formData = new ApiFormData();
-
-    formData.appendJson('request', {
-      ko: {
-        ...ko,
-        ...common,
-        professorIds: ko.professorId ? [ko.professorId] : [],
-        removePdf,
-      },
-      en: {
-        ...en,
-        ...common,
-        professorIds: en.professorId ? [en.professorId] : [],
-        removePdf,
-      },
-    });
-
+    const request: LabPutBody = {
+      groupId: common.groupId,
+      professorIds: common.professorId ? [common.professorId] : [],
+      acronym: common.acronym,
+      tel: common.tel,
+      youtube: common.youtube,
+      websiteURL: common.websiteURL,
+      removePdf: lab.pdf !== null && common.pdf.length === 0,
+      ko,
+      en,
+    };
+    formData.appendJson('request', request);
     formData.appendIfLocal('pdf', common.pdf);
 
     try {
-      await api.put(`v2/research/lab/${lab.ko.id}/${lab.en.id}`, {
-        body: formData,
-      });
+      await api.put(`v2/research/lab/${lab.id}`, { body: formData });
 
       toast.success('연구실을 수정했습니다.');
-      navigate({ to: localizedPath(`/research/labs/${lab.ko.id}`) });
+      navigate({ to: localizedPath(`/research/labs/${lab.id}`) });
     } catch (error) {
       toastError(error);
     }
@@ -78,7 +69,7 @@ function ResearchLabEdit() {
 
   const onDelete = async () => {
     try {
-      await api.delete(`v2/research/lab/${lab.ko.id}/${lab.en.id}`);
+      await api.delete(`v2/research/lab/${lab.id}`);
 
       toast.success('연구실을 삭제했습니다.');
       navigate({ to: localizedPath('/research/labs') });

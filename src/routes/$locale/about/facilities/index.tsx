@@ -62,13 +62,20 @@ export const Route = createFileRoute('/$locale/about/facilities/')({
     const facilities = await api
       .get(`v2/about/facilities`)
       .json<FacilitiesResponse>();
+    // 표시용으로 공유값(id·사진)과 해당 언어값을 합쳐 넘긴다.
     return Promise.all(
-      facilities.map(async (facility) => ({
-        ...facility[locale],
-        description: await processHtmlForCsp({
-          data: facility[locale].description,
-        }),
-      })),
+      facilities.map(async (facility) => {
+        const translation = facility[locale];
+        if (!translation) throw new Error('시설 번역본이 없습니다.');
+        return {
+          id: facility.id,
+          imageURL: facility.imageURL,
+          ...translation,
+          description: await processHtmlForCsp({
+            data: translation.description,
+          }),
+        };
+      }),
     );
   },
   component: FacilitiesPage,

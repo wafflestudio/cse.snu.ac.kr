@@ -101,6 +101,7 @@ const MESSAGES: Record<ErrorCode, Text> = {
     ko: '해당 연도 통계가 이미 있습니다.',
     en: 'Statistics for that year already exist.',
   },
+  'ABOUT-07': { ko: '소개 글을 찾을 수 없습니다.', en: 'Page not found.' },
   'ABOUT-06': {
     ko: '통계 항목을 전부 입력해 주세요.',
     en: 'Please fill in every statistics row.',

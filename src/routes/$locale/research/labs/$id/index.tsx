@@ -8,7 +8,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { createSelectionUrl } from '@/hooks/useSelectionList';
 import { useResearchSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
-import type { ResearchLabWithLanguage } from '@/types/api';
+import type { ResearchLabDetail, ResearchLabWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 import { stringParam } from '@/utils/searchSchema';
 import { stripHtml, truncateDescription } from '@/utils/string';
@@ -72,14 +72,14 @@ function ResearchLabDetailPage() {
         </div>
       </LoginVisible>
 
-      {lab.group && (
+      {lab.groupName && (
         <StreamLink
-          groupName={lab.group.name}
+          groupName={lab.groupName}
           localizedPath={localizedPath}
           label={t('스트림')}
         />
       )}
-      <div className={lab.group ? 'mt-6' : ''}>
+      <div className={lab.groupName ? 'mt-6' : ''}>
         <div className="mx-2 mb-6 flex justify-end sm:hidden sm:mb-0">
           {researchLabInfo}
         </div>
@@ -155,7 +155,8 @@ function LabSummary({
   );
 }
 
-type ProcessedLab = Omit<ResearchLabWithLanguage['ko'], 'description'> & {
+// 공유값 + 해당 언어 번역본 + CSP 처리된 본문.
+type ProcessedLab = Omit<ResearchLabDetail, 'description'> & {
   description: import('@/utils/csp').ProcessedHtml;
 };
 
@@ -212,10 +213,15 @@ export const Route = createFileRoute('/$locale/research/labs/$id/')({
       .get(`v2/research/lab/${id}`)
       .json<ResearchLabWithLanguage>();
 
+    const translation = data[locale];
+    if (!translation) throw new Response('Not Found', { status: 404 });
+
+    // 표시용으로 공유값과 해당 언어값을 합쳐 넘긴다.
     return {
-      ...data[locale],
+      ...data,
+      ...translation,
       description: await processHtmlForCsp({
-        data: data[locale].description ?? '',
+        data: translation.description ?? '',
       }),
     };
   },

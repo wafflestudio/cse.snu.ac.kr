@@ -1,7 +1,15 @@
+import type {
+  LabPostBody,
+  ProfessorPostBody,
+  ResearchPostBody,
+} from '@/types/api';
 import { postJson, postMultipart } from './client';
 
 /**
  * research 도메인 baseline 데이터 + 시더.
+ *
+ * ⚠️ 요청 본문에는 반드시 스키마 타입(*PostBody)을 붙인다. 붙이지 않으면 백엔드 요청
+ * 모양이 바뀌어도 typecheck 가 통과하고, globalSetup 이 400 으로 죽어서야 알게 된다.
  *
  * RESEARCH_SEED: research 계열 read 스펙이 검증에 쓰는 기대값 단일 출처.
  * seedResearch: 그룹 → 교수 → 연구실 순으로 심습니다(연구실이 그룹·교수를 참조).
@@ -45,22 +53,18 @@ export const RESEARCH_SEED = {
   ],
 } as const;
 
-type LangPair = { ko: { id: number }; en: { id: number } };
+// 한/영은 이제 한 부모 아래의 번역본이라 생성 응답이 id 하나를 돌려준다.
+type Created = { id: number };
 
-function professorBody(name: string, isKo: boolean) {
+function professorTranslation(
+  name: string,
+  isKo: boolean,
+): ProfessorPostBody['ko'] {
   return {
     name,
-    status: 'ACTIVE',
     academicRank: isKo ? '교수' : 'Professor',
     department: isKo ? '컴퓨터공학부' : 'CSE',
-    labId: null,
-    startDate: null,
-    endDate: null,
     office: null,
-    phone: null,
-    fax: null,
-    email: null,
-    website: null,
     educations: [],
     researchAreas: [],
     careers: [],
@@ -68,75 +72,80 @@ function professorBody(name: string, isKo: boolean) {
 }
 
 export async function seedResearch(cookie: string) {
-  const group = await postMultipart<LangPair>(cookie, '/api/v2/research', {
+  // 종류·웹사이트처럼 언어와 무관한 값은 최상위에, 이름·설명만 ko/en 안에.
+  const groupBody: ResearchPostBody = {
+    type: 'groups',
     ko: {
-      type: 'groups',
       name: RESEARCH_SEED.group.ko,
       description: '<p>시스템 연구 그룹</p>',
-      mainImageUrl: null,
     },
     en: {
-      type: 'groups',
       name: RESEARCH_SEED.group.en,
       description: '<p>Systems research group</p>',
-      mainImageUrl: null,
     },
-  });
+  };
+  const group = await postMultipart<Created>(
+    cookie,
+    '/api/v2/research',
+    groupBody,
+  );
 
-  await postMultipart(cookie, '/api/v2/research', {
+  const centerBody: ResearchPostBody = {
+    type: 'centers',
+    websiteURL: RESEARCH_SEED.center.website,
     ko: {
-      type: 'centers',
       name: RESEARCH_SEED.center.ko,
       description: '<p>인공지능 연구센터 소개</p>',
-      websiteURL: RESEARCH_SEED.center.website,
-      mainImageUrl: null,
     },
     en: {
-      type: 'centers',
       name: RESEARCH_SEED.center.en,
       description: '<p>AI Research Center intro</p>',
-      websiteURL: RESEARCH_SEED.center.website,
-      mainImageUrl: null,
     },
-  });
+  };
+  await postMultipart(cookie, '/api/v2/research', centerBody);
 
-  const professors: LangPair[] = [];
+  const professors: Created[] = [];
   for (const p of RESEARCH_SEED.professors) {
+    const body: ProfessorPostBody = {
+      status: 'ACTIVE',
+      labId: null,
+      startDate: null,
+      endDate: null,
+      phone: null,
+      fax: null,
+      email: null,
+      website: null,
+      ko: professorTranslation(p.ko, true),
+      en: professorTranslation(p.en, false),
+    };
     professors.push(
-      await postMultipart<LangPair>(cookie, '/api/v2/professor', {
-        ko: professorBody(p.ko, true),
-        en: professorBody(p.en, false),
-      }),
+      await postMultipart<Created>(cookie, '/api/v2/professor', body),
     );
   }
 
   for (let i = 0; i < RESEARCH_SEED.labs.length; i++) {
     const lab = RESEARCH_SEED.labs[i];
     const prof = professors[i];
-    await postMultipart(cookie, '/api/v2/research/lab', {
+    // 약칭은 실측상 한/영이 같아 공유값으로, 위치는 언어별로 남았다.
+    const body: LabPostBody = {
+      groupId: group.id,
+      professorIds: [prof.id],
+      acronym: lab.acronym,
+      tel: lab.tel,
+      youtube: null,
+      websiteURL: 'https://example.com',
       ko: {
         name: lab.ko,
         description: `<p>${lab.ko} 설명</p>`,
-        groupId: group.ko.id,
-        professorIds: [prof.ko.id],
         location: lab.location.ko,
-        tel: lab.tel,
-        acronym: lab.acronym,
-        youtube: null,
-        websiteURL: 'https://example.com',
       },
       en: {
         name: lab.en,
         description: `<p>${lab.en} description</p>`,
-        groupId: group.en.id,
-        professorIds: [prof.en.id],
         location: lab.location.en,
-        tel: lab.tel,
-        acronym: lab.acronym,
-        youtube: null,
-        websiteURL: 'https://example.com',
       },
-    });
+    };
+    await postMultipart(cookie, '/api/v2/research/lab', body);
   }
 
   // Top Conference List: conference_page 행(seed-content.sh)에 conference 추가(PATCH).

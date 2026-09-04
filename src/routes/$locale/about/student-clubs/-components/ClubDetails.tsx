@@ -12,7 +12,12 @@ import { api } from '@/utils/api';
 import type { ProcessedHtml } from '@/utils/csp';
 
 interface ClubDetailsProps {
-  club: { ko: ProcessedClub; en: ProcessedClub };
+  club: {
+    id: number;
+    imageURL: string | null;
+    ko: ProcessedClub;
+    en: ProcessedClub;
+  };
   locale: 'ko' | 'en';
 }
 
@@ -24,9 +29,10 @@ export default function ClubDetails({ club, locale }: ClubDetailsProps) {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   const oppositeLocale = locale === 'ko' ? 'en' : 'ko';
-  const image = club[locale].imageURL
+  // 사진은 동아리에 하나뿐이라 언어와 무관하게 최상위에서 온다.
+  const image = club.imageURL
     ? ({
-        src: club[locale].imageURL,
+        src: club.imageURL,
         width: 320,
         height: 200,
         mobileFullWidth: true,
@@ -35,7 +41,7 @@ export default function ClubDetails({ club, locale }: ClubDetailsProps) {
 
   const handleDelete = async () => {
     try {
-      await api.delete(`v2/about/student-clubs/${club.ko.id}`);
+      await api.delete(`v2/about/student-clubs/${club.id}`);
 
       setShowDeleteDialog(false);
       toast.success('동아리를 삭제했습니다.');
@@ -66,7 +72,7 @@ export default function ClubDetails({ club, locale }: ClubDetailsProps) {
               <Button
                 as="link"
                 to={localizedPath(
-                  `/about/student-clubs/edit?selected=${club.ko.id}`,
+                  `/about/student-clubs/edit?selected=${club.id}`,
                 )}
                 variant="secondary"
                 size="md"

@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
+import type { ResearchPostBody } from '@/types/api';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
 import ResearchGroupEditor, {
@@ -19,7 +20,12 @@ function ResearchGroupCreate() {
   const onSubmit = async ({ ko, en, image }: ResearchGroupFormData) => {
     const formData = new ApiFormData();
 
-    formData.appendJson('request', { ko, en });
+    const request: ResearchPostBody = {
+      type: 'groups',
+      ko,
+      en,
+    };
+    formData.appendJson('request', request);
     formData.appendIfLocal('newMainImage', image);
 
     try {

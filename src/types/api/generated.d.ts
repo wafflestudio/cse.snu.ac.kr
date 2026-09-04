@@ -4,14 +4,14 @@
  */
 
 export interface paths {
-    "/api/v2/staff/{koStaffId}/{enStaffId}": {
+    "/api/v2/staff/{staffId}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        get: operations["getStaff"];
         put: operations["updateStaff"];
         post?: never;
         delete: operations["deleteStaff"];
@@ -20,14 +20,14 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v2/research/{koreanId}/{englishId}": {
+    "/api/v2/research/{researchId}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        get: operations["readResearch"];
         put: operations["updateResearch"];
         post?: never;
         delete: operations["deleteResearch"];
@@ -36,14 +36,14 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v2/research/lab/{koreanLabId}/{englishLabId}": {
+    "/api/v2/research/lab/{labId}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        get: operations["readLab"];
         put: operations["updateLab"];
         post?: never;
         delete: operations["deleteLab"];
@@ -68,14 +68,14 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v2/professor/{koProfessorId}/{enProfessorId}": {
+    "/api/v2/professor/{professorId}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        get: operations["getProfessor"];
         put: operations["updateProfessor"];
         post?: never;
         delete: operations["deleteProfessor"];
@@ -180,17 +180,17 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v2/academics/scholarship": {
+    "/api/v2/academics/scholarship/{scholarshipId}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        get: operations["getScholarship"];
         put: operations["updateScholarship"];
         post?: never;
-        delete?: never;
+        delete: operations["deleteScholarship"];
         options?: never;
         head?: never;
         patch?: never;
@@ -756,22 +756,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v2/staff/{staffId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getStaff"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/v2/search/refresh": {
         parameters: {
             query?: never;
@@ -860,54 +844,6 @@ export interface paths {
             cookie?: never;
         };
         get: operations["readAllResearch"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/research/{researchId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["readResearch"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/research/lab/{labId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["readLab"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/professor/{professorId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getProfessor"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1023,22 +959,6 @@ export interface paths {
         put?: never;
         post?: never;
         delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/academics/scholarship/{scholarshipId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getScholarship"];
-        put?: never;
-        post?: never;
-        delete: operations["deleteScholarship"];
         options?: never;
         head?: never;
         patch?: never;
@@ -1161,6 +1081,9 @@ export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
         ModifyStaffLanguagesReqBody: {
+            phone: string;
+            email: string;
+            removeImage: boolean;
             ko: components["schemas"]["ModifyStaffReqBody"];
             en: components["schemas"]["ModifyStaffReqBody"];
         };
@@ -1168,53 +1091,32 @@ export interface components {
             name: string;
             role: string;
             office: string;
-            phone: string;
-            email: string;
             tasks: string[];
-            removeImage: boolean;
         };
-        StaffDto: {
+        StaffLanguagesDto: {
             /** Format: int64 */
             id: number;
-            language: string;
+            phone: string;
+            email: string;
+            imageURL?: string | null;
+            ko?: components["schemas"]["StaffTranslationDto"] | null;
+            en?: components["schemas"]["StaffTranslationDto"] | null;
+        };
+        StaffTranslationDto: {
             name: string;
             role: string;
             office: string;
-            phone: string;
-            email: string;
             tasks: string[];
-            imageURL?: string | null;
         };
-        StaffLanguagesDto: {
-            ko?: components["schemas"]["StaffDto"] | null;
-            en?: components["schemas"]["StaffDto"] | null;
-        };
-        ModifyResearchCenterReqBody: {
-            type: "ModifyResearchCenterReqBody";
-        } & (Omit<WithRequired<components["schemas"]["ModifyResearchSealedReqBody"], "description" | "name" | "removeImage" | "type">, "type"> & {
-            websiteURL?: string | null;
-        });
-        ModifyResearchGroupReqBody: {
-            type: "ModifyResearchGroupReqBody";
-        } & Omit<WithRequired<components["schemas"]["ModifyResearchSealedReqBody"], "description" | "name" | "removeImage" | "type">, "type">;
         ModifyResearchLanguageReqBody: {
-            ko: components["schemas"]["ModifyResearchCenterReqBody"] | components["schemas"]["ModifyResearchGroupReqBody"];
-            en: components["schemas"]["ModifyResearchCenterReqBody"] | components["schemas"]["ModifyResearchGroupReqBody"];
+            websiteURL?: string | null;
+            removeImage: boolean;
+            ko: components["schemas"]["ResearchContentReqBody"];
+            en: components["schemas"]["ResearchContentReqBody"];
         };
-        ModifyResearchSealedReqBody: {
-            /** @enum {string} */
-            type: "groups" | "centers";
+        ResearchContentReqBody: {
             name: string;
             description: string;
-            removeImage: boolean;
-        };
-        ResearchCenterDto: WithRequired<components["schemas"]["ResearchSealedDto"], "description" | "id" | "language" | "name" | "type"> & {
-            mainImageUrl?: string | null;
-            websiteURL?: string | null;
-        };
-        ResearchGroupDto: WithRequired<components["schemas"]["ResearchSealedDto"], "description" | "id" | "language" | "name" | "type"> & {
-            mainImageUrl?: string | null;
-            labs: components["schemas"]["ResearchLabResponse"][];
         };
         ResearchLabResponse: {
             /** Format: int64 */
@@ -1222,21 +1124,29 @@ export interface components {
             name: string;
         };
         ResearchLanguageDto: {
-            ko: components["schemas"]["ResearchCenterDto"] | components["schemas"]["ResearchGroupDto"];
-            en: components["schemas"]["ResearchCenterDto"] | components["schemas"]["ResearchGroupDto"];
-        };
-        ResearchSealedDto: {
-            /** @enum {string} */
-            type: "groups" | "centers";
             /** Format: int64 */
             id: number;
             /** @enum {string} */
-            language: "ko" | "en";
-            name: string;
-            description: string;
+            type: "groups" | "centers";
+            websiteURL?: string | null;
             mainImageUrl?: string | null;
+            ko?: components["schemas"]["ResearchTranslationDto"] | null;
+            en?: components["schemas"]["ResearchTranslationDto"] | null;
+        };
+        ResearchTranslationDto: {
+            name: string;
+            description?: string | null;
+            labs: components["schemas"]["ResearchLabResponse"][];
         };
         ModifyLabLanguageReqBody: {
+            /** Format: int64 */
+            groupId?: number | null;
+            professorIds: number[];
+            acronym?: string | null;
+            tel?: string | null;
+            youtube?: string | null;
+            websiteURL?: string | null;
+            removePdf: boolean;
             ko: components["schemas"]["ModifyLabReqBody"];
             en: components["schemas"]["ModifyLabReqBody"];
         };
@@ -1244,14 +1154,6 @@ export interface components {
             name: string;
             description?: string | null;
             location?: string | null;
-            tel?: string | null;
-            acronym?: string | null;
-            youtube?: string | null;
-            websiteURL?: string | null;
-            /** Format: int64 */
-            groupId?: number | null;
-            professorIds: number[];
-            removePdf: boolean;
         };
         AttachmentResponse: {
             /** Format: int64 */
@@ -1261,34 +1163,31 @@ export interface components {
             /** Format: int64 */
             bytes: number;
         };
-        LabDto: {
-            /** Format: int64 */
-            id: number;
-            language: string;
-            name: string;
-            professors: components["schemas"]["LabProfessorResponse"][];
-            location?: string | null;
-            tel?: string | null;
-            acronym?: string | null;
-            pdf?: components["schemas"]["AttachmentResponse"] | null;
-            youtube?: string | null;
-            group?: components["schemas"]["LabGroupDto"] | null;
-            description?: string | null;
-            websiteURL?: string | null;
-        };
-        LabGroupDto: {
-            /** Format: int64 */
-            id: number;
-            name: string;
-        };
         LabLanguageDto: {
-            ko: components["schemas"]["LabDto"];
-            en: components["schemas"]["LabDto"];
+            /** Format: int64 */
+            id: number;
+            /** Format: int64 */
+            groupId?: number | null;
+            professorIds: number[];
+            acronym?: string | null;
+            tel?: string | null;
+            youtube?: string | null;
+            websiteURL?: string | null;
+            pdf?: components["schemas"]["AttachmentResponse"] | null;
+            ko?: components["schemas"]["LabTranslationDto"] | null;
+            en?: components["schemas"]["LabTranslationDto"] | null;
         };
         LabProfessorResponse: {
             /** Format: int64 */
             id: number;
             name: string;
+        };
+        LabTranslationDto: {
+            name: string;
+            description?: string | null;
+            location?: string | null;
+            groupName?: string | null;
+            professors: components["schemas"]["LabProfessorResponse"][];
         };
         ModifyRecruitReqBody: {
             title: string;
@@ -1301,60 +1200,59 @@ export interface components {
             mainImageUrl?: string | null;
         };
         ModifyProfessorLanguagesReqBody: {
+            /** @enum {string} */
+            status: "ACTIVE" | "INACTIVE" | "VISITING";
+            /** Format: int64 */
+            labId?: number | null;
+            /** Format: date */
+            startDate?: string | null;
+            /** Format: date */
+            endDate?: string | null;
+            phone?: string | null;
+            fax?: string | null;
+            email?: string | null;
+            website?: string | null;
+            removeImage: boolean;
             ko: components["schemas"]["ModifyProfessorReqBody"];
             en: components["schemas"]["ModifyProfessorReqBody"];
         };
         ModifyProfessorReqBody: {
             name: string;
-            /** @enum {string} */
-            status: "ACTIVE" | "INACTIVE" | "VISITING";
             academicRank: string;
             department: string;
-            /** Format: int64 */
-            labId?: number | null;
-            /** Format: date */
-            startDate?: string | null;
-            /** Format: date */
-            endDate?: string | null;
             office?: string | null;
-            phone?: string | null;
-            fax?: string | null;
-            email?: string | null;
-            website?: string | null;
             educations: string[];
             researchAreas: string[];
             careers: string[];
-            removeImage: boolean;
-        };
-        ProfessorDto: {
-            /** Format: int64 */
-            id: number;
-            language: string;
-            name: string;
-            /** @enum {string} */
-            status: "ACTIVE" | "INACTIVE" | "VISITING";
-            academicRank: string;
-            department: string;
-            /** Format: int64 */
-            labId?: number | null;
-            labName?: string | null;
-            /** Format: date */
-            startDate?: string | null;
-            /** Format: date */
-            endDate?: string | null;
-            office?: string | null;
-            phone?: string | null;
-            fax?: string | null;
-            email?: string | null;
-            website?: string | null;
-            educations: string[];
-            researchAreas: string[];
-            careers: string[];
-            imageURL?: string | null;
         };
         ProfessorLanguagesDto: {
-            ko?: components["schemas"]["ProfessorDto"] | null;
-            en?: components["schemas"]["ProfessorDto"] | null;
+            /** Format: int64 */
+            id: number;
+            /** @enum {string} */
+            status: "ACTIVE" | "INACTIVE" | "VISITING";
+            /** Format: int64 */
+            labId?: number | null;
+            /** Format: date */
+            startDate?: string | null;
+            /** Format: date */
+            endDate?: string | null;
+            phone?: string | null;
+            fax?: string | null;
+            email?: string | null;
+            website?: string | null;
+            imageURL?: string | null;
+            ko?: components["schemas"]["ProfessorTranslationDto"] | null;
+            en?: components["schemas"]["ProfessorTranslationDto"] | null;
+        };
+        ProfessorTranslationDto: {
+            name: string;
+            academicRank: string;
+            department: string;
+            office?: string | null;
+            labName?: string | null;
+            educations: string[];
+            researchAreas: string[];
+            careers: string[];
         };
         InternalDto: {
             description: string;
@@ -1374,16 +1272,13 @@ export interface components {
             description: string;
             attachmentIds: number[];
         };
-        ScholarshipDto: {
-            /** Format: int64 */
-            id: number;
-            language: string;
+        ScholarshipContentReq: {
             name: string;
             description: string;
         };
         UpdateScholarshipReq: {
-            ko: components["schemas"]["ScholarshipDto"];
-            en: components["schemas"]["ScholarshipDto"];
+            ko: components["schemas"]["ScholarshipContentReq"];
+            en: components["schemas"]["ScholarshipContentReq"];
         };
         GroupedCourseDto: {
             code: string;
@@ -1402,24 +1297,23 @@ export interface components {
         };
         BasicAbout: {
             description: string;
-            attachmentIds?: number[] | null;
         };
         UpdateAboutReq: {
+            removeImage: boolean;
+            attachmentIds?: number[] | null;
             ko: components["schemas"]["BasicAbout"];
             en: components["schemas"]["BasicAbout"];
-            removeImage: boolean;
         };
-        ClubDto: {
-            /** Format: int64 */
-            id: number;
+        ClubReqBody: {
             name: string;
             description: string;
-            imageURL?: string | null;
         };
         UpdateClubReq: {
-            ko: components["schemas"]["ClubDto"];
-            en: components["schemas"]["ClubDto"];
+            /** Format: int64 */
+            id: number;
             removeImage: boolean;
+            ko: components["schemas"]["ClubReqBody"];
+            en: components["schemas"]["ClubReqBody"];
         };
         UpdateDescriptionReq: {
             koDescription: string;
@@ -1457,6 +1351,8 @@ export interface components {
             removeImage: boolean;
         };
         CreateStaffLanguagesReqBody: {
+            phone: string;
+            email: string;
             ko: components["schemas"]["CreateStaffReqBody"];
             en: components["schemas"]["CreateStaffReqBody"];
         };
@@ -1464,8 +1360,6 @@ export interface components {
             name: string;
             role: string;
             office: string;
-            phone: string;
-            email: string;
             tasks: string[];
         };
         CreateSeminarReq: {
@@ -1595,65 +1489,50 @@ export interface components {
             /** Format: date-time */
             termEndTime: string;
         };
-        CreateResearchCenterReqBody: {
-            type: "CreateResearchCenterReqBody";
-        } & (Omit<WithRequired<components["schemas"]["CreateResearchSealedReqBody"], "description" | "name" | "type">, "type"> & {
-            mainImageUrl?: string | null;
-            websiteURL?: string | null;
-        });
-        CreateResearchGroupReqBody: {
-            type: "CreateResearchGroupReqBody";
-        } & (Omit<WithRequired<components["schemas"]["CreateResearchSealedReqBody"], "description" | "name" | "type">, "type"> & {
-            mainImageUrl?: string | null;
-        });
         CreateResearchLanguageReqBody: {
-            ko: components["schemas"]["CreateResearchCenterReqBody"] | components["schemas"]["CreateResearchGroupReqBody"];
-            en: components["schemas"]["CreateResearchCenterReqBody"] | components["schemas"]["CreateResearchGroupReqBody"];
-        };
-        CreateResearchSealedReqBody: {
             /** @enum {string} */
             type: "groups" | "centers";
-            name: string;
-            description: string;
-            mainImageUrl?: string | null;
+            websiteURL?: string | null;
+            ko: components["schemas"]["ResearchContentReqBody"];
+            en: components["schemas"]["ResearchContentReqBody"];
         };
         CreateLabLanguageReqBody: {
+            /** Format: int64 */
+            groupId?: number | null;
+            professorIds: number[];
+            acronym?: string | null;
+            tel?: string | null;
+            youtube?: string | null;
+            websiteURL?: string | null;
             ko: components["schemas"]["CreateLabReqBody"];
             en: components["schemas"]["CreateLabReqBody"];
         };
         CreateLabReqBody: {
             name: string;
             description?: string | null;
-            /** Format: int64 */
-            groupId?: number | null;
-            professorIds: number[];
             location?: string | null;
-            tel?: string | null;
-            acronym?: string | null;
-            youtube?: string | null;
-            websiteURL?: string | null;
         };
         CreateProfessorLanguagesReqBody: {
-            ko: components["schemas"]["CreateProfessorReqBody"];
-            en: components["schemas"]["CreateProfessorReqBody"];
-        };
-        CreateProfessorReqBody: {
-            name: string;
             /** @enum {string} */
             status: "ACTIVE" | "INACTIVE" | "VISITING";
-            academicRank: string;
-            department: string;
             /** Format: int64 */
             labId?: number | null;
             /** Format: date */
             startDate?: string | null;
             /** Format: date */
             endDate?: string | null;
-            office?: string | null;
             phone?: string | null;
             fax?: string | null;
             email?: string | null;
             website?: string | null;
+            ko: components["schemas"]["CreateProfessorReqBody"];
+            en: components["schemas"]["CreateProfessorReqBody"];
+        };
+        CreateProfessorReqBody: {
+            name: string;
+            academicRank: string;
+            department: string;
+            office?: string | null;
             educations: string[];
             researchAreas: string[];
             careers: string[];
@@ -1766,14 +1645,8 @@ export interface components {
             description: string;
         };
         CreateScholarshipReq: {
-            koName: string;
-            koDescription: string;
-            enName: string;
-            enDescription: string;
-        };
-        ClubReqBody: {
-            name: string;
-            description: string;
+            ko: components["schemas"]["ScholarshipContentReq"];
+            en: components["schemas"]["ScholarshipContentReq"];
         };
         CreateClubReq: {
             ko: components["schemas"]["ClubReqBody"];
@@ -2094,6 +1967,45 @@ export interface components {
             /** Format: date-time */
             endTime: string;
         };
+        ResearchCenterDto: WithRequired<components["schemas"]["ResearchSealedDto"], "description" | "id" | "language" | "name" | "type"> & {
+            mainImageUrl?: string | null;
+            websiteURL?: string | null;
+        };
+        ResearchGroupDto: WithRequired<components["schemas"]["ResearchSealedDto"], "description" | "id" | "language" | "name" | "type"> & {
+            mainImageUrl?: string | null;
+            labs: components["schemas"]["ResearchLabResponse"][];
+        };
+        ResearchSealedDto: {
+            /** @enum {string} */
+            type: "groups" | "centers";
+            /** Format: int64 */
+            id: number;
+            /** @enum {string} */
+            language: "ko" | "en";
+            name: string;
+            description: string;
+            mainImageUrl?: string | null;
+        };
+        LabDto: {
+            /** Format: int64 */
+            id: number;
+            language: string;
+            name: string;
+            professors: components["schemas"]["LabProfessorResponse"][];
+            location?: string | null;
+            tel?: string | null;
+            acronym?: string | null;
+            pdf?: components["schemas"]["AttachmentResponse"] | null;
+            youtube?: string | null;
+            group?: components["schemas"]["LabGroupDto"] | null;
+            description?: string | null;
+            websiteURL?: string | null;
+        };
+        LabGroupDto: {
+            /** Format: int64 */
+            id: number;
+            name: string;
+        };
         SimpleProfessorDto: {
             /** Format: int64 */
             id: number;
@@ -2210,13 +2122,21 @@ export interface components {
             description: string;
             attachments: components["schemas"]["AttachmentResponse"][];
         };
-        PairScholarshipDtoScholarshipDto: {
-            first: components["schemas"]["ScholarshipDto"];
-            second: components["schemas"]["ScholarshipDto"];
+        ScholarshipLanguagesDto: {
+            /** Format: int64 */
+            id: number;
+            /** @enum {string} */
+            studentType: "undergraduate" | "graduate";
+            ko?: components["schemas"]["ScholarshipTranslationDto"] | null;
+            en?: components["schemas"]["ScholarshipTranslationDto"] | null;
+        };
+        ScholarshipTranslationDto: {
+            name: string;
+            description: string;
         };
         AboutDto: {
             /** Format: int64 */
-            id?: number | null;
+            id: number;
             language: string;
             name?: string | null;
             description: string;
@@ -2228,9 +2148,16 @@ export interface components {
             imageURL?: string | null;
             attachments?: components["schemas"]["AttachmentResponse"][] | null;
         };
+        ClubDto: {
+            name: string;
+            description: string;
+        };
         GroupedClubDto: {
-            ko: components["schemas"]["ClubDto"];
-            en: components["schemas"]["ClubDto"];
+            /** Format: int64 */
+            id: number;
+            imageURL?: string | null;
+            ko?: components["schemas"]["ClubDto"] | null;
+            en?: components["schemas"]["ClubDto"] | null;
         };
         FutureCareersCompanyDto: {
             /** Format: int64 */
@@ -2260,30 +2187,30 @@ export interface components {
             doctor: components["schemas"]["FutureCareersStatDegreeDto"][];
         };
         FacDto: {
-            /** Format: int64 */
-            id: number;
             name: string;
             description: string;
             locations: string[];
-            imageURL?: string | null;
         };
         GroupedFacDto: {
-            ko: components["schemas"]["FacDto"];
-            en: components["schemas"]["FacDto"];
-        };
-        DirDto: {
             /** Format: int64 */
             id: number;
+            imageURL?: string | null;
+            ko?: components["schemas"]["FacDto"] | null;
+            en?: components["schemas"]["FacDto"] | null;
+        };
+        DirDto: {
             name: string;
             description: string;
         };
         GroupedDirectionDto: {
-            ko: components["schemas"]["DirDto"];
-            en: components["schemas"]["DirDto"];
+            /** Format: int64 */
+            id: number;
+            ko?: components["schemas"]["DirDto"] | null;
+            en?: components["schemas"]["DirDto"] | null;
         };
         ErrorResponse: {
             /** @enum {string} */
-            code: "SYS-00" | "SYS-01" | "SYS-02" | "SYS-03" | "SYS-04" | "SYS-05" | "SYS-06" | "SYS-07" | "SYS-08" | "SYS-09" | "SYS-10" | "SYS-11" | "SYS-12" | "SYS-13" | "SYS-14" | "SYS-15" | "SYS-16" | "NOTICE-01" | "NOTICE-02" | "NEWS-01" | "NEWS-02" | "SEMINAR-01" | "CONFERENCE-01" | "INTERNAL-01" | "ADMISSIONS-01" | "IMAGEMODAL-01" | "ABOUT-01" | "ABOUT-02" | "ABOUT-03" | "ABOUT-04" | "ABOUT-05" | "ABOUT-06" | "ACADEMICS-01" | "ACADEMICS-02" | "ACADEMICS-03" | "ACADEMICS-04" | "ACADEMICS-05" | "ACADEMICS-06" | "ACADEMICS-07" | "MEMBER-01" | "MEMBER-02" | "MEMBER-03" | "MEMBER-04" | "RESEARCH-01" | "RESEARCH-02" | "RESEARCH-03" | "RESEARCH-04" | "RESEARCH-05" | "RESEARCH-06" | "RESEARCH-07" | "RESEARCH-08" | "RESEARCH-09" | "FILE-01" | "FILE-02" | "RESERVE-01" | "RESERVE-02" | "RESERVE-03" | "RESERVE-04" | "RESERVE-05" | "RESERVE-06" | "RESERVE-07" | "RESERVE-08" | "RESERVE-09" | "RESERVE-10" | "RESERVE-11" | "RESERVE-12" | "RESERVE-13" | "RESERVE-14" | "RESERVE-15" | "RESERVE-16" | "RESERVE-17" | "RESERVE-18" | "RESERVE-19" | "RESERVE-20" | "RESERVE-21";
+            code: "SYS-00" | "SYS-01" | "SYS-02" | "SYS-03" | "SYS-04" | "SYS-05" | "SYS-06" | "SYS-07" | "SYS-08" | "SYS-09" | "SYS-10" | "SYS-11" | "SYS-12" | "SYS-13" | "SYS-14" | "SYS-15" | "SYS-16" | "NOTICE-01" | "NOTICE-02" | "NEWS-01" | "NEWS-02" | "SEMINAR-01" | "CONFERENCE-01" | "INTERNAL-01" | "ADMISSIONS-01" | "IMAGEMODAL-01" | "ABOUT-01" | "ABOUT-02" | "ABOUT-03" | "ABOUT-04" | "ABOUT-05" | "ABOUT-06" | "ABOUT-07" | "ACADEMICS-01" | "ACADEMICS-02" | "ACADEMICS-03" | "ACADEMICS-04" | "ACADEMICS-05" | "ACADEMICS-06" | "ACADEMICS-07" | "MEMBER-01" | "MEMBER-02" | "MEMBER-03" | "MEMBER-04" | "RESEARCH-01" | "RESEARCH-02" | "RESEARCH-03" | "RESEARCH-04" | "RESEARCH-05" | "RESEARCH-06" | "RESEARCH-07" | "RESEARCH-08" | "RESEARCH-09" | "FILE-01" | "FILE-02" | "RESERVE-01" | "RESERVE-02" | "RESERVE-03" | "RESERVE-04" | "RESERVE-05" | "RESERVE-06" | "RESERVE-07" | "RESERVE-08" | "RESERVE-09" | "RESERVE-10" | "RESERVE-11" | "RESERVE-12" | "RESERVE-13" | "RESERVE-14" | "RESERVE-15" | "RESERVE-16" | "RESERVE-17" | "RESERVE-18" | "RESERVE-19" | "RESERVE-20" | "RESERVE-21";
         };
     };
     responses: never;
@@ -2294,13 +2221,52 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    getStaff: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                staffId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["StaffLanguagesDto"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     updateStaff: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                koStaffId: number;
-                enStaffId: number;
+                staffId: number;
             };
             cookie?: never;
         };
@@ -2351,8 +2317,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                koStaffId: number;
-                enStaffId: number;
+                staffId: number;
             };
             cookie?: never;
         };
@@ -2385,13 +2350,52 @@ export interface operations {
             };
         };
     };
+    readResearch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                researchId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResearchLanguageDto"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     updateResearch: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                koreanId: number;
-                englishId: number;
+                researchId: number;
             };
             cookie?: never;
         };
@@ -2442,8 +2446,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                koreanId: number;
-                englishId: number;
+                researchId: number;
             };
             cookie?: never;
         };
@@ -2476,13 +2479,52 @@ export interface operations {
             };
         };
     };
+    readLab: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                labId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["LabLanguageDto"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     updateLab: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                koreanLabId: number;
-                englishLabId: number;
+                labId: number;
             };
             cookie?: never;
         };
@@ -2530,8 +2572,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                koreanLabId: number;
-                englishLabId: number;
+                labId: number;
             };
             cookie?: never;
         };
@@ -2648,13 +2689,52 @@ export interface operations {
             };
         };
     };
+    getProfessor: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                professorId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ProfessorLanguagesDto"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     updateProfessor: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                koProfessorId: number;
-                enProfessorId: number;
+                professorId: number;
             };
             cookie?: never;
         };
@@ -2705,8 +2785,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                koProfessorId: number;
-                enProfessorId: number;
+                professorId: number;
             };
             cookie?: never;
         };
@@ -2911,7 +2990,7 @@ export interface operations {
             header?: never;
             path: {
                 studentType: "undergraduate" | "graduate";
-                postType: "guide" | "general-studies-requirements" | "curriculum" | "degree-requirements" | "course-changes" | "scholarship";
+                postType: "general-studies-requirements" | "curriculum" | "course-changes";
                 year: number;
             };
             cookie?: never;
@@ -2960,7 +3039,7 @@ export interface operations {
             header?: never;
             path: {
                 studentType: "undergraduate" | "graduate";
-                postType: "guide" | "general-studies-requirements" | "curriculum" | "degree-requirements" | "course-changes" | "scholarship";
+                postType: "general-studies-requirements" | "curriculum" | "course-changes";
                 year: number;
             };
             cookie?: never;
@@ -3296,11 +3375,53 @@ export interface operations {
             };
         };
     };
+    getScholarship: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                scholarshipId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ScholarshipLanguagesDto"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     updateScholarship: {
         parameters: {
             query?: never;
             header?: never;
-            path?: never;
+            path: {
+                scholarshipId: number;
+            };
             cookie?: never;
         };
         requestBody: {
@@ -3308,6 +3429,44 @@ export interface operations {
                 "application/json": components["schemas"]["UpdateScholarshipReq"];
             };
         };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    deleteScholarship: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                scholarshipId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
         responses: {
             /** @description OK */
             200: {
@@ -3464,7 +3623,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                postType: "overview" | "greetings" | "history" | "future-careers" | "contact" | "student-clubs" | "facilities" | "directions";
+                postType: "overview" | "greetings" | "history" | "contact";
             };
             cookie?: never;
         };
@@ -3504,7 +3663,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                postType: "overview" | "greetings" | "history" | "future-careers" | "contact" | "student-clubs" | "facilities" | "directions";
+                postType: "overview" | "greetings" | "history" | "contact";
             };
             cookie?: never;
         };
@@ -4954,7 +5113,7 @@ export interface operations {
             header?: never;
             path: {
                 studentType: "undergraduate" | "graduate";
-                postType: "guide" | "general-studies-requirements" | "curriculum" | "degree-requirements" | "course-changes" | "scholarship";
+                postType: "general-studies-requirements" | "curriculum" | "course-changes";
             };
             cookie?: never;
         };
@@ -4997,7 +5156,7 @@ export interface operations {
             header?: never;
             path: {
                 studentType: "undergraduate" | "graduate";
-                postType: "guide" | "general-studies-requirements" | "curriculum" | "degree-requirements" | "course-changes" | "scholarship";
+                postType: "general-studies-requirements" | "curriculum" | "course-changes";
             };
             cookie?: never;
         };
@@ -5992,46 +6151,6 @@ export interface operations {
             };
         };
     };
-    getStaff: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                staffId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["StaffLanguagesDto"];
-                };
-            };
-            /** @description 요청 오류 — code 로 구분 */
-            "4XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-            /** @description 서버 오류 */
-            "5XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
-    };
     refreshSearches: {
         parameters: {
             query?: never;
@@ -6313,126 +6432,6 @@ export interface operations {
             };
         };
     };
-    readResearch: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                researchId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResearchLanguageDto"];
-                };
-            };
-            /** @description 요청 오류 — code 로 구분 */
-            "4XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-            /** @description 서버 오류 */
-            "5XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
-    };
-    readLab: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                labId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["LabLanguageDto"];
-                };
-            };
-            /** @description 요청 오류 — code 로 구분 */
-            "4XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-            /** @description 서버 오류 */
-            "5XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
-    };
-    getProfessor: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                professorId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ProfessorLanguagesDto"];
-                };
-            };
-            /** @description 요청 오류 — code 로 구분 */
-            "4XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-            /** @description 서버 오류 */
-            "5XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
-    };
     getInactiveProfessors: {
         parameters: {
             query?: {
@@ -6692,84 +6691,6 @@ export interface operations {
                 content: {
                     "*/*": components["schemas"]["ConferencePage"];
                 };
-            };
-            /** @description 요청 오류 — code 로 구분 */
-            "4XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-            /** @description 서버 오류 */
-            "5XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
-    };
-    getScholarship: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                scholarshipId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["PairScholarshipDtoScholarshipDto"];
-                };
-            };
-            /** @description 요청 오류 — code 로 구분 */
-            "4XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-            /** @description 서버 오류 */
-            "5XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
-    };
-    deleteScholarship: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                scholarshipId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
             };
             /** @description 요청 오류 — code 로 구분 */
             "4XX": {

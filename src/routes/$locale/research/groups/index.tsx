@@ -53,12 +53,7 @@ function ResearchGroupsPage() {
     if (!item) return;
 
     try {
-      // 상세 정보를 가져와서 ko, en ID를 얻음
-      const data = await api
-        .get(`v2/research/${item.id}`)
-        .json<{ ko: { id: number }; en: { id: number } }>();
-
-      await api.delete(`v2/research/${data.ko.id}/${data.en.id}`);
+      await api.delete(`v2/research/${item.id}`);
 
       toast.success('연구 스트림을 삭제했습니다.');
       router.invalidate();
