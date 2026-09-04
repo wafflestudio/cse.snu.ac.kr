@@ -26,8 +26,8 @@ function DirectionsEdit() {
   const [language, setLanguage] = useState<Language>('ko');
 
   const defaultValues: DirectionFormData = {
-    htmlKo: direction.ko.description,
-    htmlEn: direction.en.description,
+    htmlKo: direction.ko?.description ?? '',
+    htmlEn: direction.en?.description ?? '',
   };
 
   const methods = useForm({ defaultValues, shouldFocusError: false });
@@ -38,7 +38,7 @@ function DirectionsEdit() {
 
   const onSubmit = methods.handleSubmit(async ({ htmlKo, htmlEn }) => {
     try {
-      await api.put(`v2/about/directions/${direction.ko.id}`, {
+      await api.put(`v2/about/directions/${direction.id}`, {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           koDescription: htmlKo,
@@ -55,7 +55,7 @@ function DirectionsEdit() {
 
   return (
     <PageLayout
-      title={`찾아오는 길(${direction.ko.name}) 편집`}
+      title={`찾아오는 길(${direction.ko?.name}) 편집`}
       titleSize="xl"
       padding="default"
     >
@@ -102,7 +102,7 @@ export const Route = createFileRoute('/$locale/about/directions/$id/edit')({
       .get(`v2/about/directions`)
       .json<DirectionsResponse>();
 
-    const direction = directions.find((d) => d.ko.id === id);
+    const direction = directions.find((d) => d.id === id);
 
     if (!direction) {
       throw new Response('Direction not found', { status: 404 });

@@ -38,7 +38,7 @@ function StudentClubsPage() {
 
   const { selectedItem: selectedClub, selectionItems } = useSelectionList({
     items: clubs,
-    getItem: (club) => ({ id: club[locale].id, label: club[locale].name }),
+    getItem: (club) => ({ id: club.id, label: club[locale].name }),
   });
 
   return (
@@ -78,17 +78,23 @@ export const Route = createFileRoute('/$locale/about/student-clubs/')({
       .get(`v2/about/student-clubs`)
       .json<StudentClubsResponse>();
 
+    // 공유값(id·사진)은 최상위에 그대로 두고 언어별 본문만 가공한다.
     return Promise.all(
-      response.map(async (club) => ({
-        ko: {
-          ...club.ko,
-          description: await processHtmlForCsp({ data: club.ko.description }),
-        },
-        en: {
-          ...club.en,
-          description: await processHtmlForCsp({ data: club.en.description }),
-        },
-      })),
+      response.map(async (club) => {
+        if (!club.ko || !club.en) throw new Error('동아리 번역본이 없습니다.');
+        return {
+          id: club.id,
+          imageURL: club.imageURL,
+          ko: {
+            ...club.ko,
+            description: await processHtmlForCsp({ data: club.ko.description }),
+          },
+          en: {
+            ...club.en,
+            description: await processHtmlForCsp({ data: club.en.description }),
+          },
+        };
+      }),
     );
   },
   component: StudentClubsPage,

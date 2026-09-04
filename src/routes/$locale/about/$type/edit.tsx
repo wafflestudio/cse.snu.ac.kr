@@ -9,7 +9,7 @@ import LanguagePicker, {
 import PageLayout from '@/components/layout/PageLayout';
 import { toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { AboutContent } from '@/types/api';
+import type { AboutContent, AboutPutBody } from '@/types/api';
 import type { EditorFile, EditorImage } from '@/types/form';
 import { LOCALES } from '@/types/i18n';
 import { api } from '@/utils/api';
@@ -59,15 +59,15 @@ function AboutEdit() {
     async ({ htmlKo, htmlEn, image, files }) => {
       const formData = new ApiFormData();
 
-      formData.appendJson('request', {
-        ko: {
-          description: htmlKo,
-          attachmentIds: getAttachmentIds(files),
-        },
-        // en 첨부는 화면에 없어 건드리지 않는다 — attachmentIds를 생략(null)하면 서버가 그대로 둔다.
-        en: { description: htmlEn },
+      // 첨부는 콘텐츠에 한 벌뿐이라 언어별이 아니라 최상위에 담는다.
+      // 요청 타입을 달아 둔다 — 백엔드 스키마가 바뀌면 여기서 컴파일이 막힌다.
+      const request: AboutPutBody = {
         removeImage: defaultValues.image !== null && image === null,
-      });
+        attachmentIds: getAttachmentIds(files),
+        ko: { description: htmlKo },
+        en: { description: htmlEn },
+      };
+      formData.appendJson('request', request);
       formData.appendIfLocal('newMainImage', image);
       formData.appendIfLocal('attachments', files);
 

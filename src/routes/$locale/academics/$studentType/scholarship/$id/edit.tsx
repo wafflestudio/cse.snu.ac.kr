@@ -5,7 +5,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import ScholarshipEditor, {
   type ScholarshipFormData,
 } from '@/routes/$locale/academics/-components/scholarship/ScholarshipEditor';
-import type { Scholarship } from '@/types/api';
+import type { ScholarshipPutBody, ScholarshipWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 
 function ScholarshipEditPage() {
@@ -28,20 +28,14 @@ function ScholarshipEditPage() {
 
   const onSubmit = async (content: ScholarshipFormData) => {
     try {
-      await api.put(`v2/academics/scholarship`, {
+      // 요청 타입을 달아 둔다 — 백엔드 스키마가 바뀌면 여기서 컴파일이 막힌다.
+      const request: ScholarshipPutBody = {
+        ko: { name: content.koName, description: content.koDescription },
+        en: { name: content.enName, description: content.enDescription },
+      };
+      await api.put(`v2/academics/scholarship/${id}`, {
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ko: {
-            ...loaderData.ko,
-            name: content.koName,
-            description: content.koDescription,
-          },
-          en: {
-            ...loaderData.en,
-            name: content.enName,
-            description: content.enDescription,
-          },
-        }),
+        body: JSON.stringify(request),
       });
       toast.success(t('장학금을 수정했습니다.'));
       navigate({ to: `/academics/${studentType}/scholarship/${id}` });
@@ -73,11 +67,9 @@ export const Route = createFileRoute(
     const { id } = params;
     const res = await api
       .get(`v2/academics/scholarship/${id}`)
-      .json<{ first: Scholarship; second: Scholarship }>();
-    const isFirstKo = res.first.language === 'ko';
-    return isFirstKo
-      ? { ko: res.first, en: res.second }
-      : { ko: res.second, en: res.first };
+      .json<ScholarshipWithLanguage>();
+    if (!res.ko || !res.en) throw new Error('장학금 번역본이 없습니다.');
+    return { ko: res.ko, en: res.en };
   },
   component: ScholarshipEditPage,
 });

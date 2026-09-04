@@ -5,6 +5,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import ScholarshipEditor, {
   type ScholarshipFormData,
 } from '@/routes/$locale/academics/-components/scholarship/ScholarshipEditor';
+import type { ScholarshipPostBody } from '@/types/api';
 import { api } from '@/utils/api';
 
 function ScholarshipCreatePage() {
@@ -24,9 +25,13 @@ function ScholarshipCreatePage() {
 
   const onSubmit = async (content: ScholarshipFormData) => {
     try {
+      const request: ScholarshipPostBody = {
+        ko: { name: content.koName, description: content.koDescription },
+        en: { name: content.enName, description: content.enDescription },
+      };
       await api.post(`v2/academics/${studentType}/scholarship`, {
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(content),
+        body: JSON.stringify(request),
       });
       toast.success(t('장학금을 추가했습니다.'));
       navigate({ to: `/academics/${studentType}/scholarship` });

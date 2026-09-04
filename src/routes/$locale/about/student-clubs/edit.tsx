@@ -9,7 +9,7 @@ import LanguagePicker, {
 import PageLayout from '@/components/layout/PageLayout';
 import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { StudentClubsResponse } from '@/types/api';
+import type { ClubPutBody, StudentClubsResponse } from '@/types/api';
 import type { EditorImage } from '@/types/form';
 import { api } from '@/utils/api';
 import { ApiFormData } from '@/utils/apiFormData';
@@ -29,12 +29,14 @@ function StudentClubsEdit() {
   const { localizedPath } = useLanguage({});
   const [language, setLanguage] = useState<Language>('ko');
 
+  // 사진은 동아리 하나에 한 장이라 최상위에서 온다.
+  const empty = { name: '', description: '' };
   const defaultValues: ClubFormData = {
-    ko: { name: club.ko.name, description: club.ko.description },
-    en: { name: club.en.name, description: club.en.description },
-    image: club.ko.imageURL && {
+    ko: club.ko ?? empty,
+    en: club.en ?? empty,
+    image: club.imageURL && {
       type: 'UPLOADED_IMAGE',
-      url: club.ko.imageURL,
+      url: club.imageURL,
     },
   };
 
@@ -48,11 +50,9 @@ function StudentClubsEdit() {
     const formData = new ApiFormData();
 
     const removeImage = !!defaultValues.image && !image;
-    formData.appendJson('request', {
-      ko: { ...ko, id: club.ko.id },
-      en: { ...en, id: club.en.id },
-      removeImage,
-    });
+    // 요청 타입을 달아 둔다 — 백엔드 스키마가 바뀌면 여기서 컴파일이 막힌다.
+    const request: ClubPutBody = { id: club.id, removeImage, ko, en };
+    formData.appendJson('request', request);
     formData.appendIfLocal('newMainImage', image);
 
     try {
@@ -142,7 +142,7 @@ export const Route = createFileRoute('/$locale/about/student-clubs/edit')({
 
     // selected param으로 club 찾기
     const selectedClub =
-      clubs.find((item) => item.ko.id.toString() === selectedParam) ?? clubs[0];
+      clubs.find((item) => item.id.toString() === selectedParam) ?? clubs[0];
 
     return { club: selectedClub };
   },
