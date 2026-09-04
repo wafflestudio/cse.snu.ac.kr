@@ -5,7 +5,7 @@ import SelectionTitle from '@/components/feature/selection/SelectionTitle';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { Club } from '@/types/api';
 import { api } from '@/utils/api';
@@ -40,8 +40,8 @@ export default function ClubDetails({ club, locale }: ClubDetailsProps) {
       setShowDeleteDialog(false);
       toast.success('동아리를 삭제했습니다.');
       router.invalidate();
-    } catch {
-      toast.error('삭제에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

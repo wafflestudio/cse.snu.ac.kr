@@ -2,7 +2,7 @@ import { useRouter } from '@tanstack/react-router';
 import { FormProvider, useForm } from 'react-hook-form';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import type { ImageModal } from '@/types/api';
 import type { EditorImage } from '@/types/form';
 import { api } from '@/utils/api';
@@ -87,8 +87,8 @@ export default function ImageModalManagement({
         toast.success('이미지 팝업을 등록했습니다.');
       }
       router.invalidate();
-    } catch {
-      toast.error(isEditing ? '수정에 실패했습니다.' : '등록에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   });
 
@@ -98,8 +98,8 @@ export default function ImageModalManagement({
       await api.delete(`v2/image-modal/${modal.id}`);
       toast.success('이미지 팝업을 삭제했습니다.');
       router.invalidate();
-    } catch {
-      toast.error('삭제에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

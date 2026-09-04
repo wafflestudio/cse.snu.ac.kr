@@ -1012,22 +1012,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v2/errors": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["giveErrorInformation"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/v2/conference/page": {
         parameters: {
             query?: never;
@@ -1250,7 +1234,7 @@ export interface components {
             language: "ko" | "en";
             name: string;
             description: string;
-            mainImageUrl?: string;
+            mainImageUrl?: string | null;
         };
         ModifyLabLanguageReqBody: {
             ko: components["schemas"]["ModifyLabReqBody"];
@@ -1631,7 +1615,7 @@ export interface components {
             type: "groups" | "centers";
             name: string;
             description: string;
-            mainImageUrl?: string;
+            mainImageUrl?: string | null;
         };
         CreateLabLanguageReqBody: {
             ko: components["schemas"]["CreateLabReqBody"];
@@ -2297,6 +2281,10 @@ export interface components {
             ko: components["schemas"]["DirDto"];
             en: components["schemas"]["DirDto"];
         };
+        ErrorResponse: {
+            /** @enum {string} */
+            code: "SYS-00" | "SYS-01" | "SYS-02" | "SYS-03" | "SYS-04" | "SYS-05" | "SYS-06" | "SYS-07" | "SYS-08" | "SYS-09" | "SYS-10" | "SYS-11" | "SYS-12" | "SYS-13" | "SYS-14" | "SYS-15" | "SYS-16" | "NOTICE-01" | "NOTICE-02" | "NEWS-01" | "NEWS-02" | "SEMINAR-01" | "CONFERENCE-01" | "INTERNAL-01" | "ADMISSIONS-01" | "IMAGEMODAL-01" | "ABOUT-01" | "ABOUT-02" | "ABOUT-03" | "ABOUT-04" | "ABOUT-05" | "ABOUT-06" | "ACADEMICS-01" | "ACADEMICS-02" | "ACADEMICS-03" | "ACADEMICS-04" | "ACADEMICS-05" | "ACADEMICS-06" | "ACADEMICS-07" | "MEMBER-01" | "MEMBER-02" | "MEMBER-03" | "MEMBER-04" | "RESEARCH-01" | "RESEARCH-02" | "RESEARCH-03" | "RESEARCH-04" | "RESEARCH-05" | "RESEARCH-06" | "RESEARCH-07" | "RESEARCH-08" | "RESEARCH-09" | "FILE-01" | "FILE-02" | "RESERVE-01" | "RESERVE-02" | "RESERVE-03" | "RESERVE-04" | "RESERVE-05" | "RESERVE-06" | "RESERVE-07" | "RESERVE-08" | "RESERVE-09" | "RESERVE-10" | "RESERVE-11" | "RESERVE-12" | "RESERVE-13" | "RESERVE-14" | "RESERVE-15" | "RESERVE-16" | "RESERVE-17" | "RESERVE-18" | "RESERVE-19" | "RESERVE-20" | "RESERVE-21";
+        };
     };
     responses: never;
     parameters: never;
@@ -2338,6 +2326,24 @@ export interface operations {
                     "*/*": components["schemas"]["StaffLanguagesDto"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     deleteStaff: {
@@ -2358,6 +2364,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -2393,6 +2417,24 @@ export interface operations {
                     "*/*": components["schemas"]["ResearchLanguageDto"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     deleteResearch: {
@@ -2413,6 +2455,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -2445,6 +2505,24 @@ export interface operations {
                     "*/*": components["schemas"]["LabLanguageDto"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     deleteLab: {
@@ -2466,6 +2544,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     getRecruitPage: {
@@ -2484,6 +2580,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["RecruitPage"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -2512,6 +2626,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["RecruitPage"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -2548,6 +2680,24 @@ export interface operations {
                     "*/*": components["schemas"]["ProfessorLanguagesDto"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     deleteProfessor: {
@@ -2569,6 +2719,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     getInternal: {
@@ -2587,6 +2755,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["InternalDto"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -2613,6 +2799,24 @@ export interface operations {
                     "*/*": components["schemas"]["InternalDto"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     readAdmission: {
@@ -2634,6 +2838,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["GroupedAdmission"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -2660,6 +2882,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -2692,6 +2932,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     deleteAcademicsYearResponse: {
@@ -2716,6 +2974,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     readAllScholarship: {
@@ -2738,6 +3014,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["ScholarshipPageResponse"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -2766,6 +3060,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     createScholarship: {
@@ -2790,6 +3102,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     readGuide: {
@@ -2812,6 +3142,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["GuidePageResponse"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -2843,6 +3191,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     readDegreeRequirements: {
@@ -2863,6 +3229,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["DegreeRequirementsPageResponse"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -2892,6 +3276,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     updateScholarship: {
@@ -2913,6 +3315,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -2937,6 +3357,24 @@ export interface operations {
                     "*/*": components["schemas"]["GroupedCourseDto"][];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     updateCourse: {
@@ -2958,6 +3396,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -2981,6 +3437,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     readAbout: {
@@ -3003,6 +3477,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["AboutDto"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -3034,6 +3526,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     readAllClubs: {
@@ -3052,6 +3562,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["GroupedClubDto"][];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -3080,6 +3608,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     createClub: {
@@ -3106,6 +3652,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     readFutureCareers: {
@@ -3126,6 +3690,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["FutureCareersPage"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -3150,6 +3732,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     updateStats: {
@@ -3172,6 +3772,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     createStats: {
@@ -3193,6 +3811,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -3218,6 +3854,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     deleteCompany: {
@@ -3237,6 +3891,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -3266,6 +3938,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     deleteFacility: {
@@ -3285,6 +3975,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -3310,6 +4018,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     getAllStaff: {
@@ -3330,6 +4056,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["SimpleStaffDto"][];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -3360,6 +4104,24 @@ export interface operations {
                     "*/*": components["schemas"]["StaffLanguagesDto"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     searchSeminar: {
@@ -3383,6 +4145,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["SeminarSearchResponse"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -3414,6 +4194,24 @@ export interface operations {
                     "*/*": components["schemas"]["SeminarResponse"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     reserveRoom: {
@@ -3438,6 +4236,24 @@ export interface operations {
                     "*/*": components["schemas"]["ReservationDto"][];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     ensureDefaultReserveTerms: {
@@ -3456,6 +4272,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["ReserveTermGenerationOutcomeDto"][];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -3480,6 +4314,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["ReserveTermDto"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -3510,6 +4362,24 @@ export interface operations {
                     "*/*": components["schemas"]["ResearchLanguageDto"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     readAllLabs: {
@@ -3530,6 +4400,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["LabDto"][];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -3560,6 +4448,24 @@ export interface operations {
                     "*/*": components["schemas"]["LabLanguageDto"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     createProfessor: {
@@ -3588,6 +4494,24 @@ export interface operations {
                     "*/*": components["schemas"]["ProfessorLanguagesDto"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     searchNotice: {
@@ -3612,6 +4536,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["NoticeSearchResponse"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -3641,6 +4583,24 @@ export interface operations {
                     "*/*": components["schemas"]["NoticeResponse"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     deleteManyNotices: {
@@ -3663,6 +4623,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     unpinManyNotices: {
@@ -3684,6 +4662,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -3711,6 +4707,24 @@ export interface operations {
                     "*/*": string;
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     searchNews: {
@@ -3735,6 +4749,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["NewsSearchResponse"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -3766,6 +4798,24 @@ export interface operations {
                     "*/*": components["schemas"]["NewsResponse"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     enrollTag_1: {
@@ -3792,6 +4842,24 @@ export interface operations {
                     "*/*": string;
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     readImageModals: {
@@ -3810,6 +4878,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["ImageModalDto"][];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -3840,6 +4926,24 @@ export interface operations {
                     "*/*": components["schemas"]["ImageModalDto"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     readAcademicsYearResponses: {
@@ -3863,6 +4967,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["AcademicsYearResponse"][];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -3895,6 +5017,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     createCompany: {
@@ -3917,6 +5057,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     readAllGroupedFacilities: {
@@ -3935,6 +5093,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["GroupedFacDto"][];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -3963,6 +5139,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     uploadFiles: {
@@ -3987,6 +5181,24 @@ export interface operations {
                     "*/*": components["schemas"]["FileUploadResponse"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     readSeminar: {
@@ -4009,6 +5221,24 @@ export interface operations {
                     "*/*": components["schemas"]["SeminarResponse"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     deleteSeminar: {
@@ -4028,6 +5258,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -4060,6 +5308,24 @@ export interface operations {
                     "*/*": components["schemas"]["SeminarResponse"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     readNotice: {
@@ -4082,6 +5348,24 @@ export interface operations {
                     "*/*": components["schemas"]["NoticeResponse"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     deleteNotice: {
@@ -4101,6 +5385,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -4131,6 +5433,24 @@ export interface operations {
                     "*/*": components["schemas"]["NoticeResponse"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     readNews: {
@@ -4153,6 +5473,24 @@ export interface operations {
                     "*/*": components["schemas"]["NewsResponse"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     deleteNews: {
@@ -4172,6 +5510,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -4204,6 +5560,24 @@ export interface operations {
                     "*/*": components["schemas"]["NewsResponse"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     deleteImageModal: {
@@ -4223,6 +5597,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -4254,6 +5646,24 @@ export interface operations {
                     "*/*": components["schemas"]["ImageModalDto"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     modifyConferencePage: {
@@ -4276,6 +5686,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["ConferencePage"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -4301,6 +5729,24 @@ export interface operations {
                     "*/*": components["schemas"]["AdminSlidesResponse"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     unSlideManyNews: {
@@ -4322,6 +5768,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -4346,6 +5810,24 @@ export interface operations {
                     "*/*": components["schemas"]["AdminImportantResponse"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     makeNotImportants: {
@@ -4367,6 +5849,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -4390,6 +5890,24 @@ export interface operations {
                     "*/*": components["schemas"]["MainResponse"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     getMyRole: {
@@ -4408,6 +5926,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["MyRoleResponse"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -4436,6 +5972,24 @@ export interface operations {
                     "*/*": components["schemas"]["TotalSearchResponse"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     getStaff: {
@@ -4458,6 +6012,24 @@ export interface operations {
                     "*/*": components["schemas"]["StaffLanguagesDto"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     refreshSearches: {
@@ -4475,6 +6047,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -4498,6 +6088,24 @@ export interface operations {
                     "*/*": components["schemas"]["ReservationDto"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     cancelSpecific: {
@@ -4518,6 +6126,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": Record<string, never>;
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -4545,6 +6171,24 @@ export interface operations {
                     "*/*": components["schemas"]["SimpleReservationDto"][];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     getReserveTerms: {
@@ -4563,6 +6207,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["ReserveTermDto"][];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -4589,6 +6251,24 @@ export interface operations {
                     "*/*": components["schemas"]["SimpleReservationDto"][];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     readAllResearch: {
@@ -4613,6 +6293,24 @@ export interface operations {
                     "*/*": (components["schemas"]["ResearchCenterDto"] | components["schemas"]["ResearchGroupDto"])[];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     readResearch: {
@@ -4633,6 +6331,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["ResearchLanguageDto"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -4657,6 +6373,24 @@ export interface operations {
                     "*/*": components["schemas"]["LabLanguageDto"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     getProfessor: {
@@ -4677,6 +6411,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["ProfessorLanguagesDto"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -4701,6 +6453,24 @@ export interface operations {
                     "*/*": components["schemas"]["SimpleProfessorDto"][];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     getActiveProfessors: {
@@ -4721,6 +6491,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["ProfessorPageDto"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -4747,6 +6535,24 @@ export interface operations {
                     "*/*": components["schemas"]["NoticeTotalSearchResponse"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     searchTotalNews: {
@@ -4771,6 +6577,24 @@ export interface operations {
                     "*/*": components["schemas"]["NewsTotalSearchDto"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     mockLogout: {
@@ -4789,6 +6613,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": string;
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -4813,24 +6655,22 @@ export interface operations {
                     "*/*": string;
                 };
             };
-        };
-    };
-    giveErrorInformation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": Record<string, never>;
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -4851,6 +6691,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["ConferencePage"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -4875,6 +6733,24 @@ export interface operations {
                     "*/*": components["schemas"]["PairScholarshipDtoScholarshipDto"];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     deleteScholarship: {
@@ -4894,6 +6770,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -4915,6 +6809,24 @@ export interface operations {
                     "*/*": components["schemas"]["GroupedDirectionDto"][];
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     redirectToLoginURL: {
@@ -4932,6 +6844,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -4953,6 +6883,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": string;
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -4977,6 +6925,24 @@ export interface operations {
                     "*/*": Record<string, never>;
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     helloWorld: {
@@ -4995,6 +6961,24 @@ export interface operations {
                 };
                 content: {
                     "*/*": string;
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -5019,6 +7003,24 @@ export interface operations {
                     "*/*": Record<string, never>;
                 };
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     deleteCourse: {
@@ -5039,6 +7041,24 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
     };
     deleteClub: {
@@ -5058,6 +7078,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };

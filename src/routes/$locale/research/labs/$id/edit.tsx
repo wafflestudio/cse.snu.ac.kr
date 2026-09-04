@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import ResearchLabEditor, {
   type ResearchLabFormData,
@@ -71,8 +71,8 @@ function ResearchLabEdit() {
 
       toast.success('연구실을 수정했습니다.');
       navigate({ to: localizedPath(`/research/labs/${lab.ko.id}`) });
-    } catch {
-      toast.error('수정에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 
@@ -82,8 +82,8 @@ function ResearchLabEdit() {
 
       toast.success('연구실을 삭제했습니다.');
       navigate({ to: localizedPath('/research/labs') });
-    } catch {
-      toast.error('삭제에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

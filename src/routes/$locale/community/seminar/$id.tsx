@@ -9,7 +9,7 @@ import Attachments from '@/components/ui/Attachments';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import Image from '@/components/ui/Image';
 import Node from '@/components/ui/Nodes';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
@@ -52,8 +52,8 @@ function SeminarDetailPage() {
       await api.delete(`v2/seminar/${seminar.id}`);
       toast.success('게시글을 삭제했습니다.');
       navigate({ to: localizedPath('/community/seminar') });
-    } catch {
-      toast.error('삭제에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

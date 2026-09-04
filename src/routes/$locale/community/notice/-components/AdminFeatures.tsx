@@ -3,7 +3,7 @@ import { SquareCheck } from 'lucide-react';
 import { useState } from 'react';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { api } from '@/utils/api';
 
@@ -33,8 +33,8 @@ export default function AdminFeatures({
 
       toast.success('선택된 공지를 삭제했습니다.');
       router.invalidate();
-    } catch {
-      toast.error('공지를 삭제하지 못했습니다.');
+    } catch (error) {
+      toastError(error);
     }
     setShowDeleteDialog(false);
   };
@@ -49,8 +49,8 @@ export default function AdminFeatures({
 
       toast.success('선택된 공지를 고정 해제했습니다.');
       router.invalidate();
-    } catch {
-      toast.error('공지를 고정 해제하지 못했습니다.');
+    } catch (error) {
+      toastError(error);
     }
     setShowUnpinDialog(false);
   };

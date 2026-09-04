@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import FacultyEditor, {
   type FacultyFormData,
@@ -50,8 +50,8 @@ function FacultyCreate() {
           ? '/people/emeritus-faculty'
           : '/people/faculty';
       navigate({ to: localizedPath(`${path}/${response.ko.id}`) });
-    } catch {
-      toast.error('추가에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

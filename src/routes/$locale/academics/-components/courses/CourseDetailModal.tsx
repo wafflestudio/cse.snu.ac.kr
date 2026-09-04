@@ -4,7 +4,7 @@ import LoginVisible from '@/components/feature/auth/LoginVisible';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import Dialog from '@/components/ui/Dialog';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { GRADE } from '@/routes/$locale/academics/-constants';
 import type { Course } from '@/types/api';
@@ -75,8 +75,8 @@ function CourseViewer({
       toast.success('교과목을 삭제했습니다.');
       router.invalidate();
       onClose();
-    } catch {
-      toast.error('교과목을 삭제하지 못했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

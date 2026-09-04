@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import TimelineEditor, {
   type TimelineFormData,
@@ -38,8 +38,8 @@ function CourseChangesCreatePage() {
       });
       toast.success(t('저장에 성공했습니다.'));
       navigate({ to: `/academics/${studentType}/course-changes` });
-    } catch {
-      toast.error(t('저장에 실패했습니다.'));
+    } catch (error) {
+      toastError(error);
     }
   };
 

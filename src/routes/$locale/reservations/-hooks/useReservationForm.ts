@@ -2,11 +2,8 @@ import { useRouter } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from '@/components/ui/sonner';
-import {
-  postReservation,
-  ReservationError,
-} from '@/routes/$locale/reservations/-api';
+import { toast, toastError } from '@/components/ui/sonner';
+import { postReservation } from '@/routes/$locale/reservations/-api';
 import type { ReservationPostBody } from '@/types/api';
 import {
   getEarliestStartTimeFrom,
@@ -50,28 +47,7 @@ const getDefaultBodyValue = (): ReservationFormValues => {
 };
 
 const handleError = (error: unknown) => {
-  if (error instanceof ReservationError) {
-    if (error.serverMessage) {
-      toast.error(error.serverMessage);
-      return;
-    }
-    switch (error.status) {
-      case 409:
-        toast.error('해당 시간에 이미 예약이 있습니다.');
-        return;
-      case 403:
-        toast.error('예약 권한이 없습니다.');
-        return;
-      case 401:
-        toast.error('로그인이 필요합니다.');
-        return;
-      default:
-        toast.error('예약에 실패했습니다.');
-        return;
-    }
-  }
-
-  toast.error('알 수 없는 에러가 발생했습니다.');
+  toastError(error);
 };
 
 const buildDate = (date: Date, time: string) => {

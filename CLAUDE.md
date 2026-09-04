@@ -32,7 +32,7 @@
    frontend SSR이 백엔드를 부를 때도 이 엣지를 탄다(절대 URL 직호출).
    컨테이너의 `--add-host cse.snu.ac.kr:host-gateway`가 그 경로를 만든다.
 ```
-- 엣지 = **Caddy 컨테이너**(`~/proxy/caddy/Caddyfile`, 이 레포 밖). TLS·라우팅·보안 헤더(`-Server`·`X-XSS-Protection`) 담당.
+- 엣지 = **Caddy 컨테이너**. TLS·라우팅·보안 헤더(`-Server`·`X-XSS-Protection`) 담당. ⚠️ **설정 정본은 백엔드 레포의 `caddy/Caddyfile`(prod)·`caddy/Caddyfile.dev`(staging)** — `proxy.yaml`/`proxy_dev.yaml`이 그 경로 변경 시 호스트 `~/proxy`로 SCP하고 컨테이너를 `down`→`up -d`(무중단 reload 아님 — 수 초 끊긴다). **호스트에서 직접 고치면 다음 배포에 덮인다.**
 - 백엔드는 `ghcr.io/wafflestudio/csereal-server`(CI 빌드→GHCR→pull). **프론트는 호스트 빌드**(레지스트리 없음 — 호스트가 git URL로 `docker build`, 아래).
 - **⚠️ 압축은 이제 앱이 한다(`hono/compress`).** 예전엔 Caddy 위 상위 계층(바쿠스 프록시)이 br 압축을 해줘서 이 레포는 압축을 안 넣었는데, **2026-08 프록시 제거로 그 계층이 사라졌다**(실측: prod가 HTML을 무압축 94KB로 서빙). `immutable` 캐시 헤더는 앱이 원래부터 내고 있어 무관.
 
@@ -44,7 +44,7 @@
 - **⚠️ 학외 OAuth 로그인은 아직 불가.** OAuth는 사용자 브라우저가 `id.snucse.org`(→147.46.92.174)에 직접 붙어야 하는데 그 호스트가 학외 443을 막고 있다(2026-08-29 실측 4/4 timeout — SYN drop과 달리 재시도로도 안 붙는 하드 차단). **바쿠스가 그 호스트를 학외 개방해야 학외 로그인이 동작한다**(앱 문제 아님, 바쿠스 소유). 학내에선 정상.
 - **OIDC 부팅 의존(근본 해결됨).** oauth2 registration에 `issuer-uri`가 있으면 백엔드가 기동 시 `id.snucse.org` OIDC discovery(`.well-known`)를 강제하는데, 학외·CI·클라우드에선 그 호스트에 못 닿아 `ClientRegistrationRepository` 생성이 실패 → 크래시 루프. **해결: local·dev 프로파일에서 OIDC 등록을 빼고, `SecurityConfig`가 registration이 있을 때만 `oauth2Login`을 배선한다**(`ObjectProvider<ClientRegistrationRepository>.ifAvailable`). 두 환경은 mock-login(세션)만 쓰니 실 OIDC가 불필요·불가. prod만 등록 유지(SNU 호스트라 닿고 실 로그인 필요). 옛 nginx oidc-stub은 compose에서 삭제. ⚠️ **local·dev에 `issuer-uri`를 다시 넣지 말 것** — 부팅 discovery가 되살아나 크래시. (이 버그로 staging(dev 프로파일·클라우드 168.107.16.249, off-SNU)이 재배포마다 조용히 크래시 루프였다 — 오래 뜬 컨테이너는 멀쩡하다 재생성 시 터진다.)
 - **⚠️ 컨테이너에 `--add-host cse.snu.ac.kr:host-gateway`가 필요하다(`remote-deploy.sh`가 붙인다, 롤백 명령에도).** prod 빌드는 API_PROXY_TARGET 없이 **절대 URL 직호출**이라 SSR이 `https://cse.snu.ac.kr/api/...`를 부르는데 컨테이너가 그 호스트명을 자기 게이트웨이로 풀어야 한다. 빠지면 **전 페이지 500**(getaddrinfo 실패) — 오래 떠 있는 컨테이너에선 안 드러나다가 **재생성 시점에 터진다**(2026-08-22에 겪음).
-- **⚠️ `@backend_denied` IP 직결 우회 = 실제 열린 갭(2026-08-29 확인, 미조치).** Caddyfile이 관리 엔드포인트 3개(`/api/v1/search/refresh`·`/api/v2/reservation/terms/custom`·`/api/v2/reservation/terms/defaults`)를 `not remote_ip {$LOCAL_IP}`로 막는데 **그 deny가 도메인 블록에만 있고 `147.46.92.120` IP 직결 블록엔 없다** → 학외에서 `https://147.46.92.120/api/...`로 치면 통과(도메인으로는 000 abort). 게다가 `LOCAL_IP=10.91.1.1`은 **구 프록시 사설 주소**라 직결 전환 후 정상 관리자도 통과 못 시킨다. **조치 = IP 직결 블록에도 같은 `abort @backend_denied` 추가 + `LOCAL_IP`를 직결 토폴로지 기준으로 재정의**(`~/proxy/caddy/Caddyfile`, 이 레포 밖).
+- **관리 엔드포인트는 앱이 loopback으로 막는다(2026-09-04 실측 확인).** `search/refresh`·`reservation/terms/custom`·`terms/defaults` 3개는 `@InternalOnly`(`InternalOnlyInterceptor`가 `remoteAddr.isLoopbackAddress` 검사) → 외부에서 403. 운용은 `docker exec … curl localhost:8080/…`. ⚠️ 컨테이너 내부 호출은 IPv6 loopback `::1`로 오니 `127.0.0.1`만 매칭하면 막힌다. `forward-headers-strategy` 미설정이라 XFF 스푸핑으론 못 뚫는다(`ClientInfoInterceptor` **로그**의 IP는 XFF를 따라 위조 가능하지만 인가엔 안 쓰임). 세션 인증을 안 쓴 이유: 학외에선 OAuth가 막혀 개발자가 못 쓰게 된다. **엣지에는 이 차단이 없다** — 과거 이 문서가 서술한 Caddy `@backend_denied`·`LOCAL_IP` 블록은 현재 prod Caddyfile에 존재하지 않으며, 그때의 "000(차단)" 관측은 학외 SYN drop이었을 가능성이 크다(도메인으로 PATCH 3/3이 405로 앱까지 닿는다). 앱이 정본 방어라 이중 방어는 미도입.
 
 ## 브랜치 · CI/CD 컨벤션
 
@@ -74,7 +74,7 @@
   - **경로로 주소를 잡는 이유:** operationId는 springdoc이 중복 메서드명에 번호를 붙여(`searchTop`·`searchTop_1`) 컨트롤러가 하나 늘면 밀린다 — 타입이 말없이 다른 엔드포인트에 붙는다. 스키마 이름도 `{total, searchList}` 같은 공용 래퍼가 겹쳐 부적합.
   - ⚠️ **요청 바디엔 `Res`를 쓰지 않는다.** 응답의 optional은 "값이 null", 요청의 optional은 "생략 가능"이라 뜻이 다르다. 요청은 `components['schemas'][...]`를 그대로.
   - ⚠️ **`Res`가 `?`를 떼는 전제:** 백엔드 Jackson이 `default-property-inclusion=ALWAYS`(기본값)라 응답에 선언된 키가 항상 온다. 백엔드가 `non_null` 직렬화로 바꾸면 이 매핑을 지워야 한다.
-  - **전제: 백엔드 springdoc 2.8.17+.** 2.4.0은 Kotlin `T?`를 스펙에 nullable로 안 적어 생성 타입이 런타임과 어긋났다(springdoc #906 → #3256). Boot 3.2.3에선 `-ui` 스타터가 부팅 실패해 `-api`를 쓴다.
+  - **전제: 백엔드 springdoc 2.8.17+.** 2.4.0은 Kotlin `T?`를 스펙에 nullable로 안 적어 생성 타입이 런타임과 어긋났다(springdoc #906 → #3256). `-ui` 스타터(2.9.0)는 Boot 3.5부터 쓴다 — 3.2.3에선 Framework 6.2의 `LiteWebJarsResourceResolver`가 없어 부팅 실패했다.
 - **서버 라우트(Response 직접 반환):** `/img`(이미지 최적화 프록시 — sharp·AVIF·디스크캐시·SSRF 화이트리스트)와 `/sitemap.xml`. `/img`가 **시스템 유일의 이미지 최적화 계층**(백엔드는 원본만 서빙, `Image`가 렌더타임에 `/img?url=...` 생성, DB엔 원본 URL만). 장기적으론 백엔드/CDN(imgproxy) 이관 검토.
 - **⚠️ 검색 파라미터를 읽는 loader는 `loaderDeps: searchLoaderDeps`(`src/utils/loaderDeps.ts`) 필수.** match id가 `routeId+경로+JSON(loaderDeps)`라 선언이 없으면 **검색 파라미터만 바뀌는 클라 네비에서 loader가 아예 재실행되지 않는다**. 증상: URL만 바뀌고 화면 그대로 — 예약 캘린더 날짜 이동·목록 페이지네이션·태그 필터·검색이 전부 해당됐다(2026-07-29 수정, 13개 라우트). 누락은 **E2E 클릭 테스트**로 잡는다 — 검색 파라미터를 바꾸는 컨트롤을 도메인당 1개 클릭으로 검증(reservations 날짜·notice 페이지네이션이 reference, §3). 새 검색 파라미터 라우트엔 그 클릭 테스트를 반드시 추가할 것.
 - **TanStack 함정(겪은 것):**

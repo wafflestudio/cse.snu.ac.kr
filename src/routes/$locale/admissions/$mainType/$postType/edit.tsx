@@ -7,7 +7,7 @@ import LanguagePicker, {
   type Language,
 } from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import type { AdmissionsResponse } from '@/types/api';
 import { api } from '@/utils/api';
 
@@ -85,8 +85,8 @@ function AdmissionsEdit() {
       });
       toast.success(successMessage);
       navigate({ to: `/admissions/${mainType}/${postType}` });
-    } catch {
-      toast.error('수정에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   });
 

@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import StaffEditor, {
   type StaffFormData,
@@ -29,8 +29,8 @@ function StaffCreate() {
 
       toast.success('행정직원을 추가했습니다.');
       navigate({ to: localizedPath(`/people/staff/${response[locale].id}`) });
-    } catch {
-      toast.error('추가에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 
