@@ -2990,7 +2990,7 @@ export interface operations {
             header?: never;
             path: {
                 studentType: "undergraduate" | "graduate";
-                postType: "guide" | "general-studies-requirements" | "curriculum" | "degree-requirements" | "course-changes" | "scholarship";
+                postType: "general-studies-requirements" | "curriculum" | "course-changes";
                 year: number;
             };
             cookie?: never;
@@ -3039,7 +3039,7 @@ export interface operations {
             header?: never;
             path: {
                 studentType: "undergraduate" | "graduate";
-                postType: "guide" | "general-studies-requirements" | "curriculum" | "degree-requirements" | "course-changes" | "scholarship";
+                postType: "general-studies-requirements" | "curriculum" | "course-changes";
                 year: number;
             };
             cookie?: never;
@@ -3623,7 +3623,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                postType: "overview" | "greetings" | "history" | "future-careers" | "contact" | "student-clubs" | "facilities" | "directions";
+                postType: "overview" | "greetings" | "history" | "contact";
             };
             cookie?: never;
         };
@@ -3663,7 +3663,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                postType: "overview" | "greetings" | "history" | "future-careers" | "contact" | "student-clubs" | "facilities" | "directions";
+                postType: "overview" | "greetings" | "history" | "contact";
             };
             cookie?: never;
         };
@@ -5113,7 +5113,7 @@ export interface operations {
             header?: never;
             path: {
                 studentType: "undergraduate" | "graduate";
-                postType: "guide" | "general-studies-requirements" | "curriculum" | "degree-requirements" | "course-changes" | "scholarship";
+                postType: "general-studies-requirements" | "curriculum" | "course-changes";
             };
             cookie?: never;
         };
@@ -5156,7 +5156,7 @@ export interface operations {
             header?: never;
             path: {
                 studentType: "undergraduate" | "graduate";
-                postType: "guide" | "general-studies-requirements" | "curriculum" | "degree-requirements" | "course-changes" | "scholarship";
+                postType: "general-studies-requirements" | "curriculum" | "course-changes";
             };
             cookie?: never;
         };
