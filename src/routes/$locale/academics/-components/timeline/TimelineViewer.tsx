@@ -6,7 +6,7 @@ import AlertDialog from '@/components/ui/AlertDialog';
 import Attachments from '@/components/ui/Attachments';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { TimelineContent } from '@/types/api';
 import { api } from '@/utils/api';
@@ -122,8 +122,8 @@ function ActionButtons({ year, pathname }: { year: number; pathname: string }) {
       setShowDeleteDialog(false);
       toast.success('삭제에 성공했습니다.');
       router.invalidate();
-    } catch {
-      toast.error('삭제에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

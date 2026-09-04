@@ -7,7 +7,7 @@ import LanguagePicker, {
   type Language,
 } from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { DirectionsResponse } from '@/types/api';
 import { api } from '@/utils/api';
@@ -48,8 +48,8 @@ function DirectionsEdit() {
 
       toast.success('찾아오는 길을 수정했습니다.');
       navigate({ to: localizedPath('/about/directions') });
-    } catch {
-      toast.error('수정에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   });
 

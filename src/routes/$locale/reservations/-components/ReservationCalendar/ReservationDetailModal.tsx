@@ -4,7 +4,7 @@ import LoginVisible from '@/components/feature/auth/LoginVisible';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import Dialog from '@/components/ui/Dialog';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import {
   deleteRecurringReservation,
@@ -76,8 +76,8 @@ export default function ReservationDetailModal({
       setShowDeleteDialog(false);
       onOpenChange(false);
       router.invalidate();
-    } catch {
-      toast.error('삭제에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 
@@ -90,8 +90,8 @@ export default function ReservationDetailModal({
       setShowDeleteRecurringDialog(false);
       onOpenChange(false);
       router.invalidate();
-    } catch {
-      toast.error('삭제에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

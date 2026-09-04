@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { ResearchGroup } from '@/types/api';
 import { api } from '@/utils/api';
@@ -49,8 +49,8 @@ function ResearchGroupEdit() {
 
       toast.success('연구 스트림을 수정했습니다.');
       navigate({ to: localizedPath('/research/groups') });
-    } catch {
-      toast.error('수정에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

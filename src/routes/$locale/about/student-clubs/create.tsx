@@ -7,7 +7,7 @@ import LanguagePicker, {
   type Language,
 } from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { EditorImage } from '@/types/form';
 import { api } from '@/utils/api';
@@ -47,8 +47,8 @@ function StudentClubsCreate() {
 
       toast.success('동아리를 추가했습니다.');
       navigate({ to: localizedPath('/about/student-clubs') });
-    } catch {
-      toast.error('추가에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   });
 

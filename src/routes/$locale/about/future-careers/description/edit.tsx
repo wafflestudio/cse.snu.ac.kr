@@ -7,7 +7,7 @@ import LanguagePicker, {
   type Language,
 } from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { FutureCareersResponse } from '@/types/api';
 import { LOCALES } from '@/types/i18n';
@@ -46,8 +46,8 @@ function CareerDescriptionEdit() {
 
       toast.success('졸업생 진로 본문을 수정했습니다.');
       navigate({ to: localizedPath('/about/future-careers') });
-    } catch {
-      toast.error('수정에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   });
 

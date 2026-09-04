@@ -4,7 +4,7 @@ import {
   useRouter,
 } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import FacultyEditor, {
   type FacultyFormData,
@@ -63,8 +63,8 @@ function FacultyEdit() {
           ? '/people/emeritus-faculty'
           : '/people/faculty';
       navigate({ to: `${path}/${faculty.ko.id}` });
-    } catch {
-      toast.error('수정에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 
@@ -74,8 +74,8 @@ function FacultyEdit() {
 
       toast.success('교수진을 삭제했습니다.');
       navigate({ to: localizedPath('/people/faculty') });
-    } catch {
-      toast.error('삭제에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { NoticePostBody } from '@/types/api';
 import { isLocalFile } from '@/types/form';
@@ -49,8 +49,8 @@ function NoticeCreatePage() {
         .json<{ id: number }>();
       toast.success('공지사항을 게시했습니다.');
       navigate({ to: `/community/notice/${id}` });
-    } catch {
-      toast.error('게시에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

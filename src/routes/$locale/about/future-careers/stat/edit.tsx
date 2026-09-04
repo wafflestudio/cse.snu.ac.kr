@@ -8,7 +8,7 @@ import {
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { FutureCareersResponse } from '@/types/api';
@@ -73,8 +73,8 @@ function CareerStatEditPage() {
 
       toast.success('졸업생 진로 현황을 수정했습니다.');
       navigate({ to: localizedPath('/about/future-careers') });
-    } catch {
-      toast.error('수정에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

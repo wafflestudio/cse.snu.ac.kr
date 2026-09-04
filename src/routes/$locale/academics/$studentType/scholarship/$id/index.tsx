@@ -5,7 +5,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
@@ -50,8 +50,8 @@ function ScholarshipDetailPage() {
       await api.delete(`v2/academics/scholarship/${id}`);
       toast.success(t('장학금을 삭제했습니다.'));
       navigate({ to: `/academics/${studentType}/scholarship` });
-    } catch {
-      toast.error(t('장학금을 삭제하지 못했습니다.'));
+    } catch (error) {
+      toastError(error);
     }
   };
 

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import Pagination from '@/components/ui/Pagination';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useSetToggle } from '@/hooks/useSetToggle';
 import type { SlidePreview } from '@/types/api';
 import { api } from '@/utils/api';
@@ -41,8 +41,8 @@ export default function SlideManagement({
       });
       toast.success('슬라이드를 해제했습니다.');
       router.invalidate();
-    } catch {
-      toast.error('슬라이드를 해제하지 못했습니다.');
+    } catch (error) {
+      toastError(error);
     }
     setShowDialog(false);
   };

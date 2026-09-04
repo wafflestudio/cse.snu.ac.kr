@@ -8,7 +8,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import Attachments from '@/components/ui/Attachments';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import Node from '@/components/ui/Nodes';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { Tag } from '@/components/ui/Tag';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
@@ -42,8 +42,8 @@ function NoticeDetailPage() {
       await api.delete(`v2/notice/${notice.id}`);
       toast.success('게시글을 삭제했습니다.');
       navigate({ to: localizedPath('/community/notice') });
-    } catch {
-      toast.error('삭제에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

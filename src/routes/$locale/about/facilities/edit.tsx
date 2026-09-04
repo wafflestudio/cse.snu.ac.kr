@@ -7,7 +7,7 @@ import LanguagePicker, {
   type Language,
 } from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { FacilitiesResponse, Facility } from '@/types/api';
 import type { EditorImage } from '@/types/form';
@@ -69,8 +69,8 @@ function FacilitiesEdit() {
 
       toast.success('시설을 수정했습니다.');
       navigate({ to: localizedPath('/about/facilities') });
-    } catch {
-      toast.error('수정에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   });
 

@@ -2,7 +2,7 @@ import { useRouter } from '@tanstack/react-router';
 import { FormProvider, useForm } from 'react-hook-form';
 import Form from '@/components/form/Form';
 import Button from '@/components/ui/Button';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import {
   CLASSIFICATION,
@@ -54,8 +54,8 @@ export default function CourseEditor({
       toggleEditMode();
       toast.success(t('교과목을 수정했습니다.'));
       router.invalidate();
-    } catch {
-      toast.error(t('교과목을 수정하지 못했습니다.'));
+    } catch (error) {
+      toastError(error);
     }
   };
 
