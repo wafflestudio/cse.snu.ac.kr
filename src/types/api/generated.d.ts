@@ -1234,7 +1234,7 @@ export interface components {
             language: "ko" | "en";
             name: string;
             description: string;
-            mainImageUrl?: string;
+            mainImageUrl?: string | null;
         };
         ModifyLabLanguageReqBody: {
             ko: components["schemas"]["ModifyLabReqBody"];
@@ -1615,7 +1615,7 @@ export interface components {
             type: "groups" | "centers";
             name: string;
             description: string;
-            mainImageUrl?: string;
+            mainImageUrl?: string | null;
         };
         CreateLabLanguageReqBody: {
             ko: components["schemas"]["CreateLabReqBody"];
