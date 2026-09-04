@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import Button from '@/components/ui/Button';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import {
   CareerCompanyEditor,
@@ -37,8 +37,8 @@ export default function CareerCompanies({
       toast.success('졸업생 창업 기업을 추가했습니다.');
       toggleCreateForm();
       window.location.reload();
-    } catch {
-      toast.error('추가에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

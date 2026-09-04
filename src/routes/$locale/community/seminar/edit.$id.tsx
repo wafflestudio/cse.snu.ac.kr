@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { Seminar, SeminarPatchBody } from '@/types/api';
 import { isLocalFile } from '@/types/form';
@@ -83,8 +83,8 @@ function SeminarEditPage() {
 
       toast.success('세미나를 수정했습니다.');
       navigate({ to: localizedPath(`/community/seminar/${id}`) });
-    } catch {
-      toast.error('수정에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 
@@ -94,8 +94,8 @@ function SeminarEditPage() {
 
       toast.success('세미나를 삭제했습니다.');
       navigate({ to: localizedPath('/community/seminar') });
-    } catch {
-      toast.error('삭제에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

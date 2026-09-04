@@ -4,7 +4,7 @@ import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import Button from '@/components/ui/Button';
 import Dialog from '@/components/ui/Dialog';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { CLASSIFICATION, GRADE } from '@/routes/$locale/academics/-constants';
 import type { Course, StudentType } from '@/types/api';
@@ -60,8 +60,8 @@ export default function AddCourseModal({
       toast.success(t('새 교과목을 추가했습니다.'));
       router.invalidate();
       onClose();
-    } catch {
-      toast.error(t('교과목을 추가하지 못했습니다.'));
+    } catch (error) {
+      toastError(error);
     }
   };
 

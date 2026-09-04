@@ -5,7 +5,7 @@ import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import Image from '@/components/ui/Image';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { Facility } from '@/types/api';
 import { api } from '@/utils/api';
@@ -38,8 +38,8 @@ function FacilitiesRow({ facility }: { facility: ProcessedFacility }) {
       setShowDeleteDialog(false);
       toast.success('시설을 삭제했습니다.');
       router.invalidate();
-    } catch {
-      toast.error('삭제에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

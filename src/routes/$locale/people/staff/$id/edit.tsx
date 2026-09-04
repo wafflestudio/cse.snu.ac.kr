@@ -4,7 +4,7 @@ import {
   useRouter,
 } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import StaffEditor, {
   type StaffFormData,
@@ -44,8 +44,8 @@ function StaffEdit() {
 
       toast.success('행정직원을 수정했습니다.');
       navigate({ to: `/people/staff/${staff.ko.id}` });
-    } catch {
-      toast.error('수정에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 
@@ -55,8 +55,8 @@ function StaffEdit() {
 
       toast.success('행정직원을 삭제했습니다.');
       navigate({ to: localizedPath('/people/staff') });
-    } catch {
-      toast.error('삭제에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

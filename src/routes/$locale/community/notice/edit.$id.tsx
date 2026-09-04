@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { Notice, NoticePatchBody } from '@/types/api';
 import { isLocalFile } from '@/types/form';
@@ -77,8 +77,8 @@ function NoticeEditPage() {
 
       toast.success('공지사항을 수정했습니다.');
       navigate({ to: `/community/notice/${id}` });
-    } catch {
-      toast.error('수정에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 
@@ -88,8 +88,8 @@ function NoticeEditPage() {
 
       toast.success('공지사항을 삭제했습니다.');
       navigate({ to: localizedPath('/community/notice') });
-    } catch {
-      toast.error('삭제에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

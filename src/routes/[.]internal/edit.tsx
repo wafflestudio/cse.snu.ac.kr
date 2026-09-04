@@ -3,7 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toastError } from '@/components/ui/sonner';
 import { api } from '@/utils/api';
 
 interface InternalFormData {
@@ -33,8 +33,8 @@ function InternalEdit() {
       });
 
       navigate({ to: '/.internal' });
-    } catch {
-      toast.error('수정에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   });
 

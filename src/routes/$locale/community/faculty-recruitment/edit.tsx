@@ -3,7 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { FacultyRecruitment } from '@/types/api';
 import type { EditorImage } from '@/types/form';
@@ -52,8 +52,8 @@ function FacultyRecruitmentEditPage() {
 
         toast.success('신임교수초빙을 수정했습니다.');
         navigate({ to: localizedPath('/community/faculty-recruitment') });
-      } catch {
-        toast.error('신임교수초빙을 수정하지 못했습니다.');
+      } catch (error) {
+        toastError(error);
       }
     },
   );

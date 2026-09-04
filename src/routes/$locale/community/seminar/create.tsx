@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { SeminarPostBody } from '@/types/api';
 import { isLocalFile } from '@/types/form';
@@ -52,8 +52,8 @@ function SeminarCreatePage() {
 
       toast.success('세미나를 게시했습니다.');
       navigate({ to: localizedPath('/community/seminar') });
-    } catch {
-      toast.error('게시에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

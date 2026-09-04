@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { ResearchCenter } from '@/types/api';
 import { api } from '@/utils/api';
@@ -59,8 +59,8 @@ function ResearchCenterEdit() {
 
       toast.success('연구 센터를 수정했습니다.');
       navigate({ to: localizedPath('/research/centers') });
-    } catch {
-      toast.error('수정에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

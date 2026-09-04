@@ -3,7 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import type { DegreeRequirements } from '@/types/api';
@@ -56,8 +56,8 @@ function DegreeRequirementsEditPage() {
       navigate({
         to: localizedPath('/academics/undergraduate/degree-requirements'),
       });
-    } catch {
-      toast.error(t('학부 졸업규정을 수정하지 못했습니다.'));
+    } catch (error) {
+      toastError(error);
     }
   };
 

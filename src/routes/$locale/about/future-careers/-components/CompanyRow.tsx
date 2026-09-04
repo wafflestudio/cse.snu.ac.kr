@@ -5,7 +5,7 @@ import LoginVisible from '@/components/feature/auth/LoginVisible';
 import Form from '@/components/form/Form';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
-import { toast } from '@/components/ui/sonner';
+import { toast, toastError } from '@/components/ui/sonner';
 import { TABLE_COLUMN_SIZE } from '@/routes/$locale/about/future-careers/-components/CareerCompanies';
 import type { Company } from '@/types/api';
 import { api } from '@/utils/api';
@@ -29,8 +29,8 @@ export function CompanyTableRow({ index, company }: CompanyTableRowProps) {
       toast.success('졸업생 창업 기업을 수정했습니다.');
       toggleEdit();
       router.invalidate();
-    } catch {
-      toast.error('수정에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 
@@ -67,8 +67,8 @@ function CareerCompanyViewer({
       toast.success('졸업생 창업 기업을 삭제했습니다.');
       toggleEdit();
       router.invalidate();
-    } catch {
-      toast.error('삭제에 실패했습니다.');
+    } catch (error) {
+      toastError(error);
     }
   };
 

@@ -7,7 +7,7 @@ import LanguagePicker, {
   type Language,
 } from '@/components/form/LanguagePicker';
 import PageLayout from '@/components/layout/PageLayout';
-import { toast } from '@/components/ui/sonner';
+import { toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { AboutContent } from '@/types/api';
 import type { EditorFile, EditorImage } from '@/types/form';
@@ -75,8 +75,8 @@ function AboutEdit() {
         await api.put(`v2/about/${endpoint}`, { body: formData });
 
         navigate({ to: localizedPath(`/about/${type}`) });
-      } catch {
-        toast.error('수정에 실패했습니다.');
+      } catch (error) {
+        toastError(error);
       }
     },
   );

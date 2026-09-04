@@ -16,13 +16,16 @@ function isErrorResponse(
 }
 
 export default function RootErrorBoundary({ error }: { error: unknown }) {
-  const { t, localizedPath } = useLanguage({ '메인으로 이동': 'Go to home' });
+  const { t, localizedPath } = useLanguage({
+    '메인으로 이동': 'Go to home',
+    '문제가 생겼습니다. 잠시 후 다시 시도해 주세요.':
+      'Something went wrong. Please try again shortly.',
+  });
   const navigate = useNavigate();
+  // 예외 메시지는 내부 경로·쿼리를 드러내므로 화면에 싣지 않는다. 상태 코드만 남긴다.
   const message = isErrorResponse(error)
     ? `${error.status} ${error.statusText}`
-    : error instanceof Error
-      ? error.message
-      : 'Unknown error';
+    : t('문제가 생겼습니다. 잠시 후 다시 시도해 주세요.');
   return (
     <html lang="ko">
       <head>
