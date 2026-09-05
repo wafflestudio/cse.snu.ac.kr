@@ -4153,7 +4153,6 @@ export interface operations {
                 keyword?: string;
                 pageNum?: number;
                 pageSize?: number;
-                sortBy?: "date" | "relevance";
             };
             header?: never;
             path?: never;
@@ -4584,7 +4583,6 @@ export interface operations {
                 keyword?: string;
                 pageNum?: number;
                 pageSize?: number;
-                sortBy?: "date" | "relevance";
             };
             header?: never;
             path?: never;
@@ -4797,7 +4795,6 @@ export interface operations {
                 keyword?: string;
                 pageNum?: number;
                 pageSize?: number;
-                sortBy?: "date" | "relevance";
             };
             header?: never;
             path?: never;
