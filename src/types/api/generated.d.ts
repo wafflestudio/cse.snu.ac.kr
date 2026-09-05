@@ -1083,6 +1083,7 @@ export interface components {
         ModifyStaffLanguagesReqBody: {
             phone: string;
             email: string;
+            /** @description 대표이미지를 뗀다. 새 이미지를 함께 보내면 교체가 우선이라 이 값은 무시된다. */
             removeImage: boolean;
             ko: components["schemas"]["ModifyStaffReqBody"];
             en: components["schemas"]["ModifyStaffReqBody"];
@@ -1110,6 +1111,7 @@ export interface components {
         };
         ModifyResearchLanguageReqBody: {
             websiteURL?: string | null;
+            /** @description 대표이미지를 뗀다. 새 이미지를 함께 보내면 교체가 우선이라 이 값은 무시된다. */
             removeImage: boolean;
             ko: components["schemas"]["ResearchContentReqBody"];
             en: components["schemas"]["ResearchContentReqBody"];
@@ -1192,6 +1194,7 @@ export interface components {
         ModifyRecruitReqBody: {
             title: string;
             description: string;
+            /** @description 대표이미지를 뗀다. 새 이미지를 함께 보내면 교체가 우선이라 이 값은 무시된다. */
             removeImage: boolean;
         };
         RecruitPage: {
@@ -1212,6 +1215,7 @@ export interface components {
             fax?: string | null;
             email?: string | null;
             website?: string | null;
+            /** @description 대표이미지를 뗀다. 새 이미지를 함께 보내면 교체가 우선이라 이 값은 무시된다. */
             removeImage: boolean;
             ko: components["schemas"]["ModifyProfessorReqBody"];
             en: components["schemas"]["ModifyProfessorReqBody"];
@@ -1299,6 +1303,7 @@ export interface components {
             description: string;
         };
         UpdateAboutReq: {
+            /** @description 대표이미지를 뗀다. 새 이미지를 함께 보내면 교체가 우선이라 이 값은 무시된다. */
             removeImage: boolean;
             attachmentIds?: number[] | null;
             ko: components["schemas"]["BasicAbout"];
@@ -1311,6 +1316,7 @@ export interface components {
         UpdateClubReq: {
             /** Format: int64 */
             id: number;
+            /** @description 대표이미지를 뗀다. 새 이미지를 함께 보내면 교체가 우선이라 이 값은 무시된다. */
             removeImage: boolean;
             ko: components["schemas"]["ClubReqBody"];
             en: components["schemas"]["ClubReqBody"];
@@ -1348,6 +1354,7 @@ export interface components {
         UpdateFacReq: {
             ko: components["schemas"]["FacReq"];
             en: components["schemas"]["FacReq"];
+            /** @description 대표이미지를 뗀다. 새 이미지를 함께 보내면 교체가 우선이라 이 값은 무시된다. */
             removeImage: boolean;
         };
         CreateStaffLanguagesReqBody: {
@@ -1688,6 +1695,7 @@ export interface components {
             /** Format: date */
             importantUntil?: string | null;
             attachmentIds: number[];
+            /** @description 대표이미지를 뗀다. 새 이미지를 함께 보내면 교체가 우선이라 이 값은 무시된다. */
             removeImage: boolean;
         };
         NoticeIdListRequest: {
@@ -1720,6 +1728,7 @@ export interface components {
             importantUntil?: string | null;
             tags: string[];
             attachmentIds: number[];
+            /** @description 대표이미지를 뗀다. 새 이미지를 함께 보내면 교체가 우선이라 이 값은 무시된다. */
             removeImage: boolean;
         };
         ConferenceDto: {
@@ -2274,10 +2283,7 @@ export interface operations {
             content: {
                 "multipart/form-data": {
                     request: components["schemas"]["ModifyStaffLanguagesReqBody"];
-                    /**
-                     * Format: binary
-                     * @description image 교체할 경우 업로드. Request Body의 removeImage 관계없이 변경됨.
-                     */
+                    /** Format: binary */
                     newMainImage: string;
                 };
             };
@@ -2403,10 +2409,7 @@ export interface operations {
             content: {
                 "multipart/form-data": {
                     request: components["schemas"]["ModifyResearchLanguageReqBody"];
-                    /**
-                     * Format: binary
-                     * @description image 교체할 경우 업로드. Request Body의 removeImage 관계없이 변경됨.
-                     */
+                    /** Format: binary */
                     newMainImage: string;
                 };
             };
@@ -2742,10 +2745,7 @@ export interface operations {
             content: {
                 "multipart/form-data": {
                     request: components["schemas"]["ModifyProfessorLanguagesReqBody"];
-                    /**
-                     * Format: binary
-                     * @description image 교체할 경우 업로드. Request Body의 removeImage 관계없이 변경됨.
-                     */
+                    /** Format: binary */
                     newMainImage: string;
                 };
             };
