@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # E2E 단일 진입점 — `pnpm test`가 부른다.
-#   1) 백엔드 스택(루트 compose.yml: db·backend)을 `up --wait`로 보장
+#   1) 백엔드 스택(루트 compose.yml: db·backend)을 `up --build --wait`로 보장
 #   2) 핀된 Playwright 컨테이너를 스택 네트워크에 붙여 테스트 실행
 # 컨테이너 고정 이유: 비주얼 baseline(*-linux.png)은 폰트 렌더 환경 종속 — 이 이미지가 정본.
 #
@@ -15,8 +15,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 # 태그는 @playwright/test 버전과 일치(버전 올릴 때 함께 수정).
 IMAGE="mcr.microsoft.com/playwright:v1.57.0-jammy"
 
-echo "[e2e] 백엔드 스택 보장(compose up --wait)…"
-docker compose up -d --wait backend
+echo "[e2e] 백엔드 스택 보장(compose up --build --wait)…"
+docker compose up -d --build --wait backend
 
 docker_args=(--rm --network csereal-local_default)
 pw_args=("$@")
