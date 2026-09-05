@@ -21,12 +21,11 @@ services:
       retries: 60
 
   backend:
-    image: my_server_image:1.0 # 로컬 빌드 이미지(기존 태그 유지 — 재빌드 회피)
+    image: csereal-backend:local
     build:
-      # prebuilt JAR(build/libs)를 COPY하는 Dockerfile — JAR 빌드는 CLAUDE.md §백엔드 동기화
       context: ${BACKEND_DIR:-../csereal-server}
     environment:
-      profile: local # 런타임 프로파일 — mock-login(@Profile("!prod")) 활성
+      SPRING_PROFILES_ACTIVE: local # mock-login(@Profile("!prod")) 활성
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/csereal?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: password
