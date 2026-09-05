@@ -38,7 +38,7 @@ function SearchPage() {
               ? `${result.total} results`
               : `${result.total}개의 검색결과`}
           </p>
-          <div className="flex grow flex-col gap-7">
+          <div className="flex max-w-[768px] grow flex-col gap-7">
             {result.results.map((item) => (
               <SearchResultRow key={`${item.type}:${item.id}`} item={item} />
             ))}
