@@ -756,6 +756,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v2/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["search"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v2/search/refresh": {
         parameters: {
             query?: never;
@@ -1966,6 +1982,39 @@ export interface components {
             phone: string;
             email: string;
             imageURL?: string | null;
+        };
+        /** @description 미리보기 조각. 이어 붙이면 원래 문장이 된다. */
+        PreviewSegment: {
+            text: string;
+            hit: boolean;
+        };
+        /** @description 검색 결과. 도메인 구분 없이 관련도 순으로 한 줄로 준다. */
+        SearchResBody: {
+            /** Format: int64 */
+            total: number;
+            results: components["schemas"]["SearchResElement"][];
+        };
+        SearchResElement: {
+            /**
+             * @description 결과의 종류. 행 모양·배지·링크 주소가 여기 따라 달라진다.
+             * @enum {string}
+             */
+            type: "notice" | "news" | "seminar" | "about" | "admissions" | "professor" | "emeritus-professor" | "staff" | "research-group" | "research-center" | "lab" | "conference" | "academics" | "course" | "scholarship";
+            /**
+             * Format: int64
+             * @description 원본 글의 id. type 안에서만 유일하다.
+             */
+            id: number;
+            /** @description 요청한 language 의 제목. 그 언어판이 없으면 다른 쪽을 준다. */
+            title: string;
+            /** @description 이 결과가 사는 화면 경로(로케일 프리픽스 없음). 그대로 링크에 쓴다. */
+            url: string;
+            /** @description 목록에 띄울 사진. 없으면 null. */
+            thumbnailUrl?: string | null;
+            /** @description 글이 생긴 날. 날짜가 의미 없는 정적 페이지는 null. */
+            date?: string | null;
+            /** @description 본문 미리보기. hit=true 인 조각이 검색어와 맞은 부분이다. */
+            preview: components["schemas"]["PreviewSegment"][];
         };
         SimpleReservationDto: {
             /** Format: int64 */
@@ -6129,6 +6178,50 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["TotalSearchResponse"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    search: {
+        parameters: {
+            query: {
+                keyword: string;
+                language?: "ko" | "en";
+                type?: ("notice" | "news" | "seminar" | "about" | "admissions" | "professor" | "emeritus-professor" | "staff" | "research-group" | "research-center" | "lab" | "conference" | "academics" | "course" | "scholarship")[];
+                pageNum?: number;
+                pageSize?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["SearchResBody"];
                 };
             };
             /** @description 요청 오류 — code 로 구분 */

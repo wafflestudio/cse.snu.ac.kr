@@ -1,5 +1,5 @@
 import type { BreadcrumbItem } from '@/components/layout/PageLayout';
-import { type NavItem, navigationTree } from '@/constants/navigation';
+import { navTrailTo } from '@/constants/navigation';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useNavItem } from '@/hooks/useNavItem';
 
@@ -9,29 +9,8 @@ export function useBreadcrumb(): BreadcrumbItem[] {
   const { tUnsafe } = useLanguage();
 
   if (!activeItem) return [];
+  const trail = navTrailTo(activeItem);
+  if (!trail) return [];
 
-  const path = findPathToItem(navigationTree, activeItem);
-  if (!path) return [];
-
-  return path.map((item) => ({
-    name: tUnsafe(item.key),
-    path: item.path,
-  }));
-}
-
-// 특정 항목까지의 경로(루트→타겟)를 찾음
-function findPathToItem(
-  items: NavItem[],
-  target: NavItem,
-  acc: NavItem[] = [],
-): NavItem[] | null {
-  for (const item of items) {
-    const newPath = [...acc, item];
-    if (item.path === target.path) return newPath;
-    if (item.children) {
-      const found = findPathToItem(item.children, target, newPath);
-      if (found) return found;
-    }
-  }
-  return null;
+  return trail.map((item) => ({ name: tUnsafe(item.key), path: item.path }));
 }
