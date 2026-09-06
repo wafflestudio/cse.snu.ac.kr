@@ -2,18 +2,15 @@ import { createFileRoute } from '@tanstack/react-router';
 import SearchBox from '@/components/feature/SearchBox';
 import PageLayout from '@/components/layout/PageLayout';
 import { useLanguage } from '@/hooks/useLanguage';
-import type { SearchResult } from '@/types/api';
-import { api } from '@/utils/api';
 import { stringArrayParam, stringParam } from '@/utils/searchSchema';
+import { fetchSearchPage } from './-api';
+import SearchResultList from './-components/SearchResultList';
 import NoSearchResult from './-components/ui/NoSearchResult';
-import SearchResultRow from './-components/ui/SearchResultRow';
-import { SEARCH_TAGS, tagsToTypes } from './-searchTypes';
+import { SEARCH_TAGS } from './-searchTypes';
 import MagnificentGlass from './assets/magnificent_glass.svg?react';
 
-const PAGE_SIZE = 20;
-
 function SearchPage() {
-  const { keyword, result, tooShort } = Route.useLoaderData();
+  const { keyword, tag, result, tooShort } = Route.useLoaderData();
   const { t, locale } = useLanguage();
 
   return (
@@ -38,11 +35,13 @@ function SearchPage() {
               ? `${result.total} results`
               : `${result.total}개의 검색결과`}
           </p>
-          <div className="flex max-w-[768px] grow flex-col gap-7">
-            {result.results.map((item) => (
-              <SearchResultRow key={`${item.type}:${item.id}`} item={item} />
-            ))}
-          </div>
+          {/* 검색 조건이 바뀌면 재마운트해 이어 붙인 결과를 버린다. */}
+          <SearchResultList
+            key={`${keyword}|${tag.join(',')}`}
+            keyword={keyword}
+            tags={tag}
+            firstPage={result}
+          />
         </>
       )}
     </PageLayout>
@@ -61,17 +60,12 @@ export const Route = createFileRoute('/$locale/search/')({
     if (!keyword) return { keyword, tag };
     if (keyword.length < 2) return { keyword, tag, tooShort: true };
 
-    const searchParams = new URLSearchParams({
+    const result = await fetchSearchPage({
       keyword,
-      language: params.locale === 'en' ? 'en' : 'ko',
-      pageSize: String(PAGE_SIZE),
+      locale: params.locale === 'en' ? 'en' : 'ko',
+      tags: tag,
+      pageNum: 1,
     });
-    // 태그를 안 고르면 전 도메인. 고르면 그 묶음의 종류만.
-    for (const type of tagsToTypes(tag)) searchParams.append('type', type);
-
-    const result = await api
-      .get(`v2/search?${searchParams.toString()}`)
-      .json<SearchResult>();
 
     return { keyword, tag, result };
   },
