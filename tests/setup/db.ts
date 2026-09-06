@@ -3,6 +3,7 @@ import mysql, {
   type ResultSetHeader,
   type RowDataPacket,
 } from 'mysql2/promise';
+import { SEARCH_PAGING_SEED } from './seed/community';
 
 /**
  * DB 직접 조작 단일 출처(globalSetup 전용) — 리셋·content 싱글톤 시드·날짜 정규화.
@@ -267,11 +268,21 @@ export async function seedContent() {
  */
 export async function normalizeDates() {
   const FIXED = '2024-03-15 09:00:00';
+  const PAGING_SEED_DATE = '2024-01-10 09:00:00';
   await withDb(async (conn) => {
     await conn.execute('UPDATE notice SET created_at=?, modified_at=?', [
       FIXED,
       FIXED,
     ]);
+    // 검색 페이징 시드(대량 공지)는 다른 공지보다 과거로 둔다 — 목록·메인의 첫 화면을
+    // 밀어내지 않는다. id마다 1초씩 어긋나게 해 동률로 목록 순서가 흔들리는 것도 막는다
+    // (목록 정렬이 isPinned, created_at 뿐이라 동시각이면 tie-break가 없다).
+    await conn.execute(
+      `UPDATE notice SET created_at = DATE_SUB(?, INTERVAL id SECOND),
+                        modified_at = DATE_SUB(?, INTERVAL id SECOND)
+       WHERE title LIKE ?`,
+      [PAGING_SEED_DATE, PAGING_SEED_DATE, `${SEARCH_PAGING_SEED.keyword}%`],
+    );
     // conference_page는 modified_at(수정 날짜)이 Top Conference List에 노출된다.
     await conn.execute('UPDATE conference_page SET modified_at=?', [FIXED]);
     // news 목록/상세는 payload date를 쓰지만, 메인 NewsCard는 created_at을 노출.
