@@ -1,5 +1,6 @@
 import { normalizeDates, resetDb, seedContent } from './db';
 import { seedBaseline } from './seed';
+import { reindexSearch } from './seed/client';
 
 /**
  * Playwright globalSetup: 매 런 시작 시 1회.
@@ -21,5 +22,9 @@ export default async function globalSetup() {
   // 게시물 created_at은 서버가 박으므로 비결정적 → 비주얼 결정론을 위해 고정값으로 정규화.
   console.log('[e2e] 게시물 날짜 정규화 중…');
   await normalizeDates();
+
+  // 색인은 마지막에. 위 SQL 들이 JPA 를 거치지 않아 색인이 저절로 따라오지 않는다.
+  console.log('[e2e] 검색 색인 재생성 중…');
+  await reindexSearch();
   console.log('[e2e] 시드 완료');
 }

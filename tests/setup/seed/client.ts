@@ -70,3 +70,19 @@ export async function postJson<T>(
     return text as T;
   }
 }
+
+/**
+ * 검색 색인을 DB 기준으로 다시 만든다.
+ *
+ * globalSetup 은 생 SQL 로 DB 를 비우고 날짜를 고쳐 쓴다. 그 경로는 JPA 리스너를
+ * 타지 않아 색인이 옛 데이터를 그대로 들고 있다 — 지운 글이 검색에 남고, 정규화한
+ * 날짜가 검색 결과에만 실제 시각으로 뜬다(비주얼 baseline 이 매 런 달라진다).
+ */
+export async function reindexSearch(): Promise<void> {
+  const res = await fetch(`${BACKEND_URL}/api/v2/search/reindex`, {
+    method: 'POST',
+  });
+  if (!res.ok) {
+    throw new Error(`검색 재색인 실패 ${res.status}: ${await res.text()}`);
+  }
+}

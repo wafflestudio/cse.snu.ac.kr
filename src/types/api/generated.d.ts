@@ -356,6 +356,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v2/search/reindex": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["reindex"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v2/reservation": {
         parameters: {
             query?: never;
@@ -740,30 +756,14 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v2/totalSearch": {
+    "/api/v2/search": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get: operations["searchTotal"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/search/refresh": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["refreshSearches"];
+        get: operations["search"];
         put?: never;
         post?: never;
         delete?: never;
@@ -876,38 +876,6 @@ export interface paths {
             cookie?: never;
         };
         get: operations["getActiveProfessors"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/notice/totalSearch": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["totalSearchNotice"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v2/news/totalSearch": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["searchTotalNews"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1801,132 +1769,15 @@ export interface components {
         MyRoleResponse: {
             roles: ("ROLE_STAFF" | "ROLE_RESERVE" | "ROLE_RESERVE_PROFESSOR_ROOM" | "ROLE_LABMASTER")[];
         };
-        AboutSearchElementDto: {
-            /** Format: int64 */
-            id: number;
-            language: string;
-            /** @enum {string} */
-            aboutPostType: "overview" | "greetings" | "history" | "future-careers" | "contact" | "student-clubs" | "facilities" | "directions";
-            name?: string | null;
-            partialDescription: string;
-            /** Format: int32 */
-            boldStartIndex: number;
-            /** Format: int32 */
-            boldEndIndex: number;
-        };
-        AboutSearchResBody: {
-            /** Format: int64 */
-            total: number;
-            results: components["schemas"]["AboutSearchElementDto"][];
-        };
-        AcademicsSearchResBody: {
-            results: components["schemas"]["AcademicsSearchResElement"][];
-            /** Format: int64 */
-            total: number;
-        };
-        AcademicsSearchResElement: {
-            /** Format: int64 */
-            id: number;
-            language: string;
-            name: string;
-            /** @enum {string} */
-            postType: "academics" | "course" | "scholarship";
-            /** @enum {string} */
-            studentType: "undergraduate" | "graduate";
-            /** @enum {string|null} */
-            academicType?: "guide" | "general-studies-requirements" | "curriculum" | "degree-requirements" | "course-changes" | "scholarship" | null;
-            partialDescription: string;
-            /** Format: int32 */
-            boldStartIndex: number;
-            /** Format: int32 */
-            boldEndIndex: number;
-        };
-        AdmissionSearchResBody: {
-            /** Format: int64 */
-            total: number;
-            results: components["schemas"]["AdmissionSearchResElem"][];
-        };
-        AdmissionSearchResElem: {
+        SimpleStaffDto: {
             /** Format: int64 */
             id: number;
             name: string;
-            mainType: string;
-            postType: string;
-            language: string;
-            partialDescription: string;
-            /** Format: int32 */
-            boldStartIndex: number;
-            /** Format: int32 */
-            boldEndIndex: number;
-        };
-        MemberSearchResBody: {
-            results: components["schemas"]["MemberSearchResponseElement"][];
-            /** Format: int64 */
-            total: number;
-        };
-        MemberSearchResponseElement: {
-            /** Format: int64 */
-            id: number;
-            language: string;
-            name: string;
-            academicRankOrRole: string;
+            role: string;
+            office: string;
+            phone: string;
+            email: string;
             imageURL?: string | null;
-            /** @enum {string} */
-            memberType: "PROFESSOR" | "STAFF";
-        };
-        NewsTotalSearchDto: {
-            /** Format: int32 */
-            total: number;
-            results: components["schemas"]["NewsTotalSearchElement"][];
-        };
-        NewsTotalSearchElement: {
-            /** Format: int64 */
-            id: number;
-            title: string;
-            /** Format: date-time */
-            date?: string | null;
-            tags: string[];
-            imageUrl?: string | null;
-            partialDescription: string;
-            /** Format: int32 */
-            boldStartIndex: number;
-            /** Format: int32 */
-            boldEndIndex: number;
-        };
-        NoticeTotalSearchElement: {
-            /** Format: int64 */
-            id: number;
-            title: string;
-            /** Format: date-time */
-            createdAt: string;
-            partialDescription: string;
-            /** Format: int32 */
-            boldStartIndex: number;
-            /** Format: int32 */
-            boldEndIndex: number;
-        };
-        NoticeTotalSearchResponse: {
-            /** Format: int32 */
-            total: number;
-            results: components["schemas"]["NoticeTotalSearchElement"][];
-        };
-        ResearchSearchResBody: {
-            results: components["schemas"]["ResearchSearchResElement"][];
-            /** Format: int64 */
-            total: number;
-        };
-        ResearchSearchResElement: {
-            /** Format: int64 */
-            id: number;
-            language: string;
-            name: string;
-            /** @enum {string} */
-            researchType: "research-group" | "research-center" | "lab" | "conference";
-            partialDescription: string;
-            /** Format: int32 */
-            boldStartIndex: number;
-            /** Format: int32 */
-            boldEndIndex: number;
         };
         SeminarSearchDto: {
             /** Format: int64 */
@@ -1947,25 +1798,38 @@ export interface components {
             total: number;
             results: components["schemas"]["SeminarSearchDto"][];
         };
-        TotalSearchResponse: {
-            aboutResult: components["schemas"]["AboutSearchResBody"];
-            noticeResult: components["schemas"]["NoticeTotalSearchResponse"];
-            newsResult: components["schemas"]["NewsTotalSearchDto"];
-            seminarResult: components["schemas"]["SeminarSearchResponse"];
-            memberResult: components["schemas"]["MemberSearchResBody"];
-            researchResult: components["schemas"]["ResearchSearchResBody"];
-            admissionsResult: components["schemas"]["AdmissionSearchResBody"];
-            academicsResult: components["schemas"]["AcademicsSearchResBody"];
+        /** @description 미리보기 조각. 이어 붙이면 원래 문장이 된다. */
+        PreviewSegment: {
+            text: string;
+            hit: boolean;
         };
-        SimpleStaffDto: {
+        /** @description 검색 결과. 도메인 구분 없이 관련도 순으로 한 줄로 준다. */
+        SearchResBody: {
             /** Format: int64 */
+            total: number;
+            results: components["schemas"]["SearchResElement"][];
+        };
+        SearchResElement: {
+            /**
+             * @description 결과의 종류. 행 모양·배지·링크 주소가 여기 따라 달라진다.
+             * @enum {string}
+             */
+            type: "notice" | "news" | "seminar" | "about" | "admissions" | "professor" | "emeritus-professor" | "staff" | "research-group" | "research-center" | "lab" | "conference" | "academics" | "course" | "scholarship";
+            /**
+             * Format: int64
+             * @description 원본 글의 id. type 안에서만 유일하다.
+             */
             id: number;
-            name: string;
-            role: string;
-            office: string;
-            phone: string;
-            email: string;
-            imageURL?: string | null;
+            /** @description 요청한 language 의 제목. 그 언어판이 없으면 다른 쪽을 준다. */
+            title: string;
+            /** @description 이 결과가 사는 화면 경로(로케일 프리픽스 없음). 그대로 링크에 쓴다. */
+            url: string;
+            /** @description 목록에 띄울 사진. 없으면 null. */
+            thumbnailUrl?: string | null;
+            /** @description 글이 생긴 날. 날짜가 의미 없는 정적 페이지는 null. */
+            date?: string | null;
+            /** @description 본문 미리보기. hit=true 인 조각이 검색어와 맞은 부분이다. */
+            preview: components["schemas"]["PreviewSegment"][];
         };
         SimpleReservationDto: {
             /** Format: int64 */
@@ -4289,7 +4153,6 @@ export interface operations {
                 keyword?: string;
                 pageNum?: number;
                 pageSize?: number;
-                sortBy?: "date" | "relevance";
             };
             header?: never;
             path?: never;
@@ -4351,6 +4214,46 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["SeminarResponse"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    reindex: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": {
+                        [key: string]: number;
+                    };
                 };
             };
             /** @description 요청 오류 — code 로 구분 */
@@ -4680,7 +4583,6 @@ export interface operations {
                 keyword?: string;
                 pageNum?: number;
                 pageSize?: number;
-                sortBy?: "date" | "relevance";
             };
             header?: never;
             path?: never;
@@ -4893,7 +4795,6 @@ export interface operations {
                 keyword?: string;
                 pageNum?: number;
                 pageSize?: number;
-                sortBy?: "date" | "relevance";
             };
             header?: never;
             path?: never;
@@ -6107,14 +6008,14 @@ export interface operations {
             };
         };
     };
-    searchTotal: {
+    search: {
         parameters: {
             query: {
                 keyword: string;
-                number?: number;
-                memberNumber?: number;
-                stringLength?: number;
                 language?: "ko" | "en";
+                type?: ("notice" | "news" | "seminar" | "about" | "admissions" | "professor" | "emeritus-professor" | "staff" | "research-group" | "research-center" | "lab" | "conference" | "academics" | "course" | "scholarship")[];
+                pageNum?: number;
+                pageSize?: number;
             };
             header?: never;
             path?: never;
@@ -6128,44 +6029,8 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["TotalSearchResponse"];
+                    "*/*": components["schemas"]["SearchResBody"];
                 };
-            };
-            /** @description 요청 오류 — code 로 구분 */
-            "4XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-            /** @description 서버 오류 */
-            "5XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
-    };
-    refreshSearches: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
             };
             /** @description 요청 오류 — code 로 구분 */
             "4XX": {
@@ -6490,90 +6355,6 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["ProfessorPageDto"];
-                };
-            };
-            /** @description 요청 오류 — code 로 구분 */
-            "4XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-            /** @description 서버 오류 */
-            "5XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
-    };
-    totalSearchNotice: {
-        parameters: {
-            query: {
-                keyword: string;
-                number: number;
-                stringLength?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["NoticeTotalSearchResponse"];
-                };
-            };
-            /** @description 요청 오류 — code 로 구분 */
-            "4XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-            /** @description 서버 오류 */
-            "5XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
-    };
-    searchTotalNews: {
-        parameters: {
-            query: {
-                keyword: string;
-                number: number;
-                stringLength?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["NewsTotalSearchDto"];
                 };
             };
             /** @description 요청 오류 — code 로 구분 */

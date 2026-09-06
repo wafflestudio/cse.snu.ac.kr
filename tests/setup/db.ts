@@ -61,8 +61,8 @@ async function insertAboutPair(
   );
   const insert = async (language: string, description: string, n?: string) =>
     conn.execute(
-      `INSERT INTO about_translation (about_id, language, ${n !== undefined ? 'name, ' : ''}description, locations, search_content, created_at, modified_at)
-       VALUES (?, ?, ${n !== undefined ? '?, ' : ''}?, '[]', '', NOW(), NOW())`,
+      `INSERT INTO about_translation (about_id, language, ${n !== undefined ? 'name, ' : ''}description, locations, created_at, modified_at)
+       VALUES (?, ?, ${n !== undefined ? '?, ' : ''}?, '[]', NOW(), NOW())`,
       n !== undefined
         ? [parent.insertId, language, n, description]
         : [parent.insertId, language, description],
@@ -217,8 +217,8 @@ export async function seedContent() {
         ['EN', en],
       ]) {
         await conn.execute(
-          `INSERT INTO admissions (main_type, post_type, language, name, description, search_content, created_at, modified_at)
-           VALUES (?, ?, ?, '', ?, '', NOW(), NOW())`,
+          `INSERT INTO admissions (main_type, post_type, language, name, description, created_at, modified_at)
+           VALUES (?, ?, ?, '', ?, NOW(), NOW())`,
           [mainType, postType, language, description],
         );
       }
