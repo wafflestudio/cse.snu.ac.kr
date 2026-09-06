@@ -33,6 +33,20 @@ export const NOTICE_SEED = [
 ] as const;
 
 /**
+ * 검색 무한 스크롤용 대량 공지.
+ *
+ * 검색 결과가 한 장(SEARCH_PAGE_SIZE=20)을 넘어야 다음 장이 트리거되는데, 다른 baseline을
+ * 다 합쳐도 한 키워드로 20건을 못 넘긴다. 다른 시드와 절대 안 겹치는 키워드를 쓴다.
+ * 공지 목록·메인의 첫 화면을 밀어내지 않도록 created_at은 db.ts(normalizeDates)가
+ * 다른 공지보다 과거로 정규화한다.
+ */
+export const SEARCH_PAGING_SEED = {
+  keyword: '스크롤표본',
+  count: 25,
+  title: (n: number) => `스크롤표본 ${String(n).padStart(2, '0')}`,
+} as const;
+
+/**
  * 새 소식(news). notice와 달리 표시 날짜가 createdAt이 아니라 payload의 `date`라
  * 시드값으로 고정 가능 → normalize-dates 불필요. date 내림차순으로 목록 정렬된다.
  */
@@ -99,6 +113,20 @@ export async function seedCommunity(cookie: string) {
   }
   for (const tag of NEWS_TAGS) {
     await postJson(cookie, '/api/v2/news/tag', { name: tag });
+  }
+
+  for (let i = 1; i <= SEARCH_PAGING_SEED.count; i++) {
+    await postMultipart(cookie, '/api/v2/notice', {
+      title: SEARCH_PAGING_SEED.title(i),
+      titleForMain: null,
+      description: `<p>${SEARCH_PAGING_SEED.title(i)} 게시물입니다.</p>`,
+      isPrivate: false,
+      isPinned: false,
+      pinnedUntil: null,
+      isImportant: false,
+      importantUntil: null,
+      tags: [],
+    });
   }
 
   for (const n of NOTICE_SEED) {
