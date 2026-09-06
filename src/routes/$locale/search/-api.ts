@@ -4,7 +4,7 @@ import { api } from '@/utils/api';
 import { tagsToTypes } from './-searchTypes';
 
 /** 한 번에 받아오는 결과 수. 첫 장은 loader(SSR), 그 뒤는 무한 스크롤이 이어 붙인다. */
-export const SEARCH_PAGE_SIZE = 20;
+const PAGE_SIZE = 20;
 
 interface SearchPageArgs {
   keyword: string;
@@ -24,7 +24,7 @@ export function fetchSearchPage({
     keyword,
     language: locale === 'en' ? 'en' : 'ko',
     pageNum: String(pageNum),
-    pageSize: String(SEARCH_PAGE_SIZE),
+    pageSize: String(PAGE_SIZE),
   });
   // 태그를 안 고르면 전 도메인. 고르면 그 묶음의 종류만.
   for (const type of tagsToTypes(tags)) searchParams.append('type', type);

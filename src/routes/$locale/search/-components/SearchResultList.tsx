@@ -2,7 +2,7 @@ import { LoaderCircle } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { SearchResult, SearchResultItem } from '@/types/api';
-import { fetchSearchPage, SEARCH_PAGE_SIZE } from '../-api';
+import { fetchSearchPage } from '../-api';
 import SearchResultRow from './ui/SearchResultRow';
 
 interface SearchResultListProps {
@@ -20,6 +20,11 @@ type Status = 'idle' | 'loading' | 'error';
  * 첫 장은 loader가 서버에서 받아오고(검색 결과가 SSR로 나가야 한다), 목록 끝의
  * 센티넬이 보이면 다음 장을 이어 붙인다.
  *
+ * 끝은 빈 응답으로만 판정한다. ⚠️ "받은 게 한 장보다 적으면 마지막 장"으로 보면 안 된다 —
+ * 백엔드가 창(from/size)에 걸린 문서 중 제목 없는 것을 버리고(`mapNotNull`) 주기 때문에
+ * 중간 장도 20건이 안 될 수 있다(prod '삼성': total 879인데 1장이 19건 → 첫 장에서 끝으로
+ * 보고 스크롤이 멎었다). 대신 마지막 장 뒤에 빈 요청이 한 번 나간다 — 그 값은 치른다.
+ *
  * ⚠️ 새 검색어로 바뀌어도 이 컴포넌트는 재마운트되지 않을 수 있다(TanStack 라우터).
  * 부모가 검색 조건을 `key`로 넘겨 상태를 초기화한다.
  */
@@ -35,10 +40,7 @@ export default function SearchResultList({
 
   const [items, setItems] = useState(firstPage.results);
   const [status, setStatus] = useState<Status>('idle');
-  // 마지막 장인지는 total(집계 추정값)이 아니라 받아온 개수로 판정한다.
-  const [exhausted, setExhausted] = useState(
-    firstPage.results.length < SEARCH_PAGE_SIZE,
-  );
+  const [exhausted, setExhausted] = useState(firstPage.results.length === 0);
   const pageRef = useRef(1);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
@@ -54,12 +56,7 @@ export default function SearchResultList({
       pageRef.current += 1;
       const merged = appendNew(items, next.results);
       setItems(merged);
-      // 짧은 장이 마지막 장이다. 새로 붙은 게 하나도 없을 때도 멈춘다 — 앞 장과 통째로
-      // 겹치면(백엔드가 pageNum을 무시하는 등) 짧은 장이 영영 안 와 요청만 이어진다.
-      setExhausted(
-        next.results.length < SEARCH_PAGE_SIZE ||
-          merged.length === items.length,
-      );
+      setExhausted(next.results.length === 0);
       setStatus('idle');
     } catch {
       setStatus('error');
@@ -93,10 +90,14 @@ export default function SearchResultList({
   }, [status]);
 
   return (
-    <div className="flex max-w-[768px] grow flex-col gap-7">
-      {items.map((item) => (
-        <SearchResultRow key={itemKey(item)} item={item} />
-      ))}
+    <div className="flex max-w-[768px] grow flex-col">
+      {/* 행 사이 간격은 안쪽에서만 준다 — 센티넬이 바깥 flex 자식이면 결과가 짧을 때
+          빈 div 하나가 목록 아래에 gap을 만든다. */}
+      <div className="flex flex-col gap-7">
+        {items.map((item) => (
+          <SearchResultRow key={itemKey(item)} item={item} />
+        ))}
+      </div>
 
       {!exhausted && <div ref={sentinelRef} aria-hidden />}
 
