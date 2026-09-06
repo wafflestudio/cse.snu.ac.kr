@@ -11,8 +11,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
 IMAGE="mcr.microsoft.com/playwright:v1.57.0-jammy" # e2e-docker.sh와 같은 태그 유지
 
-echo "[drift] 백엔드 스택 보장(compose up --wait)…"
-docker compose up -d --wait backend
+echo "[drift] 백엔드 스택 보장(compose up --build --wait)…"
+docker compose up -d --build --wait backend
 
 echo "[drift] 스펙에서 타입 재생성…"
 docker run --rm \

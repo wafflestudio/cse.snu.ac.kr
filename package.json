@@ -17,7 +17,7 @@
     "prepare": "node .husky/install.mjs || true",
     "test": "bash scripts/e2e-docker.sh",
     "test:ui": "bash scripts/e2e-docker.sh --ui",
-    "backend:up": "docker compose up -d --wait backend",
+    "backend:up": "docker compose up -d --build --wait backend",
     "backend:down": "docker compose down",
     "deploy:staging": "scripts/deploy.sh staging",
     "deploy:prod": "scripts/deploy.sh prod"

@@ -20,13 +20,30 @@ services:
       timeout: 5s
       retries: 60
 
-  backend:
-    image: my_server_image:1.0 # 로컬 빌드 이미지(기존 태그 유지 — 재빌드 회피)
+  search:
+    image: csereal-search:local
     build:
-      # prebuilt JAR(build/libs)를 COPY하는 Dockerfile — JAR 빌드는 CLAUDE.md §백엔드 동기화
+      context: ${BACKEND_DIR:-../csereal-server}
+      dockerfile: Dockerfile.es
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: 'false' # 포트를 밖으로 안 내는 것이 방어다
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+    ports:
+      - '9200:9200' # 호스트 디버깅용
+    healthcheck:
+      test: ['CMD-SHELL', 'curl -fsS localhost:9200/_cluster/health || exit 1']
+      interval: 5s
+      timeout: 5s
+      retries: 40
+
+  backend:
+    image: csereal-backend:local
+    build:
       context: ${BACKEND_DIR:-../csereal-server}
     environment:
-      profile: local # 런타임 프로파일 — mock-login(@Profile("!prod")) 활성
+      SPRING_PROFILES_ACTIVE: local # mock-login(@Profile("!prod")) 활성
+      SPRING_ELASTICSEARCH_URIS: http://search:9200
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/csereal?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: password
@@ -34,6 +51,7 @@ services:
       - '8080:8080' # 호스트 디버깅용
     depends_on:
       db: { condition: service_healthy }
+      search: { condition: service_healthy }
     restart: on-failure
     healthcheck:
       test: ['CMD', 'curl', '-fsS', 'http://localhost:8080/api/v2/research/lab?language=ko']

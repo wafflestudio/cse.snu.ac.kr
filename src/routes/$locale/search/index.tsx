@@ -2,37 +2,23 @@ import { createFileRoute } from '@tanstack/react-router';
 import SearchBox from '@/components/feature/SearchBox';
 import PageLayout from '@/components/layout/PageLayout';
 import { useLanguage } from '@/hooks/useLanguage';
+import type { SearchResult } from '@/types/api';
+import { api } from '@/utils/api';
 import { stringArrayParam, stringParam } from '@/utils/searchSchema';
-import AboutSection from './-components/sections/AboutSection';
-import AcademicSection from './-components/sections/AcademicSection';
-import AdmissionSection from './-components/sections/AdmissionSection';
-import CommunitySection from './-components/sections/CommunitySection';
-import MemberSection from './-components/sections/MemberSection';
-import ResearchSection from './-components/sections/ResearchSection';
 import NoSearchResult from './-components/ui/NoSearchResult';
-import SearchSubNavbar from './-components/ui/SearchSubNavbar';
-import fetchContent from './-fetchContent';
+import SearchResultRow from './-components/ui/SearchResultRow';
+import { SEARCH_TAGS, tagsToTypes } from './-searchTypes';
 import MagnificentGlass from './assets/magnificent_glass.svg?react';
 
-const SEARCH_TAGS = [
-  '소개',
-  '소식',
-  '구성원',
-  '연구·교육',
-  '입학',
-  '학사 및 교과',
-];
+const PAGE_SIZE = 20;
 
 function SearchPage() {
-  const loaderData = Route.useLoaderData();
-
+  const { keyword, result, tooShort } = Route.useLoaderData();
   const { t, locale } = useLanguage();
-
-  const { keyword, sectionContent, total, node, tooShort } = loaderData;
 
   return (
     <PageLayout title={t('통합 검색')} titleSize="xl" titleMargin="mb-11">
-      <SearchBox tags={SEARCH_TAGS} formOnly />
+      <SearchBox tags={[...SEARCH_TAGS]} formOnly />
 
       {tooShort && (
         <div className="flex flex-col items-center">
@@ -43,48 +29,22 @@ function SearchPage() {
         </div>
       )}
 
-      {!tooShort && keyword && total === 0 && <NoSearchResult />}
+      {!tooShort && keyword && result?.total === 0 && <NoSearchResult />}
 
-      {!tooShort &&
-        keyword &&
-        total !== undefined &&
-        total > 0 &&
-        sectionContent && (
-          <>
-            <p className="mb-11 ml-3 text-md text-neutral-500 sm:mb-14">
-              {locale === 'en' ? `${total} results` : `${total}개의 검색결과`}
-            </p>
-            <div className="flex grow flex-col gap-20">
-              {sectionContent.about && (
-                <AboutSection about={sectionContent.about} />
-              )}
-              {sectionContent.notice &&
-                sectionContent.news &&
-                sectionContent.seminar && (
-                  <CommunitySection
-                    keyword={keyword}
-                    notice={sectionContent.notice}
-                    news={sectionContent.news}
-                    seminar={sectionContent.seminar}
-                  />
-                )}
-              {sectionContent.member && (
-                <MemberSection member={sectionContent.member} />
-              )}
-              {sectionContent.research && (
-                <ResearchSection research={sectionContent.research} />
-              )}
-              {sectionContent.admission && (
-                <AdmissionSection admission={sectionContent.admission} />
-              )}
-              {sectionContent.academics && (
-                <AcademicSection academic={sectionContent.academics} />
-              )}
-            </div>
-          </>
-        )}
-
-      {node && <SearchSubNavbar node={node} />}
+      {!tooShort && keyword && result && result.total > 0 && (
+        <>
+          <p className="mb-11 ml-3 text-md text-neutral-500 sm:mb-14">
+            {locale === 'en'
+              ? `${result.total} results`
+              : `${result.total}개의 검색결과`}
+          </p>
+          <div className="flex max-w-[768px] grow flex-col gap-7">
+            {result.results.map((item) => (
+              <SearchResultRow key={`${item.type}:${item.id}`} item={item} />
+            ))}
+          </div>
+        </>
+      )}
     </PageLayout>
   );
 }
@@ -98,21 +58,22 @@ export const Route = createFileRoute('/$locale/search/')({
   loader: async ({ params, deps }) => {
     const keyword = deps.keyword;
     const tag = deps.tag ?? [];
-    const locale = params.locale === 'en' ? 'en' : 'ko';
-
     if (!keyword) return { keyword, tag };
+    if (keyword.length < 2) return { keyword, tag, tooShort: true };
 
-    if (keyword.length < 2) {
-      return { keyword, tag, tooShort: true };
-    }
-
-    const { sectionContent, node, total } = await fetchContent(
+    const searchParams = new URLSearchParams({
       keyword,
-      tag,
-      locale,
-    );
+      language: params.locale === 'en' ? 'en' : 'ko',
+      pageSize: String(PAGE_SIZE),
+    });
+    // 태그를 안 고르면 전 도메인. 고르면 그 묶음의 종류만.
+    for (const type of tagsToTypes(tag)) searchParams.append('type', type);
 
-    return { keyword, tag, total, sectionContent, node };
+    const result = await api
+      .get(`v2/search?${searchParams.toString()}`)
+      .json<SearchResult>();
+
+    return { keyword, tag, result };
   },
   component: SearchPage,
 });

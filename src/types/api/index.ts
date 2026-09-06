@@ -173,19 +173,7 @@ export type LabPostBody = components['schemas']['CreateLabLanguageReqBody'];
 export type LabPutBody = components['schemas']['ModifyLabLanguageReqBody'];
 
 /* ── 통합 검색 ──────────────────────────────────────────── */
-// 통합검색 화면은 `/totalSearch` 한 번으로 전 도메인 상위 N개를 받는다.
-// 도메인별 결과 타입은 그 응답에서 파생한다 — 개별 `/search/top`이 아니라.
-
-export type TotalSearchResult = Res<'/api/v2/totalSearch'>;
-export type AboutSearchResult = TotalSearchResult['aboutResult'];
-export type AboutPreview = AboutSearchResult['results'][number];
-export type NoticeSearchResult = TotalSearchResult['noticeResult'];
-export type NewsSearchResult = TotalSearchResult['newsResult'];
-export type MemberSearchResult = TotalSearchResult['memberResult'];
-export type Member = MemberSearchResult['results'][number];
-export type ResearchSearchResult = TotalSearchResult['researchResult'];
-export type AcademicsSearchResult = TotalSearchResult['academicsResult'];
-export type Academic = AcademicsSearchResult['results'][number];
-export type AdmissionsSearchResult = TotalSearchResult['admissionsResult'];
-export type ResearchType =
-  ResearchSearchResult['results'][number]['researchType'];
+// 통합검색은 도메인 구분 없이 관련도 순 한 줄로 온다.
+export type SearchResult = Res<'/api/v2/search'>;
+export type SearchResultItem = SearchResult['results'][number];
+export type SearchResultType = SearchResultItem['type'];

@@ -43,8 +43,7 @@ function DirectionsPage() {
 
   const { selectedItem: selectedDirection, selectionItems } = useSelectionList({
     items: directions,
-    // 선택 목록의 키는 콘텐츠 자체의 id 다. 예전엔 영어 이름을 먼저 보고 없으면
-    // 한국어로 떨어졌는데, 이름은 번역 대상이라 키로 쓰기에 부적합했다.
+    // 키는 콘텐츠 id — 이름은 번역 대상이라 키로 쓸 수 없다.
     getItem: (direction) => ({
       id: direction.id,
       label: direction[locale].name,

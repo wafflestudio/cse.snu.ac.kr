@@ -270,3 +270,38 @@ export const navigationTree: NavItem[] = [
     ],
   },
 ];
+
+/**
+ * 경로가 속한 메뉴 항목을 찾는다. `/community/notice/11001` 처럼 뒤에 id 가 붙어도
+ * 가장 깊은 항목이 잡힌다(자식을 먼저 본다).
+ */
+export function findNavItemByPath(
+  targetPath: string,
+  items: NavItem[] = navigationTree,
+): NavItem | null {
+  for (const item of items) {
+    if (item.children) {
+      const found = findNavItemByPath(targetPath, item.children);
+      if (found) return found;
+    }
+    if (item.path && targetPath.startsWith(item.path)) return item;
+  }
+  return null;
+}
+
+/** 루트에서 해당 항목까지의 경로. 빵부스러기를 만들 때 쓴다. */
+export function navTrailTo(
+  target: NavItem,
+  items: NavItem[] = navigationTree,
+  acc: NavItem[] = [],
+): NavItem[] | null {
+  for (const item of items) {
+    const trail = [...acc, item];
+    if (item === target) return trail;
+    if (item.children) {
+      const found = navTrailTo(target, item.children, trail);
+      if (found) return found;
+    }
+  }
+  return null;
+}

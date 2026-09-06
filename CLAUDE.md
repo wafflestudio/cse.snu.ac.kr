@@ -50,7 +50,7 @@
 
 - **브랜치:** `main`=production · `develop`=staging · `feature/*`·`fix/*`→`develop` PR · `hotfix/*`→`main` PR(후 develop back-merge). **직접 push 금지** — ruleset이 main·develop에 PR 필수 + `gate`·`e2e` 필수체크 + force push 금지 강제(admin 포함).
 - **머지 전략:** `feature`→`develop`은 **squash**(WIP 커밋 정리, 기능당 1커밋). `develop`→`main`은 **merge commit**(squash ❌ — develop은 long-lived라 squash하면 main과 히스토리가 갈라져 다음 승격 PR이 깨짐). rebase 머지는 끔, 머지 후 head 브랜치 자동삭제. (레포 설정으로 강제.)
-- **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`knip`/`build:local`, ~1–2분; `knip`=미사용 파일·export·의존성) ② E2E(로컬과 동일 `e2e-docker.sh`; CI는 프론트를 서브디렉터리·백엔드를 핀된 `BACKEND_REF` **소스**로 체크아웃 후 `gradlew bootJar`로 JAR 빌드(Dockerfile이 build/libs를 COPY)하는 것만 다름 — GHCR `:prod`는 prod 프로파일이라 mock-login이 꺼져 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.** e2e 잡은 E2E 앞에 **OpenAPI 드리프트 검사**(`scripts/check-api-drift.sh`)를 돌린다 — 커밋된 `generated.d.ts`가 `BACKEND_REF` 백엔드의 실제 스펙과 어긋나면 빨간불. ⚠️ 생성물이 untracked면 `git diff`가 무조건 통과하므로 스크립트가 추적 여부를 먼저 본다.
+- **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`knip`/`build:local`, ~1–2분; `knip`=미사용 파일·export·의존성) ② E2E(로컬과 동일 `e2e-docker.sh`; CI는 프론트를 서브디렉터리·백엔드를 핀된 `BACKEND_REF` **소스**로 체크아웃하는 것만 다름 — GHCR `:prod` 이미지는 mock-login이 꺼져 있어 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.** e2e 잡은 E2E 앞에 **OpenAPI 드리프트 검사**(`scripts/check-api-drift.sh`)를 돌린다 — 커밋된 `generated.d.ts`가 `BACKEND_REF` 백엔드의 실제 스펙과 어긋나면 빨간불. ⚠️ 생성물이 untracked면 `git diff`가 무조건 통과하므로 스크립트가 추적 여부를 먼저 본다.
 - **CD(`deploy.yml`, `develop` push):** deploy.yml이 staging 호스트에 SSH로 `remote-deploy.sh`를 보내 **호스트에서 빌드+교체**를 트리거한다. `main` push는 자동 배포 없음 — prod는 `deploy.sh prod`로 **수동**(같은 호스트 빌드 흐름). **레지스트리(GHCR) 없음 — 빌드==배포**, 호스트가 자기 arch로 네이티브 빌드. CI(ci.yml)는 게이트만, 배포 이미지는 안 만든다. 문서만(`**.md`) push는 `paths-ignore`로 스킵.
 - **호스트 빌드 흐름**(`remote-deploy.sh`, 호스트에서 실행): **`docker build "<git-url>#<REF>"`** — docker가 소스를 직접 클론해 빌드 컨텍스트로 쓴다 → **호스트엔 docker만 있으면 된다**(레포 체크아웃·env 파일 불필요). **빌드 성공 후에만** 컨테이너 교체(빌드 중엔 구버전 서빙 → 무중단). 카맵키는 `--build-arg VITE_KAKAO_MAP_API_KEY`(git 밖 시크릿). **롤백 = machinery 없이 이전 커밋 sha로 다시 빌드**: `deploy.sh <env> <sha>`(빌드가 빠르니 재빌드가 곧 롤백). `deploy.sh`는 로컬 `env/.env`에서, `deploy.yml`은 `KAKAO_MAP_KEY` 시크릿에서 카맵키를 받아 넘긴다.
 - **왜 호스트 빌드(학외 CI 아님):** ① 빌드가 곧 배포라 레지스트리 분리가 무의미 ② **프리렌더 대비** — 프리렌더는 빌드타임에 페이지마다 백엔드를 부르는데 prod API(`cse.snu.ac.kr`)는 경계 뒤라 학외 CI 빌드는 SYN drop이 **페이지 수만큼 누적**돼 플레이키. **학내 호스트 빌드면 안정적으로 닿는다.** 트레이드오프: 서빙 호스트에 빌드 부하가 생기나 `docker build`는 격리·무중단 swap이라 감내. `imageOptimizer`의 "prerender hack" 주석은 프리렌더 재도입 시 다시 검토.
@@ -157,18 +157,15 @@
 
 ## 실행 / baseline
 
-- **모든 테스트는 핀된 Playwright 컨테이너에서 돈다**(`pnpm test` = `scripts/e2e-docker.sh`: 백엔드 스택 `up --wait` 후 러너 컨테이너를 스택 네트워크에 붙임). 호스트 직접 실행 정식 경로 없음 — 렌더 환경을 컨테이너로 고정해야 baseline이 머신 무관하게 픽셀 동일. 로컬·CI가 같은 스크립트를 타는 단일 경로라 config도 조건 분기 없는 고정값(워커4·retries2 — 2026-08-29 실측으로 확정, 상세는 config 주석).
+- **모든 테스트는 핀된 Playwright 컨테이너에서 돈다**(`pnpm test` = `scripts/e2e-docker.sh`: 백엔드 스택 `up --build --wait` 후 러너 컨테이너를 스택 네트워크에 붙임). 호스트 직접 실행 정식 경로 없음 — 렌더 환경을 컨테이너로 고정해야 baseline이 머신 무관하게 픽셀 동일. 로컬·CI가 같은 스크립트를 타는 단일 경로라 config도 조건 분기 없는 고정값(워커4·retries2 — 2026-08-29 실측으로 확정, 상세는 config 주석).
 - **비주얼 baseline = Linux 단일(`*-linux.png`)**, 컨테이너가 정본 렌더 환경이라 머신 무관.
 - **백엔드 기준 = `../csereal-server`(origin/develop)** — baseline은 이 백엔드에서 찍고, E2E가 백엔드 스모크도 겸한다. 트레이드오프: develop이 floating이라 **백엔드만 바뀌어도 baseline이 깨질 수 있음** → 백엔드를 올리고(아래) `--update-snapshots`로 재생성.
 
 ## 백엔드 버전 동기화(cross-repo 런북)
 
-docker가 **소스의 prebuilt JAR를 COPY**하므로 `../csereal-server` 소스가 낡으면 docker도 낡는다. 뒤처졌으면:
+백엔드 Dockerfile이 **소스에서 통째로 빌드**하고(멀티스테이지 — 레이어 구성은 [Spring Boot 공식 권장](https://docs.spring.io/spring-boot/reference/packaging/container-images/dockerfiles.html)) `pnpm test`·`pnpm backend:up`이 `--build`로 부르므로, 소스만 최신이면 이미지는 알아서 따라온다. 호스트에 JDK 불필요.
 ```bash
-cd ../csereal-server && git fetch origin && git merge --ff-only origin/main
-docker run --rm -v "$PWD":/app -v csereal-gradle-cache:/root/.gradle -w /app \
-  eclipse-temurin:21-jdk ./gradlew bootJar -x test               # 호스트 JDK 11이라 Java21 컨테이너로 빌드
-cd ../cse.snu.ac.kr && docker compose up -d --build backend  # 새 JAR로 이미지 재빌드
+cd ../csereal-server && git fetch origin && git merge --ff-only origin/develop
 ```
 올린 뒤 **세 가지를 함께** 한다:
 1. `pnpm gen:api` → `src/types/api/generated.d.ts` 재생성 후 커밋 (안 하면 CI 드리프트 게이트가 빨간불)
