@@ -20,6 +20,7 @@ const pageLabel = (c: Context) => {
   const path = c.req.path;
   if (path.startsWith('/assets/')) return '/assets/*';
   if (path.startsWith('/api/')) return '/api/*';
+  if (path.startsWith('/_serverFn/')) return '/_serverFn/*';
   const { status } = c.res;
   if (status >= 300 && status < 400) return '(redirect)';
   if (status >= 400 && status < 500) return '(not-found)';
