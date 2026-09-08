@@ -56,6 +56,7 @@ flowchart LR
 ```
 
 - **prod:** Caddy(엣지)가 TLS·라우팅·보안 헤더(`-Server`·`X-XSS-Protection`)를 맡고 `/api/*`는 백엔드로, 그 외는 frontend 컨테이너로 보냅니다.
+- **지표:** frontend 컨테이너가 `:9464/metrics`로 Prometheus 지표(요청 수·응답시간·Node 런타임)를 냅니다. 수집·대시보드·경보는 백엔드 레포 `monitoring/`에 있습니다.
 - **local / E2E:** 루트 `server.ts`(Hono)가 빌드를 서빙하고 `API_PROXY_TARGET` 설정 시 `/api`를 로컬 docker 백엔드(:8080)로 프록시합니다. (자세한 이유·트레이드오프는 `CLAUDE.md` §1.)
 
 ## 인증
