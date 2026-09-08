@@ -50,7 +50,7 @@
 
 - **브랜치:** `main`=production · `develop`=staging · `feature/*`·`fix/*`→`develop` PR · `hotfix/*`→`main` PR(후 develop back-merge). **직접 push 금지** — ruleset이 main·develop에 PR 필수 + `gate`·`e2e` 필수체크 + force push 금지 강제(admin 포함).
 - **머지 전략:** `feature`→`develop`은 **squash**(WIP 커밋 정리, 기능당 1커밋). `develop`→`main`은 **merge commit**(squash ❌ — develop은 long-lived라 squash하면 main과 히스토리가 갈라져 다음 승격 PR이 깨짐). rebase 머지는 끔, 머지 후 head 브랜치 자동삭제. (레포 설정으로 강제.)
-- **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`knip`/`build:local`, ~1–2분; `knip`=미사용 파일·export·의존성) ② E2E(로컬과 동일 `e2e-docker.sh`; CI는 프론트를 서브디렉터리·백엔드를 핀된 `BACKEND_REF` **소스**로 체크아웃하는 것만 다름 — GHCR `:prod` 이미지는 mock-login이 꺼져 있어 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.** e2e 잡은 E2E 앞에 **OpenAPI 드리프트 검사**(`scripts/check-api-drift.sh`)를 돌린다 — 커밋된 `generated.d.ts`가 `BACKEND_REF` 백엔드의 실제 스펙과 어긋나면 빨간불. ⚠️ 생성물이 untracked면 `git diff`가 무조건 통과하므로 스크립트가 추적 여부를 먼저 본다.
+- **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`knip`/`build:local`, ~1–2분; `knip`=미사용 파일·export·의존성) ② E2E(로컬과 동일 `e2e-docker.sh`; CI는 프론트를 서브디렉터리·백엔드를 핀된 `BACKEND_REF` **소스**로 체크아웃하는 것만 다름 — GHCR `:prod` 이미지는 mock-login이 꺼져 있어 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.** 백엔드 jar 는 `backend-jar` 잡이 `BACKEND_REF` 키로 캐시하고 e2e 가 `JAR_STAGE=prebuilt` 로 이미지에 넣는다(Gradle 은 핀이 바뀔 때만). ⚠️ PR 이 만든 캐시는 다른 PR 이 못 읽어 develop push 에서도 `backend-jar` 를 돌려 채운다.
 - **CD(`deploy.yml`, `develop` push):** deploy.yml이 staging 호스트에 SSH로 `remote-deploy.sh`를 보내 **호스트에서 빌드+교체**를 트리거한다. `main` push는 자동 배포 없음 — prod는 `deploy.sh prod`로 **수동**(같은 호스트 빌드 흐름). **레지스트리(GHCR) 없음 — 빌드==배포**, 호스트가 자기 arch로 네이티브 빌드. CI(ci.yml)는 게이트만, 배포 이미지는 안 만든다. 문서만(`**.md`) push는 `paths-ignore`로 스킵.
 - **호스트 빌드 흐름**(`remote-deploy.sh`, 호스트에서 실행): **`docker build "<git-url>#<REF>"`** — docker가 소스를 직접 클론해 빌드 컨텍스트로 쓴다 → **호스트엔 docker만 있으면 된다**(레포 체크아웃·env 파일 불필요). **빌드 성공 후에만** 컨테이너 교체(빌드 중엔 구버전 서빙 → 무중단). 카맵키는 `--build-arg VITE_KAKAO_MAP_API_KEY`(git 밖 시크릿). **롤백 = machinery 없이 이전 커밋 sha로 다시 빌드**: `deploy.sh <env> <sha>`(빌드가 빠르니 재빌드가 곧 롤백). `deploy.sh`는 로컬 `env/.env`에서, `deploy.yml`은 `KAKAO_MAP_KEY` 시크릿에서 카맵키를 받아 넘긴다.
 - **왜 호스트 빌드(학외 CI 아님):** ① 빌드가 곧 배포라 레지스트리 분리가 무의미 ② **프리렌더 대비** — 프리렌더는 빌드타임에 페이지마다 백엔드를 부르는데 prod API(`cse.snu.ac.kr`)는 경계 뒤라 학외 CI 빌드는 SYN drop이 **페이지 수만큼 누적**돼 플레이키. **학내 호스트 빌드면 안정적으로 닿는다.** 트레이드오프: 서빙 호스트에 빌드 부하가 생기나 `docker build`는 격리·무중단 swap이라 감내. `imageOptimizer`의 "prerender hack" 주석은 프리렌더 재도입 시 다시 검토.
@@ -70,7 +70,7 @@
 - **⚠️ 로케일 링크는 항상 `localizedPath()`. 수동 `/${locale}/...` 문자열 금지** — ko에서 `/ko/...`를 **클라 네비로 클릭**하면 `__root`의 `/ko`-strip redirect가 렌더 루프(메인스레드 peg)를 일으킨 실버그가 있었다(notice 상세 wedge). `localizedPath`는 ko에서 프리픽스 없는 경로를 만들어 그 라운드트립을 제거한다.
 - **mutation은 대부분 클라 `fetch`**(same-origin proxy 경유). `action`은 거의 없음.
 - **검색/페이지네이션은 공용 `src/hooks/useSearchParams.ts`**(URLSearchParams 기반). 여러 라우트가 Pagination·SearchBox·TagCheckboxes를 공유해 라우트별 타입(`Route.useSearch`/`validateSearch`)은 부적합 — 표준 URLSearchParams 훅이 맞다.
-- **API 응답 타입은 손으로 쓰지 않는다 — 백엔드 OpenAPI 스펙에서 생성**(2026-09-01 전환, 옛 `types/api/v2/**` 수기 트리 26파일 폐기). `pnpm gen:api`(openapi-typescript)가 `src/types/api/generated.d.ts`를 만들고, `src/types/api/index.ts`가 도메인별 별칭만 한 파일에 모은다. 추출은 `src/types/api/helpers.ts`의 `Res<'/api/v2/notice/{noticeId}'>`.
+- **API 응답 타입은 손으로 쓰지 않는다 — 백엔드 OpenAPI 스펙에서 생성**(2026-09-01 전환, 옛 `types/api/v2/**` 수기 트리 26파일 폐기). `pnpm backend:sync`(openapi-typescript, staging swagger 기준)가 `src/types/api/generated.d.ts`를 만들고, `src/types/api/index.ts`가 도메인별 별칭만 한 파일에 모은다. 추출은 `src/types/api/helpers.ts`의 `Res<'/api/v2/notice/{noticeId}'>`.
   - **경로로 주소를 잡는 이유:** operationId는 springdoc이 중복 메서드명에 번호를 붙여(`searchTop`·`searchTop_1`) 컨트롤러가 하나 늘면 밀린다 — 타입이 말없이 다른 엔드포인트에 붙는다. 스키마 이름도 `{total, searchList}` 같은 공용 래퍼가 겹쳐 부적합.
   - ⚠️ **요청 바디엔 `Res`를 쓰지 않는다.** 응답의 optional은 "값이 null", 요청의 optional은 "생략 가능"이라 뜻이 다르다. 요청은 `components['schemas'][...]`를 그대로.
   - ⚠️ **`Res`가 `?`를 떼는 전제:** 백엔드 Jackson이 `default-property-inclusion=ALWAYS`(기본값)라 응답에 선언된 키가 항상 온다. 백엔드가 `non_null` 직렬화로 바꾸면 이 매핑을 지워야 한다.
@@ -167,10 +167,7 @@
 ```bash
 cd ../csereal-server && git fetch origin && git merge --ff-only origin/develop
 ```
-올린 뒤 **세 가지를 함께** 한다:
-1. `pnpm gen:api` → `src/types/api/generated.d.ts` 재생성 후 커밋 (안 하면 CI 드리프트 게이트가 빨간불)
-2. `.github/workflows/ci.yml`의 `BACKEND_REF`를 새 백엔드 SHA로 갱신
-3. `pnpm test --update-snapshots`로 baseline 재생성 (렌더가 바뀐 경우만)
+백엔드가 staging 에 배포된 뒤 **`pnpm backend:sync`** 한 번으로 맞춘다 — `ci.yml`의 `BACKEND_REF`를 백엔드 develop SHA로 갱신하고, staging swagger 에서 `generated.d.ts`를 재생성하고, typecheck 로 깨진 호출부를 보여 준다. 렌더가 바뀌었으면 `pnpm test --update-snapshots`로 baseline 재생성.
 
 ⚠️ **백엔드 기준은 이제 `origin/develop`이다**(백엔드 기본 브랜치가 develop). `BACKEND_REF`도 develop SHA로 핀한다.
 
