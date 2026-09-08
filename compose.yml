@@ -41,6 +41,8 @@ services:
     image: csereal-backend:local
     build:
       context: ${BACKEND_DIR:-../csereal-server}
+      args:
+        JAR_STAGE: ${JAR_STAGE:-source} # CI 는 캐시한 jar 로 prebuilt
     environment:
       SPRING_PROFILES_ACTIVE: local # mock-login(@Profile("!prod")) 활성
       SPRING_ELASTICSEARCH_URIS: http://search:9200

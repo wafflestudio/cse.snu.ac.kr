@@ -8,5 +8,5 @@
   ],
   "project": ["src/**/*.{ts,tsx}", "tests/**/*.ts"],
   "ignoreBinaries": ["scripts/deploy.sh"],
-  "ignoreDependencies": ["tailwindcss"]
+  "ignoreDependencies": ["tailwindcss", "openapi-typescript"]
 }
