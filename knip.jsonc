@@ -1,4 +1,0 @@
-{
-  // scripts/backend-sync.sh 가 `pnpm exec openapi-typescript` 로 쓴다. knip 은 .sh 안을 보지 않는다.
-  "ignoreDependencies": ["openapi-typescript"]
-}
