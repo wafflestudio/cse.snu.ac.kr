@@ -6,7 +6,7 @@
 
 규칙:
 - 이 폴더의 export는 전부 `createServerFn` 결과다.
-- 무거운 서버 전용 deps(cheerio·sharp 등)는 **handler 안 dynamic import로만** 참조한다.
+- 무거운 서버 전용 deps(cheerio 등)는 **handler 안 dynamic import로만** 참조한다.
   top-level로 빼면 스트립 대상에서 벗어나 **조용히 클라 번들이 오염된다**(타입 에러 없음).
 - SSR에선 in-process 직접 호출, 클라 네비게이션에서만 RPC 왕복이다.
 

@@ -8,7 +8,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useAboutSubNav } from '@/hooks/useSubNav';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { DirectionsResponse } from '@/types/api';
 import { api } from '@/utils/api';
 import { stringParam } from '@/utils/searchSchema';
@@ -131,13 +131,13 @@ export const Route = createFileRoute('/$locale/about/directions/')({
           id: direction.id,
           ko: {
             ...direction.ko,
-            description: await processHtmlForCsp({
+            description: await prepareHtmlForViewer({
               data: direction.ko.description,
             }),
           },
           en: {
             ...direction.en,
-            description: await processHtmlForCsp({
+            description: await prepareHtmlForViewer({
               data: direction.en.description,
             }),
           },

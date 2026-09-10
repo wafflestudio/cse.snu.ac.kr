@@ -5,7 +5,7 @@ import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { FacultyRecruitment } from '@/types/api';
 import { api } from '@/utils/api';
 
@@ -69,7 +69,7 @@ export const Route = createFileRoute('/$locale/community/faculty-recruitment/')(
 
       return {
         ...data,
-        description: await processHtmlForCsp({ data: data.description }),
+        description: await prepareHtmlForViewer({ data: data.description }),
       };
     },
     component: FacultyRecruitmentPage,

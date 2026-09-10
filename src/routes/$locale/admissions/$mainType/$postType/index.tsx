@@ -1,6 +1,6 @@
 import { createFileRoute, notFound } from '@tanstack/react-router';
 import NotFound from '@/components/layout/NotFound';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { AdmissionsMainType, AdmissionsPostType } from '@/types/api';
 import AdmissionsPageContent from '../../-components/AdmissionsPageContent';
 import { fetchAdmissions } from '../../-components/fetchAdmissions';
@@ -80,7 +80,9 @@ export const Route = createFileRoute(
     const data = await fetchAdmissions(mainType, config.apiPostType);
 
     return {
-      description: await processHtmlForCsp({ data: data[locale].description }),
+      description: await prepareHtmlForViewer({
+        data: data[locale].description,
+      }),
       layout: config.layout,
     };
   },

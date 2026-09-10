@@ -6,7 +6,7 @@ import Image from '@/components/ui/Image';
 import { useNonce } from '@/hooks/useNonce';
 import useIsMobile from '@/hooks/useResponsive';
 import { type Falsy, isNotFalsy } from '@/types/utils';
-import type { ProcessedHtml } from '@/utils/csp';
+import type { ViewerHtml } from '@/utils/csp';
 
 interface TopRightImage {
   src: string;
@@ -16,7 +16,7 @@ interface TopRightImage {
 }
 
 interface HTMLViewerProps {
-  html: ProcessedHtml;
+  html: ViewerHtml;
   image?: TopRightImage | Falsy;
   component?: React.ReactNode | Falsy;
 }

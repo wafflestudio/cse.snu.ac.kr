@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 
 const META = {
   ko: {
@@ -179,7 +179,7 @@ export const Route = createFileRoute('/$locale/10-10-project/proposal')({
     const prefix = locale === 'en' ? '/en' : '';
 
     return {
-      htmlContent: await processHtmlForCsp({
+      htmlContent: await prepareHtmlForViewer({
         data: buildHtmlContent(
           `${prefix}/10-10-project/manager`,
           `${prefix}/10-10-project/participants`,

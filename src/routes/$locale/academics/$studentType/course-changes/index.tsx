@@ -3,7 +3,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import TimelineViewer from '@/routes/$locale/academics/-components/timeline/TimelineViewer';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { TimelineContent } from '@/types/api';
 import { api } from '@/utils/api';
 
@@ -73,7 +73,7 @@ export const Route = createFileRoute(
     return Promise.all(
       data.map(async (item) => ({
         ...item,
-        description: await processHtmlForCsp({ data: item.description }),
+        description: await prepareHtmlForViewer({ data: item.description }),
       })),
     );
   },
