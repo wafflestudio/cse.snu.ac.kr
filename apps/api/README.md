@@ -1,18 +1,16 @@
 # csereal-server
 
-cse.snu.ac.kr 백엔드. 2026-09 부터 프론트와 같은 레포(`cse.snu.ac.kr`)의 `apps/server` 에 있다. Gradle 명령은 이 디렉터리에서 실행한다.
+cse.snu.ac.kr 백엔드. 2026-09 부터 프론트와 같은 레포(`cse.snu.ac.kr`)의 `apps/api` 에 있다. 여기엔 앱 코드만 있고 compose·Caddy·모니터링·운영 스크립트는 `../../infra` 다. Gradle 명령은 이 디렉터리에서 실행한다.
 
 ## 로컬 실행
 
 ```bash
-docker compose -f compose.yml -f compose.local.yml up -d --wait backend
+pnpm api:up      # 레포 루트에서. infra/compose.yml + compose.local.yml
 ```
-
-`compose.yml` 은 서비스 목록만 담으니 override와 함께 사용합니다.
 
 ## CI/CD
 
-`develop` → staging, `main` → production. 워크플로는 레포 루트 `.github/workflows/`(`ci.yml` 의 `server-test`·`server-jar`, `deploy-server.yml`), 배포 대상은 `.github/deploy-targets/`.
+`develop` → staging, `main` → production. 워크플로는 레포 루트 `.github/workflows/`(`ci.yml` 의 `server-test`·`server-jar`, `deploy-server.yml`), 배포 스크립트·대상은 `infra/ops/host-deploy.sh`·`infra/deploy-targets/`.
 
 GitHub 시크릿은 Environment(`production`·`staging`)의 `SSH_KEY` 하나이며 나머지는 호스트에 둡니다.
 
@@ -27,7 +25,7 @@ GitHub 시크릿은 Environment(`production`·`staging`)의 `SSH_KEY` 하나이�
 
 ## DB 백업 복원
 
-백업은 ops 컨테이너가 매일 자정 호스트 `~/database/backup/` 에 남깁니다([`ops/db-backup.sh`](ops/db-backup.sh)).
+백업은 ops 컨테이너가 매일 자정 호스트 `~/database/backup/` 에 남깁니다([`infra/ops/db-backup.sh`](../../infra/ops/db-backup.sh)).
 
 ```bash
 docker run -d --name restore-test -e MYSQL_ROOT_PASSWORD=x -e MYSQL_DATABASE=csereal mysql:8.0

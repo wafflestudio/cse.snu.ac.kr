@@ -1,8 +1,8 @@
-# 로컬 개발·E2E 용 override. 소스에서 직접 빌드하고 MySQL 도 함께 띄운다.
-#   docker compose -f compose.yml -f compose.local.yml up -d --wait backend
+# 로컬 개발·E2E 용 override. apps/api 소스에서 직접 빌드하고 MySQL·검색도 함께 띄운다.
+#   pnpm api:up / pnpm api:down  (레포 루트에서)
 #
-# 프로젝트 이름을 고정한다 — 프론트 E2E 러너가 `--network csereal-local_default` 로
-# 이 스택에 붙는다(cse.snu.ac.kr/scripts/e2e-docker.sh).
+# 프로젝트 이름을 고정한다 — E2E 러너가 `--network csereal-local_default` 로
+# 이 스택에 붙는다(scripts/e2e-docker.sh).
 name: csereal-local
 
 services:
@@ -14,8 +14,6 @@ services:
             - "3306:3306" # 호스트 디버깅용(mysql -h127.0.0.1)
         volumes:
             - db:/var/lib/mysql
-            # ngram_token_size=2 — 옛 MySQL FULLTEXT 검색이 의존하던 설정
-            - ./db_config:/etc/mysql/conf.d
         healthcheck:
             test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-ppassword"]
             interval: 2s
@@ -25,7 +23,7 @@ services:
     search:
         image: csereal-search:local
         build:
-            context: .
+            context: . # Dockerfile.es 는 컨텍스트 파일을 안 쓴다
             dockerfile: Dockerfile.es
         ports:
             - "9200:9200" # 호스트 디버깅용
@@ -35,7 +33,9 @@ services:
     backend:
         image: csereal-backend:local
         build:
-            context: .
+            context: ../apps/api
+            args:
+                JAR_STAGE: ${JAR_STAGE:-source} # CI 는 캐시한 jar 로 prebuilt
         environment:
             SPRING_PROFILES_ACTIVE: local # mock-login(@Profile("!prod")) 활성
             SPRING_ELASTICSEARCH_URIS: http://search:9200

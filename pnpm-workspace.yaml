@@ -1,6 +1,6 @@
 packages:
   - apps/web
-  - packages/e2e
+  - e2e
 
 onlyBuiltDependencies:
   - esbuild

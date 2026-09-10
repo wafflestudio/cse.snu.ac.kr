@@ -8,7 +8,7 @@
     "moduleResolution": "bundler",
     // 프론트 소스(타입·시드가 쓰는 상수)를 가져오는 유일한 통로. Playwright 가 tsconfig paths 를 따라
     // 확장자 없는 .ts 를 찾아 준다 — 워크스페이스 패키지 이름(web/src/…)으로 부르면 Node ESM 해석에서 깨진다.
-    "paths": { "@web/*": ["../../apps/web/src/*"] },
+    "paths": { "@web/*": ["../apps/web/src/*"] },
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
     "noEmit": true,

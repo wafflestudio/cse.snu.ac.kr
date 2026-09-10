@@ -1,6 +1,6 @@
 # PR 게이트. develop/main으로 가는 PR마다 실행 → 그린이어야 머지(branch protection: gate·e2e).
 # 핵심 원칙: CI는 로컬 스크립트를 "호출"만 한다(두 벌 관리 X). 같은 biome.json·tsconfig·
-# e2e-docker.sh·gradlew를 그대로 쓴다. 백엔드(apps/server)와 프론트(apps/web)가 한 커밋에 있으니
+# e2e-docker.sh·gradlew를 그대로 쓴다. 백엔드(apps/api)와 프론트(apps/web)가 한 커밋에 있으니
 # E2E 는 항상 같은 커밋의 백엔드로 돈다 — 핀(BACKEND_REF)이 없다.
 name: CI
 
@@ -28,7 +28,7 @@ jobs:
         with:
           filters: |
             server:
-              - 'apps/server/**'
+              - 'apps/api/**'
               - '.github/workflows/ci.yml'
 
   # 빠른 게이트(~1분, 백엔드 불필요): 타입·린트·knip·빌드. 워크스페이스 전체.
@@ -49,7 +49,7 @@ jobs:
       - run: pnpm knip # 미사용 파일·export·의존성
       - run: pnpm --filter web build:local # 빌드 깨짐 감지(env 파일 불필요)
 
-  # 백엔드 단위 테스트(Gradle + testcontainers). apps/server 가 바뀐 PR 과 develop push 에서만.
+  # 백엔드 단위 테스트(Gradle + testcontainers). apps/api 가 바뀐 PR 과 develop push 에서만.
   # 필수 체크가 아니라 건너뛰어도 머지를 막지 않는다 — E2E 가 백엔드 스모크를 겸한다.
   server-test:
     needs: changes
@@ -62,7 +62,7 @@ jobs:
       pull-requests: write
     defaults:
       run:
-        working-directory: apps/server
+        working-directory: apps/api
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-java@v6
@@ -74,7 +74,7 @@ jobs:
       - uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
-          files: apps/server/build/test-results/**/*.xml
+          files: apps/api/build/test-results/**/*.xml
 
   # E2E 가 붙을 백엔드 jar. 백엔드 소스 해시로 캐시해 백엔드가 그대로면 Gradle 을 안 돈다.
   server-jar:
@@ -85,10 +85,10 @@ jobs:
       - uses: actions/cache@v4
         id: jar
         with:
-          path: apps/server/build/libs
-          key: server-jar-${{ hashFiles('apps/server/src/**', 'apps/server/build.gradle.kts', 'apps/server/settings.gradle.kts', 'apps/server/gradle/**') }}
+          path: apps/api/build/libs
+          key: server-jar-${{ hashFiles('apps/api/src/**', 'apps/api/build.gradle.kts', 'apps/api/settings.gradle.kts', 'apps/api/gradle/**') }}
       - if: steps.jar.outputs.cache-hit != 'true'
-        working-directory: apps/server
+        working-directory: apps/api
         run: JAVA_HOME=$JAVA_HOME_21_X64 ./gradlew --no-daemon bootJar -x test
 
   # E2E(비주얼 회귀 포함): 로컬과 "동일한" e2e-docker.sh를 핀된 컨테이너로 실행한다.
@@ -103,8 +103,8 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/cache/restore@v4
         with:
-          path: apps/server/build/libs
-          key: server-jar-${{ hashFiles('apps/server/src/**', 'apps/server/build.gradle.kts', 'apps/server/settings.gradle.kts', 'apps/server/gradle/**') }}
+          path: apps/api/build/libs
+          key: server-jar-${{ hashFiles('apps/api/src/**', 'apps/api/build.gradle.kts', 'apps/api/settings.gradle.kts', 'apps/api/gradle/**') }}
           fail-on-cache-miss: true
       - name: E2E (e2e-docker.sh)
         env:

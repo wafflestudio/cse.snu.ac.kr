@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
-# 호스트에서 빌드하고 배포한다. deploy.yaml 이 작업공간을 배포할 커밋으로 맞춘 뒤
-# 그 안에서 이 스크립트를 실행한다.
+# 호스트에서 빌드하고 배포한다. deploy-server.yml 이 레포 클론을 배포할 커밋으로 맞춘 뒤
+# 레포 루트에서 이 스크립트를 실행한다. 앱 소스는 apps/api, 스택 정의는 infra.
 set -euo pipefail
 
 : "${GIT_SHA:?GIT_SHA 가 필요하다}"
-# 아래는 레포 루트 .github/deploy-targets/<브랜치>.env 에서 온다(deploy-server.yml).
+# 아래는 infra/deploy-targets/<브랜치>.env 에서 온다(deploy-server.yml). CADDYFILE 은 infra 기준 경로.
 : "${PROFILE:?PROFILE 이 필요하다}"
 : "${URL:?URL 이 필요하다}"
 : "${CADDYFILE:?CADDYFILE 이 필요하다}"
 
 WORKSPACE=$PWD
+API_DIR=$WORKSPACE/apps/api
+INFRA=$WORKSPACE/infra
 APP_DIR=$HOME/app
 PROXY_DIR=$HOME/proxy
 GRADLE_VOLUME=csereal-gradle
@@ -20,23 +22,23 @@ say() { echo "▸ $*"; }
 
 build_jar() {
     say "gradle bootJar"
-    docker run --rm -v "$GRADLE_VOLUME:/root/.gradle" -v "$WORKSPACE:/src" -w /src \
+    docker run --rm -v "$GRADLE_VOLUME:/root/.gradle" -v "$API_DIR:/src" -w /src \
         eclipse-temurin:21-jdk ./gradlew --no-daemon bootJar -x test
 }
 
 build_images() {
     say "앱 이미지: csereal-server:$TAG"
     docker build -q --build-arg JAR_STAGE=prebuilt --build-arg GIT_SHA="$GIT_SHA" \
-        -t "csereal-server:$TAG" "$WORKSPACE"
+        -t "csereal-server:$TAG" "$API_DIR"
 
     # nori 는 공식 이미지에 없는 플러그인이라 검색 서버도 우리가 만든다. 
     # 해시를 확인해 Dockerfile.es 가 그대로면 다시 만들지 않는다.
-    SEARCH_TAG=$(git ls-tree HEAD -- Dockerfile.es | sha256sum | cut -c1-12)
+    SEARCH_TAG=$(git ls-tree HEAD -- infra/Dockerfile.es | sha256sum | cut -c1-12)
     if docker image inspect "csereal-search:$SEARCH_TAG" >/dev/null 2>&1; then
         say "검색 이미지 그대로: $SEARCH_TAG"
     else
         say "검색 이미지: $SEARCH_TAG"
-        docker build -q -f "$WORKSPACE/Dockerfile.es" -t "csereal-search:$SEARCH_TAG" "$WORKSPACE"
+        docker build -q -f "$INFRA/Dockerfile.es" -t "csereal-search:$SEARCH_TAG" "$INFRA"
     fi
 }
 
@@ -59,7 +61,7 @@ write_env() {
 
 deploy_app() {
     # compose 프로젝트 디렉터리는 ~/app 이다(프로젝트 이름과 상대 볼륨 경로가 거기 묶여 있다).
-    cp "$WORKSPACE/compose.yml" "$WORKSPACE/compose.prod.yml" "$APP_DIR/"
+    cp "$INFRA/compose.yml" "$INFRA/compose.prod.yml" "$APP_DIR/"
     cd "$APP_DIR"
     write_env "$APP_DIR" "PROFILE=$PROFILE" "URL=$URL" "IMAGE_TAG=$TAG" "SEARCH_TAG=$SEARCH_TAG"
     cat "$SECRETS_FILE" >>.env
@@ -80,9 +82,9 @@ deploy_app() {
 deploy_edge() {
     # 앱 다음에 온다 — 여기서 실패해도 앱은 이미 서비스 중이다.
     # reload 는 무중단이고 설정이 틀리면 적용하지 않으므로 매 배포마다 돌려도 된다.
-    cp "$WORKSPACE/compose.caddy.yml" "$PROXY_DIR/"
+    cp "$INFRA/compose.caddy.yml" "$PROXY_DIR/"
     mkdir -p "$PROXY_DIR/caddy"
-    cp "$WORKSPACE/$CADDYFILE" "$PROXY_DIR/caddy/Caddyfile"
+    cp "$INFRA/$CADDYFILE" "$PROXY_DIR/caddy/Caddyfile"
     cd "$PROXY_DIR"
     # 인증서 경로는 비밀이 아니라 deploy-targets 에 있다. staging 은 아예 없다.
     {

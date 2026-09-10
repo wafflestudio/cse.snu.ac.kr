@@ -1,5 +1,5 @@
-# 백엔드(apps/server)와 엣지(Caddy) 배포. main → production, develop → staging.
-# 호스트가 이 레포를 클론해 apps/server 에서 ops/host-deploy.sh 를 돈다(빌드는 호스트).
+# 백엔드(apps/api)와 엣지(Caddy) 배포. main → production, develop → staging.
+# 호스트가 이 레포를 클론해 레포 루트에서 infra/ops/host-deploy.sh 를 돈다(빌드는 호스트).
 # 프론트 배포는 deploy-web.yml.
 name: Deploy server
 
@@ -7,8 +7,8 @@ on:
   push:
     branches: [main, develop]
     paths:
-      - 'apps/server/**'
-      - '.github/deploy-targets/**'
+      - 'apps/api/**'
+      - 'infra/**'
       - '.github/workflows/deploy-server.yml'
 
 concurrency:
@@ -25,7 +25,7 @@ jobs:
 
       # 이후 스텝은 env.SSH_HOST 처럼 쓴다.
       - name: 배포 대상 설정 읽기
-        run: grep -vE '^\s*(#|$)' .github/deploy-targets/${{ github.ref_name }}.env >> "$GITHUB_ENV"
+        run: grep -vE '^\s*(#|$)' infra/deploy-targets/${{ github.ref_name }}.env >> "$GITHUB_ENV"
 
       - name: 호스트에서 빌드·배포
         env:
@@ -42,8 +42,7 @@ jobs:
           git fetch -q origin
           # 추적 파일만 맞춘다. build/ 와 .gradle/ 은 남겨야 증분 컴파일이 산다.
           git reset -q --hard "$GIT_SHA"
-          cd apps/server
-          bash ops/host-deploy.sh
+          bash infra/ops/host-deploy.sh
           REMOTE
 
           # SNU 경계 장비가 학외에서 오는 연결을 간헐적으로 끊는다

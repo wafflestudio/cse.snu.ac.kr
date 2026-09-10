@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # E2E 단일 진입점 — `pnpm test`가 부른다.
-#   1) 백엔드 스택(루트 compose.yml: db·search·backend, 소스 apps/server)을 `up --build --wait`로 보장
+#   1) 백엔드 스택(infra/compose.yml + compose.local.yml: db·search·backend, 소스 apps/api)을 `up --build --wait`로 보장
 #   2) 핀된 Playwright 컨테이너를 스택 네트워크에 붙여 API 타입 드리프트 확인 → 테스트 실행
 # 컨테이너 고정 이유: 비주얼 baseline(*-linux.png)은 폰트 렌더 환경 종속 — 이 이미지가 정본.
 # node_modules 는 패키지마다 볼륨을 따로 붙인다 — pnpm 워크스페이스는 루트 .pnpm 을 가리키는
@@ -9,7 +9,7 @@
 # 사용:
 #   pnpm test                       # 전체 검증(Linux baseline 대조)
 #   pnpm test --update-snapshots    # baseline 재생성(호스트 tests/에 PNG 기록)
-#   pnpm test tests/research/labs   # 특정 경로/프로젝트 등 인자 패스스루(packages/e2e 기준 경로)
+#   pnpm test tests/research/labs   # 특정 경로/프로젝트 등 인자 패스스루(e2e/ 기준 경로)
 #   pnpm test:ui                    # UI 모드 — 호스트 브라우저에서 http://localhost:43210
 set -eo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
@@ -18,7 +18,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 IMAGE="mcr.microsoft.com/playwright:v1.57.0-jammy"
 
 echo "[e2e] 백엔드 스택 보장(compose up --build --wait)…"
-docker compose up -d --build --wait backend
+docker compose -f infra/compose.yml -f infra/compose.local.yml up -d --build --wait backend
 
 docker_args=(--rm --network csereal-local_default)
 pw_args=("$@")
@@ -35,7 +35,7 @@ exec docker run "${docker_args[@]}" \
   -v "$PWD":/work -w /work \
   -v csereal-e2e-node-modules:/work/node_modules \
   -v csereal-e2e-web-node-modules:/work/apps/web/node_modules \
-  -v csereal-e2e-e2e-node-modules:/work/packages/e2e/node_modules \
+  -v csereal-e2e-e2e-node-modules:/work/e2e/node_modules \
   -v csereal-e2e-pnpm-store:/pnpm-store \
   -e CI=1 \
   -e GITHUB_ACTIONS \
@@ -57,5 +57,5 @@ exec docker run "${docker_args[@]}" \
     fi
     echo "[e2e] API 타입 일치"
 
-    exec pnpm -C packages/e2e exec playwright test "$@"
+    exec pnpm -C e2e exec playwright test "$@"
   ' bash "${pw_args[@]}" # bash -c의 첫 인자가 $0이 되므로 자리채움 "bash" 뒤에 실제 인자
