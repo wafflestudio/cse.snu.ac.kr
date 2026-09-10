@@ -17,9 +17,7 @@
     "lint:fix": "biome check --write",
     "knip": "knip",
     "gen:api": "bash scripts/gen-api.sh",
-    "prepare": "node .husky/install.mjs || true",
-    "deploy:staging": "scripts/deploy.sh staging",
-    "deploy:prod": "scripts/deploy.sh prod"
+    "prepare": "node .husky/install.mjs || true"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.9",

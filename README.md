@@ -32,10 +32,10 @@ cp apps/web/env/.env.example apps/web/env/.env
 - [소개 > 찾아오는 길](https://cse.snu.ac.kr/about/directions) 페이지에서 사용
 - 없어도 지도 외 다른 기능은 정상 작동합니다
 
-**2. SSH 접근** (배포 시에만 필요)
+**2. SSH 접근** (호스트 점검 시에만 필요 — 배포는 Actions 가 합니다)
 
 - 공개키를 배포 호스트에 등록해달라고 관련자에게 요청합니다
-- 그 키를 각자 SSH 환경에 맞게 설정합니다 — `ssh-agent`에 로드하거나 `~/.ssh/config`의 `IdentityFile`로 지정(1Password·키 파일 등 도구는 무관). 호스트·유저·포트는 `deploy.sh`에 있어 따로 설정할 필요가 없습니다
+- 그 키를 각자 SSH 환경에 맞게 설정합니다 — `ssh-agent`에 로드하거나 `~/.ssh/config`의 `IdentityFile`로 지정(1Password·키 파일 등 도구는 무관). 호스트·유저·포트는 `infra/deploy-targets/*.env` 에 있습니다
 
 ## 서버 환경
 
@@ -116,12 +116,11 @@ flowchart TD
   ci["ci.yml<br/>gate(typecheck·lint·knip·build) + api-test + E2E"]
 
   dev ==>|"머지 push"| dstg["deploy-web.yml · deploy-api.yml<br/>→ staging 호스트 SSH 트리거"] ==> stg[["staging 자동 배포<br/>(호스트가 빌드)"]]
-  main ==>|"push"| dsrv[["deploy-api.yml<br/>백엔드 prod 자동 배포"]]
-  main ==>|"수동"| prd[["deploy.sh prod<br/>프론트 prod 호스트가 빌드+교체"]]
+  main ==>|"머지 push"| dprd["deploy-web.yml · deploy-api.yml<br/>→ prod 호스트 SSH 트리거"] ==> prd[["production 자동 배포<br/>(호스트가 빌드)"]]
 ```
 
 - **PR 게이트(`ci.yml`):** 모든 PR에서 타입/린트/knip/빌드 + E2E(핀 컨테이너, 같은 커밋의 `apps/api` 로 백엔드 기동)를 돌리고, 통과해야 머지됩니다. `apps/api` 가 바뀐 PR 은 Gradle 테스트도 돕니다.
-- **빌드·배포:** 빌드는 **호스트에서** 합니다(레지스트리 없음, "빌드==배포"). 프론트는 `develop` 머지 시 `deploy-web.yml`이 staging 호스트에 SSH로 트리거해 git URL로 `docker build -f apps/web/Dockerfile` + 컨테이너 교체하고, **prod는 `deploy.sh prod`로 수동**입니다. 백엔드는 `deploy-api.yml`이 `develop`→staging, `main`→production 으로 자동 배포합니다(`apps/api/ops/host-deploy.sh`). CI는 배포 이미지를 만들지 않고 게이트만 담당합니다. 롤백은 이전 커밋 sha로 재빌드(`deploy.sh <env> <sha>`).
+- **빌드·배포:** 빌드는 **호스트에서** 합니다(레지스트리 없음, "빌드==배포"). `develop` 머지 → staging, `main` 머지 → production 이 자동이고 수동 배포 경로는 없습니다. 프론트는 `deploy-web.yml`이 호스트에 SSH로 트리거해 git URL로 `docker build -f apps/web/Dockerfile` + 컨테이너 교체, 백엔드는 `deploy-api.yml`이 `infra/ops/host-deploy.sh` 를 돌립니다. CI는 배포 이미지를 만들지 않고 게이트만 담당합니다. 롤백은 `deploy-web.yml` 을 workflow_dispatch 로 이전 sha 지정 실행(백엔드는 `IMAGE_TAG`).
 - **머지 전략:** `feature`→`develop`은 **squash**(기능당 1커밋), `develop`→`main`은 **merge commit**입니다(squash 금지 — long-lived 브랜치라 히스토리가 갈라짐). rebase 머지는 끕니다.
 - **원칙:** CI는 로컬과 같은 스크립트(`pnpm test`·`pnpm lint` 등)를 호출만 합니다 — 두 벌 관리하지 않습니다. 
 

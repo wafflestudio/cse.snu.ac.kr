@@ -1,8 +1,10 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "ignoreBinaries": ["scripts/deploy.sh"],
   "workspaces": {
-    ".": { "entry": [], "project": [] },
+    ".": {
+      "entry": [],
+      "project": []
+    },
     "apps/web": {
       "entry": [
         "src/routes/**/*.{ts,tsx}",

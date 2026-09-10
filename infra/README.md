@@ -15,4 +15,4 @@ deploy-targets/       브랜치별 호스트·프로파일(develop→staging, ma
 Dockerfile.es         nori 플러그인을 넣은 Elasticsearch 이미지
 ```
 
-프론트 이미지는 아직 여기 스택에 없다 — `scripts/remote-deploy.sh` 가 호스트에서 단독 컨테이너로 올린다. 스택에 합치는 것은 다음 작업.
+프론트 이미지는 아직 여기 스택에 없다 — `deploy-web.yml` 이 호스트로 보내는 `scripts/remote-deploy.sh` 가 단독 컨테이너로 올린다. 스택에 합치는 것은 다음 작업.
