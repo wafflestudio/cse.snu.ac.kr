@@ -1,4 +1,4 @@
-# 로컬 백엔드 환경: db + search + backend (pnpm backend:up/down). 소스는 apps/server.
+# 로컬 백엔드 환경: db + search + backend (pnpm server:up/down). 소스는 apps/server.
 name: csereal-local
 
 services:

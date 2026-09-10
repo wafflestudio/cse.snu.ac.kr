@@ -8,7 +8,7 @@
 git clone https://github.com/wafflestudio/cse.snu.ac.kr
 cd cse.snu.ac.kr
 pnpm install
-pnpm dev        # = pnpm --filter web dev
+pnpm web:dev        # = pnpm --filter web dev
 ```
 
 한 레포에 프론트·백엔드·E2E 가 함께 있습니다(pnpm 워크스페이스).
@@ -17,7 +17,7 @@ pnpm dev        # = pnpm --filter web dev
 apps/web/        프론트 (TanStack Start + Hono)
 apps/server/     백엔드 (Kotlin/Spring). 옛 csereal-server — 자체 README 참고
 packages/e2e/    Playwright E2E
-compose.yml      로컬 백엔드 스택(db·search·backend) — pnpm backend:up / pnpm test 가 쓴다
+compose.yml      로컬 백엔드 스택(db·search·backend) — pnpm server:up / pnpm test 가 쓴다
 scripts/         배포·E2E 러너·API 타입 생성
 ```
 
@@ -98,7 +98,7 @@ E2E 는 `packages/e2e/tests/` 에 라우트별 `read.spec.ts` / `flow.spec.ts` �
 
 ## 테스트
 
-`pnpm test`(E2E)는 **로컬 docker 백엔드**가 필요합니다(`pnpm dev`는 staging 백엔드를 보므로 불필요). 백엔드는 같은 커밋의 `apps/server` 소스에서 루트 `compose.yml` 로 자동 기동됩니다 — 별도 체크아웃이 없습니다. 비주얼 baseline 도 그 백엔드 기준입니다.
+`pnpm test`(E2E)는 **로컬 docker 백엔드**가 필요합니다(`pnpm web:dev`는 staging 백엔드를 보므로 불필요). 백엔드는 같은 커밋의 `apps/server` 소스에서 루트 `compose.yml` 로 자동 기동됩니다 — 별도 체크아웃이 없습니다. 비주얼 baseline 도 그 백엔드 기준입니다.
 
 백엔드 단위 테스트는 `cd apps/server && ./gradlew test`.
 

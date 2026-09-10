@@ -19,7 +19,7 @@
 ```
 
 - **백엔드 = 로컬 docker 실서버**(`apps/server`, :8080). MySQL+Spring, mock-login은 `@Profile("!prod")` 실엔드포인트(진짜 JSESSIONID 세션). **로컬 전용이라 리셋·시드 자유 — staging·프로덕션 서버는 절대 건드리지 않는다.** `pnpm test` 시 루트 `compose.yml`이 자동 기동(기동 순서·health 대기를 compose 선언으로 보장 — playwright.config는 앱만 띄운다).
-- **프론트 = 프로덕션 빌드**를 `apps/web/server.ts`(Hono)로 서빙. MSW/mock 안 씀. prod 컨테이너와 동일 서버(`pnpm start`).
+- **프론트 = 프로덕션 빌드**를 `apps/web/server.ts`(Hono)로 서빙. MSW/mock 안 씀. prod 컨테이너와 동일 서버(`pnpm web:start`).
   - **왜 server.ts가 필요한가:** TanStack Start 기본 빌드는 `dist/server/server.js`를 **Web fetch 핸들러**로 내놓는데 Node HTTP 서버는 `IncomingMessage`/`ServerResponse`라 **Node↔Web 다리가 필연**. Hono(+@hono/node-server)가 그 변환·정적서빙·`/api` 프록시를 맡는다. (Bun/Deno는 불필요하지만 우리는 Node self-host.)
   - **왜 prod 빌드(dev 아님):** 비주얼 회귀가 dev≠prod면 무의미하고, E2E 정석은 배포 산출물 검증. dev 콜드 컴파일 플레이키도 없음.
   - **왜 same-origin proxy:** 실서버 세션 쿠키(JSESSIONID)는 `Secure`라 브라우저 **cross-origin 요청에 안 실린다** → prod빌드를 :8080에 직접 쏘면 mutation 인증이 깨짐(302 OAuth). 브라우저는 :3000만 보고 `/api`를 서버사이드에서 :8080으로 프록시 → 세션 first-party 유지, CORS/CSP 무관 → **E2E용 앱 코드 수정 0.** `/api` 프록시는 `API_PROXY_TARGET` 설정 시에만(local/E2E); 배포는 프론트·백엔드 동일 도메인이라 절대 URL 직호출.
@@ -165,7 +165,7 @@
 
 ## 백엔드 이미지 · API 타입
 
-백엔드 Dockerfile이 **소스에서 통째로 빌드**하고(멀티스테이지 — 레이어 구성은 [Spring Boot 공식 권장](https://docs.spring.io/spring-boot/reference/packaging/container-images/dockerfiles.html)) `pnpm test`·`pnpm backend:up`이 `--build`로 부르므로, `apps/server` 소스가 곧 이미지다. 호스트에 JDK 불필요.
+백엔드 Dockerfile이 **소스에서 통째로 빌드**하고(멀티스테이지 — 레이어 구성은 [Spring Boot 공식 권장](https://docs.spring.io/spring-boot/reference/packaging/container-images/dockerfiles.html)) `pnpm test`·`pnpm server:up`이 `--build`로 부르므로, `apps/server` 소스가 곧 이미지다. 호스트에 JDK 불필요.
 
 API 타입은 백엔드 컨트롤러를 고친 뒤 **`pnpm gen:api`** 로 다시 만든다. 기본이 **로컬 백엔드(= 이 커밋의 `apps/server`)** 라 staging 배포를 기다릴 필요가 없다(배포된 서버를 보려면 `API_DOCS_URL`). typecheck 가 깨진 호출부를 보여 준다. **`pnpm test` 가 드리프트 게이트다** — 러너 컨테이너가 떠 있는 백엔드의 스펙으로 타입을 다시 만들어 커밋된 `generated.d.ts` 와 비교하고, 다르면 테스트 전에 실패한다. 백엔드 API 를 고치고 타입 재생성을 잊으면 CI 가 잡는다.
 
