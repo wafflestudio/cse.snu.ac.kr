@@ -6,14 +6,24 @@ name: CI
 on:
   pull_request:
     branches: [develop, main]
+  # develop push 는 backend-jar 만 돈다. PR 브랜치가 만든 캐시는 다른 PR 이 못 읽고
+  # 기본 브랜치가 만든 캐시만 모두가 읽는다(GitHub 캐시 격리 규칙).
+  push:
+    branches: [develop]
 
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  # E2E 가 붙는 백엔드 커밋. `pnpm backend:sync` 로 바꾼다(API 타입도 같은 커밋에서 뽑는다).
+  # 비주얼 baseline 이 이 백엔드 기준이라, 올릴 땐 baseline 재생성.
+  BACKEND_REF: 9bef7e3cf6977de765965a2bd001b9f67f114003
+
 jobs:
-  # 빠른 게이트(~1–2분, 백엔드 불필요): 타입·린트·빌드·스토리북.
+  # 빠른 게이트(~1분, 백엔드 불필요): 타입·린트·빌드.
   gate:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -29,38 +39,52 @@ jobs:
       - run: pnpm knip # 미사용 파일·export·의존성(프로젝트 레벨 dead code)
       - run: pnpm build:local # 빌드 깨짐 감지(env 파일 불필요)
 
+  # 백엔드 jar. 소스가 BACKEND_REF 로 고정돼 결과가 늘 같으니 한 번 만들어 캐시한다.
+  backend-jar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          repository: wafflestudio/csereal-server # public → 토큰 불필요
+          ref: ${{ env.BACKEND_REF }}
+          path: csereal-server
+      - uses: actions/cache@v4
+        id: jar
+        with:
+          path: csereal-server/build/libs
+          key: backend-jar-${{ env.BACKEND_REF }}
+      - if: steps.jar.outputs.cache-hit != 'true'
+        working-directory: csereal-server
+        run: JAVA_HOME=$JAVA_HOME_21_X64 ./gradlew --no-daemon bootJar -x test
+
   # E2E(비주얼 회귀 포함): 로컬과 "동일한" e2e-docker.sh를 핀된 컨테이너로 실행한다.
   # 유일한 CI 분기 = 백엔드 출처: 로컬은 형제 체크아웃, CI는 백엔드 레포를 핀된 ref로 체크아웃해
   # BACKEND_DIR로 가리킨다(소스 빌드 = local 프로파일 → mock-login 활성. GHCR :prod 이미지는
   # prod 프로파일이라 mock-login이 꺼져 있어 쓸 수 없음).
-  #
-  # ⚠️ baseline 결정성: 비주얼 baseline은 특정 백엔드 버전 기준. BACKEND_REF를 baseline 생성
-  #    시점과 핀하고, 백엔드를 올릴 땐 baseline 재생성 + 이 ref 갱신(로컬 §백엔드 동기화의 CI판).
-  # ⚠️ 첫 그린 확인 전엔 branch protection 필수 체크로 올리지 말 것(레포 설정에서 지정).
   e2e:
+    if: github.event_name == 'pull_request'
+    needs: backend-jar
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    env:
-      # baseline 생성 시점 백엔드 SHA로 핀(#410 머지 시점 develop). 백엔드 올릴 땐 baseline 재생성 + 이 값 갱신.
-      BACKEND_REF: 6dfa39e4fde2a0439dfbe1e3bcbb6901d4a7047c
     steps:
       - uses: actions/checkout@v7
         with:
           path: cse.snu.ac.kr # 로컬과 동일한 형제 레이아웃 재현
       - uses: actions/checkout@v7
         with:
-          repository: wafflestudio/csereal-server # public → 토큰 불필요(GITHUB_TOKEN)
+          repository: wafflestudio/csereal-server
           ref: ${{ env.BACKEND_REF }}
           path: csereal-server # = BACKEND_DIR 기본값 ../csereal-server
-      # 호스트엔 JDK도 pnpm/node도 불필요 — e2e-docker.sh가 모든 걸 핀된 컨테이너 안에서 한다(corepack·
-      # pnpm install·빌드·시드·브라우저). 백엔드는 ../csereal-server(체크아웃됨)에서 compose가
-      # 빌드. host.docker.internal은 Linux 러너에서도 --add-host=host-gateway로 동작(스크립트가 처리).
-      # 커밋된 OpenAPI 생성 타입이 이 백엔드의 실제 스펙과 맞는지 검사한다.
-      # 어긋나면 `pnpm gen:api` 후 커밋 → typecheck가 깨진 호출부를 짚어준다.
-      # e2e보다 먼저 둔다(빠르고, 백엔드 스택을 어차피 띄운다).
-      - name: OpenAPI 타입 드리프트 검사
-        working-directory: cse.snu.ac.kr
-        run: bash scripts/check-api-drift.sh
+      - uses: actions/cache/restore@v4
+        with:
+          path: csereal-server/build/libs
+          key: backend-jar-${{ env.BACKEND_REF }}
+          fail-on-cache-miss: true
+      # 호스트엔 JDK도 pnpm/node도 불필요 — e2e-docker.sh가 모든 걸 핀된 컨테이너 안에서 한다.
+      # 백엔드 이미지는 위에서 캐시한 jar 로 만든다(JAR_STAGE=prebuilt → Gradle 안 돈다).
       - name: E2E (e2e-docker.sh)
         working-directory: cse.snu.ac.kr
+        env:
+          JAR_STAGE: prebuilt
         run: bash scripts/e2e-docker.sh

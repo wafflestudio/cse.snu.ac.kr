@@ -19,7 +19,7 @@ export default defineConfig({
   // CI 러너는 로컬보다 느려 타임아웃 실패(PR #20) → 보수 분기. CI=1은 우리가 항상 넣으므로 신호는 GITHUB_ACTIONS.
   timeout: process.env.GITHUB_ACTIONS ? 60_000 : 30_000,
   expect: { timeout: process.env.GITHUB_ACTIONS ? 10_000 : 5_000 },
-  workers: process.env.GITHUB_ACTIONS ? 1 : 4,
+  workers: process.env.GITHUB_ACTIONS ? 2 : 4, // 러너는 4 vCPU 지만 1개면 6분대, 4개는 타임아웃 플레이키
 
   use: {
     baseURL: APP_URL,

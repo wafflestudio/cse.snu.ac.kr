@@ -75,8 +75,8 @@ importers:
         specifier: ^0.34.5
         version: 0.34.5
       suneditor:
-        specifier: ^2.47.8
-        version: 2.47.8
+        specifier: ^2.47.12
+        version: 2.47.12
       tsx:
         specifier: ^4.22.4
         version: 4.22.4
@@ -2663,8 +2663,8 @@ packages:
     resolution: {integrity: sha512-1tB5mhVo7U+ETBKNf92xT4hrQa3pm0MZ0PQvuDnWgAAGHDsfp4lPSpiS6psrSiet87wyGPh9ft6wmhOMQ0hDiw==}
     engines: {node: '>=14.16'}
 
-  suneditor@2.47.8:
-    resolution: {integrity: sha512-GGzaN1m+rFIR/zHdRxSH5JvzzJIF4UoaX2bWmcvk6NIcq2qgvdkR0iO+yFyjIL6zTVMeBI/GWkJMvOh8Qe5ehw==}
+  suneditor@2.47.12:
+    resolution: {integrity: sha512-Th3TILE/TDW8HtYSTYc9EexGl/rtO8+1SKFWQYe30DiP7/fd0iuWK15lTyo6lM43Q4IdEN5K2VdpYGbjAndBaw==}
 
   supports-color@10.2.2:
     resolution: {integrity: sha512-SS+jx45GF1QjgEXQx4NJZV9ImqmO2NPz5FNsIHrsDjh2YsHnawpan7SNQ1o8NuhrbHZy9AZhIoCUiCeaW/C80g==}
@@ -2698,6 +2698,7 @@ packages:
   tsconfck@3.1.6:
     resolution: {integrity: sha512-ks6Vjr/jEw0P1gmOVwutM3B7fWxoWBL2KRDb1JfqGVawBmO5UsvmWOQFGHBPl5yxYz4eERr19E6L7NMv+Fej4w==}
     engines: {node: ^18 || >=20}
+    deprecated: unmaintained
     hasBin: true
     peerDependencies:
       typescript: ^5.0.0
@@ -5193,7 +5194,7 @@ snapshots:
 
   strip-json-comments@5.0.3: {}
 
-  suneditor@2.47.8: {}
+  suneditor@2.47.12: {}
 
   supports-color@10.2.2: {}
 
