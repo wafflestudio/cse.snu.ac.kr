@@ -1,0 +1,14 @@
+package com.wafflestudio.csereal.core.resource.mainImage.database
+
+import com.wafflestudio.csereal.common.entity.BaseTimeEntity
+import jakarta.persistence.*
+
+@Entity(name = "mainImage")
+class MainImageEntity(
+    @Column(unique = true)
+    val filename: String,
+
+    val imagesOrder: Int,
+    val size: Long
+
+) : BaseTimeEntity()

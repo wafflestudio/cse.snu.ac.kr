@@ -1,0 +1,79 @@
+# 모니터링 스택. 앱과 분리된 별도 compose 프로젝트다.
+#   docker compose -f monitoring/compose.yml up -d
+#
+# ⚠️ 호스트에 방화벽이 없다 — 게시 포트가 곧 공개 포트다.
+# 보려면 SSH 터널: ssh -p 9122 -L 9090:localhost:9090 -L 3001:localhost:3001 waffle@<host>
+name: monitoring
+
+services:
+    prometheus:
+        image: prom/prometheus:v3.14.0
+        container_name: prometheus
+        ports:
+            - "127.0.0.1:9090:9090"
+        volumes:
+            - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+            - prometheus-data:/prometheus
+        # 앱이 별도 compose 프로젝트라 서비스 이름으로 못 닿는다.
+        extra_hosts:
+            - host.docker.internal:host-gateway
+        restart: unless-stopped
+
+    # 호스트 지표(CPU·메모리·디스크·네트워크)와 배치 잡 하트비트를 노출한다.
+    node-exporter:
+        image: prom/node-exporter:v1.9.1
+        container_name: node-exporter
+        # 호스트 네임스페이스를 봐야 진짜 호스트 지표가 나온다.
+        pid: host
+        network_mode: host
+        command:
+            - --path.rootfs=/host
+            - --path.procfs=/host/proc
+            - --path.sysfs=/host/sys
+            # ops 컨테이너가 쓴 하트비트 .prom 을 함께 노출한다.
+            - --collector.textfile.directory=/textfile
+            # ⚠️ 도커 게이트웨이여야 한다. 0.0.0.0 은 인터넷에 열리고,
+            #    127.0.0.1 은 프로메테우스 컨테이너가 못 닿는다.
+            - --web.listen-address=172.17.0.1:9100
+        volumes:
+            - /proc:/host/proc:ro
+            - /sys:/host/sys:ro
+            - /:/host:ro,rslave
+            - ops-metrics:/textfile:ro
+        restart: unless-stopped
+
+    grafana:
+        image: grafana/grafana:13.2.1
+        container_name: grafana
+        # 도커 게이트웨이에만 낸다 — Caddy 가 여기 붙어 /grafana 를 서빙한다.
+        # 3000 은 프론트가 쓴다.
+        ports:
+            - "172.17.0.1:3001:3000"
+        volumes:
+            - ./grafana/provisioning:/etc/grafana/provisioning:ro
+            # dashboards.yml 이 이 경로를 읽는다.
+            - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+            - grafana-data:/var/lib/grafana
+        # 관리자 비밀번호와 SMTP 자격증명. 파일이 없으면 compose 가 기동을 거부한다.
+        # ⚠️ SMTP 를 안 채우면 Grafana 가 조용히 메일을 안 보낸다(Gmail 은 앱 비밀번호).
+        env_file:
+            - ../secrets/monitoring.env
+        environment:
+            # 경로로 서빙한다. 인증서가 *.snu.ac.kr 만 커버해 2단계 서브도메인을 못 쓴다.
+            GF_SERVER_ROOT_URL: https://cse.snu.ac.kr/grafana/
+            GF_SERVER_SERVE_FROM_SUB_PATH: "true"
+            GF_USERS_ALLOW_SIGN_UP: "false"
+            GF_ANALYTICS_REPORTING_ENABLED: "false"
+            GF_SMTP_FROM_NAME: csereal
+        depends_on:
+            - prometheus
+        restart: unless-stopped
+
+volumes:
+
+    prometheus-data:
+    grafana-data:
+    # ops 프로젝트가 만든 볼륨을 빌려 쓴다(하트비트).
+    ops-metrics:
+        external: true
+        name: ops_ops-metrics
