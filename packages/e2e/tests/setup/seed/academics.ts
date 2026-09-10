@@ -1,4 +1,4 @@
-import type { ScholarshipPostBody } from '@/types/api';
+import type { ScholarshipPostBody } from 'web/src/types/api';
 import { postJson, postMultipart } from './client';
 
 /**

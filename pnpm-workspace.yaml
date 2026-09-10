@@ -1,3 +1,7 @@
+packages:
+  - apps/web
+  - packages/e2e
+
 onlyBuiltDependencies:
   - esbuild
   - sharp

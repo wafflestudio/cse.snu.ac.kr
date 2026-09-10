@@ -1,12 +1,19 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "entry": [
-    "src/routes/**/*.{ts,tsx}",
-    "src/router.tsx",
-    "src/sitemap.tsx",
-    "tests/**/*.spec.ts"
-  ],
-  "project": ["src/**/*.{ts,tsx}", "tests/**/*.ts"],
   "ignoreBinaries": ["scripts/deploy.sh"],
-  "ignoreDependencies": ["tailwindcss", "openapi-typescript"]
+  "workspaces": {
+    ".": {
+      "entry": [],
+      "project": []
+    },
+    "apps/web": {
+      "entry": ["src/routes/**/*.{ts,tsx}", "src/router.tsx", "src/sitemap.tsx", "server.ts"],
+      "project": ["src/**/*.{ts,tsx}", "server.ts"],
+      "ignoreDependencies": ["tailwindcss", "openapi-typescript"]
+    },
+    "packages/e2e": {
+      "entry": ["tests/**/*.spec.ts", "tests/setup/global-setup.ts", "playwright.config.ts"],
+      "project": ["tests/**/*.ts", "playwright.config.ts"]
+    }
+  }
 }

@@ -3,11 +3,13 @@
 #   1) 백엔드 스택(루트 compose.yml: db·backend)을 `up --build --wait`로 보장
 #   2) 핀된 Playwright 컨테이너를 스택 네트워크에 붙여 테스트 실행
 # 컨테이너 고정 이유: 비주얼 baseline(*-linux.png)은 폰트 렌더 환경 종속 — 이 이미지가 정본.
+# node_modules 는 패키지마다 볼륨을 따로 붙인다 — pnpm 워크스페이스는 루트 .pnpm 을 가리키는
+# 심링크를 각 패키지 아래에 만드는데, 바인드 마운트에 남기면 호스트 설치를 덮어쓴다.
 #
 # 사용:
 #   pnpm test                       # 전체 검증(Linux baseline 대조)
 #   pnpm test --update-snapshots    # baseline 재생성(호스트 tests/에 PNG 기록)
-#   pnpm test tests/research/labs   # 특정 경로/프로젝트 등 인자 패스스루
+#   pnpm test tests/research/labs   # 특정 경로/프로젝트 등 인자 패스스루(packages/e2e 기준 경로)
 #   pnpm test:ui                    # UI 모드 — 호스트 브라우저에서 http://localhost:43210
 set -eo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
@@ -32,6 +34,8 @@ done
 exec docker run "${docker_args[@]}" \
   -v "$PWD":/work -w /work \
   -v csereal-e2e-node-modules:/work/node_modules \
+  -v csereal-e2e-web-node-modules:/work/apps/web/node_modules \
+  -v csereal-e2e-e2e-node-modules:/work/packages/e2e/node_modules \
   -v csereal-e2e-pnpm-store:/pnpm-store \
   -e CI=1 \
   -e GITHUB_ACTIONS \
@@ -42,5 +46,5 @@ exec docker run "${docker_args[@]}" \
     corepack enable
     pnpm config set store-dir /pnpm-store
     pnpm install --frozen-lockfile
-    exec pnpm exec playwright test "$@"
+    exec pnpm -C packages/e2e exec playwright test "$@"
   ' bash "${pw_args[@]}" # bash -c의 첫 인자가 $0이 되므로 자리채움 "bash" 뒤에 실제 인자

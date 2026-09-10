@@ -16,9 +16,9 @@ else
 fi
 REF="${REF:-$BRANCH}"
 
-# 카맵키(git 밖)는 로컬 env/.env에서 읽어 build-arg로 넘긴다.
-KAKAO=$(grep -E '^VITE_KAKAO_MAP_API_KEY=' env/.env 2>/dev/null | cut -d= -f2-)
-[ -n "$KAKAO" ] || { echo -e "${RED}오류: env/.env에 VITE_KAKAO_MAP_API_KEY(지도 키)가 없습니다.${NC}"; exit 1; }
+# 카맵키(git 밖)는 로컬 apps/web/env/.env에서 읽어 build-arg로 넘긴다.
+KAKAO=$(grep -E '^VITE_KAKAO_MAP_API_KEY=' apps/web/env/.env 2>/dev/null | cut -d= -f2-)
+[ -n "$KAKAO" ] || { echo -e "${RED}오류: apps/web/env/.env에 VITE_KAKAO_MAP_API_KEY(지도 키)가 없습니다.${NC}"; exit 1; }
 
 echo -e "${BLUE}배포: ${ENV} ← ${REF}  (호스트 ${SSH_USER}@${SSH_HOST}:${SSH_PORT}에서 빌드+교체)${NC}"
 read -p "계속할까요? (yes/no): " -r; [[ "$REPLY" =~ ^[Yy][Ee][Ss]$ ]] || { echo -e "${BLUE}취소.${NC}"; exit 0; }

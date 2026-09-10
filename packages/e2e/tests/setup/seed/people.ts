@@ -1,4 +1,4 @@
-import type { ProfessorPostBody, StaffPostBody } from '@/types/api';
+import type { ProfessorPostBody, StaffPostBody } from 'web/src/types/api';
 import { postMultipart } from './client';
 
 /**

@@ -2,29 +2,27 @@
 .mcp.json
 
 # 환경 변수
-/env/.env
-/env/.env.local
-/env/.env.*.local
+/apps/web/env/.env
+/apps/web/env/.env.local
+/apps/web/env/.env.*.local
 
 # 의존성 / 패키지 매니저
-/node_modules/
+node_modules/
 /.pnpm-store/
 
 # 빌드 산출물 (TanStack Start)
-/dist/
+/apps/web/dist/
 
 # 이미지 최적화 디스크 캐시
 .cache/
 
-# Playwright
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/playwright/.auth/
+# Playwright (packages/e2e)
+test-results/
+playwright-report/
+blob-report/
+/packages/e2e/playwright/.cache/
+/packages/e2e/playwright/.auth/
 .playwright-mcp/
-
-# Storybook
 
 # Claude Code 로컬 작업 상태
 .claude/

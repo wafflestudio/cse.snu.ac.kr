@@ -1,4 +1,4 @@
-# 로컬 백엔드 환경: db + backend (pnpm backend:up/down).
+# 로컬 백엔드 환경: db + search + backend (pnpm backend:up/down). 소스는 apps/server.
 name: csereal-local
 
 services:
@@ -12,8 +12,8 @@ services:
       - '3306:3306' # 호스트 디버깅용(mysql -h127.0.0.1)
     volumes:
       - db:/var/lib/mysql
-      # ngram_token_size=2 — 백엔드 FTS 검색이 의존(백엔드 레포 소유 설정을 그대로 마운트)
-      - ${BACKEND_DIR:-../csereal-server}/db_config:/etc/mysql/conf.d
+      # ngram_token_size=2 — 백엔드 FTS 검색이 의존(백엔드 소유 설정을 그대로 마운트)
+      - ./apps/server/db_config:/etc/mysql/conf.d
     healthcheck:
       test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-ppassword']
       interval: 2s
@@ -23,7 +23,7 @@ services:
   search:
     image: csereal-search:local
     build:
-      context: ${BACKEND_DIR:-../csereal-server}
+      context: ./apps/server
       dockerfile: Dockerfile.es
     environment:
       discovery.type: single-node
@@ -40,7 +40,7 @@ services:
   backend:
     image: csereal-backend:local
     build:
-      context: ${BACKEND_DIR:-../csereal-server}
+      context: ./apps/server
       args:
         JAR_STAGE: ${JAR_STAGE:-source} # CI 는 캐시한 jar 로 prebuilt
     environment:

@@ -15,7 +15,9 @@ REPO="https://github.com/wafflestudio/cse.snu.ac.kr.git"
 
 # 빌드 먼저: 실패하면 set -e로 멈춰 구버전이 계속 서빙된다(무중단).
 echo "🔨 빌드: $REPO#$REF (mode=$BUILD_MODE)" >&2
+# 컨텍스트는 레포 루트(워크스페이스 lockfile 이 거기 있다), Dockerfile 은 apps/web 의 것.
 docker build \
+  -f apps/web/Dockerfile \
   --build-arg BUILD_MODE="$BUILD_MODE" \
   --build-arg VITE_KAKAO_MAP_API_KEY="$KAKAO" \
   -t "$CONTAINER:app" \

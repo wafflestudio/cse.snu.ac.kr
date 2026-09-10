@@ -1,5 +1,5 @@
-import { NEWS_TAGS } from '../../../src/routes/$locale/community/news/-constants';
-import { NOTICE_TAGS } from '../../../src/routes/$locale/community/notice/-constants';
+import { NEWS_TAGS } from 'web/src/routes/$locale/community/news/-constants';
+import { NOTICE_TAGS } from 'web/src/routes/$locale/community/notice/-constants';
 import { postJson, postMultipart } from './client';
 
 /**
