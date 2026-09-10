@@ -86,6 +86,41 @@ test.describe('공지사항 - 작성/편집/삭제 플로우', () => {
   });
 });
 
+test.describe('공지사항 - 붙여넣기', () => {
+  test('붙여넣은 HTML 은 서버 세탁을 거쳐 들어간다', async ({ page }) => {
+    await setLocale(page, 'ko');
+    await page.goto('/community/notice/create');
+    await loginAsStaff(page);
+
+    const editor = page.locator('.sun-editor-editable:visible').first();
+    await expect(editor).toHaveAttribute('contenteditable', 'true');
+    await editor.click();
+
+    // 서버 세탁만 알아보는 잔재를 심는다. SunEditor 는 p 의 display 를 떼기만 해서
+    // 숨어 있던 글자가 보이는 글자로 남는다 — 원문을 서버에 먼저 보내야 요소째 사라진다.
+    const sanitized = page.waitForResponse('**/api/v2/content/sanitize');
+    await editor.evaluate((el) => {
+      const data = new DataTransfer();
+      data.setData(
+        'text/html',
+        '<p>보이는 문단</p><p style="display:none">숨은 잔재</p>',
+      );
+      data.setData('text/plain', '보이는 문단');
+      el.dispatchEvent(
+        new ClipboardEvent('paste', {
+          clipboardData: data,
+          bubbles: true,
+          cancelable: true,
+        }),
+      );
+    });
+    await sanitized;
+
+    await expect(editor).toContainText('보이는 문단');
+    await expect(editor).not.toContainText('숨은 잔재');
+  });
+});
+
 /**
  * 게시 설정(어드민 기능): 비공개/목록 상단 고정.
  * - 비공개 글: staff에게만 노출(백엔드가 비-staff에게 필터).

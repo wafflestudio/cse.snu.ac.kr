@@ -18,7 +18,7 @@ concurrency:
 env:
   # E2E 가 붙는 백엔드 커밋. `pnpm backend:sync` 로 바꾼다(API 타입도 같은 커밋에서 뽑는다).
   # 비주얼 baseline 이 이 백엔드 기준이라, 올릴 땐 baseline 재생성.
-  BACKEND_REF: 3594849d0b4c01d3d7ebe388818dc0e5be906c51
+  BACKEND_REF: 41dd7c768a3b52dabbe1797a8af57b097c1123c3
 
 jobs:
   # 빠른 게이트(~1분, 백엔드 불필요): 타입·린트·빌드.

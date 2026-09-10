@@ -548,6 +548,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v2/content/sanitize": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * 본문 HTML 세탁
+         * @description 저장 시점과 같은 규칙으로 세탁한 HTML 을 돌려준다. 에디터가 붙여넣기 직후 불러 사용자가 저장될 모습을 그대로 보게 한다. 본문은 UTF-8 로 읽는다.
+         */
+        post: operations["sanitize"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v2/academics/{studentType}/{postType}": {
         parameters: {
             query?: never;
@@ -4984,6 +5004,49 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["ImageModalDto"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    sanitize: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "text/html": string;
+                "text/plain": string;
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "text/html;charset=UTF-8": string;
                 };
             };
             /** @description 요청 오류 — code 로 구분 */
