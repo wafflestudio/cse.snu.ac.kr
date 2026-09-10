@@ -51,6 +51,6 @@
 
 # 실행 · baseline
 
-- 항상 핀된 Playwright 컨테이너(`scripts/e2e-docker.sh`). 호스트 직접 실행은 정식 경로가 아니다 — baseline(`*-linux.png`)은 컨테이너 렌더 기준이라 머신 무관. 로컬·CI 가 같은 스크립트라 config 도 조건 분기 없는 고정값(워커·retries 는 실측으로 정함, 상세는 config 주석).
+- 항상 핀된 Playwright 컨테이너(`e2e/run.sh`). 호스트 직접 실행은 정식 경로가 아니다 — baseline(`*-linux.png`)은 컨테이너 렌더 기준이라 머신 무관. 로컬·CI 가 같은 스크립트라 config 도 조건 분기 없는 고정값(워커·retries 는 실측으로 정함, 상세는 config 주석).
 - 백엔드는 같은 커밋의 `apps/api`. 백엔드를 고친 PR 에서 렌더가 바뀌면 같은 PR 에서 `pnpm e2e --update-snapshots`. 러너가 먼저 API 타입 드리프트를 검사하므로 백엔드 API 를 고쳤으면 `pnpm gen:api` 도 같은 PR 에.
 - 복합 페이지는 편집 기능마다 별도 flow. 자율 진행 시 묻지 말고 진행하되, 실서버가 실버그를 잡으면 증상 우회 말고 원인을 고치고 기록한다.

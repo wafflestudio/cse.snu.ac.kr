@@ -12,7 +12,7 @@ tests/helpers/                loginAsStaff, 폼 구동, 삭제
 playwright.config.ts          프로젝트 read / read-mobile / language / security → flow
 ```
 
-- 항상 핀된 Playwright 컨테이너에서 돈다(`scripts/e2e-docker.sh`). 백엔드는 같은 커밋의 `apps/api` 를 `infra/compose.local.yml` 로 띄운다. 호스트 직접 실행은 정식 경로가 아니다 — baseline(`*-linux.png`)이 컨테이너 렌더 기준이다.
+- 항상 핀된 Playwright 컨테이너에서 돈다(`e2e/run.sh`). 백엔드는 같은 커밋의 `apps/api` 를 `infra/compose.local.yml` 로 띄운다. 호스트 직접 실행은 정식 경로가 아니다 — baseline(`*-linux.png`)이 컨테이너 렌더 기준이다.
 - 프론트 소스는 `@web/*`(tsconfig paths → `apps/web/src`)로 가져온다. 시드 타입과 태그 상수만 쓴다.
 - 경로 인자는 이 디렉터리 기준: `pnpm e2e tests/research/labs`. baseline 갱신은 `pnpm e2e --update-snapshots`.
 

@@ -2,7 +2,7 @@
 #   pnpm api:up / pnpm api:down  (레포 루트에서)
 #
 # 프로젝트 이름을 고정한다 — E2E 러너가 `--network csereal-local_default` 로
-# 이 스택에 붙는다(scripts/e2e-docker.sh).
+# 이 스택에 붙는다(e2e/run.sh).
 name: csereal-local
 
 services:

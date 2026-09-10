@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# E2E 단일 진입점 — `pnpm e2e`가 부른다(`pnpm test` = api:test + e2e).
+# E2E 단일 진입점 — `pnpm e2e`가 부른다(레포 루트에서)(`pnpm test` = api:test + e2e).
 #   1) 백엔드 스택(db·search·backend, 소스 apps/api)을 `pnpm api:up` 으로 보장
 #   2) 핀된 Playwright 컨테이너를 스택 네트워크에 붙여 API 타입 드리프트 확인 → 테스트 실행
 # 컨테이너 고정 이유: 비주얼 baseline(*-linux.png)은 폰트 렌더 환경 종속 — 이 이미지가 정본.

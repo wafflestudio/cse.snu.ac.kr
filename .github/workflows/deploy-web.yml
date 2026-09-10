@@ -1,5 +1,5 @@
 # 프론트(apps/web) 배포. develop → staging, main → production. 백엔드는 deploy-api.yml.
-# 이 잡은 SSH로 remote-deploy.sh를 보내 호스트 빌드(git URL → docker build → 컨테이너 교체)를 트리거만 한다.
+# 이 잡은 SSH로 deploy-web.sh를 보내 호스트 빌드(git URL → docker build → 컨테이너 교체)를 트리거만 한다.
 # 롤백: Actions 에서 workflow_dispatch 로 이전 커밋 sha 를 ref 에 넣어 실행한다.
 name: Deploy web
 
@@ -11,7 +11,7 @@ on:
       - 'pnpm-lock.yaml'
       - 'pnpm-workspace.yaml'
       - 'package.json'
-      - 'scripts/remote-deploy.sh'
+      - 'infra/ops/deploy-web.sh'
       - '.dockerignore'
       - 'infra/deploy-targets/**'
       - '.github/workflows/deploy-web.yml'
@@ -31,7 +31,7 @@ jobs:
     timeout-minutes: 20
     environment: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
     steps:
-      - uses: actions/checkout@v7 # remote-deploy.sh 와 deploy-targets 를 읽기 위해서만(빌드는 호스트가 함)
+      - uses: actions/checkout@v7 # deploy-web.sh 와 deploy-targets 를 읽기 위해서만(빌드는 호스트가 함)
 
       - name: 배포 대상 설정 읽기
         run: grep -vE '^\s*(#|$)' infra/deploy-targets/${{ github.ref_name }}.env >> "$GITHUB_ENV"
@@ -45,12 +45,12 @@ jobs:
         run: |
           install -m 600 /dev/stdin key <<< "$SSH_KEY"
           # SNU 경계 장비가 학외 연결을 간헐적으로 끊는다(kex_exchange_identification: Connection reset).
-          # remote-deploy.sh 는 같은 커밋으로 여러 번 돌려도 결과가 같다.
+          # deploy-web.sh 는 같은 커밋으로 여러 번 돌려도 결과가 같다.
           for attempt in 1 2 3 4 5; do
             if timeout 15m ssh -i key -p "$SSH_PORT" -o StrictHostKeyChecking=accept-new -o ConnectTimeout=15 \
                 "$SSH_USER@$SSH_HOST" \
                 "REF='$REF' BUILD_MODE='$BUILD_MODE' KAKAO='$KAKAO' bash -s" \
-                < scripts/remote-deploy.sh; then
+                < infra/ops/deploy-web.sh; then
               exit 0
             fi
             echo "::warning::SSH 실패 ($attempt/5) — 재시도"

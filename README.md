@@ -7,7 +7,6 @@ apps/web/        프론트 (TanStack Start + Hono)                → apps/web/R
 apps/api/        백엔드 (Kotlin/Spring). 옛 csereal-server      → apps/api/README.md
 e2e/             Playwright E2E                                → e2e/README.md
 infra/           compose 스택(로컬·prod)·Caddy·모니터링·운영 스크립트·배포 대상 → infra/README.md
-scripts/         배포 트리거·E2E 러너·API 타입 생성
 ```
 
 ## Getting Started
@@ -51,7 +50,7 @@ flowchart TD
 ```
 
 - **PR 게이트(`ci.yml`):** 타입/린트/knip/빌드 + E2E(같은 커밋의 `apps/api` 로 백엔드 기동). `apps/api` 가 바뀐 PR 은 Gradle 테스트도. 통과해야 머지.
-- **배포:** 전부 Actions. 빌드는 **호스트에서**(레지스트리 없음, "빌드==배포"). `develop` 머지 → staging, `main` 머지 → production. 프론트는 `deploy-web.yml`이 호스트에 `scripts/remote-deploy.sh` 를 보내고, 백엔드는 `deploy-api.yml`이 `infra/ops/host-deploy.sh` 를 돌린다. 대상은 `infra/deploy-targets/`. 롤백은 `deploy-web.yml` 을 workflow_dispatch 로 이전 sha 지정 실행(백엔드는 `IMAGE_TAG`).
+- **배포:** 전부 Actions. 빌드는 **호스트에서**(레지스트리 없음, "빌드==배포"). `develop` 머지 → staging, `main` 머지 → production. 프론트는 `deploy-web.yml`이 호스트에 `infra/ops/deploy-web.sh` 를 보내고, 백엔드는 `deploy-api.yml`이 `infra/ops/host-deploy.sh` 를 돌린다. 대상은 `infra/deploy-targets/`. 롤백은 `deploy-web.yml` 을 workflow_dispatch 로 이전 sha 지정 실행(백엔드는 `IMAGE_TAG`).
 - **머지 전략:** `feature`→`develop` squash, `develop`→`main` merge commit. rebase 머지 없음.
 - **원칙:** CI는 로컬과 같은 스크립트(`pnpm e2e`·`pnpm lint` 등)를 호출만 한다.
 

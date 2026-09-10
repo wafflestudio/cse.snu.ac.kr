@@ -13,7 +13,7 @@ infra/README.md      compose 스택·Caddy·모니터링·운영 스크립트·�
 
 # 레포 구조
 
-pnpm 워크스페이스. 패키지는 `apps/web` 과 `e2e` 둘이고 `apps/api` 는 Gradle 이라 pnpm 이 관리하지 않는다(`pnpm api:*` 가 `cd apps/api && ./gradlew` 를 감쌀 뿐). `infra` 는 프론트·백엔드 공통 인프라 — 웹 컨테이너는 아직 compose 스택 밖(`scripts/remote-deploy.sh` 단독 컨테이너)이고 스택에 넣는 것이 다음 작업이다. 루트 스크립트는 디렉터리 이름을 접두사로 쓴다(`web:*`, `api:*`). 레포 전체를 다루는 것만 접두사 없음(`test`·`e2e`·`gen:api`·`typecheck`·`lint`·`knip`).
+pnpm 워크스페이스. 패키지는 `apps/web` 과 `e2e` 둘이고 `apps/api` 는 Gradle 이라 pnpm 이 관리하지 않는다(`pnpm api:*` 가 `cd apps/api && ./gradlew` 를 감쌀 뿐). `infra` 는 프론트·백엔드 공통 인프라 — 웹 컨테이너는 아직 compose 스택 밖(`infra/ops/deploy-web.sh` 단독 컨테이너)이고 스택에 넣는 것이 다음 작업이다. 루트 스크립트는 디렉터리 이름을 접두사로 쓴다(`web:*`, `api:*`). 레포 전체를 다루는 것만 접두사 없음(`test`·`e2e`·`gen:api`·`typecheck`·`lint`·`knip`).
 
 `apps/api` 는 옛 csereal-server 를 git subtree 로 합친 것이다(히스토리 보존). e2e 가 프론트 소스를 가져오는 통로는 `@web/*` 별칭 하나(`e2e/tsconfig.json`) — 워크스페이스 패키지 이름으로 부르면 Node ESM 이 확장자 없는 `.ts` 를 못 찾아 런타임에 깨진다.
 
@@ -41,7 +41,7 @@ pnpm 워크스페이스. 패키지는 `apps/web` 과 `e2e` 둘이고 `apps/api` 
 - 호스트: prod `147.46.92.120:9122`(학내), staging `168.107.16.249`(클라우드, 학외). 정본은 `infra/deploy-targets/`.
 - **Caddyfile 정본은 `infra/caddy/`.** `host-deploy.sh` 가 매 배포마다 복사해 reload 한다 — 호스트에서 직접 고치면 다음 배포에 덮인다.
 - **압축은 앱이 한다(`hono/compress`).** 예전 상위 프록시가 하던 일인데 그 계층이 없어졌다. 빼면 HTML 이 무압축으로 나간다.
-- **⚠️ 프론트 컨테이너에 `--add-host cse.snu.ac.kr:host-gateway` 필수**(`remote-deploy.sh` 가 붙인다). SSR 이 절대 URL 로 자기 도메인을 부르므로 컨테이너가 그 이름을 게이트웨이로 풀어야 한다. 빠지면 전 페이지 500 인데, 오래 뜬 컨테이너에선 안 드러나고 재생성 시점에 터진다.
+- **⚠️ 프론트 컨테이너에 `--add-host cse.snu.ac.kr:host-gateway` 필수**(`deploy-web.sh` 가 붙인다). SSR 이 절대 URL 로 자기 도메인을 부르므로 컨테이너가 그 이름을 게이트웨이로 풀어야 한다. 빠지면 전 페이지 500 인데, 오래 뜬 컨테이너에선 안 드러나고 재생성 시점에 터진다.
 - **학외 접속은 드물게 끊긴다**(경계 장비의 SYN drop·RST). 앱 버그 아님. 배포 워크플로가 SSH 를 5회 재시도하는 이유. **학외 OAuth 로그인은 불가** — `id.snucse.org` 가 학외 443 을 막고 있다(바쿠스 소유).
 - **⚠️ local·dev 프로파일에 OIDC `issuer-uri` 를 넣지 말 것.** 있으면 백엔드가 기동 시 `id.snucse.org` discovery 를 강제해 학외·CI 에서 크래시 루프다. `SecurityConfig` 가 registration 이 있을 때만 `oauth2Login` 을 배선하고, 두 환경은 mock-login 만 쓴다. prod 만 등록.
 - **관리 엔드포인트는 앱이 loopback 으로 막는다**(`@InternalOnly`, `remoteAddr.isLoopbackAddress`). 운용은 `docker exec csereal_server curl localhost:8080/…`. 컨테이너 안 호출은 IPv6 `::1` 로 오니 `127.0.0.1` 만 매칭하면 막힌다. 엣지에는 이 차단이 없고 앱이 정본 방어다. 세션 인증을 안 쓴 이유: 학외에서 OAuth 가 막혀 개발자가 못 쓴다.
@@ -50,8 +50,8 @@ pnpm 워크스페이스. 패키지는 `apps/web` 과 `e2e` 둘이고 `apps/api` 
 
 - **브랜치:** `main`=production · `develop`=staging · `feature/*`·`fix/*`→`develop` PR · `hotfix/*`→`main` PR(후 develop back-merge). 직접 push 금지 — ruleset 이 PR 필수 + `gate`·`e2e` 필수 체크 + force push 금지(admin 포함).
 - **머지:** `feature`→`develop` squash(기능당 1커밋). `develop`→`main` merge commit(squash 하면 long-lived 인 develop 과 히스토리가 갈라져 다음 승격 PR 이 깨진다). rebase 머지 없음, 머지 후 head 브랜치 자동 삭제.
-- **CI(`ci.yml`, PR):** `gate`(워크스페이스 전체 typecheck·lint·knip + web build, ~1분) · `api-test`(Gradle — `apps/api` 가 바뀐 PR 과 develop push 만, 필수 체크 아님) · `api-jar`(백엔드 소스 해시로 캐시한 bootJar) · `e2e`(로컬과 같은 `scripts/e2e-docker.sh`, `JAR_STAGE=prebuilt`). E2E 는 항상 같은 커밋의 `apps/api` 로 돈다. **두 벌 관리 X — CI 는 로컬 스크립트·config 를 호출만 한다.** 필수 체크는 `gate`·`e2e` 만 — 경로 필터로 건너뛰는 잡을 필수로 두면 "대기 중"으로 머지가 막힌다. PR 이 만든 캐시는 다른 PR 이 못 읽어 develop push 에서도 `api-jar` 를 돌려 채운다.
-- **CD — 전부 Actions, 수동 배포 없음.** `develop` push → staging, `main` push → production. 웹은 `deploy-web.yml` 이 호스트에 `scripts/remote-deploy.sh` 를 보내 `docker build -f apps/web/Dockerfile "<git-url>#<sha>"` 후 컨테이너 교체(빌드 성공 후에만 교체 → 무중단). 백엔드는 `deploy-api.yml` 이 호스트에서 레포를 클론해 `infra/ops/host-deploy.sh`(jar·이미지 빌드 → compose up --wait → Caddy reload → GIT_SHA 검증). 둘 다 `infra/deploy-targets/<브랜치>.env` 와 Environment(`production`·`staging`) 시크릿 `SSH_KEY`, 웹은 레포 시크릿 `KAKAO_MAP_KEY` 추가. 롤백은 `deploy-web.yml` workflow_dispatch 에 이전 sha(백엔드는 `IMAGE_TAG`). 사람이 누르는 관문이 필요하면 Environment `production` 에 required reviewer.
+- **CI(`ci.yml`, PR):** `gate`(워크스페이스 전체 typecheck·lint·knip + web build, ~1분) · `api-test`(Gradle — `apps/api` 가 바뀐 PR 과 develop push 만, 필수 체크 아님) · `api-jar`(백엔드 소스 해시로 캐시한 bootJar) · `e2e`(로컬과 같은 `e2e/run.sh`, `JAR_STAGE=prebuilt`). E2E 는 항상 같은 커밋의 `apps/api` 로 돈다. **두 벌 관리 X — CI 는 로컬 스크립트·config 를 호출만 한다.** 필수 체크는 `gate`·`e2e` 만 — 경로 필터로 건너뛰는 잡을 필수로 두면 "대기 중"으로 머지가 막힌다. PR 이 만든 캐시는 다른 PR 이 못 읽어 develop push 에서도 `api-jar` 를 돌려 채운다.
+- **CD — 전부 Actions, 수동 배포 없음.** `develop` push → staging, `main` push → production. 웹은 `deploy-web.yml` 이 호스트에 `infra/ops/deploy-web.sh` 를 보내 `docker build -f apps/web/Dockerfile "<git-url>#<sha>"` 후 컨테이너 교체(빌드 성공 후에만 교체 → 무중단). 백엔드는 `deploy-api.yml` 이 호스트에서 레포를 클론해 `infra/ops/host-deploy.sh`(jar·이미지 빌드 → compose up --wait → Caddy reload → GIT_SHA 검증). 둘 다 `infra/deploy-targets/<브랜치>.env` 와 Environment(`production`·`staging`) 시크릿 `SSH_KEY`, 웹은 레포 시크릿 `KAKAO_MAP_KEY` 추가. 롤백은 `deploy-web.yml` workflow_dispatch 에 이전 sha(백엔드는 `IMAGE_TAG`). 사람이 누르는 관문이 필요하면 Environment `production` 에 required reviewer.
 - **왜 호스트 빌드(학외 CI 아님):** 레지스트리 없이 빌드==배포이고, 프리렌더를 다시 켜면 빌드가 prod API 를 페이지 수만큼 부르는데 학외에선 SYN drop 이 누적돼 플레이키하다. 서빙 호스트에 빌드 부하가 생기지만 격리·무중단 swap 이라 감내.
 - **GitHub API 함정:** 브랜치 보호는 `repos/:owner/:repo/rules/branches/:branch`(ruleset) 로 조회한다 — 구식 `branches/:branch/protection` 은 ruleset 만 쓰는 레포에서 404 다. "설정이 없다"는 결론을 404 로 내리지 말 것.
 
