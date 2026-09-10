@@ -17,7 +17,7 @@
     "lint": "biome check",
     "lint:fix": "biome check --write",
     "knip": "knip",
-    "gen:api": "bash scripts/gen-api.sh",
+    "gen:api": "pnpm api:up && pnpm --filter web exec openapi-typescript http://localhost:8080/api-docs/json -o src/types/api/generated.d.ts && pnpm typecheck",
     "prepare": "node .husky/install.mjs || true"
   },
   "devDependencies": {

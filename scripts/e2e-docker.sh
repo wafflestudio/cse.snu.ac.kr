@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # E2E 단일 진입점 — `pnpm e2e`가 부른다(`pnpm test` = api:test + e2e).
-#   1) 백엔드 스택(infra/compose.yml + compose.local.yml: db·search·backend, 소스 apps/api)을 `up --build --wait`로 보장
+#   1) 백엔드 스택(db·search·backend, 소스 apps/api)을 `pnpm api:up` 으로 보장
 #   2) 핀된 Playwright 컨테이너를 스택 네트워크에 붙여 API 타입 드리프트 확인 → 테스트 실행
 # 컨테이너 고정 이유: 비주얼 baseline(*-linux.png)은 폰트 렌더 환경 종속 — 이 이미지가 정본.
 # node_modules 는 패키지마다 볼륨을 따로 붙인다 — pnpm 워크스페이스는 루트 .pnpm 을 가리키는
@@ -19,8 +19,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 # 태그는 @playwright/test 버전과 일치(버전 올릴 때 함께 수정).
 IMAGE="mcr.microsoft.com/playwright:v1.57.0-jammy"
 
-echo "[e2e] 백엔드 스택 보장(compose up --build --wait)…"
-docker compose -f infra/compose.yml -f infra/compose.local.yml up -d --build --wait backend
+echo "[e2e] 백엔드 스택 보장(pnpm api:up)…"
+pnpm api:up
 
 docker_args=(--rm --network csereal-local_default)
 pw_args=("$@")
