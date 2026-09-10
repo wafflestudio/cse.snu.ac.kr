@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# E2E 단일 진입점 — `pnpm test`가 부른다.
+# E2E 단일 진입점 — `pnpm e2e`가 부른다(`pnpm test` = api:test + e2e).
 #   1) 백엔드 스택(infra/compose.yml + compose.local.yml: db·search·backend, 소스 apps/api)을 `up --build --wait`로 보장
 #   2) 핀된 Playwright 컨테이너를 스택 네트워크에 붙여 API 타입 드리프트 확인 → 테스트 실행
 # 컨테이너 고정 이유: 비주얼 baseline(*-linux.png)은 폰트 렌더 환경 종속 — 이 이미지가 정본.
@@ -9,10 +9,10 @@
 # 상대 심링크는 새 깊이에서 깨지는데 pnpm 은 이미 설치돼 있다고 보고 다시 링크하지 않는다.
 #
 # 사용:
-#   pnpm test                       # 전체 검증(Linux baseline 대조)
-#   pnpm test --update-snapshots    # baseline 재생성(호스트 tests/에 PNG 기록)
-#   pnpm test tests/research/labs   # 특정 경로/프로젝트 등 인자 패스스루(e2e/ 기준 경로)
-#   pnpm test:ui                    # UI 모드 — 호스트 브라우저에서 http://localhost:43210
+#   pnpm e2e                        # 전체 검증(Linux baseline 대조)
+#   pnpm e2e --update-snapshots     # baseline 재생성(호스트 e2e/tests/에 PNG 기록)
+#   pnpm e2e tests/research/labs    # 특정 경로/프로젝트 등 인자 패스스루(e2e/ 기준 경로)
+#   pnpm e2e:ui                     # UI 모드 — 호스트 브라우저에서 http://localhost:43210
 set -eo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 

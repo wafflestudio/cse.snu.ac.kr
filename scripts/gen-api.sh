@@ -3,7 +3,7 @@
 # 기본은 로컬 백엔드(infra/compose 로 apps/api 를 띄운다). 배포된 서버를 보려면 API_DOCS_URL 로 지정.
 #   pnpm gen:api
 #   API_DOCS_URL=https://168.107.16.249.nip.io/api-docs/json pnpm gen:api
-# pnpm test 가 같은 비교를 해서 어긋나면 실패한다(scripts/e2e-docker.sh).
+# pnpm e2e 가 같은 비교를 해서 어긋나면 실패한다(scripts/e2e-docker.sh).
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
@@ -15,4 +15,4 @@ fi
 pnpm --filter web exec openapi-typescript "$API_DOCS_URL" -o src/types/api/generated.d.ts
 pnpm -r typecheck
 
-echo "렌더가 바뀌었으면: pnpm test --update-snapshots"
+echo "렌더가 바뀌었으면: pnpm e2e --update-snapshots"
