@@ -1,5 +1,5 @@
 // 클라이언트 안전한 CSP 유틸/타입만 둔다(무거운 deps 없음).
-// HTML 변환(cheerio·autolinker)은 processHtmlForCsp.ts(serverFn, handler 안 dynamic import)에 있어
+// HTML 손질(cheerio)은 serverFns/prepareHtmlForViewer.ts(handler 안 dynamic import)에 있어
 // 라우트 loader가 클라에서 실행돼도 cheerio가 클라 번들에 들어가지 않게 한다.
 
 /** 16바이트 랜덤 hex(Web Crypto, 서버/클라 공통). */
@@ -26,8 +26,8 @@ export const getCSPHeaders = (nonce: string) =>
     .join('; ')
     .trim();
 
-export interface ProcessedHtml {
+/** 뷰어가 그대로 꽂는 본문. cssRules 는 nonce <style> 로 함께 주입한다. */
+export interface ViewerHtml {
   html: string;
   cssRules: string;
-  styleKey: string;
 }

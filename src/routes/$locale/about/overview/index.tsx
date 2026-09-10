@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import Image from '@/components/ui/Image';
 import { useLanguage } from '@/hooks/useLanguage';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import commonTranslations from '@/translations.json';
 import type { AboutContent } from '@/types/api';
 import { api } from '@/utils/api';
@@ -111,7 +111,7 @@ export const Route = createFileRoute('/$locale/about/overview/')({
 
     return {
       ...data,
-      description: await processHtmlForCsp({ data: data.description }),
+      description: await prepareHtmlForViewer({ data: data.description }),
     };
   },
   component: Overview,

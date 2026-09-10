@@ -7,7 +7,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
 import { createSelectionUrl } from '@/hooks/useSelectionList';
 import { useResearchSubNav } from '@/hooks/useSubNav';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { ResearchLabDetail, ResearchLabWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 import { stringParam } from '@/utils/searchSchema';
@@ -157,7 +157,7 @@ function LabSummary({
 
 // 공유값 + 해당 언어 번역본 + CSP 처리된 본문.
 type ProcessedLab = Omit<ResearchLabDetail, 'description'> & {
-  description: import('@/utils/csp').ProcessedHtml;
+  description: import('@/utils/csp').ViewerHtml;
 };
 
 function StreamLink({
@@ -220,7 +220,7 @@ export const Route = createFileRoute('/$locale/research/labs/$id/')({
     return {
       ...data,
       ...translation,
-      description: await processHtmlForCsp({
+      description: await prepareHtmlForViewer({
         data: translation.description ?? '',
       }),
     };

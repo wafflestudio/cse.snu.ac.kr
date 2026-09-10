@@ -5,7 +5,7 @@ import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { FutureCareersResponse } from '@/types/api';
 import { api } from '@/utils/api';
 import ContentSection from '../-components/ContentSection';
@@ -73,7 +73,7 @@ export const Route = createFileRoute('/$locale/about/future-careers/')({
 
     return {
       ...data,
-      description: await processHtmlForCsp({ data: data.description }),
+      description: await prepareHtmlForViewer({ data: data.description }),
     };
   },
   component: FutureCareersPage,

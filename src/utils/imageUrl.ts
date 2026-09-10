@@ -6,6 +6,20 @@
 
 const DEFAULT_QUALITY = 50;
 
+/**
+ * `/img` 가 원본을 가져올 수 있는 호스트(SSRF 방지). 핸들러의 검사와 본문 이미지 URL 재작성이
+ * 같은 목록을 본다 — 여기 없는 호스트를 `/img` 로 보내면 403 깨진 이미지가 된다.
+ */
+const imageProxyHosts = (dev: boolean) => [
+  'cse.snu.ac.kr',
+  '168.107.16.249.nip.io',
+  ...(dev ? ['localhost'] : []),
+];
+
+export function isImageProxyHost(hostname: string, dev: boolean): boolean {
+  return imageProxyHosts(dev).includes(hostname);
+}
+
 /** 프록시에 보낼 가치가 있는 URL인가. 안 보내도 되는 건 왕복 없이 원본을 그대로 쓴다. */
 export function shouldOptimize(src: string | undefined): src is string {
   if (!src) return false;

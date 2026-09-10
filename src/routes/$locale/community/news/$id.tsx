@@ -9,7 +9,7 @@ import { Tag } from '@/components/ui/Tag';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { News } from '@/types/api';
 import { api } from '@/utils/api';
 import { pageNumParam } from '@/utils/searchSchema';
@@ -130,7 +130,7 @@ export const Route = createFileRoute('/$locale/community/news/$id')({
 
     return {
       ...news,
-      description: await processHtmlForCsp({ data: news.description }),
+      description: await prepareHtmlForViewer({ data: news.description }),
     };
   },
   component: NewsDetailPage,

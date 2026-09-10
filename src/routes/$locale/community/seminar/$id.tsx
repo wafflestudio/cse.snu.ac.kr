@@ -13,7 +13,7 @@ import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { Seminar } from '@/types/api';
 import { stripHtml, truncateDescription } from '@/utils/string';
 
@@ -207,10 +207,10 @@ export const Route = createFileRoute('/$locale/community/seminar/$id')({
     return {
       ...seminar,
       description: seminar.description
-        ? await processHtmlForCsp({ data: seminar.description })
+        ? await prepareHtmlForViewer({ data: seminar.description })
         : null,
       introduction: seminar.introduction
-        ? await processHtmlForCsp({ data: seminar.introduction })
+        ? await prepareHtmlForViewer({ data: seminar.introduction })
         : null,
     };
   },
