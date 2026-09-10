@@ -1,6 +1,6 @@
 # 프론트(apps/web). develop push → staging 호스트에서 빌드+배포(자동). prod(main)는 `deploy.sh prod`로 수동.
 # 이 잡은 SSH로 remote-deploy.sh를 보내 호스트 빌드를 트리거만 한다(빌드는 호스트, CI는 게이트만).
-# 백엔드 배포는 deploy-server.yml.
+# 백엔드 배포는 deploy-api.yml.
 name: Deploy web
 
 on:

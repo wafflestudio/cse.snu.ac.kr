@@ -51,7 +51,7 @@ jobs:
 
   # 백엔드 단위 테스트(Gradle + testcontainers). apps/api 가 바뀐 PR 과 develop push 에서만.
   # 필수 체크가 아니라 건너뛰어도 머지를 막지 않는다 — E2E 가 백엔드 스모크를 겸한다.
-  server-test:
+  api-test:
     needs: changes
     if: needs.changes.outputs.server == 'true' || github.event_name == 'push'
     runs-on: ubuntu-latest
@@ -77,7 +77,7 @@ jobs:
           files: apps/api/build/test-results/**/*.xml
 
   # E2E 가 붙을 백엔드 jar. 백엔드 소스 해시로 캐시해 백엔드가 그대로면 Gradle 을 안 돈다.
-  server-jar:
+  api-jar:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -86,7 +86,7 @@ jobs:
         id: jar
         with:
           path: apps/api/build/libs
-          key: server-jar-${{ hashFiles('apps/api/src/**', 'apps/api/build.gradle.kts', 'apps/api/settings.gradle.kts', 'apps/api/gradle/**') }}
+          key: api-jar-${{ hashFiles('apps/api/src/**', 'apps/api/build.gradle.kts', 'apps/api/settings.gradle.kts', 'apps/api/gradle/**') }}
       - if: steps.jar.outputs.cache-hit != 'true'
         working-directory: apps/api
         run: JAVA_HOME=$JAVA_HOME_21_X64 ./gradlew --no-daemon bootJar -x test
@@ -96,7 +96,7 @@ jobs:
   # (JAR_STAGE=prebuilt → compose 빌드에서 Gradle 안 돈다).
   e2e:
     if: github.event_name == 'pull_request'
-    needs: server-jar
+    needs: api-jar
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
@@ -104,7 +104,7 @@ jobs:
       - uses: actions/cache/restore@v4
         with:
           path: apps/api/build/libs
-          key: server-jar-${{ hashFiles('apps/api/src/**', 'apps/api/build.gradle.kts', 'apps/api/settings.gradle.kts', 'apps/api/gradle/**') }}
+          key: api-jar-${{ hashFiles('apps/api/src/**', 'apps/api/build.gradle.kts', 'apps/api/settings.gradle.kts', 'apps/api/gradle/**') }}
           fail-on-cache-miss: true
       - name: E2E (e2e-docker.sh)
         env:

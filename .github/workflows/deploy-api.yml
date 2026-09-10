@@ -1,7 +1,7 @@
 # 백엔드(apps/api)와 엣지(Caddy) 배포. main → production, develop → staging.
 # 호스트가 이 레포를 클론해 레포 루트에서 infra/ops/host-deploy.sh 를 돈다(빌드는 호스트).
 # 프론트 배포는 deploy-web.yml.
-name: Deploy server
+name: Deploy api
 
 on:
   push:
@@ -9,10 +9,10 @@ on:
     paths:
       - 'apps/api/**'
       - 'infra/**'
-      - '.github/workflows/deploy-server.yml'
+      - '.github/workflows/deploy-api.yml'
 
 concurrency:
-  group: deploy-server-${{ github.ref_name }}
+  group: deploy-api-${{ github.ref_name }}
   # 호스트에서 빌드·up 도는 중에 끊기면 중간 상태로 남는다.
   cancel-in-progress: false
 

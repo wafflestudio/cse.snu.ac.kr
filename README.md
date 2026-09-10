@@ -113,15 +113,15 @@ flowchart TD
 
   feat -. "PR마다" .-> ci
   dev -. "PR마다" .-> ci
-  ci["ci.yml<br/>gate(typecheck·lint·knip·build) + server-test + E2E"]
+  ci["ci.yml<br/>gate(typecheck·lint·knip·build) + api-test + E2E"]
 
-  dev ==>|"머지 push"| dstg["deploy-web.yml · deploy-server.yml<br/>→ staging 호스트 SSH 트리거"] ==> stg[["staging 자동 배포<br/>(호스트가 빌드)"]]
-  main ==>|"push"| dsrv[["deploy-server.yml<br/>백엔드 prod 자동 배포"]]
+  dev ==>|"머지 push"| dstg["deploy-web.yml · deploy-api.yml<br/>→ staging 호스트 SSH 트리거"] ==> stg[["staging 자동 배포<br/>(호스트가 빌드)"]]
+  main ==>|"push"| dsrv[["deploy-api.yml<br/>백엔드 prod 자동 배포"]]
   main ==>|"수동"| prd[["deploy.sh prod<br/>프론트 prod 호스트가 빌드+교체"]]
 ```
 
 - **PR 게이트(`ci.yml`):** 모든 PR에서 타입/린트/knip/빌드 + E2E(핀 컨테이너, 같은 커밋의 `apps/api` 로 백엔드 기동)를 돌리고, 통과해야 머지됩니다. `apps/api` 가 바뀐 PR 은 Gradle 테스트도 돕니다.
-- **빌드·배포:** 빌드는 **호스트에서** 합니다(레지스트리 없음, "빌드==배포"). 프론트는 `develop` 머지 시 `deploy-web.yml`이 staging 호스트에 SSH로 트리거해 git URL로 `docker build -f apps/web/Dockerfile` + 컨테이너 교체하고, **prod는 `deploy.sh prod`로 수동**입니다. 백엔드는 `deploy-server.yml`이 `develop`→staging, `main`→production 으로 자동 배포합니다(`apps/api/ops/host-deploy.sh`). CI는 배포 이미지를 만들지 않고 게이트만 담당합니다. 롤백은 이전 커밋 sha로 재빌드(`deploy.sh <env> <sha>`).
+- **빌드·배포:** 빌드는 **호스트에서** 합니다(레지스트리 없음, "빌드==배포"). 프론트는 `develop` 머지 시 `deploy-web.yml`이 staging 호스트에 SSH로 트리거해 git URL로 `docker build -f apps/web/Dockerfile` + 컨테이너 교체하고, **prod는 `deploy.sh prod`로 수동**입니다. 백엔드는 `deploy-api.yml`이 `develop`→staging, `main`→production 으로 자동 배포합니다(`apps/api/ops/host-deploy.sh`). CI는 배포 이미지를 만들지 않고 게이트만 담당합니다. 롤백은 이전 커밋 sha로 재빌드(`deploy.sh <env> <sha>`).
 - **머지 전략:** `feature`→`develop`은 **squash**(기능당 1커밋), `develop`→`main`은 **merge commit**입니다(squash 금지 — long-lived 브랜치라 히스토리가 갈라짐). rebase 머지는 끕니다.
 - **원칙:** CI는 로컬과 같은 스크립트(`pnpm test`·`pnpm lint` 등)를 호출만 합니다 — 두 벌 관리하지 않습니다. 
 
