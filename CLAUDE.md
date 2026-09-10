@@ -72,7 +72,7 @@
 - **⚠️ 로케일 링크는 항상 `localizedPath()`. 수동 `/${locale}/...` 문자열 금지** — ko에서 `/ko/...`를 **클라 네비로 클릭**하면 `__root`의 `/ko`-strip redirect가 렌더 루프(메인스레드 peg)를 일으킨 실버그가 있었다(notice 상세 wedge). `localizedPath`는 ko에서 프리픽스 없는 경로를 만들어 그 라운드트립을 제거한다.
 - **mutation은 대부분 클라 `fetch`**(same-origin proxy 경유). `action`은 거의 없음.
 - **검색/페이지네이션은 공용 `src/hooks/useSearchParams.ts`**(URLSearchParams 기반). 여러 라우트가 Pagination·SearchBox·TagCheckboxes를 공유해 라우트별 타입(`Route.useSearch`/`validateSearch`)은 부적합 — 표준 URLSearchParams 훅이 맞다.
-- **API 응답 타입은 손으로 쓰지 않는다 — 백엔드 OpenAPI 스펙에서 생성**(2026-09-01 전환, 옛 `types/api/v2/**` 수기 트리 26파일 폐기). `pnpm gen:api`(openapi-typescript, 기본 staging swagger·`API_DOCS_URL` 로 로컬 백엔드 지정 가능)가 `src/types/api/generated.d.ts`를 만들고, `src/types/api/index.ts`가 도메인별 별칭만 한 파일에 모은다. 추출은 `src/types/api/helpers.ts`의 `Res<'/api/v2/notice/{noticeId}'>`.
+- **API 응답 타입은 손으로 쓰지 않는다 — 백엔드 OpenAPI 스펙에서 생성**(2026-09-01 전환, 옛 `types/api/v2/**` 수기 트리 26파일 폐기). `pnpm gen:api`(openapi-typescript, 기본은 로컬 백엔드 = 같은 커밋의 `apps/server`)가 `src/types/api/generated.d.ts`를 만들고, `src/types/api/index.ts`가 도메인별 별칭만 한 파일에 모은다. 추출은 `src/types/api/helpers.ts`의 `Res<'/api/v2/notice/{noticeId}'>`.
   - **경로로 주소를 잡는 이유:** operationId는 springdoc이 중복 메서드명에 번호를 붙여(`searchTop`·`searchTop_1`) 컨트롤러가 하나 늘면 밀린다 — 타입이 말없이 다른 엔드포인트에 붙는다. 스키마 이름도 `{total, searchList}` 같은 공용 래퍼가 겹쳐 부적합.
   - ⚠️ **요청 바디엔 `Res`를 쓰지 않는다.** 응답의 optional은 "값이 null", 요청의 optional은 "생략 가능"이라 뜻이 다르다. 요청은 `components['schemas'][...]`를 그대로.
   - ⚠️ **`Res`가 `?`를 떼는 전제:** 백엔드 Jackson이 `default-property-inclusion=ALWAYS`(기본값)라 응답에 선언된 키가 항상 온다. 백엔드가 `non_null` 직렬화로 바꾸면 이 매핑을 지워야 한다.
@@ -167,7 +167,7 @@
 
 백엔드 Dockerfile이 **소스에서 통째로 빌드**하고(멀티스테이지 — 레이어 구성은 [Spring Boot 공식 권장](https://docs.spring.io/spring-boot/reference/packaging/container-images/dockerfiles.html)) `pnpm test`·`pnpm backend:up`이 `--build`로 부르므로, `apps/server` 소스가 곧 이미지다. 호스트에 JDK 불필요.
 
-API 타입은 백엔드 컨트롤러를 고친 뒤 **`pnpm gen:api`** 로 다시 만든다. 기본은 staging swagger 라 staging 배포 전이면 `API_DOCS_URL=http://localhost:8080/api-docs/json pnpm gen:api`(`pnpm backend:up` 한 로컬 백엔드)로 뽑는다. typecheck 가 깨진 호출부를 보여 준다.
+API 타입은 백엔드 컨트롤러를 고친 뒤 **`pnpm gen:api`** 로 다시 만든다. 기본이 **로컬 백엔드(= 이 커밋의 `apps/server`)** 라 staging 배포를 기다릴 필요가 없다(배포된 서버를 보려면 `API_DOCS_URL`). typecheck 가 깨진 호출부를 보여 준다. **`pnpm test` 가 드리프트 게이트다** — 러너 컨테이너가 떠 있는 백엔드의 스펙으로 타입을 다시 만들어 커밋된 `generated.d.ts` 와 비교하고, 다르면 테스트 전에 실패한다. 백엔드 API 를 고치고 타입 재생성을 잊으면 CI 가 잡는다.
 
 ## 새 라우트 추가 / 확장
 

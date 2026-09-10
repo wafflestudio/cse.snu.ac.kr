@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # E2E 단일 진입점 — `pnpm test`가 부른다.
-#   1) 백엔드 스택(루트 compose.yml: db·backend)을 `up --build --wait`로 보장
-#   2) 핀된 Playwright 컨테이너를 스택 네트워크에 붙여 테스트 실행
+#   1) 백엔드 스택(루트 compose.yml: db·search·backend, 소스 apps/server)을 `up --build --wait`로 보장
+#   2) 핀된 Playwright 컨테이너를 스택 네트워크에 붙여 API 타입 드리프트 확인 → 테스트 실행
 # 컨테이너 고정 이유: 비주얼 baseline(*-linux.png)은 폰트 렌더 환경 종속 — 이 이미지가 정본.
 # node_modules 는 패키지마다 볼륨을 따로 붙인다 — pnpm 워크스페이스는 루트 .pnpm 을 가리키는
 # 심링크를 각 패키지 아래에 만드는데, 바인드 마운트에 남기면 호스트 설치를 덮어쓴다.
@@ -46,5 +46,16 @@ exec docker run "${docker_args[@]}" \
     corepack enable
     pnpm config set store-dir /pnpm-store
     pnpm install --frozen-lockfile
+
+    # API 타입 드리프트 게이트 — 커밋된 generated.d.ts 가 이 커밋의 백엔드 스펙과 같은가.
+    # 백엔드가 어차피 떠 있어 공짜다. 어긋나면 pnpm gen:api 로 다시 만들어 커밋한다.
+    pnpm --filter web exec openapi-typescript http://backend:8080/api-docs/json -o /tmp/generated.d.ts >/dev/null
+    if ! diff -q apps/web/src/types/api/generated.d.ts /tmp/generated.d.ts >/dev/null; then
+      echo "[e2e] ✗ API 타입이 백엔드 스펙과 다르다. \`pnpm gen:api\` 를 돌려 커밋할 것." >&2
+      diff apps/web/src/types/api/generated.d.ts /tmp/generated.d.ts | head -40 >&2
+      exit 1
+    fi
+    echo "[e2e] API 타입 일치"
+
     exec pnpm -C packages/e2e exec playwright test "$@"
   ' bash "${pw_args[@]}" # bash -c의 첫 인자가 $0이 되므로 자리채움 "bash" 뒤에 실제 인자
