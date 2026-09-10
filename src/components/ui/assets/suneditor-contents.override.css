@@ -1,0 +1,44 @@
+/*
+ * suneditor 기본 본문 스타일 위에 덧씌우는 우리 몫.
+ * 원본은 패키지에서 그대로 가져오고(suneditor/src/assets/css/suneditor-contents.css),
+ * 뷰어와 에디터가 이 파일을 함께 쓴다 — 보는 화면과 편집 화면이 갈라지지 않게.
+ */
+.sun-editor-editable {
+  font-family:
+    Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    sans-serif;
+  font-size: 0.875rem;
+  color: #0a0a0a;
+  line-height: 2;
+  background-color: transparent;
+  padding: 0;
+}
+.sun-editor-editable * {
+  line-height: 2;
+}
+.sun-editor-editable strong {
+  font-weight: bold;
+}
+.sun-editor-editable p {
+  text-align: justify;
+}
+.sun-editor-editable h3 {
+  margin-block-end: 0;
+}
+.sun-editor-editable hr {
+  border-color: #e5e5e5;
+  margin-top: 0.625rem;
+  margin-bottom: 0.875rem;
+}
+/* 넓은 표는 본문 폭 안에서 가로 스크롤한다. */
+.sun-editor-editable table {
+  display: block;
+  overflow: scroll;
+  border: 0;
+}
+.sun-editor-editable table td > * {
+  width: max-content;
+  max-width: 400px;
+}

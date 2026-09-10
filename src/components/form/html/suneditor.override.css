@@ -1,0 +1,5 @@
+/* 에디터 프레임이 부모(minHeight 를 준 div)를 채우게 한다. 원본은 auto. */
+.sun-editor .se-container {
+  width: 100%;
+  height: 100%;
+}

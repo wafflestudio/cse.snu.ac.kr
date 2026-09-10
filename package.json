@@ -45,7 +45,7 @@
     "react-dom": "^19.2.3",
     "react-hook-form": "^7.69.0",
     "sharp": "^0.34.5",
-    "suneditor": "^2.47.8",
+    "suneditor": "^2.47.12",
     "tsx": "^4.22.4",
     "zustand": "^5.0.9"
   },

@@ -1,4 +1,5 @@
-import './assets/suneditor-contents.css';
+import 'suneditor/src/assets/css/suneditor-contents.css';
+import './assets/suneditor-contents.override.css';
 
 import clsx from 'clsx';
 import Image from '@/components/ui/Image';
