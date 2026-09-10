@@ -4,7 +4,9 @@
 #   2) 핀된 Playwright 컨테이너를 스택 네트워크에 붙여 API 타입 드리프트 확인 → 테스트 실행
 # 컨테이너 고정 이유: 비주얼 baseline(*-linux.png)은 폰트 렌더 환경 종속 — 이 이미지가 정본.
 # node_modules 는 패키지마다 볼륨을 따로 붙인다 — pnpm 워크스페이스는 루트 .pnpm 을 가리키는
-# 심링크를 각 패키지 아래에 만드는데, 바인드 마운트에 남기면 호스트 설치를 덮어쓴다.
+# 상대 심링크를 각 패키지 아래에 만드는데, 바인드 마운트에 남기면 호스트 설치를 덮어쓴다.
+# ⚠️ 볼륨 이름에 마운트 경로를 넣었다. 패키지 디렉터리를 옮기면 이름도 바꿔야 한다 — 옛 볼륨의
+# 상대 심링크는 새 깊이에서 깨지는데 pnpm 은 이미 설치돼 있다고 보고 다시 링크하지 않는다.
 #
 # 사용:
 #   pnpm test                       # 전체 검증(Linux baseline 대조)
@@ -33,9 +35,9 @@ done
 
 exec docker run "${docker_args[@]}" \
   -v "$PWD":/work -w /work \
-  -v csereal-e2e-node-modules:/work/node_modules \
-  -v csereal-e2e-web-node-modules:/work/apps/web/node_modules \
-  -v csereal-e2e-e2e-node-modules:/work/e2e/node_modules \
+  -v csereal-e2e-nm-root:/work/node_modules \
+  -v csereal-e2e-nm-apps-web:/work/apps/web/node_modules \
+  -v csereal-e2e-nm-e2e:/work/e2e/node_modules \
   -v csereal-e2e-pnpm-store:/pnpm-store \
   -e CI=1 \
   -e GITHUB_ACTIONS \
