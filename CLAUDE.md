@@ -1,4 +1,6 @@
-# csereal-web-v2 작업 가이드 (에이전트용)
+# cse.snu.ac.kr 작업 가이드 (에이전트용)
+
+**레포 구조(2026-09-11 모노레포 전환):** pnpm 워크스페이스. `apps/web`(프론트, TanStack Start) · `apps/server`(백엔드, Kotlin/Spring — 옛 csereal-server 를 git subtree 로 합쳐 히스토리 보존) · `packages/e2e`(Playwright). 루트에는 워크스페이스 매니페스트·biome·knip·husky·`compose.yml`·`scripts/`·`.github/` 만 둔다. **이 문서의 프론트 경로(`src/…`, `server.ts`)는 `apps/web/` 기준, E2E 경로(`tests/…`)는 `packages/e2e/` 기준이다.** 백엔드 문서는 `apps/server/README.md`·`apps/server/docs/`.
 
 코드만 봐선 알 수 없는 것 — **결정의 이유·히스토리·컨벤션·재발 함정**만 적는다. 구현 상세(파일 목록·시그니처·명령어)는 코드/`package.json`/config에서 확인. 4부: **①아키텍처·환경 → ②라우팅·코드 컨벤션 → ③E2E 테스트 → ④디자인 시스템.** 사람용 온보딩·스크립트·환경 표는 `README.md`.
 
@@ -16,8 +18,8 @@
                                   └─ 그 외     → TanStack Start SSR (프로덕션 빌드 dist/)
 ```
 
-- **백엔드 = 로컬 docker 실서버**(`../csereal-server`, :8080). MySQL+Spring, mock-login은 `@Profile("!prod")` 실엔드포인트(진짜 JSESSIONID 세션). **로컬 전용이라 리셋·시드 자유 — staging·프로덕션 서버는 절대 건드리지 않는다.** `pnpm test` 시 루트 `compose.yml`이 자동 기동(기동 순서·health 대기를 compose 선언으로 보장 — playwright.config는 앱만 띄운다).
-- **프론트 = 프로덕션 빌드**를 루트 `server.ts`(Hono)로 서빙. MSW/mock 안 씀. prod 컨테이너와 동일 서버(`pnpm start`).
+- **백엔드 = 로컬 docker 실서버**(`apps/server`, :8080). MySQL+Spring, mock-login은 `@Profile("!prod")` 실엔드포인트(진짜 JSESSIONID 세션). **로컬 전용이라 리셋·시드 자유 — staging·프로덕션 서버는 절대 건드리지 않는다.** `pnpm test` 시 루트 `compose.yml`이 자동 기동(기동 순서·health 대기를 compose 선언으로 보장 — playwright.config는 앱만 띄운다).
+- **프론트 = 프로덕션 빌드**를 `apps/web/server.ts`(Hono)로 서빙. MSW/mock 안 씀. prod 컨테이너와 동일 서버(`pnpm start`).
   - **왜 server.ts가 필요한가:** TanStack Start 기본 빌드는 `dist/server/server.js`를 **Web fetch 핸들러**로 내놓는데 Node HTTP 서버는 `IncomingMessage`/`ServerResponse`라 **Node↔Web 다리가 필연**. Hono(+@hono/node-server)가 그 변환·정적서빙·`/api` 프록시를 맡는다. (Bun/Deno는 불필요하지만 우리는 Node self-host.)
   - **왜 prod 빌드(dev 아님):** 비주얼 회귀가 dev≠prod면 무의미하고, E2E 정석은 배포 산출물 검증. dev 콜드 컴파일 플레이키도 없음.
   - **왜 same-origin proxy:** 실서버 세션 쿠키(JSESSIONID)는 `Secure`라 브라우저 **cross-origin 요청에 안 실린다** → prod빌드를 :8080에 직접 쏘면 mutation 인증이 깨짐(302 OAuth). 브라우저는 :3000만 보고 `/api`를 서버사이드에서 :8080으로 프록시 → 세션 first-party 유지, CORS/CSP 무관 → **E2E용 앱 코드 수정 0.** `/api` 프록시는 `API_PROXY_TARGET` 설정 시에만(local/E2E); 배포는 프론트·백엔드 동일 도메인이라 절대 URL 직호출.
@@ -33,12 +35,12 @@
    컨테이너의 `--add-host cse.snu.ac.kr:host-gateway`가 그 경로를 만든다.
 ```
 - 엣지 = **Caddy 컨테이너**. TLS·라우팅·보안 헤더(`-Server`·`X-XSS-Protection`) 담당. ⚠️ **설정 정본은 백엔드 레포의 `caddy/Caddyfile`(prod)·`caddy/Caddyfile.dev`(staging)** — `proxy.yaml`/`proxy_dev.yaml`이 그 경로 변경 시 호스트 `~/proxy`로 SCP하고 컨테이너를 `down`→`up -d`(무중단 reload 아님 — 수 초 끊긴다). **호스트에서 직접 고치면 다음 배포에 덮인다.**
-- 백엔드는 `ghcr.io/wafflestudio/csereal-server`(CI 빌드→GHCR→pull). **프론트는 호스트 빌드**(레지스트리 없음 — 호스트가 git URL로 `docker build`, 아래).
+- 백엔드도 프론트도 **호스트 빌드**(레지스트리 없음). 백엔드는 `deploy-server.yml`이 호스트에서 이 레포를 클론해 `apps/server/ops/host-deploy.sh` 를 돌리고, 프론트는 호스트가 git URL로 `docker build -f apps/web/Dockerfile`(아래).
 - **⚠️ 압축은 이제 앱이 한다(`hono/compress`).** 예전엔 Caddy 위 상위 계층(바쿠스 프록시)이 br 압축을 해줘서 이 레포는 압축을 안 넣었는데, **2026-08 프록시 제거로 그 계층이 사라졌다**(실측: prod가 HTML을 무압축 94KB로 서빙). `immutable` 캐시 헤더는 앱이 원래부터 내고 있어 무관.
 
 ## prod 네트워크 상태 (2026-08-29 갱신 — 도메인 연결·cutover 완료)
 
-- prod IP = **147.46.92.120**(구 프록시 경유 → 공인 IP 직결). `env/.env`의 `CSEREAL_PROD_SSH_HOST` 갱신 완료(옛 `waiter.bacchus.io`→147.46.92.174에서 이전). 포트 9122·키 동일.
+- prod IP = **147.46.92.120**(구 프록시 경유 → 공인 IP 직결). `apps/web/env/.env`의 `CSEREAL_PROD_SSH_HOST` 갱신 완료(옛 `waiter.bacchus.io`→147.46.92.174에서 이전). 포트 9122·키 동일.
 - **도메인 연결 완료** — `cse.snu.ac.kr` DNS 해석(→147.46.92.120)·443 학외 개방을 실측 확인(2026-08-29). 한때 리셋됐던 웹 포트 개방 승인도 재개방됨. cutover 자체는 아래 활성화 블록 참고.
   - 학외 접속이 드물게 실패할 수 있다 — 재시도하면 붙는다(앱 버그 아님, 하드 차단 아님).
 - **⚠️ 학외 OAuth 로그인은 아직 불가.** OAuth는 사용자 브라우저가 `id.snucse.org`(→147.46.92.174)에 직접 붙어야 하는데 그 호스트가 학외 443을 막고 있다(2026-08-29 실측 4/4 timeout — SYN drop과 달리 재시도로도 안 붙는 하드 차단). **바쿠스가 그 호스트를 학외 개방해야 학외 로그인이 동작한다**(앱 문제 아님, 바쿠스 소유). 학내에선 정상.
@@ -50,12 +52,12 @@
 
 - **브랜치:** `main`=production · `develop`=staging · `feature/*`·`fix/*`→`develop` PR · `hotfix/*`→`main` PR(후 develop back-merge). **직접 push 금지** — ruleset이 main·develop에 PR 필수 + `gate`·`e2e` 필수체크 + force push 금지 강제(admin 포함).
 - **머지 전략:** `feature`→`develop`은 **squash**(WIP 커밋 정리, 기능당 1커밋). `develop`→`main`은 **merge commit**(squash ❌ — develop은 long-lived라 squash하면 main과 히스토리가 갈라져 다음 승격 PR이 깨짐). rebase 머지는 끔, 머지 후 head 브랜치 자동삭제. (레포 설정으로 강제.)
-- **CI(`.github/workflows/ci.yml`, PR 시):** ① 게이트(`typecheck`/`lint`/`knip`/`build:local`, ~1–2분; `knip`=미사용 파일·export·의존성) ② E2E(로컬과 동일 `e2e-docker.sh`; CI는 프론트를 서브디렉터리·백엔드를 핀된 `BACKEND_REF` **소스**로 체크아웃하는 것만 다름 — GHCR `:prod` 이미지는 mock-login이 꺼져 있어 못 씀). **두 벌 관리 X — CI는 같은 스크립트·config 호출만.** 백엔드 jar 는 `backend-jar` 잡이 `BACKEND_REF` 키로 캐시하고 e2e 가 `JAR_STAGE=prebuilt` 로 이미지에 넣는다(Gradle 은 핀이 바뀔 때만). ⚠️ PR 이 만든 캐시는 다른 PR 이 못 읽어 develop push 에서도 `backend-jar` 를 돌려 채운다.
-- **CD(`deploy.yml`, `develop` push):** deploy.yml이 staging 호스트에 SSH로 `remote-deploy.sh`를 보내 **호스트에서 빌드+교체**를 트리거한다. `main` push는 자동 배포 없음 — prod는 `deploy.sh prod`로 **수동**(같은 호스트 빌드 흐름). **레지스트리(GHCR) 없음 — 빌드==배포**, 호스트가 자기 arch로 네이티브 빌드. CI(ci.yml)는 게이트만, 배포 이미지는 안 만든다. 문서만(`**.md`) push는 `paths-ignore`로 스킵.
-- **호스트 빌드 흐름**(`remote-deploy.sh`, 호스트에서 실행): **`docker build "<git-url>#<REF>"`** — docker가 소스를 직접 클론해 빌드 컨텍스트로 쓴다 → **호스트엔 docker만 있으면 된다**(레포 체크아웃·env 파일 불필요). **빌드 성공 후에만** 컨테이너 교체(빌드 중엔 구버전 서빙 → 무중단). 카맵키는 `--build-arg VITE_KAKAO_MAP_API_KEY`(git 밖 시크릿). **롤백 = machinery 없이 이전 커밋 sha로 다시 빌드**: `deploy.sh <env> <sha>`(빌드가 빠르니 재빌드가 곧 롤백). `deploy.sh`는 로컬 `env/.env`에서, `deploy.yml`은 `KAKAO_MAP_KEY` 시크릿에서 카맵키를 받아 넘긴다.
+- **CI(`.github/workflows/ci.yml`, PR 시):** ① `gate`(워크스페이스 전체 `typecheck`/`lint`/`knip` + web `build:local`, ~1분) ② `server-test`(Gradle 테스트 — `apps/server` 가 바뀐 PR 과 develop push 에서만, 필수 체크 아님) ③ `server-jar`(백엔드 소스 해시로 캐시한 bootJar) ④ `e2e`(로컬과 동일 `e2e-docker.sh`, `JAR_STAGE=prebuilt` 로 캐시한 jar 를 이미지에 넣음). **E2E 는 항상 같은 커밋의 `apps/server` 로 돈다 — 백엔드 핀(옛 `BACKEND_REF`)이 없다.** 두 벌 관리 X — CI는 같은 스크립트·config 호출만. ⚠️ PR 이 만든 캐시는 다른 PR 이 못 읽어 develop push 에서도 `server-jar` 를 돌려 채운다. 필수 체크는 `gate`·`e2e`(경로 필터로 건너뛰는 잡을 필수로 두면 "대기 중"으로 머지가 막힌다).
+- **CD:** 프론트는 `deploy-web.yml`(`develop` push, `apps/web/**` 등 경로 필터)이 staging 호스트에 SSH로 `remote-deploy.sh`를 보내 **호스트에서 빌드+교체**를 트리거한다. `main` push는 자동 배포 없음 — prod는 `deploy.sh prod`로 **수동**. 백엔드는 `deploy-server.yml`(`main`·`develop` push, `apps/server/**` 필터)이 호스트에서 `apps/server/ops/host-deploy.sh` 를 돌린다(develop→staging, main→production 자동). 대상 호스트·프로파일은 `.github/deploy-targets/<브랜치>.env`. ⚠️ `deploy-server.yml` 은 GitHub Environment `production`·`staging` 의 시크릿 `SSH_KEY` 를 쓴다 — 옛 백엔드 레포에서 옮겨 와야 동작한다. **레지스트리(GHCR) 없음 — 빌드==배포**, 호스트가 자기 arch로 네이티브 빌드. CI(ci.yml)는 게이트만, 배포 이미지는 안 만든다. 문서만(`**.md`) push는 `paths-ignore`로 스킵.
+- **호스트 빌드 흐름**(`remote-deploy.sh`, 호스트에서 실행): **`docker build -f apps/web/Dockerfile "<git-url>#<REF>"`** — docker가 소스(레포 루트 = 워크스페이스 lockfile 위치)를 직접 클론해 빌드 컨텍스트로 쓴다 → **호스트엔 docker만 있으면 된다**(레포 체크아웃·env 파일 불필요). **빌드 성공 후에만** 컨테이너 교체(빌드 중엔 구버전 서빙 → 무중단). 카맵키는 `--build-arg VITE_KAKAO_MAP_API_KEY`(git 밖 시크릿). **롤백 = machinery 없이 이전 커밋 sha로 다시 빌드**: `deploy.sh <env> <sha>`(빌드가 빠르니 재빌드가 곧 롤백). `deploy.sh`는 로컬 `env/.env`에서, `deploy.yml`은 `KAKAO_MAP_KEY` 시크릿에서 카맵키를 받아 넘긴다.
 - **왜 호스트 빌드(학외 CI 아님):** ① 빌드가 곧 배포라 레지스트리 분리가 무의미 ② **프리렌더 대비** — 프리렌더는 빌드타임에 페이지마다 백엔드를 부르는데 prod API(`cse.snu.ac.kr`)는 경계 뒤라 학외 CI 빌드는 SYN drop이 **페이지 수만큼 누적**돼 플레이키. **학내 호스트 빌드면 안정적으로 닿는다.** 트레이드오프: 서빙 호스트에 빌드 부하가 생기나 `docker build`는 격리·무중단 swap이라 감내. `imageOptimizer`의 "prerender hack" 주석은 프리렌더 재도입 시 다시 검토.
 
-> **활성화 상태(2026-08-29 갱신):** ✅ **secret 2개**(`STAGING_SSH_KEY` + `KAKAO_MAP_KEY` — CI 빌드가 카맵키를 build-arg로 주입). host/user/port·API URL은 코드에 두어 시크릿에서 뺐다. 옛 `ENV_FILE_*`·`STAGING_SSH_HOST/USER/PORT`는 **삭제 대상**. · `develop` push 시 staging 호스트 빌드 자동배포 · **branch protection(ruleset: `main`·`develop` PR필수 + 필수 체크 `gate`·`e2e`, bypass 권한자 없음)** · `BACKEND_REF` 핀(#410 머지 시점 develop SHA e936d699) · ci.yml · deploy.yml.
+> **활성화 상태(2026-08-29 갱신):** ✅ **secret 2개**(`STAGING_SSH_KEY` + `KAKAO_MAP_KEY` — CI 빌드가 카맵키를 build-arg로 주입). host/user/port·API URL은 코드에 두어 시크릿에서 뺐다. 옛 `ENV_FILE_*`·`STAGING_SSH_HOST/USER/PORT`는 **삭제 대상**. · `develop` push 시 staging 호스트 빌드 자동배포 · **branch protection(ruleset: `main`·`develop` PR필수 + 필수 체크 `gate`·`e2e`, bypass 권한자 없음)** · ci.yml · deploy-web.yml · deploy-server.yml. `BACKEND_REF` 핀은 모노레포 전환으로 사라졌다.
 >
 > **prod 라이브 확인(2026-08-29).** strict CSP(요청마다 nonce 회전)·gzip(`hono/compress`)·wscan 경로 404·`/admin` 익명 404를 실측.
 >
@@ -70,7 +72,7 @@
 - **⚠️ 로케일 링크는 항상 `localizedPath()`. 수동 `/${locale}/...` 문자열 금지** — ko에서 `/ko/...`를 **클라 네비로 클릭**하면 `__root`의 `/ko`-strip redirect가 렌더 루프(메인스레드 peg)를 일으킨 실버그가 있었다(notice 상세 wedge). `localizedPath`는 ko에서 프리픽스 없는 경로를 만들어 그 라운드트립을 제거한다.
 - **mutation은 대부분 클라 `fetch`**(same-origin proxy 경유). `action`은 거의 없음.
 - **검색/페이지네이션은 공용 `src/hooks/useSearchParams.ts`**(URLSearchParams 기반). 여러 라우트가 Pagination·SearchBox·TagCheckboxes를 공유해 라우트별 타입(`Route.useSearch`/`validateSearch`)은 부적합 — 표준 URLSearchParams 훅이 맞다.
-- **API 응답 타입은 손으로 쓰지 않는다 — 백엔드 OpenAPI 스펙에서 생성**(2026-09-01 전환, 옛 `types/api/v2/**` 수기 트리 26파일 폐기). `pnpm backend:sync`(openapi-typescript, staging swagger 기준)가 `src/types/api/generated.d.ts`를 만들고, `src/types/api/index.ts`가 도메인별 별칭만 한 파일에 모은다. 추출은 `src/types/api/helpers.ts`의 `Res<'/api/v2/notice/{noticeId}'>`.
+- **API 응답 타입은 손으로 쓰지 않는다 — 백엔드 OpenAPI 스펙에서 생성**(2026-09-01 전환, 옛 `types/api/v2/**` 수기 트리 26파일 폐기). `pnpm gen:api`(openapi-typescript, 기본 staging swagger·`API_DOCS_URL` 로 로컬 백엔드 지정 가능)가 `src/types/api/generated.d.ts`를 만들고, `src/types/api/index.ts`가 도메인별 별칭만 한 파일에 모은다. 추출은 `src/types/api/helpers.ts`의 `Res<'/api/v2/notice/{noticeId}'>`.
   - **경로로 주소를 잡는 이유:** operationId는 springdoc이 중복 메서드명에 번호를 붙여(`searchTop`·`searchTop_1`) 컨트롤러가 하나 늘면 밀린다 — 타입이 말없이 다른 엔드포인트에 붙는다. 스키마 이름도 `{total, searchList}` 같은 공용 래퍼가 겹쳐 부적합.
   - ⚠️ **요청 바디엔 `Res`를 쓰지 않는다.** 응답의 optional은 "값이 null", 요청의 optional은 "생략 가능"이라 뜻이 다르다. 요청은 `components['schemas'][...]`를 그대로.
   - ⚠️ **`Res`가 `?`를 떼는 전제:** 백엔드 Jackson이 `default-property-inclusion=ALWAYS`(기본값)라 응답에 선언된 키가 항상 온다. 백엔드가 `non_null` 직렬화로 바꾸면 이 매핑을 지워야 한다.
@@ -157,19 +159,15 @@
 
 ## 실행 / baseline
 
-- **모든 테스트는 핀된 Playwright 컨테이너에서 돈다**(`pnpm test` = `scripts/e2e-docker.sh`: 백엔드 스택 `up --build --wait` 후 러너 컨테이너를 스택 네트워크에 붙임). 호스트 직접 실행 정식 경로 없음 — 렌더 환경을 컨테이너로 고정해야 baseline이 머신 무관하게 픽셀 동일. 로컬·CI가 같은 스크립트를 타는 단일 경로라 config도 조건 분기 없는 고정값(워커4·retries2 — 2026-08-29 실측으로 확정, 상세는 config 주석).
+- **모든 테스트는 핀된 Playwright 컨테이너에서 돈다**(`pnpm test` = 루트 `scripts/e2e-docker.sh`: 백엔드 스택 `up --build --wait` 후 러너 컨테이너를 스택 네트워크에 붙이고 `packages/e2e` 에서 playwright 실행. `pnpm test tests/…` 의 경로는 `packages/e2e` 기준). 호스트 직접 실행 정식 경로 없음 — 렌더 환경을 컨테이너로 고정해야 baseline이 머신 무관하게 픽셀 동일. 로컬·CI가 같은 스크립트를 타는 단일 경로라 config도 조건 분기 없는 고정값(워커4·retries2 — 2026-08-29 실측으로 확정, 상세는 config 주석).
 - **비주얼 baseline = Linux 단일(`*-linux.png`)**, 컨테이너가 정본 렌더 환경이라 머신 무관.
-- **백엔드 기준 = `../csereal-server`(origin/develop)** — baseline은 이 백엔드에서 찍고, E2E가 백엔드 스모크도 겸한다. 트레이드오프: develop이 floating이라 **백엔드만 바뀌어도 baseline이 깨질 수 있음** → 백엔드를 올리고(아래) `--update-snapshots`로 재생성.
+- **백엔드 기준 = 같은 커밋의 `apps/server`.** baseline은 그 백엔드에서 찍고, E2E가 백엔드 스모크도 겸한다. 백엔드를 고친 PR 에서 렌더가 바뀌면 같은 PR 에서 `--update-snapshots`로 재생성한다 — 다른 레포 핀을 올리는 절차는 없다.
 
-## 백엔드 버전 동기화(cross-repo 런북)
+## 백엔드 이미지 · API 타입
 
-백엔드 Dockerfile이 **소스에서 통째로 빌드**하고(멀티스테이지 — 레이어 구성은 [Spring Boot 공식 권장](https://docs.spring.io/spring-boot/reference/packaging/container-images/dockerfiles.html)) `pnpm test`·`pnpm backend:up`이 `--build`로 부르므로, 소스만 최신이면 이미지는 알아서 따라온다. 호스트에 JDK 불필요.
-```bash
-cd ../csereal-server && git fetch origin && git merge --ff-only origin/develop
-```
-백엔드가 staging 에 배포된 뒤 **`pnpm backend:sync`** 한 번으로 맞춘다 — `ci.yml`의 `BACKEND_REF`를 백엔드 develop SHA로 갱신하고, staging swagger 에서 `generated.d.ts`를 재생성하고, typecheck 로 깨진 호출부를 보여 준다. 렌더가 바뀌었으면 `pnpm test --update-snapshots`로 baseline 재생성.
+백엔드 Dockerfile이 **소스에서 통째로 빌드**하고(멀티스테이지 — 레이어 구성은 [Spring Boot 공식 권장](https://docs.spring.io/spring-boot/reference/packaging/container-images/dockerfiles.html)) `pnpm test`·`pnpm backend:up`이 `--build`로 부르므로, `apps/server` 소스가 곧 이미지다. 호스트에 JDK 불필요.
 
-⚠️ **백엔드 기준은 이제 `origin/develop`이다**(백엔드 기본 브랜치가 develop). `BACKEND_REF`도 develop SHA로 핀한다.
+API 타입은 백엔드 컨트롤러를 고친 뒤 **`pnpm gen:api`** 로 다시 만든다. 기본은 staging swagger 라 staging 배포 전이면 `API_DOCS_URL=http://localhost:8080/api-docs/json pnpm gen:api`(`pnpm backend:up` 한 로컬 백엔드)로 뽑는다. typecheck 가 깨진 호출부를 보여 준다.
 
 ## 새 라우트 추가 / 확장
 

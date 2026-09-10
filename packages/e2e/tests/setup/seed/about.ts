@@ -1,4 +1,4 @@
-import type { ClubPostBody, FacilityPostBody } from 'web/src/types/api';
+import type { ClubPostBody, FacilityPostBody } from '@web/types/api';
 import { postJson, postMultipart } from './client';
 
 /**

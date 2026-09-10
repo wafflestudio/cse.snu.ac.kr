@@ -8,13 +8,23 @@
 git clone https://github.com/wafflestudio/cse.snu.ac.kr
 cd cse.snu.ac.kr
 pnpm install
-pnpm dev
+pnpm dev        # = pnpm --filter web dev
+```
+
+한 레포에 프론트·백엔드·E2E 가 함께 있습니다(pnpm 워크스페이스).
+
+```
+apps/web/        프론트 (TanStack Start + Hono)
+apps/server/     백엔드 (Kotlin/Spring). 옛 csereal-server — 자체 README 참고
+packages/e2e/    Playwright E2E
+compose.yml      로컬 백엔드 스택(db·search·backend) — pnpm backend:up / pnpm test 가 쓴다
+scripts/         배포·E2E 러너·API 타입 생성
 ```
 
 필요시 환경 변수를 설정합니다.
 
 ```sh
-cp env/.env.example env/.env
+cp apps/web/env/.env.example apps/web/env/.env
 ```
 
 **1. 카카오 맵 API 키**
@@ -63,7 +73,7 @@ flowchart LR
 
 쿠키(**JSESSIONID**) 기반 인증을 사용합니다. OAuth(`id.snucse.org`)로 세션을 발급받습니다.
 
-## 코드 구조
+## 코드 구조 (apps/web)
 
 ```
 src/
@@ -78,8 +88,9 @@ src/
     feature/         도메인 위젯 (auth·category·content·SearchBox·selection)
   hooks/  utils/  types/  constants/
 server.ts          Hono 진입점 — 빌드 산출물 서빙 + (local) /api 프록시
-tests/             E2E. 라우트별 read.spec.ts / flow.spec.ts
 ```
+
+E2E 는 `packages/e2e/tests/` 에 라우트별 `read.spec.ts` / `flow.spec.ts` 로 있습니다.
 
 **라우트별 파일은 그 라우트 폴더에 co-locate합니다.** 비라우트 파일/폴더는 이름을 **`-`로 시작**하게 둡니다 — `-components/`·`-hooks/`·`-api.ts` 등. TanStack Router가 `-` 프리픽스로 시작하는 항목을 라우트 생성에서 자동 제외하므로(프레임워크 기본값 `routeFileIgnorePrefix='-'`), 커스텀 정규식 없이 이름 규칙 하나로 끝납니다. 여러 라우트에서 재사용하게 되면 `src/components/`로 승격합니다.
 
@@ -87,14 +98,9 @@ tests/             E2E. 라우트별 read.spec.ts / flow.spec.ts
 
 ## 테스트
 
-`pnpm test`(E2E)는 **로컬 docker 백엔드**가 필요합니다(`pnpm dev`는 staging 백엔드를 보므로 불필요). 로컬 백엔드는 **형제 디렉터리의 백엔드 레포 체크아웃**에서 뜹니다 — 없으면 `pnpm test`가 기동 단계에서 실패합니다.
+`pnpm test`(E2E)는 **로컬 docker 백엔드**가 필요합니다(`pnpm dev`는 staging 백엔드를 보므로 불필요). 백엔드는 같은 커밋의 `apps/server` 소스에서 루트 `compose.yml` 로 자동 기동됩니다 — 별도 체크아웃이 없습니다. 비주얼 baseline 도 그 백엔드 기준입니다.
 
-```sh
-cd ..
-git clone https://github.com/wafflestudio/csereal-server
-```
-
-`pnpm test`가 이 체크아웃의 compose로 백엔드를 자동 기동합니다(이미 떠 있으면 재사용). 비주얼 baseline이 이 체크아웃의 백엔드 버전 기준이므로, 버전 동기화 절차는 `CLAUDE.md` §3 "백엔드 버전 동기화"를 참고하세요.
+백엔드 단위 테스트는 `cd apps/server && ./gradlew test`.
 
 ## CI/CD
 
@@ -107,14 +113,15 @@ flowchart TD
 
   feat -. "PR마다" .-> ci
   dev -. "PR마다" .-> ci
-  ci["ci.yml<br/>게이트(typecheck·lint·knip·build) + E2E"]
+  ci["ci.yml<br/>gate(typecheck·lint·knip·build) + server-test + E2E"]
 
-  dev ==>|"머지 push"| dstg["deploy.yml → staging 호스트 SSH 트리거"] ==> stg[["staging 자동 배포<br/>(호스트가 빌드)"]]
-  main ==>|"수동"| prd[["deploy.sh prod<br/>prod 호스트가 빌드+교체"]]
+  dev ==>|"머지 push"| dstg["deploy-web.yml · deploy-server.yml<br/>→ staging 호스트 SSH 트리거"] ==> stg[["staging 자동 배포<br/>(호스트가 빌드)"]]
+  main ==>|"push"| dsrv[["deploy-server.yml<br/>백엔드 prod 자동 배포"]]
+  main ==>|"수동"| prd[["deploy.sh prod<br/>프론트 prod 호스트가 빌드+교체"]]
 ```
 
-- **PR 게이트(`ci.yml`):** 모든 PR에서 타입/린트/knip/빌드 + E2E(핀 컨테이너, 백엔드는 고정 SHA로 체크아웃)를 돌리고, 통과해야 머지됩니다.
-- **빌드·배포:** 빌드는 **호스트에서** 합니다(레지스트리 없음, "빌드==배포"). `develop` 머지 시 `deploy.yml`이 staging 호스트에 SSH로 트리거해 git URL로 `docker build` + 컨테이너 교체하고, **prod는 `deploy.sh prod`로 수동**(같은 호스트 빌드)입니다. CI는 배포 이미지를 만들지 않고 게이트만 담당합니다. 롤백은 이전 커밋 sha로 재빌드(`deploy.sh <env> <sha>`).
+- **PR 게이트(`ci.yml`):** 모든 PR에서 타입/린트/knip/빌드 + E2E(핀 컨테이너, 같은 커밋의 `apps/server` 로 백엔드 기동)를 돌리고, 통과해야 머지됩니다. `apps/server` 가 바뀐 PR 은 Gradle 테스트도 돕니다.
+- **빌드·배포:** 빌드는 **호스트에서** 합니다(레지스트리 없음, "빌드==배포"). 프론트는 `develop` 머지 시 `deploy-web.yml`이 staging 호스트에 SSH로 트리거해 git URL로 `docker build -f apps/web/Dockerfile` + 컨테이너 교체하고, **prod는 `deploy.sh prod`로 수동**입니다. 백엔드는 `deploy-server.yml`이 `develop`→staging, `main`→production 으로 자동 배포합니다(`apps/server/ops/host-deploy.sh`). CI는 배포 이미지를 만들지 않고 게이트만 담당합니다. 롤백은 이전 커밋 sha로 재빌드(`deploy.sh <env> <sha>`).
 - **머지 전략:** `feature`→`develop`은 **squash**(기능당 1커밋), `develop`→`main`은 **merge commit**입니다(squash 금지 — long-lived 브랜치라 히스토리가 갈라짐). rebase 머지는 끕니다.
 - **원칙:** CI는 로컬과 같은 스크립트(`pnpm test`·`pnpm lint` 등)를 호출만 합니다 — 두 벌 관리하지 않습니다. 
 
@@ -124,5 +131,5 @@ flowchart TD
 
 ## 관련 레포
 
-- [wafflestudio/csereal-server](https://github.com/wafflestudio/csereal-server)
-- [csereal-web](https://github.com/wafflestudio/csereal-web)
+- [wafflestudio/csereal-server](https://github.com/wafflestudio/csereal-server) — 2026-09 이 레포의 `apps/server` 로 합쳐졌습니다(히스토리 보존). 아카이브 예정.
+- [csereal-web](https://github.com/wafflestudio/csereal-web) — 옛 프론트

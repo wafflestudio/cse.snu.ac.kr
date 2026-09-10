@@ -1,14 +1,22 @@
-# develop push → staging 호스트에서 빌드+배포(자동). prod(main)는 `deploy.sh prod`로 수동.
+# 프론트(apps/web). develop push → staging 호스트에서 빌드+배포(자동). prod(main)는 `deploy.sh prod`로 수동.
 # 이 잡은 SSH로 remote-deploy.sh를 보내 호스트 빌드를 트리거만 한다(빌드는 호스트, CI는 게이트만).
-name: Deploy
+# 백엔드 배포는 deploy-server.yml.
+name: Deploy web
 
 on:
   push:
     branches: [develop]
-    paths-ignore: ['**.md'] # 문서만 바뀐 커밋은 재배포 안 함
+    paths:
+      - 'apps/web/**'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'package.json'
+      - 'scripts/remote-deploy.sh'
+      - '.dockerignore'
+      - '.github/workflows/deploy-web.yml'
 
 concurrency:
-  group: deploy-${{ github.ref }}
+  group: deploy-web-${{ github.ref }}
   cancel-in-progress: false # 배포는 중간 취소 금지
 
 jobs:

@@ -6,9 +6,6 @@
     "typecheck": "tsc",
     "test": "playwright test"
   },
-  "dependencies": {
-    "web": "workspace:*"
-  },
   "devDependencies": {
     "@playwright/test": "^1.57.0",
     "@types/node": "^24",

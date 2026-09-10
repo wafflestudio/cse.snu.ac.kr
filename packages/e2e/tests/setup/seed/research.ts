@@ -2,7 +2,7 @@ import type {
   LabPostBody,
   ProfessorPostBody,
   ResearchPostBody,
-} from 'web/src/types/api';
+} from '@web/types/api';
 import { postJson, postMultipart } from './client';
 
 /**

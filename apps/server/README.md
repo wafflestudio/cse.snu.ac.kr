@@ -1,6 +1,6 @@
 # csereal-server
 
-cse.snu.ac.kr 백엔드
+cse.snu.ac.kr 백엔드. 2026-09 부터 프론트와 같은 레포(`cse.snu.ac.kr`)의 `apps/server` 에 있다. Gradle 명령은 이 디렉터리에서 실행한다.
 
 ## 로컬 실행
 
@@ -12,9 +12,9 @@ docker compose -f compose.yml -f compose.local.yml up -d --wait backend
 
 ## CI/CD
 
-`develop` → staging, `main` → production.
+`develop` → staging, `main` → production. 워크플로는 레포 루트 `.github/workflows/`(`ci.yml` 의 `server-test`·`server-jar`, `deploy-server.yml`), 배포 대상은 `.github/deploy-targets/`.
 
-GitHub 시크릿은 `SSH_KEY` 하나이며 나머지는 호스트에 둡니다.
+GitHub 시크릿은 Environment(`production`·`staging`)의 `SSH_KEY` 하나이며 나머지는 호스트에 둡니다.
 
 호스트의 `~/secrets/`에 아래 환경변수를 둡니다.
 

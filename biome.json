@@ -27,6 +27,7 @@
   "files": {
     "includes": [
       "**",
+      "!apps/server",
       "!**/routeTree.gen.ts",
       "!**/types/api/generated.d.ts",
       "!**/sonner/styles.css"

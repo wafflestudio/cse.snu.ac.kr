@@ -4,7 +4,7 @@
 set -euo pipefail
 
 : "${GIT_SHA:?GIT_SHA 가 필요하다}"
-# 아래는 .github/deploy-targets/<브랜치>.env 에서 온다.
+# 아래는 레포 루트 .github/deploy-targets/<브랜치>.env 에서 온다(deploy-server.yml).
 : "${PROFILE:?PROFILE 이 필요하다}"
 : "${URL:?URL 이 필요하다}"
 : "${CADDYFILE:?CADDYFILE 이 필요하다}"

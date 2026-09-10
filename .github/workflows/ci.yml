@@ -1,12 +1,13 @@
-# PR 게이트. develop/main으로 가는 PR마다 실행 → 그린이어야 머지(branch protection).
+# PR 게이트. develop/main으로 가는 PR마다 실행 → 그린이어야 머지(branch protection: gate·e2e).
 # 핵심 원칙: CI는 로컬 스크립트를 "호출"만 한다(두 벌 관리 X). 같은 biome.json·tsconfig·
-# e2e-docker.sh를 그대로 쓴다.
+# e2e-docker.sh·gradlew를 그대로 쓴다. 백엔드(apps/server)와 프론트(apps/web)가 한 커밋에 있으니
+# E2E 는 항상 같은 커밋의 백엔드로 돈다 — 핀(BACKEND_REF)이 없다.
 name: CI
 
 on:
   pull_request:
     branches: [develop, main]
-  # develop push 는 backend-jar 만 돈다. PR 브랜치가 만든 캐시는 다른 PR 이 못 읽고
+  # develop push 는 캐시를 채우기 위해 돈다. PR 브랜치가 만든 캐시는 다른 PR 이 못 읽고
   # 기본 브랜치가 만든 캐시만 모두가 읽는다(GitHub 캐시 격리 규칙).
   push:
     branches: [develop]
@@ -15,13 +16,22 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  # E2E 가 붙는 백엔드 커밋. `pnpm backend:sync` 로 바꾼다(API 타입도 같은 커밋에서 뽑는다).
-  # 비주얼 baseline 이 이 백엔드 기준이라, 올릴 땐 baseline 재생성.
-  BACKEND_REF: 9bef7e3cf6977de765965a2bd001b9f67f114003
-
 jobs:
-  # 빠른 게이트(~1분, 백엔드 불필요): 타입·린트·빌드.
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      server: ${{ steps.filter.outputs.server }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            server:
+              - 'apps/server/**'
+              - '.github/workflows/ci.yml'
+
+  # 빠른 게이트(~1분, 백엔드 불필요): 타입·린트·knip·빌드. 워크스페이스 전체.
   gate:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
@@ -34,57 +44,69 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm typecheck
+      - run: pnpm typecheck # 모든 패키지
       - run: pnpm lint # biome check (pre-commit과 동일 기준)
-      - run: pnpm knip # 미사용 파일·export·의존성(프로젝트 레벨 dead code)
-      - run: pnpm build:local # 빌드 깨짐 감지(env 파일 불필요)
+      - run: pnpm knip # 미사용 파일·export·의존성
+      - run: pnpm --filter web build:local # 빌드 깨짐 감지(env 파일 불필요)
 
-  # 백엔드 jar. 소스가 BACKEND_REF 로 고정돼 결과가 늘 같으니 한 번 만들어 캐시한다.
-  backend-jar:
+  # 백엔드 단위 테스트(Gradle + testcontainers). apps/server 가 바뀐 PR 과 develop push 에서만.
+  # 필수 체크가 아니라 건너뛰어도 머지를 막지 않는다 — E2E 가 백엔드 스모크를 겸한다.
+  server-test:
+    needs: changes
+    if: needs.changes.outputs.server == 'true' || github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: write
+    defaults:
+      run:
+        working-directory: apps/server
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          java-version: '21'
+          distribution: temurin
+      - uses: gradle/actions/setup-gradle@v6
+      - run: ./gradlew build
+      - uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: apps/server/build/test-results/**/*.xml
+
+  # E2E 가 붙을 백엔드 jar. 백엔드 소스 해시로 캐시해 백엔드가 그대로면 Gradle 을 안 돈다.
+  server-jar:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
-        with:
-          repository: wafflestudio/csereal-server # public → 토큰 불필요
-          ref: ${{ env.BACKEND_REF }}
-          path: csereal-server
       - uses: actions/cache@v4
         id: jar
         with:
-          path: csereal-server/build/libs
-          key: backend-jar-${{ env.BACKEND_REF }}
+          path: apps/server/build/libs
+          key: server-jar-${{ hashFiles('apps/server/src/**', 'apps/server/build.gradle.kts', 'apps/server/settings.gradle.kts', 'apps/server/gradle/**') }}
       - if: steps.jar.outputs.cache-hit != 'true'
-        working-directory: csereal-server
+        working-directory: apps/server
         run: JAVA_HOME=$JAVA_HOME_21_X64 ./gradlew --no-daemon bootJar -x test
 
   # E2E(비주얼 회귀 포함): 로컬과 "동일한" e2e-docker.sh를 핀된 컨테이너로 실행한다.
-  # 유일한 CI 분기 = 백엔드 출처: 로컬은 형제 체크아웃, CI는 백엔드 레포를 핀된 ref로 체크아웃해
-  # BACKEND_DIR로 가리킨다(소스 빌드 = local 프로파일 → mock-login 활성. GHCR :prod 이미지는
-  # prod 프로파일이라 mock-login이 꺼져 있어 쓸 수 없음).
+  # 호스트엔 JDK도 pnpm/node도 불필요. 백엔드 이미지는 위에서 캐시한 jar 로 만든다
+  # (JAR_STAGE=prebuilt → compose 빌드에서 Gradle 안 돈다).
   e2e:
     if: github.event_name == 'pull_request'
-    needs: backend-jar
+    needs: server-jar
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v7
-        with:
-          path: cse.snu.ac.kr # 로컬과 동일한 형제 레이아웃 재현
-      - uses: actions/checkout@v7
-        with:
-          repository: wafflestudio/csereal-server
-          ref: ${{ env.BACKEND_REF }}
-          path: csereal-server # = BACKEND_DIR 기본값 ../csereal-server
       - uses: actions/cache/restore@v4
         with:
-          path: csereal-server/build/libs
-          key: backend-jar-${{ env.BACKEND_REF }}
+          path: apps/server/build/libs
+          key: server-jar-${{ hashFiles('apps/server/src/**', 'apps/server/build.gradle.kts', 'apps/server/settings.gradle.kts', 'apps/server/gradle/**') }}
           fail-on-cache-miss: true
-      # 호스트엔 JDK도 pnpm/node도 불필요 — e2e-docker.sh가 모든 걸 핀된 컨테이너 안에서 한다.
-      # 백엔드 이미지는 위에서 캐시한 jar 로 만든다(JAR_STAGE=prebuilt → Gradle 안 돈다).
       - name: E2E (e2e-docker.sh)
-        working-directory: cse.snu.ac.kr
         env:
           JAR_STAGE: prebuilt
         run: bash scripts/e2e-docker.sh
