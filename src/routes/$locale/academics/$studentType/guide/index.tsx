@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { Guide } from '@/types/api';
 import { api } from '@/utils/api';
 
@@ -85,7 +85,7 @@ export const Route = createFileRoute('/$locale/academics/$studentType/guide/')({
 
     return {
       ...data,
-      description: await processHtmlForCsp({ data: data.description }),
+      description: await prepareHtmlForViewer({ data: data.description }),
     };
   },
   component: GuidePage,

@@ -11,7 +11,7 @@ import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useResearchSubNav } from '@/hooks/useSubNav';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { ResearchCentersResponse } from '@/types/api';
 import { api } from '@/utils/api';
 import { stringParam } from '@/utils/searchSchema';
@@ -174,7 +174,7 @@ export const Route = createFileRoute('/$locale/research/centers/')({
     return Promise.all(
       data.map(async (center) => ({
         ...center,
-        description: await processHtmlForCsp({ data: center.description }),
+        description: await prepareHtmlForViewer({ data: center.description }),
       })),
     );
   },

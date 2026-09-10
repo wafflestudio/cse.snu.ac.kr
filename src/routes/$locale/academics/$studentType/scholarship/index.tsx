@@ -6,7 +6,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import ScholarshipList from '@/routes/$locale/academics/-components/ScholarshipList';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { ScholarshipList as ScholarshipListType } from '@/types/api';
 import { api } from '@/utils/api';
 
@@ -91,7 +91,7 @@ export const Route = createFileRoute(
 
     return {
       ...data,
-      description: await processHtmlForCsp({ data: data.description }),
+      description: await prepareHtmlForViewer({ data: data.description }),
     };
   },
   component: ScholarshipPage,

@@ -6,7 +6,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import Image from '@/components/ui/Image';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { AboutContent } from '@/types/api';
 import { api } from '@/utils/api';
 import ContentSection from './-components/ContentSection';
@@ -82,7 +82,7 @@ export const Route = createFileRoute('/$locale/about/greetings')({
 
     return {
       ...data,
-      description: await processHtmlForCsp({ data: data.description }),
+      description: await prepareHtmlForViewer({ data: data.description }),
     };
   },
   component: GreetingsPage,

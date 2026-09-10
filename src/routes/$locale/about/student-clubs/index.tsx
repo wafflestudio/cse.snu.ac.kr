@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useAboutSubNav } from '@/hooks/useSubNav';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { StudentClubsResponse } from '@/types/api';
 import { api } from '@/utils/api';
 import { stringParam } from '@/utils/searchSchema';
@@ -87,11 +87,15 @@ export const Route = createFileRoute('/$locale/about/student-clubs/')({
           imageURL: club.imageURL,
           ko: {
             ...club.ko,
-            description: await processHtmlForCsp({ data: club.ko.description }),
+            description: await prepareHtmlForViewer({
+              data: club.ko.description,
+            }),
           },
           en: {
             ...club.en,
-            description: await processHtmlForCsp({ data: club.en.description }),
+            description: await prepareHtmlForViewer({
+              data: club.en.description,
+            }),
           },
         };
       }),

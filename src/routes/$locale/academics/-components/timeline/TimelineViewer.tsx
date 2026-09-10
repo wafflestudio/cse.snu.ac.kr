@@ -10,11 +10,11 @@ import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { TimelineContent } from '@/types/api';
 import { api } from '@/utils/api';
-import type { ProcessedHtml } from '@/utils/csp';
+import type { ViewerHtml } from '@/utils/csp';
 import Timeline from './Timeline';
 
 type ProcessedTimelineContent = Omit<TimelineContent, 'description'> & {
-  description: ProcessedHtml;
+  description: ViewerHtml;
 };
 
 interface TimelineViewerProps<T> {
@@ -158,7 +158,7 @@ function ContentViewer({
   year,
   pathname,
 }: {
-  description: ProcessedHtml;
+  description: ViewerHtml;
   title: string;
   attachments: TimelineContent['attachments'];
   year: number;
@@ -184,7 +184,7 @@ function TogglableContentViewer({
   year,
   pathname,
 }: {
-  description: ProcessedHtml;
+  description: ViewerHtml;
   expandDefault?: boolean;
   title: string;
   attachments: TimelineContent['attachments'];
@@ -237,7 +237,6 @@ const getSelectedContents = <T extends ProcessedTimelineContent>(
           description: {
             html: `${year} ${t('내용은 없습니다.')}`,
             cssRules: '',
-            styleKey: '0',
           },
           attachments: [],
         },

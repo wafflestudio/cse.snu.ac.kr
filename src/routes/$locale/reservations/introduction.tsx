@@ -6,7 +6,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useReservationsSubNav } from '@/hooks/useSubNav';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import { stringParam } from '@/utils/searchSchema';
 
 const META = {
@@ -70,13 +70,13 @@ export const Route = createFileRoute('/$locale/reservations/introduction')({
   loader: async () => {
     return {
       contents: {
-        '세미나실 예약': await processHtmlForCsp({
+        '세미나실 예약': await prepareHtmlForViewer({
           data: HTML_CONTENTS['세미나실 예약'],
         }),
-        '실습실 예약': await processHtmlForCsp({
+        '실습실 예약': await prepareHtmlForViewer({
           data: HTML_CONTENTS['실습실 예약'],
         }),
-        '공과대학 강의실 예약': await processHtmlForCsp({
+        '공과대학 강의실 예약': await prepareHtmlForViewer({
           data: HTML_CONTENTS['공과대학 강의실 예약'],
         }),
       },

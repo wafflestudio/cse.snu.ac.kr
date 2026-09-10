@@ -13,7 +13,7 @@ import { Tag } from '@/components/ui/Tag';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { Notice } from '@/types/api';
 import { stripHtml, truncateDescription } from '@/utils/string';
 
@@ -133,7 +133,7 @@ export const Route = createFileRoute('/$locale/community/notice/$id')({
 
     return {
       ...notice,
-      description: await processHtmlForCsp({ data: notice.description }),
+      description: await prepareHtmlForViewer({ data: notice.description }),
     };
   },
   component: NoticeDetailPage,

@@ -3,6 +3,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import ky from 'ky';
 import sharp from 'sharp';
+import { isImageProxyHost } from '@/utils/imageUrl';
 
 /**
  * 이미지 최적화 프록시(`/img?url=...&q=...&w=...`)의 코어 로직.
@@ -14,15 +15,6 @@ import sharp from 'sharp';
  * 참고: 현재 시스템에서 이미지 최적화(리사이즈·AVIF·디스크 캐시)는 여기 한 곳뿐이다.
  * 백엔드는 원본만 정적 서빙. 장기적으론 백엔드/CDN(imgproxy 등)으로 이관 검토(STORYBOOK 밖).
  */
-
-/**
- * SSRF 방지를 위한 허용 도메인 화이트리스트.
- */
-const getAllowedDomains = (dev: boolean) => [
-  'cse.snu.ac.kr',
-  '168.107.16.249.nip.io',
-  ...(dev ? ['localhost'] : []),
-];
 
 const getCacheDir = (dev: boolean) =>
   dev
@@ -65,11 +57,7 @@ function validateDomain(imageUrl: string, dev: boolean): URL {
     throw new Response('Invalid URL', { status: 400 });
   }
 
-  const isAllowed = getAllowedDomains(dev).some((domain) =>
-    parsedUrl.hostname.includes(domain),
-  );
-
-  if (!isAllowed) {
+  if (!isImageProxyHost(parsedUrl.hostname, dev)) {
     throw new Response('Domain not allowed', { status: 403 });
   }
 
