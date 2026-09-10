@@ -7,7 +7,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import Node from '@/components/ui/Nodes';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { DegreeRequirements } from '@/types/api';
 import { api } from '@/utils/api';
 
@@ -71,7 +71,7 @@ export const Route = createFileRoute(
 
     return {
       ...data,
-      description: await processHtmlForCsp({ data: data.description }),
+      description: await prepareHtmlForViewer({ data: data.description }),
     };
   },
   component: DegreeRequirementsPage,

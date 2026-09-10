@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import { useLanguage } from '@/hooks/useLanguage';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 
 const META = {
   ko: {
@@ -58,7 +58,7 @@ const buildHtmlContent = (
 <p>Contact info</p>
 <p>Office: 301 Building, Room 408</p>
 <p>Phone: (02) 880-8382 Fax: (02) 886-7589</p>
-<p>Email: sha@iris.snu.ac.kr</p>
+<p>Email: <a href="mailto:sha@iris.snu.ac.kr">sha@iris.snu.ac.kr</a></p>
 <p>
   Website:&nbsp;<a rel="nofollow" href="http://peace.snu.ac.kr/sha/">http://peace.snu.ac.kr/sha/</a>
 </p>
@@ -81,7 +81,7 @@ export const Route = createFileRoute('/$locale/10-10-project/manager')({
     const prefix = locale === 'en' ? '/en' : '';
 
     return {
-      htmlContent: await processHtmlForCsp({
+      htmlContent: await prepareHtmlForViewer({
         data: buildHtmlContent(`${prefix}/about/greetings`),
       }),
     };

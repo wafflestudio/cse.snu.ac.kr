@@ -4,7 +4,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { FacilitiesResponse } from '@/types/api';
 import { api } from '@/utils/api';
 import FacilitiesList from './-components/FacilitiesList';
@@ -71,7 +71,7 @@ export const Route = createFileRoute('/$locale/about/facilities/')({
           id: facility.id,
           imageURL: facility.imageURL,
           ...translation,
-          description: await processHtmlForCsp({
+          description: await prepareHtmlForViewer({
             data: translation.description,
           }),
         };

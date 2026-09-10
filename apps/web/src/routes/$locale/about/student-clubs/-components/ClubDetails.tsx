@@ -9,7 +9,7 @@ import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { Club } from '@/types/api';
 import { api } from '@/utils/api';
-import type { ProcessedHtml } from '@/utils/csp';
+import type { ViewerHtml } from '@/utils/csp';
 
 interface ClubDetailsProps {
   club: {
@@ -21,7 +21,7 @@ interface ClubDetailsProps {
   locale: 'ko' | 'en';
 }
 
-type ProcessedClub = Omit<Club, 'description'> & { description: ProcessedHtml };
+type ProcessedClub = Omit<Club, 'description'> & { description: ViewerHtml };
 
 export default function ClubDetails({ club, locale }: ClubDetailsProps) {
   const router = useRouter();

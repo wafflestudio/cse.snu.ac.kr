@@ -8,7 +8,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
-import { processHtmlForCsp } from '@/serverFns/processHtmlForCsp';
+import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { ScholarshipWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 import { stripHtml, truncateDescription } from '@/utils/string';
@@ -100,11 +100,11 @@ export const Route = createFileRoute(
     return {
       ko: {
         ...ko,
-        description: await processHtmlForCsp({ data: ko.description }),
+        description: await prepareHtmlForViewer({ data: ko.description }),
       },
       en: {
         ...en,
-        description: await processHtmlForCsp({ data: en.description }),
+        description: await prepareHtmlForViewer({ data: en.description }),
       },
     };
   },
