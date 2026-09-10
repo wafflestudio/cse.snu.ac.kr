@@ -29,8 +29,6 @@
       "**",
       "!**/routeTree.gen.ts",
       "!**/types/api/generated.d.ts",
-      "!**/suneditor.css",
-      "!**/suneditor-contents.css",
       "!**/sonner/styles.css"
     ]
   }
