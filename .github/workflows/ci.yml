@@ -1,4 +1,4 @@
-# PR 게이트. develop/main으로 가는 PR마다 실행 → 그린이어야 머지(branch protection: web-test).
+# PR 게이트. develop/main으로 가는 PR마다 실행 → 그린이어야 머지(branch protection: web-test·api-test).
 # CI는 로컬 스크립트를 호출만 한다(두 벌 관리 X).
 name: CI
 
@@ -15,68 +15,47 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  changes:
-    runs-on: ubuntu-latest
-    outputs:
-      api: ${{ steps.filter.outputs.api }}
-      # 백엔드 소스의 내용 해시. jar 캐시 키 — 백엔드가 같으면 어느 PR 이든 같은 jar 를 집어 온다.
-      api-key: api-jar-${{ hashFiles('apps/api/src/**', 'apps/api/build.gradle.kts', 'apps/api/settings.gradle.kts', 'apps/api/gradle/**') }}
-    steps:
-      - uses: actions/checkout@v7
-      - uses: dorny/paths-filter@v3
-        id: filter
-        with:
-          filters: |
-            api:
-              - 'apps/api/**'
-              - '.github/workflows/ci.yml'
-
-  # 경로 필터로 건너뛰므로 필수 체크에 넣지 않는다 — 건너뛴 필수 체크는 "대기 중"으로 머지를 막는다.
+  # 백엔드 테스트 + E2E 가 쓸 bootJar. 캐시 키가 백엔드 소스의 내용 해시라 백엔드가 그대로면
+  # Gradle 을 안 돈다. 캐시는 잡이 성공했을 때만 저장되므로 히트는 "이 내용으로 테스트가 통과했다"는 뜻.
   api-test:
-    needs: changes
-    if: needs.changes.outputs.api == 'true' || github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
       contents: read
       checks: write
       pull-requests: write
+    outputs:
+      jar-key: ${{ steps.jar.outputs.cache-primary-key }}
     defaults:
       run:
         working-directory: apps/api
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-java@v6
-        with:
-          java-version: '21'
-          distribution: temurin
-      - uses: gradle/actions/setup-gradle@v6
-      - run: ./gradlew build
-      - uses: EnricoMi/publish-unit-test-result-action@v2
-        if: always()
-        with:
-          files: apps/api/build/test-results/**/*.xml
-
-  # E2E 가 붙을 백엔드 jar. 캐시가 있으면 Gradle 을 안 돈다.
-  api-jar:
-    needs: changes
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
       - uses: actions/cache@v4
         id: jar
         with:
           path: apps/api/build/libs
-          key: ${{ needs.changes.outputs.api-key }}
+          key: api-jar-${{ hashFiles('apps/api/src/**', 'apps/api/build.gradle.kts', 'apps/api/settings.gradle.kts', 'apps/api/gradle/**') }}
       - if: steps.jar.outputs.cache-hit != 'true'
-        working-directory: apps/api
-        run: JAVA_HOME=$JAVA_HOME_21_X64 ./gradlew --no-daemon bootJar -x test
+        uses: actions/setup-java@v6
+        with:
+          java-version: '21'
+          distribution: temurin
+      - if: steps.jar.outputs.cache-hit != 'true'
+        uses: gradle/actions/setup-gradle@v6
+      # -x jar: plain jar 를 안 만든다 — bootJar 와 나란히 있으면 Dockerfile 의 COPY *-SNAPSHOT.jar 가 둘을 잡아 실패한다.
+      - if: steps.jar.outputs.cache-hit != 'true'
+        run: ./gradlew build -x jar
+      - if: always() && steps.jar.outputs.cache-hit != 'true'
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: apps/api/build/test-results/**/*.xml
 
-  # 백엔드 이미지는 api-jar 가 캐시한 jar 로 만든다(JAR_STAGE=prebuilt → compose 빌드에서 Gradle 안 돈다).
+  # JS 워크스페이스 정적 검사 뒤 E2E. E2E 는 로컬과 같은 e2e/run.sh 를 핀된 컨테이너로 실행하고,
+  # 백엔드 이미지는 api-test 가 만든 jar 로 만든다(JAR_STAGE=prebuilt → compose 빌드에서 Gradle 안 돈다).
   web-test:
     if: github.event_name == 'pull_request'
-    needs: [changes, api-jar]
+    needs: api-test
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
@@ -93,7 +72,7 @@ jobs:
       - uses: actions/cache/restore@v4
         with:
           path: apps/api/build/libs
-          key: ${{ needs.changes.outputs.api-key }}
+          key: ${{ needs.api-test.outputs.jar-key }}
           fail-on-cache-miss: true
       - name: E2E (e2e/run.sh)
         env:
