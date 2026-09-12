@@ -1,0 +1,196 @@
+package com.wafflestudio.csereal.core.news.service
+
+import com.wafflestudio.csereal.common.CserealException
+import com.wafflestudio.csereal.common.ErrorCode
+import com.wafflestudio.csereal.common.search.SearchListService
+import com.wafflestudio.csereal.common.search.SearchType
+import com.wafflestudio.csereal.common.utils.isCurrentUserStaff
+import com.wafflestudio.csereal.core.admin.dto.AdminSlidesResponse
+import com.wafflestudio.csereal.core.news.database.*
+import com.wafflestudio.csereal.core.news.api.req.CreateNewsReq
+import com.wafflestudio.csereal.core.news.api.req.UpdateNewsReq
+import com.wafflestudio.csereal.core.news.dto.NewsResponse
+import com.wafflestudio.csereal.core.news.dto.NewsSearchResponse
+import com.wafflestudio.csereal.core.resource.attachment.service.AttachmentService
+import com.wafflestudio.csereal.core.resource.mainImage.service.MainImageService
+import org.springframework.data.domain.Pageable
+import org.springframework.data.repository.findByIdOrNull
+import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
+import org.springframework.web.multipart.MultipartFile
+
+interface NewsService {
+    fun searchNews(
+        tag: List<String>?,
+        keyword: String?,
+        pageable: Pageable,
+        usePageBtn: Boolean
+    ): NewsSearchResponse
+
+    fun readNews(newsId: Long): NewsResponse
+    fun createNews(request: CreateNewsReq, mainImage: MultipartFile?, attachments: List<MultipartFile>?): NewsResponse
+    fun updateNews(
+        newsId: Long,
+        request: UpdateNewsReq,
+        newMainImage: MultipartFile?,
+        newAttachments: List<MultipartFile>?
+    ): NewsResponse
+
+    fun deleteNews(newsId: Long)
+    fun enrollTag(tagName: String)
+    fun readAllSlides(pageNum: Long, pageSize: Int): AdminSlidesResponse
+    fun unSlideManyNews(request: List<Long>)
+}
+
+@Service
+class NewsServiceImpl(
+    private val newsRepository: NewsRepository,
+    private val searchListService: SearchListService,
+    private val tagInNewsRepository: TagInNewsRepository,
+    private val newsTagRepository: NewsTagRepository,
+    private val mainImageService: MainImageService,
+    private val attachmentService: AttachmentService
+) : NewsService {
+    @Transactional(readOnly = true)
+    override fun searchNews(
+        tag: List<String>?,
+        keyword: String?,
+        pageable: Pageable,
+        usePageBtn: Boolean
+    ): NewsSearchResponse {
+        val isStaff = isCurrentUserStaff()
+        if (keyword.isNullOrEmpty()) {
+            return newsRepository.browseNews(tag, pageable, usePageBtn, isStaff)
+        }
+
+        val page = searchListService.searchIds(
+            type = SearchType.NEWS,
+            keyword = keyword,
+            tags = tag.orEmpty().map { TagInNewsEnum.getTagEnum(it).name },
+            isStaff = isStaff,
+            offset = pageable.offset,
+            size = pageable.pageSize
+        )
+        return NewsSearchResponse(page.total, newsRepository.findSearchDtosByIds(page.ids))
+    }
+
+    @Transactional(readOnly = true)
+    override fun readNews(newsId: Long): NewsResponse {
+        val news: NewsEntity = newsRepository.findByIdOrNull(newsId)
+            ?: throw CserealException(ErrorCode.NEWS_NOT_FOUND, mapOf("newsId" to newsId))
+
+        if (news.isPrivate && !isCurrentUserStaff()) throw CserealException(ErrorCode.PRIVATE_POST)
+
+        val imageURL = mainImageService.createImageURL(news.mainImage)
+        val attachmentResponses = attachmentService.createAttachmentResponses(news.attachments)
+
+        val prevNews =
+            newsRepository.findFirstByIsPrivateFalseAndCreatedAtLessThanOrderByCreatedAtDesc(
+                news.createdAt!!
+            )
+        val nextNews =
+            newsRepository.findFirstByIsPrivateFalseAndCreatedAtGreaterThanOrderByCreatedAtAsc(
+                news.createdAt!!
+            )
+
+        return NewsResponse.of(news, imageURL, attachmentResponses, prevNews, nextNews)
+    }
+
+    @Transactional
+    override fun createNews(
+        request: CreateNewsReq,
+        mainImage: MultipartFile?,
+        attachments: List<MultipartFile>?
+    ): NewsResponse {
+        val newNews = NewsEntity.of(request)
+
+        for (tag in request.tags) {
+            val tagEnum = TagInNewsEnum.getTagEnum(tag)
+            val tagEntity = tagInNewsRepository.findByName(tagEnum)
+            NewsTagEntity.createNewsTag(newNews, tagEntity)
+        }
+
+        if (mainImage != null) {
+            mainImageService.uploadMainImage(newNews, mainImage)
+        }
+
+        if (attachments != null) {
+            attachmentService.uploadAllAttachments(newNews, attachments)
+        }
+
+        newsRepository.save(newNews)
+
+        val imageURL = mainImageService.createImageURL(newNews.mainImage)
+        val attachmentResponses = attachmentService.createAttachmentResponses(newNews.attachments)
+
+        return NewsResponse.of(newNews, imageURL, attachmentResponses)
+    }
+
+    @Transactional
+    override fun updateNews(
+        newsId: Long,
+        request: UpdateNewsReq,
+        newMainImage: MultipartFile?,
+        newAttachments: List<MultipartFile>?
+    ): NewsResponse {
+        val news: NewsEntity = getNewsEntityByIdOrThrow(newsId)
+
+        news.update(request)
+
+        mainImageService.replaceMainImage(news, newMainImage, request.removeImage)
+
+        attachmentService.syncAttachments(news, request.attachmentIds, newAttachments)
+
+        val oldTags = news.newsTags.map { it.tag.name }
+
+        val tagsToRemove = oldTags - request.tags.map { TagInNewsEnum.getTagEnum(it) }
+        val tagsToAdd = request.tags.map { TagInNewsEnum.getTagEnum(it) } - oldTags
+
+        for (tagEnum in tagsToRemove) {
+            val tagId = tagInNewsRepository.findByName(tagEnum).id
+            news.newsTags.removeIf { it.tag.name == tagEnum }
+            newsTagRepository.deleteByNewsIdAndTagId(newsId, tagId)
+        }
+
+        for (tagEnum in tagsToAdd) {
+            val tagId = tagInNewsRepository.findByName(tagEnum)
+            NewsTagEntity.createNewsTag(news, tagId)
+        }
+
+        val imageURL = mainImageService.createImageURL(news.mainImage)
+        val attachmentResponses = attachmentService.createAttachmentResponses(news.attachments)
+
+        return NewsResponse.of(news, imageURL, attachmentResponses)
+    }
+
+    @Transactional
+    override fun deleteNews(newsId: Long) {
+        getNewsEntityByIdOrThrow(newsId)
+        newsRepository.deleteById(newsId)
+    }
+
+    override fun enrollTag(tagName: String) {
+        val newTag = TagInNewsEntity(
+            name = TagInNewsEnum.getTagEnum(tagName)
+        )
+        tagInNewsRepository.save(newTag)
+    }
+
+    @Transactional(readOnly = true)
+    override fun readAllSlides(pageNum: Long, pageSize: Int): AdminSlidesResponse {
+        return newsRepository.readAllSlides(pageNum, pageSize)
+    }
+
+    @Transactional
+    override fun unSlideManyNews(request: List<Long>) {
+        for (newsId in request) {
+            val news = getNewsEntityByIdOrThrow(newsId)
+            news.isSlide = false
+        }
+    }
+
+    fun getNewsEntityByIdOrThrow(newsId: Long): NewsEntity {
+        return newsRepository.findByIdOrNull(newsId)
+            ?: throw CserealException(ErrorCode.NEWS_NOT_FOUND, mapOf("newsId" to newsId))
+    }
+}

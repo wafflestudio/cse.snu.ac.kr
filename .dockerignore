@@ -1,0 +1,13 @@
+# apps/web/Dockerfile 의 컨텍스트는 레포 루트다(워크스페이스 lockfile). 프론트 빌드에 필요 없는 것을 뺀다.
+apps/api
+e2e
+infra
+node_modules
+**/node_modules
+**/dist
+**/.cache
+**/test-results
+**/playwright-report
+.git
+.github
+docs

@@ -1,0 +1,189 @@
+package com.wafflestudio.csereal.core.news.database
+
+import com.querydsl.core.BooleanBuilder
+import com.querydsl.core.types.Projections
+import com.querydsl.core.types.dsl.Expressions
+import com.querydsl.jpa.impl.JPAQueryFactory
+import com.wafflestudio.csereal.common.utils.FixedPageRequest
+import com.wafflestudio.csereal.core.admin.dto.AdminSlideElement
+import com.wafflestudio.csereal.core.admin.dto.AdminSlidesResponse
+import com.wafflestudio.csereal.core.main.dto.MainImportantResponse
+import com.wafflestudio.csereal.core.news.database.QNewsEntity.newsEntity
+import com.wafflestudio.csereal.core.news.database.QNewsTagEntity.newsTagEntity
+import com.wafflestudio.csereal.core.news.dto.NewsSearchDto
+import com.wafflestudio.csereal.core.news.dto.NewsSearchResponse
+import com.wafflestudio.csereal.core.resource.mainImage.service.MainImageService
+import org.springframework.data.domain.Pageable
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Modifying
+import org.springframework.data.jpa.repository.Query
+import org.springframework.data.repository.query.Param
+import org.springframework.stereotype.Repository
+import java.time.LocalDateTime
+import java.time.LocalDate
+
+interface NewsRepository : JpaRepository<NewsEntity, Long>, CustomNewsRepository {
+    fun findFirstByIsPrivateFalseAndCreatedAtLessThanOrderByCreatedAtDesc(
+        timestamp: LocalDateTime
+    ): NewsEntity?
+
+    fun findFirstByIsPrivateFalseAndCreatedAtGreaterThanOrderByCreatedAtAsc(
+        timestamp: LocalDateTime
+    ): NewsEntity?
+
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Query(
+        "UPDATE news n SET n.isImportant = false, n.importantUntil = NULL " +
+            "WHERE n.isImportant = true AND n.importantUntil < :currentDate"
+    )
+    fun updateExpiredImportantStatus(@Param("currentDate") currentDate: LocalDate): Int
+}
+
+interface CustomNewsRepository {
+    /** 키워드 없이 태그만으로 훑을 때. 순서·페이징까지 여기서 정한다. */
+    fun browseNews(
+        tag: List<String>?,
+        pageable: Pageable,
+        usePageBtn: Boolean,
+        isStaff: Boolean
+    ): NewsSearchResponse
+
+    /** 키워드 검색이 고른 id 들의 표시용 값. 준 id 차례대로 돌려준다. */
+    fun findSearchDtosByIds(ids: List<Long>): List<NewsSearchDto>
+
+    fun readAllSlides(pageNum: Long, pageSize: Int): AdminSlidesResponse
+    fun findImportantNews(cnt: Int? = null): List<MainImportantResponse>
+}
+
+@Repository
+class NewsRepositoryImpl(
+    private val queryFactory: JPAQueryFactory,
+    private val mainImageService: MainImageService
+) : CustomNewsRepository {
+    override fun findSearchDtosByIds(ids: List<Long>): List<NewsSearchDto> {
+        // in 질의는 순서를 보장하지 않는다. 부른 쪽이 정한 차례로 되돌린다.
+        val byId = queryFactory.selectFrom(newsEntity)
+            .where(newsEntity.id.`in`(ids))
+            .fetch()
+            .associateBy { it.id }
+        return ids.mapNotNull(byId::get).map(::toSearchDto)
+    }
+
+    override fun browseNews(
+        tag: List<String>?,
+        pageable: Pageable,
+        usePageBtn: Boolean,
+        isStaff: Boolean
+    ): NewsSearchResponse {
+        val tagsBooleanBuilder = BooleanBuilder()
+        val isPrivateBooleanBuilder = BooleanBuilder()
+
+        if (!tag.isNullOrEmpty()) {
+            tag.forEach {
+                val tagEnum = TagInNewsEnum.getTagEnum(it)
+                tagsBooleanBuilder.or(
+                    newsTagEntity.tag.name.eq(tagEnum)
+                )
+            }
+        }
+
+        if (!isStaff) {
+            isPrivateBooleanBuilder.or(
+                newsEntity.isPrivate.eq(false)
+            )
+        }
+
+        val jpaQuery = queryFactory.selectFrom(newsEntity)
+            .leftJoin(newsTagEntity).on(newsTagEntity.news.eq(newsEntity))
+            .where(tagsBooleanBuilder, isPrivateBooleanBuilder)
+
+        val total: Long
+        var pageRequest = pageable
+
+        if (usePageBtn) {
+            val countQuery = jpaQuery.clone()
+            total = countQuery.select(newsEntity.countDistinct()).fetchOne()!!
+            pageRequest = FixedPageRequest(pageable, total)
+        } else {
+            total = (10 * pageable.pageSize).toLong() + 1 // 10개 페이지 고정
+        }
+
+        val newsSearchDtoList = jpaQuery
+            .offset(pageRequest.offset)
+            .limit(pageRequest.pageSize.toLong())
+            .distinct()
+            .orderBy(newsEntity.date.desc())
+            .fetch()
+            .map(::toSearchDto)
+
+        return NewsSearchResponse(total, newsSearchDtoList)
+    }
+
+    private fun toSearchDto(news: NewsEntity) = NewsSearchDto(
+        id = news.id,
+        title = news.title,
+        description = news.plainTextDescription,
+        createdAt = news.createdAt,
+        date = news.date,
+        tags = news.newsTags.map { it.tag.name.krName },
+        imageURL = mainImageService.createImageURL(news.mainImage),
+        isPrivate = news.isPrivate
+    )
+
+    override fun readAllSlides(pageNum: Long, pageSize: Int): AdminSlidesResponse {
+        val tuple = queryFactory.select(
+            newsEntity.id,
+            newsEntity.title,
+            newsEntity.createdAt
+        ).from(newsEntity)
+            .where(
+                newsEntity.isPrivate.eq(false),
+                newsEntity.isSlide.eq(true)
+            )
+            .orderBy(newsEntity.createdAt.desc())
+            .offset(pageSize * pageNum)
+            .limit(pageSize.toLong())
+            .fetch()
+
+        val total = queryFactory.select(newsEntity.count())
+            .from(newsEntity)
+            .where(
+                newsEntity.isPrivate.eq(false),
+                newsEntity.isSlide.eq(true)
+            )
+            .fetchOne()!!
+
+        return AdminSlidesResponse(
+            total,
+            tuple.map {
+                AdminSlideElement(
+                    id = it[newsEntity.id]!!,
+                    title = it[newsEntity.title]!!,
+                    createdAt = it[newsEntity.createdAt]!!
+                )
+            }
+        )
+    }
+
+    override fun findImportantNews(cnt: Int?): List<MainImportantResponse> =
+        queryFactory.select(
+            Projections.constructor(
+                MainImportantResponse::class.java,
+                newsEntity.id,
+                newsEntity.titleForMain,
+                newsEntity.title,
+                newsEntity.plainTextDescription,
+                newsEntity.createdAt,
+                Expressions.constant("news")
+            )
+        ).from(newsEntity)
+            .where(
+                newsEntity.isImportant.isTrue(),
+                newsEntity.isPrivate.isFalse()
+            ).orderBy(
+                newsEntity.createdAt.desc()
+            ).let {
+                if (cnt != null) it.limit(cnt.toLong()) else it
+            }
+            .fetch()
+}

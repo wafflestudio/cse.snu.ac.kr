@@ -1,0 +1,122 @@
+# 배포용 override (prod·staging 공통, PROFILE 로 갈린다).
+#   docker compose -f compose.yml -f compose.prod.yml up -d --remove-orphans
+services:
+    db:
+        container_name: csereal_db_container
+        volumes:
+            # 상대경로여야 한다. prod 는 waffle, staging 은 ubuntu 라 홈이 다르고,
+            # 절대경로를 두면 한쪽에 없는 경로가 만들어져 빈 DB 가 뜬다.
+            - ${DB_DATA_DIR:-../database/db}:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${MYSQL_ROOT_PASSWORD}"]
+            interval: 10s
+            timeout: 5s
+            retries: 30
+        logging:
+            driver: json-file
+            options:
+                max-size: "100m"
+                max-file: "3"
+        restart: always
+
+    search:
+        container_name: csereal_search
+        image: "csereal-search:${SEARCH_TAG:?ops/host-deploy.sh 가 .env 에 써 넣는다}"
+        # 앱이 기동할 때마다 전체 재색인.
+        healthcheck:
+            retries: 30
+            start_period: 90s
+        logging:
+            driver: json-file
+            options:
+                max-size: "100m"
+                max-file: "3"
+        restart: always
+
+    api:
+        container_name: csereal_api
+        # 커밋 해시 태그. 롤백은 .env 의 IMAGE_TAG 를 옛 값으로 바꾸고 up -d 하면 된다.
+        image: "csereal-api:${IMAGE_TAG:?ops/host-deploy.sh 가 .env 에 써 넣는다}"
+        volumes:
+            - ./cse-files:/app/cse-files
+            - ./files:/app/files
+            - ./logs:/app/logs
+        logging:
+            driver: json-file
+            options:
+                max-size: "100m"
+                max-file: "3"
+        environment:
+            SPRING_PROFILES_ACTIVE: ${PROFILE}
+            SPRING_ELASTICSEARCH_URIS: http://search:9200
+            # 같은 프로젝트라 서비스 이름으로 붙는다.
+            SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/${MYSQL_DATABASE}?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true"
+            SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+            SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+            OIDC_CLIENT_SECRET: ${OIDC_CLIENT_SECRET}
+            URL: ${URL}
+        # restart: always 는 프로세스가 종료될 때만 듣는다. JVM 이 살아 있으면서 응답만
+        # 안 하는 경우는 이 헬스체크와 아래 autoheal 이 잡는다.
+        # ⚠️ start_period 를 줄이지 말 것 — Docker 는 이 기간의 실패를 세지 않는다.
+        #    짧으면 Flyway 마이그레이션 중에 재시작이 걸려 crash loop 가 된다.
+        healthcheck:
+            test: ["CMD", "curl", "-fsS", "http://localhost:8080/api/helloworld"]
+            interval: 30s
+            timeout: 5s
+            retries: 3
+            start_period: 180s
+        # autoheal 이 이 라벨을 보고 재시작한다. Docker 는 표시만 하고 재시작해 주지 않는다.
+        labels:
+            autoheal: "true"
+        restart: always
+
+    web:
+        container_name: csereal_web
+        image: "csereal-web:${IMAGE_TAG:?ops/host-deploy.sh 가 .env 에 써 넣는다}"
+        # Caddy(별도 compose, ~/proxy)와 모니터링이 host.docker.internal:3000·9464 로 붙는다 — 호스트 브리지에만 노출.
+        ports:
+            - "172.17.0.1:3000:3000"
+            - "172.17.0.1:9464:9464"
+        # SSR 이 절대 URL(https://<URL>/api/…)로 백엔드를 부른다. 컨테이너가 그 이름을 호스트(엣지)로 풀어야 한다.
+        # 빠지면 전 페이지 500 — 오래 뜬 컨테이너에선 안 드러나고 재생성 시점에 터진다.
+        extra_hosts:
+            - "${URL}:host-gateway"
+        volumes:
+            - ../frontend-data:/frontend-data
+        # 정적 파일이라 백엔드·엣지 상태와 무관하게 앱 프로세스만 본다.
+        healthcheck:
+            test: ["CMD", "wget", "-qO-", "http://localhost:3000/robots.txt"]
+            interval: 30s
+            timeout: 5s
+            retries: 3
+            start_period: 30s
+        labels:
+            autoheal: "true"
+        logging:
+            driver: json-file
+            options:
+                max-size: "100m"
+                max-file: "3"
+        restart: always
+
+    autoheal:
+        image: willfarrell/autoheal:1.2.0
+        container_name: csereal_autoheal
+        environment:
+            AUTOHEAL_CONTAINER_LABEL: autoheal
+            AUTOHEAL_INTERVAL: 30
+            # 자기가 막 떴을 때 성급히 손대지 않게. 컨테이너별 유예는 start_period 가 맡는다.
+            AUTOHEAL_START_PERIOD: 60
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        restart: always
+        logging:
+            driver: json-file
+            options:
+                max-size: "10m"
+                max-file: "3"

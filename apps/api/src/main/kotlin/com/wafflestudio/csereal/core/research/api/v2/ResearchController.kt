@@ -1,0 +1,114 @@
+package com.wafflestudio.csereal.core.research.api.v2
+
+import com.wafflestudio.csereal.common.enums.LanguageType
+import com.wafflestudio.csereal.core.research.api.req.CreateLabLanguageReqBody
+import com.wafflestudio.csereal.core.research.api.req.CreateResearchLanguageReqBody
+import com.wafflestudio.csereal.core.research.api.req.ModifyLabLanguageReqBody
+import com.wafflestudio.csereal.core.research.api.req.ModifyResearchLanguageReqBody
+import com.wafflestudio.csereal.core.research.dto.*
+import com.wafflestudio.csereal.core.research.service.LabService
+import com.wafflestudio.csereal.core.research.service.ResearchService
+import com.wafflestudio.csereal.core.research.type.ResearchType
+import jakarta.validation.Valid
+import jakarta.validation.constraints.Positive
+import org.springframework.security.access.prepost.PreAuthorize
+import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
+
+@RequestMapping("/api/v2/research")
+@RestController
+class ResearchController(
+    private val researchService: ResearchService,
+    private val labService: LabService
+) {
+    // Research APIs
+
+    @GetMapping("/{researchId:[0-9]+}")
+    fun readResearch(
+        @Positive
+        @PathVariable(required = true)
+        researchId: Long
+    ): ResearchLanguageDto {
+        return researchService.readResearchLanguage(researchId)
+    }
+
+    @GetMapping("/{researchType:[a-z A-Z]+}")
+    fun readAllResearch(
+        @PathVariable(required = true) researchType: ResearchType,
+        @RequestParam(required = false, defaultValue = "ko") language: LanguageType
+    ): List<ResearchSealedDto> {
+        return researchService.readAllResearch(language, researchType)
+    }
+
+    @PreAuthorize("hasRole('STAFF')")
+    @PostMapping(consumes = ["multipart/form-data"])
+    fun createResearchGroup(
+        @RequestPart("request") request: CreateResearchLanguageReqBody,
+        @RequestPart("mainImage") mainImage: MultipartFile?
+    ): ResearchLanguageDto = researchService.createResearchLanguage(request, mainImage)
+
+    @PreAuthorize("hasRole('STAFF')")
+    @PutMapping("/{researchId:[0-9]+}", consumes = ["multipart/form-data"])
+    fun updateResearch(
+        @PathVariable @Positive
+        researchId: Long,
+        @RequestPart("request") request: ModifyResearchLanguageReqBody,
+
+        @RequestPart("newMainImage")
+        newMainImage: MultipartFile?
+    ): ResearchLanguageDto {
+        return researchService.updateResearchLanguage(researchId, request, newMainImage)
+    }
+
+    @PreAuthorize("hasRole('STAFF')")
+    @DeleteMapping("/{researchId:[0-9]+}")
+    fun deleteResearch(
+        @PathVariable @Positive
+        researchId: Long
+    ) {
+        researchService.deleteResearchLanguage(researchId)
+    }
+
+    // Lab APIs
+
+    @GetMapping("/lab")
+    fun readAllLabs(
+        @RequestParam(required = false, defaultValue = "ko") language: LanguageType
+    ): List<LabDto> = labService.readAllLabs(language)
+
+    // TODO: Change to Language Unified API
+    @GetMapping("/lab/{labId}")
+    fun readLab(
+        @PathVariable labId: Long
+    ): LabLanguageDto = labService.readLabLanguage(labId)
+
+    @PreAuthorize("hasRole('STAFF')")
+    @PostMapping("/lab", consumes = ["multipart/form-data"])
+    fun createLab(
+        @Valid
+        @RequestPart("request")
+        request: CreateLabLanguageReqBody,
+
+        @RequestPart("pdf") pdf: MultipartFile?
+    ): LabLanguageDto = labService.createLabLanguage(request, pdf)
+
+    @PreAuthorize("hasRole('STAFF')")
+    @PutMapping("/lab/{labId}", consumes = ["multipart/form-data"])
+    fun updateLab(
+        @PathVariable @Positive
+        labId: Long,
+        @Valid
+        @RequestPart("request")
+        request: ModifyLabLanguageReqBody,
+        @RequestPart("pdf") pdf: MultipartFile?
+    ): LabLanguageDto = labService.updateLabLanguage(labId, request, pdf)
+
+    @PreAuthorize("hasRole('STAFF')")
+    @DeleteMapping("/lab/{labId}")
+    fun deleteLab(
+        @PathVariable @Positive
+        labId: Long
+    ) {
+        labService.deleteLabLanguage(labId)
+    }
+}

@@ -1,0 +1,189 @@
+spring:
+    threads:
+        virtual:
+            enabled: false
+
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        hikari:
+            maximum-pool-size: 65
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: validate
+    flyway:
+        enabled: true
+        locations: classpath:db/migration
+        validate-on-migrate: true
+        baseline-on-migrate: true
+        baseline-version: 1
+        fail-on-missing-locations: true
+        clean-on-validation-error: false
+
+    servlet:
+        multipart:
+            enabled: true
+            max-request-size: 100MB
+            max-file-size: 100MB
+
+server:
+    tomcat:
+        threads:
+            max: 32
+    servlet:
+        session:
+            timeout: 32400 # 9시간
+            cookie:
+                same-site: lax
+                secure: true
+
+springdoc:
+    paths-to-match:
+        - /api/**
+    api-docs:
+        path: /api-docs/json
+
+csereal:
+    upload:
+        path: ./files/
+    reservation:
+        max-recurring-weeks: 20
+    search:
+        index: csereal-search
+        # 기동할 때마다 인덱스를 지우고 다시 만든다(약 6초). 마이그레이션이 JPA 밖에서
+        # 색인 테이블을 고치므로 이벤트만으로는 못 따라간다.
+        reindex-on-startup: true
+
+oldFiles:
+    path: ./cse-files/
+
+endpoint:
+    backend: http://localhost:8080/api
+    frontend: http://localhost:3000
+
+login-page: http://localhost:8080
+
+customlog:
+    file:
+        name: "csereal-backend"
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: health,info,prometheus
+
+---
+spring:
+    config.activate.on-profile: local
+    datasource:
+        url: jdbc:mysql://127.0.0.1:3306/csereal?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
+        username: root
+        password: password
+    jpa:
+        open-in-view: false
+    elasticsearch:
+        uris: http://127.0.0.1:9200
+
+server:
+    servlet:
+        session:
+            cookie:
+                secure: false # http://localhost — base의 secure:true는 크롬의 localhost 예외에만 기대는 셈
+
+logging:
+    level:
+        org:
+            springframework:
+                security: DEBUG
+                web:
+                    servlet: DEBUG
+
+customlog:
+    file:
+        base: "./logs"
+
+---
+spring:
+    config.activate.on-profile: prod
+    jpa:
+        open-in-view: false
+    security:
+        oauth2:
+            client:
+                registration:
+                    idsnucse:
+                        client-id: cse-waffle-prod
+                        client-secret: ${OIDC_CLIENT_SECRET}
+                        authorization-grant-type: authorization_code
+                        scope: openid, profile, email
+                        redirect-uri: https://${URL}/api/v1/login/oauth2/code/idsnucse
+                provider:
+                    idsnucse:
+                        issuer-uri: https://id.snucse.org/o
+                        jwk-set-uri: https://id.snucse.org/o/jwks
+
+csereal:
+    upload:
+        path: /app/files/
+
+oldFiles:
+    path: /app/cse-files/
+
+endpoint:
+    backend: https://${URL}/api
+    frontend: https://${URL}
+
+login-page: https://${URL}
+
+customlog:
+    file:
+        base: "/app/logs"
+
+---
+spring:
+    config.activate.on-profile: dev
+    jpa:
+        open-in-view: false
+
+csereal:
+    upload:
+        path: /app/files/
+
+oldFiles:
+    path: /app/cse-files/
+
+endpoint:
+    backend: https://${URL}/api
+    frontend: https://${URL}
+
+login-page: https://${URL}
+
+customlog:
+    file:
+        base: "./logs"
+---
+spring:
+    config.activate.on-profile: test
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: test
+        password: test
+    jpa:
+        database: mysql
+        open-in-view: false
+        hibernate:
+            ddl-auto: none
+    flyway:
+        enabled: true
+        locations: classpath:db/migration
+csereal:
+    # build/ 는 gitignore 되고 clean 으로 지워진다. base 의 ./files/ 를 그대로 쓰면
+    # 테스트가 레포 루트에 파일을 남긴다(그 경로는 gitignore 에도 없다).
+    upload:
+        path: build/tmp/attachment-test-uploads/
+    search:
+        reindex-on-startup: false # 테스트엔 ES 서버가 없다
+customlog:
+    file:
+        base: "./logs"

@@ -1,0 +1,68 @@
+package com.wafflestudio.csereal.core.member.api.v2
+
+import com.wafflestudio.csereal.common.enums.LanguageType
+import com.wafflestudio.csereal.core.member.api.req.CreateStaffLanguagesReqBody
+import com.wafflestudio.csereal.core.member.api.req.ModifyStaffLanguagesReqBody
+import com.wafflestudio.csereal.core.member.dto.SimpleStaffDto
+import com.wafflestudio.csereal.core.member.dto.StaffLanguagesDto
+import com.wafflestudio.csereal.core.member.service.StaffService
+import jakarta.validation.constraints.Positive
+import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
+import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.RequestPart
+import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.multipart.MultipartFile
+
+@RequestMapping("/api/v2/staff")
+@RestController
+class StaffController(
+    private val staffService: StaffService
+) {
+    @GetMapping("/{staffId}")
+    fun getStaff(
+        @PathVariable @Positive
+        staffId: Long
+    ): StaffLanguagesDto = staffService.getStaffLanguages(staffId)
+
+    @GetMapping
+    fun getAllStaff(
+        @RequestParam(required = false, defaultValue = "ko") language: LanguageType
+    ): ResponseEntity<List<SimpleStaffDto>> {
+        return ResponseEntity.ok(staffService.getAllStaff(language))
+    }
+
+    @PreAuthorize("hasRole('STAFF')")
+    @PostMapping(consumes = ["multipart/form-data"])
+    fun createStaff(
+        @RequestPart("request") request: CreateStaffLanguagesReqBody,
+        @RequestPart("mainImage") mainImage: MultipartFile?
+    ): StaffLanguagesDto = staffService.createStaffLanguages(request, mainImage)
+
+    @PreAuthorize("hasRole('STAFF')")
+    @PutMapping("/{staffId}", consumes = ["multipart/form-data"])
+    fun updateStaff(
+        @PathVariable @Positive
+        staffId: Long,
+        @RequestPart("request") modifyStaffLanguageReq: ModifyStaffLanguagesReqBody,
+
+        @RequestPart("newMainImage")
+        newMainImage: MultipartFile?
+    ): StaffLanguagesDto =
+        staffService.updateStaffLanguages(staffId, modifyStaffLanguageReq, newMainImage)
+
+    @PreAuthorize("hasRole('STAFF')")
+    @DeleteMapping("/{staffId}")
+    fun deleteStaff(
+        @PathVariable @Positive
+        staffId: Long
+    ) {
+        staffService.deleteStaffLanguages(staffId)
+    }
+}
