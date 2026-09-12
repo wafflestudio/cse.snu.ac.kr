@@ -5,8 +5,9 @@ name: CI
 on:
   pull_request:
     branches: [develop, main]
-  # develop push 는 캐시를 채우기 위해 돈다. PR 브랜치가 만든 캐시는 다른 PR 이 못 읽고
-  # 기본 브랜치가 만든 캐시만 모두가 읽는다(GitHub 캐시 격리 규칙). develop 에선 api-jar·api-test 만 돈다.
+  # develop push 는 캐시를 채우기 위해 돈다. PR 은 자기 브랜치·base 브랜치·기본 브랜치(main)의 캐시만
+  # 읽고 다른 PR 의 캐시는 못 읽는다(GitHub 캐시 격리 규칙) — develop 이 채워야 develop 대상 PR 이 히트한다.
+  # develop 에선 api-jar·api-test 만 돈다.
   push:
     branches: [develop]
 
