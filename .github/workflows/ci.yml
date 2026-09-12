@@ -37,11 +37,7 @@ jobs:
     needs: api-jar
     if: needs.api-jar.outputs.hit != 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 10 # 실측 3분
-    permissions:
-      contents: read
-      checks: write
-      pull-requests: write
+    timeout-minutes: 10
     defaults:
       run:
         working-directory: apps/api
@@ -50,10 +46,13 @@ jobs:
       - uses: gradle/actions/setup-gradle@v6
       # -x jar: plain jar 를 안 만든다 — bootJar 와 나란히 있으면 Dockerfile 의 COPY *-SNAPSHOT.jar 가 둘을 잡아 실패한다.
       - run: JAVA_HOME=$JAVA_HOME_21_X64 ./gradlew build -x jar
-      - if: always()
-        uses: EnricoMi/publish-unit-test-result-action@v2
+      # 실패 원인은 Gradle 로그에도 있지만, 리포트 HTML 이 스택·stdout 까지 한눈에 보인다.
+      - if: failure()
+        uses: actions/upload-artifact@v4
         with:
-          files: apps/api/build/test-results/**/*.xml
+          name: api-test-report
+          path: apps/api/build/reports/tests/test
+          retention-days: 7
       - uses: actions/cache/save@v4
         with:
           path: apps/api/build/libs
