@@ -20,8 +20,15 @@ export default defineConfig(({ mode }) => {
 
   return {
     envDir: 'env',
-    // 앱(api.ts)이 읽을 백엔드 base URL 주입.
-    define: { __API_BASE_URL__: JSON.stringify(apiBaseUrl) },
+    define: {
+      // 앱(api.ts)이 읽을 백엔드 base URL 주입.
+      __API_BASE_URL__: JSON.stringify(apiBaseUrl),
+      // 조회 통계 스크립트(GoatCounter, /stats)는 배포 빌드에만. base URL 을 직접 준 빌드(build:local·E2E·
+      // 로컬 Lighthouse)는 서버에 /stats 가 없어 404 만 나고 콘솔 에러가 된다.
+      __STATS_ENABLED__: JSON.stringify(
+        mode === 'production' && !env.VITE_API_BASE_URL,
+      ),
+    },
     plugins: [
       tailwindcss(),
       tanstackStart({

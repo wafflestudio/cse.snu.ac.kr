@@ -13,6 +13,7 @@
     "test": "pnpm api:test && pnpm e2e",
     "e2e": "bash e2e/run.sh",
     "e2e:ui": "bash e2e/run.sh --ui",
+    "perf": "bash perf/run.sh",
     "typecheck": "pnpm -r typecheck",
     "lint": "biome check",
     "lint:fix": "biome check --write",
