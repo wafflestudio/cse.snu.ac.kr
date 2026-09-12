@@ -1,7 +1,6 @@
 # PR 게이트. develop/main으로 가는 PR마다 실행 → 그린이어야 머지(branch protection: gate·e2e).
 # 핵심 원칙: CI는 로컬 스크립트를 "호출"만 한다(두 벌 관리 X). 같은 biome.json·tsconfig·
-# e2e/run.sh·gradlew를 그대로 쓴다. 백엔드(apps/api)와 프론트(apps/web)가 한 커밋에 있으니
-# E2E 는 항상 같은 커밋의 백엔드로 돈다 — 핀(BACKEND_REF)이 없다.
+# e2e/run.sh·gradlew를 그대로 쓴다. 
 name: CI
 
 on:
@@ -20,18 +19,18 @@ jobs:
   changes:
     runs-on: ubuntu-latest
     outputs:
-      server: ${{ steps.filter.outputs.server }}
+      api: ${{ steps.filter.outputs.api }}
     steps:
       - uses: actions/checkout@v7
       - uses: dorny/paths-filter@v3
         id: filter
         with:
           filters: |
-            server:
+            api:
               - 'apps/api/**'
               - '.github/workflows/ci.yml'
 
-  # 빠른 게이트(~1분, 백엔드 불필요): 타입·린트·knip·빌드. 워크스페이스 전체.
+  # 타입·린트·knip·빌드. 워크스페이스 전체.
   gate:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
@@ -53,7 +52,7 @@ jobs:
   # 필수 체크가 아니라 건너뛰어도 머지를 막지 않는다 — E2E 가 백엔드 스모크를 겸한다.
   api-test:
     needs: changes
-    if: needs.changes.outputs.server == 'true' || github.event_name == 'push'
+    if: needs.changes.outputs.api == 'true' || github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
