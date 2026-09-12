@@ -1,0 +1,116 @@
+# 배포. develop push → staging, main push → production. 바뀐 쪽만 나간다(웹 / 백엔드+인프라).
+# 빌드는 호스트에서 한다(레지스트리 없음, "빌드 == 배포"). 이 잡은 SSH 로 호스트 스크립트를 트리거만 한다.
+#   백엔드·인프라: 호스트가 이 레포를 클론해 infra/ops/host-deploy.sh (jar·이미지 → compose up → Caddy reload)
+#   웹:           infra/ops/deploy-web.sh 를 stdin 으로 보내 git URL 로 docker build → 컨테이너 교체
+# 백엔드가 먼저, 웹이 다음. 백엔드 배포가 실패하면 웹은 나가지 않는다.
+# 롤백: workflow_dispatch 로 대상과 이전 커밋 sha 를 지정해 실행한다.
+name: Deploy
+
+on:
+  push:
+    branches: [main, develop]
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 무엇을 배포하나
+        type: choice
+        options: [web, api, both]
+        default: both
+      ref:
+        description: 배포할 커밋 sha (비우면 이 브랜치의 HEAD). 롤백용.
+        required: false
+
+concurrency:
+  group: deploy-${{ github.ref_name }}
+  cancel-in-progress: false # 호스트에서 빌드·up 도는 중에 끊기면 중간 상태로 남는다
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      web: ${{ github.event_name == 'workflow_dispatch' && contains(fromJSON('["web","both"]'), inputs.target) || steps.filter.outputs.web }}
+      api: ${{ github.event_name == 'workflow_dispatch' && contains(fromJSON('["api","both"]'), inputs.target) || steps.filter.outputs.api }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dorny/paths-filter@v3
+        if: github.event_name == 'push'
+        id: filter
+        with:
+          filters: |
+            web:
+              - 'apps/web/**'
+              - 'pnpm-lock.yaml'
+              - 'pnpm-workspace.yaml'
+              - 'package.json'
+              - '.dockerignore'
+              - 'infra/ops/deploy-web.sh'
+              - 'infra/production.env'
+              - 'infra/staging.env'
+            api:
+              - 'apps/api/**'
+              - 'infra/**'
+
+  deploy:
+    needs: changes
+    if: needs.changes.outputs.web == 'true' || needs.changes.outputs.api == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    environment: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
+    env:
+      REF: ${{ inputs.ref || github.sha }}
+      PROFILE_MODE: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
+    steps:
+      - uses: actions/checkout@v7
+
+      # 이후 스텝은 env.SSH_HOST 처럼 쓴다.
+      - name: 배포 대상 설정 읽기
+        run: grep -vE '^\s*(#|$)' infra/${{ env.PROFILE_MODE }}.env >> "$GITHUB_ENV"
+
+      - name: SSH 키
+        run: install -m 600 /dev/stdin key <<< "${{ secrets.SSH_KEY }}"
+
+      # SNU 경계 장비가 학외 연결을 간헐적으로 끊는다(kex_exchange_identification: Connection reset).
+      # 두 스크립트 모두 같은 커밋으로 여러 번 돌려도 결과가 같아 재시도해도 된다.
+      - name: ssh 재시도 헬퍼
+        run: |
+          cat > ssh-retry.sh <<'EOS'
+          #!/usr/bin/env bash
+          # 사용: ssh-retry.sh <remote-command> < stdin-script
+          set -u
+          script=$(cat)
+          for attempt in 1 2 3 4 5; do
+            if timeout 15m ssh -i key -p "$SSH_PORT" -o StrictHostKeyChecking=accept-new -o ConnectTimeout=15 \
+                "$SSH_USER@$SSH_HOST" "$@" <<< "$script"; then
+              exit 0
+            fi
+            echo "::warning::SSH 실패 ($attempt/5) — 재시도"
+            sleep 15
+          done
+          exit 1
+          EOS
+          chmod +x ssh-retry.sh
+
+      - name: 백엔드·인프라 (host-deploy.sh)
+        if: needs.changes.outputs.api == 'true'
+        run: |
+          ./ssh-retry.sh \
+            GIT_SHA="$REF" PROFILE="$PROFILE" URL="$URL" \
+            CADDYFILE="$CADDYFILE" CERTIFICATE="${CERTIFICATE:-}" PRIVATE_KEY="${PRIVATE_KEY:-}" \
+            'bash -s' <<'REMOTE'
+          set -e
+          mkdir -p ~/proxy
+          W=~/build/cse.snu.ac.kr
+          [ -d "$W/.git" ] || git clone -q https://github.com/wafflestudio/cse.snu.ac.kr.git "$W"
+          cd "$W"
+          git fetch -q origin
+          # 추적 파일만 맞춘다. build/ 와 .gradle/ 은 남겨야 증분 컴파일이 산다.
+          git reset -q --hard "$GIT_SHA"
+          bash infra/ops/host-deploy.sh
+          REMOTE
+
+      - name: 웹 (deploy-web.sh)
+        if: needs.changes.outputs.web == 'true'
+        env:
+          KAKAO: ${{ secrets.KAKAO_MAP_KEY }} # 카맵키는 git 밖 — build-arg 로 주입
+        run: |
+          ./ssh-retry.sh "REF='$REF' BUILD_MODE='$PROFILE_MODE' KAKAO='$KAKAO' bash -s" < infra/ops/deploy-web.sh

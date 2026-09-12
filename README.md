@@ -45,12 +45,12 @@ flowchart TD
   dev -. "PR마다" .-> ci
   ci["ci.yml<br/>gate(typecheck·lint·knip·build) + api-test + E2E"]
 
-  dev ==>|"머지 push"| dstg["deploy-web.yml · deploy-api.yml<br/>→ staging 호스트 SSH 트리거"] ==> stg[["staging 자동 배포<br/>(호스트가 빌드)"]]
-  main ==>|"머지 push"| dprd["deploy-web.yml · deploy-api.yml<br/>→ prod 호스트 SSH 트리거"] ==> prd[["production 자동 배포<br/>(호스트가 빌드)"]]
+  dev ==>|"머지 push"| dstg["deploy.yml<br/>→ staging 호스트 SSH 트리거"] ==> stg[["staging 자동 배포<br/>(호스트가 빌드)"]]
+  main ==>|"머지 push"| dprd["deploy.yml<br/>→ prod 호스트 SSH 트리거"] ==> prd[["production 자동 배포<br/>(호스트가 빌드)"]]
 ```
 
 - **PR 게이트(`ci.yml`):** 타입/린트/knip/빌드 + E2E(같은 커밋의 `apps/api` 로 백엔드 기동). `apps/api` 가 바뀐 PR 은 Gradle 테스트도. 통과해야 머지.
-- **배포:** 전부 Actions. 빌드는 **호스트에서**(레지스트리 없음, "빌드==배포"). `develop` 머지 → staging, `main` 머지 → production. 프론트는 `deploy-web.yml`이 호스트에 `infra/ops/deploy-web.sh` 를 보내고, 백엔드는 `deploy-api.yml`이 `infra/ops/host-deploy.sh` 를 돌린다. 대상은 `infra/production.env`·`infra/staging.env`. 롤백은 `deploy-web.yml` 을 workflow_dispatch 로 이전 sha 지정 실행(백엔드는 `IMAGE_TAG`).
+- **배포:** 전부 Actions. 빌드는 **호스트에서**(레지스트리 없음, "빌드==배포"). `develop` 머지 → staging, `main` 머지 → production. 프론트는 `deploy.yml`이 호스트에 `infra/ops/deploy-web.sh` 를 보내고, 백엔드는 `deploy.yml`이 `infra/ops/host-deploy.sh` 를 돌린다. 대상은 `infra/production.env`·`infra/staging.env`. 롤백은 `deploy.yml` 을 workflow_dispatch 로 이전 sha 지정 실행(백엔드는 `IMAGE_TAG`).
 - **머지 전략:** `feature`→`develop` squash, `develop`→`main` merge commit. rebase 머지 없음.
 - **원칙:** CI는 로컬과 같은 스크립트(`pnpm e2e`·`pnpm lint` 등)를 호출만 한다.
 

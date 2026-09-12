@@ -9,11 +9,11 @@ compose.prod.yml      배포 override — host-deploy.sh 가 태그를 .env 에 
 compose.caddy.yml     엣지(Caddy). caddy/Caddyfile(prod)·Caddyfile.dev(staging)
 compose.ops.yml       백업 컨테이너
 monitoring/           Prometheus·Grafana(prod)
-ops/host-deploy.sh    호스트에서 jar·이미지 빌드 → compose up → Caddy reload. deploy-api.yml 이 부른다
+ops/host-deploy.sh    호스트에서 jar·이미지 빌드 → compose up → Caddy reload. deploy.yml 이 부른다
 ops/db-backup.sh 등   백업
 production.env        prod 배포 대상 — 호스트·프로파일·Caddyfile·인증서 경로 (main push)
 staging.env           staging 배포 대상 (develop push)
 Dockerfile.es         nori 플러그인을 넣은 Elasticsearch 이미지
 ```
 
-프론트 이미지는 아직 여기 스택에 없다 — `deploy-web.yml` 이 호스트로 보내는 `infra/ops/deploy-web.sh` 가 단독 컨테이너로 올린다. 스택에 합치는 것은 다음 작업.
+프론트 이미지는 아직 여기 스택에 없다 — `deploy.yml` 이 호스트로 보내는 `infra/ops/deploy-web.sh` 가 단독 컨테이너로 올린다. 스택에 합치는 것은 다음 작업.

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# 호스트에서 빌드하고 배포한다. deploy-api.yml 이 레포 클론을 배포할 커밋으로 맞춘 뒤
+# 호스트에서 빌드하고 배포한다. deploy.yml 이 레포 클론을 배포할 커밋으로 맞춘 뒤
 # 레포 루트에서 이 스크립트를 실행한다. 앱 소스는 apps/api, 스택 정의는 infra.
 set -euo pipefail
 
 : "${GIT_SHA:?GIT_SHA 가 필요하다}"
-# 아래는 infra/<production|staging>.env 에서 온다(deploy-api.yml). CADDYFILE 은 infra 기준 경로.
+# 아래는 infra/<production|staging>.env 에서 온다(deploy.yml). CADDYFILE 은 infra 기준 경로.
 : "${PROFILE:?PROFILE 이 필요하다}"
 : "${URL:?URL 이 필요하다}"
 : "${CADDYFILE:?CADDYFILE 이 필요하다}"
