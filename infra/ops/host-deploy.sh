@@ -4,7 +4,7 @@
 set -euo pipefail
 
 : "${GIT_SHA:?GIT_SHA 가 필요하다}"
-# 아래는 infra/deploy-targets/<브랜치>.env 에서 온다(deploy-api.yml). CADDYFILE 은 infra 기준 경로.
+# 아래는 infra/<production|staging>.env 에서 온다(deploy-api.yml). CADDYFILE 은 infra 기준 경로.
 : "${PROFILE:?PROFILE 이 필요하다}"
 : "${URL:?URL 이 필요하다}"
 : "${CADDYFILE:?CADDYFILE 이 필요하다}"
@@ -86,7 +86,7 @@ deploy_edge() {
     mkdir -p "$PROXY_DIR/caddy"
     cp "$INFRA/$CADDYFILE" "$PROXY_DIR/caddy/Caddyfile"
     cd "$PROXY_DIR"
-    # 인증서 경로는 비밀이 아니라 deploy-targets 에 있다. staging 은 아예 없다.
+    # 인증서 경로는 비밀이 아니라 infra/production.env 에 있다. staging 은 아예 없다.
     {
         echo "URL=$URL"
         [ -n "${CERTIFICATE:-}" ] && echo "CERTIFICATE=$CERTIFICATE"

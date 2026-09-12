@@ -13,7 +13,6 @@ on:
       - 'package.json'
       - 'infra/ops/deploy-web.sh'
       - '.dockerignore'
-      - 'infra/deploy-targets/**'
       - '.github/workflows/deploy-web.yml'
   workflow_dispatch:
     inputs:
@@ -34,7 +33,7 @@ jobs:
       - uses: actions/checkout@v7 # deploy-web.sh 와 deploy-targets 를 읽기 위해서만(빌드는 호스트가 함)
 
       - name: 배포 대상 설정 읽기
-        run: grep -vE '^\s*(#|$)' infra/deploy-targets/${{ github.ref_name }}.env >> "$GITHUB_ENV"
+        run: grep -vE '^\s*(#|$)' infra/${{ github.ref_name == 'main' && 'production' || 'staging' }}.env >> "$GITHUB_ENV"
 
       - name: 호스트에서 빌드·교체
         env:

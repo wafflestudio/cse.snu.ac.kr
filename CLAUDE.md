@@ -8,7 +8,7 @@
 apps/web/CLAUDE.md   프론트 — 라우팅·코드 컨벤션·디자인 시스템
 e2e/CLAUDE.md        E2E — 무엇을 테스트하고 무엇을 백엔드에 맡기나, 결정론, baseline
 apps/api/README.md   백엔드(Kotlin/Spring). apps/api/docs/ 에 설계 문서
-infra/README.md      compose 스택·Caddy·모니터링·운영 스크립트·배포 대상
+infra/README.md      compose 스택·Caddy·모니터링·운영 스크립트·배포 대상(env)
 ```
 
 # 레포 구조
@@ -38,7 +38,7 @@ pnpm 워크스페이스. 패키지는 `apps/web` 과 `e2e` 둘이고 `apps/api` 
    frontend SSR 이 백엔드를 부를 때도 이 엣지를 탄다(절대 URL). 컨테이너의 --add-host cse.snu.ac.kr:host-gateway 가 그 경로다.
 ```
 
-- 호스트: prod `147.46.92.120:9122`(학내), staging `168.107.16.249`(클라우드, 학외). 정본은 `infra/deploy-targets/`.
+- 호스트: prod `147.46.92.120:9122`(학내), staging `168.107.16.249`(클라우드, 학외). 정본은 `infra/production.env`·`infra/staging.env`.
 - **Caddyfile 정본은 `infra/caddy/`.** `host-deploy.sh` 가 매 배포마다 복사해 reload 한다 — 호스트에서 직접 고치면 다음 배포에 덮인다.
 - **압축은 앱이 한다(`hono/compress`).** 예전 상위 프록시가 하던 일인데 그 계층이 없어졌다. 빼면 HTML 이 무압축으로 나간다.
 - **⚠️ 프론트 컨테이너에 `--add-host cse.snu.ac.kr:host-gateway` 필수**(`deploy-web.sh` 가 붙인다). SSR 이 절대 URL 로 자기 도메인을 부르므로 컨테이너가 그 이름을 게이트웨이로 풀어야 한다. 빠지면 전 페이지 500 인데, 오래 뜬 컨테이너에선 안 드러나고 재생성 시점에 터진다.
@@ -51,7 +51,7 @@ pnpm 워크스페이스. 패키지는 `apps/web` 과 `e2e` 둘이고 `apps/api` 
 - **브랜치:** `main`=production · `develop`=staging · `feature/*`·`fix/*`→`develop` PR · `hotfix/*`→`main` PR(후 develop back-merge). 직접 push 금지 — ruleset 이 PR 필수 + `gate`·`e2e` 필수 체크 + force push 금지(admin 포함).
 - **머지:** `feature`→`develop` squash(기능당 1커밋). `develop`→`main` merge commit(squash 하면 long-lived 인 develop 과 히스토리가 갈라져 다음 승격 PR 이 깨진다). rebase 머지 없음, 머지 후 head 브랜치 자동 삭제.
 - **CI(`ci.yml`, PR):** `gate`(워크스페이스 전체 typecheck·lint·knip + web build, ~1분) · `api-test`(Gradle — `apps/api` 가 바뀐 PR 과 develop push 만, 필수 체크 아님) · `api-jar`(백엔드 소스 해시로 캐시한 bootJar) · `e2e`(로컬과 같은 `e2e/run.sh`, `JAR_STAGE=prebuilt`). E2E 는 항상 같은 커밋의 `apps/api` 로 돈다. **두 벌 관리 X — CI 는 로컬 스크립트·config 를 호출만 한다.** 필수 체크는 `gate`·`e2e` 만 — 경로 필터로 건너뛰는 잡을 필수로 두면 "대기 중"으로 머지가 막힌다. PR 이 만든 캐시는 다른 PR 이 못 읽어 develop push 에서도 `api-jar` 를 돌려 채운다.
-- **CD — 전부 Actions, 수동 배포 없음.** `develop` push → staging, `main` push → production. 웹은 `deploy-web.yml` 이 호스트에 `infra/ops/deploy-web.sh` 를 보내 `docker build -f apps/web/Dockerfile "<git-url>#<sha>"` 후 컨테이너 교체(빌드 성공 후에만 교체 → 무중단). 백엔드는 `deploy-api.yml` 이 호스트에서 레포를 클론해 `infra/ops/host-deploy.sh`(jar·이미지 빌드 → compose up --wait → Caddy reload → GIT_SHA 검증). 둘 다 `infra/deploy-targets/<브랜치>.env` 와 Environment(`production`·`staging`) 시크릿 `SSH_KEY`, 웹은 레포 시크릿 `KAKAO_MAP_KEY` 추가. 롤백은 `deploy-web.yml` workflow_dispatch 에 이전 sha(백엔드는 `IMAGE_TAG`). 사람이 누르는 관문이 필요하면 Environment `production` 에 required reviewer.
+- **CD — 전부 Actions, 수동 배포 없음.** `develop` push → staging, `main` push → production. 웹은 `deploy-web.yml` 이 호스트에 `infra/ops/deploy-web.sh` 를 보내 `docker build -f apps/web/Dockerfile "<git-url>#<sha>"` 후 컨테이너 교체(빌드 성공 후에만 교체 → 무중단). 백엔드는 `deploy-api.yml` 이 호스트에서 레포를 클론해 `infra/ops/host-deploy.sh`(jar·이미지 빌드 → compose up --wait → Caddy reload → GIT_SHA 검증). 둘 다 `infra/production.env`·`infra/staging.env` 와 Environment(`production`·`staging`) 시크릿 `SSH_KEY`, 웹은 레포 시크릿 `KAKAO_MAP_KEY` 추가. 롤백은 `deploy-web.yml` workflow_dispatch 에 이전 sha(백엔드는 `IMAGE_TAG`). 사람이 누르는 관문이 필요하면 Environment `production` 에 required reviewer.
 - **왜 호스트 빌드(학외 CI 아님):** 레지스트리 없이 빌드==배포이고, 프리렌더를 다시 켜면 빌드가 prod API 를 페이지 수만큼 부르는데 학외에선 SYN drop 이 누적돼 플레이키하다. 서빙 호스트에 빌드 부하가 생기지만 격리·무중단 swap 이라 감내.
 - **GitHub API 함정:** 브랜치 보호는 `repos/:owner/:repo/rules/branches/:branch`(ruleset) 로 조회한다 — 구식 `branches/:branch/protection` 은 ruleset 만 쓰는 레포에서 404 다. "설정이 없다"는 결론을 404 로 내리지 말 것.
 

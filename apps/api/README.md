@@ -10,7 +10,7 @@ pnpm api:up      # 레포 루트에서. infra/compose.yml + compose.local.yml
 
 ## CI/CD
 
-`develop` → staging, `main` → production. 워크플로는 레포 루트 `.github/workflows/`(`ci.yml` 의 `api-test`·`api-jar`, `deploy-api.yml`), 배포 스크립트·대상은 `infra/ops/host-deploy.sh`·`infra/deploy-targets/`.
+`develop` → staging, `main` → production. 워크플로는 레포 루트 `.github/workflows/`(`ci.yml` 의 `api-test`·`api-jar`, `deploy-api.yml`), 배포 스크립트·대상은 `infra/ops/host-deploy.sh`·`infra/production.env`·`infra/staging.env`.
 
 GitHub 시크릿은 Environment(`production`·`staging`)의 `SSH_KEY` 하나이며 나머지는 호스트에 둡니다.
 

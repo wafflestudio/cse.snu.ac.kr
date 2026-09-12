@@ -25,7 +25,7 @@ jobs:
 
       # 이후 스텝은 env.SSH_HOST 처럼 쓴다.
       - name: 배포 대상 설정 읽기
-        run: grep -vE '^\s*(#|$)' infra/deploy-targets/${{ github.ref_name }}.env >> "$GITHUB_ENV"
+        run: grep -vE '^\s*(#|$)' infra/${{ github.ref_name == 'main' && 'production' || 'staging' }}.env >> "$GITHUB_ENV"
 
       - name: 호스트에서 빌드·배포
         env:

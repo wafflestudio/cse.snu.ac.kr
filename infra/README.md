@@ -11,7 +11,8 @@ compose.ops.yml       백업 컨테이너
 monitoring/           Prometheus·Grafana(prod)
 ops/host-deploy.sh    호스트에서 jar·이미지 빌드 → compose up → Caddy reload. deploy-api.yml 이 부른다
 ops/db-backup.sh 등   백업
-deploy-targets/       브랜치별 호스트·프로파일(develop→staging, main→production)
+production.env        prod 배포 대상 — 호스트·프로파일·Caddyfile·인증서 경로 (main push)
+staging.env           staging 배포 대상 (develop push)
 Dockerfile.es         nori 플러그인을 넣은 Elasticsearch 이미지
 ```
 
