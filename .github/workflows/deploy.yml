@@ -17,12 +17,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     environment: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
+    env:
+      TARGET: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
     steps:
       - uses: actions/checkout@v7 # infra/*.env 를 읽기 위해서만(빌드는 호스트가 함)
 
-      # 이후 스텝은 env.SSH_HOST 처럼 쓴다.
-      - name: 배포 대상 설정 읽기
-        run: grep -vE '^\s*(#|$)' infra/${{ github.ref_name == 'main' && 'production' || 'staging' }}.env >> "$GITHUB_ENV"
+      # 접속 정보만 여기서 읽는다. 나머지 설정은 호스트의 host-deploy.sh 가 클론 안의 같은 파일에서 읽는다.
+      - name: 배포 대상 접속 정보
+        run: grep -E '^SSH_' infra/${{ env.TARGET }}.env >> "$GITHUB_ENV"
 
       - name: 호스트에서 빌드·배포
         env:
@@ -48,9 +50,7 @@ jobs:
           for attempt in 1 2 3 4 5; do
             if timeout 15m ssh -i key -p "$SSH_PORT" -o StrictHostKeyChecking=accept-new -o ConnectTimeout=15 \
                 "$SSH_USER@$SSH_HOST" \
-                GIT_SHA="$GIT_SHA" PROFILE="$PROFILE" URL="$URL" WEB_MODE="$WEB_MODE" KAKAO="$KAKAO" \
-                CADDYFILE="$CADDYFILE" CERTIFICATE="${CERTIFICATE:-}" PRIVATE_KEY="${PRIVATE_KEY:-}" \
-                'bash -s' < remote.sh; then
+                GIT_SHA="$GIT_SHA" TARGET="$TARGET" KAKAO="$KAKAO" 'bash -s' < remote.sh; then
               exit 0
             fi
             echo "::warning::SSH 실패 ($attempt/5) — 재시도"
