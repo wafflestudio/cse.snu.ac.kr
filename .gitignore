@@ -26,3 +26,7 @@ blob-report/
 
 # Claude Code 로컬 작업 상태
 .claude/
+
+# Lighthouse 측정 산출물 (pnpm perf)
+perf/.output/
+perf/.lighthouseci/

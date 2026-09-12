@@ -3,6 +3,8 @@ const PHASE = import.meta.env.MODE;
 export const IS_DEV = import.meta.env.DEV;
 export const IS_STAGING = PHASE === 'staging';
 export const IS_PROD = PHASE === 'production';
+// 조회 통계 스크립트를 실을지. vite.config 가 백엔드 base URL 과 같은 입력으로 정해 주입한다.
+export const STATS_ENABLED = __STATS_ENABLED__;
 
 // 바라볼 백엔드는 vite.config가 mode로 정해 __API_BASE_URL__로 주입한다(단일 출처).
 // 브라우저는 same-origin `/api`(dev=vite 프록시, prod=동일 도메인, E2E=server.ts 프록시)

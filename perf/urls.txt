@@ -1,0 +1,16 @@
+/ko
+/ko/community/notice
+/ko/community/notice/25577
+/ko/community/notice?keyword=장학
+/ko/community/news
+/ko/community/news/1216
+/ko/community/seminar
+/ko/community/seminar/1130
+/ko/people/faculty
+/ko/people/faculty/1
+/ko/research/labs
+/ko/research/labs/1
+/ko/academics/undergraduate/courses
+/ko/admissions/graduate/regular-admission
+/ko/about/student-clubs
+/en
