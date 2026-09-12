@@ -19,7 +19,7 @@ jobs:
   # Gradle 을 안 돈다. 캐시는 잡이 성공했을 때만 저장되므로 히트는 "이 내용으로 테스트가 통과했다"는 뜻.
   api-test:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10 # 실측 3분
     permissions:
       contents: read
       checks: write
@@ -57,7 +57,7 @@ jobs:
     if: github.event_name == 'pull_request'
     needs: api-test
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 15 # 실측 7분(설치·정적 검사 1분 + E2E 6분)
     steps:
       - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v6 # packageManager 필드에서 버전 읽음

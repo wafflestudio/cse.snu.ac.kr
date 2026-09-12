@@ -43,7 +43,7 @@ jobs:
     needs: changes
     if: needs.changes.outputs.web == 'true' || needs.changes.outputs.api == 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 30 # 백엔드 호스트 빌드 5분 + 웹 3분, SSH 재시도 여유
     environment: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
     env:
       REF: ${{ github.sha }}
