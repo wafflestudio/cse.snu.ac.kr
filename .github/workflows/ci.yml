@@ -62,8 +62,9 @@ jobs:
   # JS 워크스페이스 정적 검사 뒤 E2E. E2E 는 로컬과 같은 e2e/run.sh 를 핀된 컨테이너로 실행하고,
   # 백엔드 이미지는 캐시된 jar 로 만든다(JAR_STAGE=prebuilt → compose 빌드에서 Gradle 안 돈다).
   web-test:
-    # api-test 가 건너뛰어졌어도(jar 캐시 히트) 돈다.
-    if: github.event_name == 'pull_request' && needs.api-test.result != 'failure' && needs.api-test.result != 'cancelled'
+    # api-test 가 건너뛰어졌어도(jar 캐시 히트) 돈다. 상태 함수(!cancelled())가 없으면 GitHub 이
+    # success() 를 암묵적으로 붙여 의존 잡이 skip 이면 이 잡도 skip 된다.
+    if: ${{ !cancelled() && github.event_name == 'pull_request' && needs.api-test.result != 'failure' }}
     needs: [api-jar, api-test]
     runs-on: ubuntu-latest
     timeout-minutes: 15 # 실측 7분(설치·정적 검사 1분 + E2E 6분)
