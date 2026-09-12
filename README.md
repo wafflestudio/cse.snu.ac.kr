@@ -43,13 +43,13 @@ flowchart TD
 
   feat -. "PR마다" .-> ci
   dev -. "PR마다" .-> ci
-  ci["ci.yml<br/>api-test(Gradle, 내용 해시 캐시) → web-test(typecheck·lint·knip + E2E)"]
+  ci["ci.yml<br/>api-jar(캐시 조회) → api-test(없을 때만 Gradle) → web-test(typecheck·lint·knip + E2E)"]
 
   dev ==>|"머지 push"| dstg["deploy.yml<br/>→ staging 호스트 SSH 트리거"] ==> stg[["staging 자동 배포<br/>(호스트가 빌드)"]]
   main ==>|"머지 push"| dprd["deploy.yml<br/>→ prod 호스트 SSH 트리거"] ==> prd[["production 자동 배포<br/>(호스트가 빌드)"]]
 ```
 
-- **PR 게이트(`ci.yml`):** `api-test`(백엔드 테스트 + bootJar, 백엔드가 그대로면 캐시로 건너뜀) → `web-test`(타입/린트/knip + E2E, 그 jar 로 백엔드 기동). 둘이 통과해야 머지.
+- **PR 게이트(`ci.yml`):** `api-jar`(이 백엔드로 테스트 통과한 jar 가 캐시에 있나) → `api-test`(없을 때만 테스트 + bootJar) → `web-test`(타입/린트/knip + E2E, 그 jar 로 백엔드 기동). `web-test` 가 통과해야 머지.
 - **배포:** 전부 Actions. 빌드는 **호스트에서**(레지스트리 없음, "빌드==배포"). `develop` 머지 → staging, `main` 머지 → production. 프론트는 `deploy.yml`이 호스트에 `infra/ops/deploy-web.sh` 를 보내고, 백엔드는 `deploy.yml`이 `infra/ops/host-deploy.sh` 를 돌린다. 대상은 `infra/production.env`·`infra/staging.env`. 롤백은 revert 커밋.
 - **머지 전략:** `feature`→`develop` squash, `develop`→`main` merge commit. rebase 머지 없음.
 - **원칙:** CI는 로컬과 같은 스크립트(`pnpm e2e`·`pnpm lint` 등)를 호출만 한다.

@@ -1,4 +1,4 @@
-# PR 게이트. develop/main으로 가는 PR마다 실행 → 그린이어야 머지(branch protection: web-test·api-test).
+# PR 게이트. develop/main으로 가는 PR마다 실행 → 그린이어야 머지(branch protection: web-test).
 # CI는 로컬 스크립트를 호출만 한다(두 벌 관리 X).
 name: CI
 
@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [develop, main]
   # develop push 는 캐시를 채우기 위해 돈다. PR 브랜치가 만든 캐시는 다른 PR 이 못 읽고
-  # 기본 브랜치가 만든 캐시만 모두가 읽는다(GitHub 캐시 격리 규칙).
+  # 기본 브랜치가 만든 캐시만 모두가 읽는다(GitHub 캐시 격리 규칙). develop 에선 api-jar·api-test 만 돈다.
   push:
     branches: [develop]
 
@@ -15,47 +15,56 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # 백엔드 테스트 + E2E 가 쓸 bootJar. 캐시 키가 백엔드 소스의 내용 해시라 백엔드가 그대로면
-  # Gradle 을 안 돈다. 캐시는 잡이 성공했을 때만 저장되므로 히트는 "이 내용으로 테스트가 통과했다"는 뜻.
+  # 이 백엔드 내용으로 테스트를 통과한 jar 가 이미 있나. 키는 백엔드 소스의 내용 해시.
+  # 캐시는 api-test 가 성공했을 때만 저장되므로 히트는 "이 내용으로 테스트가 통과했다"는 뜻이다.
+  api-jar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      hit: ${{ steps.jar.outputs.cache-hit }}
+      key: ${{ steps.jar.outputs.cache-primary-key }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/cache/restore@v4
+        id: jar
+        with:
+          path: apps/api/build/libs
+          key: api-jar-${{ hashFiles('apps/api/src/**', 'apps/api/build.gradle.kts', 'apps/api/settings.gradle.kts', 'apps/api/gradle/**') }}
+          lookup-only: true
+
+  # 백엔드 테스트 + bootJar. jar 가 없을 때만 돈다.
   api-test:
+    needs: api-jar
+    if: needs.api-jar.outputs.hit != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10 # 실측 3분
     permissions:
       contents: read
       checks: write
       pull-requests: write
-    outputs:
-      jar-key: ${{ steps.jar.outputs.cache-primary-key }}
     defaults:
       run:
         working-directory: apps/api
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/cache@v4
-        id: jar
-        with:
-          path: apps/api/build/libs
-          key: api-jar-${{ hashFiles('apps/api/src/**', 'apps/api/build.gradle.kts', 'apps/api/settings.gradle.kts', 'apps/api/gradle/**') }}
-      - if: steps.jar.outputs.cache-hit != 'true'
-        uses: actions/setup-java@v6
-        with:
-          java-version: '21'
-          distribution: temurin
-      - if: steps.jar.outputs.cache-hit != 'true'
-        uses: gradle/actions/setup-gradle@v6
+      - uses: gradle/actions/setup-gradle@v6
       # -x jar: plain jar 를 안 만든다 — bootJar 와 나란히 있으면 Dockerfile 의 COPY *-SNAPSHOT.jar 가 둘을 잡아 실패한다.
-      - if: steps.jar.outputs.cache-hit != 'true'
-        run: ./gradlew build -x jar
-      - if: always() && steps.jar.outputs.cache-hit != 'true'
+      - run: JAVA_HOME=$JAVA_HOME_21_X64 ./gradlew build -x jar
+      - if: always()
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
           files: apps/api/build/test-results/**/*.xml
+      - uses: actions/cache/save@v4
+        with:
+          path: apps/api/build/libs
+          key: ${{ needs.api-jar.outputs.key }}
 
   # JS 워크스페이스 정적 검사 뒤 E2E. E2E 는 로컬과 같은 e2e/run.sh 를 핀된 컨테이너로 실행하고,
-  # 백엔드 이미지는 api-test 가 만든 jar 로 만든다(JAR_STAGE=prebuilt → compose 빌드에서 Gradle 안 돈다).
+  # 백엔드 이미지는 캐시된 jar 로 만든다(JAR_STAGE=prebuilt → compose 빌드에서 Gradle 안 돈다).
   web-test:
-    if: github.event_name == 'pull_request'
-    needs: api-test
+    # api-test 가 건너뛰어졌어도(jar 캐시 히트) 돈다.
+    if: github.event_name == 'pull_request' && needs.api-test.result != 'failure' && needs.api-test.result != 'cancelled'
+    needs: [api-jar, api-test]
     runs-on: ubuntu-latest
     timeout-minutes: 15 # 실측 7분(설치·정적 검사 1분 + E2E 6분)
     steps:
@@ -72,7 +81,7 @@ jobs:
       - uses: actions/cache/restore@v4
         with:
           path: apps/api/build/libs
-          key: ${{ needs.api-test.outputs.jar-key }}
+          key: ${{ needs.api-jar.outputs.key }}
           fail-on-cache-miss: true
       - name: E2E (e2e/run.sh)
         env:
