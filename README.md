@@ -68,28 +68,6 @@ VITE_API_BASE_URL=http://localhost:8080 pnpm web:dev   # 프론트가 로컬 백
 | `pnpm gen:api` | 백엔드 스펙에서 프론트 API 타입을 생성합니다 |
 | `pnpm typecheck` `lint` `knip` | 정적 검사 |
 
-## 프론트 코드 구조
-
-```
-apps/web/
-  server.ts          Hono 진입점 — 빌드 산출물 서빙 + (로컬) /api 프록시
-  src/
-    routes/          URL 을 미러링하는 file-based 라우팅 (→ routeTree.gen.ts 자동 생성)
-      $locale/         /ko·/en 프리픽스가 붙는 페이지 전부
-      admin/  [.]internal/  img.ts  sitemap[.]xml.ts    로케일 없는 라우트
-      __root.tsx       문서 셸 · 로케일 리다이렉트 · 세션 역할
-    components/      여러 라우트가 공유하는 것만
-      ui/              제어 프리미티브 (value/onChange)
-      form/            react-hook-form 어댑터 (name + useFormContext)
-      layout/          앱 셸 — Header/Footer/Nav/PageLayout/NotFound
-      feature/         도메인 위젯 (auth·category·content·SearchBox·selection)
-    hooks/  utils/  serverFns/  types/  constants/
-```
-
-라우트별 파일은 그 라우트 폴더에 두고 이름을 `-` 로 시작합니다(`-components/`·`-api.ts`). TanStack Router 가 `-` 프리픽스를 라우트 생성에서 제외합니다. 여러 라우트에서 쓰게 되면 `src/components/` 로 올립니다.
-
-모든 페이지 URL 은 `/ko`·`/en` 으로 시작합니다. 링크는 `localizedPath()` 로 만듭니다.
-
 ## 브랜치
 
 작업은 별도 브랜치에서 하고 `develop` 으로 PR을 보냅니다. 급한 수정은 `hotfix/*` 에서 `main` 으로 보내고 `develop` 에 되가져옵니다. 두 브랜치 모두 직접 push 는 막혀 있습니다.
