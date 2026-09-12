@@ -1,6 +1,5 @@
 # PR 게이트. develop/main으로 가는 PR마다 실행 → 그린이어야 머지(branch protection: web-test).
-# 핵심 원칙: CI는 로컬 스크립트를 "호출"만 한다(두 벌 관리 X). 같은 biome.json·tsconfig·
-# e2e/run.sh·gradlew를 그대로 쓴다. 
+# CI는 로컬 스크립트를 호출만 한다(두 벌 관리 X).
 name: CI
 
 on:
@@ -30,7 +29,6 @@ jobs:
               - 'apps/api/**'
               - '.github/workflows/ci.yml'
 
-  # 백엔드 단위 테스트 
   api-test:
     needs: changes
     if: needs.changes.outputs.api == 'true' || github.event_name == 'push'
@@ -71,9 +69,6 @@ jobs:
         working-directory: apps/api
         run: JAVA_HOME=$JAVA_HOME_21_X64 ./gradlew --no-daemon bootJar -x test
 
-  # 프론트 검사 한 잡: JS 워크스페이스(web·e2e) typecheck·lint·knip 뒤에 E2E(비주얼 회귀 포함).
-  # lint 는 lint-staged 가 커밋마다 이미 강제하므로 여기서는 백스톱이다.
-  # E2E 는 로컬과 "동일한" e2e/run.sh 를 핀된 컨테이너로 실행한다 — 호스트엔 JDK 불필요.
   # 백엔드 이미지는 api-jar 가 캐시한 jar 로 만든다(JAR_STAGE=prebuilt → compose 빌드에서 Gradle 안 돈다).
   web-test:
     if: github.event_name == 'pull_request'
