@@ -1,4 +1,4 @@
-![](docs/banner.svg)
+<p align="center"><img src="docs/banner.svg" width="560" alt=""></p>
 
 서울대학교 컴퓨터공학부 홈페이지의 소스코드입니다.
 
