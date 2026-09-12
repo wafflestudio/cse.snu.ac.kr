@@ -3,22 +3,12 @@
 #   백엔드·인프라: 호스트가 이 레포를 클론해 infra/ops/host-deploy.sh (jar·이미지 → compose up → Caddy reload)
 #   웹:           infra/ops/deploy-web.sh 를 stdin 으로 보내 git URL 로 docker build → 컨테이너 교체
 # 백엔드가 먼저, 웹이 다음. 백엔드 배포가 실패하면 웹은 나가지 않는다.
-# 롤백: workflow_dispatch 로 대상과 이전 커밋 sha 를 지정해 실행한다.
+# 롤백은 revert 커밋을 올린다 — 같은 길로 나간다.
 name: Deploy
 
 on:
   push:
     branches: [main, develop]
-  workflow_dispatch:
-    inputs:
-      target:
-        description: 무엇을 배포하나
-        type: choice
-        options: [web, api, both]
-        default: both
-      ref:
-        description: 배포할 커밋 sha (비우면 이 브랜치의 HEAD). 롤백용.
-        required: false
 
 concurrency:
   group: deploy-${{ github.ref_name }}
@@ -28,12 +18,11 @@ jobs:
   changes:
     runs-on: ubuntu-latest
     outputs:
-      web: ${{ github.event_name == 'workflow_dispatch' && contains(fromJSON('["web","both"]'), inputs.target) || steps.filter.outputs.web }}
-      api: ${{ github.event_name == 'workflow_dispatch' && contains(fromJSON('["api","both"]'), inputs.target) || steps.filter.outputs.api }}
+      web: ${{ steps.filter.outputs.web }}
+      api: ${{ steps.filter.outputs.api }}
     steps:
       - uses: actions/checkout@v7
       - uses: dorny/paths-filter@v3
-        if: github.event_name == 'push'
         id: filter
         with:
           filters: |
@@ -57,7 +46,7 @@ jobs:
     timeout-minutes: 40
     environment: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
     env:
-      REF: ${{ inputs.ref || github.sha }}
+      REF: ${{ github.sha }}
       PROFILE_MODE: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
     steps:
       - uses: actions/checkout@v7

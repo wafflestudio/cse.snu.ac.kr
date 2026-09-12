@@ -1,6 +1,6 @@
 #!/bin/bash
 # 호스트에서 실행(deploy.yml 이 SSH 로 보낸다): git URL로 docker build → 컨테이너 교체. 레지스트리 없음("빌드 == 배포").
-# docker가 소스를 클론하므로(컨텍스트 = git URL#ref) 호스트엔 docker만 있으면 된다. 롤백은 이전 sha로 재실행(workflow_dispatch).
+# docker가 소스를 클론하므로(컨텍스트 = git URL#ref) 호스트엔 docker만 있으면 된다. 롤백은 revert 커밋(또는 호스트에서 REF 에 옛 sha 를 주고 직접 실행).
 # 필요 env: REF · BUILD_MODE(production|staging) · KAKAO(카맵키, build-arg)
 # 선택   : CONTAINER(frontend) · PORT(3000) · METRICS_PORT(9464) · SITE_HOST(cse.snu.ac.kr)
 set -e
