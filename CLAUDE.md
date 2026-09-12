@@ -1,13 +1,13 @@
 # cse.snu.ac.kr 작업 가이드 (에이전트용)
 
-코드만 봐선 알 수 없는 것 — **결정의 이유·컨벤션·재발 함정**만 적는다. 구현 상세(파일 목록·시그니처·명령어)는 코드와 `package.json`·config 에서 확인한다. 히스토리는 git log 의 몫이라 적지 않는다(과거가 지금 코드 모양을 설명할 때만 예외). 사람용 온보딩은 각 디렉터리의 `README.md`.
+코드만 봐선 알 수 없는 것 — **결정의 이유·컨벤션·재발 함정**만 적는다. 구현 상세(파일 목록·시그니처·명령어)는 코드와 `package.json`·config 에서 확인한다. 히스토리는 git log 의 몫이라 적지 않는다(과거가 지금 코드 모양을 설명할 때만 예외). 사람용 온보딩은 루트 `README.md`.
 
 이 파일은 레포 전체에 걸친 것만 담는다. 영역별 가이드는 그 디렉터리에 있다.
 
 ```
 apps/web/CLAUDE.md   프론트 — 라우팅·코드 컨벤션·디자인 시스템
 e2e/CLAUDE.md        E2E — 무엇을 테스트하고 무엇을 백엔드에 맡기나, 결정론, baseline
-apps/api/README.md   백엔드(Kotlin/Spring). apps/api/docs/ 에 설계 문서
+apps/api/docs/       백엔드 설계 문서·런북
 infra/README.md      compose 스택·Caddy·모니터링·운영 스크립트·배포 대상(env)
 ```
 
