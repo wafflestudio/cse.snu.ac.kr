@@ -24,7 +24,7 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_FILE_BASE}/${LOG_FILE_NAME}_%d{yyyy-MM-dd}.log</fileNamePattern>
             <cleanHistoryOnStart>false</cleanHistoryOnStart>
-            <maxHistory>30</maxHistory>
+            <maxHistory>14</maxHistory>
         </rollingPolicy>
     </appender>
 

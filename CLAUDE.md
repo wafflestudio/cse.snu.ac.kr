@@ -1,13 +1,13 @@
 # cse.snu.ac.kr 작업 가이드 (에이전트용)
 
-코드만 봐선 알 수 없는 것 — **결정의 이유·컨벤션·재발 함정**만 적는다. 구현 상세(파일 목록·시그니처·명령어)는 코드와 `package.json`·config 에서 확인한다. 히스토리는 git log 의 몫이라 적지 않는다(과거가 지금 코드 모양을 설명할 때만 예외). 사람용 온보딩은 각 디렉터리의 `README.md`.
+코드만 봐선 알 수 없는 것 — **결정의 이유·컨벤션·재발 함정**만 적는다. 구현 상세(파일 목록·시그니처·명령어)는 코드와 `package.json`·config 에서 확인한다. 히스토리는 git log 의 몫이라 적지 않는다(과거가 지금 코드 모양을 설명할 때만 예외). 사람용 온보딩은 루트 `README.md`.
 
 이 파일은 레포 전체에 걸친 것만 담는다. 영역별 가이드는 그 디렉터리에 있다.
 
 ```
 apps/web/CLAUDE.md   프론트 — 라우팅·코드 컨벤션·디자인 시스템
 e2e/CLAUDE.md        E2E — 무엇을 테스트하고 무엇을 백엔드에 맡기나, 결정론, baseline
-apps/api/README.md   백엔드(Kotlin/Spring). apps/api/docs/ 에 설계 문서
+apps/api/docs/       백엔드 설계 문서·런북
 infra/README.md      compose 스택·Caddy·모니터링·운영 스크립트·배포 대상(env)
 ```
 
@@ -50,7 +50,7 @@ pnpm 워크스페이스. 패키지는 `apps/web` 과 `e2e` 둘이고 `apps/api` 
 # 브랜치 · CI/CD
 
 - **브랜치:** `main`=production · `develop`=staging · `feature/*`·`fix/*`→`develop` PR · `hotfix/*`→`main` PR(후 develop back-merge). 직접 push 금지 — ruleset 이 PR 필수 + `web-test` 필수 체크 + force push 금지(admin 포함).
-- **머지:** `feature`→`develop` squash(기능당 1커밋). `develop`→`main` merge commit(squash 하면 long-lived 인 develop 과 히스토리가 갈라져 다음 승격 PR 이 깨진다). rebase 머지 없음, 머지 후 head 브랜치 자동 삭제.
+- **머지:** `feature`→`develop` squash(기능당 1커밋). `develop`→`main` merge commit(squash 하면 long-lived 인 develop 과 히스토리가 갈라져 다음 승격 PR 이 깨진다). rebase 머지 없음, 머지 후 head 브랜치 자동 삭제. **⚠️ ruleset 에 bypass actor 를 두지 말 것** — 자동 삭제가 `develop`→`main` 승격 머지에서 `develop` 을 지우는데, 그걸 막는 게 ruleset 의 deletion 규칙이다. Admin bypass 를 넣었더니 삭제가 통과해 develop 이 사라졌다(2026-09-12). `gh pr merge --admin` 이 안 되는 건 의도된 결과다.
 - **CI(`ci.yml`, PR):** `api-jar`(백엔드 소스의 내용 해시로 "테스트 통과한 jar" 캐시를 조회만) → `api-test`(캐시가 없을 때만 `gradlew build -x jar` 로 테스트 + bootJar, 성공 시 캐시 저장) → `web-test`(그 jar 를 `JAR_STAGE=prebuilt` 로 받아 JS 워크스페이스 typecheck·lint·knip 뒤 로컬과 같은 `e2e/run.sh`). E2E 는 항상 같은 커밋의 `apps/api` 로 돈다. **두 벌 관리 X — CI 는 로컬 스크립트·config 를 호출만 한다.** 필수 체크는 `web-test` 하나 — `api-test` 는 캐시 히트면 건너뛰어지는데, 건너뛴 잡을 필수로 두면 "대기 중"으로 머지가 막힌다. PR 이 만든 캐시는 다른 PR 이 못 읽어 develop push 에서도 `api-jar`·`api-test` 가 돌아 캐시를 채운다.
 - **CD(`deploy.yml`) — 전부 Actions, 수동 배포 없음.** `develop` push → staging, `main` push → production. 잡 하나: 호스트에 SSH 로 들어가 이 레포를 `~/build/cse.snu.ac.kr` 에 클론(갱신)하고 `infra/ops/host-deploy.sh` 를 돌린다 — Gradle bootJar → `csereal-api:<sha>`·`csereal-web:<sha>` 이미지 빌드 → `compose up -d --wait --remove-orphans` → Caddy reload → 두 컨테이너의 `GIT_SHA` 가 의도한 커밋인지 검증. 대상은 `infra/production.env`·`infra/staging.env`, 시크릿은 Environment(`production`·`staging`)의 `SSH_KEY` 와 레포의 `KAKAO_MAP_KEY`(웹 build-arg). 이미지는 최근 5개를 남겨 `.env` 의 `IMAGE_TAG` 로 되돌릴 수 있고, 정식 롤백은 revert 커밋이다. 사람이 누르는 관문이 필요하면 Environment `production` 에 required reviewer.
 - **왜 호스트 빌드(학외 CI 아님):** 레지스트리 없이 빌드==배포이고, 호스트가 클론을 들고 있어 Gradle 증분 컴파일과 docker 레이어 캐시가 살며, 프리렌더를 다시 켜면 빌드가 prod API 를 페이지 수만큼 부르는데 학외에선 SYN drop 이 누적돼 플레이키하다. 서빙 호스트에 빌드 부하가 생기지만 격리·무중단 swap 이라 감내.

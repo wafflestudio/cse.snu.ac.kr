@@ -116,13 +116,18 @@ deploy_edge() {
     docker exec csereal_caddy caddy reload --config /etc/caddy/Caddyfile
 }
 
-# 이미지가 커밋마다 쌓인다. 최근 5개는 남겨 IMAGE_TAG 로 롤백할 수 있게.
+# 이미지가 커밋마다 쌓인다. 최근 3개는 남겨 IMAGE_TAG 로 롤백할 수 있게.
+# 이 VM 은 씬 프로비저닝이라 게스트가 쓴 블록이 곧 하이퍼바이저 디스크 사용량이다 — 2026-09-12 에
+# 하이퍼바이저 디스크가 가득 차 VM 이 굳었다. 빌드 캐시·고아 볼륨도 배포마다 걷어낸다.
 prune_old_images() {
     local repo
     for repo in csereal-api csereal-web; do
-        docker images "$repo" --format '{{.Tag}}' | tail -n +6 |
+        docker images "$repo" --format '{{.Tag}}' | tail -n +4 |
             xargs -r -I{} docker rmi "$repo:{}" >/dev/null 2>&1 || true
     done
+    # 빌드 캐시는 2GB 까지만(pnpm 캐시 마운트가 여기 산다). 이름 없는 dangling 볼륨은 지운다(Gradle 볼륨은 이름이 있다).
+    docker builder prune -f --keep-storage 2GB >/dev/null 2>&1 || true
+    docker volume ls -qf dangling=true | grep -vE '^[a-z]' | xargs -r docker volume rm >/dev/null 2>&1 || true
 }
 
 build_jar
