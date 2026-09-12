@@ -3,7 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 // E2E는 로컬 docker 백엔드를 띄워 검증합니다.
 
 const APP_URL = 'http://localhost:3000';
-const BACKEND_URL = process.env.E2E_BACKEND_URL ?? 'http://localhost:8080';
+const API_URL = process.env.E2E_API_URL ?? 'http://localhost:8080';
 
 export default defineConfig({
   testDir: './tests',
@@ -67,7 +67,7 @@ export default defineConfig({
 
   webServer: {
     // 앱은 apps/web 패키지에서 빌드·기동한다(-C: 그 디렉터리에서 스크립트 실행).
-    command: `pnpm -C ../apps/web build:local && PORT=3000 API_PROXY_TARGET=${BACKEND_URL} pnpm -C ../apps/web start`,
+    command: `pnpm -C ../apps/web build:local && PORT=3000 API_PROXY_TARGET=${API_URL} pnpm -C ../apps/web start`,
     url: `${APP_URL}/research/labs`,
     // 매 런 새 컨테이너에서 새로 빌드(현재 소스 검증). 컨테이너 안 :3000이라 충돌 없음.
     reuseExistingServer: false,

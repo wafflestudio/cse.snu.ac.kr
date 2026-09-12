@@ -22,6 +22,9 @@ RUN if [ "$BUILD_MODE" = "staging" ]; then pnpm --filter web build:staging; else
 
 FROM base
 ENV TZ=Asia/Seoul
+# host-deploy.sh 가 의도한 커밋이 떴는지 이 값으로 확인한다.
+ARG GIT_SHA=unknown
+ENV GIT_SHA=${GIT_SHA}
 COPY package.json pnpm-workspace.yaml ./
 COPY apps/web /app/apps/web
 COPY --from=prod-deps /app/node_modules /app/node_modules

@@ -1,13 +1,13 @@
 /**
  * 시드 공용 유틸. 도메인별 시드 모듈(seed/<domain>.ts)이 공유합니다.
  */
-const BACKEND_URL = process.env.E2E_BACKEND_URL ?? 'http://localhost:8080';
+const API_URL = process.env.E2E_API_URL ?? 'http://localhost:8080';
 
 /** STAFF(또는 지정 역할) 세션 쿠키(JSESSIONID)를 발급받습니다. */
 export async function mockLoginCookie(...roles: string[]): Promise<string> {
   const selected = roles.length > 0 ? roles : ['ROLE_STAFF'];
   const params = selected.map((r) => `role=${r}`).join('&');
-  const res = await fetch(`${BACKEND_URL}/api/v2/mock-login?${params}`);
+  const res = await fetch(`${API_URL}/api/v2/mock-login?${params}`);
   if (!res.ok) throw new Error(`mock-login 실패: ${res.status}`);
   const setCookie = res.headers.getSetCookie?.().join('; ') ?? '';
   const jsessionid = setCookie.match(/JSESSIONID=[^;]+/)?.[0];
@@ -30,7 +30,7 @@ export async function postMultipart<T>(
     'request',
     new Blob([JSON.stringify(request)], { type: 'application/json' }),
   );
-  const res = await fetch(`${BACKEND_URL}${path}`, {
+  const res = await fetch(`${API_URL}${path}`, {
     method,
     headers: { cookie },
     body: form,
@@ -53,7 +53,7 @@ export async function postJson<T>(
   body: unknown,
   method: 'POST' | 'PATCH' | 'PUT' = 'POST',
 ): Promise<T> {
-  const res = await fetch(`${BACKEND_URL}${path}`, {
+  const res = await fetch(`${API_URL}${path}`, {
     method,
     headers: { cookie, 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
@@ -79,7 +79,7 @@ export async function postJson<T>(
  * 날짜가 검색 결과에만 실제 시각으로 뜬다(비주얼 baseline 이 매 런 달라진다).
  */
 export async function reindexSearch(): Promise<void> {
-  const res = await fetch(`${BACKEND_URL}/api/v2/search/reindex`, {
+  const res = await fetch(`${API_URL}/api/v2/search/reindex`, {
     method: 'POST',
   });
   if (!res.ok) {

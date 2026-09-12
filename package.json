@@ -7,7 +7,7 @@
     "web:dev": "pnpm --filter web dev",
     "web:build": "pnpm --filter web build",
     "web:start": "pnpm --filter web start",
-    "api:up": "docker compose -f infra/compose.yml -f infra/compose.local.yml up -d --build --wait backend",
+    "api:up": "docker compose -f infra/compose.yml -f infra/compose.local.yml up -d --build --wait --remove-orphans api",
     "api:down": "docker compose -f infra/compose.yml -f infra/compose.local.yml down",
     "api:test": "cd apps/api && ./gradlew test",
     "test": "pnpm api:test && pnpm e2e",

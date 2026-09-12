@@ -1,4 +1,4 @@
-# 스택의 공통 정의. 단독으로 쓰지 않는다 — override 와 함께 부른다.
+# 스택의 공통 정의(db·search·api). 단독으로 쓰지 않는다 — override 와 함께 부른다. 웹은 배포 스택에만 있다(compose.prod.yml).
 #   로컬: pnpm api:up  (= docker compose -f infra/compose.yml -f infra/compose.local.yml up -d --build --wait backend)
 #   배포: infra/ops/host-deploy.sh 가 compose.yml + compose.prod.yml 로 올린다
 #
@@ -18,7 +18,7 @@ services:
             interval: 5s
             timeout: 5s
 
-    backend:
+    api:
         ports:
             - 8080:8080
         depends_on:

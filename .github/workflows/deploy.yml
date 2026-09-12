@@ -1,8 +1,6 @@
-# 배포. develop push → staging, main push → production. 바뀐 쪽만 나간다(웹 / 백엔드+인프라).
-# 빌드는 호스트에서 한다(레지스트리 없음, "빌드 == 배포"). 이 잡은 SSH 로 호스트 스크립트를 트리거만 한다.
-#   백엔드·인프라: 호스트가 이 레포를 클론해 infra/ops/host-deploy.sh (jar·이미지 → compose up → Caddy reload)
-#   웹:           infra/ops/deploy-web.sh 를 stdin 으로 보내 git URL 로 docker build → 컨테이너 교체
-# 백엔드가 먼저, 웹이 다음. 백엔드 배포가 실패하면 웹은 나가지 않는다.
+# 배포. develop push → staging, main push → production.
+# 빌드는 호스트에서 한다(레지스트리 없음, "빌드 == 배포"). 이 잡은 SSH 로 호스트가 레포를 클론해
+# infra/ops/host-deploy.sh 를 돌리게 트리거만 한다 — 백엔드·웹 이미지를 만들어 compose 스택으로 올리고 Caddy 를 reload 한다.
 # 롤백은 revert 커밋을 올린다 — 같은 길로 나간다.
 name: Deploy
 
@@ -15,77 +13,25 @@ concurrency:
   cancel-in-progress: false # 호스트에서 빌드·up 도는 중에 끊기면 중간 상태로 남는다
 
 jobs:
-  changes:
-    runs-on: ubuntu-latest
-    outputs:
-      web: ${{ steps.filter.outputs.web }}
-      api: ${{ steps.filter.outputs.api }}
-    steps:
-      - uses: actions/checkout@v7
-      - uses: dorny/paths-filter@v3
-        id: filter
-        with:
-          filters: |
-            web:
-              - 'apps/web/**'
-              - 'pnpm-lock.yaml'
-              - 'pnpm-workspace.yaml'
-              - 'package.json'
-              - '.dockerignore'
-              - 'infra/ops/deploy-web.sh'
-              - 'infra/production.env'
-              - 'infra/staging.env'
-            api:
-              - 'apps/api/**'
-              - 'infra/**'
-
   deploy:
-    needs: changes
-    if: needs.changes.outputs.web == 'true' || needs.changes.outputs.api == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     environment: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
-    env:
-      REF: ${{ github.sha }}
-      PROFILE_MODE: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7 # infra/*.env 를 읽기 위해서만(빌드는 호스트가 함)
 
       # 이후 스텝은 env.SSH_HOST 처럼 쓴다.
       - name: 배포 대상 설정 읽기
-        run: grep -vE '^\s*(#|$)' infra/${{ env.PROFILE_MODE }}.env >> "$GITHUB_ENV"
+        run: grep -vE '^\s*(#|$)' infra/${{ github.ref_name == 'main' && 'production' || 'staging' }}.env >> "$GITHUB_ENV"
 
-      - name: SSH 키
-        run: install -m 600 /dev/stdin key <<< "${{ secrets.SSH_KEY }}"
-
-      # SNU 경계 장비가 학외 연결을 간헐적으로 끊는다(kex_exchange_identification: Connection reset).
-      # 두 스크립트 모두 같은 커밋으로 여러 번 돌려도 결과가 같아 재시도해도 된다.
-      - name: ssh 재시도 헬퍼
+      - name: 호스트에서 빌드·배포
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          KAKAO: ${{ secrets.KAKAO_MAP_KEY }} # 웹 빌드의 카카오맵 키 — git 밖, build-arg 로 주입
+          GIT_SHA: ${{ github.sha }}
         run: |
-          cat > ssh-retry.sh <<'EOS'
-          #!/usr/bin/env bash
-          # 사용: ssh-retry.sh <remote-command> < stdin-script
-          set -u
-          script=$(cat)
-          for attempt in 1 2 3 4 5; do
-            if timeout 15m ssh -i key -p "$SSH_PORT" -o StrictHostKeyChecking=accept-new -o ConnectTimeout=15 \
-                "$SSH_USER@$SSH_HOST" "$@" <<< "$script"; then
-              exit 0
-            fi
-            echo "::warning::SSH 실패 ($attempt/5) — 재시도"
-            sleep 15
-          done
-          exit 1
-          EOS
-          chmod +x ssh-retry.sh
-
-      - name: 백엔드·인프라 (host-deploy.sh)
-        if: needs.changes.outputs.api == 'true'
-        run: |
-          ./ssh-retry.sh \
-            GIT_SHA="$REF" PROFILE="$PROFILE" URL="$URL" \
-            CADDYFILE="$CADDYFILE" CERTIFICATE="${CERTIFICATE:-}" PRIVATE_KEY="${PRIVATE_KEY:-}" \
-            'bash -s' <<'REMOTE'
+          install -m 600 /dev/stdin key <<< "$SSH_KEY"
+          cat > remote.sh <<'REMOTE'
           set -e
           mkdir -p ~/proxy
           W=~/build/cse.snu.ac.kr
@@ -97,9 +43,17 @@ jobs:
           bash infra/ops/host-deploy.sh
           REMOTE
 
-      - name: 웹 (deploy-web.sh)
-        if: needs.changes.outputs.web == 'true'
-        env:
-          KAKAO: ${{ secrets.KAKAO_MAP_KEY }} # 카맵키는 git 밖 — build-arg 로 주입
-        run: |
-          ./ssh-retry.sh "REF='$REF' BUILD_MODE='$PROFILE_MODE' KAKAO='$KAKAO' bash -s" < infra/ops/deploy-web.sh
+          # SNU 경계 장비가 학외 연결을 간헐적으로 끊는다(kex_exchange_identification: Connection reset).
+          # 배포 스크립트는 같은 커밋으로 여러 번 돌려도 결과가 같다.
+          for attempt in 1 2 3 4 5; do
+            if timeout 15m ssh -i key -p "$SSH_PORT" -o StrictHostKeyChecking=accept-new -o ConnectTimeout=15 \
+                "$SSH_USER@$SSH_HOST" \
+                GIT_SHA="$GIT_SHA" PROFILE="$PROFILE" URL="$URL" WEB_MODE="$WEB_MODE" KAKAO="$KAKAO" \
+                CADDYFILE="$CADDYFILE" CERTIFICATE="${CERTIFICATE:-}" PRIVATE_KEY="${PRIVATE_KEY:-}" \
+                'bash -s' < remote.sh; then
+              exit 0
+            fi
+            echo "::warning::SSH 실패 ($attempt/5) — 재시도"
+            sleep 15
+          done
+          exit 1

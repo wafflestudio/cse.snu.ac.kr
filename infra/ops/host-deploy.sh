@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # 호스트에서 빌드하고 배포한다. deploy.yml 이 레포 클론을 배포할 커밋으로 맞춘 뒤
-# 레포 루트에서 이 스크립트를 실행한다. 앱 소스는 apps/api, 스택 정의는 infra.
+# 레포 루트에서 이 스크립트를 실행한다. 백엔드(apps/api)·웹(apps/web) 이미지를 만들어 infra 의 compose 스택으로 올린다.
 set -euo pipefail
 
 : "${GIT_SHA:?GIT_SHA 가 필요하다}"
@@ -8,6 +8,9 @@ set -euo pipefail
 : "${PROFILE:?PROFILE 이 필요하다}"
 : "${URL:?URL 이 필요하다}"
 : "${CADDYFILE:?CADDYFILE 이 필요하다}"
+: "${WEB_MODE:?WEB_MODE 가 필요하다}"
+# 웹 빌드의 카카오맵 키(git 밖). deploy.yml 이 시크릿에서 넘긴다.
+: "${KAKAO:?KAKAO 가 필요하다}"
 
 WORKSPACE=$PWD
 API_DIR=$WORKSPACE/apps/api
@@ -27,9 +30,15 @@ build_jar() {
 }
 
 build_images() {
-    say "앱 이미지: csereal-server:$TAG"
+    say "api 이미지: csereal-api:$TAG"
     docker build -q --build-arg JAR_STAGE=prebuilt --build-arg GIT_SHA="$GIT_SHA" \
-        -t "csereal-server:$TAG" "$API_DIR"
+        -t "csereal-api:$TAG" "$API_DIR"
+
+    # 컨텍스트는 레포 루트(워크스페이스 lockfile). .dockerignore 가 apps/api·e2e·infra 를 뺀다.
+    say "web 이미지: csereal-web:$TAG"
+    docker build -q -f "$WORKSPACE/apps/web/Dockerfile" \
+        --build-arg BUILD_MODE="$WEB_MODE" --build-arg VITE_KAKAO_MAP_API_KEY="$KAKAO" --build-arg GIT_SHA="$GIT_SHA" \
+        -t "csereal-web:$TAG" "$WORKSPACE"
 
     # nori 는 공식 이미지에 없는 플러그인이라 검색 서버도 우리가 만든다. 
     # 해시를 확인해 Dockerfile.es 가 그대로면 다시 만들지 않는다.
@@ -66,17 +75,23 @@ deploy_app() {
     write_env "$APP_DIR" "PROFILE=$PROFILE" "URL=$URL" "IMAGE_TAG=$TAG" "SEARCH_TAG=$SEARCH_TAG"
     cat "$SECRETS_FILE" >>.env
 
+    mkdir -p "$HOME/frontend-data/img-optimized" "$HOME/frontend-data/analytics"
+    # 웹이 compose 스택에 들어오기 전에 단독으로 돌던 컨테이너. 포트 3000 을 비워야 한다. 남아 있는 호스트가 없어지면 지울 것.
+    docker rm -f frontend >/dev/null 2>&1 || true
+
     say "compose up"
     # --wait 은 healthcheck 가 healthy 가 될 때까지 기다린다. 없으면 앱이 크래시 루프여도 배포가 초록불로 끝난다.
     docker compose -f compose.yml -f compose.prod.yml up -d --wait --remove-orphans
 
-    # 의도한 커밋이 실제로 떴는지 본다. 
+    # 의도한 커밋이 실제로 떴는지 본다.
     # 이미지가 잘못 태깅됐거나 compose 가 옛 태그를 잡았다면 여기서 걸린다.
-    local running
-    running=$(docker inspect csereal_server --format '{{range .Config.Env}}{{println .}}{{end}}' |
-        sed -n 's/^GIT_SHA=//p')
-    [ "$running" = "$GIT_SHA" ] ||
-        { echo "✗ 배포된 커밋이 다르다: 기대 $GIT_SHA / 실제 ${running:-없음}" >&2; exit 1; }
+    local name running
+    for name in csereal_api csereal_web; do
+        running=$(docker inspect "$name" --format '{{range .Config.Env}}{{println .}}{{end}}' |
+            sed -n 's/^GIT_SHA=//p')
+        [ "$running" = "$GIT_SHA" ] ||
+            { echo "✗ $name 의 커밋이 다르다: 기대 $GIT_SHA / 실제 ${running:-없음}" >&2; exit 1; }
+    done
 }
 
 deploy_edge() {
@@ -100,10 +115,13 @@ deploy_edge() {
     docker exec csereal_caddy caddy reload --config /etc/caddy/Caddyfile
 }
 
-# 이미지가 커밋마다 423MB 씩 쌓인다. 최근 5개는 남겨 IMAGE_TAG 로 롤백할 수 있게.
+# 이미지가 커밋마다 쌓인다. 최근 5개는 남겨 IMAGE_TAG 로 롤백할 수 있게.
 prune_old_images() {
-    docker images csereal-server --format '{{.Tag}}' | tail -n +6 |
-        xargs -r -I{} docker rmi "csereal-server:{}" >/dev/null 2>&1 || true
+    local repo
+    for repo in csereal-api csereal-web; do
+        docker images "$repo" --format '{{.Tag}}' | tail -n +6 |
+            xargs -r -I{} docker rmi "$repo:{}" >/dev/null 2>&1 || true
+    done
 }
 
 build_jar

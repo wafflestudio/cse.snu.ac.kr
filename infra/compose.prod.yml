@@ -38,10 +38,10 @@ services:
                 max-file: "3"
         restart: always
 
-    backend:
-        container_name: csereal_server
+    api:
+        container_name: csereal_api
         # 커밋 해시 태그. 롤백은 .env 의 IMAGE_TAG 를 옛 값으로 바꾸고 up -d 하면 된다.
-        image: "csereal-server:${IMAGE_TAG:?ops/host-deploy.sh 가 .env 에 써 넣는다}"
+        image: "csereal-api:${IMAGE_TAG:?ops/host-deploy.sh 가 .env 에 써 넣는다}"
         volumes:
             - ./cse-files:/app/cse-files
             - ./files:/app/files
@@ -73,6 +73,35 @@ services:
         # autoheal 이 이 라벨을 보고 재시작한다. Docker 는 표시만 하고 재시작해 주지 않는다.
         labels:
             autoheal: "true"
+        restart: always
+
+    web:
+        container_name: csereal_web
+        image: "csereal-web:${IMAGE_TAG:?ops/host-deploy.sh 가 .env 에 써 넣는다}"
+        # Caddy(별도 compose, ~/proxy)와 모니터링이 host.docker.internal:3000·9464 로 붙는다 — 호스트 브리지에만 노출.
+        ports:
+            - "172.17.0.1:3000:3000"
+            - "172.17.0.1:9464:9464"
+        # SSR 이 절대 URL(https://<URL>/api/…)로 백엔드를 부른다. 컨테이너가 그 이름을 호스트(엣지)로 풀어야 한다.
+        # 빠지면 전 페이지 500 — 오래 뜬 컨테이너에선 안 드러나고 재생성 시점에 터진다.
+        extra_hosts:
+            - "${URL}:host-gateway"
+        volumes:
+            - ../frontend-data:/frontend-data
+        # 정적 파일이라 백엔드·엣지 상태와 무관하게 앱 프로세스만 본다.
+        healthcheck:
+            test: ["CMD", "wget", "-qO-", "http://localhost:3000/robots.txt"]
+            interval: 30s
+            timeout: 5s
+            retries: 3
+            start_period: 30s
+        labels:
+            autoheal: "true"
+        logging:
+            driver: json-file
+            options:
+                max-size: "100m"
+                max-file: "3"
         restart: always
 
     autoheal:

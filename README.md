@@ -50,7 +50,7 @@ flowchart TD
 ```
 
 - **PR 게이트(`ci.yml`):** `api-jar`(이 백엔드로 테스트 통과한 jar 가 캐시에 있나) → `api-test`(없을 때만 테스트 + bootJar) → `web-test`(타입/린트/knip + E2E, 그 jar 로 백엔드 기동). `web-test` 가 통과해야 머지.
-- **배포:** 전부 Actions. 빌드는 **호스트에서**(레지스트리 없음, "빌드==배포"). `develop` 머지 → staging, `main` 머지 → production. 프론트는 `deploy.yml`이 호스트에 `infra/ops/deploy-web.sh` 를 보내고, 백엔드는 `deploy.yml`이 `infra/ops/host-deploy.sh` 를 돌린다. 대상은 `infra/production.env`·`infra/staging.env`. 롤백은 revert 커밋.
+- **배포:** 전부 Actions. 빌드는 **호스트에서**(레지스트리 없음, "빌드==배포"). `develop` 머지 → staging, `main` 머지 → production. `deploy.yml` 이 호스트에서 이 레포를 클론해 `infra/ops/host-deploy.sh` 를 돌린다 — 백엔드·웹 이미지를 만들어 compose 스택(db·search·api·web)으로 올리고 Caddy 를 reload. 대상은 `infra/production.env`·`infra/staging.env`. 롤백은 revert 커밋.
 - **머지 전략:** `feature`→`develop` squash, `develop`→`main` merge commit. rebase 머지 없음.
 - **원칙:** CI는 로컬과 같은 스크립트(`pnpm e2e`·`pnpm lint` 등)를 호출만 한다.
 
