@@ -93,6 +93,30 @@ GF_SMTP_FROM_ADDRESS=<보내는 계정>
 
 Gmail 은 일반 비밀번호가 아니라 **앱 비밀번호**가 필요하다(2단계 인증 켠 뒤 발급).
 
+## 페이지 조회 통계 (GoatCounter)
+
+Prometheus 의 요청 수는 서버 관점이다 — 크롤러가 섞이고 클라이언트 네비게이션은 안 잡힌다.
+GoatCounter 는 브라우저 스크립트가 세므로 둘 다 해결된다. 쿠키를 쓰지 않아 동의 배너가 필요 없다.
+같은 compose 프로젝트의 `goatcounter` 서비스이고, Caddy 가 `/stats` 를 통째로 넘긴다(`-base-path`).
+
+- 대시보드: https://cse.snu.ac.kr/stats (GoatCounter 자체 로그인)
+- 프론트: `__root.tsx` 가 prod 에서만 `/stats/count.js` 를 싣고(nonce 는 HeadContent 가 붙인다),
+  `router.tsx` 가 클라이언트 네비게이션마다 `count()` 를 부른다.
+
+처음 올릴 때 사이트를 한 번 만든다. **만든 뒤 재시작해야 한다** — 서버가 사이트 목록을 기동 시 읽는다.
+
+```bash
+docker exec -it goatcounter goatcounter db create site \
+  -vhost cse.snu.ac.kr -user.email <이메일> \
+  -db sqlite+/home/goatcounter/goatcounter-data/db.sqlite3
+docker restart goatcounter
+```
+
+`-vhost` 는 요청의 Host 와 맞아야 한다(Caddy 가 Host 를 그대로 넘긴다). staging 은 도메인이 달라
+스크립트를 싣지 않는다. 데이터는 `goatcounter-data` 볼륨의 SQLite 파일 하나다.
+
+로컬에서 count 요청이 저장되는지 볼 때 두 가지가 봇으로 걸러진다. curl 기본 UA, 그리고 Playwright 같은 자동화 브라우저(`navigator.webdriver` 를 count.js 가 봇 점수로 보낸다 — `--disable-blink-features=AutomationControlled` 로 끄면 저장된다). 요청이 200 이어도 저장은 안 될 수 있다.
+
 ## 이력
 
 - 같은 날: `0.0.0.0:9090` 이라 학외에서 무인증으로 `/api/v1/*` 이 응답하던 것을 막았다.

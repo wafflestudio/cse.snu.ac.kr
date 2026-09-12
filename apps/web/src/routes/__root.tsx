@@ -15,6 +15,7 @@ import MobileNav from '@/components/layout/MobileNav';
 import NotFound from '@/components/layout/NotFound';
 import RootErrorBoundary from '@/components/layout/RootErrorBoundary';
 import { Toaster } from '@/components/ui/sonner';
+import { IS_PROD } from '@/constants/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import useIsMobile from '@/hooks/useResponsive';
 import { type Role, useStore } from '@/store';
@@ -73,6 +74,18 @@ export const Route = createRootRoute({
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     ],
+    // 페이지 조회 통계(GoatCounter, 같은 출처 /stats). 자동 카운트(no_onload)는 끄고 첫 로드·클라 네비
+    // 모두 router.tsx 가 센다. HeadContent 가 ssr.nonce 를 붙여 strict CSP 를 통과한다.
+    scripts: IS_PROD
+      ? [
+          {
+            src: '/stats/count.js',
+            async: true,
+            'data-goatcounter': '/stats/count',
+            'data-goatcounter-settings': '{"no_onload":true}',
+          },
+        ]
+      : [],
     links: [
       { rel: 'icon', href: '/favicon.ico' },
       {

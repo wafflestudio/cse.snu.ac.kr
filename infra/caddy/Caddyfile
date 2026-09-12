@@ -22,6 +22,9 @@
 	# Prometheus(9090)는 열지 않는다 — 무인증이고 /api/v1/status/config 가 내부 구조를 그대로 준다.
 	reverse_proxy /grafana* host.docker.internal:3001
 
+	# GoatCounter — 페이지 조회 통계
+	reverse_proxy /stats* host.docker.internal:8081
+
 	# Swagger — /swagger-ui.html 은 /swagger-ui/ 아래가 아니라 별도 매처가 필요하다
 	reverse_proxy /swagger-ui.html host.docker.internal:8080
 	reverse_proxy /swagger-ui/* host.docker.internal:8080
