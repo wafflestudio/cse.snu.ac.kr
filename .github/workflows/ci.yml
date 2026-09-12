@@ -29,6 +29,7 @@ jobs:
               - 'apps/api/**'
               - '.github/workflows/ci.yml'
 
+  # 경로 필터로 건너뛰므로 필수 체크에 넣지 않는다 — 건너뛴 필수 체크는 "대기 중"으로 머지를 막는다.
   api-test:
     needs: changes
     if: needs.changes.outputs.api == 'true' || github.event_name == 'push'
