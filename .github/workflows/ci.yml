@@ -25,7 +25,7 @@ jobs:
       key: ${{ steps.jar.outputs.cache-primary-key }}
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/cache/restore@v4
+      - uses: actions/cache/restore@v6
         id: jar
         with:
           path: apps/api/build/libs
@@ -48,12 +48,12 @@ jobs:
       - run: JAVA_HOME=$JAVA_HOME_21_X64 ./gradlew build -x jar
       # 실패 원인은 Gradle 로그에도 있지만, 리포트 HTML 이 스택·stdout 까지 한눈에 보인다.
       - if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: api-test-report
           path: apps/api/build/reports/tests/test
           retention-days: 7
-      - uses: actions/cache/save@v4
+      - uses: actions/cache/save@v6
         with:
           path: apps/api/build/libs
           key: ${{ needs.api-jar.outputs.key }}
@@ -78,7 +78,7 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm lint
       - run: pnpm knip
-      - uses: actions/cache/restore@v4
+      - uses: actions/cache/restore@v6
         with:
           path: apps/api/build/libs
           key: ${{ needs.api-jar.outputs.key }}
