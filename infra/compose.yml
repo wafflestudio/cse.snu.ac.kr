@@ -1,0 +1,26 @@
+# 스택의 공통 정의(db·search·api). 단독으로 쓰지 않는다 — override 와 함께 부른다. 웹은 배포 스택에만 있다(compose.prod.yml).
+#   로컬: pnpm api:up  (= docker compose -f infra/compose.yml -f infra/compose.local.yml up -d --build --wait backend)
+#   배포: infra/ops/host-deploy.sh 가 compose.yml + compose.prod.yml 로 올린다
+#
+services:
+    db:
+        image: mysql:8.0
+        cap_add: [SYS_NICE]
+        # 헬스체크는 override 에 있다 — 비밀번호가 환경마다 달라 공통으로 못 뺀다.
+
+    search:
+        environment:
+            discovery.type: single-node
+            xpack.security.enabled: "false" 
+            ES_JAVA_OPTS: -Xms512m -Xmx512m
+        healthcheck:
+            test: ["CMD-SHELL", "curl -fsS localhost:9200/_cluster/health || exit 1"]
+            interval: 5s
+            timeout: 5s
+
+    api:
+        ports:
+            - 8080:8080
+        depends_on:
+            db: { condition: service_healthy }
+            search: { condition: service_healthy }

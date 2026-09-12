@@ -1,0 +1,97 @@
+package com.wafflestudio.csereal.core.notice.api.v2
+
+import com.wafflestudio.csereal.core.notice.api.req.CreateNoticeReq
+import com.wafflestudio.csereal.core.notice.api.req.UpdateNoticeReq
+import com.wafflestudio.csereal.core.notice.dto.*
+import com.wafflestudio.csereal.core.notice.service.NoticeService
+import jakarta.validation.Valid
+import jakarta.validation.constraints.Positive
+import org.springframework.data.domain.PageRequest
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
+import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
+
+@RequestMapping("/api/v2/notice")
+@RestController
+class NoticeController(
+    private val noticeService: NoticeService
+) {
+    @GetMapping
+    fun searchNotice(
+        @RequestParam(required = false) tag: List<String>?,
+        @RequestParam(required = false) keyword: String?,
+        @RequestParam(required = false) @Positive pageNum: Int?,
+        @RequestParam(required = false, defaultValue = "20") @Positive pageSize: Int
+    ): ResponseEntity<NoticeSearchResponse> {
+        val usePageBtn = pageNum != null
+        val page = pageNum ?: 1
+        val pageRequest = PageRequest.of(page - 1, pageSize)
+
+        return ResponseEntity.ok(noticeService.searchNotice(tag, keyword, pageRequest, usePageBtn))
+    }
+
+    @GetMapping("/{noticeId}")
+    fun readNotice(
+        @PathVariable noticeId: Long
+    ): ResponseEntity<NoticeResponse> {
+        return ResponseEntity.ok(noticeService.readNotice(noticeId))
+    }
+
+    @PreAuthorize("hasRole('STAFF')")
+    @PostMapping(consumes = ["multipart/form-data"])
+    fun createNotice(
+        @Valid
+        @RequestPart("request")
+        request: CreateNoticeReq,
+        @RequestPart("attachments") attachments: List<MultipartFile>?
+    ): ResponseEntity<NoticeResponse> {
+        return ResponseEntity.ok(noticeService.createNotice(request, attachments))
+    }
+
+    @PreAuthorize("hasRole('STAFF')")
+    @PatchMapping("/{noticeId}", consumes = ["multipart/form-data"])
+    fun updateNotice(
+        @PathVariable noticeId: Long,
+        @Valid
+        @RequestPart("request")
+        request: UpdateNoticeReq,
+        @RequestPart("attachments") attachments: List<MultipartFile>?
+    ): ResponseEntity<NoticeResponse> {
+        return ResponseEntity.ok(noticeService.updateNotice(noticeId, request, attachments))
+    }
+
+    @PreAuthorize("hasRole('STAFF')")
+    @DeleteMapping("/{noticeId}")
+    fun deleteNotice(
+        @PathVariable noticeId: Long
+    ) {
+        noticeService.deleteNotice(noticeId)
+    }
+
+    @PreAuthorize("hasRole('STAFF')")
+    @PatchMapping
+    fun unpinManyNotices(
+        @RequestBody request: NoticeIdListRequest
+    ) {
+        noticeService.unpinManyNotices(request.idList)
+    }
+
+    @PreAuthorize("hasRole('STAFF')")
+    @DeleteMapping
+    fun deleteManyNotices(
+        @RequestBody request: NoticeIdListRequest
+    ) {
+        noticeService.deleteManyNotices(request.idList)
+    }
+
+    @PreAuthorize("hasRole('STAFF')")
+    @PostMapping("/tag")
+    fun enrollTag(
+        @RequestBody tagName: Map<String, String>
+    ): ResponseEntity<String> {
+        noticeService.enrollTag(tagName["name"]!!)
+        return ResponseEntity<String>("등록되었습니다. (tagName: ${tagName["name"]})", HttpStatus.OK)
+    }
+}

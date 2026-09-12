@@ -1,0 +1,398 @@
+package com.wafflestudio.csereal.core.academics.service
+
+import com.wafflestudio.csereal.common.CserealException
+import com.wafflestudio.csereal.common.ErrorCode
+import com.wafflestudio.csereal.common.enums.LanguageType
+import com.wafflestudio.csereal.core.academics.api.req.*
+import com.wafflestudio.csereal.core.academics.database.*
+import com.wafflestudio.csereal.core.academics.dto.*
+import com.wafflestudio.csereal.core.resource.attachment.service.AttachmentService
+import com.wafflestudio.csereal.core.academics.database.ScholarshipRepository
+import com.wafflestudio.csereal.core.academics.database.ScholarshipTranslationRepository
+import com.wafflestudio.csereal.core.academics.dto.ScholarshipLanguagesDto
+import org.springframework.data.repository.findByIdOrNull
+import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
+import org.springframework.web.multipart.MultipartFile
+
+interface AcademicsService {
+    fun readGuide(language: LanguageType, studentType: AcademicsStudentType): GuidePageResponse
+    fun readAcademicsYearResponses(
+        language: LanguageType,
+        studentType: AcademicsStudentType,
+        postType: AcademicsPostType
+    ): List<AcademicsYearResponse>
+
+    fun readDegreeRequirements(language: LanguageType): DegreeRequirementsPageResponse
+    fun updateDegreeRequirements(language: LanguageType, request: UpdateSingleReq, newAttachments: List<MultipartFile>?)
+    fun createCourse(request: GroupedCourseDto)
+
+    fun readAllGroupedCourses(studentType: AcademicsStudentType, sortType: String): List<GroupedCourseDto>
+    fun updateCourse(updateRequest: GroupedCourseDto)
+    fun deleteCourse(code: String)
+    fun updateScholarshipPage(
+        language: LanguageType,
+        studentType: AcademicsStudentType,
+        request: UpdateScholarshipPageReq
+    )
+
+    fun readAllScholarship(language: LanguageType, studentType: AcademicsStudentType): ScholarshipPageResponse
+    fun createScholarship(
+        studentType: AcademicsStudentType,
+        request: CreateScholarshipReq
+    )
+
+    fun readScholarshipV2(scholarshipId: Long): ScholarshipLanguagesDto
+    fun updateScholarship(scholarshipId: Long, request: UpdateScholarshipReq)
+    fun deleteScholarship(scholarshipId: Long)
+    fun updateGuide(
+        language: LanguageType,
+        studentType: AcademicsStudentType,
+        request: UpdateSingleReq,
+        newAttachments: List<MultipartFile>?
+    )
+
+    fun updateAcademicsYearResponse(
+        language: LanguageType,
+        studentType: AcademicsStudentType,
+        postType: AcademicsPostType,
+        year: Int,
+        request: UpdateYearReq,
+        newAttachments: List<MultipartFile>?
+    )
+
+    fun deleteAcademicsYearResponse(
+        language: LanguageType,
+        studentType: AcademicsStudentType,
+        postType: AcademicsPostType,
+        year: Int
+    )
+    fun createAcademicsYearResponse(
+        language: LanguageType,
+        studentType: AcademicsStudentType,
+        postType: AcademicsPostType,
+        request: CreateYearReq,
+        attachments: List<MultipartFile>?
+    )
+}
+
+// TODO: add Update, Delete method
+
+@Service
+class AcademicsServiceImpl(
+    private val academicsRepository: AcademicsRepository,
+    private val courseRepository: CourseRepository,
+    private val attachmentService: AttachmentService,
+    private val scholarshipRepository: ScholarshipRepository,
+    private val scholarshipTranslationRepository: ScholarshipTranslationRepository
+) : AcademicsService {
+
+    @Transactional(readOnly = true)
+    override fun readGuide(language: LanguageType, studentType: AcademicsStudentType): GuidePageResponse {
+        val academicsEntity =
+            academicsRepository.findByLanguageAndStudentTypeAndPostType(
+                language,
+                studentType,
+                AcademicsPostType.GUIDE
+            ) ?: throw CserealException(ErrorCode.GUIDE_NOT_FOUND)
+        val attachmentResponses =
+            attachmentService.createAttachmentResponses(academicsEntity.attachments)
+        return GuidePageResponse.of(academicsEntity, attachmentResponses)
+    }
+
+    @Transactional
+    override fun updateGuide(
+        language: LanguageType,
+        studentType: AcademicsStudentType,
+        request: UpdateSingleReq,
+        newAttachments: List<MultipartFile>?
+    ) {
+        val academicsEntity =
+            academicsRepository.findByLanguageAndStudentTypeAndPostType(
+                language,
+                studentType,
+                AcademicsPostType.GUIDE
+            ) ?: throw CserealException(ErrorCode.GUIDE_NOT_FOUND)
+
+        academicsEntity.description = request.description
+
+        attachmentService.syncAttachments(academicsEntity, request.attachmentIds, newAttachments)
+    }
+
+    @Transactional
+    override fun updateAcademicsYearResponse(
+        language: LanguageType,
+        studentType: AcademicsStudentType,
+        postType: AcademicsPostType,
+        year: Int,
+        request: UpdateYearReq,
+        newAttachments: List<MultipartFile>?
+    ) {
+        val academicsEntity = academicsRepository.findByLanguageAndStudentTypeAndPostTypeAndYear(
+            language,
+            studentType,
+            postType,
+            year
+        ) ?: throw CserealException(ErrorCode.ACADEMICS_NOT_FOUND)
+
+        academicsEntity.description = request.description
+
+        attachmentService.syncAttachments(academicsEntity, request.attachmentIds, newAttachments)
+    }
+
+    @Transactional
+    override fun deleteAcademicsYearResponse(
+        language: LanguageType,
+        studentType: AcademicsStudentType,
+        postType: AcademicsPostType,
+        year: Int
+    ) {
+        val academicsEntity = academicsRepository.findByLanguageAndStudentTypeAndPostTypeAndYear(
+            language,
+            studentType,
+            postType,
+            year
+        ) ?: throw CserealException(ErrorCode.ACADEMICS_NOT_FOUND)
+
+        attachmentService.deleteAttachments(academicsEntity.attachments.map { it.id })
+        academicsRepository.delete(academicsEntity)
+    }
+
+    @Transactional
+    override fun createAcademicsYearResponse(
+        language: LanguageType,
+        studentType: AcademicsStudentType,
+        postType: AcademicsPostType,
+        request: CreateYearReq,
+        attachments: List<MultipartFile>?
+    ) {
+        academicsRepository.findByLanguageAndStudentTypeAndPostTypeAndYear(
+            language,
+            studentType,
+            postType,
+            request.year
+        )?.let {
+            throw CserealException(ErrorCode.YEAR_ALREADY_EXISTS)
+        }
+
+        val newAcademics =
+            AcademicsEntity.createYearResponse(studentType, postType, language, request)
+
+        newAcademics.apply {
+        }
+
+        if (attachments != null) {
+            attachmentService.uploadAllAttachments(newAcademics, attachments)
+        }
+
+        academicsRepository.save(newAcademics)
+    }
+
+    @Transactional(readOnly = true)
+    override fun readAcademicsYearResponses(
+        language: LanguageType,
+        studentType: AcademicsStudentType,
+        postType: AcademicsPostType
+    ): List<AcademicsYearResponse> {
+        val academicsEntityList =
+            academicsRepository.findAllByLanguageAndStudentTypeAndPostTypeOrderByYearDesc(
+                language,
+                studentType,
+                postType
+            )
+
+        val academicsYearResponses = academicsEntityList.map {
+            val attachments = attachmentService.createAttachmentResponses(it.attachments)
+            AcademicsYearResponse.of(it, attachments)
+        }
+
+        return academicsYearResponses
+    }
+
+    @Transactional(readOnly = true)
+    override fun readDegreeRequirements(language: LanguageType): DegreeRequirementsPageResponse {
+        val academicsEntity =
+            academicsRepository.findByLanguageAndStudentTypeAndPostType(
+                language,
+                AcademicsStudentType.UNDERGRADUATE,
+                AcademicsPostType.DEGREE_REQUIREMENTS
+            ) ?: throw CserealException(ErrorCode.DEGREE_REQUIREMENTS_NOT_FOUND)
+
+        val attachments = attachmentService.createAttachmentResponses(academicsEntity.attachments)
+        return DegreeRequirementsPageResponse.of(academicsEntity, attachments)
+    }
+
+    @Transactional
+    override fun updateDegreeRequirements(
+        language: LanguageType,
+        request: UpdateSingleReq,
+        newAttachments: List<MultipartFile>?
+    ) {
+        val academicsEntity =
+            academicsRepository.findByLanguageAndStudentTypeAndPostType(
+                language,
+                AcademicsStudentType.UNDERGRADUATE,
+                AcademicsPostType.DEGREE_REQUIREMENTS
+            ) ?: throw CserealException(ErrorCode.DEGREE_REQUIREMENTS_NOT_FOUND)
+
+        academicsEntity.description = request.description
+
+        attachmentService.syncAttachments(academicsEntity, request.attachmentIds, newAttachments)
+    }
+
+    @Transactional
+    override fun createCourse(request: GroupedCourseDto) {
+        if (courseRepository.existsByCode(request.code)) {
+            throw CserealException(ErrorCode.COURSE_CODE_DUPLICATED)
+        }
+
+        val studentType = makeStringToAcademicsStudentType(request.studentType)
+
+        val courses = listOf(
+            LanguageType.KO to request.ko,
+            LanguageType.EN to request.en
+        ).map { (language, langSpecificData) ->
+            CourseEntity.of(
+                studentType,
+                language,
+                langSpecificData.classification,
+                request.code,
+                langSpecificData.name,
+                request.credit,
+                request.grade,
+                langSpecificData.description
+            ).apply {
+            }
+        }
+
+        courseRepository.saveAll(courses)
+    }
+
+    @Transactional(readOnly = true)
+    override fun readAllGroupedCourses(studentType: AcademicsStudentType, sortType: String): List<GroupedCourseDto> {
+        val sort = LanguageType.makeStringToLanguageType(sortType)
+        return courseRepository.findGroupedCourses(studentType)
+            .map(CourseMapper::toGroupedCourseDTO)
+            .sortedBy { course ->
+                when (sort) {
+                    LanguageType.KO -> course.ko.name
+                    LanguageType.EN -> course.en.name
+                }
+            }
+    }
+
+    @Transactional
+    override fun updateCourse(updateRequest: GroupedCourseDto) {
+        val ko = courseRepository.findByCodeAndLanguage(updateRequest.code, LanguageType.KO)
+            ?: throw CserealException(ErrorCode.COURSE_NOT_FOUND)
+        val en = courseRepository.findByCodeAndLanguage(updateRequest.code, LanguageType.EN)
+            ?: throw CserealException(ErrorCode.COURSE_NOT_FOUND)
+
+        listOf(ko, en).forEach { course ->
+            course.apply {
+                credit = updateRequest.credit
+                grade = updateRequest.grade
+                studentType = makeStringToAcademicsStudentType(updateRequest.studentType)
+                val langSpecificData = if (language == LanguageType.KO) updateRequest.ko else updateRequest.en
+                name = langSpecificData.name
+                description = langSpecificData.description
+                classification = langSpecificData.classification
+            }
+        }
+    }
+
+    @Transactional
+    override fun deleteCourse(code: String) {
+        if (!courseRepository.existsByCode(code)) {
+            throw CserealException(ErrorCode.COURSE_NOT_FOUND)
+        }
+        courseRepository.deleteAllByCode(code)
+    }
+
+    @Transactional
+    override fun updateScholarshipPage(
+        language: LanguageType,
+        studentType: AcademicsStudentType,
+        request: UpdateScholarshipPageReq
+    ) {
+        val scholarshipPage = academicsRepository.findByLanguageAndStudentTypeAndPostType(
+            language,
+            studentType,
+            AcademicsPostType.SCHOLARSHIP
+        ) ?: throw CserealException(ErrorCode.SCHOLARSHIP_NOT_FOUND)
+
+        scholarshipPage.description = request.description
+    }
+
+    @Transactional(readOnly = true)
+    override fun readAllScholarship(
+        language: LanguageType,
+        studentType: AcademicsStudentType
+    ): ScholarshipPageResponse {
+        val academicsEntity =
+            academicsRepository.findByLanguageAndStudentTypeAndPostType(
+                language,
+                studentType,
+                AcademicsPostType.SCHOLARSHIP
+            ) ?: throw CserealException(ErrorCode.SCHOLARSHIP_NOT_FOUND)
+        val translations =
+            scholarshipTranslationRepository.findAllByScholarshipStudentTypeAndLanguage(studentType, language)
+
+        return ScholarshipPageResponse.of(academicsEntity, translations)
+    }
+
+    @Transactional
+    override fun createScholarship(studentType: AcademicsStudentType, request: CreateScholarshipReq) {
+        val scholarship = ScholarshipEntity(studentType = studentType)
+
+        listOf(LanguageType.KO to request.ko, LanguageType.EN to request.en).forEach { (language, content) ->
+            scholarship.translations.add(
+                ScholarshipTranslationEntity(
+                    scholarship = scholarship,
+                    language = language,
+                    name = content.name,
+                    description = content.description
+                )
+            )
+        }
+
+        scholarshipRepository.save(scholarship)
+    }
+
+    @Transactional(readOnly = true)
+    override fun readScholarshipV2(scholarshipId: Long): ScholarshipLanguagesDto {
+        val scholarship = scholarshipRepository.findByIdOrNull(scholarshipId)
+            ?: throw CserealException(ErrorCode.SCHOLARSHIP_NOT_FOUND)
+        return ScholarshipLanguagesDto.of(scholarship)
+    }
+
+    @Transactional
+    override fun updateScholarship(scholarshipId: Long, request: UpdateScholarshipReq) {
+        val scholarship = scholarshipRepository.findByIdOrNull(scholarshipId)
+            ?: throw CserealException(ErrorCode.SCHOLARSHIP_NOT_FOUND)
+
+        listOf(LanguageType.KO to request.ko, LanguageType.EN to request.en).forEach { (language, content) ->
+            val translation = scholarship.translationOf(language)
+                ?: throw CserealException(ErrorCode.SCHOLARSHIP_NOT_FOUND)
+            translation.name = content.name
+            translation.description = content.description
+        }
+    }
+
+    @Transactional
+    override fun deleteScholarship(scholarshipId: Long) {
+        val scholarship = scholarshipRepository.findByIdOrNull(scholarshipId)
+            ?: throw CserealException(ErrorCode.SCHOLARSHIP_NOT_FOUND)
+        // 번역본과 색인은 cascade + orphanRemoval 로 함께 지워진다.
+        scholarshipRepository.delete(scholarship)
+    }
+
+    // JSON 바디의 studentType 필드용(문자열). URL 파라미터는 컨버터가 처리한다.
+    private fun makeStringToAcademicsStudentType(value: String): AcademicsStudentType {
+        try {
+            return AcademicsStudentType.valueOf(value.replace("-", "_").uppercase())
+        } catch (e: IllegalArgumentException) {
+            throw CserealException(ErrorCode.INVALID_ENUM_VALUE)
+        }
+    }
+}

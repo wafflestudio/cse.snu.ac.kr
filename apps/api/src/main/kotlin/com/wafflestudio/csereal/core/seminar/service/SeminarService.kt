@@ -1,0 +1,149 @@
+package com.wafflestudio.csereal.core.seminar.service
+
+import com.wafflestudio.csereal.common.CserealException
+import com.wafflestudio.csereal.common.ErrorCode
+import com.wafflestudio.csereal.common.search.SearchListService
+import com.wafflestudio.csereal.common.search.SearchType
+import com.wafflestudio.csereal.common.utils.isCurrentUserStaff
+import com.wafflestudio.csereal.core.resource.attachment.service.AttachmentService
+import com.wafflestudio.csereal.core.resource.mainImage.service.MainImageService
+import com.wafflestudio.csereal.core.seminar.database.SeminarEntity
+import com.wafflestudio.csereal.core.seminar.database.SeminarRepository
+import com.wafflestudio.csereal.core.seminar.api.req.CreateSeminarReq
+import com.wafflestudio.csereal.core.seminar.api.req.UpdateSeminarReq
+import com.wafflestudio.csereal.core.seminar.dto.SeminarResponse
+import com.wafflestudio.csereal.core.seminar.dto.SeminarSearchResponse
+import org.springframework.data.domain.Pageable
+import org.springframework.data.repository.findByIdOrNull
+import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
+import org.springframework.web.multipart.MultipartFile
+
+interface SeminarService {
+    fun searchSeminar(
+        keyword: String?,
+        pageable: Pageable,
+        usePageBtn: Boolean
+    ): SeminarSearchResponse
+
+    fun createSeminar(
+        request: CreateSeminarReq,
+        mainImage: MultipartFile?,
+        attachments: List<MultipartFile>?
+    ): SeminarResponse
+
+    fun readSeminar(seminarId: Long): SeminarResponse
+    fun updateSeminar(
+        seminarId: Long,
+        request: UpdateSeminarReq,
+        newMainImage: MultipartFile?,
+        newAttachments: List<MultipartFile>?
+    ): SeminarResponse
+
+    fun deleteSeminar(seminarId: Long)
+}
+
+@Service
+class SeminarServiceImpl(
+    private val seminarRepository: SeminarRepository,
+    private val searchListService: SearchListService,
+    private val mainImageService: MainImageService,
+    private val attachmentService: AttachmentService
+) : SeminarService {
+    @Transactional(readOnly = true)
+    override fun searchSeminar(
+        keyword: String?,
+        pageable: Pageable,
+        usePageBtn: Boolean
+    ): SeminarSearchResponse {
+        val isStaff = isCurrentUserStaff()
+        if (keyword.isNullOrEmpty()) {
+            return seminarRepository.browseSeminar(pageable, usePageBtn, isStaff)
+        }
+
+        val page = searchListService.searchIds(
+            type = SearchType.SEMINAR,
+            keyword = keyword,
+            tags = emptyList(),
+            isStaff = isStaff,
+            offset = pageable.offset,
+            size = pageable.pageSize
+        )
+        return SeminarSearchResponse(page.total, seminarRepository.findSearchDtosByIds(page.ids))
+    }
+
+    @Transactional
+    override fun createSeminar(
+        request: CreateSeminarReq,
+        mainImage: MultipartFile?,
+        attachments: List<MultipartFile>?
+    ): SeminarResponse {
+        val newSeminar = SeminarEntity.of(request)
+
+        if (mainImage != null) {
+            mainImageService.uploadMainImage(newSeminar, mainImage)
+        }
+
+        if (attachments != null) {
+            attachmentService.uploadAllAttachments(newSeminar, attachments)
+        }
+
+        seminarRepository.save(newSeminar)
+
+        val imageURL = mainImageService.createImageURL(newSeminar.mainImage)
+        val attachmentResponses = attachmentService.createAttachmentResponses(newSeminar.attachments)
+        return SeminarResponse.of(newSeminar, imageURL, attachmentResponses)
+    }
+
+    @Transactional(readOnly = true)
+    override fun readSeminar(seminarId: Long): SeminarResponse {
+        val seminar: SeminarEntity = seminarRepository.findByIdOrNull(seminarId)
+            ?: throw CserealException(ErrorCode.SEMINAR_NOT_FOUND, mapOf("seminarId" to seminarId))
+
+        if (seminar.isPrivate && !isCurrentUserStaff()) throw CserealException(ErrorCode.PRIVATE_POST)
+
+        val imageURL = mainImageService.createImageURL(seminar.mainImage)
+        val attachmentResponses = attachmentService.createAttachmentResponses(seminar.attachments)
+
+        val prevSeminar =
+            seminarRepository.findFirstByIsPrivateFalseAndCreatedAtLessThanOrderByCreatedAtDesc(
+                seminar.createdAt!!
+            )
+        val nextSeminar =
+            seminarRepository.findFirstByIsPrivateFalseAndCreatedAtGreaterThanOrderByCreatedAtAsc(
+                seminar.createdAt!!
+            )
+
+        return SeminarResponse.of(seminar, imageURL, attachmentResponses, prevSeminar, nextSeminar)
+    }
+
+    @Transactional
+    override fun updateSeminar(
+        seminarId: Long,
+        request: UpdateSeminarReq,
+        newMainImage: MultipartFile?,
+        newAttachments: List<MultipartFile>?
+    ): SeminarResponse {
+        val seminar: SeminarEntity = seminarRepository.findByIdOrNull(seminarId)
+            ?: throw CserealException(ErrorCode.SEMINAR_NOT_FOUND)
+
+        seminar.update(request)
+
+        mainImageService.replaceMainImage(seminar, newMainImage, request.removeImage)
+
+        attachmentService.syncAttachments(seminar, request.attachmentIds, newAttachments)
+
+        val attachmentResponses = attachmentService.createAttachmentResponses(seminar.attachments)
+
+        val imageURL = mainImageService.createImageURL(seminar.mainImage)
+        return SeminarResponse.of(seminar, imageURL, attachmentResponses)
+    }
+
+    @Transactional
+    override fun deleteSeminar(seminarId: Long) {
+        seminarRepository.findByIdOrNull(seminarId)
+            ?: throw CserealException(ErrorCode.SEMINAR_NOT_FOUND, mapOf("seminarId" to seminarId))
+
+        seminarRepository.deleteById(seminarId)
+    }
+}
