@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       api: ${{ steps.filter.outputs.api }}
+      # 백엔드 소스의 내용 해시. jar 캐시 키 — 백엔드가 같으면 어느 PR 이든 같은 jar 를 집어 온다.
+      api-key: api-jar-${{ hashFiles('apps/api/src/**', 'apps/api/build.gradle.kts', 'apps/api/settings.gradle.kts', 'apps/api/gradle/**') }}
     steps:
       - uses: actions/checkout@v7
       - uses: dorny/paths-filter@v3
@@ -55,8 +57,9 @@ jobs:
         with:
           files: apps/api/build/test-results/**/*.xml
 
-  # E2E 가 붙을 백엔드 jar. 백엔드 소스 해시로 캐시해 백엔드가 그대로면 Gradle 을 안 돈다.
+  # E2E 가 붙을 백엔드 jar. 캐시가 있으면 Gradle 을 안 돈다.
   api-jar:
+    needs: changes
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -65,7 +68,7 @@ jobs:
         id: jar
         with:
           path: apps/api/build/libs
-          key: api-jar-${{ hashFiles('apps/api/src/**', 'apps/api/build.gradle.kts', 'apps/api/settings.gradle.kts', 'apps/api/gradle/**') }}
+          key: ${{ needs.changes.outputs.api-key }}
       - if: steps.jar.outputs.cache-hit != 'true'
         working-directory: apps/api
         run: JAVA_HOME=$JAVA_HOME_21_X64 ./gradlew --no-daemon bootJar -x test
@@ -73,7 +76,7 @@ jobs:
   # 백엔드 이미지는 api-jar 가 캐시한 jar 로 만든다(JAR_STAGE=prebuilt → compose 빌드에서 Gradle 안 돈다).
   web-test:
     if: github.event_name == 'pull_request'
-    needs: api-jar
+    needs: [changes, api-jar]
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
@@ -90,7 +93,7 @@ jobs:
       - uses: actions/cache/restore@v4
         with:
           path: apps/api/build/libs
-          key: api-jar-${{ hashFiles('apps/api/src/**', 'apps/api/build.gradle.kts', 'apps/api/settings.gradle.kts', 'apps/api/gradle/**') }}
+          key: ${{ needs.changes.outputs.api-key }}
           fail-on-cache-miss: true
       - name: E2E (e2e/run.sh)
         env:
