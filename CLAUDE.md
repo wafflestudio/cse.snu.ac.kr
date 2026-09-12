@@ -48,9 +48,9 @@ pnpm 워크스페이스. 패키지는 `apps/web` 과 `e2e` 둘이고 `apps/api` 
 
 # 브랜치 · CI/CD
 
-- **브랜치:** `main`=production · `develop`=staging · `feature/*`·`fix/*`→`develop` PR · `hotfix/*`→`main` PR(후 develop back-merge). 직접 push 금지 — ruleset 이 PR 필수 + `gate`·`e2e` 필수 체크 + force push 금지(admin 포함).
+- **브랜치:** `main`=production · `develop`=staging · `feature/*`·`fix/*`→`develop` PR · `hotfix/*`→`main` PR(후 develop back-merge). 직접 push 금지 — ruleset 이 PR 필수 + `web-test` 필수 체크 + force push 금지(admin 포함).
 - **머지:** `feature`→`develop` squash(기능당 1커밋). `develop`→`main` merge commit(squash 하면 long-lived 인 develop 과 히스토리가 갈라져 다음 승격 PR 이 깨진다). rebase 머지 없음, 머지 후 head 브랜치 자동 삭제.
-- **CI(`ci.yml`, PR):** `gate`(워크스페이스 전체 typecheck·lint·knip, ~1분 — 웹 빌드는 e2e 가 한다) · `api-test`(Gradle — `apps/api` 가 바뀐 PR 과 develop push 만, 필수 체크 아님) · `api-jar`(백엔드 소스 해시로 캐시한 bootJar) · `e2e`(로컬과 같은 `e2e/run.sh`, `JAR_STAGE=prebuilt`). E2E 는 항상 같은 커밋의 `apps/api` 로 돈다. **두 벌 관리 X — CI 는 로컬 스크립트·config 를 호출만 한다.** 필수 체크는 `gate`·`e2e` 만 — 경로 필터로 건너뛰는 잡을 필수로 두면 "대기 중"으로 머지가 막힌다. PR 이 만든 캐시는 다른 PR 이 못 읽어 develop push 에서도 `api-jar` 를 돌려 채운다.
+- **CI(`ci.yml`, PR):** `web-test`(JS 워크스페이스 typecheck·lint·knip 뒤에 로컬과 같은 `e2e/run.sh`, `JAR_STAGE=prebuilt`) · `api-test`(Gradle — `apps/api` 가 바뀐 PR 과 develop push 만, 필수 체크 아님) · `api-jar`(백엔드 소스 해시로 캐시한 bootJar). E2E 는 항상 같은 커밋의 `apps/api` 로 돈다. **두 벌 관리 X — CI 는 로컬 스크립트·config 를 호출만 한다.** 필수 체크는 `web-test` 하나 — 경로 필터로 건너뛰는 잡을 필수로 두면 "대기 중"으로 머지가 막힌다. lint 는 lint-staged 가 커밋마다 이미 강제해 CI 는 백스톱이다. PR 이 만든 캐시는 다른 PR 이 못 읽어 develop push 에서도 `api-jar` 를 돌려 채운다.
 - **CD(`deploy.yml`) — 전부 Actions, 수동 배포 없음.** `develop` push → staging, `main` push → production. `changes` 잡이 paths-filter 로 웹(`apps/web/**` 등)과 백엔드·인프라(`apps/api/**`·`infra/**`)를 가려 **바뀐 쪽만** 배포한다. 한 잡에서 백엔드가 먼저(호스트가 레포를 클론해 `infra/ops/host-deploy.sh`: jar·이미지 빌드 → compose up --wait → Caddy reload → GIT_SHA 검증), 웹이 다음(`infra/ops/deploy-web.sh` 를 stdin 으로 보내 `docker build -f apps/web/Dockerfile "<git-url>#<sha>"` 후 컨테이너 교체 — 빌드 성공 후에만 교체라 무중단). 백엔드 배포가 실패하면 웹은 나가지 않는다. 대상은 `infra/production.env`·`infra/staging.env`, 시크릿은 Environment(`production`·`staging`)의 `SSH_KEY` 와 레포의 `KAKAO_MAP_KEY`. 롤백은 revert 커밋 — 같은 길로 나간다(급하면 호스트에서 `deploy-web.sh` 를 옛 sha 로, 백엔드는 `IMAGE_TAG` 로 `compose up`). 사람이 누르는 관문이 필요하면 Environment `production` 에 required reviewer.
 - **왜 호스트 빌드(학외 CI 아님):** 레지스트리 없이 빌드==배포이고, 프리렌더를 다시 켜면 빌드가 prod API 를 페이지 수만큼 부르는데 학외에선 SYN drop 이 누적돼 플레이키하다. 서빙 호스트에 빌드 부하가 생기지만 격리·무중단 swap 이라 감내.
 - **GitHub API 함정:** 브랜치 보호는 `repos/:owner/:repo/rules/branches/:branch`(ruleset) 로 조회한다 — 구식 `branches/:branch/protection` 은 ruleset 만 쓰는 레포에서 404 다. "설정이 없다"는 결론을 404 로 내리지 말 것.
@@ -58,5 +58,5 @@ pnpm 워크스페이스. 패키지는 `apps/web` 과 `e2e` 둘이고 `apps/api` 
 # 도구
 
 - **Biome** 하나로 린트·포맷. 커밋 전 `lint-staged` 가 staged 파일에 `biome check --write --error-on-warnings` + `pnpm -r typecheck` 를 돌려 경고도 커밋을 막는다. `apps/api`·`infra`·생성물(`routeTree.gen.ts`·`generated.d.ts`)은 `biome.json` 에서 제외 — **생성물을 빼지 않으면 `lint:fix` 가 재포맷해 드리프트 게이트가 깨진다.**
-- **knip** 은 워크스페이스별 entry(`knip.json`). 미사용 파일·export·의존성이 gate 에서 잡힌다.
+- **knip** 은 워크스페이스별 entry(`knip.json`). 미사용 파일·export·의존성이 `web-test` 에서 잡힌다.
 - E2E 러너의 node_modules 는 패키지마다 볼륨(이름에 마운트 경로). 디렉터리를 옮기면 볼륨 이름도 바꿔야 한다 — 옛 볼륨의 상대 심링크가 깨지는데 pnpm 은 설치돼 있다고 보고 다시 링크하지 않는다.

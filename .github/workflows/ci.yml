@@ -1,4 +1,4 @@
-# PR 게이트. develop/main으로 가는 PR마다 실행 → 그린이어야 머지(branch protection: gate·e2e).
+# PR 게이트. develop/main으로 가는 PR마다 실행 → 그린이어야 머지(branch protection: web-test).
 # 핵심 원칙: CI는 로컬 스크립트를 "호출"만 한다(두 벌 관리 X). 같은 biome.json·tsconfig·
 # e2e/run.sh·gradlew를 그대로 쓴다. 
 name: CI
@@ -29,23 +29,6 @@ jobs:
             api:
               - 'apps/api/**'
               - '.github/workflows/ci.yml'
-
-  # 타입·린트·knip·빌드. 워크스페이스 전체.
-  gate:
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v7
-      - uses: pnpm/action-setup@v6 # packageManager 필드에서 버전 읽음
-      - uses: actions/setup-node@v7
-        with:
-          node-version-file: .nvmrc
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm typecheck # 모든 패키지
-      - run: pnpm lint # biome check (pre-commit과 동일 기준)
-      - run: pnpm knip # 미사용 파일·export·의존성
 
   # 백엔드 단위 테스트 
   api-test:
@@ -88,16 +71,26 @@ jobs:
         working-directory: apps/api
         run: JAVA_HOME=$JAVA_HOME_21_X64 ./gradlew --no-daemon bootJar -x test
 
-  # E2E(비주얼 회귀 포함): 로컬과 "동일한" e2e/run.sh를 핀된 컨테이너로 실행한다.
-  # 호스트엔 JDK도 pnpm/node도 불필요. 백엔드 이미지는 위에서 캐시한 jar 로 만든다
-  # (JAR_STAGE=prebuilt → compose 빌드에서 Gradle 안 돈다).
-  e2e:
+  # 프론트 검사 한 잡: JS 워크스페이스(web·e2e) typecheck·lint·knip 뒤에 E2E(비주얼 회귀 포함).
+  # lint 는 lint-staged 가 커밋마다 이미 강제하므로 여기서는 백스톱이다.
+  # E2E 는 로컬과 "동일한" e2e/run.sh 를 핀된 컨테이너로 실행한다 — 호스트엔 JDK 불필요.
+  # 백엔드 이미지는 api-jar 가 캐시한 jar 로 만든다(JAR_STAGE=prebuilt → compose 빌드에서 Gradle 안 돈다).
+  web-test:
     if: github.event_name == 'pull_request'
     needs: api-jar
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6 # packageManager 필드에서 버전 읽음
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm lint
+      - run: pnpm knip
       - uses: actions/cache/restore@v4
         with:
           path: apps/api/build/libs
@@ -106,4 +99,4 @@ jobs:
       - name: E2E (e2e/run.sh)
         env:
           JAR_STAGE: prebuilt
-        run: bash e2e/run.sh
+        run: pnpm e2e
