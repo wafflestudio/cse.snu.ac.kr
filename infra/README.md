@@ -16,4 +16,4 @@ staging.env           staging 배포 대상 (develop push)
 Dockerfile.es         nori 플러그인을 넣은 Elasticsearch 이미지
 ```
 
-프론트 이미지는 아직 여기 스택에 없다 — `deploy.yml` 이 호스트로 보내는 `infra/ops/deploy-web.sh` 가 단독 컨테이너로 올린다. 스택에 합치는 것은 다음 작업.
+프론트 이미지는 아직 여기 스택에 없다 — `deploy.yml` 이 호스트로 보내는 `infra/ops/deploy-web.sh` 가 단독 컨테이너로 올린다. 스택에 합치는 것은 다음 작업. 그때 compose 서비스 `backend` 도 `api` 로 바꾼다(레포의 다른 이름과 맞추기 — 베이스 파일이 prod 와 공유돼 staging 에서 먼저 확인해야 한다).
