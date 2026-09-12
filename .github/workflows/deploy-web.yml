@@ -12,6 +12,8 @@ on:
       - 'pnpm-workspace.yaml'
       - 'package.json'
       - 'infra/ops/deploy-web.sh'
+      - 'infra/production.env'
+      - 'infra/staging.env'
       - '.dockerignore'
       - '.github/workflows/deploy-web.yml'
   workflow_dispatch:
@@ -30,7 +32,7 @@ jobs:
     timeout-minutes: 20
     environment: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
     steps:
-      - uses: actions/checkout@v7 # deploy-web.sh 와 deploy-targets 를 읽기 위해서만(빌드는 호스트가 함)
+      - uses: actions/checkout@v7 # deploy-web.sh 와 infra/*.env 를 읽기 위해서만(빌드는 호스트가 함)
 
       - name: 배포 대상 설정 읽기
         run: grep -vE '^\s*(#|$)' infra/${{ github.ref_name == 'main' && 'production' || 'staging' }}.env >> "$GITHUB_ENV"
