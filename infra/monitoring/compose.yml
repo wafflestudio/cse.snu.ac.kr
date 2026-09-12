@@ -69,10 +69,27 @@ services:
             - prometheus
         restart: unless-stopped
 
+    goatcounter:
+        image: arp242/goatcounter:2.7.0
+        container_name: goatcounter
+        command:
+            - serve
+            - -listen=:8080
+            - -tls=http 
+            - -base-path=/stats
+            - -automigrate
+            - -db=sqlite+/home/goatcounter/goatcounter-data/db.sqlite3
+        ports:
+            - "172.17.0.1:8081:8080"
+        volumes:
+            - goatcounter-data:/home/goatcounter/goatcounter-data
+        restart: unless-stopped
+
 volumes:
 
     prometheus-data:
     grafana-data:
+    goatcounter-data:
     # ops 프로젝트가 만든 볼륨을 빌려 쓴다(하트비트).
     ops-metrics:
         external: true

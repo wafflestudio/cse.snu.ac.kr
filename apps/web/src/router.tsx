@@ -33,6 +33,33 @@ export function getRouter() {
     ssr: { nonce },
   });
 
+  // 페이지 조회 카운트(GoatCounter). 첫 로드는 여기서 한 번 세고(하이드레이션은 onResolved 를 내지 않고
+  // onRendered 만 낸다), 그 뒤로는 경로나 검색 파라미터가 바뀐 클라 네비를 센다(페이지네이션·필터도
+  // 새 콘텐츠를 보는 것). 해시만 바뀐 이동은 제외. 보내는 값은 pathname 이라 행은 경로 단위로 모인다.
+  // count.js 는 async 라 아직 없을 수 있어 그 경우 스크립트 load 뒤에 보낸다.
+  if (!import.meta.env.SSR) {
+    const count = (path: string) => {
+      if (window.goatcounter) {
+        window.goatcounter.count({ path });
+        return;
+      }
+      document
+        .querySelector('script[src="/stats/count.js"]')
+        ?.addEventListener('load', () => window.goatcounter?.count({ path }), {
+          once: true,
+        });
+    };
+    count(window.location.pathname);
+    router.subscribe(
+      'onResolved',
+      ({ toLocation, pathChanged, hrefChanged, hashChanged }) => {
+        if (pathChanged || (hrefChanged && !hashChanged)) {
+          count(toLocation.pathname);
+        }
+      },
+    );
+  }
+
   return router;
 }
 
