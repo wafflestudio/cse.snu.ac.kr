@@ -66,7 +66,7 @@ jobs:
     if: ${{ !cancelled() && github.event_name == 'pull_request' && needs.api-test.result != 'failure' }}
     needs: [api-jar, api-test]
     runs-on: ubuntu-latest
-    timeout-minutes: 15 # 실측 7분(설치·정적 검사 1분 + E2E 6분)
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v6 # packageManager 필드에서 버전 읽음
