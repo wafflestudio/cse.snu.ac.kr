@@ -35,15 +35,19 @@ export async function switchEditorLanguage(page: Page, lang: 'ko' | 'en') {
   await expect(page.locator(`input#${lang}`)).toBeChecked();
 }
 
-/** Form.Dropdown — 필드셋을 열고 옵션 라벨로 선택 */
+/** Form.Dropdown — 필드셋을 열고 옵션 라벨로 선택.
+ *  옵션은 role=option 으로 집는다. 트리거는 선택값을 라벨로 달고 있어 button 으로 찾으면
+ *  "고르려는 값이 이미 선택돼 있을 때" 트리거와 옵션 둘 다 잡힌다(strict mode 위반). */
 export async function selectDropdown(
   page: Page,
   fieldsetName: string,
   optionLabel: string,
 ) {
   const fieldset = page.getByRole('group', { name: fieldsetName });
-  await fieldset.locator('button').first().click();
-  await page.getByRole('button', { name: optionLabel, exact: true }).click();
+  await fieldset.getByRole('combobox').click();
+  await fieldset
+    .getByRole('option', { name: optionLabel, exact: true })
+    .click();
 }
 
 /** 저장하기 버튼 클릭 */
