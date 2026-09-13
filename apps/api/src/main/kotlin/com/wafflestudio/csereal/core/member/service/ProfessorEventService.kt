@@ -101,7 +101,7 @@ class ProfessorEventServiceImpl(
     @EventListener
     @Transactional
     override fun labDeletedEventListener(event: LabDeletedEvent) {
-        val lab = labRepository.findByIdOrNull(event.id)!!
+        requireNotNull(labRepository.findByIdOrNull(event.id))
         val professors = professorRepository.findAllById(event.professorIds)
             .takeIf { it.size == event.professorIds.size }!!
 

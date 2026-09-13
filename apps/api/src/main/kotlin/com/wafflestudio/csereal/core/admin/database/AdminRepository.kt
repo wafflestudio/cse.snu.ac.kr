@@ -32,7 +32,7 @@ class AdminRepository(
         query.setParameter("pageSize", pageSize)
         query.setParameter("offset", offset)
 
-        val result = query.resultList as List<Array<Any>>
+        val result = query.resultList.map { it as Array<*> }
         val formattedResult = result.map {
             AdminImportantElement(
                 id = it[0] as Long,
