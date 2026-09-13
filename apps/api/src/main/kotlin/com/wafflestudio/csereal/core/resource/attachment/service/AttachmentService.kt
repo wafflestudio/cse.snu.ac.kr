@@ -89,7 +89,7 @@ class AttachmentServiceImpl(
 
         val attachmentsList = mutableListOf<AttachmentDto>()
 
-        for ((index, requestAttachment) in requestAttachments.withIndex()) {
+        for (requestAttachment in requestAttachments) {
             val timeMillis = System.currentTimeMillis()
 
             val filename = "${timeMillis}_${requestAttachment.originalFilename}"
