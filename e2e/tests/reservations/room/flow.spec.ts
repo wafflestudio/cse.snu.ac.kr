@@ -33,19 +33,19 @@ async function reserve(page: Page, title: string, recurringWeeks = 1) {
 
   if (recurringWeeks > 1) {
     const recurFs = dialog.locator('fieldset').filter({ hasText: '매주 반복' });
-    await recurFs.getByRole('button').first().click();
+    await recurFs.getByRole('combobox').click();
     await recurFs
-      .getByRole('button', { name: String(recurringWeeks), exact: true })
+      .getByRole('option', { name: String(recurringWeeks), exact: true })
       .click();
   }
 
   // 시작 14:00 / 종료 15:00 (미래 날짜라 과거시간 필터 없음 → 항상 선택 가능).
   const startFs = dialog.locator('fieldset').filter({ hasText: '시작 시간' });
-  await startFs.getByRole('button').first().click();
-  await startFs.getByRole('button', { name: '14:00', exact: true }).click();
+  await startFs.getByRole('combobox').click();
+  await startFs.getByRole('option', { name: '14:00', exact: true }).click();
   const endFs = dialog.locator('fieldset').filter({ hasText: '종료 시간' });
-  await endFs.getByRole('button').first().click();
-  await endFs.getByRole('button', { name: '15:00', exact: true }).click();
+  await endFs.getByRole('combobox').click();
+  await endFs.getByRole('option', { name: '15:00', exact: true }).click();
 
   await fillTextInput(page, 'title', title);
   await fillTextInput(page, 'contactEmail', 'auto@snu.ac.kr');

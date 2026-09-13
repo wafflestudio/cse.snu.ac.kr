@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useId, useRef, useState } from 'react';
 import { useController } from 'react-hook-form';
 
 import { useClickOutside } from '@/hooks/useClickOutside';
@@ -33,6 +33,7 @@ export default function Dropdown({
 
   const [expanded, setExpanded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const listboxId = useId();
 
   useClickOutside(
     ref,
@@ -55,6 +56,10 @@ export default function Dropdown({
     <div className="relative select-none w-fit" ref={ref}>
       <button
         type="button"
+        role="combobox"
+        aria-haspopup="listbox"
+        aria-expanded={expanded}
+        aria-controls={listboxId}
         className={clsx(
           'flex w-full items-center border bg-white py-[.3125rem] pl-[.625rem] pr-[.3125rem]',
           expanded ? 'rounded-t-sm' : 'rounded-sm',
@@ -80,6 +85,7 @@ export default function Dropdown({
       </button>
       <div className="relative z-10">
         <DropdownListWithScroll
+          id={listboxId}
           className={clsx(width, expanded ? 'scale-y-100' : 'scale-y-0')}
           contents={contents.map((x) => x.label)}
           handleClick={handleClick}
@@ -92,12 +98,14 @@ export default function Dropdown({
 }
 
 function DropdownListWithScroll({
+  id,
   className,
   contents,
   handleClick,
   selectedIndex,
   borderStyle = 'border-neutral-200',
 }: {
+  id: string;
   className: string;
   contents: string[];
   handleClick: (index: number) => void;
@@ -106,6 +114,8 @@ function DropdownListWithScroll({
 }) {
   return (
     <div
+      id={id}
+      role="listbox"
       className={clsx(
         'styled-scrollbar absolute flex flex-col left-0 top-0 max-h-[168px] origin-top overflow-y-auto overscroll-contain rounded-bl-sm rounded-br-sm border bg-white transition duration-200',
         className,
@@ -116,6 +126,8 @@ function DropdownListWithScroll({
         <button
           key={index}
           type="button"
+          role="option"
+          aria-selected={selectedIndex === index}
           className={clsx(
             'h-7 shrink-0 pl-[.62rem] text-left text-nowrap text-sm font-normal hover:bg-neutral-200 focus:border focus:border-neutral-400 ',
             selectedIndex === index && 'text-main-orange',
