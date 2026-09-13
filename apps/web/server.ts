@@ -52,7 +52,20 @@ if (API_PROXY_TARGET) {
   });
 }
 
-app.use('/*', serveStatic({ root: './dist/client' })); // 정적; 없으면 next()
+app.use(
+  '/*',
+  serveStatic({
+    root: './dist/client',
+    onFound: (_path, c) => {
+      c.header(
+        'Cache-Control',
+        c.req.path.startsWith('/assets/')
+          ? 'public, max-age=31536000, immutable'
+          : 'public, max-age=3600',
+      );
+    },
+  }),
+);
 app.all('*', (c) => handler.fetch(c.req.raw)); // SSR + server route(/img·/sitemap.xml)
 
 // :PORT 는 Caddy catch-all 로 공개되는 포트라 /metrics 를 거기 두지 않는다.
