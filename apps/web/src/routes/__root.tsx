@@ -29,6 +29,7 @@ const NON_LOCALE_SEGMENTS = new Set([
   '.internal',
   'img',
   'sitemap.xml',
+  'sitemap',
   'assets',
 ]);
 
