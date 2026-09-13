@@ -796,6 +796,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v2/sitemap": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * 사이트맵 항목
+         * @description 공개 콘텐츠(공지·새소식·세미나·교수·명예교수·직원·연구실)의 id 와 수정 시각. 프론트가 /sitemap.xml 을 만들 때 쓴다.
+         */
+        get: operations["entries"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v2/search": {
         parameters: {
             query?: never;
@@ -1818,6 +1838,21 @@ export interface components {
             phone: string;
             email: string;
             imageURL?: string | null;
+        };
+        SitemapEntry: {
+            /** Format: int64 */
+            id: number;
+            /** Format: date-time */
+            modifiedAt?: string | null;
+        };
+        SitemapResponse: {
+            notice: components["schemas"]["SitemapEntry"][];
+            news: components["schemas"]["SitemapEntry"][];
+            seminar: components["schemas"]["SitemapEntry"][];
+            professor: components["schemas"]["SitemapEntry"][];
+            emeritusProfessor: components["schemas"]["SitemapEntry"][];
+            staff: components["schemas"]["SitemapEntry"][];
+            lab: components["schemas"]["SitemapEntry"][];
         };
         SeminarSearchDto: {
             /** Format: int64 */
@@ -6109,6 +6144,44 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["MyRoleResponse"];
+                };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    entries: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["SitemapResponse"];
                 };
             };
             /** @description 요청 오류 — code 로 구분 */

@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { NOTICE_SEED } from './setup/seed/community';
 
 /**
  * 교내 웹취약점 점검(wscan) 회귀 가드 — 비로그인·DB 비변경이라 read 단계에서 병렬 실행.
@@ -115,5 +116,51 @@ test.describe('CSP·보안 헤더', () => {
     expect(headers['x-content-type-options']).toBe('nosniff');
     expect(headers['x-frame-options']).toBe('SAMEORIGIN');
     expect(headers['strict-transport-security']).toBeTruthy();
+  });
+});
+
+// 프론트 와이어링만 본다 — 인덱스가 유형별 파일을 가리키고, 백엔드 /api/v2/sitemap 의 id 가 상세 URL 로
+// 바뀌어 나오는가. 어떤 글이 공개인지는 백엔드가 정한다.
+test.describe('사이트맵', () => {
+  test('인덱스가 유형별 파일을 가리킨다', async ({ request }) => {
+    const res = await request.get('/sitemap.xml');
+    expect(res.status()).toBe(200);
+    expect(res.headers()['content-type']).toContain('application/xml');
+    const xml = await res.text();
+    expect(xml).toContain('<sitemapindex');
+    for (const f of [
+      'pages',
+      'notice',
+      'news',
+      'seminar',
+      'people',
+      'research',
+    ]) {
+      expect(xml).toContain(`/sitemap/${f}.xml</loc>`);
+    }
+  });
+
+  test('공지 파일은 시드 공지를 /ko 상세 URL 과 lastmod 로 싣고 /en 은 넣지 않는다', async ({
+    request,
+  }) => {
+    const xml = await (await request.get('/sitemap/notice.xml')).text();
+    // 다른 시더도 공지를 만들어 정확한 수는 알 수 없다. 공지 시드만큼은 반드시 있다.
+    const urls = xml.match(/<url>/g) ?? [];
+    expect(urls.length).toBeGreaterThanOrEqual(NOTICE_SEED.length);
+    expect(xml).toMatch(
+      /<loc>http:\/\/[^<]+\/ko\/community\/notice\/\d+<\/loc><lastmod>\d{4}-\d{2}-\d{2}T[\d:.]+Z<\/lastmod>/,
+    );
+    expect(xml).not.toContain('/en/community/notice/');
+  });
+
+  test('정적 페이지 파일은 두 로케일을 싣는다', async ({ request }) => {
+    const xml = await (await request.get('/sitemap/pages.xml')).text();
+    expect(xml).toContain('/ko</loc>');
+    expect(xml).toContain('/en</loc>');
+    expect(xml).toContain('/ko/community/notice</loc>');
+  });
+
+  test('모르는 파일은 404', async ({ request }) => {
+    expect((await request.get('/sitemap/nope.xml')).status()).toBe(404);
   });
 });
