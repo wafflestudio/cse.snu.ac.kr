@@ -4,12 +4,14 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc",
-    "test": "playwright test"
+    "test": "playwright test",
+    "seed:staging": "tsx seed-staging.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.57.0",
     "@types/node": "^24",
     "mysql2": "^3.24.2",
+    "tsx": "^4.22.4",
     "typescript": "^5.9.2"
   }
 }

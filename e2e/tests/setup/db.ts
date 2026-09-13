@@ -10,7 +10,9 @@ import { SEARCH_PAGING_SEED } from './seed/community';
  * e2e 컨테이너에선 e2e/run.sh 가 E2E_DB_HOST=db 를 주입한다(백엔드 스택은 루트 compose.yml).
  * 로컬 docker 전용이라 리셋 자유(staging/프로덕션은 절대 건드리지 않음).
  */
-async function withDb<T>(fn: (conn: Connection) => Promise<T>): Promise<T> {
+export async function withDb<T>(
+  fn: (conn: Connection) => Promise<T>,
+): Promise<T> {
   const conn = await mysql.createConnection({
     host: process.env.E2E_DB_HOST ?? '127.0.0.1',
     port: Number(process.env.E2E_DB_PORT ?? 3306),

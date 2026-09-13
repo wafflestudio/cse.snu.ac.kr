@@ -17,3 +17,18 @@ playwright.config.ts          프로젝트 read / read-mobile / language / secur
 - 경로 인자는 이 디렉터리 기준: `pnpm e2e tests/research/labs`. baseline 갱신은 `pnpm e2e --update-snapshots`.
 
 무엇을 테스트하고 무엇을 백엔드에 맡기는지는 `CLAUDE.md`(이 디렉터리).
+
+## staging 초기화
+
+`seed-staging.ts` 가 DB 를 비우고 E2E baseline 위에 "[테스트]" 게시물을 더한다. 이름·본문이 전부 가상이라 실데이터와 섞이지 않는다.
+prod 주소를 가리키면 시작하지 않는다. 호스트에서, 백업을 먼저:
+
+```bash
+docker exec csereal_db_container sh -c 'mysqldump -uroot -p"$MYSQL_ROOT_PASSWORD" --single-transaction "$MYSQL_DATABASE"' \
+  | gzip > ~/database/backup/before-reset-$(date +%F).sql.gz
+cd ~/build/cse.snu.ac.kr && docker run --rm --network app_default -v "$PWD":/work -w /work \
+  --env-file ~/secrets/app.env -e E2E_API_URL=http://api:8080 -e E2E_DB_HOST=db \
+  mcr.microsoft.com/playwright:v1.57.0-jammy bash -c \
+  'corepack enable && pnpm install --frozen-lockfile && E2E_DB_PASSWORD=$MYSQL_ROOT_PASSWORD pnpm -C e2e seed:staging'
+```
+
