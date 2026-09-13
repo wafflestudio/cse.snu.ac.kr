@@ -52,11 +52,6 @@ if (API_PROXY_TARGET) {
   });
 }
 
-// 정적; 없으면 next(). serveStatic 은 Last-Modified 만 붙여 Cache-Control 이 없는데,
-// 그러면 브라우저가 휴리스틱 캐싱(Last-Modified 이후 경과의 10%)을 쓴다 — 배포 직후엔
-// 신선도가 0 이라 해시 붙은 파일까지 매 방문 재검증한다. 그래서 직접 지정한다.
-// /assets/* 는 Vite 가 내용 해시를 붙이므로 영구 캐시가 안전하고, public/ 의 파일들은
-// 이름이 고정이라(favicon·robots·폰트) 짧게 잡아 바뀌면 한 시간 안에 따라오게 한다.
 app.use(
   '/*',
   serveStatic({
