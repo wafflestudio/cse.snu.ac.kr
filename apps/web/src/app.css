@@ -6,11 +6,11 @@
 /* 메인 슬로건(GraphicSection) 전용 서브셋. 문구를 고치면 다시 자른다(원본은 git 히스토리에):
      python3 -m fontTools.subset GowunBatang-Regular.woff2 --text="<슬로건 글자>" \
        --unicodes=U+0020-007E --flavor=woff2 --layout-features='*' \
-       --output-file=public/GowunBatang-slogan.subset.woff2
+       --output-file=src/assets/GowunBatang-slogan.subset.woff2
    ⚠️ ASCII 를 빼면 FreeType 오토히터가 마침표 폭을 1px 다르게 잡아 모바일 슬로건이 밀린다. */
 @font-face {
   font-family: "Gowun Batang";
-  src: url("/GowunBatang-slogan.subset.woff2") format("woff2");
+  src: url("./assets/GowunBatang-slogan.subset.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;

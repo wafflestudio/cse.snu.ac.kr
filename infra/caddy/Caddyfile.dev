@@ -1,4 +1,6 @@
 {$URL} {
+	import headers.caddy
+
 	# Frontend
 	reverse_proxy host.docker.internal:3000
 
