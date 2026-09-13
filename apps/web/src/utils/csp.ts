@@ -18,10 +18,10 @@ export const getCSPHeaders = (nonce: string) =>
     "default-src 'self'",
     `script-src 'self' 'nonce-${nonce}' https://t1.daumcdn.net https://dapi.kakao.com`,
     // 해시는 radix dialog에서 사용하는 react-remove-scroll-bar의 스타일을 사용하기 위함
-    `style-src 'self' 'nonce-${nonce}' https://fonts.googleapis.com 'sha256-kAApudxpTi9mfjlC9lC8ZaS9xFHU9/NLLbB173MU7SU=' https://cdn.jsdelivr.net/gh/orioncactus/`,
+    `style-src 'self' 'nonce-${nonce}' https://fonts.googleapis.com 'sha256-kAApudxpTi9mfjlC9lC8ZaS9xFHU9/NLLbB173MU7SU='`,
     "img-src 'self' https://cse.snu.ac.kr https://mts.daumcdn.net https://t1.daumcdn.net",
-    "font-src 'self' https://cdn.jsdelivr.net",
-    "connect-src 'self' https://cdn.jsdelivr.net",
+    "font-src 'self'",
+    "connect-src 'self'",
   ]
     .join('; ')
     .trim();
