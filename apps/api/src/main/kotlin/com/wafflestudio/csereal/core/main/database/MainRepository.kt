@@ -52,8 +52,7 @@ class MainRepositoryImpl(
                 MainNoticeResponse::class.java,
                 noticeEntity.id,
                 noticeEntity.title,
-                noticeEntity.createdAt,
-                noticeEntity.isPinned
+                noticeEntity.createdAt
             )
         ).from(noticeEntity)
             .where(noticeEntity.isPrivate.eq(false))
@@ -67,8 +66,7 @@ class MainRepositoryImpl(
                 MainNoticeResponse::class.java,
                 noticeTagEntity.notice.id,
                 noticeTagEntity.notice.title,
-                noticeTagEntity.notice.createdAt,
-                noticeEntity.isPinned
+                noticeTagEntity.notice.createdAt
             )
         ).from(noticeTagEntity)
             .rightJoin(noticeEntity).on(noticeTagEntity.notice.eq(noticeEntity))
