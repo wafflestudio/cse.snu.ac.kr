@@ -95,12 +95,8 @@ class ResearchServiceImpl(
 
         research.mainImage?.let { mainImageService.removeImage(it) }
 
-        // 딸린 연구실은 남고 소속만 끊는다. 색인도 그에 맞춰 다시 쓴다.
-        research.labs.forEach { lab ->
-            lab.research = null
-            lab.translations.forEach { translation ->
-            }
-        }
+        // 딸린 연구실은 남고 소속만 끊는다.
+        research.labs.forEach { it.research = null }
 
         researchRepository.delete(research)
     }

@@ -42,15 +42,15 @@ class ConferenceServiceImpl(
 
         val conferencePage = conferencePageRepository.findAll()[0]
 
-        val newConferenceList = conferenceModifyRequest.newConferenceList.map {
+        conferenceModifyRequest.newConferenceList.forEach {
             createConferenceWithoutSave(it, conferencePage)
         }
 
-        val modifiedConferenceList = conferenceModifyRequest.modifiedConferenceList.map {
+        conferenceModifyRequest.modifiedConferenceList.forEach {
             modifyConferenceWithoutSave(it)
         }
 
-        val deleteConferenceList = conferenceModifyRequest.deleteConferenceIdList.map {
+        conferenceModifyRequest.deleteConferenceIdList.forEach {
             deleteConference(it, conferencePage)
         }
 
