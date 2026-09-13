@@ -132,6 +132,19 @@ async function sectionUrls(section: Section): Promise<Url[]> {
   }
 }
 
+// 컨테이너 앞에서 Caddy 가 TLS 를 끝내므로 request.url 은 http:// 다. 프록시가 붙인 헤더로 공개 주소를 만든다.
+// 헤더가 없으면(로컬·E2E) 요청 URL 그대로.
+function publicOrigin(request: Request): string {
+  const url = new URL(request.url);
+  const proto =
+    request.headers.get('x-forwarded-proto') ?? url.protocol.replace(':', '');
+  const host =
+    request.headers.get('x-forwarded-host') ??
+    request.headers.get('host') ??
+    url.host;
+  return `${proto}://${host}`;
+}
+
 function xmlResponse(body: string): Response {
   return new Response(`<?xml version="1.0" encoding="UTF-8"?>\n${body}`, {
     headers: {
@@ -143,7 +156,7 @@ function xmlResponse(body: string): Response {
 
 /** /sitemap.xml — 유형별 파일을 가리키는 인덱스. */
 export async function handleSitemapIndex(request: Request): Promise<Response> {
-  const origin = new URL(request.url).origin;
+  const origin = publicOrigin(request);
   const items = SECTIONS.map(
     (s) => `  <sitemap><loc>${origin}/sitemap/${s}.xml</loc></sitemap>`,
   ).join('\n');
@@ -160,7 +173,7 @@ export async function handleSitemapSection(
   const section = SECTIONS.find((s) => `${s}.xml` === file);
   if (!section) return new Response('Not Found', { status: 404 });
 
-  const origin = new URL(request.url).origin;
+  const origin = publicOrigin(request);
   const urls = (await sectionUrls(section))
     .map(
       ({ path, lastmod }) =>
