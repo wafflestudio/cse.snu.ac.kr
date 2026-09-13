@@ -141,8 +141,6 @@ class LabServiceImpl(
             attachmentService.uploadAttachmentInLabEntity(lab, pdf)
         }
 
-        lab.translations.forEach { upsertSearchIndex(it) }
-
         applicationEventPublisher.publishEvent(
             LabModifiedEvent(
                 lab.id,
@@ -178,9 +176,6 @@ class LabServiceImpl(
                 }
             }
             ?: throw CserealException(ErrorCode.RESEARCH_GROUP_NOT_FOUND, mapOf("groupId" to groupId))
-
-    private fun upsertSearchIndex(translation: LabTranslationEntity) {
-    }
 
     private fun LabEntity.toLanguageDto(): LabLanguageDto =
         LabLanguageDto.of(this, attachmentService.createOneAttachmentResponse(pdf))

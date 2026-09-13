@@ -81,9 +81,9 @@ class MainImageServiceImpl(
 
     // TODO: `MainImageEntity`의 메서드로 refactoring하기.
     @Transactional
-    override fun createImageURL(mainImage: MainImageEntity?): String? {
-        return if (mainImage != null) {
-            "${endpointProperties.backend}/v1/file/${mainImage.filename}"
+    override fun createImageURL(image: MainImageEntity?): String? {
+        return if (image != null) {
+            "${endpointProperties.backend}/v1/file/${image.filename}"
         } else {
             null
         }
