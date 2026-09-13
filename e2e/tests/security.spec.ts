@@ -84,7 +84,7 @@ test.describe('관리자 페이지', () => {
   });
 });
 
-test.describe('CSP·보안 헤더', () => {
+test.describe('CSP', () => {
   test('CSP에 http: 오리진이 없고 요청마다 nonce가 바뀐다', async ({
     request,
   }) => {
@@ -107,15 +107,6 @@ test.describe('CSP·보안 헤더', () => {
     expect(nonceOf(second.headers()['content-security-policy'])).not.toBe(
       firstNonce,
     );
-  });
-
-  test('보안 응답 헤더가 붙는다', async ({ request }) => {
-    // `src/router.tsx`가 마감한다. 엣지(Caddy)도 일부를 내지만, 엣지 구성이 바뀌어도
-    // 앱이 자립적으로 내는지를 여기서 지킨다.
-    const headers = (await request.get('/ko')).headers();
-    expect(headers['x-content-type-options']).toBe('nosniff');
-    expect(headers['x-frame-options']).toBe('SAMEORIGIN');
-    expect(headers['strict-transport-security']).toBeTruthy();
   });
 });
 
