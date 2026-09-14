@@ -1,6 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
 import Header from '@/components/layout/Header';
-import Image from '@/components/ui/Image';
 import ImageModal from '@/components/ui/ImageModal';
 import { SITE_NAME } from '@/constants/site';
 import { useLanguage } from '@/hooks/useLanguage';
@@ -11,7 +10,7 @@ import ImportantSection from './-components/ImportantSection';
 import LinkSection from './-components/LinkSection';
 import NoticeSection from './-components/NoticeSection';
 import NewsSection from './-components/news/NewsSection';
-import backgroundImg from './assets/background.avif';
+import BackgroundPattern from './assets/background.svg?react';
 
 const META = {
   ko: {
@@ -43,14 +42,7 @@ function MainPage() {
       <div className="relative w-full">
         <Header />
         <div className="absolute left-0 right-0 top-0 -z-50 hidden aspect-1336/800 sm:block">
-          <Image
-            src={backgroundImg}
-            alt=""
-            // 데스크톱 히어로 배경 = LCP 요소(모바일과 동일 asset → 요청 1회). high로 우선 로드.
-            fetchPriority="high"
-            loading="eager"
-            className="object-cover w-full h-full"
-          />
+          <BackgroundPattern className="h-full w-full" />
         </div>
         <GraphicSection />
         <NewsSection mainNews={loaderData.slides} />

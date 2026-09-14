@@ -36,9 +36,11 @@ import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
 import java.time.Clock
 import java.time.Duration
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZoneOffset
+import java.util.UUID
 
 @ActiveProfiles("test")
 @SpringBootTest
@@ -66,6 +68,39 @@ class ReservationServiceTest(
         SecurityContextHolder.clearContext()
         val start = reserveTermPolicy.now().plusDays(1)
         shouldThrow<CserealException> { reservationService.reserveRoom(request(lab.id, start, 1)) }
+    }
+
+    "range query counts KST calendar days over UTC-stored times" {
+        val user = authenticateAs(userRepository, "range-user")
+        val room = roomRepository.save(RoomEntity("range room", "305", 20, RoomType.SEMINAR))
+        // KST 2027-04-02 00:30 = UTC 2027-04-01 15:30 — UTC 로는 하루 앞이다.
+        reservationRepository.save(
+            ReservationEntity(
+                user,
+                room,
+                "range",
+                "a@a.com",
+                "010-1234-5678",
+                "purpose",
+                LocalDateTime.of(2027, 4, 1, 15, 30),
+                LocalDateTime.of(2027, 4, 1, 16, 30),
+                "prof",
+                1,
+                UUID.randomUUID(),
+                true
+            )
+        )
+
+        reservationService.getRoomReservations(room.id, LocalDate.of(2027, 4, 2), 1).size shouldBe 1
+        reservationService.getRoomReservations(room.id, LocalDate.of(2027, 4, 1), 1).size shouldBe 0
+    }
+
+    "range query rejects a day count outside the supported window" {
+        listOf(0, 32).forEach { days ->
+            shouldThrow<CserealException> {
+                reservationService.getRoomReservations(seminar.id, LocalDate.of(2027, 4, 2), days)
+            } shouldBe CserealException(ErrorCode.UNSUPPORTED_RESERVATION_DATE)
+        }
     }
 
     "staff can reserve every room as UNRESTRICTED with the configured maximum" {

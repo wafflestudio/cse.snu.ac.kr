@@ -51,6 +51,7 @@ function PeopleCard({
             alt={`${name} 프로필`}
             className="h-[192px] w-[144px] object-cover"
             width={144}
+            sizes="144px"
             height={192}
             loading="lazy"
           />

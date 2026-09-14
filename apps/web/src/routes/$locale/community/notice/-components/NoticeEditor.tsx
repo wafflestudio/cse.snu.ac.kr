@@ -132,7 +132,7 @@ export default function NoticeEditor({
                     <Form.Date name="pinnedUntil" hideTime disablePast />
                   </div>
                 )}
-                <p className="text-xs font-light tracking-wide text-neutral-700">
+                <p className="text-xs font-normal tracking-wide text-neutral-700">
                   * 만료일 설정 시 해당 날짜까지만 상단에 고정됩니다.
                 </p>
               </div>
@@ -167,7 +167,7 @@ export default function NoticeEditor({
                     <Form.Date name="importantUntil" hideTime disablePast />
                   </div>
                 )}
-                <p className="text-xs font-light tracking-wide text-neutral-700">
+                <p className="text-xs font-normal tracking-wide text-neutral-700">
                   * 만료일 설정 시 해당 날짜까지만 중요 안내로 표시됩니다.
                 </p>
               </div>

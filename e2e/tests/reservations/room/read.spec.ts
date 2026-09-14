@@ -31,7 +31,9 @@ test.describe('시설 예약 캘린더 - 읽기', () => {
   }, testInfo) => {
     // 데스크톱은 주(7칸) 단위·주의 시작 기준, 모바일은 3일 단위·선택일 기준으로 움직인다.
     const step = testInfo.project.name.includes('mobile') ? 3 : 7;
-    const column = (date: string) => page.locator(`time[datetime="${date}"]`);
+    // 두 뷰포트의 칼럼이 둘 다 DOM 에 있고 CSS 로 하나만 보인다 — 보이는 것만 센다.
+    const column = (date: string) =>
+      page.locator(`time[datetime="${date}"]`).filter({ visible: true });
 
     await setLocale(page, 'ko');
     await page.goto(

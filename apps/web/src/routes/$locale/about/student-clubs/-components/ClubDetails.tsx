@@ -35,7 +35,6 @@ export default function ClubDetails({ club, locale }: ClubDetailsProps) {
         src: club.imageURL,
         width: 320,
         height: 200,
-        mobileFullWidth: true,
       } as const)
     : undefined;
 

@@ -16,9 +16,10 @@ const subscribe = (onStoreChange: () => void) => {
  * CSS(`hidden sm:*`)로 되는 분기는 CSS를 쓰고, 이 훅은 값 계산·컴포넌트 분기에만 쓴다.
  */
 export default function useIsMobile() {
-  return useSyncExternalStore(
-    subscribe,
-    () => window.matchMedia(MOBILE_QUERY).matches,
-    () => true,
-  );
+  return useSyncExternalStore(subscribe, isMobileViewport, () => true);
+}
+
+/** 이벤트 시점의 뷰포트. 렌더에 쓰면 SSR 과 어긋나니 핸들러 안에서만 부른다. */
+export function isMobileViewport() {
+  return window.matchMedia(MOBILE_QUERY).matches;
 }

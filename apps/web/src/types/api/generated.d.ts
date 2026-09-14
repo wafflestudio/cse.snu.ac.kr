@@ -896,22 +896,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v2/reservation/week": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getWeeklyReservations"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/v2/reservation/terms": {
         parameters: {
             query?: never;
@@ -928,14 +912,14 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v2/reservation/month": {
+    "/api/v2/reservation/range": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get: operations["getMonthlyReservations"];
+        get: operations["getReservations"];
         put?: never;
         post?: never;
         delete?: never;
@@ -6502,49 +6486,6 @@ export interface operations {
             };
         };
     };
-    getWeeklyReservations: {
-        parameters: {
-            query: {
-                roomId: number;
-                year: number;
-                month: number;
-                day: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["SimpleReservationDto"][];
-                };
-            };
-            /** @description 요청 오류 — code 로 구분 */
-            "4XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-            /** @description 서버 오류 */
-            "5XX": {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
-    };
     getReserveTerms: {
         parameters: {
             query?: never;
@@ -6583,12 +6524,12 @@ export interface operations {
             };
         };
     };
-    getMonthlyReservations: {
+    getReservations: {
         parameters: {
             query: {
                 roomId: number;
-                year: number;
-                month: number;
+                startDate: string;
+                days: number;
             };
             header?: never;
             path?: never;

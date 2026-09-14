@@ -4,7 +4,11 @@
  * import하면 안 된다(클라 번들 오염). 이 파일은 문자열 조립만 한다.
  */
 
-const DEFAULT_QUALITY = 50;
+/**
+ * AVIF 품질. 전 호출부가 이 값 하나를 쓴다 — 사진마다 다르게 줄 근거가 없었다.
+ * 50 은 얼굴에서 눈에 띄게 뭉개지고, 100 은 75 대비 4.5배인데 차이가 안 보인다.
+ */
+const QUALITY = 75;
 
 /**
  * `/img` 가 원본을 가져올 수 있는 호스트(SSRF 방지). 핸들러의 검사와 본문 이미지 URL 재작성이
@@ -33,31 +37,25 @@ export function shouldOptimize(src: string | undefined): src is string {
   return true;
 }
 
-export function buildOptimizedUrl(
-  src: string,
-  quality = DEFAULT_QUALITY,
-  width?: number,
-): string {
-  const params = new URLSearchParams({ url: src, q: quality.toString() });
+export function buildOptimizedUrl(src: string, width?: number): string {
+  const params = new URLSearchParams({ url: src, q: QUALITY.toString() });
   if (width) params.set('w', width.toString());
   return `/img?${params.toString()}`;
 }
 
-/**
- * CSS 폭이 정해진 이미지의 `src`(1x)와 `srcSet`(1x·2x·3x).
- * ⚠️ `w` 가 아니라 `x` 서술자다 — `w` 는 `sizes` 로 표시 폭을 알려줘야 하고,
- * 없으면 브라우저가 100vw 로 가정해 늘 가장 큰 것을 고른다.
- */
-export function buildResponsiveSrc(
-  src: string,
-  width: number,
-  quality?: number,
-) {
-  const densities = [1, 2, 3];
-  const urls = densities.map((d) => buildOptimizedUrl(src, quality, width * d));
+/** 이미지가 고를 후보 폭. 호출부가 폭을 지어내지 않도록 여기 한 곳에 둔다. */
+const WIDTH_LADDER = [160, 320, 480, 640, 960, 1280, 1920];
 
+/**
+ * 후보 폭을 전부 깔고 브라우저가 고르게 한다 — 호출부의 `sizes` 와 기기 DPR 로 계산한다.
+ * 고정 폭이어도 `sizes="160px"` 이면 되므로 밀도(1x·2x) 경로를 따로 두지 않는다.
+ * `src` 는 srcSet 을 못 읽는 브라우저용 폴백이라 사다리의 중간값을 준다.
+ */
+export function buildResponsiveSrcSet(src: string) {
   return {
-    src: urls[0],
-    srcSet: urls.map((url, i) => `${url} ${densities[i]}x`).join(', '),
+    src: buildOptimizedUrl(src, 640),
+    srcSet: WIDTH_LADDER.map((w) => `${buildOptimizedUrl(src, w)} ${w}w`).join(
+      ', ',
+    ),
   };
 }

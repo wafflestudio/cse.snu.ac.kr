@@ -83,9 +83,7 @@ function LinkGroup({
         {groupName}
       </h3>
 
-      <ul
-        className={`${itemColor} flex flex-col gap-2.5 text-sm font-light sm:font-normal`}
-      >
+      <ul className={`${itemColor} flex flex-col gap-2.5 text-sm font-normal`}>
         {links.map((link, i) => (
           <li key={i}>
             <Link to={link.href} className="whitespace-nowrap">

@@ -12,10 +12,10 @@ export default function ProfileImage({
       alt={alt}
       src={imageURL}
       width={200}
+      sizes="200px"
       height={264}
       className="object-contain drop-shadow-[0px_0px_4px_rgba(0,0,0,0.15)]"
       loading="lazy"
-      quality={100}
     />
   );
 }

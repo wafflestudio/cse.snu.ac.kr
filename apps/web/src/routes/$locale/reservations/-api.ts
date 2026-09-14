@@ -5,24 +5,25 @@ import type {
   ReserveTerm,
 } from '@/types/api';
 import { api } from '@/utils/api';
+import { formatDateParam } from './-utils';
 
 export const fetchReserveTerms = async () => {
   return api.get(`v2/reservation/terms`).json<ReserveTerm[]>();
 };
 
-export const fetchWeeklyReservation = async (
+export const fetchReservations = async (
   roomId: number,
-  date: dayjs.Dayjs,
+  startDate: dayjs.Dayjs,
+  days: number,
 ) => {
   const params = new URLSearchParams({
     roomId: `${roomId}`,
-    year: `${date.year()}`,
-    month: `${date.month() + 1}`,
-    day: `${date.date()}`,
+    startDate: formatDateParam(startDate),
+    days: `${days}`,
   });
 
   return api
-    .get(`v2/reservation/week?${params.toString()}`)
+    .get(`v2/reservation/range?${params.toString()}`)
     .json<ReservationPreview[]>();
 };
 

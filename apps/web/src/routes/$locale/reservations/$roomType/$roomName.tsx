@@ -3,16 +3,15 @@ import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useNavItem } from '@/hooks/useNavItem';
-import useIsMobile from '@/hooks/useResponsive';
 import { useReservationsSubNav } from '@/hooks/useSubNav';
 import {
+  fetchReservations,
   fetchReserveTerms,
-  fetchWeeklyReservation,
 } from '@/routes/$locale/reservations/-api';
-import ReservationCalendar, {
-  type ReservationCalendarProps,
-} from '@/routes/$locale/reservations/-components/ReservationCalendar';
+import ReservationCalendar from '@/routes/$locale/reservations/-components/ReservationCalendar';
 import {
+  DESKTOP_COLUMN_COUNT,
+  MOBILE_COLUMN_COUNT,
   roomNameToId,
   STAFF_ONLY_ROOM_ID,
 } from '@/routes/$locale/reservations/-constants';
@@ -21,13 +20,8 @@ import { stringParam } from '@/utils/searchSchema';
 import { formatDateParam, getStartOfWeek, parseDateParam } from '../-utils';
 
 function RoomReservationPage() {
-  const {
-    roomId,
-    desktopReservations,
-    mobileReservations,
-    selectedDate,
-    reserveTerms,
-  } = Route.useLoaderData();
+  const { roomId, reservations, selectedDate, reserveTerms } =
+    Route.useLoaderData();
 
   const { t, tUnsafe } = useLanguage({
     '존재하지 않는 시설 아이디입니다.': 'Invalid room.',
@@ -37,27 +31,17 @@ function RoomReservationPage() {
 
   const { activeItem } = useNavItem();
   const subNav = useReservationsSubNav();
-  const isMobile = useIsMobile();
 
   // loader에서 처리하므로 여기서는 처리하지 않음
   if (!activeItem) return null;
 
   const title = activeItem ? tUnsafe(activeItem.key) : t('시설 예약');
-  const props: ReservationCalendarProps = isMobile
-    ? {
-        reservations: mobileReservations,
-        columnCount: 3,
-        startDate: parseDateParam(selectedDate),
-        roomId,
-        reserveTerms,
-      }
-    : {
-        reservations: desktopReservations,
-        columnCount: 7,
-        startDate: getStartOfWeek(parseDateParam(selectedDate)),
-        roomId,
-        reserveTerms,
-      };
+  const props = {
+    reservations,
+    startDate: parseDateParam(selectedDate),
+    roomId,
+    reserveTerms,
+  };
 
   const isStaffOnlyRoom = STAFF_ONLY_ROOM_ID.includes(roomId);
 
@@ -101,19 +85,20 @@ export const Route = createFileRoute(
 
     const isSeminarRoom = params.roomType === 'seminar-room';
 
-    const startOfWeek = getStartOfWeek(selectedDate);
-    const [desktopReservations, mobileReservations, reserveTerms] =
-      await Promise.all([
-        fetchWeeklyReservation(roomId, startOfWeek),
-        fetchWeeklyReservation(roomId, selectedDate),
-        isSeminarRoom ? fetchReserveTerms() : Promise.resolve(null),
-      ]);
+    // 데스크톱은 주 월요일부터 7일, 모바일은 선택일부터 3일 — 합치면 월요일부터 최대 10일이다.
+    const [reservations, reserveTerms] = await Promise.all([
+      fetchReservations(
+        roomId,
+        getStartOfWeek(selectedDate),
+        DESKTOP_COLUMN_COUNT + MOBILE_COLUMN_COUNT,
+      ),
+      isSeminarRoom ? fetchReserveTerms() : Promise.resolve(null),
+    ]);
 
     return {
       roomId,
       selectedDate: formatDateParam(selectedDate),
-      desktopReservations,
-      mobileReservations,
+      reservations,
       reserveTerms,
     };
   },

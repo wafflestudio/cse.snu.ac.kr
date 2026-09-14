@@ -119,6 +119,8 @@ function ResearchGroupsPage() {
               <Image
                 src={item.mainImageUrl}
                 alt={`${item.name} 연구 스트림 사진`}
+                // w-[80%] max-w-[720px]
+                sizes="(min-width: 900px) 720px, 80vw"
                 className="h-full w-full object-cover"
               />
             </div>

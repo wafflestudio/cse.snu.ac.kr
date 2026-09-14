@@ -55,7 +55,7 @@ export type MyRole = Res<'/api/v2/user/my-role'>;
 
 /* ── 예약 ───────────────────────────────────────────────── */
 
-export type ReservationPreview = Res<'/api/v2/reservation/week'>[number];
+export type ReservationPreview = Res<'/api/v2/reservation/range'>[number];
 export type Reservation = Res<'/api/v2/reservation/{reservationId}'>;
 export type ReserveTerm = Res<'/api/v2/reservation/terms'>[number];
 // 요청 바디 — 응답과 달리 optional이 "생략 가능"이라 Res를 쓰지 않는다.
