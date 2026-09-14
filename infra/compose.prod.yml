@@ -82,10 +82,10 @@ services:
         ports:
             - "172.17.0.1:3000:3000"
             - "172.17.0.1:9464:9464"
-        # SSR 이 절대 URL(https://<URL>/api/…)로 백엔드를 부른다. 컨테이너가 그 이름을 호스트(엣지)로 풀어야 한다.
-        # 빠지면 전 페이지 500 — 오래 뜬 컨테이너에선 안 드러나고 재생성 시점에 터진다.
-        extra_hosts:
-            - "${URL}:host-gateway"
+        environment:
+            # SSR 이 부를 백엔드. 같은 프로젝트라 서비스 이름으로 붙는다(엣지를 돌지 않는다).
+            API_ORIGIN: http://api:8080
+            STATS_ENABLED: ${STATS_ENABLED:-false}
         volumes:
             - ../frontend-data:/frontend-data
         # 정적 파일이라 백엔드·엣지 상태와 무관하게 앱 프로세스만 본다.
