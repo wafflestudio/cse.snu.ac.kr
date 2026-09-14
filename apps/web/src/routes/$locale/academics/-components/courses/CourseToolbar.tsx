@@ -8,12 +8,10 @@ import type {
 import translations from './translations.json';
 
 interface CourseToolbarProps {
-  hideViewOption?: boolean;
   hideSortOption?: boolean;
 }
 
 export default function CourseToolbar({
-  hideViewOption = false,
   hideSortOption = false,
 }: CourseToolbarProps) {
   const navigate = useNavigate();
@@ -33,12 +31,10 @@ export default function CourseToolbar({
 
   return (
     <div className="mb-5 flex items-center justify-between sm:pl-5">
-      {hideViewOption || (
-        <ViewOptions
-          selectedOption={viewOption}
-          changeOption={(option) => changeOption('view', option)}
-        />
-      )}
+      <ViewOptions
+        selectedOption={viewOption}
+        changeOption={(option) => changeOption('view', option)}
+      />
       {hideSortOption || (
         <SortOptions
           selectedOption={sortOption}
@@ -57,8 +53,9 @@ interface ViewOptionsProps {
 function ViewOptions({ selectedOption, changeOption }: ViewOptionsProps) {
   const { t } = useLanguage(translations);
 
+  // 카드형은 데스크톱 전용이라 토글도 데스크톱만 보인다.
   return (
-    <div className="flex gap-3 text-md text-neutral-400">
+    <div className="hidden gap-3 text-md text-neutral-400 sm:flex">
       <button
         type="button"
         className={
