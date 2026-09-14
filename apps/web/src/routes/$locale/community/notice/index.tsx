@@ -140,7 +140,10 @@ export const Route = createFileRoute('/$locale/community/notice/')({
   validateSearch: (search: Record<string, unknown>): NoticeSearch => ({
     pageNum: pageNumParam(search.pageNum),
     keyword: stringParam(search.keyword),
-    tag: stringArrayParam(search.tag),
+    // 모르는 태그를 백엔드에 넘기면 404라 목록이 통째로 깨진다(이름이 바뀐 옛 링크·손으로 고친 URL).
+    tag: stringArrayParam(search.tag)?.filter((t) =>
+      (NOTICE_TAGS as readonly string[]).includes(t),
+    ),
   }),
   // loader가 실제로 쓰는 것만 선언한다(전체를 넘기면 무관한 파라미터 변경에도 재실행).
   loaderDeps: ({ search }) => search,
