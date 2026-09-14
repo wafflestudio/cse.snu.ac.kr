@@ -20,7 +20,7 @@ import useIsMobile from '@/hooks/useResponsive';
 import { type Role, useStore } from '@/store';
 import { fetchSessionRoles } from '@/utils/auth';
 import { detectLangFromHeaders } from '@/utils/lang';
-import { getSiteOrigin, readLangHeaders } from '@/utils/ssr';
+import { getSiteOrigin, isStatsEnabled, readLangHeaders } from '@/utils/ssr';
 
 // 로케일 프리픽스를 부여하지 않는 최상위(비로케일) 라우트. 정적 에셋은 SSR 전에 서빙돼 여기 도달 안 함.
 const NON_LOCALE_SEGMENTS = new Set([
@@ -72,7 +72,7 @@ export const Route = createRootRoute({
     roles: await fetchSessionRoles(),
     origin: getSiteOrigin(),
     // 조회 통계(GoatCounter)는 /stats 가 있는 배포 환경에서만. 없으면 404 콘솔 에러만 난다.
-    statsEnabled: process.env.STATS_ENABLED === 'true',
+    statsEnabled: isStatsEnabled(),
   }),
   staleTime: 5 * 60_000,
   head: ({ loaderData }) => ({
