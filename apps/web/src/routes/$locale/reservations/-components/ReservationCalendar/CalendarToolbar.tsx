@@ -15,17 +15,16 @@ import LoginVisible from '@/components/feature/auth/LoginVisible';
 import Button from '@/components/ui/Button';
 import Calendar from '@/components/ui/Calendar';
 import { useClickOutside } from '@/hooks/useClickOutside';
+import { isMobileViewport } from '@/hooks/useResponsive';
+import {
+  DESKTOP_COLUMN_COUNT,
+  MOBILE_COLUMN_COUNT,
+} from '@/routes/$locale/reservations/-constants';
 import useSelectedDate from '@/routes/$locale/reservations/-hooks/useSelectedDate';
 import { kstDayjs } from '@/utils/date';
 import AddReservationModal from './AddReservationModal';
 
-export default function CalendarToolbar({
-  columnCount,
-  roomId,
-}: {
-  columnCount: number;
-  roomId: number;
-}) {
+export default function CalendarToolbar({ roomId }: { roomId: number }) {
   const { selectedDate } = useSelectedDate();
   const todayButtonVisible = !kstDayjs().isSame(selectedDate, 'day');
   const [showAddModal, setShowAddModal] = useState(false);
@@ -34,14 +33,8 @@ export default function CalendarToolbar({
     <div className="mb-6 flex h-7.5 items-stretch justify-between">
       <div className="flex items-stretch gap-2">
         <SelectDayButton date={selectedDate} />
-        <ChangeDateButton
-          targetDate={selectedDate.add(-columnCount, 'day')}
-          direction="prev"
-        />
-        <ChangeDateButton
-          targetDate={selectedDate.add(columnCount, 'day')}
-          direction="next"
-        />
+        <ChangeDateButton direction="prev" />
+        <ChangeDateButton direction="next" />
         {todayButtonVisible && <TodayButton />}
       </div>
       <LoginVisible allow={['ROLE_STAFF', 'ROLE_RESERVE', 'ROLE_LABMASTER']}>
@@ -105,15 +98,17 @@ function SelectDayButton({ date }: { date: dayjs.Dayjs }) {
   );
 }
 
-function ChangeDateButton({
-  targetDate,
-  direction,
-}: {
-  targetDate: dayjs.Dayjs;
-  direction: 'prev' | 'next';
-}) {
-  const { setSelectedDate } = useSelectedDate();
-  const handleClick = () => setSelectedDate(targetDate);
+function ChangeDateButton({ direction }: { direction: 'prev' | 'next' }) {
+  const { selectedDate, setSelectedDate } = useSelectedDate();
+
+  const handleClick = () => {
+    const step = isMobileViewport()
+      ? MOBILE_COLUMN_COUNT
+      : DESKTOP_COLUMN_COUNT;
+    setSelectedDate(
+      selectedDate.add(direction === 'prev' ? -step : step, 'day'),
+    );
+  };
 
   return (
     <SquareButton

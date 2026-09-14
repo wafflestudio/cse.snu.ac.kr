@@ -18,3 +18,6 @@ export const roomNameToId: Record<string, number> = {
 };
 
 export const STAFF_ONLY_ROOM_ID = [15, 16];
+
+export const MOBILE_COLUMN_COUNT = 3;
+export const DESKTOP_COLUMN_COUNT = 7;
