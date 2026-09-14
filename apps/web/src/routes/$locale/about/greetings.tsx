@@ -63,6 +63,7 @@ function GreetingsPage() {
                 src={loaderData.imageURL}
                 alt="학부장"
                 width={212}
+                sizes="212px"
                 height={280}
               />
             </div>

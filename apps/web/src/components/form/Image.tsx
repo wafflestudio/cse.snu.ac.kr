@@ -64,7 +64,13 @@ const SelectedImageViewer = ({
   if (file.type !== 'LOCAL_IMAGE') {
     return (
       <div className="flex w-fit items-end gap-2 border border-neutral-200 bg-neutral-50 p-2">
-        <Image src={file.url} alt="선택된 이미지" width={100} height={100} />
+        <Image
+          src={file.url}
+          alt="선택된 이미지"
+          width={100}
+          height={100}
+          sizes="100px"
+        />
         <button
           type="button"
           className="text-xs underline"
@@ -89,6 +95,7 @@ const SelectedImageViewer = ({
         src={imageURL}
         alt="선택된 이미지"
         width={IMAGE_WIDTH}
+        sizes={`${IMAGE_WIDTH}px`}
         height={imageHeight}
       />
       <div className="flex flex-col items-start justify-between">

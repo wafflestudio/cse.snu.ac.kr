@@ -84,6 +84,8 @@ function Overview() {
                 alt="학교 전경"
                 width={320}
                 height={216}
+                // 모바일 w-full, 데스크톱 sm:w-80(320px)
+                sizes="(min-width: 640px) 320px, 100vw"
                 className="w-full object-contain sm:w-80"
               />
             </div>
@@ -93,8 +95,20 @@ function Overview() {
       <ContentSection tone="white" padding="overviewBottom">
         <h2 className="mb-6 text-base font-semibold">{t('학부 소개 책자')}</h2>
         <div className="mb-10 flex flex-col gap-6 sm:flex-row">
-          <Image src={brochure1} width={227} height={320} alt="소개 책자" />
-          <Image src={brochure2} width={227} height={320} alt="소개 책자" />
+          <Image
+            src={brochure1}
+            width={227}
+            height={320}
+            sizes="227px"
+            alt="소개 책자"
+          />
+          <Image
+            src={brochure2}
+            width={227}
+            height={320}
+            sizes="227px"
+            alt="소개 책자"
+          />
         </div>
         <Attachments files={attachments ?? []} />
       </ContentSection>
