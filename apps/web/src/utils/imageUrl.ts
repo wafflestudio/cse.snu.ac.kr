@@ -44,8 +44,9 @@ export function buildOptimizedUrl(
 }
 
 /**
- * width가 정해진 이미지의 `src`(1x)와 `srcSet`(1x·2x·3x).
- * 고밀도 디스플레이에서 브라우저가 알아서 고르게 한다.
+ * CSS 폭이 정해진 이미지의 `src`(1x)와 `srcSet`(1x·2x·3x).
+ * ⚠️ `w` 가 아니라 `x` 서술자다 — `w` 는 `sizes` 로 표시 폭을 알려줘야 하고,
+ * 없으면 브라우저가 100vw 로 가정해 늘 가장 큰 것을 고른다.
  */
 export function buildResponsiveSrc(
   src: string,
@@ -57,6 +58,6 @@ export function buildResponsiveSrc(
 
   return {
     src: urls[0],
-    srcSet: urls.map((url, i) => `${url} ${width * densities[i]}w`).join(', '),
+    srcSet: urls.map((url, i) => `${url} ${densities[i]}x`).join(', '),
   };
 }
