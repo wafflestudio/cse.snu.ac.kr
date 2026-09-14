@@ -28,7 +28,9 @@ enum class TagInNoticeEnum(val krName: String, val guide: String) {
     STUDENT_EXCHANGE("교환학생/유학", "내국인이 해외로 나가는 것 — 교환학생·파견·해외 장학·국비유학"),
     INNER_EVENTS_PROGRAMS("내부행사/프로그램", "컴퓨터공학부 또는 서울대학교가 주최"),
     OUTER_EVENTS_PROGRAMS("외부행사/프로그램", "그 밖의 기관이 주최"),
-    INTERNATIONAL("international", "외국인 학생 대상. 내국인의 해외 진출은 교환학생/유학이다");
+    INTERNATIONAL("international", "외국인 학생 대상. 내국인의 해외 진출은 교환학생/유학이다"),
+    CONTESTS("공모전/대회", "공모전·경진대회·해커톤. 채용연계형이어도 채용정보와 함께 붙인다"),
+    CAMPUS_LIFE("시설/생활", "셔틀버스·건물 통제·사물함·생활관 등 교내 시설과 생활 안내");
 
     companion object {
         private val lookupMap: Map<String, TagInNoticeEnum> = entries.associateBy(TagInNoticeEnum::krName)

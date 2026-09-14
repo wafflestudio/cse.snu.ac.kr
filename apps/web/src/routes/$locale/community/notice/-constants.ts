@@ -12,4 +12,6 @@ export const NOTICE_TAGS = [
   '외부행사/프로그램',
   '내부행사/프로그램',
   'international',
+  '공모전/대회',
+  '시설/생활',
 ];
