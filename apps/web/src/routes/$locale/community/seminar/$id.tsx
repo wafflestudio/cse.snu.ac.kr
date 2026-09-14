@@ -10,6 +10,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import Image from '@/components/ui/Image';
 import Node from '@/components/ui/Nodes';
 import { toast, toastError } from '@/components/ui/sonner';
+import { useCountView } from '@/hooks/useCountView';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
@@ -34,6 +35,7 @@ function SeminarDetailPage() {
   });
   const subNav = useCommunitySubNav();
   const navigate = useNavigate();
+  useCountView('seminar', seminar.id);
 
   // 동적 메타데이터 생성
   const pageTitle =

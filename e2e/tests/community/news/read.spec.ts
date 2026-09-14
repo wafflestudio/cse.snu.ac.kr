@@ -4,7 +4,8 @@ import { NEWS_SEED } from '../../setup/seed/community';
 
 /**
  * 읽기(비로그인·비변경): 새 소식 목록·상세.
- * 표시 날짜가 payload date(고정값)라 마스킹 없이 결정론적.
+ * 표시 날짜가 payload date(고정값)라 결정론적.
+ * 조회수만 열 때마다 늘어 정규화가 불가능해 마스킹한다(시드가 네 자리라 폭은 고정).
  */
 test.describe('새 소식 - 읽기', () => {
   test('목록 (ko)', async ({ page }) => {
@@ -15,7 +16,10 @@ test.describe('새 소식 - 읽기', () => {
     await expect(
       page.getByRole('heading', { name: NEWS_SEED[0].title }),
     ).toBeVisible();
-    await expect(page).toHaveScreenshot('news-list-ko.png', { fullPage: true });
+    await expect(page).toHaveScreenshot('news-list-ko.png', {
+      fullPage: true,
+      mask: [page.getByTestId('view-count')],
+    });
   });
 
   test('상세 (ko)', async ({ page }) => {
@@ -29,6 +33,7 @@ test.describe('새 소식 - 읽기', () => {
     await expect(page.getByText(news.descriptionText)).toBeVisible();
     await expect(page).toHaveScreenshot('news-detail-ko.png', {
       fullPage: true,
+      mask: [page.getByTestId('view-count')],
     });
   });
 });
