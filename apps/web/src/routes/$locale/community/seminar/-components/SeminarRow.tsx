@@ -52,6 +52,7 @@ function ImageCell({ imageURL }: { imageURL: string | null }) {
       <Image
         src={imageURL ?? undefined}
         alt="대표 이미지"
+        sizes="160px"
         className="h-full w-full object-cover"
       />
     </div>

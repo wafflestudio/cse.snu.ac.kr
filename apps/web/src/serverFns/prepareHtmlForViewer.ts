@@ -54,7 +54,7 @@ export const prepareHtmlForViewer = createServerFn({ method: 'POST' })
       if (!shouldOptimize(src)) return;
       if (!isImageProxyHost(new URL(src).hostname, import.meta.env.DEV)) return;
       // 본문 폭(~900px)의 2x 를 상한으로. 더 큰 원본은 여기서 줄어든다.
-      $(el).attr('src', buildOptimizedUrl(src, 75, 1600));
+      $(el).attr('src', buildOptimizedUrl(src, 1600));
     });
 
     return { html: $('body').html() ?? '', cssRules };
