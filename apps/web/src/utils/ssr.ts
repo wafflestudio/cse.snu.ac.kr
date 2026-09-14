@@ -49,3 +49,17 @@ export const getSiteOrigin = createIsomorphicFn()
   .client((): string =>
     typeof window !== 'undefined' ? window.location.origin : '',
   );
+
+/**
+ * 조회 통계(GoatCounter) 스크립트를 실을지. `/stats` 라우트가 있는 배포에만 켠다.
+ * - 서버: 런타임 env.
+ * - 클라: 서버가 head에 심어둔 태그를 되읽는다. loader는 isomorphic이라 클라 재실행에서도
+ *   같은 답이 나와야 한다 — process.env를 그대로 읽으면 클라에선 {} 셰임이라 항상 false다.
+ */
+export const isStatsEnabled = createIsomorphicFn()
+  .server((): boolean => process.env.STATS_ENABLED === 'true')
+  .client(
+    (): boolean =>
+      typeof document !== 'undefined' &&
+      document.querySelector('script[data-goatcounter]') !== null,
+  );
