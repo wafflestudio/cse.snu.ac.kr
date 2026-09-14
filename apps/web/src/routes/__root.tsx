@@ -86,15 +86,7 @@ export const Route = createRootRoute({
           },
         ]
       : [],
-    links: [
-      { rel: 'icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        as: 'style',
-        crossOrigin: 'anonymous',
-        href: 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css',
-      },
-    ],
+    links: [{ rel: 'icon', href: '/favicon.ico' }],
   }),
   component: RootDocument,
   notFoundComponent: NotFound,
