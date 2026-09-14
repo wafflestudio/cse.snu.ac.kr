@@ -14,7 +14,6 @@ import com.wafflestudio.csereal.common.ErrorCode
  * 양쪽을 명시하므로 둘 다 붙인다.
  */
 enum class TagInNoticeEnum(val krName: String, val guide: String) {
-    CLASS("수업", "교과목 운영 전반. 학사(학부)·학사(대학원)로 옮기는 중이라 새로 붙이지 않는다"),
     SCHOLARSHIP("장학", "장학금 선발·신청"),
     UNDERGRADUATE(
         "학사(학부)",
