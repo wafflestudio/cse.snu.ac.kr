@@ -47,6 +47,7 @@ function NoticePage() {
   const { pageNum = 1 } = Route.useSearch();
   const { t, locale } = useLanguage({
     제목: 'Title',
+    조회수: 'Views',
     날짜: 'Date',
     '검색 결과가 존재하지 않습니다.': 'No search results found.',
   });
@@ -90,9 +91,14 @@ function NoticePage() {
               {t('제목')}
             </span>
             <span
-              className={`whitespace-nowrap text-left tracking-wide sm:pl-8 sm:pr-10`}
+              className={`${NOTICE_ROW_CELL_WIDTH.date} shrink-0 whitespace-nowrap tracking-wide sm:pl-8 sm:pr-6`}
             >
-              <span className="inline-block w-20">{t('날짜')}</span>
+              {t('날짜')}
+            </span>
+            <span
+              className={`${NOTICE_ROW_CELL_WIDTH.views} shrink-0 whitespace-nowrap tracking-wide sm:pr-10`}
+            >
+              {t('조회수')}
             </span>
           </h5>
           <ul
