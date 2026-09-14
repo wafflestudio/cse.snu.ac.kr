@@ -44,19 +44,23 @@ export default function Pagination({
   return (
     <div className={clsx('flex justify-center', disabled && 'opacity-30')}>
       <ul className="mx-auto flex h-6 gap-x-2 tracking-wide text-neutral-800">
-        <PaginationArrow
-          icon={ChevronsLeft}
-          disabled={page === 1 || disabled}
-          onClick={() => handleChange(1)}
-          ariaLabel="첫 페이지"
-        />
-        <PaginationArrow
-          icon={ChevronLeft}
-          disabled={firstNum === 1 || disabled}
-          onClick={() => handleChange(Math.max(1, firstNum - 1))}
-          ariaLabel="이전 페이지"
-        />
-        <div className="flex gap-x-2 px-2">
+        <li className="flex">
+          <PaginationArrow
+            icon={ChevronsLeft}
+            disabled={page === 1 || disabled}
+            onClick={() => handleChange(1)}
+            ariaLabel="첫 페이지"
+          />
+        </li>
+        <li className="flex">
+          <PaginationArrow
+            icon={ChevronLeft}
+            disabled={firstNum === 1 || disabled}
+            onClick={() => handleChange(Math.max(1, firstNum - 1))}
+            ariaLabel="이전 페이지"
+          />
+        </li>
+        <li className="flex gap-x-2 px-2">
           {Array(count)
             .fill(firstNum)
             .map((num, i) => (
@@ -68,21 +72,25 @@ export default function Pagination({
                 onClick={() => handleChange(num + i)}
               />
             ))}
-        </div>
-        <PaginationArrow
-          icon={ChevronRight}
-          disabled={firstNum + pageLimit > safeTotalPages || disabled}
-          onClick={() =>
-            handleChange(Math.min(safeTotalPages, firstNum + pageLimit))
-          }
-          ariaLabel="다음 페이지"
-        />
-        <PaginationArrow
-          icon={ChevronsRight}
-          disabled={page === safeTotalPages || disabled}
-          onClick={() => handleChange(safeTotalPages)}
-          ariaLabel="마지막 페이지"
-        />
+        </li>
+        <li className="flex">
+          <PaginationArrow
+            icon={ChevronRight}
+            disabled={firstNum + pageLimit > safeTotalPages || disabled}
+            onClick={() =>
+              handleChange(Math.min(safeTotalPages, firstNum + pageLimit))
+            }
+            ariaLabel="다음 페이지"
+          />
+        </li>
+        <li className="flex">
+          <PaginationArrow
+            icon={ChevronsRight}
+            disabled={page === safeTotalPages || disabled}
+            onClick={() => handleChange(safeTotalPages)}
+            ariaLabel="마지막 페이지"
+          />
+        </li>
       </ul>
     </div>
   );

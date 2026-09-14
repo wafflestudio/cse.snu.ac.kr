@@ -39,10 +39,10 @@ export default function TagCheckBoxes({
       : 'grid-cols-[repeat(auto-fit,minmax(80px,1fr))]';
 
   return (
-    <div>
-      <h5 className="mb-3 mr-6 whitespace-nowrap text-md font-bold tracking-wide">
+    <fieldset className="m-0 border-0 p-0">
+      <legend className="mb-3 mr-6 whitespace-nowrap p-0 text-md font-bold tracking-wide">
         {t('태그')}
-      </h5>
+      </legend>
       <div className={`grid ${gridColsTailwind} gap-x-7 gap-y-2.5 pl-2.5`}>
         {tags.map((tag) => (
           <Checkbox
@@ -56,6 +56,6 @@ export default function TagCheckBoxes({
           />
         ))}
       </div>
-    </div>
+    </fieldset>
   );
 }
