@@ -6,6 +6,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import Node from '@/components/ui/Nodes';
 import { toast, toastError } from '@/components/ui/sonner';
 import { Tag } from '@/components/ui/Tag';
+import { useCountView } from '@/hooks/useCountView';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
@@ -18,9 +19,10 @@ import { stripHtml, truncateDescription } from '@/utils/string';
 function NewsDetailPage() {
   const news = Route.useLoaderData();
 
-  const { t, locale, localizedPath } = useLanguage();
+  const { t, locale, localizedPath } = useLanguage({ 조회수: 'Views' });
   const subNav = useCommunitySubNav();
   const navigate = useNavigate();
+  useCountView('news', news.id);
 
   // 동적 메타데이터 생성
   const pageTitle =
@@ -55,9 +57,15 @@ function NewsDetailPage() {
         <h2 className="text-[1.25rem] font-semibold leading-[1.4]">
           {news.title}
         </h2>
-        <time className="text-sm font-normal tracking-wide text-neutral-500">
-          {dayjs(news.date).locale(locale).format('YYYY/M/DD (ddd)')}
-        </time>
+        <div className="flex gap-5 text-sm font-normal tracking-wide text-neutral-500">
+          <time>
+            {dayjs(news.date).locale(locale).format('YYYY/M/DD (ddd)')}
+          </time>
+          {/* 조회 때마다 늘어 정규화가 안 된다 — E2E 가 마스킹하는 지점. */}
+          <p data-testid="view-count">
+            {t('조회수')} {news.viewCount.toLocaleString()}
+          </p>
+        </div>
       </div>
 
       <div className="bg-neutral-50 page-gutter-x pt-9 pb-36">

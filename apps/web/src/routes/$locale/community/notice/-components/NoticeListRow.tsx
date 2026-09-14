@@ -18,7 +18,8 @@ interface NoticeListRowProps {
 export const NOTICE_ROW_CELL_WIDTH = {
   pin: 'sm:w-[3.125rem]',
   title: 'sm:w-[18.75rem]',
-  date: 'sm:w-auto sm:min-w-[7.125rem]',
+  date: 'sm:w-[8.75rem]',
+  views: 'sm:w-[4.5rem]',
 } as const;
 
 export default function NoticeListRow({
@@ -28,7 +29,7 @@ export default function NoticeListRow({
   onToggleSelect,
 }: NoticeListRowProps) {
   const search = useSearch({ strict: false });
-  const { locale } = useLanguage();
+  const { t, locale } = useLanguage({ 조회수: 'Views' });
 
   return (
     <li
@@ -63,11 +64,23 @@ export default function NoticeListRow({
         isEditMode={isEditMode}
       />
 
-      <span
-        className={`${NOTICE_ROW_CELL_WIDTH.date} tracking-wide sm:pl-8 sm:pr-10`}
-      >
-        {dayjs(post.createdAt).locale(locale).format('YYYY/M/DD')}
-      </span>
+      <div className="flex gap-3 sm:contents">
+        <span
+          className={`${NOTICE_ROW_CELL_WIDTH.date} shrink-0 tracking-wide sm:pl-8 sm:pr-6`}
+        >
+          {dayjs(post.createdAt).locale(locale).format('YYYY/M/DD')}
+        </span>
+
+        {/* 조회 때마다 늘어 정규화가 안 된다 — E2E 가 마스킹하는 지점. */}
+        <span
+          data-testid="view-count"
+          className={`${NOTICE_ROW_CELL_WIDTH.views} shrink-0 tracking-wide sm:pr-10`}
+        >
+          {/* 데스크톱은 열 머리글이 '조회'를 말해준다. */}
+          <span className="sm:hidden">{t('조회수')} </span>
+          {post.viewCount.toLocaleString()}
+        </span>
+      </div>
     </li>
   );
 }

@@ -268,6 +268,7 @@ export async function seedContent() {
  */
 export async function normalizeDates() {
   const FIXED = '2024-03-15 09:00:00';
+  const VIEW_COUNT = 1000;
   const PAGING_SEED_DATE = '2024-01-10 09:00:00';
   await withDb(async (conn) => {
     await conn.execute('UPDATE notice SET created_at=?, modified_at=?', [
@@ -290,5 +291,10 @@ export async function normalizeDates() {
       FIXED,
       FIXED,
     ]);
+    // 조회수는 상세를 열 때마다 늘어 정규화가 불가능하다(스크린샷은 마스킹). 네 자리로 시작시켜
+    // 몇 번 증가해도 자릿수가 그대로이게 한다 — 마스크 박스 크기가 흔들리면 baseline이 깨진다.
+    for (const table of ['notice', 'news', 'seminar']) {
+      await conn.execute(`UPDATE ${table} SET view_count=?`, [VIEW_COUNT]);
+    }
   });
 }

@@ -11,7 +11,9 @@ interface NewsListRowProps {
 }
 
 export default function NewsListRow({ post }: NewsListRowProps) {
-  const { locale, localizedPath, tUnsafe } = useLanguage();
+  const { t, locale, localizedPath, tUnsafe } = useLanguage({
+    조회수: 'Views',
+  });
   const search = useSearch({ strict: false });
 
   const detailPathBase = localizedPath(`/community/news/${post.id}`);
@@ -23,9 +25,15 @@ export default function NewsListRow({ post }: NewsListRowProps) {
   return (
     <article className="flex flex-col-reverse gap-4 border-b border-neutral-100 pb-5 sm:flex-row sm:gap-8">
       <div className="flex flex-1 flex-col justify-between break-keep">
-        <time className="mb-2.5 mt-5 text-md text-neutral-800 sm:hidden">
-          {dayjs(post.date).locale(locale).format('YYYY/M/DD (ddd)')}
-        </time>
+        <p className="mb-2.5 mt-5 flex items-center gap-2.5 text-md text-neutral-800 sm:hidden">
+          <time>
+            {dayjs(post.date).locale(locale).format('YYYY/M/DD (ddd)')}
+          </time>
+          {/* 조회 때마다 늘어 정규화가 안 된다 — E2E 가 마스킹하는 지점. */}
+          <span data-testid="view-count">
+            {t('조회수')} {post.viewCount.toLocaleString()}
+          </span>
+        </p>
 
         <div className="flex flex-col items-start">
           <Link to={detailPath} className="hover:underline">
@@ -50,9 +58,15 @@ export default function NewsListRow({ post }: NewsListRowProps) {
               />
             ))}
           </div>
-          <time className="hidden self-end whitespace-nowrap text-sm leading-[26px] text-neutral-800 sm:inline">
-            {dayjs(post.date).locale(locale).format('YYYY/M/DD (ddd)')}
-          </time>
+          <p className="hidden items-center gap-2.5 self-end whitespace-nowrap text-sm leading-[26px] text-neutral-800 sm:flex">
+            <time>
+              {dayjs(post.date).locale(locale).format('YYYY/M/DD (ddd)')}
+            </time>
+            {/* 조회 때마다 늘어 정규화가 안 된다 — E2E 가 마스킹하는 지점. */}
+            <span data-testid="view-count">
+              {t('조회수')} {post.viewCount.toLocaleString()}
+            </span>
+          </p>
         </div>
       </div>
 

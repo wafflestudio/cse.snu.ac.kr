@@ -10,6 +10,7 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import Node from '@/components/ui/Nodes';
 import { toast, toastError } from '@/components/ui/sonner';
 import { Tag } from '@/components/ui/Tag';
+import { useCountView } from '@/hooks/useCountView';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
@@ -23,9 +24,11 @@ function NoticeDetailPage() {
   const { t, locale, localizedPath } = useLanguage({
     작성자: 'Author',
     '작성 날짜': 'Date',
+    조회수: 'Views',
   });
   const subNav = useCommunitySubNav();
   const navigate = useNavigate();
+  useCountView('notice', notice.id);
 
   // 동적 메타데이터 생성
   const pageTitle =
@@ -69,6 +72,10 @@ function NoticeDetailPage() {
             {dayjs(notice.createdAt)
               .locale(locale)
               .format('YYYY/M/DD (ddd) A hh:mm')}
+          </p>
+          {/* 조회 때마다 늘어 정규화가 안 된다 — E2E 가 마스킹하는 지점. */}
+          <p data-testid="view-count">
+            {t('조회수')} {notice.viewCount.toLocaleString()}
           </p>
         </div>
       </div>

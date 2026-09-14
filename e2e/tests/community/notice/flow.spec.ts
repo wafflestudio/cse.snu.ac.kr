@@ -86,6 +86,38 @@ test.describe('공지사항 - 작성/편집/삭제 플로우', () => {
   });
 });
 
+/**
+ * 조회수: 상세 진입마다 POST /{id}/view 로 1 오른다.
+ * 화면에 뜨는 값은 loader가 받아온 **증가 이전** 값이라, 다시 열면 직전에 본 값보다 1 크다.
+ * baseline을 건드리지 않도록 이 테스트 전용 공지를 만들어 쓰고 지운다.
+ */
+test.describe('공지사항 - 조회수', () => {
+  test('상세를 다시 열면 조회수가 1 오른다', async ({ page }) => {
+    await setLocale(page, 'ko');
+    await page.goto('/community/notice');
+    await loginAsStaff(page);
+    const id = await createNoticeViaApi(page, `조회수 ${Date.now()}`);
+
+    const openAndRead = async () => {
+      const counted = page.waitForResponse(
+        (r) => r.url().endsWith(`/notice/${id}/view`) && r.status() === 204,
+      );
+      await page.goto(`/community/notice/${id}`);
+      const shown = Number(
+        (await page.getByTestId('view-count').innerText()).replace(/\D/g, ''),
+      );
+      await counted; // 증가가 서버에 닿은 뒤에 다음 진입을 재야 결정론적이다
+      return shown;
+    };
+
+    const first = await openAndRead();
+    const second = await openAndRead();
+    expect(second).toBe(first + 1);
+
+    await deleteNoticesViaApi(page, [id]);
+  });
+});
+
 test.describe('공지사항 - 붙여넣기', () => {
   test('붙여넣은 HTML 은 서버 세탁을 거쳐 들어간다', async ({ page }) => {
     await setLocale(page, 'ko');
