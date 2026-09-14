@@ -18,7 +18,12 @@ test.describe('메인 - 읽기', () => {
     const res = await page.goto('/');
     expect(res?.status()).toBe(200);
 
-    await expect(page.getByText(NEWS_SEED[0].title).first()).toBeVisible();
+    // 새소식 캐러셀은 모바일·데스크톱판이 둘 다 DOM 에 있고 CSS 로 하나만 보인다
+    // (SSR 마크업을 최종 레이아웃과 같게 유지해 하이드레이션 이동을 없앤 결과).
+    // 그래서 `.first()` 로는 숨은 쪽을 집는다 — 보이는 것만 고른다.
+    await expect(
+      page.getByText(NEWS_SEED[0].title).filter({ visible: true }).first(),
+    ).toBeVisible();
     await expect(page.getByText(NOTICE_SEED[0].title).first()).toBeVisible();
     await expect(page).toHaveScreenshot('main-ko.png', {
       fullPage: true,
