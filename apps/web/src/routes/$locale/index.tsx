@@ -10,7 +10,6 @@ import ImportantSection from './-components/ImportantSection';
 import LinkSection from './-components/LinkSection';
 import NoticeSection from './-components/NoticeSection';
 import NewsSection from './-components/news/NewsSection';
-import BackgroundPattern from './assets/background.svg?react';
 
 const META = {
   ko: {
@@ -41,9 +40,7 @@ function MainPage() {
 
       <div className="relative w-full">
         <Header />
-        <div className="absolute left-0 right-0 top-0 -z-50 hidden aspect-1336/800 sm:block">
-          <BackgroundPattern className="h-full w-full" />
-        </div>
+        <div className="bg-pattern absolute left-0 right-0 top-0 -z-50 hidden aspect-1336/800 sm:block" />
         <GraphicSection />
         <NewsSection mainNews={loaderData.slides} />
         <ImportantSection importantList={loaderData.importants} />

@@ -1,6 +1,5 @@
 import type { ImgHTMLAttributes, SyntheticEvent } from 'react';
 import { useState } from 'react';
-import SnuLogo from '@/components/layout/LeftNav/assets/SNU_Logo.svg?react';
 import { buildResponsiveSrcSet, shouldOptimize } from '@/utils/imageUrl';
 
 type ImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'sizes'> & {
@@ -48,7 +47,7 @@ export default function Image({
         }`}
         {...props}
       >
-        <SnuLogo className="h-[60px] w-[60px] fill-neutral-200" />
+        <span className="snu-logo block h-[60px] w-[60px] bg-neutral-200" />
       </div>
     );
   }
