@@ -101,6 +101,7 @@ deploy_edge() {
     cp "$INFRA/compose.caddy.yml" "$PROXY_DIR/"
     mkdir -p "$PROXY_DIR/caddy"
     cp "$INFRA/$CADDYFILE" "$PROXY_DIR/caddy/Caddyfile"
+    cp "$INFRA/caddy/headers.caddy" "$PROXY_DIR/caddy/headers.caddy" # Caddyfile 이 import 한다
     cd "$PROXY_DIR"
     # 인증서 경로는 비밀이 아니라 infra/production.env 에 있다. staging 은 아예 없다.
     {

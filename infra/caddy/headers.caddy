@@ -1,0 +1,7 @@
+# prod·staging·E2E 공통. HSTS 는 prod 만 — 인증서가 끊기면 브라우저가 되돌릴 방법을 안 준다.
+header {
+	X-Content-Type-Options "nosniff"
+	X-Frame-Options "SAMEORIGIN"
+	Referrer-Policy "strict-origin-when-cross-origin"
+	-Server
+}
