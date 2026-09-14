@@ -34,9 +34,8 @@ if [ "$target" = local ]; then
   fi
   api="${PERF_API:-https://cse.snu.ac.kr}"
   echo "[perf] 로컬 prod 빌드를 :$PORT 에 띄운다 (/api → $api)"
-  # build:local 과 같은 빌드인데 포트만 바꿀 수 있게 base URL 을 직접 준다(SSR 이 자기 서버의 /api 프록시를 부른다).
-  VITE_API_BASE_URL="http://localhost:$PORT" pnpm --filter web exec vite build
-  PORT="$PORT" METRICS_PORT=9466 API_PROXY_TARGET="$api" pnpm --filter web start >perf/.output/web.log 2>&1 &
+  pnpm --filter web build
+  PORT="$PORT" METRICS_PORT=9466 API_ORIGIN="$api" API_PROXY_TARGET="$api" pnpm --filter web start >perf/.output/web.log 2>&1 &
   # pnpm → tsx → node 사슬이라 pnpm 만 죽이면 서버가 남는다. 포트를 잡은 프로세스를 직접 내린다.
   trap 'lsof -ti :"$PORT" | xargs -r kill' EXIT
   for _ in $(seq 1 30); do curl -sf -o /dev/null "http://localhost:$PORT/robots.txt" && break; sleep 1; done

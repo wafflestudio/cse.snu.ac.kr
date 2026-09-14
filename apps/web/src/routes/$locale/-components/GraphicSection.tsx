@@ -1,14 +1,18 @@
 import type { ReactNode } from 'react';
-import BackgroundPattern from '../assets/background.svg?react';
-import DownArrowIcon from '../assets/down_arrow.svg?react';
+import downArrowUrl from '../assets/down_arrow.svg?url';
 import MainGraphic from './MainGraphic';
 
 export default function GraphicSection() {
   return (
     <div className="relative flex w-fit min-w-full flex-col items-center justify-between gap-[50px] pb-[67px] pt-[60px] sm:flex-row-reverse sm:justify-center sm:gap-[75px] sm:pb-[170px] sm:pt-[80px] xl:gap-[125px]">
-      {/* 인라인 SVG — 요청이 없어 LCP 를 기다리게 하지 않고, 해상도에 상관없이 선명하다. */}
-      <BackgroundPattern className="absolute inset-0 h-full w-full sm:hidden" />
-      <DownArrowIcon className="bottom-20 left-1/2 hidden -translate-x-1/2 animate-arrowBounce sm:absolute" />
+      <div className="bg-pattern absolute inset-0 sm:hidden" />
+      <img
+        src={downArrowUrl}
+        alt=""
+        width={33}
+        height={34}
+        className="bottom-20 left-1/2 hidden -translate-x-1/2 animate-arrowBounce sm:absolute"
+      />
       <MainGraphic className="z-10 h-50 w-[80%] sm:mr-[26px] sm:w-104 xl:mr-[52px]" />
       <div className="flex -translate-y-1 flex-col items-center gap-[18px] sm:h-50 sm:shrink-0 sm:items-start sm:justify-between">
         <SloganP className="hidden sm:block">서울대학교 컴퓨터공학부는</SloganP>

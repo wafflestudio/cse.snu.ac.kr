@@ -5,8 +5,7 @@
   "scripts": {
     "build": "vite build",
     "build:staging": "vite build --mode staging",
-    "build:local": "VITE_API_BASE_URL=http://localhost:3000 vite build",
-    "dev": "vite dev",
+    "dev": "API_ORIGIN=https://168.107.16.249.nip.io vite dev",
     "start": "tsx server.ts",
     "typecheck": "tsc"
   },
