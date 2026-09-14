@@ -59,7 +59,6 @@ function HistoryPage() {
               src: loaderData.imageURL,
               width: 320,
               height: 360,
-              mobileFullWidth: true,
             }
           }
         />

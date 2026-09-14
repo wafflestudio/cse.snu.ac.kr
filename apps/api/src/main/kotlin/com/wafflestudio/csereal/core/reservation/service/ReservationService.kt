@@ -21,6 +21,7 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.Duration
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZoneOffset
@@ -28,7 +29,7 @@ import java.util.UUID
 
 interface ReservationService {
     fun reserveRoom(reserveRequest: ReserveRequest): List<ReservationDto>
-    fun getRoomReservationsBetween(roomId: Long, start: LocalDateTime, end: LocalDateTime): List<SimpleReservationDto>
+    fun getRoomReservations(roomId: Long, startDate: LocalDate, days: Int): List<SimpleReservationDto>
     fun getReservation(reservationId: Long): ReservationDto
     fun getReserveTerms(): List<ReserveTermDto>
     fun cancelSpecific(reservationId: Long)
@@ -50,6 +51,7 @@ class ReservationServiceImpl(
         private const val PROFESSOR_ROOM_ID = 8L
         private val MAX_NON_STAFF_DURATION = Duration.ofHours(3)
         private val SEOUL_ZONE: ZoneId = ZoneId.of("Asia/Seoul")
+        private const val MAX_QUERY_DAYS = 31
         private val SUPPORTED_RESERVATION_YEARS = 1001..9998
         private val MAX_SUPPORTED_RESERVATION_TIME = LocalDateTime.of(9998, 12, 31, 23, 59, 59, 999_999_000)
     }
@@ -244,13 +246,20 @@ class ReservationServiceImpl(
     }
 
     @Transactional(readOnly = true)
-    override fun getRoomReservationsBetween(
+    override fun getRoomReservations(
         roomId: Long,
-        start: LocalDateTime,
-        end: LocalDateTime
-    ): List<SimpleReservationDto> =
-        reservationRepository.findByRoomIdAndStartTimeBetweenOrderByStartTimeAsc(roomId, start, end)
+        startDate: LocalDate,
+        days: Int
+    ): List<SimpleReservationDto> {
+        if (days !in 1..MAX_QUERY_DAYS) throw CserealException(ErrorCode.UNSUPPORTED_RESERVATION_DATE)
+
+        // 예약 시각은 UTC LocalDateTime 으로 저장된다 — KST 달력 날짜를 그 기준으로 옮긴다.
+        val start = startDate.atStartOfDay(SEOUL_ZONE).toInstant().atZone(ZoneOffset.UTC).toLocalDateTime()
+        val end = start.plusDays(days.toLong())
+
+        return reservationRepository.findByRoomIdAndStartTimeBetweenOrderByStartTimeAsc(roomId, start, end)
             .map { SimpleReservationDto.of(it) }
+    }
 
     @Transactional(readOnly = true)
     override fun getReserveTerms(): List<ReserveTermDto> =

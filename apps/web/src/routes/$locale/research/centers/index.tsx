@@ -119,7 +119,6 @@ function ResearchCentersPage() {
                   src: selectedCenter.mainImageUrl,
                   width: 320,
                   height: 200,
-                  mobileFullWidth: true,
                 }
               }
             />

@@ -104,10 +104,7 @@ export default function CoursesPage({
         </div>
       </LoginVisible>
       <h4 className="mb-8 text-[17px] font-bold sm:pl-5">{t('교과목 정보')}</h4>
-      <CourseToolbar
-        hideViewOption={isMobile}
-        hideSortOption={shouldHideSort}
-      />
+      <CourseToolbar hideSortOption={shouldHideSort} />
       {isEnglish && <ClassificationDescription />}
       {effectiveViewOption === '카드형' ? (
         <CourseCardGrid

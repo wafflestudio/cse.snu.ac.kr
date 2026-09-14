@@ -75,10 +75,12 @@ test.describe('시설 예약 - 예약 플로우', () => {
 
     // 예약 날짜의 주로 이동 → 생성된 예약 노출
     await page.goto(`${ROOM}?selectedDate=${booked.date}`);
-    await expect(page.getByText(title).first()).toBeVisible();
+    await expect(
+      page.getByText(title).filter({ visible: true }).first(),
+    ).toBeVisible();
 
     // === 취소 === (예약 블록 → 상세 모달 → 해당 예약만 삭제 → 확인 '삭제')
-    await page.getByText(title).first().click();
+    await page.getByText(title).filter({ visible: true }).first().click();
     await deleteItem(
       page,
       '삭제',
@@ -106,12 +108,16 @@ test.describe('시설 예약 - 예약 플로우', () => {
 
     // 반복 2회 → 1주차·2주차 모두 노출
     await page.goto(`${ROOM}?selectedDate=${booked.date}`);
-    await expect(page.getByText(title).first()).toBeVisible();
+    await expect(
+      page.getByText(title).filter({ visible: true }).first(),
+    ).toBeVisible();
     await page.goto(`${ROOM}?selectedDate=${week2}`);
-    await expect(page.getByText(title).first()).toBeVisible();
+    await expect(
+      page.getByText(title).filter({ visible: true }).first(),
+    ).toBeVisible();
 
     // 상세 모달: '매주 반복 2회' 노출 → 반복 예약 전체 삭제
-    await page.getByText(title).first().click();
+    await page.getByText(title).filter({ visible: true }).first().click();
     const detail = page.getByRole('dialog');
     await expect(detail.getByText('2회', { exact: true })).toBeVisible();
     await deleteItem(

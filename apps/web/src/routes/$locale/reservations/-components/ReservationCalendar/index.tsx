@@ -7,7 +7,6 @@ import ReserveTermBanner from './ReserveTermBanner';
 
 export type ReservationCalendarProps = {
   reservations: ReservationPreview[];
-  columnCount: number;
   startDate: dayjs.Dayjs;
   roomId: number;
   reserveTerms: ReserveTerm[] | null;
@@ -15,7 +14,6 @@ export type ReservationCalendarProps = {
 
 export default function ReservationCalendar({
   reservations,
-  columnCount,
   startDate,
   roomId,
   reserveTerms,
@@ -27,12 +25,8 @@ export default function ReservationCalendar({
     <div className="max-w-fit">
       <h3 className="mb-7 text-2xl font-bold text-neutral-800">{title}</h3>
       <ReserveTermBanner reserveTerms={reserveTerms} roomId={roomId} />
-      <CalendarToolbar columnCount={columnCount} roomId={roomId} />
-      <CalendarContent
-        reservations={reservations}
-        columnCount={columnCount}
-        startDate={startDate}
-      />
+      <CalendarToolbar roomId={roomId} />
+      <CalendarContent reservations={reservations} startDate={startDate} />
     </div>
   );
 }

@@ -4,7 +4,6 @@ import './assets/suneditor-contents.override.css';
 import clsx from 'clsx';
 import Image from '@/components/ui/Image';
 import { useNonce } from '@/hooks/useNonce';
-import useIsMobile from '@/hooks/useResponsive';
 import { type Falsy, isNotFalsy } from '@/types/utils';
 import type { ViewerHtml } from '@/utils/csp';
 
@@ -12,7 +11,6 @@ interface TopRightImage {
   src: string;
   width: 200 | 240 | 320;
   height: number;
-  mobileFullWidth?: boolean;
 }
 
 interface HTMLViewerProps {
@@ -26,19 +24,11 @@ export default function HTMLViewer({
   image,
   component,
 }: HTMLViewerProps) {
-  const isMobile = useIsMobile();
   const nonce = useNonce();
 
   const { html: trimmedHTML, cssRules } = html;
 
-  // image width 계산
   const hasImage = isNotFalsy(image);
-  const imageWidth = hasImage
-    ? isMobile && image.mobileFullWidth
-      ? undefined
-      : image?.width
-    : undefined;
-
   const hasComponent = isNotFalsy(component);
 
   return (
@@ -47,7 +37,7 @@ export default function HTMLViewer({
         <div
           className={clsx(
             'relative mb-7 w-full sm:float-right sm:ml-7',
-            imageWidth ? IMAGE_WIDTH_CLASS[imageWidth] : null,
+            IMAGE_WIDTH_CLASS[image.width],
           )}
         >
           <Image
