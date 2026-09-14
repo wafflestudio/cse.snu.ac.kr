@@ -356,6 +356,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v2/seminar/{seminarId}/view": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["increaseViewCount"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v2/search/reindex": {
         parameters: {
             query?: never;
@@ -484,6 +500,22 @@ export interface paths {
         patch: operations["unpinManyNotices"];
         trace?: never;
     };
+    "/api/v2/notice/{noticeId}/view": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["increaseViewCount_1"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v2/notice/tag": {
         parameters: {
             query?: never;
@@ -510,6 +542,22 @@ export interface paths {
         get: operations["searchNews"];
         put?: never;
         post: operations["createNews"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v2/news/{newsId}/view": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["increaseViewCount_2"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1454,6 +1502,8 @@ export interface components {
             nextTitle?: string | null;
             imageURL?: string | null;
             attachments?: components["schemas"]["AttachmentResponse"][] | null;
+            /** Format: int64 */
+            viewCount: number;
         };
         ReserveRequest: {
             /** Format: int64 */
@@ -1611,6 +1661,8 @@ export interface components {
             nextId?: number | null;
             nextTitle?: string | null;
             attachments?: components["schemas"]["AttachmentResponse"][] | null;
+            /** Format: int64 */
+            viewCount: number;
         };
         CreateNewsReq: {
             title: string;
@@ -1651,6 +1703,8 @@ export interface components {
             nextTitle?: string | null;
             imageURL?: string | null;
             attachments?: components["schemas"]["AttachmentResponse"][] | null;
+            /** Format: int64 */
+            viewCount: number;
         };
         CreateImageModalReq: {
             titleKo?: string | null;
@@ -1867,6 +1921,8 @@ export interface components {
             imageURL?: string | null;
             isYearLast: boolean;
             isPrivate: boolean;
+            /** Format: int64 */
+            viewCount: number;
         };
         SeminarSearchResponse: {
             /** Format: int64 */
@@ -1981,6 +2037,8 @@ export interface components {
             isPinned: boolean;
             hasAttachment: boolean;
             isPrivate: boolean;
+            /** Format: int64 */
+            viewCount: number;
         };
         NoticeSearchResponse: {
             /** Format: int64 */
@@ -1999,6 +2057,8 @@ export interface components {
             tags?: string[] | null;
             imageURL?: string | null;
             isPrivate: boolean;
+            /** Format: int64 */
+            viewCount: number;
         };
         NewsSearchResponse: {
             /** Format: int64 */
@@ -4311,6 +4371,44 @@ export interface operations {
             };
         };
     };
+    increaseViewCount: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                seminarId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     reindex: {
         parameters: {
             query?: never;
@@ -4819,6 +4917,44 @@ export interface operations {
             };
         };
     };
+    increaseViewCount_1: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                noticeId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     enrollTag: {
         parameters: {
             query?: never;
@@ -4932,6 +5068,44 @@ export interface operations {
                 content: {
                     "*/*": components["schemas"]["NewsResponse"];
                 };
+            };
+            /** @description 요청 오류 — code 로 구분 */
+            "4XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description 서버 오류 */
+            "5XX": {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    increaseViewCount_2: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                newsId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
             /** @description 요청 오류 — code 로 구분 */
             "4XX": {

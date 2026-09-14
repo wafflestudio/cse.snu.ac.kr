@@ -20,6 +20,11 @@ import java.time.LocalDateTime
 import java.time.LocalDate
 
 interface NoticeRepository : JpaRepository<NoticeEntity, Long>, CustomNoticeRepository {
+    /** 조회수 +1. 엔티티로 읽어 올리면 동시 요청이 서로 덮어써서 DB 에서 증가시킨다. */
+    @Modifying
+    @Query("UPDATE notice e SET e.viewCount = e.viewCount + 1 WHERE e.id = :id AND e.isPrivate = false")
+    fun increaseViewCount(@Param("id") id: Long): Int
+
     fun findFirstByIsPrivateFalseAndCreatedAtLessThanOrderByCreatedAtDesc(
         timestamp: LocalDateTime
     ): NoticeEntity?
@@ -132,7 +137,8 @@ class NoticeRepositoryImpl(
             noticeEntity.createdAt,
             noticeEntity.isPinned,
             noticeEntity.attachments.isNotEmpty,
-            noticeEntity.isPrivate
+            noticeEntity.isPrivate,
+            noticeEntity.viewCount
         )
     ).from(noticeEntity)
 

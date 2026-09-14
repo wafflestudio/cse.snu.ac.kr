@@ -30,6 +30,13 @@ class SeminarController(
         return ResponseEntity.ok(seminarService.searchSeminar(keyword, pageRequest, usePageBtn))
     }
 
+    /** 조회수 +1. 상세 GET 이 아닌 이유: preload·SSR·프리렌더·봇이 GET 을 내므로 읽지 않은 글이 오른다. */
+    @PostMapping("/{seminarId}/view")
+    fun increaseViewCount(@PathVariable seminarId: Long): ResponseEntity<Unit> {
+        seminarService.increaseViewCount(seminarId)
+        return ResponseEntity.noContent().build()
+    }
+
     @PreAuthorize("hasRole('STAFF')")
     @PostMapping(consumes = ["multipart/form-data"])
     fun createSeminar(

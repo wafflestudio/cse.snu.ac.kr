@@ -9,7 +9,8 @@ data class NoticeSearchDto(
     val createdAt: LocalDateTime?,
     val isPinned: Boolean,
     val hasAttachment: Boolean,
-    val isPrivate: Boolean
+    val isPrivate: Boolean,
+    val viewCount: Long
 ) {
     constructor(entity: NoticeEntity, hasAttachment: Boolean) : this(
         entity.id,
@@ -17,6 +18,7 @@ data class NoticeSearchDto(
         entity.createdAt,
         entity.isPinned,
         hasAttachment,
-        entity.isPrivate
+        entity.isPrivate,
+        entity.viewCount
     )
 }

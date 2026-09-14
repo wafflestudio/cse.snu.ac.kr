@@ -23,7 +23,8 @@ data class NewsResponse(
     val nextId: Long?,
     val nextTitle: String?,
     val imageURL: String?,
-    val attachments: List<AttachmentResponse>?
+    val attachments: List<AttachmentResponse>?,
+    val viewCount: Long
 ) {
     companion object {
         fun of(
@@ -51,7 +52,8 @@ data class NewsResponse(
                 nextId = nextNews?.id,
                 nextTitle = nextNews?.title,
                 imageURL = imageURL,
-                attachments = attachmentResponses
+                attachments = attachmentResponses,
+                viewCount = this.viewCount
             )
         }
     }

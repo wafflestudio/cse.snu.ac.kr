@@ -44,6 +44,10 @@ class NewsEntity(
     override val searchType get() = SearchType.NEWS
     override val searchSourceId get() = id
 
+    /** 조회수. 증가는 전용 POST 가 벌크 UPDATE 로 한다 — 이 필드를 거치지 않는다. */
+    @Column(nullable = false)
+    var viewCount: Long = 0
+
     /**
      * 본문. 목록·메인에 쓰이는 [plainTextDescription] 이 여기서 파생되므로
      * **대입할 때마다** 함께 갱신한다 — 누가 언제 바꾸든 둘이 어긋날 수 없다.
