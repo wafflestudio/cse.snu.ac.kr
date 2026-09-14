@@ -17,7 +17,7 @@ export const NOTICE_SEED = [
     title: '학사 일정 안내',
     description: '<p>학사 일정 본문입니다.</p>',
     descriptionText: '학사 일정 본문입니다.',
-    tags: ['학사(학부)'],
+    tags: ['학부'],
     isPinned: false,
     // 메인 중요안내 섹션용. isImportant는 목록/상세에 아이콘이 없어 community 비주얼엔 영향 없음.
     isImportant: true,
