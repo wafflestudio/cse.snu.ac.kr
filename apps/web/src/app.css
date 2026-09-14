@@ -110,6 +110,25 @@
   .page-gutter-x {
     @apply px-5 sm:pl-25 sm:pr-90;
   }
+
+  /* SNU 로고는 흰색·회색·주황 세 가지로만 쓰인다. 인라인 <svg> 로 두면 소수 2178개짜리 path 가
+     페이지마다 최대 4번 문서에 박혀 69.8KB 다 — 마스크로 빼면 색은 bg-* 가 정하고 파일은
+     /assets 의 immutable 캐시를 탄다. 크기는 사용처가 정한다. */
+  /* 메인 배경 패턴. <img> 로 두면 LCP 후보가 되고 인라인 <svg> 로 두면 두 사용처가 문서에
+     13.4KB 를 얹는다 — CSS 배경은 둘 다 아니다. slice 는 cover 와 같은 뜻. */
+  .bg-pattern {
+    background-image: url("./routes/$locale/assets/background.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .snu-logo {
+    mask-image: url("./components/ui/assets/snu_logo.svg");
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+  }
 }
 
 /* Hide scrollbar for navbar */

@@ -6,7 +6,6 @@ import { useNavItem } from '@/hooks/useNavItem';
 import { useStore } from '@/store';
 import DotEmpty from './assets/dot_empty.svg?react';
 import DotFill from './assets/dot_fill.svg?react';
-import SnuLogo from './assets/SNU_Logo.svg?react';
 import LNBMenuItem from './LeftNavMenuItem';
 
 export default function LNBSidebar() {
@@ -43,11 +42,10 @@ function Logo() {
 
   return (
     <Link to={homePath} aria-label={t('메인으로 이동')} className="relative">
-      <SnuLogo
-        className={!IS_PROD ? 'fill-main-orange' : 'fill-white'}
-        width="56"
-        height="58"
-        viewBox="0 0 45 47"
+      <span
+        className={`snu-logo block h-[58px] w-[56px] shrink-0 ${
+          !IS_PROD ? 'bg-main-orange' : 'bg-white'
+        }`}
       />
       {!IS_PROD && (
         <div className="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-mono font-bold">
