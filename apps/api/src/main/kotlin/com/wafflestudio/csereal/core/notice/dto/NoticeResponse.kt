@@ -23,7 +23,8 @@ data class NoticeResponse(
     val prevTitle: String?,
     val nextId: Long?,
     val nextTitle: String?,
-    val attachments: List<AttachmentResponse>?
+    val attachments: List<AttachmentResponse>?,
+    val viewCount: Long
 ) {
 
     companion object {
@@ -51,7 +52,8 @@ data class NoticeResponse(
                 prevTitle = prevNotice?.title,
                 nextId = nextNotice?.id,
                 nextTitle = nextNotice?.title,
-                attachments = attachmentResponses
+                attachments = attachmentResponses,
+                viewCount = this.viewCount
             )
         }
     }

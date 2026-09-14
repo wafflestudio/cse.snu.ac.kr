@@ -60,6 +60,10 @@ class SeminarEntity(
     override val searchType get() = SearchType.SEMINAR
     override val searchSourceId get() = id
 
+    /** 조회수. 증가는 전용 POST 가 벌크 UPDATE 로 한다 — 이 필드를 거치지 않는다. */
+    @Column(nullable = false)
+    var viewCount: Long = 0
+
     // 본문 셋과 각각의 평문. 대입할 때마다 함께 갱신해 둘이 어긋날 수 없게 한다
     // (Hibernate 는 필드 접근이라 DB 에서 읽을 땐 이 setter 를 타지 않는다).
 

@@ -20,6 +20,11 @@ import java.time.LocalDateTime
 import java.time.LocalDate
 
 interface SeminarRepository : JpaRepository<SeminarEntity, Long>, CustomSeminarRepository {
+    /** 조회수 +1. 엔티티로 읽어 올리면 동시 요청이 서로 덮어써서 DB 에서 증가시킨다. */
+    @Modifying
+    @Query("UPDATE seminar e SET e.viewCount = e.viewCount + 1 WHERE e.id = :id AND e.isPrivate = false")
+    fun increaseViewCount(@Param("id") id: Long): Int
+
     fun findFirstByIsPrivateFalseAndCreatedAtLessThanOrderByCreatedAtDesc(
         timestamp: LocalDateTime
     ): SeminarEntity?
@@ -113,7 +118,8 @@ class SeminarRepositoryImpl(
                 location = seminar.location,
                 imageURL = mainImageService.createImageURL(seminar.mainImage),
                 isYearLast = index == 0 || seminar.startDate.year != seminars[index - 1].startDate.year,
-                isPrivate = seminar.isPrivate
+                isPrivate = seminar.isPrivate,
+                viewCount = seminar.viewCount
             )
         }
 

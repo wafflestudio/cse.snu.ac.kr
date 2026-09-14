@@ -31,7 +31,8 @@ data class SeminarResponse(
     val nextId: Long?,
     val nextTitle: String?,
     val imageURL: String?,
-    val attachments: List<AttachmentResponse>?
+    val attachments: List<AttachmentResponse>?,
+    val viewCount: Long
 ) {
 
     companion object {
@@ -68,7 +69,8 @@ data class SeminarResponse(
                 nextId = nextSeminar?.id,
                 nextTitle = nextSeminar?.title,
                 imageURL = imageURL,
-                attachments = attachmentResponses
+                attachments = attachmentResponses,
+                viewCount = this.viewCount
             )
         }
     }
