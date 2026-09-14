@@ -44,6 +44,7 @@ export default function NoticeSection({
         <Image
           src={noticeGraphicImg}
           alt=""
+          sizes="77vw"
           className="absolute inset-0 h-full w-full"
         />
       </div>

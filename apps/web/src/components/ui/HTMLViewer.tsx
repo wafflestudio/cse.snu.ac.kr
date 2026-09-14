@@ -54,6 +54,7 @@ export default function HTMLViewer({
             src={image.src}
             alt="대표 이미지"
             width={image.width}
+            sizes={`${image.width}px`}
             height={image.height}
             className="w-full object-contain"
           />

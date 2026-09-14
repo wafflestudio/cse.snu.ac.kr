@@ -29,6 +29,7 @@ export default function SearchResultRow({ item }: { item: SearchResultItem }) {
             <Image
               alt=""
               src={item.thumbnailUrl}
+              sizes="160px"
               className="h-full w-full object-cover"
             />
           </div>
