@@ -28,6 +28,7 @@ interface NewsService {
     ): NewsSearchResponse
 
     fun readNews(newsId: Long): NewsResponse
+    fun increaseViewCount(newsId: Long)
     fun createNews(request: CreateNewsReq, mainImage: MultipartFile?, attachments: List<MultipartFile>?): NewsResponse
     fun updateNews(
         newsId: Long,
@@ -72,6 +73,11 @@ class NewsServiceImpl(
             size = pageable.pageSize
         )
         return NewsSearchResponse(page.total, newsRepository.findSearchDtosByIds(page.ids))
+    }
+
+    @Transactional
+    override fun increaseViewCount(newsId: Long) {
+        newsRepository.increaseViewCount(newsId)
     }
 
     @Transactional(readOnly = true)

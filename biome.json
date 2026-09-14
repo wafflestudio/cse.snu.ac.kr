@@ -31,7 +31,8 @@
       "!infra",
       "!**/routeTree.gen.ts",
       "!**/types/api/generated.d.ts",
-      "!**/sonner/styles.css"
+      "!**/sonner/styles.css",
+      "!**/assets/pretendard"
     ]
   }
 }

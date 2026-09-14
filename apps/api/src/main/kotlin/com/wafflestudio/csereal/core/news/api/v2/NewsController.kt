@@ -39,6 +39,13 @@ class NewsController(
         return ResponseEntity.ok(newsService.readNews(newsId))
     }
 
+    /** 조회수 +1. 상세 GET 이 아닌 이유: preload·SSR·프리렌더·봇이 GET 을 내므로 읽지 않은 글이 오른다. */
+    @PostMapping("/{newsId}/view")
+    fun increaseViewCount(@PathVariable newsId: Long): ResponseEntity<Unit> {
+        newsService.increaseViewCount(newsId)
+        return ResponseEntity.noContent().build()
+    }
+
     @PreAuthorize("hasRole('STAFF')")
     @PostMapping(consumes = ["multipart/form-data"])
     fun createNews(

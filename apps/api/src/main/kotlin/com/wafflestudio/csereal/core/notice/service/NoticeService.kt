@@ -26,6 +26,7 @@ interface NoticeService {
     ): NoticeSearchResponse
 
     fun readNotice(noticeId: Long): NoticeResponse
+    fun increaseViewCount(noticeId: Long)
     fun createNotice(request: CreateNoticeReq, attachments: List<MultipartFile>?): NoticeResponse
     fun updateNotice(
         noticeId: Long,
@@ -74,6 +75,11 @@ class NoticeServiceImpl(
             size = pageable.pageSize
         )
         return NoticeSearchResponse(page.total, noticeRepository.findSearchDtosByIds(page.ids))
+    }
+
+    @Transactional
+    override fun increaseViewCount(noticeId: Long) {
+        noticeRepository.increaseViewCount(noticeId)
     }
 
     @Transactional(readOnly = true)

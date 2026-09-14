@@ -33,6 +33,7 @@ interface SeminarService {
     ): SeminarResponse
 
     fun readSeminar(seminarId: Long): SeminarResponse
+    fun increaseViewCount(seminarId: Long)
     fun updateSeminar(
         seminarId: Long,
         request: UpdateSeminarReq,
@@ -93,6 +94,11 @@ class SeminarServiceImpl(
         val imageURL = mainImageService.createImageURL(newSeminar.mainImage)
         val attachmentResponses = attachmentService.createAttachmentResponses(newSeminar.attachments)
         return SeminarResponse.of(newSeminar, imageURL, attachmentResponses)
+    }
+
+    @Transactional
+    override fun increaseViewCount(seminarId: Long) {
+        seminarRepository.increaseViewCount(seminarId)
     }
 
     @Transactional(readOnly = true)

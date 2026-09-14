@@ -39,6 +39,13 @@ class NoticeController(
         return ResponseEntity.ok(noticeService.readNotice(noticeId))
     }
 
+    /** 조회수 +1. 상세 GET 이 아닌 이유: preload·SSR·프리렌더·봇이 GET 을 내므로 읽지 않은 글이 오른다. */
+    @PostMapping("/{noticeId}/view")
+    fun increaseViewCount(@PathVariable noticeId: Long): ResponseEntity<Unit> {
+        noticeService.increaseViewCount(noticeId)
+        return ResponseEntity.noContent().build()
+    }
+
     @PreAuthorize("hasRole('STAFF')")
     @PostMapping(consumes = ["multipart/form-data"])
     fun createNotice(

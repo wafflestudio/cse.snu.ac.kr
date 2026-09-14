@@ -23,6 +23,11 @@ import java.time.LocalDateTime
 import java.time.LocalDate
 
 interface NewsRepository : JpaRepository<NewsEntity, Long>, CustomNewsRepository {
+    /** 조회수 +1. 엔티티로 읽어 올리면 동시 요청이 서로 덮어써서 DB 에서 증가시킨다. */
+    @Modifying
+    @Query("UPDATE news e SET e.viewCount = e.viewCount + 1 WHERE e.id = :id AND e.isPrivate = false")
+    fun increaseViewCount(@Param("id") id: Long): Int
+
     fun findFirstByIsPrivateFalseAndCreatedAtLessThanOrderByCreatedAtDesc(
         timestamp: LocalDateTime
     ): NewsEntity?
@@ -127,7 +132,8 @@ class NewsRepositoryImpl(
         date = news.date,
         tags = news.newsTags.map { it.tag.name.krName },
         imageURL = mainImageService.createImageURL(news.mainImage),
-        isPrivate = news.isPrivate
+        isPrivate = news.isPrivate,
+        viewCount = news.viewCount
     )
 
     override fun readAllSlides(pageNum: Long, pageSize: Int): AdminSlidesResponse {
