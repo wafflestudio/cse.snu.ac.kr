@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import Image from '@/components/ui/Image';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { MainNews } from '@/types/api';
-import { CARD_WIDTH_TAILWIND } from './constants';
+import { CARD_WIDTH_PX, CARD_WIDTH_TAILWIND } from './constants';
 
 export default function NewsCard({ news }: { news: MainNews }) {
   const { localizedPath } = useLanguage();
@@ -19,6 +19,7 @@ export default function NewsCard({ news }: { news: MainNews }) {
           // 났음 → null은 그대로 넘겨 Image의 플레이스홀더 폴백이 동작하게 한다.
           src={news.imageURL ? encodeURI(news.imageURL) : news.imageURL}
           alt=""
+          width={CARD_WIDTH_PX}
           className="absolute inset-0 h-full w-full object-cover"
         />
       </div>

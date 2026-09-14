@@ -58,6 +58,8 @@ export default function Image({
 
   return (
     <img
+      // 기본 lazy. LCP 요소는 발견이 늦어지면 손해라 그 자리에서 eager 로 덮는다.
+      loading="lazy"
       {...props}
       src={src}
       srcSet={srcSet}
