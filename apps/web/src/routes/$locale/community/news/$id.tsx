@@ -70,7 +70,6 @@ function NewsDetailPage() {
               src: news.imageURL,
               width: 320,
               height: 240,
-              mobileFullWidth: false,
             }
           }
         />
