@@ -94,6 +94,8 @@ class TagSuggester(objectMapper: ObjectMapper) {
 
         // 파이썬 str.split() 이 나누는 문자 집합. Java 의 isWhitespace 는 NBSP 를 공백으로 안 봐서
         // 그것만 쓰면 HTML 에서 흔한 &nbsp; 가 낱말을 붙여버린다.
-        private val WHITESPACE = Regex("[\\s\\u001c-\\u001f\\u0085\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000]+")
+        private val WHITESPACE = Regex(
+            "[\\s\\u001c-\\u001f\\u0085\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000]+"
+        )
     }
 }
