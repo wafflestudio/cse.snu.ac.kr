@@ -1,9 +1,12 @@
 package com.wafflestudio.csereal.core.notice.api.v2
 
 import com.wafflestudio.csereal.core.notice.api.req.CreateNoticeReq
+import com.wafflestudio.csereal.core.notice.api.req.TagSuggestionReq
 import com.wafflestudio.csereal.core.notice.api.req.UpdateNoticeReq
 import com.wafflestudio.csereal.core.notice.dto.*
 import com.wafflestudio.csereal.core.notice.service.NoticeService
+import com.wafflestudio.csereal.core.notice.suggest.TagSuggester
+import com.wafflestudio.csereal.core.notice.suggest.TagSuggestion
 import jakarta.validation.Valid
 import jakarta.validation.constraints.Positive
 import org.springframework.data.domain.PageRequest
@@ -16,7 +19,8 @@ import org.springframework.web.multipart.MultipartFile
 @RequestMapping("/api/v2/notice")
 @RestController
 class NoticeController(
-    private val noticeService: NoticeService
+    private val noticeService: NoticeService,
+    private val tagSuggester: TagSuggester
 ) {
     @GetMapping
     fun searchNotice(
@@ -44,6 +48,15 @@ class NoticeController(
     fun increaseViewCount(@PathVariable noticeId: Long): ResponseEntity<Unit> {
         noticeService.increaseViewCount(noticeId)
         return ResponseEntity.noContent().build()
+    }
+
+    /** 편집기가 부르는 태그 후보. 고르는 건 사람이라 확신도까지 같이 준다. */
+    @PreAuthorize("hasRole('STAFF')")
+    @PostMapping("/tag-suggestion")
+    fun suggestTags(
+        @RequestBody request: TagSuggestionReq
+    ): ResponseEntity<List<TagSuggestion>> {
+        return ResponseEntity.ok(tagSuggester.suggest(request.title, request.description))
     }
 
     @PreAuthorize("hasRole('STAFF')")
