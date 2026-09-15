@@ -24,6 +24,10 @@ export type NoticePreview = NoticePreviewList['searchList'][number];
 export type Notice = Res<'/api/v2/notice/{noticeId}'>;
 export type NoticePostBody = components['schemas']['CreateNoticeReq'];
 export type NoticePatchBody = components['schemas']['UpdateNoticeReq'];
+export type TagSuggestion = Res<
+  '/api/v2/notice/tag-suggestion',
+  'post'
+>[number];
 
 /* ── 소식 ───────────────────────────────────────────────── */
 
