@@ -1,0 +1,118 @@
+// app.css 의 `@theme` 값을 옮겨 적은 것. 토큰을 바꾸면 여기도 고친다.
+export const COLORS = [
+  {
+    name: 'main-orange',
+    hex: '#ff6914',
+    bg: 'bg-main-orange',
+    fg: 'text-main-orange',
+  },
+  {
+    name: 'main-orange-muted',
+    hex: '#e65817',
+    bg: 'bg-main-orange-muted',
+    fg: 'text-main-orange-muted',
+  },
+  { name: 'link', hex: '#3c7be4', bg: 'bg-link', fg: 'text-link' },
+  { name: 'white', hex: '#ffffff', bg: 'bg-white', fg: 'text-white' },
+  {
+    name: 'neutral-50',
+    hex: '#fafafa',
+    bg: 'bg-neutral-50',
+    fg: 'text-neutral-50',
+  },
+  {
+    name: 'neutral-100',
+    hex: '#f5f5f5',
+    bg: 'bg-neutral-100',
+    fg: 'text-neutral-100',
+  },
+  {
+    name: 'neutral-200',
+    hex: '#e5e5e5',
+    bg: 'bg-neutral-200',
+    fg: 'text-neutral-200',
+  },
+  {
+    name: 'neutral-300',
+    hex: '#d4d4d4',
+    bg: 'bg-neutral-300',
+    fg: 'text-neutral-300',
+  },
+  {
+    name: 'neutral-400',
+    hex: '#a3a3a3',
+    bg: 'bg-neutral-400',
+    fg: 'text-neutral-400',
+  },
+  {
+    name: 'neutral-500',
+    hex: '#737373',
+    bg: 'bg-neutral-500',
+    fg: 'text-neutral-500',
+  },
+  {
+    name: 'neutral-600',
+    hex: '#525252',
+    bg: 'bg-neutral-600',
+    fg: 'text-neutral-600',
+  },
+  {
+    name: 'neutral-700',
+    hex: '#404040',
+    bg: 'bg-neutral-700',
+    fg: 'text-neutral-700',
+  },
+  {
+    name: 'neutral-800',
+    hex: '#262626',
+    bg: 'bg-neutral-800',
+    fg: 'text-neutral-800',
+  },
+  {
+    name: 'neutral-850',
+    hex: '#1e1e1e',
+    bg: 'bg-neutral-850',
+    fg: 'text-neutral-850',
+  },
+  {
+    name: 'neutral-900',
+    hex: '#171717',
+    bg: 'bg-neutral-900',
+    fg: 'text-neutral-900',
+  },
+  {
+    name: 'neutral-950',
+    hex: '#0a0a0a',
+    bg: 'bg-neutral-950',
+    fg: 'text-neutral-950',
+  },
+];
+
+export const SHELL = [
+  { name: 'shell-100', hex: '#323235', bg: 'bg-shell-100' },
+  { name: 'shell-200', hex: '#2d2d30', bg: 'bg-shell-200' },
+  { name: 'shell-300', hex: '#262728', bg: 'bg-shell-300' },
+  { name: 'shell-400', hex: '#1f2021', bg: 'bg-shell-400' },
+];
+
+export const TYPE_SCALE = [
+  { name: '3xl', px: 30, className: 'text-3xl' },
+  { name: '2xl', px: 24, className: 'text-2xl' },
+  { name: 'xl', px: 22, className: 'text-xl' },
+  { name: 'lg', px: 18, className: 'text-lg' },
+  { name: 'base', px: 16, className: 'text-base' },
+  { name: 'md', px: 14, className: 'text-md' },
+  { name: 'sm', px: 13, className: 'text-sm' },
+  { name: 'xs', px: 12, className: 'text-xs' },
+];
+
+/** WCAG 상대 휘도. 스와치 위에 올릴 글자색을 고르는 데 쓴다. */
+export function luminance(hex: string) {
+  const rgb = [1, 3, 5].map((offset) => {
+    const channel = Number.parseInt(hex.slice(offset, offset + 2), 16) / 255;
+    return channel <= 0.04045
+      ? channel / 12.92
+      : ((channel + 0.055) / 1.055) ** 2.4;
+  });
+  return rgb[0] * 0.2126 + rgb[1] * 0.7152 + rgb[2] * 0.0722;
+}

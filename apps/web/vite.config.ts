@@ -1,3 +1,4 @@
+import mdx from '@mdx-js/rollup';
 import tailwindcss from '@tailwindcss/vite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import viteReact from '@vitejs/plugin-react';
@@ -10,6 +11,8 @@ export default defineConfig(() => {
     envDir: 'env',
     plugins: [
       tailwindcss(),
+      // react plugin 보다 앞서야 .mdx 가 JSX 로 바뀐 뒤 변환된다.
+      { enforce: 'pre', ...mdx() },
       tanstackStart({
         router: {
           routesDirectory: 'routes',

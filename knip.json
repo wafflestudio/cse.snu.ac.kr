@@ -12,7 +12,7 @@
         "src/sitemap.tsx"
       ],
       "project": ["src/**/*.{ts,tsx}"],
-      "ignoreDependencies": ["tailwindcss", "openapi-typescript"]
+      "ignoreDependencies": ["@types/mdx", "openapi-typescript", "tailwindcss"]
     },
     "e2e": {
       "entry": ["tests/**/*.spec.ts"],

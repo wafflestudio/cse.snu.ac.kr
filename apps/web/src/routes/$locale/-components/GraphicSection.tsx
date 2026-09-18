@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
+import MainGraphic from '@/components/ui/MainGraphic';
 import downArrowUrl from '../assets/down_arrow.svg?url';
-import MainGraphic from './MainGraphic';
 
 export default function GraphicSection() {
   return (
