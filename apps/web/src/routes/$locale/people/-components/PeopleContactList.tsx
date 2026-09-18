@@ -19,7 +19,7 @@ export default function PeopleContactList({
 
   return (
     <article className="mb-6 flex flex-col text-neutral-800">
-      <h3 className="text-base font-bold leading-8">{title}</h3>
+      <h3 className="text-base font-bold leading-loose">{title}</h3>
       <ul className="list-inside list-disc">
         {items.map((item) => (
           <BulletRow key={item.label}>

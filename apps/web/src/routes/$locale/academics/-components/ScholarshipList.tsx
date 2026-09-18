@@ -19,7 +19,7 @@ export default function ScholarshipList({
 
   return (
     <div className="mt-10 flex flex-col">
-      <h3 className="border-b border-b-neutral-200 pb-2 text-xl font-bold leading-10">
+      <h3 className="border-b border-b-neutral-200 pb-2 text-xl font-bold leading-loose">
         {t('장학금 종류')}
       </h3>
       <ul className="mt-4">

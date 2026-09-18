@@ -92,14 +92,20 @@
   --text-2xl: 1.5rem; /* 24px */
   --text-3xl: 1.875rem; /* 30px */
 
-  --text-xs--line-height: initial;
-  --text-sm--line-height: initial;
-  --text-md--line-height: initial;
-  --text-base--line-height: initial;
-  --text-lg--line-height: initial;
-  --text-xl--line-height: initial;
-  --text-2xl--line-height: initial;
-  --text-3xl--line-height: initial;
+  /* 크기마다 행간을 짝지어 둔다. `text-md` 하나로 크기와 행간이 같이 정해진다.
+     짝이 없으면 body 의 1.2 를 상속받아, 크기를 바꿀 때 행간이 조용히 어긋난다.
+     작은 넷이 1.35 인 건 그 크기가 대부분 한 줄이거나 짧아서다(실측: 14px 이
+     감기는 건 두 곳뿐). 18px 이상은 한 번도 안 감겨 1.2 로 둔다.
+     읽는 글은 이 값으로 부족하므로 컴포넌트가 `leading-*` 으로 덮는다 —
+     `leading-*` 은 `--tw-leading` 을 세팅해 항상 이긴다. */
+  --text-xs--line-height: 1.35;
+  --text-sm--line-height: 1.35;
+  --text-md--line-height: 1.35;
+  --text-base--line-height: 1.35;
+  --text-lg--line-height: 1.2;
+  --text-xl--line-height: 1.2;
+  --text-2xl--line-height: 1.2;
+  --text-3xl--line-height: 1.2;
 }
 
 @keyframes stretch {

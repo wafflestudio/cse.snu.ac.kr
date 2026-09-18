@@ -17,7 +17,7 @@ export default function SelectionTitle({
         <div className="flex items-center gap-2">
           <span className="text-base font-bold sm:text-2xl">{title}</span>
           {subtitle && (
-            <span className="pt-0.75 text-xs font-medium tracking-[0.02rem] sm:text-md">
+            <span className="pt-0.75 text-xs font-medium sm:text-md">
               {subtitle}
             </span>
           )}

@@ -113,9 +113,7 @@ export default function SeminarEditor({
         </Fieldset>
 
         <div className="mb-10">
-          <legend className="mb-3 text-base font-medium tracking-wide">
-            연사 정보
-          </legend>
+          <legend className="mb-3 text-base font-medium">연사 정보</legend>
           <div className="flex flex-col gap-4">
             <div className="flex gap-5">
               <Fieldset title="이름" required>
@@ -156,7 +154,7 @@ export default function SeminarEditor({
         <Fieldset title="연사 사진" spacing="6" titleSpacing="2">
           <label
             htmlFor="image"
-            className="mb-3 block whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500"
+            className="mb-3 block whitespace-pre-wrap text-sm font-normal text-neutral-500"
           >
             필수는 아니지만, 없을 경우 대체 이미지가 표시되니 가급적 첨부
             바랍니다. 이미지는 글 우측 상단에 표시됩니다.

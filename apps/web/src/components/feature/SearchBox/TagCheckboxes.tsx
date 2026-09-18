@@ -40,7 +40,7 @@ export default function TagCheckBoxes({
 
   return (
     <fieldset className="m-0 border-0 p-0">
-      <legend className="mb-3 mr-6 whitespace-nowrap p-0 text-md font-bold tracking-wide">
+      <legend className="mb-3 mr-6 whitespace-nowrap p-0 text-md font-bold">
         {t('태그')}
       </legend>
       <div className={`grid ${gridColsTailwind} gap-x-7 gap-y-2.5 pl-2.5`}>

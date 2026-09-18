@@ -53,10 +53,7 @@ function Fieldset({
       )}
     >
       <legend
-        className={clsx(
-          'text-md font-medium tracking-wide',
-          TITLE_SPACING_MAP[titleSpacing],
-        )}
+        className={clsx('text-md font-medium', TITLE_SPACING_MAP[titleSpacing])}
       >
         {title}
         {required && <span className="text-main-orange">*</span>}

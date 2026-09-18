@@ -59,7 +59,7 @@ function DirectionsPage() {
       pageDescription={meta.description}
     >
       <div className="mb-12 pt-7 sm:pt-11">
-        <p className="mb-8 text-md leading-[200%]">
+        <p className="mb-8 text-md leading-loose">
           {t('컴퓨터공학부는 서울대학교 관악 301동(신공학관1)에 있습니다.')}
           <br />
           {t('주소')}:{' '}

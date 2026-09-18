@@ -42,7 +42,7 @@ export default function NewsListRow({ post }: NewsListRowProps) {
 
           <Link
             to={detailPath}
-            className="mb-3 line-clamp-3 break-all text-md font-normal leading-[1.6] text-neutral-500 hover:cursor-pointer sm:mb-8"
+            className="mb-3 line-clamp-3 break-all text-md font-normal leading-normal text-neutral-500 hover:cursor-pointer sm:mb-8"
           >
             {post.description}...
           </Link>
@@ -58,7 +58,7 @@ export default function NewsListRow({ post }: NewsListRowProps) {
               />
             ))}
           </div>
-          <p className="hidden items-center gap-2.5 self-end whitespace-nowrap text-sm leading-[26px] text-neutral-800 sm:flex">
+          <p className="hidden items-center gap-2.5 self-end whitespace-nowrap text-sm leading-loose text-neutral-800 sm:flex">
             <time>
               {dayjs(post.date).locale(locale).format('YYYY/M/DD (ddd)')}
             </time>

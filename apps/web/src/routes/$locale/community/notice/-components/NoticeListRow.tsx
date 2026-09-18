@@ -64,7 +64,7 @@ export default function NoticeListRow({
 
       <div className="flex gap-3 sm:contents">
         <span
-          className={`${NOTICE_ROW_CELL_WIDTH.date} shrink-0 tracking-wide sm:pl-8 sm:pr-6`}
+          className={`${NOTICE_ROW_CELL_WIDTH.date} shrink-0 sm:pl-8 sm:pr-6`}
         >
           {dayjs(post.createdAt).locale(locale).format('YYYY/M/DD')}
         </span>
@@ -72,7 +72,7 @@ export default function NoticeListRow({
         {/* 조회 때마다 늘어 정규화가 안 된다 — E2E 가 마스킹하는 지점. */}
         <span
           data-testid="view-count"
-          className={`${NOTICE_ROW_CELL_WIDTH.views} shrink-0 tracking-wide sm:pr-10`}
+          className={`${NOTICE_ROW_CELL_WIDTH.views} shrink-0 sm:pr-10`}
         >
           {/* 데스크톱은 열 머리글이 '조회'를 말해준다. */}
           <span className="sm:hidden">{t('조회수')} </span>
@@ -115,7 +115,7 @@ function TitleCell({
       <span
         className={`${
           isPinned && 'font-bold text-main-orange sm:text-neutral-800'
-        } overflow-hidden text-ellipsis text-base tracking-wide hover:text-main-orange sm:whitespace-nowrap sm:text-md`}
+        } overflow-hidden text-ellipsis text-base hover:text-main-orange sm:whitespace-nowrap sm:text-md`}
       >
         {title}
       </span>

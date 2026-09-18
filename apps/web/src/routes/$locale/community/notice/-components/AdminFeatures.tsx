@@ -65,7 +65,7 @@ export default function AdminFeatures({
                 className="h-[18px] w-[18px] text-neutral-500"
                 strokeWidth={1.5}
               />
-              <span className="text-sm tracking-wide text-neutral-500">
+              <span className="text-sm text-neutral-500">
                 {selectedIds.size}개 게시물 선택
               </span>
             </div>

@@ -74,7 +74,7 @@ function LinkGroup({
   return (
     <section className={width}>
       <h3
-        className={`${titleColor} mb-[.625rem] text-sm font-medium tracking-[0.025rem] sm:text-md`}
+        className={`${titleColor} mb-[.625rem] text-sm font-medium sm:text-md`}
       >
         {groupName}
       </h3>

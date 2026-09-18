@@ -90,7 +90,7 @@ const Editor = ({ language }: { language: Language }) => {
       <Fieldset.Image>
         <label
           htmlFor="image"
-          className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500"
+          className="mb-3 whitespace-pre-wrap text-sm font-normal text-neutral-500"
         >
           연구 센터 대표 이미지입니다.
         </label>

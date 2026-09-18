@@ -50,7 +50,7 @@ export default function ImportantManagement({
 
   return (
     <div>
-      <span className="mb-5 ml-6 block text-sm tracking-wide text-neutral-500">
+      <span className="mb-5 ml-6 block text-sm text-neutral-500">
         총 {total}개의 게시물
       </span>
 
@@ -69,7 +69,7 @@ export default function ImportantManagement({
             className="h-[18px] w-[18px] text-neutral-500"
             strokeWidth={1.5}
           />
-          <span className="text-sm tracking-wide text-neutral-500">
+          <span className="text-sm text-neutral-500">
             {selectedKeys.size}개 게시물 선택
           </span>
         </div>

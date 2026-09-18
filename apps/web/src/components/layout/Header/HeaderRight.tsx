@@ -34,11 +34,7 @@ export default function HeaderRight() {
         <Divider />
 
         <Button variant="nav" size="sm" onClick={changeLanguage}>
-          {isEnglish ? (
-            '한국어'
-          ) : (
-            <span className="tracking-[0.025rem]">ENG</span>
-          )}
+          {isEnglish ? '한국어' : 'ENG'}
         </Button>
       </div>
 

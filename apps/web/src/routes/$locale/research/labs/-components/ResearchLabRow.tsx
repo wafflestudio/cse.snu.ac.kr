@@ -20,7 +20,7 @@ export default function ResearchLabListRow({
   const hasIntro = Boolean(pdf || youtube);
 
   return (
-    <li className="grid-rows-auto grid grid-cols-[auto_1fr] items-end gap-2 bg-white px-7 py-6 text-sm tracking-[0.02em] odd:bg-neutral-50 sm:flex sm:h-14 sm:flex-nowrap sm:items-center sm:px-2 sm:py-0 sm:odd:bg-white">
+    <li className="grid-rows-auto grid grid-cols-[auto_1fr] items-end gap-2 bg-white px-7 py-6 text-sm leading-tight odd:bg-neutral-50 sm:flex sm:h-14 sm:flex-nowrap sm:items-center sm:px-2 sm:py-0 sm:odd:bg-white">
       <LabNameCell id={id} name={name} localizedPath={localizedPath} />
       <LabProfessorsCell
         professors={professors}
@@ -63,7 +63,7 @@ function LabNameCell({
 }) {
   return (
     <span
-      className={`${LAB_ROW_ITEM_WIDTH.name} order-first col-span-1 row-span-1 text-base font-medium sm:whitespace-normal sm:text-sm sm:font-normal`}
+      className={`${LAB_ROW_ITEM_WIDTH.name} order-first col-span-1 row-span-1 text-base font-medium leading-tight sm:whitespace-normal sm:text-sm sm:font-normal`}
     >
       <Link
         className="text-neutral-900 hover:text-main-orange"
@@ -86,7 +86,7 @@ function LabProfessorsCell({
 }) {
   return (
     <span
-      className={`${LAB_ROW_ITEM_WIDTH.professor} col-span-3 text-md text-neutral-800 sm:text-sm sm:text-neutral-900`}
+      className={`${LAB_ROW_ITEM_WIDTH.professor} col-span-3 text-md leading-tight text-neutral-800 sm:text-sm sm:text-neutral-900`}
     >
       <span className="sm:hidden">{labelProfessor}: </span>
       {professors.map((info, index) => (

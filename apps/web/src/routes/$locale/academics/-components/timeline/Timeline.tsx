@@ -49,7 +49,7 @@ function TimeSpot({
     >
       <div className="flex h-full w-9 flex-col items-center justify-between">
         <Circle highlight={isSelected} />
-        <span className="flex items-center text-sm tracking-[0.02em] text-main-orange relative">
+        <span className="flex items-center text-sm text-main-orange relative">
           {time}
           {showDownArrow && <ArrowDown className="h-4 w-4" strokeWidth={1.5} />}
         </span>

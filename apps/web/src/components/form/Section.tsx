@@ -47,10 +47,7 @@ export default function Section({
       )}
     >
       <div
-        className={clsx(
-          'text-md font-bold tracking-wide',
-          TITLE_SPACING_MAP[titleSpacing],
-        )}
+        className={clsx('text-md font-bold', TITLE_SPACING_MAP[titleSpacing])}
       >
         {title}
       </div>

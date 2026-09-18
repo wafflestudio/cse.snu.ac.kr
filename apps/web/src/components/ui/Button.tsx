@@ -54,7 +54,7 @@ const SIZE_CLASSES: Record<ButtonSize, string> = {
 };
 
 const TEXT_SIZE_CLASSES: Record<ButtonSize, string> = {
-  xs: 'text-xs sm:text-md font-normal tracking-[.02em]',
+  xs: 'text-xs sm:text-md font-normal',
   sm: 'text-sm font-normal',
   md: 'text-md font-normal',
   lg: 'text-lg font-normal',

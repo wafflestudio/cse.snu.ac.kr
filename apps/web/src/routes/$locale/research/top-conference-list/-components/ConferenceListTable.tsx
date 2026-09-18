@@ -46,7 +46,7 @@ function ConferenceRow({
   index: number;
 }) {
   return (
-    <div className="flex w-full flex-row items-center wrap-break-word text-sm leading-[18px] even:bg-neutral-100">
+    <div className="flex w-full flex-row items-center wrap-break-word text-sm even:bg-neutral-100">
       <div className="flex w-12 items-center justify-center px-3 py-2.5">
         {index}
       </div>

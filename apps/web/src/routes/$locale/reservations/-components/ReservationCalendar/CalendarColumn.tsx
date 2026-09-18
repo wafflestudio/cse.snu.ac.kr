@@ -57,7 +57,7 @@ const ColumnIndex = ({
           (E2E가 "며칠 주가 그려졌는가"를 행 인덱스 숫자와 헷갈리지 않고 assert). */}
       <time
         dateTime={date.format('YYYY-MM-DD')}
-        className="text-base font-bold leading-4 text-neutral-800"
+        className="text-base font-bold leading-none text-neutral-800"
       >
         {date.date()}
       </time>

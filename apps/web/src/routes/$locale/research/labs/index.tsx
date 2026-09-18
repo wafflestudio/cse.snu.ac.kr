@@ -58,7 +58,7 @@ function ResearchLabsPage() {
       </LoginVisible>
 
       <div className="sm:border-y sm:border-neutral-200">
-        <h4 className="hidden h-10 items-center gap-2 whitespace-nowrap bg-neutral-100 px-2 text-sm font-medium tracking-[0.02em] sm:flex">
+        <h4 className="hidden h-10 items-center gap-2 whitespace-nowrap bg-neutral-100 px-2 text-sm font-medium sm:flex">
           <span className={LAB_ROW_ITEM_WIDTH.name}>{t('연구실')}</span>
           <span className={LAB_ROW_ITEM_WIDTH.professor}>{t('지도교수')}</span>
           <span className={LAB_ROW_ITEM_WIDTH.location}>

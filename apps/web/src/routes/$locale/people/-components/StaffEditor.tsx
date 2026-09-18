@@ -68,7 +68,7 @@ export default function StaffEditor({
         <Fieldset title="사진" spacing="12" titleSpacing="2">
           <label
             htmlFor="image"
-            className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500"
+            className="mb-3 whitespace-pre-wrap text-sm font-normal text-neutral-500"
           >
             3:4 비율의 증명사진이 가장 적합합니다.
           </label>

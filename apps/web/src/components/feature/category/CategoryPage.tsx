@@ -46,7 +46,7 @@ export default function CategoryPage({
         <div className="mb-2 text-sm font-normal text-neutral-400 sm:text-xl">
           {subtitle}
         </div>
-        <div className="text-[32px] font-bold tracking-wide text-white sm:text-[64px]">
+        <div className="text-[32px] font-bold text-white sm:text-[64px]">
           {resolvedTitle}
         </div>
         {description && (
@@ -85,7 +85,7 @@ function Description({
     <div className={clsx('flow-root', className)}>
       <div
         className={clsx(
-          'whitespace-pre-wrap text-sm leading-7',
+          'whitespace-pre-wrap text-sm leading-loose',
           contentClassName,
         )}
       >

@@ -47,7 +47,7 @@ function FacilitiesRow({ facility }: { facility: ProcessedFacility }) {
     <>
       <article className="flex flex-col-reverse items-start justify-between gap-5 py-5 sm:flex-row">
         <div className="flex flex-col sm:w-142">
-          <h3 className="mb-3 text-base font-medium leading-5">
+          <h3 className="mb-3 text-base font-medium leading-tight">
             {facility.name}
           </h3>
           <HTMLViewer html={facility.description} />

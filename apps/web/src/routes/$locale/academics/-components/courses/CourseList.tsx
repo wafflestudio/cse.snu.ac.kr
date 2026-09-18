@@ -63,9 +63,9 @@ const Row = ({
   const { t } = useLanguage(translations);
 
   return (
-    <li className="grid grid-cols-[auto_auto_1fr] grid-rows-3 gap-1 px-7 py-6 text-md odd:bg-neutral-50 sm:flex sm:h-14 sm:items-center sm:gap-0 sm:px-4 sm:py-0 sm:odd:bg-white">
+    <li className="grid grid-cols-[auto_auto_1fr] grid-rows-3 gap-1 px-7 py-6 text-md leading-tight odd:bg-neutral-50 sm:flex sm:h-14 sm:items-center sm:gap-0 sm:px-4 sm:py-0 sm:odd:bg-white">
       <span
-        className={`${COURSE_ROW_ITEM_WIDTH.name} order-1 col-span-3 pr-2 text-base font-medium sm:text-md sm:font-normal`}
+        className={`${COURSE_ROW_ITEM_WIDTH.name} order-1 col-span-3 pr-2 text-base font-medium leading-tight sm:text-md sm:font-normal`}
       >
         <button
           className="text-left"

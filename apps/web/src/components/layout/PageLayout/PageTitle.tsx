@@ -23,8 +23,7 @@ export default function PageTitle({
   breadcrumb,
   margin,
 }: PageTitleProps) {
-  const titleStyle =
-    'break-keep text-2xl font-bold tracking-wide text-white sm:text-3xl';
+  const titleStyle = 'break-keep text-2xl font-bold text-white sm:text-3xl';
 
   return (
     <div className="px-5 pt-[54px] sm:px-25">
@@ -42,7 +41,7 @@ export default function PageTitle({
             {subtitle ? (
               <span className="flex items-end">
                 <span className={titleStyle}>{title}</span>
-                <span className="ml-2 text-md font-normal leading-7 text-neutral-400 tracking-wider">
+                <span className="ml-2 text-md font-normal leading-loose text-neutral-400">
                   {subtitle}
                 </span>
               </span>
@@ -98,7 +97,7 @@ function LocationText({ path, name, isCurrent }: LocationTextProps) {
   const { localizedPath } = useLanguage();
   const _navigate = useNavigate();
   const router = useRouter();
-  const textStyle = 'text-xs sm:text-md font-normal tracking-[.02em]';
+  const textStyle = 'text-xs sm:text-md font-normal';
 
   if (isCurrent) {
     // 브레드크럼 현재 항목: 형제 Link/span과 색을 맞춰야 해 색을 상속받는다(text-inherit).

@@ -180,7 +180,7 @@ function FacilitiesEdit() {
           </Fieldset>
 
           <Fieldset title="시설 사진" spacing="12">
-            <p className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500">
+            <p className="mb-3 whitespace-pre-wrap text-sm font-normal text-neutral-500">
               시설 대표 이미지입니다.
             </p>
             <Form.Image name="imageURL" />

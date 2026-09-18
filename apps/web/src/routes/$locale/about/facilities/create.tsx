@@ -124,7 +124,7 @@ function FacilitiesCreate() {
           <Fieldset title="시설 사진" spacing="12">
             <label
               htmlFor="imageURL"
-              className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500"
+              className="mb-3 whitespace-pre-wrap text-sm font-normal text-neutral-500"
             >
               시설 대표 이미지입니다.
             </label>

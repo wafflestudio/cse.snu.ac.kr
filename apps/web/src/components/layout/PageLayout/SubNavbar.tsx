@@ -70,9 +70,7 @@ function SubNavItem({ item }: { item: SubNavConfigItem }) {
       className={clsx(
         'mb-3.5 w-fit text-sm',
         marginLeft,
-        isCurrent
-          ? 'font-bold tracking-wider text-main-orange'
-          : 'text-neutral-800',
+        isCurrent ? 'font-bold text-main-orange' : 'text-neutral-800',
       )}
     >
       {localizedItemPath ? (

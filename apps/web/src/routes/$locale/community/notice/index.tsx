@@ -85,17 +85,17 @@ function NoticePage() {
         <div className="mb-10 mt-9 border-y border-neutral-200 sm:mx-2.5">
           <h5 className="hidden h-11 items-center border-b border-neutral-200 pl-12.5 text-md text-neutral-800 sm:flex">
             <span
-              className={`${NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow whitespace-nowrap tracking-wide sm:pl-3`}
+              className={`${NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow whitespace-nowrap sm:pl-3`}
             >
               {t('제목')}
             </span>
             <span
-              className={`${NOTICE_ROW_CELL_WIDTH.date} shrink-0 whitespace-nowrap tracking-wide sm:pl-8 sm:pr-6`}
+              className={`${NOTICE_ROW_CELL_WIDTH.date} shrink-0 whitespace-nowrap sm:pl-8 sm:pr-6`}
             >
               {t('날짜')}
             </span>
             <span
-              className={`${NOTICE_ROW_CELL_WIDTH.views} shrink-0 whitespace-nowrap tracking-wide sm:pr-10`}
+              className={`${NOTICE_ROW_CELL_WIDTH.views} shrink-0 whitespace-nowrap sm:pr-10`}
             >
               {t('조회수')}
             </span>

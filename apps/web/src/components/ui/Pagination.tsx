@@ -43,7 +43,7 @@ export default function Pagination({
 
   return (
     <div className={clsx('flex justify-center', disabled && 'opacity-30')}>
-      <ul className="mx-auto flex h-6 gap-x-2 tracking-wide text-neutral-800">
+      <ul className="mx-auto flex h-6 gap-x-2 text-neutral-800">
         <li className="flex">
           <PaginationArrow
             icon={ChevronsLeft}

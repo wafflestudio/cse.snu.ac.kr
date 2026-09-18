@@ -36,7 +36,7 @@ export default function SearchResultRow({ item }: { item: SearchResultItem }) {
         )}
 
         <div className="flex min-w-0 flex-1 flex-col gap-[.62rem]">
-          <span className="text-base font-medium leading-snug tracking-wide text-neutral-800 group-hover:underline">
+          <span className="text-base font-medium text-neutral-800 group-hover:underline">
             {item.title}
           </span>
 
@@ -45,7 +45,7 @@ export default function SearchResultRow({ item }: { item: SearchResultItem }) {
           <div className="flex items-center gap-2.5">
             {navItem && <Tag label={tUnsafe(navItem.key)} />}
             {item.date && (
-              <time className="text-md font-medium leading-none tracking-wide text-neutral-500">
+              <time className="text-md font-medium leading-none text-neutral-500">
                 {formatDate(item.date, locale)}
               </time>
             )}

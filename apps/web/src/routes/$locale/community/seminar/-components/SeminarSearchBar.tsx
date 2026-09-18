@@ -40,7 +40,7 @@ export default function SeminarSearchBar() {
         <input
           type="text"
           id="seminar-search"
-          className="autofill-bg-neutral-100 w-full rounded-sm bg-transparent px-2 text-sm tracking-wide outline-none"
+          className="autofill-bg-neutral-100 w-full rounded-sm bg-transparent px-2 text-sm outline-none"
           value={text}
           onChange={handleChange}
         />
