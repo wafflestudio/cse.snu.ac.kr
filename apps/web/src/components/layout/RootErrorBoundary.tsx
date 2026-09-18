@@ -31,7 +31,7 @@ export default function RootErrorBoundary({ error }: { error: unknown }) {
       <head>
         <HeadContent />
       </head>
-      <body className="sm:min-w-[1200px] bg-neutral-900 font-normal text-neutral-950">
+      <body className="sm:min-w-[1200px] bg-neutral-900 font-normal text-neutral-800">
         <Header />
         <ErrorState
           title="500"

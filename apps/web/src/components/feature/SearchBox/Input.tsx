@@ -1,4 +1,5 @@
 import { Search } from 'lucide-react';
+import { useId } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 
 interface KeywordInputProps {
@@ -11,11 +12,12 @@ export default function Input({
   disabled = false,
 }: KeywordInputProps) {
   const { t } = useLanguage({ 검색: 'Search' });
+  const inputId = useId();
 
   return (
     <div className="flex items-center">
       <label
-        htmlFor="search"
+        htmlFor={inputId}
         className="mr-7 whitespace-nowrap text-md font-bold tracking-wide"
       >
         {t('검색')}
@@ -23,7 +25,7 @@ export default function Input({
       <div className="relative flex h-7.5 w-54 items-center justify-between rounded-sm bg-white pr-3">
         <input
           type="text"
-          id="search"
+          id={inputId}
           name="keyword"
           className="autofill-bg-white w-full rounded-sm bg-transparent px-2 text-sm tracking-wide outline-none"
           defaultValue={defaultValue}

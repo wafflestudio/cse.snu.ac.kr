@@ -168,7 +168,7 @@ function ContentViewer({
     <div className="mb-5">
       <div className="mb-4 font-semibold">{title}</div>
       <Attachments files={attachments} />
-      <div className="rounded-sm bg-neutral-75 p-5">
+      <div className="rounded-sm bg-neutral-100 p-5">
         <HTMLViewer html={description} />
       </div>
       <ActionButtons year={year} pathname={pathname} />
@@ -210,7 +210,7 @@ function TogglableContentViewer({
       {isExpanded && (
         <>
           <Attachments files={attachments} />
-          <div className="rounded-sm bg-neutral-75 p-5">
+          <div className="rounded-sm bg-neutral-100 p-5">
             <HTMLViewer html={description} />
           </div>
           <ActionButtons year={year} pathname={pathname} />

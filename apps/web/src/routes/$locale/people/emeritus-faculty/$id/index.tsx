@@ -89,7 +89,7 @@ function EmeritusFacultyDetailPage() {
             header={t('연구 분야')}
             items={faculty.researchAreas}
           />
-          <div className="mb-7 text-sm font-medium text-neutral-700">
+          <div className="mb-7 text-sm font-medium text-neutral-800">
             {careerTimeStr}
           </div>
         </div>

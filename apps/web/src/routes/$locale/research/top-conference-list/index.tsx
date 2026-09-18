@@ -47,7 +47,7 @@ function TopConferenceListPage() {
       pageTitle={meta.title}
       pageDescription={meta.description}
     >
-      <div className="flex flex-col text-neutral-950">
+      <div className="flex flex-col text-neutral-800">
         <h3 className="mb-5 text-base font-bold leading-8">
           {t('서울대학교 공과대학 컴퓨터공학부')} Top Conference List
         </h3>

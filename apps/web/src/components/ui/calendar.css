@@ -1,7 +1,7 @@
 /* Calendar Container */
 .custom-calendar {
   border-radius: 0.125rem;
-  border: 1px solid rgb(212 212 212);
+  border: 1px solid var(--color-neutral-300);
   background-color: white;
   padding: 1rem;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -9,8 +9,7 @@
   line-height: 1.25rem;
 
   /* CSS Variables */
-  --rdp-accent-color: #e65817;
-  --rdp-accent-background-color: #fff5f0;
+  --rdp-accent-color: var(--color-main-orange-muted);
   --rdp-day-height: 2rem;
   --rdp-day-width: 2rem;
   --rdp-day_button-height: 1.875rem;

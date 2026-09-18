@@ -36,8 +36,8 @@ export default function Footer() {
     : 'light';
 
   const topBg =
-    mode === 'light' ? 'bg-neutral-50' : 'bg-[#262728] sm:bg-neutral-900';
-  const bottomBg = mode === 'light' ? 'bg-neutral-100' : 'bg-[rgb(30,30,30)]';
+    mode === 'light' ? 'bg-neutral-50' : 'bg-shell-300 sm:bg-neutral-900';
+  const bottomBg = mode === 'light' ? 'bg-neutral-100' : 'bg-shell-400';
   const borderTop =
     mode === 'light' ? 'border-neutral-100' : 'border-neutral-800';
 
@@ -53,7 +53,7 @@ export default function Footer() {
       <div
         className={`${bottomBg} flex flex-col justify-between px-5 py-[30px] sm:flex-row sm:items-center sm:px-15 sm:py-8`}
       >
-        <FooterBottomLeft />
+        <FooterBottomLeft mode={mode} />
         <FooterBottomRight />
       </div>
     </footer>
@@ -68,12 +68,8 @@ function LinkGroup({
 }: LinkGroupProps) {
   const { t } = useLanguage(footerTranslations);
 
-  const titleColor =
-    mode === 'light' ? 'text-neutral-600' : 'text-neutral-200 sm:text-white';
-  const itemColor =
-    mode === 'light'
-      ? 'text-neutral-500'
-      : 'text-neutral-300 sm:text-neutral-500';
+  const titleColor = mode === 'light' ? 'text-neutral-600' : 'text-white';
+  const itemColor = mode === 'light' ? 'text-neutral-500' : 'text-neutral-400';
 
   return (
     <section className={width}>
@@ -96,12 +92,18 @@ function LinkGroup({
   );
 }
 
-function FooterBottomLeft() {
+function FooterBottomLeft({
+  mode,
+}: {
+  mode: NonNullable<LinkGroupProps['mode']>;
+}) {
   const { t, localizedPath } = useLanguage(footerTranslations);
   const [cserealOpen, setCserealOpen] = useState(false);
 
   return (
-    <div className="text-xs text-neutral-500 sm:text-sm">
+    <div
+      className={`text-xs sm:text-sm ${mode === 'light' ? 'text-neutral-500' : 'text-neutral-400'}`}
+    >
       <div className="mb-1 flex gap-[1ch] [&>a]:font-bold ">
         <a
           href="https://www.snu.ac.kr/personal_information"
@@ -152,6 +154,12 @@ function FooterBottomLeft() {
             </span>
           </h1>
           <CserealMembers />
+          <Link
+            to="/design-system"
+            className="w-fit text-sm text-neutral-600 underline underline-offset-4 hover:text-neutral-900"
+          >
+            SNU CSE Design System
+          </Link>
         </div>
       </Dialog>
     </div>

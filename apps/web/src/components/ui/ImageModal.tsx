@@ -109,7 +109,7 @@ export default function ImageModal({
   return (
     <DialogPrimitive.Root open={open} onOpenChange={handleOpenChange}>
       <DialogPrimitive.Portal>
-        <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
+        <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-overlay data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
         <DialogPrimitive.Content
           className="fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95"
           aria-describedby={undefined}
@@ -141,7 +141,7 @@ export default function ImageModal({
                 <button
                   type="button"
                   onClick={handleAction}
-                  className="flex-1 px-6 py-3 bg-main-orange text-white hover:bg-[#ff7b34] hover:text-white active:bg-[#f55a00] active:text-[#ffc38f] text-[15px] font-medium leading-[22px] tracking-[0.025em] focus:outline-none transition-colors"
+                  className="flex-1 px-6 py-3 bg-main-orange text-white hover:bg-main-orange-hover hover:text-white active:bg-main-orange-active active:text-main-orange-subtle text-[15px] font-medium leading-[22px] tracking-[0.025em] focus:outline-none transition-colors"
                 >
                   {t('자세히 보기')}
                 </button>

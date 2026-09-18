@@ -72,7 +72,7 @@ function SubNavItem({ item }: { item: SubNavConfigItem }) {
         marginLeft,
         isCurrent
           ? 'font-bold tracking-wider text-main-orange'
-          : 'text-neutral-700',
+          : 'text-neutral-800',
       )}
     >
       {localizedItemPath ? (

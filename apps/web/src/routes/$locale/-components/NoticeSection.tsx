@@ -22,11 +22,11 @@ const NOTICE_TAGS = [
 
 const noticeTagPillClass = (selected: boolean) =>
   clsx(
-    'inline-flex cursor-pointer select-none items-center justify-center rounded-[1.875rem] border border-solid border-main-orange-dark px-3 py-[0.37rem] text-md font-medium transition duration-200',
-    'has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-main-orange-dark',
+    'inline-flex cursor-pointer select-none items-center justify-center rounded-[1.875rem] border border-solid border-main-orange-muted px-3 py-[0.37rem] text-md font-medium transition duration-200',
+    'has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-main-orange-muted',
     selected
-      ? 'bg-main-orange-dark text-[#202020]'
-      : 'bg-[#202020] text-main-orange-dark',
+      ? 'bg-main-orange-muted text-neutral-950'
+      : 'bg-neutral-800 text-main-orange-muted',
   );
 
 export default function NoticeSection({
@@ -39,7 +39,7 @@ export default function NoticeSection({
   const { t, localizedPath, locale } = useLanguage();
 
   return (
-    <div className="relative mt-16 bg-[#212121] sm:mx-31 sm:mt-22 sm:h-112">
+    <div className="relative mt-16 bg-neutral-800 sm:mx-31 sm:mt-22 sm:h-112">
       <div className="absolute left-0 top-0 hidden aspect-827/295 w-[77%] sm:block">
         <Image
           src={noticeGraphicImg}
@@ -73,7 +73,7 @@ export default function NoticeSection({
           </fieldset>
           {!isMobile && (
             <Link
-              className="flex text-base font-normal text-main-orange-dark"
+              className="flex text-base font-normal text-main-orange-muted"
               to={localizedPath('/community/notice')}
             >
               <PlusIcon /> {t('더보기')}
@@ -101,7 +101,7 @@ export default function NoticeSection({
         </div>
         {isMobile && (
           <Link
-            className="ml-auto mt-6 flex text-base font-normal text-main-orange-dark"
+            className="ml-auto mt-6 flex text-base font-normal text-main-orange-muted"
             to={localizedPath('/community/notice')}
           >
             <PlusIcon /> {t('더보기')}

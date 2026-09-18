@@ -18,7 +18,7 @@ export default function PeopleContactList({
   if (items.length === 0) return null;
 
   return (
-    <article className="mb-6 flex flex-col text-neutral-700">
+    <article className="mb-6 flex flex-col text-neutral-800">
       <h3 className="text-base font-bold leading-8">{title}</h3>
       <ul className="list-inside list-disc">
         {items.map((item) => (

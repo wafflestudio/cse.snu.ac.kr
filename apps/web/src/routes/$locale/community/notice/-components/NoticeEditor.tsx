@@ -118,7 +118,7 @@ export default function NoticeEditor({
                 {isSuggesting ? '제안받는 중…' : '태그 제안받기'}
               </button>
               {suggestion && (
-                <p className="text-xs font-normal tracking-wide text-neutral-700">
+                <p className="text-xs font-normal tracking-wide text-neutral-500">
                   {suggestion.length
                     ? `제목·본문 기준 ${suggestion
                         .map((s) => `${s.tag}(${s.confidence.toFixed(2)})`)
@@ -176,7 +176,7 @@ export default function NoticeEditor({
                     <Form.Date name="pinnedUntil" hideTime disablePast />
                   </div>
                 )}
-                <p className="text-xs font-normal tracking-wide text-neutral-700">
+                <p className="text-xs font-normal tracking-wide text-neutral-800">
                   * 만료일 설정 시 해당 날짜까지만 상단에 고정됩니다.
                 </p>
               </div>
@@ -211,7 +211,7 @@ export default function NoticeEditor({
                     <Form.Date name="importantUntil" hideTime disablePast />
                   </div>
                 )}
-                <p className="text-xs font-normal tracking-wide text-neutral-700">
+                <p className="text-xs font-normal tracking-wide text-neutral-800">
                   * 만료일 설정 시 해당 날짜까지만 중요 안내로 표시됩니다.
                 </p>
               </div>

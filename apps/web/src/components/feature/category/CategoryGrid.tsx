@@ -90,8 +90,8 @@ export default function CategoryGrid({
 function getRootItemStyles(isSelected: boolean, isLight: boolean) {
   if (isSelected) {
     return {
-      bgColor: 'bg-main-orange-dark',
-      hoverColor: 'bg-main-orange-dark',
+      bgColor: 'bg-main-orange-muted',
+      hoverColor: 'bg-main-orange-muted',
       borderColor: undefined,
     };
   }
@@ -106,7 +106,7 @@ function getRootItemStyles(isSelected: boolean, isLight: boolean) {
 
   return {
     bgColor: 'bg-neutral-100',
-    hoverColor: 'bg-main-orange-dark',
+    hoverColor: 'bg-main-orange-muted',
     borderColor: undefined,
   };
 }
@@ -130,7 +130,7 @@ function CategoryItem({
 }: CategoryItemProps) {
   const hoverBgColor = hoverColor
     ? `hover:${hoverColor}`
-    : 'hover:bg-main-orange-dark';
+    : 'hover:bg-main-orange-muted';
   const englishLabel =
     navbarTranslations[title as keyof typeof navbarTranslations] ?? '';
 
@@ -146,17 +146,17 @@ function CategoryItem({
       onClick={onClick}
     >
       <div>
-        <h3 className="mb-2.5 text-md font-medium text-neutral-800 sm:mb-2.5 sm:text-[20px] text-start">
+        <h3 className="mb-2.5 text-md font-medium text-neutral-950 sm:mb-2.5 sm:text-[20px] text-start">
           {title}
         </h3>
-        <p className="text-[11px] text-neutral-800 sm:text-base text-start">
+        <p className="text-[11px] text-neutral-950 sm:text-base text-start">
           {englishLabel}
         </p>
       </div>
       {hasArrow && (
         <div className="text-end">
           <ArrowRight
-            className="h-[18px] w-[18px] text-neutral-800 duration-300 group-hover:translate-x-[10px] sm:h-[32px] sm:w-[32px]"
+            className="h-[18px] w-[18px] text-neutral-950 duration-300 group-hover:translate-x-[10px] sm:h-[32px] sm:w-[32px]"
             strokeWidth={1.5}
           />
         </div>

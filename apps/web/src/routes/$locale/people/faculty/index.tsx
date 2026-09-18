@@ -28,7 +28,7 @@ const sortPillClass = (selected: boolean) =>
     'has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-neutral-700',
     selected
       ? 'bg-neutral-700 text-white hover:bg-neutral-500'
-      : 'bg-neutral-200 text-neutral-700',
+      : 'bg-neutral-200 text-neutral-800',
   );
 
 const META = {

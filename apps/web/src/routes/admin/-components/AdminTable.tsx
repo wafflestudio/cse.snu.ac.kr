@@ -46,7 +46,7 @@ export default function AdminTable({
   return (
     <div className="mx-2.5 mb-8">
       {/* Header */}
-      <div className="flex items-center border-b border-neutral-300 bg-neutral-50 py-3 text-md font-medium tracking-wide text-neutral-700">
+      <div className="flex items-center border-b border-neutral-300 bg-neutral-50 py-3 text-md font-medium tracking-wide text-neutral-800">
         <div
           className={clsx(
             COLUMN_WIDTHS.checkbox,

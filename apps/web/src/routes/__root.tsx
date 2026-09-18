@@ -4,6 +4,7 @@ import {
   Outlet,
   redirect,
   Scripts,
+  useLocation,
 } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { useEffect } from 'react';
@@ -25,6 +26,7 @@ import { getSiteOrigin, isStatsEnabled, readLangHeaders } from '@/utils/ssr';
 // 로케일 프리픽스를 부여하지 않는 최상위(비로케일) 라우트. 정적 에셋은 SSR 전에 서빙돼 여기 도달 안 함.
 const NON_LOCALE_SEGMENTS = new Set([
   'admin',
+  'design-system',
   '.internal',
   'img',
   'sitemap.xml',
@@ -105,8 +107,10 @@ function RootDocument() {
   }, [roles]);
 
   const { locale, pathWithoutLocale } = useLanguage();
+  const { pathname } = useLocation();
   const altPath = pathWithoutLocale === '/' ? '' : pathWithoutLocale;
   const isMain = pathWithoutLocale === '/';
+  const isDesignSystem = pathname.replace(/\/$/, '') === '/design-system';
   const paddingLeft = isMain ? 'sm:pl-[11rem]' : 'sm:pl-[6.25rem]';
 
   const isMobile = useIsMobile();
@@ -126,18 +130,23 @@ function RootDocument() {
           href={`${origin}/ko${altPath}`}
         />
       </head>
-      <body className="sm:min-w-[1200px] bg-neutral-900 font-normal text-neutral-950">
-        <LNB />
-        <MobileNav />
+      <body
+        className={clsx(
+          'font-normal text-neutral-800',
+          isDesignSystem ? 'bg-white' : 'sm:min-w-[1200px] bg-neutral-900',
+        )}
+      >
+        {!isDesignSystem && <LNB />}
+        {!isDesignSystem && <MobileNav />}
         <main
           className={clsx(
             'flex min-h-full min-w-full flex-col',
-            paddingLeft,
-            isScrollBlocked ? 'overflow-hidden h-full' : '',
+            !isDesignSystem && paddingLeft,
+            !isDesignSystem && isScrollBlocked ? 'overflow-hidden h-full' : '',
           )}
         >
           <Outlet />
-          <Footer />
+          {!isDesignSystem && <Footer />}
           <Toaster />
         </main>
         <Scripts />

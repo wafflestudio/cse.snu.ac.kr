@@ -13,12 +13,12 @@ export default function HighlightedText({
   segments: SearchResultItem['preview'];
 }) {
   return (
-    <p className="line-clamp-2 text-md font-normal leading-normal text-neutral-700">
+    <p className="line-clamp-2 text-md font-normal leading-normal text-neutral-800">
       {segments.map((segment) =>
         segment.hit ? (
           <span
             key={`${segment.text}-hit`}
-            className="font-semibold text-neutral-950"
+            className="font-semibold text-neutral-800"
           >
             {segment.text}
           </span>

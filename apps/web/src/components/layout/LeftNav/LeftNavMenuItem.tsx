@@ -43,7 +43,7 @@ export default function LNBMenuItem({
     );
 
   if (variant === 'sidebar') {
-    const color = highlight ? 'text-white' : 'text-neutral-500';
+    const color = highlight ? 'text-white' : 'text-neutral-400';
     const className = `text-[0.9375rem] font-medium ${color} cursor-pointer whitespace-nowrap leading-4.5`;
 
     return (

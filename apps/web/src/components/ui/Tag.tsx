@@ -23,7 +23,7 @@ const VARIANT_CLASSES: Record<TagVariant, string> = {
 
 const HOVER_CLASSES: Record<TagVariant, string> = {
   outline: 'hover:bg-main-orange hover:border-main-orange hover:text-white',
-  solid: 'hover:bg-main-orange-dark hover:border-main-orange-dark',
+  solid: 'hover:bg-main-orange-muted hover:border-main-orange-muted',
 };
 
 export function Tag({

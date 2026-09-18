@@ -14,7 +14,7 @@ export default function PeopleLabNode({ faculty }: { faculty: FacultyDetail }) {
       <div className="-translate-x-[7.15px] translate-y-[4px] border-b border-b-main-orange pb-[5px] pr-2">
         <Link
           to={localizedPath(`/research/labs/${faculty.labId}`)}
-          className="text-sm font-medium leading-5 text-neutral-700 hover:text-main-orange"
+          className="text-sm font-medium leading-5 text-neutral-800 hover:text-main-orange"
         >
           {faculty.labName}
         </Link>

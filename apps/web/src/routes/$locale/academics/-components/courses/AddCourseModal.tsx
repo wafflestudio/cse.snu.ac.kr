@@ -73,7 +73,7 @@ export default function AddCourseModal({
       contentClassName="min-w-[500px] max-w-[768px]"
     >
       <FormProvider {...formMethods}>
-        <h4 className="mb-4 text-xl font-bold text-neutral-700">
+        <h4 className="mb-4 text-xl font-bold text-neutral-800">
           {t('교과목 추가')}
         </h4>
         <div className="flex flex-col gap-4">

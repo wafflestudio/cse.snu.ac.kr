@@ -35,10 +35,15 @@
 }
 
 @theme {
+  /* Tailwind 기본 팔레트를 끈다. 이 블록에 없는 색은 클래스 자체가 만들어지지 않아
+     `bg-rose-400` 같은 게 조용히 통과하는 일이 없다. 대신 white·transparent·inherit 처럼
+     기본에 기대던 것도 여기서 직접 선언해야 한다. */
+  --color-*: initial;
+
   --color-transparent: transparent;
+  --color-inherit: inherit;
   --color-white: #ffffff;
   --color-neutral-50: #fafafa;
-  --color-neutral-75: #f8f8f8;
   --color-neutral-100: #f5f5f5;
   --color-neutral-200: #e5e5e5;
   --color-neutral-300: #d4d4d4;
@@ -47,12 +52,32 @@
   --color-neutral-600: #525252;
   --color-neutral-700: #404040;
   --color-neutral-800: #262626;
+  /* 어두운 페이지에서 제목 영역을 본문보다 한 단계 띄우는 값. Tailwind 기본에 없는 단계다. */
   --color-neutral-850: #1e1e1e;
   --color-neutral-900: #171717;
   --color-neutral-950: #0a0a0a;
   --color-main-orange: #ff6914;
-  --color-main-orange-dark: #e65817;
+  /* 어두운 배경 위에서 한 단계 죽인 주황. 메인 화면이 주 사용처다. */
+  --color-main-orange-muted: #e65817;
+  --color-main-orange-hover: #ff7b34;
+  --color-main-orange-active: #f55a00;
+  /* 눌린 주황 면 위의 글자. 흰색은 대비가 너무 세서 한 단계 죽인 주황을 쓴다. */
+  --color-main-orange-subtle: #ffc38f;
+
+  /* 폼 검증 실패처럼 "여기가 틀렸다"를 알리는 색. 강조색(주황)과 구분돼야 해서 따로 둔다.
+     값은 Tailwind red-600 그대로 — 흰 배경 위 대비 4.83 으로 본문 기준을 넘긴다. */
+  --color-error: #dc2626;
+
+  /* 모달 뒤를 덮는 막. Dialog·AlertDialog·ImageModal 이 같은 값을 따로 적고 있었다. */
+  --color-overlay: rgba(0, 0, 0, 0.5);
   --color-link: #3c7be4;
+
+  /* 앱 셸(내비게이션·헤더·푸터)의 어두운 면. 중립색과 달리 푸른기가 2~3 섞여 있고,
+     명도가 깊이를 뜻한다 — 밝을수록 앞(z-50), 어두울수록 뒤(z-40). */
+  --color-shell-100: #323235;
+  --color-shell-200: #2d2d30;
+  --color-shell-300: #262728;
+  --color-shell-400: #1f2021;
 
   --text-xs: 0.75rem; /* 12px */
   --text-sm: 0.8125rem; /* 13px */
@@ -115,7 +140,10 @@
      페이지마다 최대 4번 문서에 박혀 69.8KB 다 — 마스크로 빼면 색은 bg-* 가 정하고 파일은
      /assets 의 immutable 캐시를 탄다. 크기는 사용처가 정한다. */
   /* 메인 배경 패턴. <img> 로 두면 LCP 후보가 되고 인라인 <svg> 로 두면 두 사용처가 문서에
-     13.4KB 를 얹는다 — CSS 배경은 둘 다 아니다. slice 는 cover 와 같은 뜻. */
+     13.4KB 를 얹는다 — CSS 배경은 둘 다 아니다. slice 는 cover 와 같은 뜻.
+     그 SVG 안의 #1b1b1b 60곳은 팔레트 밖이지만 의도된 값이다 — neutral-900(#171717) 바탕보다
+     4 만큼만 밝아야 패턴이 드러나는데 척도에 그 단계가 없다. url() 로 부르는 SVG 는
+     currentColor 도 토큰도 못 읽으니, 인라인으로 바꾸지 않는 한 하드코딩이 유일한 방법이다. */
   .bg-pattern {
     background-image: url("./routes/$locale/assets/background.svg");
     background-size: cover;

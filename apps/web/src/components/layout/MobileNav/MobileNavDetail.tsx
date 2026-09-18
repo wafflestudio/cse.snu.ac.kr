@@ -13,7 +13,7 @@ export default function MobileNavDetail() {
 
   return (
     <div className="relative grow-[13.6875] basis-0">
-      <div className="no-scrollbar absolute bottom-0 left-0 right-0 top-0 z-40 overflow-y-scroll bg-[#1f2021] pl-10 pt-10">
+      <div className="no-scrollbar absolute bottom-0 left-0 right-0 top-0 z-40 overflow-y-scroll bg-shell-400 pl-10 pt-10">
         <NavTree item={navbarState.navItem} activeItem={activeItem} depth={0} />
       </div>
     </div>

@@ -144,7 +144,7 @@ const PageIndicatorDot = ({
     >
       <div
         className={`mx-2 h-2 w-full rounded-full ${
-          isHighlight ? 'bg-[#E65615]' : 'bg-neutral-300'
+          isHighlight ? 'bg-main-orange-muted' : 'bg-neutral-300'
         }`}
       />
     </button>

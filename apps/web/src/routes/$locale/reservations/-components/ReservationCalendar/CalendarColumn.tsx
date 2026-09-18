@@ -93,7 +93,7 @@ const CalendarCell = ({
   return (
     <button
       type="button"
-      className="absolute flex w-full flex-col items-center bg-[#ff6914cc]"
+      className="absolute flex w-full flex-col items-center bg-main-orange/80"
       onClick={() => onSelectReservation(reservation.id)}
       // TODO: 더 나은 방법
       ref={(ref) => {

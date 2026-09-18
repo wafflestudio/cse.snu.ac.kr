@@ -67,7 +67,7 @@ function Button({
   return (
     <button
       className={clsx(
-        'h-8 rounded-sm border border-neutral-300 px-2.5 text-sm text-neutral-700 hover:bg-neutral-300',
+        'h-8 rounded-sm border border-neutral-300 px-2.5 text-sm text-neutral-800 hover:bg-neutral-300',
         bgColor,
       )}
       onClick={onClick}

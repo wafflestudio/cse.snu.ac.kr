@@ -23,13 +23,13 @@ export default function MobileNavList() {
   };
 
   return (
-    <nav className="flex min-w-[100px] grow-[6.25] basis-0 flex-col justify-between bg-[#323235] pt-10">
+    <nav className="flex min-w-[100px] grow-[6.25] basis-0 flex-col justify-between bg-shell-100 pt-10">
       <ul className="flex flex-col gap-9 text-center">
         {navigationTree.map((item, i) => (
           <li
             key={i}
             className={`text-sm font-medium ${
-              shouldHighlight(item) ? 'text-white' : 'text-neutral-500'
+              shouldHighlight(item) ? 'text-white' : 'text-neutral-400'
             } cursor-pointer whitespace-nowrap leading-5`}
             onClick={() => hoverNavItem(item)}
             onKeyDown={(e) => e.key === 'Enter' && hoverNavItem(item)}
@@ -39,7 +39,7 @@ export default function MobileNavList() {
         ))}
       </ul>
 
-      <div className="mb-[40px] flex flex-col items-center text-sm font-medium text-neutral-500">
+      <div className="mb-[40px] flex flex-col items-center text-sm font-medium text-neutral-400">
         <Button
           variant="quiet"
           size="sm"
@@ -71,7 +71,7 @@ function SearchPage({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 top-0 z-50 bg-[#1F2021]">
+    <div className="absolute bottom-0 left-0 right-0 top-0 z-50 bg-shell-400">
       <div className="absolute left-1/2 bottom-4 -translate-x-1/2">
         <Button
           variant="quiet"
@@ -87,7 +87,7 @@ function SearchPage({ onClose }: { onClose: () => void }) {
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && search()}
-          className="h-8 w-full bg-transparent text-md text-white outline-none placeholder:text-neutral-500"
+          className="h-8 w-full bg-transparent text-md text-white outline-none placeholder:text-neutral-400"
           placeholder="검색어를 입력해주세요"
           // biome-ignore lint/a11y/noAutofocus: 넣을거임
           autoFocus

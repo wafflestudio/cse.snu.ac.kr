@@ -145,7 +145,7 @@ export default function NewsEditor({
                     <Form.Date name="importantUntil" hideTime disablePast />
                   </div>
                 )}
-                <p className="text-xs font-normal tracking-wide text-neutral-700">
+                <p className="text-xs font-normal tracking-wide text-neutral-800">
                   * 만료일 설정 시 해당 날짜까지만 중요 안내로 표시됩니다.
                 </p>
               </div>
@@ -157,7 +157,7 @@ export default function NewsEditor({
                 if (isSlide) setValue('isPrivate', false);
               }}
             />
-            <p className="text-xs font-normal tracking-wide text-neutral-700">
+            <p className="text-xs font-normal tracking-wide text-neutral-800">
               * '슬라이드쇼에 표시' 글은 대표이미지가 첨부되어있는지 확인
               바랍니다.
             </p>

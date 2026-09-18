@@ -66,8 +66,8 @@ const VARIANT_CLASSES: Record<ButtonVariant, string> = {
   neutral: 'rounded-[.0625rem] bg-neutral-700 text-white hover:bg-neutral-500',
   secondary:
     'rounded-[.0625rem] border border-neutral-200 bg-neutral-100 text-neutral-500 hover:bg-neutral-200',
-  quiet: 'text-neutral-500 hover:text-white',
-  nav: 'text-white hover:text-neutral-200',
+  quiet: 'text-neutral-400 hover:text-white',
+  nav: 'text-white hover:text-neutral-300',
 };
 
 // 텍스트형 variant는 padding 없는 TEXT_SIZE_CLASSES를 쓴다.

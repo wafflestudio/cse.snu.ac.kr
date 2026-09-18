@@ -48,7 +48,7 @@ export default function PageTitle({
                 >
                   {title}
                 </span>
-                <span className="ml-2 text-md font-normal leading-7 text-neutral-500 tracking-wider">
+                <span className="ml-2 text-md font-normal leading-7 text-neutral-400 tracking-wider">
                   {subtitle}
                 </span>
               </span>

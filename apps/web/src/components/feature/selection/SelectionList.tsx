@@ -40,7 +40,7 @@ function SelectionItem({ name, isSelected, href }: SelectionItemProps) {
           shadow="medium"
           width="w-full"
         >
-          <span className={`${itemCommonStyle} font-medium text-neutral-50`}>
+          <span className={`${itemCommonStyle} font-medium text-white`}>
             {name}
           </span>
         </CornerFoldedRectangle>

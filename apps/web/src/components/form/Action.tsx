@@ -135,7 +135,7 @@ const ErrorMessages = () => {
   }
 
   return (
-    <ul className="text-sm font-normal text-red-600 space-y-1">
+    <ul className="text-sm font-normal text-error space-y-1">
       {errorMessages.map((message, idx) => (
         <li key={idx}>{message}</li>
       ))}

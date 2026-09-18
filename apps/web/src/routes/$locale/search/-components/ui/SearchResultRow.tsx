@@ -36,7 +36,7 @@ export default function SearchResultRow({ item }: { item: SearchResultItem }) {
         )}
 
         <div className="flex min-w-0 flex-1 flex-col gap-[.62rem]">
-          <span className="text-base font-bold leading-snug tracking-wide text-neutral-950 group-hover:underline">
+          <span className="text-base font-bold leading-snug tracking-wide text-neutral-800 group-hover:underline">
             {item.title}
           </span>
 

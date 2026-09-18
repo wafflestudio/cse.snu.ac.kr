@@ -15,7 +15,7 @@ export default function LinkRow({ to, title, subtitle }: LinkRowProps) {
       className={clsx(
         'group flex items-center justify-between border-l-[5px] pl-7 duration-300',
         'h-10',
-        'border-main-orange-dark',
+        'border-main-orange-muted',
       )}
     >
       <div
