@@ -33,9 +33,10 @@ TanStack Start 빌드는 `dist/server/server.js` 를 **Web fetch 핸들러**로 
 # 디자인 시스템
 
 - **토큰:** `src/app.css` 의 `@theme`. 가로 페이지 거터는 `.page-gutter-x` 단일 출처. 토큰화·스케일화는 픽셀 동일할 때만 자율, 값이 바뀌는 정규화는 디자인 결정 → 합의.
-- **`ui/*` 와 `form/*` 는 독립 구현.** 동명 컴포넌트가 어댑터 관계가 아니다. 의도된 분리 — 통합 금지.
+- **`ui/*` 와 `form/*` 를 가르는 기준은 값의 소유권이다.** `ui/*` 는 값을 부모가 주고(`checked`·`onChange`), `form/*` 은 `react-hook-form` 이 갖는다(`name`·`options`). 같은 모양이어도 API 가 겹칠 수 없어 어댑터로 못 묶는다 — 겹치는 건 `Checkbox`·`Dropdown`·`Image` 셋뿐이고 `form/Image` 는 오히려 `ui/Image` 를 안에서 쓴다. **값을 갖지 않는 것(Button·Tag·Dialog)에는 이 구분이 적용되지 않는다 — 폼 안에서도 `ui/*` 를 쓴다.** 이걸 "폼 안에서는 ui 를 쓰지 말라"로 읽고 자작 버튼을 만든 사례가 있다(`form/TextList`·`form/File`).
 - **DS 에 우겨넣지 않는다.** 일관성이 깨지는 사용처는 컴포넌트 API 확장이 아니라 앱 코드를 고친다.
 - **단일 선택은 네이티브 radiogroup**(`fieldset`+`radio` pill) — 그룹 시맨틱·화살표 키 이동을 브라우저가 준다. Button `variant` 는 상태 없는 5개(primary/neutral/secondary/quiet/nav), 아이콘은 children 에 직접.
 - **a11y:** form Radio/Checkbox 네이티브, Dialog/AlertDialog/Select/ImageModal 은 Radix. icon-only Button 은 `ariaLabel` 필수.
 - Storybook 없음. 픽셀 회귀는 E2E 소유.
-- **합의 대기(자율 실행 금지):** `#202020`(공지 필터 pill 비선택 배경) 신규 색 토큰 · 패딩 임의값과 `.62`/`.625` 근접 중복 정규화.
+- **색은 정리가 끝났다.** 팔레트는 닫혀 있고(`--color-*: initial`) 앱 코드의 색 클래스 95% 를 문서가 설명한다. 결정과 남은 것은 `src/routes/design-system/-decisions.md` — 새 색을 만들기 전에 거기부터 본다.
+- **합의 대기(자율 실행 금지):** 패딩 임의값과 `.62`/`.625` 근접 중복 정규화.
