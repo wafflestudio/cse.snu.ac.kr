@@ -95,15 +95,81 @@ export const SHELL = [
   { name: 'shell-400', hex: '#1f2021', bg: 'bg-shell-400' },
 ];
 
+/** 크기와 행간은 한 쌍이다 — `text-md` 하나로 둘 다 정해진다(`app.css` 의 `@theme`). */
 export const TYPE_SCALE = [
-  { name: '3xl', px: 30, className: 'text-3xl' },
-  { name: '2xl', px: 24, className: 'text-2xl' },
-  { name: 'xl', px: 22, className: 'text-xl' },
-  { name: 'lg', px: 18, className: 'text-lg' },
-  { name: 'base', px: 16, className: 'text-base' },
-  { name: 'md', px: 14, className: 'text-md' },
-  { name: 'sm', px: 13, className: 'text-sm' },
-  { name: 'xs', px: 12, className: 'text-xs' },
+  {
+    name: '3xl',
+    px: 30,
+    leading: 1.2,
+    className: 'text-3xl',
+    role: '페이지 제목 · 메인 영역 제목',
+  },
+  {
+    name: '2xl',
+    px: 24,
+    leading: 1.2,
+    className: 'text-2xl',
+    role: '좁은 화면의 페이지 제목',
+  },
+  {
+    name: 'xl',
+    px: 20,
+    leading: 1.2,
+    className: 'text-xl',
+    role: '게시물 제목 · 모달 제목',
+  },
+  {
+    name: 'lg',
+    px: 18,
+    leading: 1.2,
+    className: 'text-lg',
+    role: '영역 안의 소제목',
+  },
+  {
+    name: 'base',
+    px: 16,
+    leading: 1.35,
+    className: 'text-base',
+    role: '좁은 화면의 목록·카드 제목',
+  },
+  {
+    name: 'md',
+    px: 14,
+    leading: 1.35,
+    className: 'text-md',
+    role: '본문 · 폼 라벨 · 버튼',
+  },
+  {
+    name: 'sm',
+    px: 13,
+    leading: 1.35,
+    className: 'text-sm',
+    role: '목록 칸 · 날짜 · 표',
+  },
+  {
+    name: 'xs',
+    px: 12,
+    leading: 1.35,
+    className: 'text-xs',
+    role: '배지 · 캡션 · 부가 정보',
+  },
+];
+
+/** 굵기는 셋이다. 400·500·700 밖은 쓰지 않는다. */
+export const WEIGHT_SCALE = [
+  {
+    name: 'normal',
+    value: 400,
+    className: 'font-normal',
+    role: '본문과 읽는 글',
+  },
+  {
+    name: 'medium',
+    value: 500,
+    className: 'font-medium',
+    role: '컨트롤과 반복되는 항목의 제목',
+  },
+  { name: 'bold', value: 700, className: 'font-bold', role: '제목과 강조' },
 ];
 
 /** WCAG 상대 휘도. 스와치 위에 올릴 글자색을 고르는 데 쓴다. */

@@ -73,7 +73,7 @@ export function ContrastPreview() {
         <p>{'서울대학교 컴퓨터공학부'}</p>
       </div>
       <output
-        className="flex flex-wrap items-center gap-x-6.5 gap-y-4 border-t border-neutral-200 p-5.5 [&>strong]:mr-auto [&>strong]:text-3xl/[1.4] [&>strong]:font-medium [&>strong]:tabular-nums [&_small]:ml-2 [&_small]:text-lg/[inherit] [&_small]:text-neutral-500 [&>span]:text-xs/[inherit] [&>span]:text-neutral-600 [&_b]:ml-1.5 [&_b]:font-semibold [&_b]:text-neutral-950 max-sm:gap-2.5 max-sm:p-4.5 max-sm:[&>strong]:basis-full max-sm:[&>span]:basis-full"
+        className="flex flex-wrap items-center gap-x-6.5 gap-y-4 border-t border-neutral-200 p-5.5 [&>strong]:mr-auto [&>strong]:text-3xl/[1.4] [&>strong]:font-medium [&>strong]:tabular-nums [&_small]:ml-2 [&_small]:text-lg/[inherit] [&_small]:text-neutral-500 [&>span]:text-xs/[inherit] [&>span]:text-neutral-600 [&_b]:ml-1.5 [&_b]:font-bold [&_b]:text-neutral-950 max-sm:gap-2.5 max-sm:p-4.5 max-sm:[&>strong]:basis-full max-sm:[&>span]:basis-full"
         aria-live="polite"
       >
         <strong>

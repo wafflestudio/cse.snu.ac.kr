@@ -368,9 +368,6 @@ LeftNavMenuItem mb-6 block h-4.25 ... leading-5                 고정 높이 �
 - **같은 폼 라벨에 500 과 700 이 섞여 있다.** `form/Fieldset` 의 legend 는 500,
   검색 라벨과 태그 legend(`SearchBox/Input`·`TagCheckboxes`)는 700 이다 — 셋 다 `text-md tracking-wide`.
 - **`calendar.css` 가 굵기를 숫자로 직접 쓴다**(600·500·400). 색에서 잡았던 팔레트 이탈과 같은 모양이다.
-- **디자인 시스템 문서 자신이 `font-semibold` 를 쓴다.** 앱 코드에서는 없앴지만 문서의 소제목과
-  예제(`index.tsx`·`ColorExamples`·`DialogDemo`·`Fonts`)가 아직 600 이고,
-  `TypographyPreview` 의 굵기 고르개도 Semibold 를 내놓는다. 타이포그래피 절을 다시 쓸 때 같이 맞춘다.
 - **행간으로 상자 높이를 만드는 곳이 36군데다.** `Button` 의 `leading-6`, `CourseEditor` 의
   `h-8 … leading-[31px]`, `whitespace-nowrap` 제목의 `leading-loose` 같은 것들. 전부 한 줄인데
   행간이 붙어 있다. **패딩·높이 주제로 넘겼다** — 버튼 높이 정책을 먼저 정해야 손댈 수 있다.

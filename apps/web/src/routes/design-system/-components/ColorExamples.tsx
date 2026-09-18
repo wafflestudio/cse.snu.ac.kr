@@ -220,7 +220,7 @@ export function BorderExamples() {
         ]}
       >
         <div className="bg-white p-4 text-sm/[1.5] text-neutral-800">
-          <p className="flex items-center border-b-2 border-neutral-700 pb-2 font-semibold">
+          <p className="flex items-center border-b-2 border-neutral-700 pb-2 font-bold">
             2026년 세미나
             <Pin name="neutral-700" />
           </p>
@@ -285,7 +285,7 @@ export function TextExamples() {
         ]}
       >
         <div className="bg-white p-4 text-sm/[1.5]">
-          <p className="flex items-center text-md font-semibold text-neutral-900">
+          <p className="flex items-center text-md font-bold text-neutral-900">
             공학관 신축 설명회
             <Pin name="neutral-900" />
           </p>
@@ -367,7 +367,7 @@ export function TextExamples() {
             <Pin name="white" />
           </div>
           <div className="mt-3 bg-main-orange-muted px-3 py-2.5">
-            <p className="flex items-center text-sm font-semibold text-neutral-950">
+            <p className="flex items-center text-sm font-bold text-neutral-950">
               중요 안내
               <Pin name="neutral-950" />
             </p>

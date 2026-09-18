@@ -11,7 +11,7 @@ export function BrandColors() {
           className="min-w-0 border-b border-neutral-200 max-sm:grid max-sm:grid-cols-[48px_minmax(0,1fr)] max-sm:items-start max-sm:gap-4 max-sm:py-3"
         >
           <span className={`block h-12 ${color.bg}`} />
-          <figcaption className="flex flex-col py-3 [&_strong]:font-semibold [&>span]:mt-0.75 [&>span]:mb-2 [&>span]:text-xs/[inherit] [&>span]:text-neutral-500 [&_code]:text-neutral-700 max-sm:py-0">
+          <figcaption className="flex flex-col py-3 [&_strong]:font-bold [&>span]:mt-0.75 [&>span]:mb-2 [&>span]:text-xs/[inherit] [&>span]:text-neutral-500 [&_code]:text-neutral-700 max-sm:py-0">
             <strong>{names[index]}</strong>
             <span>{roles[index]}</span>
             <code>{color.hex.toUpperCase()}</code>

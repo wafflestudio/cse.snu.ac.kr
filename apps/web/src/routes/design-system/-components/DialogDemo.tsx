@@ -48,7 +48,7 @@ export function DialogDemo() {
 function DialogContents({ onDone }: { onDone?: () => void }) {
   return (
     <div className="pt-8">
-      <h4 className="mb-3.5 text-xl/[1.4] font-semibold">{'자료 이용 안내'}</h4>
+      <h4 className="mb-3.5 text-xl/[1.4] font-bold">{'자료 이용 안내'}</h4>
       <p className="mb-6 text-md/[1.85] text-neutral-600">
         {
           '학부에서 제공하는 자료는 게시된 날짜를 기준으로 작성되었습니다. 최신 일정과 변경 사항은 해당 공지를 확인해 주세요.'

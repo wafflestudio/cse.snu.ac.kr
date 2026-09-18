@@ -29,7 +29,7 @@ const components = {
     </h3>
   ),
   h4: ({ children }: { children?: ReactNode }) => (
-    <h4 className="mt-8 mb-2 max-w-[560px] text-md/[1.85] font-semibold text-neutral-900">
+    <h4 className="mt-8 mb-2 max-w-[560px] text-md/[1.85] font-bold text-neutral-900">
       {children}
     </h4>
   ),
