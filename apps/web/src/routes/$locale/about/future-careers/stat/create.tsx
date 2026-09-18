@@ -85,7 +85,7 @@ function CareerStatCreatePage() {
   };
 
   return (
-    <PageLayout title="졸업생 진로 현황 추가" titleSize="xl" subNav={subNav}>
+    <PageLayout title="졸업생 진로 현황 추가" subNav={subNav}>
       <FormProvider {...formMethods}>
         <Form>
           <Fieldset title="연도" spacing="6" required>

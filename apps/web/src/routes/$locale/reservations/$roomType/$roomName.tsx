@@ -46,7 +46,7 @@ function RoomReservationPage() {
   const isStaffOnlyRoom = STAFF_ONLY_ROOM_ID.includes(roomId);
 
   return (
-    <PageLayout title={title} titleSize="xl" subNav={subNav}>
+    <PageLayout title={title} subNav={subNav}>
       {isStaffOnlyRoom ? (
         <LoginVisible allow="ROLE_STAFF" fallback={<NonStaffFallback />}>
           <ReservationCalendar {...props} />

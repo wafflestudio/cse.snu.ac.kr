@@ -146,10 +146,10 @@ function CategoryItem({
       onClick={onClick}
     >
       <div>
-        <h3 className="mb-2.5 text-md font-medium text-neutral-950 sm:mb-2.5 sm:text-[20px] text-start">
+        <h3 className="mb-2.5 text-md font-medium text-neutral-950 sm:mb-2.5 sm:text-xl text-start">
           {title}
         </h3>
-        <p className="text-[11px] text-neutral-950 sm:text-base text-start">
+        <p className="text-xs text-neutral-950 sm:text-base text-start">
           {englishLabel}
         </p>
       </div>

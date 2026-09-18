@@ -62,7 +62,6 @@ function EmeritusFacultyDetailPage() {
     <PageLayout
       title={faculty.name}
       subtitle={faculty.academicRank}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={pageTitle}
       pageDescription={pageDescription}

@@ -74,7 +74,7 @@ function LinkGroup({
   return (
     <section className={width}>
       <h3
-        className={`${titleColor} mb-[.625rem] text-sm font-medium tracking-[0.025rem] sm:text-[0.9375rem]`}
+        className={`${titleColor} mb-[.625rem] text-sm font-medium tracking-[0.025rem] sm:text-md`}
       >
         {groupName}
       </h3>
@@ -146,7 +146,7 @@ function FooterBottomLeft({
         contentClassName="w-[92vw] max-w-3xl p-0"
       >
         <div className="relative flex flex-col gap-5 overflow-y-auto overflow-x-hidden px-8 pb-12 pt-12 sm:px-12 sm:pb-16 sm:pt-14">
-          <h1 className="text-3xl font-semibold text-neutral-900 sm:text-4xl">
+          <h1 className="text-3xl font-semibold text-neutral-900">
             Team <span className="text-main-orange">CSEREAL</span>
             <br />
             <span className="text-sm leading-6 text-neutral-500 sm:text-base">

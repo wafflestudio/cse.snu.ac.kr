@@ -40,7 +40,6 @@ function AdminPage() {
   return (
     <PageLayout
       title="관리자 메뉴"
-      titleSize="xl"
       subNav={{
         title: '관련 페이지',
         titlePath: '/admin',

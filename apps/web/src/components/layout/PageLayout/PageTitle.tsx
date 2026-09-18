@@ -14,7 +14,6 @@ interface PageTitleProps {
   title?: string;
   subtitle?: string;
   breadcrumb?: BreadcrumbItem[];
-  titleSize: 'xl' | 'lg';
   margin: string;
 }
 
@@ -22,11 +21,10 @@ export default function PageTitle({
   title,
   subtitle,
   breadcrumb,
-  titleSize,
   margin,
 }: PageTitleProps) {
   const titleStyle =
-    titleSize === 'xl' ? 'text-2xl font-bold' : 'text-lg font-medium';
+    'break-keep text-2xl font-bold tracking-wide text-white sm:text-3xl';
 
   return (
     <div className="px-5 pt-[54px] sm:px-25">
@@ -43,21 +41,13 @@ export default function PageTitle({
           <h3 className="mr-25">
             {subtitle ? (
               <span className="flex items-end">
-                <span
-                  className={`${titleStyle} break-keep text-[24px] tracking-wide text-white sm:text-[32px]`}
-                >
-                  {title}
-                </span>
+                <span className={titleStyle}>{title}</span>
                 <span className="ml-2 text-md font-normal leading-7 text-neutral-400 tracking-wider">
                   {subtitle}
                 </span>
               </span>
             ) : (
-              <span
-                className={`${titleStyle} break-keep text-[24px] tracking-wide text-white sm:text-[32px]`}
-              >
-                {title}
-              </span>
+              <span className={titleStyle}>{title}</span>
             )}
           </h3>
         )}

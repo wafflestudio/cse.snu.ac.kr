@@ -54,7 +54,6 @@ function ResearchLabDetailPage() {
   return (
     <PageLayout
       title={lab.name}
-      titleSize="lg"
       subNav={subNav}
       pageTitle={pageTitle}
       pageDescription={pageDescription}

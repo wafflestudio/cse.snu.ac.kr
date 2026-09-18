@@ -40,7 +40,6 @@ function ResearchLabsPage() {
   return (
     <PageLayout
       title={t('연구실 목록')}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}

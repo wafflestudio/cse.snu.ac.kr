@@ -81,7 +81,6 @@ function CareerStatEditPage() {
   return (
     <PageLayout
       title={`${loaderData.year}년 졸업생 진로 현황 편집`}
-      titleSize="xl"
       subNav={subNav}
     >
       <FormProvider {...formMethods}>

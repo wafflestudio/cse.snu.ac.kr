@@ -50,7 +50,7 @@ function ScholarshipEditPage() {
   };
 
   return (
-    <PageLayout title={title} titleSize="xl" subNav={subNav}>
+    <PageLayout title={title} subNav={subNav}>
       <FormProvider {...formMethods}>
         <Form>
           <Fieldset.HTML>

@@ -62,7 +62,6 @@ function ResearchCentersPage() {
   return (
     <PageLayout
       title={t('연구 센터')}
-      titleSize="xl"
       subNav={subNav}
       padding="none"
       pageTitle={meta.title}
@@ -139,14 +138,14 @@ function ResearchCentersPage() {
 function ResearchCenterTitle({ name, link }: { name: string; link: string }) {
   return (
     <div className="mb-5 sm:w-fit" key={name}>
-      <h4 className="px-2.5 text-base font-bold leading-loose text-neutral-800 sm:text-[24px]">
+      <h4 className="px-2.5 text-base font-bold leading-loose text-neutral-800 sm:text-2xl">
         <a
           href={link}
           target="_blank"
           className="group flex cursor-pointer items-center gap-1"
           rel="noopener noreferrer"
         >
-          <span className="text-base font-bold sm:text-[24px]">{name}</span>
+          <span className="text-base font-bold sm:text-2xl">{name}</span>
           <LinkIcon className="mt-0.5 fill-neutral-500 group-hover:fill-main-orange" />
         </a>
       </h4>

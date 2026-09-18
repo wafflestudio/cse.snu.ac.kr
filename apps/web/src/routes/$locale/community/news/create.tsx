@@ -54,7 +54,7 @@ function NewsCreatePage() {
   };
 
   return (
-    <PageLayout title="새소식 작성" titleSize="xl" padding="default">
+    <PageLayout title="새소식 작성" padding="default">
       <NewsEditor onCancel={onCancel} onSubmit={onSubmit} />
     </PageLayout>
   );

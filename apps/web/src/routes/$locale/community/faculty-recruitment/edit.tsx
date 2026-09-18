@@ -59,7 +59,7 @@ function FacultyRecruitmentEditPage() {
   );
 
   return (
-    <PageLayout title="신임교수초빙 편집" titleSize="xl">
+    <PageLayout title="신임교수초빙 편집">
       <FormProvider {...methods}>
         <Form>
           <Fieldset.Title>

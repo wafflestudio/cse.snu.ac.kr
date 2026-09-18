@@ -65,7 +65,6 @@ function ResearchGroupsPage() {
   return (
     <PageLayout
       title={t('연구·교육 스트림')}
-      titleSize="xl"
       subNav={subNav}
       padding="none"
       pageTitle={meta.title}
@@ -108,7 +107,7 @@ function ResearchGroupsPage() {
               </Button>
             </div>
           </LoginVisible>
-          <h2 className="mb-6 ml-1 whitespace-nowrap text-base font-bold leading-loose sm:mx-0 sm:mb-[18px] sm:text-[24px]">
+          <h2 className="mb-6 ml-1 whitespace-nowrap text-base font-bold leading-loose sm:mx-0 sm:mb-[18px] sm:text-2xl">
             {item.name} {t('스트림')}
           </h2>
           <div className="max-w-[780px] bg-white p-[18px] sm:p-[40px]">
@@ -126,7 +125,7 @@ function ResearchGroupsPage() {
             </div>
           )}
           <div className="mt-10 sm:mx-0">
-            <h3 className="mb-1 whitespace-nowrap text-md font-bold leading-loose sm:py-1 sm:pl-2.5 sm:text-[20px]">
+            <h3 className="mb-1 whitespace-nowrap text-md font-bold leading-loose sm:py-1 sm:pl-2.5 sm:text-xl">
               {t('연구실')}
             </h3>
             <ul>

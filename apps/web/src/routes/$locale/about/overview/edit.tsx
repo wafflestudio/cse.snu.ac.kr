@@ -73,7 +73,7 @@ function OverviewEdit() {
   );
 
   return (
-    <PageLayout title="학부 소개 편집" titleSize="xl" padding="default">
+    <PageLayout title="학부 소개 편집" padding="default">
       <FormProvider {...methods}>
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />

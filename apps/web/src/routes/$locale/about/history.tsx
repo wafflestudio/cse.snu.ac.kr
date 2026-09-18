@@ -33,7 +33,6 @@ function HistoryPage() {
   return (
     <PageLayout
       title={t('연혁')}
-      titleSize="xl"
       subNav={subNav}
       padding="none"
       pageTitle={meta.title}

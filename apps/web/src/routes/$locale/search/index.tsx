@@ -14,7 +14,7 @@ function SearchPage() {
   const { t, locale } = useLanguage();
 
   return (
-    <PageLayout title={t('통합 검색')} titleSize="xl" titleMargin="mb-11">
+    <PageLayout title={t('통합 검색')} titleMargin="mb-11">
       <SearchBox tags={[...SEARCH_TAGS]} formOnly />
 
       {tooShort && (

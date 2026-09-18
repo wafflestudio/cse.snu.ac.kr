@@ -71,7 +71,6 @@ function NoticePage() {
   return (
     <PageLayout
       title={t('공지사항')}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}
@@ -84,7 +83,7 @@ function NoticePage() {
         </p>
       ) : (
         <div className="mb-10 mt-9 border-y border-neutral-200 sm:mx-2.5">
-          <h5 className="hidden h-11 items-center border-b border-neutral-200 pl-12.5 text-[15px] text-neutral-800 sm:flex">
+          <h5 className="hidden h-11 items-center border-b border-neutral-200 pl-12.5 text-md text-neutral-800 sm:flex">
             <span
               className={`${NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow whitespace-nowrap tracking-wide sm:pl-3`}
             >

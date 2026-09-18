@@ -57,7 +57,7 @@ function FacultyCreate() {
   };
 
   return (
-    <PageLayout title="교수진 추가" titleSize="xl" padding="default">
+    <PageLayout title="교수진 추가" padding="default">
       <FacultyEditor
         status={status}
         labs={labs}

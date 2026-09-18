@@ -39,7 +39,6 @@ function StaffPage() {
   return (
     <PageLayout
       title={t('행정직원')}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}

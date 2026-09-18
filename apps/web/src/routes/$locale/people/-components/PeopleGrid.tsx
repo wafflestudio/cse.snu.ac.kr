@@ -66,7 +66,7 @@ function PeopleCard({
             titleNewline ? 'flex-col' : ''
           }`}
         >
-          <span className="text-[18px] font-bold">{name}</span>
+          <span className="text-lg font-bold">{name}</span>
           <AcademicRankText academicRank={subtitle} />
           <HoverAnimationUnderline />
         </Link>

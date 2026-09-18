@@ -49,9 +49,7 @@ export default function NoticeSection({
         />
       </div>
       <div className="flex flex-col px-7 pb-6.5 pt-12 sm:absolute sm:bottom-12 sm:right-12 sm:w-132 sm:p-0">
-        <h3 className="text-[1.75rem] font-semibold text-white">
-          {t('공지사항')}
-        </h3>
+        <h3 className="text-3xl font-semibold text-white">{t('공지사항')}</h3>
         <div className="mt-6 flex items-center justify-between sm:mt-9">
           <fieldset
             aria-label={t('공지사항')}

@@ -55,7 +55,7 @@ function StudentClubsCreate() {
   });
 
   return (
-    <PageLayout title="동아리 추가" titleSize="xl" padding="default">
+    <PageLayout title="동아리 추가" padding="default">
       <FormProvider {...methods}>
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />

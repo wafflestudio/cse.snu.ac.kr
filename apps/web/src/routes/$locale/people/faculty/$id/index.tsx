@@ -49,7 +49,6 @@ function FacultyDetailPage() {
       title={faculty.name}
       subtitle={faculty.academicRank}
       subNav={subNav}
-      titleSize="xl"
       pageTitle={pageTitle}
       pageDescription={pageDescription}
     >

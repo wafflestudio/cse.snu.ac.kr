@@ -41,7 +41,7 @@ function ScholarshipCreatePage() {
   };
 
   return (
-    <PageLayout title={title} titleSize="xl">
+    <PageLayout title={title}>
       <ScholarshipEditor
         cancelPath={`/academics/${studentType}/scholarship`}
         onSubmit={onSubmit}

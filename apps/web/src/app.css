@@ -79,12 +79,16 @@
   --color-shell-300: #262728;
   --color-shell-400: #1f2021;
 
+  /* 색과 같은 이유로 크기 스케일도 닫는다. 이 여덟 밖의 `text-4xl` 같은 건 클래스가 안 만들어진다.
+     다만 임의값(`text-[15px]`)은 이걸로 막히지 않는다 — 그건 린트 규칙의 몫이다. */
+  --text-*: initial;
+
   --text-xs: 0.75rem; /* 12px */
   --text-sm: 0.8125rem; /* 13px */
   --text-md: 0.875rem; /* 14px */
   --text-base: 1rem; /* 16px */
   --text-lg: 1.125rem; /* 18px */
-  --text-xl: 1.375rem; /* 22px */
+  --text-xl: 1.25rem; /* 20px */
   --text-2xl: 1.5rem; /* 24px */
   --text-3xl: 1.875rem; /* 30px */
 

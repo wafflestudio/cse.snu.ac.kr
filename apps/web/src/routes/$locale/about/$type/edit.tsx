@@ -82,7 +82,7 @@ function AboutEdit() {
   );
 
   return (
-    <PageLayout title={title} titleSize="xl" padding="default">
+    <PageLayout title={title} padding="default">
       <FormProvider {...methods}>
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />

@@ -99,7 +99,6 @@ function FacultyPage() {
   return (
     <PageLayout
       title={t('교수진')}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}
@@ -135,7 +134,7 @@ function FacultyPage() {
       <PeopleGrid items={normal} />
       {visiting.length > 0 && (
         <>
-          <h3 className="mb-4 mt-12 text-[20px] font-bold">{t('객원교수')}</h3>
+          <h3 className="mb-4 mt-12 text-xl font-bold">{t('객원교수')}</h3>
           <PeopleGrid items={visiting} />
         </>
       )}

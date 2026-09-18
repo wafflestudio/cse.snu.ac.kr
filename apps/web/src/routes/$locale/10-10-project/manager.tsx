@@ -41,7 +41,6 @@ function TenTenManagerPage() {
   return (
     <PageLayout
       title={t('Manager')}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}

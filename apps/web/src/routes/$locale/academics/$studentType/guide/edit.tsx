@@ -64,7 +64,7 @@ function GuideEditPage() {
   };
 
   return (
-    <PageLayout titleSize="xl" title={title}>
+    <PageLayout title={title}>
       <FormProvider {...methods}>
         <Form>
           <Fieldset.HTML>

@@ -50,7 +50,6 @@ function SeminarPage() {
   return (
     <PageLayout
       title={t('세미나')}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}
@@ -71,7 +70,7 @@ function SeminarPage() {
                 <div
                   className={`border-b-2 border-neutral-700 ${index !== 0 ? 'mt-12' : ''}`}
                 >
-                  <h3 className="pb-2.5 text-[1.25rem] font-bold">
+                  <h3 className="pb-2.5 text-xl font-bold">
                     {new Date(post.startDate).getFullYear()}
                   </h3>
                 </div>

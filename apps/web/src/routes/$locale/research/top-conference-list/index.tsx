@@ -42,7 +42,6 @@ function TopConferenceListPage() {
   return (
     <PageLayout
       title={t('Top Conference List')}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}

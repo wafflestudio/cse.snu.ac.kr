@@ -42,7 +42,6 @@ function TenTenProposalPage() {
   return (
     <PageLayout
       title={t('Proposal')}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}

@@ -53,7 +53,6 @@ function DirectionsPage() {
   return (
     <PageLayout
       title={t('찾아오는 길')}
-      titleSize="xl"
       subNav={subNav}
       padding="noTop"
       pageTitle={meta.title}

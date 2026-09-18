@@ -41,7 +41,6 @@ function Overview() {
   return (
     <PageLayout
       title={t('학부 소개')}
-      titleSize="xl"
       padding="none"
       pageTitle={meta.title}
       pageDescription={meta.description}

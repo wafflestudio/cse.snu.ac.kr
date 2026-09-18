@@ -29,7 +29,7 @@ interface SelectionItemProps {
 
 function SelectionItem({ name, isSelected, href }: SelectionItemProps) {
   const itemCommonStyle =
-    'flex items-center justify-center w-full h-10 py-3 text-center text-[11px] sm:text-sm lg:text-md tracking-wide';
+    'flex items-center justify-center w-full h-10 py-3 text-center text-xs sm:text-sm lg:text-md tracking-wide';
 
   return (
     <li>

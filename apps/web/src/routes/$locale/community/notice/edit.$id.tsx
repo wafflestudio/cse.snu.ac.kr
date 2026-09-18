@@ -94,7 +94,7 @@ function NoticeEditPage() {
   };
 
   return (
-    <PageLayout title="공지사항 편집" titleSize="xl" padding="default">
+    <PageLayout title="공지사항 편집" padding="default">
       <NoticeEditor
         onCancel={onCancel}
         onSubmit={onSubmit}

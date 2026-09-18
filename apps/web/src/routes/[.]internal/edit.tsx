@@ -39,7 +39,7 @@ function InternalEdit() {
   });
 
   return (
-    <PageLayout title="학부 메일링리스트 편집" titleSize="xl" padding="default">
+    <PageLayout title="학부 메일링리스트 편집" padding="default">
       <FormProvider {...methods}>
         <Form>
           <Fieldset.HTML>

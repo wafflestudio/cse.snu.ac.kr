@@ -60,7 +60,7 @@ function ResearchCenterEdit() {
   };
 
   return (
-    <PageLayout title="연구 센터 편집" titleSize="xl" padding="default">
+    <PageLayout title="연구 센터 편집" padding="default">
       <ResearchCenterEditor
         defaultValues={defaultValues}
         onCancel={onCancel}

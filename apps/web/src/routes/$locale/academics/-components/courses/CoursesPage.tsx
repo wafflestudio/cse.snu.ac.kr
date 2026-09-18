@@ -88,7 +88,6 @@ export default function CoursesPage({
   return (
     <PageLayout
       title={title}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}
@@ -103,7 +102,7 @@ export default function CoursesPage({
           </Button>
         </div>
       </LoginVisible>
-      <h4 className="mb-8 text-[17px] font-bold sm:pl-5">{t('교과목 정보')}</h4>
+      <h4 className="mb-8 text-xl font-bold sm:pl-5">{t('교과목 정보')}</h4>
       <CourseToolbar hideSortOption={shouldHideSort} />
       {isEnglish && <ClassificationDescription />}
       {effectiveViewOption === '카드형' ? (

@@ -32,7 +32,6 @@ function FacultyRecruitmentPage() {
   return (
     <PageLayout
       title={t('신임교수초빙')}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}

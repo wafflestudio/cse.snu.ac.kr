@@ -54,7 +54,6 @@ function NewsPage() {
   return (
     <PageLayout
       title={t('새 소식')}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}

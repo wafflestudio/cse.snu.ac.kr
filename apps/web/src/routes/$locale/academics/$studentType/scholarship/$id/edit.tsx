@@ -45,7 +45,7 @@ function ScholarshipEditPage() {
   };
 
   return (
-    <PageLayout title={title} titleSize="xl">
+    <PageLayout title={title}>
       <ScholarshipEditor
         defaultValues={{
           koName: loaderData.ko.name,

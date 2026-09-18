@@ -48,7 +48,6 @@ function StaffDetailPage() {
     <PageLayout
       title={staff.name}
       subtitle={staff.role}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={pageTitle}
       pageDescription={pageDescription}

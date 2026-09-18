@@ -62,13 +62,12 @@ function SeminarDetailPage() {
   return (
     <PageLayout
       title={t('세미나')}
-      titleSize="xl"
       pageTitle={pageTitle}
       pageDescription={pageDescription}
       subNav={subNav}
       padding="none"
     >
-      <h2 className="page-gutter-x py-9 text-[1.25rem] font-semibold leading-[1.4]">
+      <h2 className="page-gutter-x py-9 text-xl font-semibold leading-[1.4]">
         {seminar.title}
       </h2>
       <div className="bg-neutral-50 page-gutter-x pb-36 pt-9">

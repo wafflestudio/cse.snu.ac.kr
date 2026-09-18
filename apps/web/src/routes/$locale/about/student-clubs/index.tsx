@@ -44,7 +44,6 @@ function StudentClubsPage() {
   return (
     <PageLayout
       title={t('동아리 소개')}
-      titleSize="xl"
       subNav={subNav}
       padding="noTop"
       pageTitle={meta.title}

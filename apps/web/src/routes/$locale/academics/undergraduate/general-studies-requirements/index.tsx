@@ -39,7 +39,6 @@ function GeneralStudiesRequirementsPage() {
   return (
     <PageLayout
       title={t('필수 교양 과목')}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}

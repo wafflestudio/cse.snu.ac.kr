@@ -133,7 +133,7 @@ export default function ImageModal({
               <button
                 type="button"
                 onClick={() => handleOpenChange(false)}
-                className="flex-1 px-6 py-3 bg-neutral-100 text-neutral-500 hover:bg-neutral-50 hover:text-neutral-400 active:bg-neutral-200 active:text-neutral-500 text-[15px] font-medium leading-[22px] tracking-[0.025em] focus:outline-none transition-colors"
+                className="flex-1 px-6 py-3 bg-neutral-100 text-neutral-500 hover:bg-neutral-50 hover:text-neutral-400 active:bg-neutral-200 active:text-neutral-500 text-md font-medium leading-[22px] tracking-[0.025em] focus:outline-none transition-colors"
               >
                 {t('닫기')}
               </button>
@@ -141,7 +141,7 @@ export default function ImageModal({
                 <button
                   type="button"
                   onClick={handleAction}
-                  className="flex-1 px-6 py-3 bg-main-orange text-white hover:bg-main-orange-hover hover:text-white active:bg-main-orange-active active:text-main-orange-subtle text-[15px] font-medium leading-[22px] tracking-[0.025em] focus:outline-none transition-colors"
+                  className="flex-1 px-6 py-3 bg-main-orange text-white hover:bg-main-orange-hover hover:text-white active:bg-main-orange-active active:text-main-orange-subtle text-md font-medium leading-[22px] tracking-[0.025em] focus:outline-none transition-colors"
                 >
                   {t('자세히 보기')}
                 </button>
@@ -156,7 +156,7 @@ export default function ImageModal({
             ) : (
               <CheckboxUnchecked className="fill-white group-hover:fill-neutral-400 group-active:fill-main-orange transition-colors" />
             )}
-            <span className="text-[14px] font-medium leading-5 text-white group-hover:text-neutral-400 group-active:text-main-orange transition-colors">
+            <span className="text-md font-medium leading-5 text-white group-hover:text-neutral-400 group-active:text-main-orange transition-colors">
               {t('다시 보지 않기')}
             </span>
             <input

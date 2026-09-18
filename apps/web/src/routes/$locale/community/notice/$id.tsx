@@ -53,16 +53,13 @@ function NoticeDetailPage() {
   return (
     <PageLayout
       title={t('공지사항')}
-      titleSize="xl"
       subNav={subNav}
       padding="none"
       pageTitle={pageTitle}
       pageDescription={pageDescription}
     >
       <div className="flex flex-col gap-4 page-gutter-x py-9">
-        <h2 className="text-[1.25rem] font-semibold leading-[1.4]">
-          {notice.title}
-        </h2>
+        <h2 className="text-xl font-semibold leading-[1.4]">{notice.title}</h2>
         <div className="flex gap-5 text-sm font-normal tracking-wide text-neutral-500">
           <p>
             {t('작성자')}: {notice.author}

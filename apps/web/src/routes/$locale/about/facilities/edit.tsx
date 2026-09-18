@@ -84,7 +84,7 @@ function FacilitiesEdit() {
   };
 
   return (
-    <PageLayout title="시설 안내 편집" titleSize="xl" padding="default">
+    <PageLayout title="시설 안내 편집" padding="default">
       <FormProvider {...methods}>
         <Form>
           {/* Facility 선택 */}

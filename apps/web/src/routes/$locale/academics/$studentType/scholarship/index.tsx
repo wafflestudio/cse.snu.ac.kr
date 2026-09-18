@@ -52,7 +52,6 @@ function ScholarshipPage() {
   return (
     <PageLayout
       title={title}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}

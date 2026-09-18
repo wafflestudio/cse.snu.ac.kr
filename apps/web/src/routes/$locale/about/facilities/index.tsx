@@ -34,7 +34,6 @@ function FacilitiesPage() {
   return (
     <PageLayout
       title={t('시설 안내')}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}
