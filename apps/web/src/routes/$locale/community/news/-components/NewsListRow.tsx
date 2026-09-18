@@ -37,7 +37,7 @@ export default function NewsListRow({ post }: NewsListRowProps) {
 
         <div className="flex flex-col items-start">
           <Link to={detailPath} className="hover:underline">
-            <h3 className="mb-2.5 text-base font-bold">{post.title}</h3>
+            <h3 className="mb-2.5 text-base font-medium">{post.title}</h3>
           </Link>
 
           <Link

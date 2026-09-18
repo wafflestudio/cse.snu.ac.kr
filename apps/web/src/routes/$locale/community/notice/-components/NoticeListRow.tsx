@@ -34,10 +34,8 @@ export default function NoticeListRow({
   return (
     <li
       className={`flex flex-col gap-2.5 px-7 py-6 text-md sm:h-11 sm:flex-row sm:items-center sm:gap-0 sm:px-0 sm:py-2.5 ${
-        post.isPinned && 'font-semibold'
-      } ${!isEditMode && (post.isPrivate ? 'bg-neutral-200' : 'odd:bg-neutral-50')} ${
-        isSelected && 'bg-neutral-100'
-      }`}
+        !isEditMode && (post.isPrivate ? 'bg-neutral-200' : 'odd:bg-neutral-50')
+      } ${isSelected && 'bg-neutral-100'}`}
     >
       {isEditMode && (
         <span
@@ -112,11 +110,11 @@ function TitleCell({
   return (
     <Wrapper
       to={detailPath}
-      className={`flex items-center gap-1.5 font-semibold sm:font-normal ${NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow sm:pl-3`}
+      className={`flex items-center gap-1.5 font-medium sm:font-normal ${NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow sm:pl-3`}
     >
       <span
         className={`${
-          isPinned && 'font-semibold text-main-orange sm:text-neutral-800'
+          isPinned && 'font-bold text-main-orange sm:text-neutral-800'
         } overflow-hidden text-ellipsis text-base tracking-wide hover:text-main-orange sm:whitespace-nowrap sm:text-md`}
       >
         {title}

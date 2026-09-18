@@ -130,7 +130,7 @@ function FooterBottomLeft({
         Powered by{' '}
         <button
           type="button"
-          className="cursor-pointer font-semibold text-inherit hover:underline"
+          className="cursor-pointer font-bold text-inherit hover:underline"
           onClick={() => setCserealOpen(true)}
         >
           CSEREAL
@@ -146,7 +146,7 @@ function FooterBottomLeft({
         contentClassName="w-[92vw] max-w-3xl p-0"
       >
         <div className="relative flex flex-col gap-5 overflow-y-auto overflow-x-hidden px-8 pb-12 pt-12 sm:px-12 sm:pb-16 sm:pt-14">
-          <h1 className="text-3xl font-semibold text-neutral-900">
+          <h1 className="text-3xl font-bold text-neutral-900">
             Team <span className="text-main-orange">CSEREAL</span>
             <br />
             <span className="text-sm leading-6 text-neutral-500 sm:text-base">
@@ -179,7 +179,7 @@ function CserealMembers() {
 function CserealPart({ part, members }: { part: string; members: string[] }) {
   return (
     <div className="rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-5">
-      <h4 className="text-sm font-semibold text-main-orange">{part}</h4>
+      <h4 className="text-sm font-medium text-main-orange">{part}</h4>
       <div className="mt-4 flex flex-wrap gap-2">
         {members.map((member) => (
           <span

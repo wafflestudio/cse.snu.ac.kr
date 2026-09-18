@@ -18,7 +18,7 @@ export default function HighlightedText({
         segment.hit ? (
           <span
             key={`${segment.text}-hit`}
-            className="font-semibold text-neutral-800"
+            className="font-bold text-neutral-800"
           >
             {segment.text}
           </span>

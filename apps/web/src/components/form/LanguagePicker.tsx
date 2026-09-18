@@ -27,7 +27,7 @@ export default function LanguagePicker({
           />
           <label
             htmlFor={language}
-            className="cursor-pointer pb-1 font-semibold text-neutral-300 peer-checked:border-b-2 peer-checked:border-b-neutral-800 peer-checked:text-neutral-800"
+            className="cursor-pointer pb-1 font-bold text-neutral-300 peer-checked:border-b-2 peer-checked:border-b-neutral-800 peer-checked:text-neutral-800"
           >
             {LANGUAGE[language]}
           </label>

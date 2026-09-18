@@ -127,7 +127,9 @@ function CourseCardFront({
         </span>
       </div>
       <h2 className="mb-2 whitespace-nowrap text-start">
-        <span className="mr-2 text-base font-bold leading-normal">{name}</span>
+        <span className="mr-2 text-base font-medium leading-normal">
+          {name}
+        </span>
         <span className="text-xs leading-normal text-neutral-500">{code}</span>
       </h2>
       <div className="flex">
@@ -157,7 +159,9 @@ function CourseCardBack({
       ref={ref}
     >
       <h2 className="mb-2 whitespace-nowrap text-start">
-        <span className="mr-2 text-base font-bold leading-normal">{name}</span>
+        <span className="mr-2 text-base font-medium leading-normal">
+          {name}
+        </span>
         <span className="text-xs leading-normal text-neutral-500">{code}</span>
       </h2>
       <div className="flex">

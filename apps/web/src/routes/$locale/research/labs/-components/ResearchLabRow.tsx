@@ -63,7 +63,7 @@ function LabNameCell({
 }) {
   return (
     <span
-      className={`${LAB_ROW_ITEM_WIDTH.name} order-first col-span-1 row-span-1 text-base font-semibold sm:whitespace-normal sm:text-sm sm:font-normal`}
+      className={`${LAB_ROW_ITEM_WIDTH.name} order-first col-span-1 row-span-1 text-base font-medium sm:whitespace-normal sm:text-sm sm:font-normal`}
     >
       <Link
         className="text-neutral-900 hover:text-main-orange"

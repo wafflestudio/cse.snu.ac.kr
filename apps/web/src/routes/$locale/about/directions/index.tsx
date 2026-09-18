@@ -85,7 +85,7 @@ function DirectionsPage() {
       {selectedDirection && (
         <div>
           <div className="mb-7 justify-between sm:flex">
-            <h4 className="text-base font-semibold sm:text-2xl">
+            <h4 className="text-base font-bold sm:text-2xl">
               {selectedDirection[locale]?.name}
             </h4>
             <LoginVisible allow="ROLE_STAFF">

@@ -92,7 +92,7 @@ function Overview() {
         </div>
       </ContentSection>
       <ContentSection tone="white" padding="overviewBottom">
-        <h2 className="mb-6 text-base font-semibold">{t('학부 소개 책자')}</h2>
+        <h2 className="mb-6 text-base font-bold">{t('학부 소개 책자')}</h2>
         <div className="mb-10 flex flex-col gap-6 sm:flex-row">
           <Image
             src={brochure1}

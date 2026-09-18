@@ -28,7 +28,7 @@ const ImportantBanner = ({ important }: { important: MainImportant }) => {
       to={localizedPath(`/community/${important.category}/${important.id}`)}
       className="relative flex h-[7.5rem] flex-col gap-[0.62rem] bg-main-orange-muted px-[1.75rem] pt-[1.63rem]"
     >
-      <h3 className="line-clamp-1 text-lg font-semibold text-neutral-950">
+      <h3 className="line-clamp-1 text-lg font-medium text-neutral-950">
         {important.title}
       </h3>
       <p className="mr-[24px] line-clamp-1 text-sm font-normal text-neutral-950">
@@ -50,7 +50,7 @@ const CharityBanner = () => (
       sizes="(min-width: 640px) 50vw, 100vw"
       className="absolute inset-0 h-full w-full object-cover"
     />
-    <h3 className="relative z-10 line-clamp-1 text-lg font-semibold text-neutral-950">
+    <h3 className="relative z-10 line-clamp-1 text-lg font-medium text-neutral-950">
       SNU Computing Commons 건축기금 모금
     </h3>
     <p className="relative z-10 line-clamp-1 text-sm font-normal text-neutral-950">
