@@ -76,7 +76,7 @@ function SelectDayButton({ date }: { date: dayjs.Dayjs }) {
           '날짜 선택'
         ) : (
           <>
-            <CalendarIcon className="h-[13px] w-[13px]" />
+            <CalendarIcon className="size-3" />
             {date.format('YY.MM.DD.')}
           </>
         )}
@@ -117,9 +117,9 @@ function ChangeDateButton({ direction }: { direction: 'prev' | 'next' }) {
       aria-label={direction === 'prev' ? '이전 날짜' : '다음 날짜'}
     >
       {direction === 'prev' ? (
-        <ChevronLeft className="h-[22px] w-[22px]" strokeWidth={1.5} />
+        <ChevronLeft className="size-4" />
       ) : (
-        <ChevronRight className="h-[22px] w-[22px]" strokeWidth={1.5} />
+        <ChevronRight className="size-4" />
       )}
     </SquareButton>
   );

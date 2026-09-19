@@ -44,7 +44,7 @@ function ProfileInfoRow({ icon, label, href }: PeopleProfileInfoItem) {
 
   return (
     <div className="flex items-center gap-[6px] break-all">
-      {Icon && <Icon className="h-5 w-5" strokeWidth={1.5} />}
+      {Icon && <Icon className="size-4" />}
       {href ? (
         <a
           target={href.startsWith('http') ? '_blank' : undefined}

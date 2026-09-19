@@ -30,11 +30,10 @@ export default function LinkRow({ to, title, subtitle }: LinkRowProps) {
       </div>
       <ArrowRight
         className={clsx(
-          'pt-0.5 h-[30px] w-[30px] duration-300 group-hover:translate-x-[10px]',
+          'size-7.5 duration-300 group-hover:translate-x-[10px]',
           'text-white',
           'group-hover:text-main-orange',
         )}
-        strokeWidth={1.5}
       />
     </Link>
   );

@@ -1,4 +1,5 @@
 import { createFileRoute, useRouter } from '@tanstack/react-router';
+import { Link } from 'lucide-react';
 import { useState } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import SelectionList from '@/components/feature/selection/SelectionList';
@@ -15,7 +16,6 @@ import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { ResearchCentersResponse } from '@/types/api';
 import { api } from '@/utils/api';
 import { stringParam } from '@/utils/searchSchema';
-import LinkIcon from './assets/link_icon.svg?react';
 
 const META = {
   ko: {
@@ -146,7 +146,7 @@ function ResearchCenterTitle({ name, link }: { name: string; link: string }) {
           rel="noopener noreferrer"
         >
           <span className="text-base font-bold sm:text-2xl">{name}</span>
-          <LinkIcon className="mt-0.5 fill-neutral-500 group-hover:fill-main-orange" />
+          <Link className="size-4 text-neutral-500 group-hover:text-main-orange sm:size-6" />
         </a>
       </h4>
       <div className="animate-stretch">

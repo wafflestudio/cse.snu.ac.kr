@@ -1,4 +1,5 @@
 import { useRouter } from '@tanstack/react-router';
+import { Bookmark } from 'lucide-react';
 import { useEffect, useReducer, useState } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import AlertDialog from '@/components/ui/AlertDialog';
@@ -9,7 +10,6 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { GRADE } from '@/routes/$locale/academics/-constants';
 import type { Course } from '@/types/api';
 import { api } from '@/utils/api';
-import BookmarkIcon from './assets/bookmark_icon.svg?react';
 import CourseEditor from './CourseEditor';
 import translations from './translations.json';
 
@@ -130,7 +130,7 @@ function CourseHeader({
 }: CourseHeaderProps) {
   return (
     <h4 className="flex flex-wrap items-center gap-2">
-      <BookmarkIcon className="h-[24px] w-[24px]" />
+      <Bookmark className="size-4 text-main-orange" fill="currentColor" />
       <span className="font-bold">{name}</span>
       <div className="flex items-center divide-x divide-neutral-200 pt-1 text-sm text-neutral-600 [&_span]:px-2">
         <span>{code}</span>

@@ -36,11 +36,10 @@ export default function Checkbox({
         const Icon = checked ? SquareCheck : Square;
         return (
           <Icon
-            className={`h-[18px] w-[18px] text-neutral-400 ${
+            className={`size-4 text-neutral-400 ${
               !disabled &&
               'group-hover:text-neutral-600 group-active:text-main-orange'
             } ${checked && 'text-neutral-600'}`}
-            strokeWidth={1.5}
           />
         );
       })()}

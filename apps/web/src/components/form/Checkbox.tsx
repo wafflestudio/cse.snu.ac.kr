@@ -53,7 +53,6 @@ export default function Checkbox({
             'group-hover:text-neutral-600 group-active:text-main-orange',
           tags && 'text-neutral-600',
         )}
-        strokeWidth={1.5}
       />
       <span
         className={clsx(

@@ -1,5 +1,5 @@
 import { useNavigate } from '@tanstack/react-router';
-import { X } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import { useState } from 'react';
 import Button from '@/components/ui/Button';
 import type { NavItem } from '@/constants/navigation';
@@ -7,7 +7,6 @@ import { navigationTree } from '@/constants/navigation';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useStore } from '@/store';
 import navbarTranslations from '../LeftNav/translations.json';
-import SearchIcon from './assets/search.svg?react';
 
 export default function MobileNavList() {
   const navbarState = useStore((s) => s.navbarState);
@@ -46,7 +45,7 @@ export default function MobileNavList() {
           onClick={() => setSearch(true)}
           ariaLabel="검색"
         >
-          <SearchIcon />
+          <Search className="size-4 text-neutral-200" />
         </Button>
         <AuthButton />
         <LangButton />
@@ -79,7 +78,7 @@ function SearchPage({ onClose }: { onClose: () => void }) {
           onClick={onClose}
           ariaLabel="검색 닫기"
         >
-          <X className="h-5 w-5 text-white" />
+          <X className="size-4 text-white" />
         </Button>
       </div>
       <div className="mx-[1.94rem] mt-9 flex items-center border-b border-neutral-400">
@@ -98,7 +97,7 @@ function SearchPage({ onClose }: { onClose: () => void }) {
           onClick={search}
           ariaLabel="검색 실행"
         >
-          <SearchIcon />
+          <Search className="size-4 text-neutral-200" />
         </Button>
       </div>
     </div>

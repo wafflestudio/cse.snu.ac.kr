@@ -65,10 +65,7 @@ export default function ImportantManagement({
 
       <div className="ml-6 mt-12 flex items-center gap-4">
         <div className="flex items-center gap-1">
-          <SquareCheck
-            className="h-[18px] w-[18px] text-neutral-500"
-            strokeWidth={1.5}
-          />
+          <SquareCheck className="size-4 text-neutral-500" />
           <span className="text-sm text-neutral-500">
             {selectedKeys.size}개 게시물 선택
           </span>

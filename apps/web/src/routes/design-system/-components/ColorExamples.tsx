@@ -112,7 +112,7 @@ export function SurfaceExamples() {
               <span className="px-2 text-xs text-neutral-300">
                 검색어를 입력하세요
               </span>
-              <Search className="h-4 w-4 text-neutral-800" strokeWidth={1.5} />
+              <Search className="h-4 w-4 text-neutral-800" />
             </span>
             <Pin name="neutral-50" />
           </div>

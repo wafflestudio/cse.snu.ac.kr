@@ -155,10 +155,7 @@ function CategoryItem({
       </div>
       {hasArrow && (
         <div className="text-end">
-          <ArrowRight
-            className="h-[18px] w-[18px] text-neutral-950 duration-300 group-hover:translate-x-[10px] sm:h-[32px] sm:w-[32px]"
-            strokeWidth={1.5}
-          />
+          <ArrowRight className="h-[18px] w-[18px] text-neutral-950 duration-300 group-hover:translate-x-[10px] sm:h-[32px] sm:w-[32px]" />
         </div>
       )}
     </button>

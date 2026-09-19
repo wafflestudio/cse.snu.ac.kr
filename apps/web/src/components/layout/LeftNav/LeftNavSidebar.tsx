@@ -79,9 +79,15 @@ function DotList() {
     >
       {dotArr.map((filled, idx) =>
         filled ? (
-          <DotFill key={idx} className={getDotMargin(filled, idx)} />
+          <DotFill
+            key={idx}
+            className={`text-white ${getDotMargin(filled, idx)}`}
+          />
         ) : (
-          <DotEmpty key={idx} className={getDotMargin(filled, idx)} />
+          <DotEmpty
+            key={idx}
+            className={`text-neutral-500 ${getDotMargin(filled, idx)}`}
+          />
         ),
       )}
     </div>

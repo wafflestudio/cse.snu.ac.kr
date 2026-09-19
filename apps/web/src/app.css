@@ -126,18 +126,6 @@
   }
 }
 
-@keyframes arrowBounce {
-  0%,
-  100% {
-    transform: translateY(-25%);
-    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-  }
-  50% {
-    transform: none;
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  }
-}
-
 /* 표준 페이지 본문 가로 거터 — 단일 출처.
    좌 100px(pl-25) / 우 360px(pr-90) / 모바일 20px(px-5). PageLayout 문서값 기준.
    페이지·섹션은 가로 거터를 인라인 재선언하지 말고 이 클래스를 쓴다(세로 패딩만 각자). */
@@ -200,5 +188,12 @@
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
+  }
+}
+
+/* lucide 기본 획은 2 다. CSS 가 표현 속성을 이기고, base 라 개별 `stroke-*` 는 그대로 이긴다. */
+@layer base {
+  .lucide {
+    stroke-width: 1.5;
   }
 }

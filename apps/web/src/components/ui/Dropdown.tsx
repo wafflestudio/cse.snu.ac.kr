@@ -137,7 +137,7 @@ export default function Dropdown({
         <span className="text-md font-normal">
           {contents[selectedIndex] ?? ''}
         </span>
-        <ChevronDown className="h-4 w-4 shrink-0" />
+        <ChevronDown className="size-4 shrink-0" />
       </button>
 
       {open && (

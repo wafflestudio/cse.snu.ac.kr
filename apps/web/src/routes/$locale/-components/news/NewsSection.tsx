@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import SmallRightArrowIcon from '@/components/ui/assets/small_right_arrow.svg?react';
+import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { MainNews } from '@/types/api';
 import NewsCarousel from './NewsCarousel';
@@ -18,7 +18,8 @@ export default function NewsSection({ mainNews }: { mainNews: MainNews[] }) {
           className="hidden items-center gap-1 text-base font-normal text-main-orange-muted sm:flex"
           to={localizedPath('/community/news')}
         >
-          {t('더보기')} <SmallRightArrowIcon />
+          {t('더보기')}{' '}
+          <ArrowRight className="size-4 shrink-0 text-main-orange-muted" />
         </Link>
       </div>
       {/* useIsMobile 로 고르면 SSR 이 모바일판을 그려 데스크톱에서 교체되며 64px 밀린다.

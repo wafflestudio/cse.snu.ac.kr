@@ -1,4 +1,5 @@
 import { useRouter } from '@tanstack/react-router';
+import { MapPin } from 'lucide-react';
 import { useState } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import AlertDialog from '@/components/ui/AlertDialog';
@@ -10,7 +11,6 @@ import { useLanguage } from '@/hooks/useLanguage';
 import type { Facility, FacilityWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 import type { ViewerHtml } from '@/utils/csp';
-import DistanceIcon from '../assets/distance.svg?react';
 
 export default function FacilitiesList({
   facilities,
@@ -51,9 +51,9 @@ function FacilitiesRow({ facility }: { facility: ProcessedFacility }) {
             {facility.name}
           </h3>
           <HTMLViewer html={facility.description} />
-          <div className="flex translate-x-[-4px] items-start gap-px">
-            <DistanceIcon className="shrink-0" />
-            <p className="pt-0.5 text-md text-neutral-500">
+          <div className="flex translate-x-[-4px] items-center gap-px">
+            <MapPin className="size-4 shrink-0 text-neutral-500" />
+            <p className="text-md text-neutral-500">
               {facility.locations.join(', ')}
             </p>
           </div>

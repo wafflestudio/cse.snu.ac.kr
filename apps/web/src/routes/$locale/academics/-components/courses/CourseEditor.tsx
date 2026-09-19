@@ -1,4 +1,5 @@
 import { useRouter } from '@tanstack/react-router';
+import { Bookmark } from 'lucide-react';
 import { FormProvider, useForm } from 'react-hook-form';
 import Form from '@/components/form/Form';
 import Button from '@/components/ui/Button';
@@ -11,7 +12,6 @@ import {
 } from '@/routes/$locale/academics/-constants';
 import type { Course } from '@/types/api';
 import { api } from '@/utils/api';
-import BookmarkIcon from './assets/bookmark_icon.svg?react';
 
 const CREDIT = [1, 2, 3, 4];
 
@@ -62,7 +62,7 @@ export default function CourseEditor({
   return (
     <FormProvider {...formMethods}>
       <h4 className="flex flex-wrap items-center gap-2">
-        <BookmarkIcon />
+        <Bookmark className="size-4 text-main-orange" fill="currentColor" />
         <Form.Text
           name="ko.name"
           maxWidth="w-[180px]"

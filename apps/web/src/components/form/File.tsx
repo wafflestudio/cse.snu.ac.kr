@@ -1,8 +1,8 @@
+import { X } from 'lucide-react';
 import type { ChangeEventHandler, MouseEventHandler } from 'react';
 import type { FieldValues, RegisterOptions } from 'react-hook-form';
 import { useController, useFormContext } from 'react-hook-form';
 import type { EditorFile, LocalFile } from '@/types/form';
-import ClearIcon from './assets/clear_icon.svg?react';
 
 interface FilePickerProps {
   name: string;
@@ -93,7 +93,7 @@ function FilePickerRow({ file, deleteFile }: FileRowProps) {
     <li className="flex h-7.5 w-[520px] items-center border-b border-dashed border-neutral-200 px-3 last:border-none">
       <p className="mr-4 text-sm">{file.file.name}</p>
       <button type="button" className="ml-auto" onClick={deleteFile}>
-        <ClearIcon />
+        <X className="size-4 text-neutral-400" />
       </button>
     </li>
   );

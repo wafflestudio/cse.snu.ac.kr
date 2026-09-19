@@ -37,7 +37,7 @@ export default function Input({
           className="-m-0.5 p-0.5 text-neutral-800 hover:text-neutral-500"
           aria-label={t('검색')}
         >
-          <Search className="h-5 w-5" strokeWidth={1.5} />
+          <Search className="size-4" />
         </button>
       </div>
     </div>

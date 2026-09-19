@@ -89,15 +89,9 @@ function ArrowButton({ direction, onClick }: ArrowButtonProps) {
       onClick={onClick}
     >
       {direction === 'left' ? (
-        <ChevronLeft
-          className="h-[44px] w-[44px] text-main-orange"
-          strokeWidth={1.5}
-        />
+        <ChevronLeft className="h-[44px] w-[44px] text-main-orange" />
       ) : (
-        <ChevronRight
-          className="h-[44px] w-[44px] text-main-orange"
-          strokeWidth={1.5}
-        />
+        <ChevronRight className="h-[44px] w-[44px] text-main-orange" />
       )}
     </button>
   );

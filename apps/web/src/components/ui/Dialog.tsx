@@ -40,7 +40,7 @@ export default function Dialog({
             aria-label={closeLabel}
             className="absolute right-4 top-4 text-neutral-500 hover:text-neutral-800"
           >
-            <X className="h-6 w-6" />
+            <X className="size-4" />
           </DialogPrimitive.Close>
           {children}
         </DialogPrimitive.Content>

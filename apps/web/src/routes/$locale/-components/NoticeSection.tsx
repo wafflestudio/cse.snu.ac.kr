@@ -2,13 +2,13 @@ import 'dayjs/locale/ko';
 import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
+import { Plus } from 'lucide-react';
 import { useState } from 'react';
 import Image from '@/components/ui/Image';
 import { useLanguage } from '@/hooks/useLanguage';
 import useIsMobile from '@/hooks/useResponsive';
 import type { AllMainNotice } from '@/types/api';
 import noticeGraphicImg from '../assets/noticeGraphic.avif';
-import PlusIcon from '../assets/plus.svg?react';
 
 // 공지 분류는 "넷 중 하나"인 상호배타 단일 선택이라 토글 버튼이 아니라 radiogroup이 맞다.
 // 네이티브 radio(fieldset)로 그룹 시맨틱·화살표 키 이동을 브라우저가 처리하고, 시각은 pill로.
@@ -71,10 +71,10 @@ export default function NoticeSection({
           </fieldset>
           {!isMobile && (
             <Link
-              className="flex text-base font-normal text-main-orange-muted"
+              className="flex items-center text-base font-normal text-main-orange-muted"
               to={localizedPath('/community/notice')}
             >
-              <PlusIcon /> {t('더보기')}
+              <Plus className="size-4 text-main-orange-muted" /> {t('더보기')}
             </Link>
           )}
         </div>
@@ -99,10 +99,10 @@ export default function NoticeSection({
         </div>
         {isMobile && (
           <Link
-            className="ml-auto mt-6 flex text-base font-normal text-main-orange-muted"
+            className="ml-auto mt-6 flex items-center text-base font-normal text-main-orange-muted"
             to={localizedPath('/community/notice')}
           >
-            <PlusIcon /> {t('더보기')}
+            <Plus className="size-4 text-main-orange-muted" /> {t('더보기')}
           </Link>
         )}
       </div>

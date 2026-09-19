@@ -46,7 +46,7 @@ export default function ReserveTermBanner({
   return (
     <div className="mb-4 flex flex-col gap-1 text-sm text-neutral-400">
       <div className="flex items-center gap-1">
-        <AlertCircle className="h-4 w-4 shrink-0" />
+        <AlertCircle className="size-4 shrink-0" />
         <p className="font-normal">
           {t(
             '세미나실 예약은 정기예약과 상시예약으로 운영됩니다. 정기예약 기간에는 랩대표만 예약할 수 있으며, 그 외 기간에는 누구나 예약 가능합니다. 다음 예약 기간은 등록 후 이곳에 공지됩니다.',

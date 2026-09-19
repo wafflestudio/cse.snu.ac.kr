@@ -58,7 +58,7 @@ export function Tag({
           aria-label={`${label} 삭제`}
           className="inline-flex items-center justify-center text-main-orange transition duration-200 hover:text-main-orange/80 disabled:cursor-not-allowed disabled:opacity-40"
         >
-          <X className="h-[13px] w-[13px]" />
+          <X className="size-3" />
         </button>
       )}
     </>

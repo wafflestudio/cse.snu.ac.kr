@@ -54,7 +54,7 @@ export default function PostFooter({
           href={localizedPath(`${listPath}/${nextPost.id}`)}
           label={t('다음글')}
           title={nextPost.title}
-          icon={<ChevronUp className="h-5 w-5" strokeWidth={1.5} />}
+          icon={<ChevronUp className="size-4" />}
         />
       )}
 
@@ -63,7 +63,7 @@ export default function PostFooter({
           href={localizedPath(`${listPath}/${prevPost.id}`)}
           label={t('이전글')}
           title={prevPost.title}
-          icon={<ChevronDown className="h-5 w-5" strokeWidth={1.5} />}
+          icon={<ChevronDown className="size-4" />}
         />
       )}
 

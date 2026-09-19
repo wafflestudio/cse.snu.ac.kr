@@ -1,9 +1,9 @@
 import { Link } from '@tanstack/react-router';
+import { ArrowRight } from 'lucide-react';
 import Image from '@/components/ui/Image';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { MainImportant } from '@/types/api';
 import charityImg from '../assets/charity.avif';
-import ImportantArrowIcon from '../assets/important_arrow.svg?react';
 
 export default function ImportantSection({
   importantList,
@@ -61,5 +61,5 @@ const CharityBanner = () => (
 );
 
 const ImportantSectionArrow = () => (
-  <ImportantArrowIcon className="absolute bottom-[0.87rem] right-[0.87rem]" />
+  <ArrowRight className="absolute bottom-[0.87rem] right-[0.87rem] size-7 text-neutral-950" />
 );

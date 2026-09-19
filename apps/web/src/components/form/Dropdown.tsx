@@ -78,9 +78,9 @@ export default function Dropdown({
           {contents.find((x) => x.value === value)?.label}
         </p>
         {expanded ? (
-          <ChevronUp className="h-4 w-4" />
+          <ChevronUp className="size-4" />
         ) : (
-          <ChevronDown className="h-4 w-4" />
+          <ChevronDown className="size-4" />
         )}
       </button>
       <div className="relative z-10">

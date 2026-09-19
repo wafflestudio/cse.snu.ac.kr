@@ -2,12 +2,14 @@ import { Link, useSearch } from '@tanstack/react-router';
 import dayjs, { type Dayjs } from 'dayjs';
 import type { ElementType, ReactNode } from 'react';
 import 'dayjs/locale/ko';
+import {
+  Calendar as CalendarIcon,
+  MapPin as DistanceIcon,
+  User as PersonIcon,
+} from 'lucide-react';
 import Image from '@/components/ui/Image';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { SeminarPreview } from '@/types/api';
-import CalendarIcon from '../assets/calendar.svg?react';
-import DistanceIcon from '../assets/distance.svg?react';
-import PersonIcon from '../assets/person.svg?react';
 
 interface SeminarRowProps {
   seminar: SeminarPreview;
@@ -109,17 +111,15 @@ function DateAndLocationCell({
 }
 
 function IconTextWrapper({ children }: { children: ReactNode }) {
-  return <div className="flex items-start gap-0.5">{children}</div>;
+  return <div className="flex items-center gap-0.5">{children}</div>;
 }
 
 function IconWrapper({ IconComponent }: { IconComponent: ElementType }) {
-  return <IconComponent className="shrink-0 -translate-y-0.5" />;
+  return <IconComponent className="size-4 shrink-0 text-neutral-500" />;
 }
 
 function Text({ text }: { text: string }) {
-  return (
-    <span className="pt-0 text-md font-normal text-neutral-500">{text}</span>
-  );
+  return <span className="text-md font-normal text-neutral-500">{text}</span>;
 }
 
 function VerticalDivider() {

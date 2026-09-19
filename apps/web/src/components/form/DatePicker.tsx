@@ -68,7 +68,7 @@ export default function DatePicker({
           )}
           onClick={toggleCalendar}
         >
-          <CalendarIcon className="h-[13px] w-[13px]" />
+          <CalendarIcon className="size-3" />
           {dayjs(date).format('YYYY.MM.DD.')}
         </button>
         {showCalendar && (

@@ -49,7 +49,7 @@ export default function SeminarSearchBar() {
           className="text-neutral-800 hover:text-neutral-500"
           aria-label={t('검색')}
         >
-          <Search className="h-5 w-5" strokeWidth={1.5} />
+          <Search className="size-4" />
         </button>
       </div>
     </form>
