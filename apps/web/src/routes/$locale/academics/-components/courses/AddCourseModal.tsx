@@ -208,7 +208,7 @@ function DropdownFieldset({
         name={name}
         borderStyle="border-neutral-300"
         width={width}
-        height="h-8"
+        height="min-h-8"
       />
     </Fieldset>
   );

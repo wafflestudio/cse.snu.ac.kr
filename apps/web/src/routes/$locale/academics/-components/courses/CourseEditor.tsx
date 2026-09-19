@@ -71,7 +71,7 @@ export default function CourseEditor({
         />
         <button
           type="button"
-          className="h-8 w-[120px] cursor-default rounded-sm border border-neutral-300 pl-2 text-left text-sm leading-[31px] text-neutral-400"
+          className="flex min-h-8 w-[120px] cursor-default items-center rounded-sm border border-neutral-300 pl-2 text-left text-sm/4 text-neutral-400"
           onClick={() => toast.error(t('교과목 코드는 수정할 수 없습니다'))}
         >
           {defaultValues.code}
@@ -83,7 +83,7 @@ export default function CourseEditor({
           }))}
           name="ko.classification"
           borderStyle="border-neutral-300"
-          height="h-8"
+          height="min-h-8"
           width="w-[94px]"
           onChange={(value) =>
             setValue('en.classification', value as ClassificationEn)
@@ -93,7 +93,7 @@ export default function CourseEditor({
           contents={CREDIT.map((value) => ({ label: value.toString(), value }))}
           name="credit"
           borderStyle="border-neutral-300"
-          height="h-8"
+          height="min-h-8"
         />
         <Form.Dropdown
           contents={gradeDropdownContents.map((label, idx) => ({
@@ -102,7 +102,7 @@ export default function CourseEditor({
           }))}
           name="grade"
           borderStyle="border-neutral-300"
-          height="h-8"
+          height="min-h-8"
           width="w-[90px]"
         />
       </h4>

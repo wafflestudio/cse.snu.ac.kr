@@ -48,9 +48,9 @@ type ButtonProps = ButtonAsButton | ButtonAsLink | ButtonAsAnchor;
 
 const SIZE_CLASSES: Record<ButtonSize, string> = {
   xs: 'text-xs sm:text-md px-0 py-0',
-  sm: 'text-sm px-2.5 py-1',
-  md: 'text-md px-[.875rem] py-[.3125rem] leading-6',
-  lg: 'text-lg px-4 py-2',
+  sm: 'min-h-7 text-sm/4 px-2.5 py-1',
+  md: 'min-h-8 text-md/5 px-3.5 py-1',
+  lg: 'min-h-10 text-lg/6 px-4 py-1.5',
 };
 
 const TEXT_SIZE_CLASSES: Record<ButtonSize, string> = {

@@ -132,7 +132,7 @@ export default function Dropdown({
         aria-controls={open ? listboxId : undefined}
         onClick={() => setOpen((o) => !o)}
         onKeyDown={handleTriggerKeyDown}
-        className={`flex select-none items-center gap-4 rounded-xs border bg-white py-[.3125rem] pl-[.625rem] pr-[.3125rem] ${borderStyle} ${height ?? ''}`}
+        className={`flex min-h-8 select-none items-center gap-4 rounded-xs border bg-white py-1 pr-1.5 pl-2.5 text-md/5 ${borderStyle} ${height ?? ''}`}
       >
         <span className="text-md font-normal">
           {contents[selectedIndex] ?? ''}
@@ -164,7 +164,7 @@ export default function Dropdown({
               aria-selected={index === selectedIndex}
               onClick={() => select(index)}
               onMouseEnter={() => setActiveIndex(index)}
-              className={`flex h-7 w-full cursor-pointer items-center pl-[.62rem] text-left text-sm font-normal ${
+              className={`flex min-h-7 w-full cursor-pointer items-center pl-2.5 text-left text-sm/4 font-normal ${
                 index === activeIndex ? 'bg-neutral-200' : ''
               } ${index === selectedIndex ? 'text-main-orange' : ''}`}
             >

@@ -14,7 +14,7 @@ interface TagProps {
 }
 
 const BASE_CLASS =
-  'inline-flex h-[26px] items-center rounded-[1.875rem] border px-2.5 text-sm font-medium whitespace-nowrap transition duration-200';
+  'inline-flex min-h-7 items-center rounded-[1.875rem] border px-2.5 text-sm/4 font-medium whitespace-nowrap transition duration-200';
 
 const VARIANT_CLASSES: Record<TagVariant, string> = {
   outline: 'bg-white border-main-orange text-main-orange',

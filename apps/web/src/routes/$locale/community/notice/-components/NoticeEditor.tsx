@@ -111,7 +111,7 @@ export default function NoticeEditor({
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
               <button
                 type="button"
-                className="h-8 shrink-0 rounded-sm border border-neutral-300 px-[.62rem] text-xs hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-40"
+                className="min-h-8 shrink-0 rounded-sm border border-neutral-300 px-2.5 text-xs/4 hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-40"
                 onClick={suggestTags}
                 disabled={isSuggesting}
               >

@@ -22,7 +22,7 @@ export default function Input({
       >
         {t('검색')}
       </label>
-      <div className="relative flex h-7.5 w-54 items-center justify-between rounded-sm bg-white pr-3">
+      <div className="relative flex min-h-8 w-54 items-center justify-between rounded-sm bg-white pr-3">
         <input
           type="text"
           id={inputId}

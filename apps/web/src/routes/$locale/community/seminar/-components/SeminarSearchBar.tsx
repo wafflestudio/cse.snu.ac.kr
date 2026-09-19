@@ -36,7 +36,7 @@ export default function SeminarSearchBar() {
       <label htmlFor="seminar-search" className="font-bold">
         {t('검색')}
       </label>
-      <div className="flex h-7.5 w-60 items-center rounded-sm bg-neutral-100 pr-3">
+      <div className="flex min-h-8 w-60 items-center rounded-sm bg-neutral-100 pr-3">
         <input
           type="text"
           id="seminar-search"
