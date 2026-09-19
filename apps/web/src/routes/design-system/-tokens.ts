@@ -182,3 +182,27 @@ export function luminance(hex: string) {
   });
   return rgb[0] * 0.2126 + rgb[1] * 0.7152 + rgb[2] * 0.0722;
 }
+
+export const ICON_SCALE = [
+  {
+    name: 'size-3',
+    px: 12,
+    className: 'size-3',
+    textClassName: 'text-xs',
+    role: '12px 글자 옆',
+  },
+  {
+    name: 'size-4',
+    px: 16,
+    className: 'size-4',
+    textClassName: 'text-md',
+    role: '13·14·16px 글자 옆 — 기본',
+  },
+  {
+    name: 'size-6',
+    px: 24,
+    className: 'size-6',
+    textClassName: 'text-2xl',
+    role: '20px 이상 제목 옆',
+  },
+] as const;

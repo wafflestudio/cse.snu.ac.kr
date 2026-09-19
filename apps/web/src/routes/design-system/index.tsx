@@ -41,6 +41,16 @@ const components = {
   code: ({ children }: { children?: ReactNode }) => (
     <code className="text-neutral-700">{children}</code>
   ),
+  a: ({ children, href }: { children?: ReactNode; href?: string }) => (
+    <a
+      className="text-link underline underline-offset-2"
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {children}
+    </a>
+  ),
   table: ({ children }: { children?: ReactNode }) => (
     <div className="mt-5 max-w-[720px] overflow-x-auto">
       <table className="w-full border-collapse text-md/[1.7] text-neutral-600">
