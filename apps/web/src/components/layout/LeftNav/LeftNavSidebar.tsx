@@ -20,7 +20,7 @@ export default function LNBSidebar() {
 
   return (
     <nav
-      className={`no-scrollbar z-50 flex flex-col items-center overflow-scroll bg-shell-100 py-[2.88rem] transition-all duration-300 ease-in-out ${
+      className={`no-scrollbar z-50 flex flex-col items-center overflow-scroll bg-shell-100 py-12 transition-all duration-300 ease-in-out ${
         isExpanded ? 'w-44' : 'w-25'
       }`}
       onMouseEnter={expandNavbar}
@@ -65,15 +65,13 @@ function DotList() {
   });
 
   const getDotMargin = (filled: boolean, idx: number) => {
-    if (dotArr[idx + 1]) return 'mb-[2.2rem]';
-    return filled ? 'mb-[2.2rem]' : 'mb-[2.7rem]';
+    if (dotArr[idx + 1]) return 'mb-9';
+    return filled ? 'mb-9' : 'mb-11';
   };
 
   return (
     <div
-      className={`flex flex-col items-center ${
-        dotArr[0] ? 'mt-[2.7rem]' : 'mt-[3.38rem]'
-      }`}
+      className={`flex flex-col items-center ${dotArr[0] ? 'mt-11' : 'mt-14'}`}
       role="presentation"
       aria-hidden="true"
     >

@@ -138,7 +138,7 @@ function CategoryItem({
     <button
       type="button"
       className={clsx(
-        'group flex h-[96px] cursor-pointer flex-col justify-between px-[14px] py-[13px] duration-300 sm:h-[160px] sm:px-7 sm:py-6',
+        'group flex h-[96px] cursor-pointer flex-col justify-between px-3.5 py-3.25 duration-300 sm:h-[160px] sm:px-7 sm:py-6',
         bgColor,
         hoverBgColor,
         borderColor && `border ${borderColor}`,

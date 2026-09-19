@@ -59,10 +59,10 @@ export default function PageLayout({
     padding === 'none'
       ? 'p-0'
       : padding === 'noTop'
-        ? 'page-gutter-x pb-16 sm:pb-[150px]'
+        ? 'page-gutter-x pb-16 sm:pb-37.5'
         : padding === 'noBottom'
           ? 'page-gutter-x pt-7 sm:pt-11'
-          : 'page-gutter-x pt-7 pb-16 sm:pt-11 sm:pb-[150px]';
+          : 'page-gutter-x pt-7 pb-16 sm:pt-11 sm:pb-37.5';
 
   return (
     <>

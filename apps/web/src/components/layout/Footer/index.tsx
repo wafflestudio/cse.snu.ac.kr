@@ -51,7 +51,7 @@ export default function Footer() {
         ))}
       </div>
       <div
-        className={`${bottomBg} flex flex-col justify-between px-5 py-[30px] sm:flex-row sm:items-center sm:px-15 sm:py-8`}
+        className={`${bottomBg} flex flex-col justify-between px-5 py-7.5 sm:flex-row sm:items-center sm:px-15 sm:py-8`}
       >
         <FooterBottomLeft mode={mode} />
         <FooterBottomRight />
@@ -73,9 +73,7 @@ function LinkGroup({
 
   return (
     <section className={width}>
-      <h3
-        className={`${titleColor} mb-[.625rem] text-sm font-medium sm:text-md`}
-      >
+      <h3 className={`${titleColor} mb-2.5 text-sm font-medium sm:text-md`}>
         {groupName}
       </h3>
 
@@ -120,7 +118,7 @@ function FooterBottomLeft({
         </Link>
       </div>
 
-      <address className="mb-[1.37rem] not-italic">
+      <address className="mb-6 not-italic">
         {t(
           '08826 서울특별시 관악구 관악로 1 서울대학교 공과대학 컴퓨터공학부 행정실(301동 316호)',
         )}

@@ -88,7 +88,7 @@ function MobileNavMenuItem({
     );
 
   // depth에 따른 스타일
-  const containerClassName = depth === 1 ? 'mb-[1.75rem]' : 'mb-[1.5rem]';
+  const containerClassName = depth === 1 ? 'mb-7' : 'mb-6';
   const textSize = depth === 1 ? 'text-md' : 'text-sm';
 
   if (to) {

@@ -10,7 +10,7 @@ export default function LNBDetail() {
 
   return (
     <div
-      className="no-scrollbar absolute bottom-0 left-0 top-0 z-40 w-132 overflow-y-scroll bg-shell-400 pl-59 pt-[9.62rem] backdrop-blur-[2px]"
+      className="no-scrollbar absolute bottom-0 left-0 top-0 z-40 w-132 overflow-y-scroll bg-shell-400 pl-59 pt-38 backdrop-blur-[2px]"
       role="menu"
       aria-label="서브 네비게이션"
     >

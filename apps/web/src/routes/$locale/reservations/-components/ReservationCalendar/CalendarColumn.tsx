@@ -46,7 +46,7 @@ const ColumnIndex = ({
       className={`
         flex h-16.25 flex-col
         justify-between border-b border-r
-        border-t border-neutral-200 px-3 py-[0.62rem] 
+        border-t border-neutral-200 px-3 py-2.5 
         ${selected ? 'bg-neutral-200' : 'bg-neutral-100'}
         `}
     >
@@ -124,7 +124,7 @@ const CalendarCellTitle = ({
 
   return (
     <p
-      className={`mt-[2px] flex items-center text-xs font-bold text-neutral-800 ${UNIT_HEIGHT_TAILWIND}`}
+      className={`mt-0.5 flex items-center text-xs font-bold text-neutral-800 ${UNIT_HEIGHT_TAILWIND}`}
     >
       {timeText}
     </p>

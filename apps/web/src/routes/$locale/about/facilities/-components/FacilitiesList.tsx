@@ -18,7 +18,7 @@ export default function FacilitiesList({
   facilities: ProcessedFacility[];
 }) {
   return (
-    <div className="mt-[-20px] flex flex-col divide-y divide-neutral-200">
+    <div className="-mt-5 flex flex-col divide-y divide-neutral-200">
       {facilities.map((facility) => (
         <FacilitiesRow key={facility.id} facility={facility} />
       ))}

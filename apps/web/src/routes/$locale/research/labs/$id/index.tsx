@@ -109,7 +109,7 @@ function LabSummary({
       colorTheme="black"
       size="large"
       shadow="light"
-      margin="sm:mt-[-64px] sm:mb-11 sm:ml-11"
+      margin="sm:-mt-16 sm:mb-11 sm:ml-11"
     >
       <ul className="flex h-40 w-60 flex-col gap-1 px-6 py-5">
         <li className="flex gap-1 text-sm">

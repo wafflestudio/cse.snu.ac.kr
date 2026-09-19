@@ -26,7 +26,7 @@ export default function PageTitle({
   const titleStyle = 'break-keep text-2xl font-bold text-white sm:text-3xl';
 
   return (
-    <div className="px-5 pt-[54px] sm:px-25">
+    <div className="px-5 pt-13.5 sm:px-25">
       <div
         className={`col-start-1 row-start-1 w-fit min-w-62.5 max-w-207.5 ${margin}`}
       >

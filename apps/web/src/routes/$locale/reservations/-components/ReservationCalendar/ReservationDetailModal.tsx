@@ -105,14 +105,14 @@ export default function ReservationDetailModal({
             </h2>
           </div>
 
-          <div className="mb-[2.19rem] flex flex-col gap-6">
+          <div className="mb-9 flex flex-col gap-6">
             <p className="text-neutral-800">
               {reservation
                 ? (reservation.purpose ?? t('예약 목적 미기입'))
                 : '-'}
             </p>
 
-            <div className="flex flex-col gap-[6px]">
+            <div className="flex flex-col gap-1.5">
               <Row
                 title={t('예약 날짜')}
                 body={
@@ -150,7 +150,7 @@ export default function ReservationDetailModal({
               body={reservation?.roomLocation ?? '-'}
             />
 
-            <div className="flex flex-col gap-[6px]">
+            <div className="flex flex-col gap-1.5">
               <p className="text-md font-normal text-neutral-400">
                 {t('예약자 정보')}
               </p>

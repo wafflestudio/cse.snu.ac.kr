@@ -86,7 +86,7 @@ function ResearchGroupsPage() {
         <SelectionList items={items} />
       </div>
       {item && (
-        <div className="flex flex-col bg-neutral-100 page-gutter-x pb-9 pt-8 sm:pb-[100px] sm:pt-[50px]">
+        <div className="flex flex-col bg-neutral-100 page-gutter-x pb-9 pt-8 sm:pb-25 sm:pt-12.5">
           <LoginVisible allow="ROLE_STAFF">
             <div className="mb-7 flex justify-end gap-3">
               <Button
@@ -107,10 +107,10 @@ function ResearchGroupsPage() {
               </Button>
             </div>
           </LoginVisible>
-          <h2 className="mb-6 ml-1 whitespace-nowrap text-base font-bold leading-loose sm:mx-0 sm:mb-[18px] sm:text-2xl">
+          <h2 className="mb-6 ml-1 whitespace-nowrap text-base font-bold leading-loose sm:mx-0 sm:mb-4.5 sm:text-2xl">
             {item.name} {t('스트림')}
           </h2>
-          <div className="max-w-[780px] bg-white p-[18px] sm:p-[40px]">
+          <div className="max-w-[780px] bg-white p-4.5 sm:p-10">
             <HTMLViewer html={item.description} />
           </div>
           {item.mainImageUrl && (

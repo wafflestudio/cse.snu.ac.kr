@@ -70,7 +70,7 @@ function TimeSpot({
 function Circle({ highlight }: { highlight: boolean }) {
   const highlightStyle = 'bg-main-orange w-4 h-4 mt-0';
   const defaultStyle =
-    'bg-white w-3 h-3 mt-[2px] group-hover:w-3.5 group-hover:h-3.5 group-hover:mt-0 z-10';
+    'bg-white w-3 h-3 mt-0.5 group-hover:w-3.5 group-hover:h-3.5 group-hover:mt-0 z-10';
 
   return (
     <span

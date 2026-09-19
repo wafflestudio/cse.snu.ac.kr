@@ -38,7 +38,7 @@ export default function MobileNavList() {
         ))}
       </ul>
 
-      <div className="mb-[40px] flex flex-col items-center text-sm font-medium text-neutral-400">
+      <div className="mb-10 flex flex-col items-center text-sm font-medium text-neutral-400">
         <Button
           variant="quiet"
           size="sm"
@@ -81,7 +81,7 @@ function SearchPage({ onClose }: { onClose: () => void }) {
           <X className="size-4 text-white" />
         </Button>
       </div>
-      <div className="mx-[1.94rem] mt-9 flex items-center border-b border-neutral-400">
+      <div className="mx-8 mt-9 flex items-center border-b border-neutral-400">
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -126,7 +126,7 @@ function LangButton() {
   const { locale, changeLanguage } = useLanguage();
 
   return (
-    <div className="mt-[0.62rem]">
+    <div className="mt-2.5">
       <Button variant="quiet" size="sm" onClick={changeLanguage}>
         {locale === 'ko' ? 'ENG' : '한국어'}
       </Button>

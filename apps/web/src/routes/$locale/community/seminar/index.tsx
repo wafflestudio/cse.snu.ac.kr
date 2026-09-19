@@ -76,7 +76,7 @@ function SeminarPage() {
                 </div>
               )}
               <div
-                className={`border-neutral-200 py-[1.2rem] ${
+                className={`border-neutral-200 py-5 ${
                   !post.isYearLast ? 'border-t' : ''
                 }`}
               >
@@ -90,7 +90,7 @@ function SeminarPage() {
       <Pagination page={pageNum} totalPages={totalPages} />
 
       <LoginVisible allow="ROLE_STAFF">
-        <div className="mt-[40px] flex justify-end">
+        <div className="mt-10 flex justify-end">
           <span className="ml-4">
             <Button
               variant="neutral"

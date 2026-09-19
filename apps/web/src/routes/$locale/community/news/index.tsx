@@ -63,7 +63,7 @@ function NewsPage() {
       <Pagination page={pageNum} totalPages={totalPages} />
 
       <LoginVisible allow="ROLE_STAFF">
-        <div className="mt-[40px] flex justify-end">
+        <div className="mt-10 flex justify-end">
           <span className="ml-4">
             <Button
               variant="neutral"

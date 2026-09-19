@@ -11,7 +11,7 @@ export default function PeopleLabNode({ faculty }: { faculty: FacultyDetail }) {
   return (
     <div className="flex">
       <Node variant="curvedHorizontalSmall" />
-      <div className="-translate-x-[7.15px] translate-y-[4px] border-b border-b-main-orange pb-[5px] pr-2">
+      <div className="-translate-x-[7.15px] translate-y-[4px] border-b border-b-main-orange pb-1.25 pr-2">
         <Link
           to={localizedPath(`/research/labs/${faculty.labId}`)}
           className="text-sm font-medium leading-5 text-neutral-800 hover:text-main-orange"

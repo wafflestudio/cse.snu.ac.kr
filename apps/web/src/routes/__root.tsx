@@ -112,7 +112,7 @@ function RootDocument() {
   const isMain = pathWithoutLocale === '/';
   // 문서는 절마다 라우트를 갖는다 — 앱 셸을 끄는 판정도 하위 경로까지다.
   const isDesignSystem = /^\/design-system(\/|$)/.test(pathname);
-  const paddingLeft = isMain ? 'sm:pl-[11rem]' : 'sm:pl-[6.25rem]';
+  const paddingLeft = isMain ? 'sm:pl-44' : 'sm:pl-25';
 
   const isMobile = useIsMobile();
   const isOpen = useStore((s) => s.navbarState.type !== 'closed');

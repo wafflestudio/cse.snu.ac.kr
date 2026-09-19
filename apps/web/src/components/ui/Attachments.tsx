@@ -9,8 +9,7 @@ interface AttachmentsProps {
 export default function Attachments({ files }: AttachmentsProps) {
   if (files.length === 0) return null;
 
-  const variantSpacing =
-    'mb-9 mt-3 py-3 pl-4 pr-20 sm:mb-11 sm:mt-5 sm:pr-[10rem]';
+  const variantSpacing = 'mb-9 mt-3 py-3 pl-4 pr-20 sm:mb-11 sm:mt-5 sm:pr-40';
 
   return (
     <div

@@ -83,7 +83,7 @@ function ResearchCentersPage() {
         <SelectionList items={selectionItems} />
       </div>
       {selectedCenter && (
-        <div className="page-gutter-x pb-9 sm:pb-[100px]">
+        <div className="page-gutter-x pb-9 sm:pb-25">
           <LoginVisible allow="ROLE_STAFF">
             <div className="mb-7 flex justify-end gap-3">
               <Button

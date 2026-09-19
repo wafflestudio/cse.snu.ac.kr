@@ -24,7 +24,7 @@ export default function NewsCard({ news }: { news: MainNews }) {
         />
       </div>
 
-      <div className="px-[0.87rem] pt-[0.88rem]">
+      <div className="px-3.5 pt-3.5">
         <h3 className="line-clamp-2 text-base font-medium text-neutral-900">
           {news.title}
         </h3>

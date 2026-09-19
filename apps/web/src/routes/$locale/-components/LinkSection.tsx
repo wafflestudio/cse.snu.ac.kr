@@ -5,8 +5,8 @@ export default function LinkSection() {
   const { t, localizedPath } = useLanguage();
 
   return (
-    <div className="mx-6 mb-28 mt-[60px] flex flex-col gap-16 sm:mx-[7.81rem] sm:mb-48 sm:mt-[90px] sm:flex-row sm:gap-32">
-      <div className="flex flex-1 flex-col gap-[1.37rem] sm:gap-9">
+    <div className="mx-6 mb-28 mt-15 flex flex-col gap-16 sm:mx-31 sm:mb-48 sm:mt-22.5 sm:flex-row sm:gap-32">
+      <div className="flex flex-1 flex-col gap-6 sm:gap-9">
         <h3 className="text-md font-medium text-neutral-400 sm:text-xl">
           {t('바로가기')}
         </h3>
@@ -28,7 +28,7 @@ export default function LinkSection() {
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col gap-[1.37rem] sm:gap-9">
+      <div className="flex flex-1 flex-col gap-6 sm:gap-9">
         <h3 className="text-md font-medium text-neutral-400 sm:text-xl">
           {t('학부')}
         </h3>
