@@ -38,5 +38,10 @@ TanStack Start 빌드는 `dist/server/server.js` 를 **Web fetch 핸들러**로 
 - **단일 선택은 네이티브 radiogroup**(`fieldset`+`radio` pill) — 그룹 시맨틱·화살표 키 이동을 브라우저가 준다. Button `variant` 는 상태 없는 5개(primary/neutral/secondary/quiet/nav), 아이콘은 children 에 직접.
 - **a11y:** form Radio/Checkbox 네이티브, Dialog/AlertDialog/Select/ImageModal 은 Radix. icon-only Button 은 `ariaLabel` 필수.
 - Storybook 없음. 픽셀 회귀는 E2E 소유.
+- **문서는 절마다 라우트다.** `routes/design-system/<절>.tsx` 가 `-content/<절>.mdx` 를 렌더하고,
+  목록은 `-nav.ts` 한 곳이다. 절을 더하면 그 둘과 MDX 하나. ⚠️ 라우트 파일 이름에 `component`·`loader`·
+  `errorComponent` 를 쓰지 않는다 — TanStack 이 코드 분할 파일로 읽어 부모 라우트에 붙인다(그래서 `components.tsx`).
+  앱 셸을 끄는 `__root` 의 판정도 `/design-system` 하위 전체다. 좌측 내비는 두지 않는다 — 이동은 첫 화면
+  목차와 절 끝의 이전·다음이다.
 - **색은 정리가 끝났다.** 팔레트는 닫혀 있고(`--color-*: initial`) 앱 코드의 색 클래스 95% 를 문서가 설명한다. 결정과 남은 것은 `src/routes/design-system/-decisions.md` — 새 색을 만들기 전에 거기부터 본다.
 - **합의 대기(자율 실행 금지):** 패딩 임의값과 `.62`/`.625` 근접 중복 정규화.

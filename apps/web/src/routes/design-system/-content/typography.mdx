@@ -1,0 +1,27 @@
+import { Fonts } from '../-components/Fonts';
+import { WeightExamples } from '../-components/TypeExamples';
+import { TypographyPreview } from '../-components/TypographyPreview';
+
+크기를 고르면 행간이 따라옵니다. 굵기는 역할을 표시하고, 자간은 쓰지 않습니다.
+
+## 서체
+
+정보를 읽는 서체와 학부의 메시지를 전하는 서체를 구분합니다. 본문과 탐색에는 Pretendard Variable을, 메인 화면의 한글 슬로건에는 고운바탕을 사용합니다.
+
+<Fonts />
+
+## 크기
+
+여덟 단계입니다. **16px부터가 제목이고 본문은 13·14px입니다.** 스케일 밖의 값은 클래스가 만들어지지 않습니다.
+
+<TypographyPreview />
+
+기본 행간이 컴포넌트 구성과 맞지 않으면 덮습니다 — 여러 줄로 잘리는 발췌와 카드 설명에는 `leading-normal`, 끝까지 읽는 안내문과 설명 상자에는 `leading-loose`, 한 줄짜리 칸이 여러 개 쌓이는 목록에는 `leading-tight`.
+
+여러 줄이 되는 제목은 단어 단위로 줄을 바꿉니다. 한 줄에 넣으려고 크기를 줄이지 않습니다.
+
+## 굵기
+
+셋입니다.
+
+<WeightExamples />

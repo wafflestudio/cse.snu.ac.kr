@@ -110,7 +110,8 @@ function RootDocument() {
   const { pathname } = useLocation();
   const altPath = pathWithoutLocale === '/' ? '' : pathWithoutLocale;
   const isMain = pathWithoutLocale === '/';
-  const isDesignSystem = pathname.replace(/\/$/, '') === '/design-system';
+  // 문서는 절마다 라우트를 갖는다 — 앱 셸을 끄는 판정도 하위 경로까지다.
+  const isDesignSystem = /^\/design-system(\/|$)/.test(pathname);
   const paddingLeft = isMain ? 'sm:pl-[11rem]' : 'sm:pl-[6.25rem]';
 
   const isMobile = useIsMobile();

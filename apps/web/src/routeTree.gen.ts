@@ -11,12 +11,21 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ImgRouteImport } from './routes/img'
+import { Route as DesignSystemRouteRouteImport } from './routes/design-system/route'
 import { Route as LocaleRouteRouteImport } from './routes/$locale/route'
 import { Route as DesignSystemIndexRouteImport } from './routes/design-system/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as DotinternalIndexRouteImport } from './routes/[.]internal/index'
 import { Route as LocaleIndexRouteImport } from './routes/$locale/index'
 import { Route as SitemapFileRouteImport } from './routes/sitemap/$file'
+import { Route as DesignSystemWritingRouteImport } from './routes/design-system/writing'
+import { Route as DesignSystemVisualLanguageRouteImport } from './routes/design-system/visual-language'
+import { Route as DesignSystemTypographyRouteImport } from './routes/design-system/typography'
+import { Route as DesignSystemLayoutRouteImport } from './routes/design-system/layout'
+import { Route as DesignSystemIconRouteImport } from './routes/design-system/icon'
+import { Route as DesignSystemComponentsRouteImport } from './routes/design-system/components'
+import { Route as DesignSystemColorRouteImport } from './routes/design-system/color'
+import { Route as DesignSystemAccessibilityRouteImport } from './routes/design-system/accessibility'
 import { Route as DotinternalEditRouteImport } from './routes/[.]internal/edit'
 import { Route as LocaleSearchIndexRouteImport } from './routes/$locale/search/index'
 import { Route as LocaleReservationsIndexRouteImport } from './routes/$locale/reservations/index'
@@ -120,15 +129,20 @@ const ImgRoute = ImgRouteImport.update({
   path: '/img',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DesignSystemRouteRoute = DesignSystemRouteRouteImport.update({
+  id: '/design-system',
+  path: '/design-system',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LocaleRouteRoute = LocaleRouteRouteImport.update({
   id: '/$locale',
   path: '/$locale',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DesignSystemIndexRoute = DesignSystemIndexRouteImport.update({
-  id: '/design-system/',
-  path: '/design-system/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => DesignSystemRouteRoute,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/admin/',
@@ -150,6 +164,48 @@ const SitemapFileRoute = SitemapFileRouteImport.update({
   path: '/sitemap/$file',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DesignSystemWritingRoute = DesignSystemWritingRouteImport.update({
+  id: '/writing',
+  path: '/writing',
+  getParentRoute: () => DesignSystemRouteRoute,
+} as any)
+const DesignSystemVisualLanguageRoute =
+  DesignSystemVisualLanguageRouteImport.update({
+    id: '/visual-language',
+    path: '/visual-language',
+    getParentRoute: () => DesignSystemRouteRoute,
+  } as any)
+const DesignSystemTypographyRoute = DesignSystemTypographyRouteImport.update({
+  id: '/typography',
+  path: '/typography',
+  getParentRoute: () => DesignSystemRouteRoute,
+} as any)
+const DesignSystemLayoutRoute = DesignSystemLayoutRouteImport.update({
+  id: '/layout',
+  path: '/layout',
+  getParentRoute: () => DesignSystemRouteRoute,
+} as any)
+const DesignSystemIconRoute = DesignSystemIconRouteImport.update({
+  id: '/icon',
+  path: '/icon',
+  getParentRoute: () => DesignSystemRouteRoute,
+} as any)
+const DesignSystemComponentsRoute = DesignSystemComponentsRouteImport.update({
+  id: '/components',
+  path: '/components',
+  getParentRoute: () => DesignSystemRouteRoute,
+} as any)
+const DesignSystemColorRoute = DesignSystemColorRouteImport.update({
+  id: '/color',
+  path: '/color',
+  getParentRoute: () => DesignSystemRouteRoute,
+} as any)
+const DesignSystemAccessibilityRoute =
+  DesignSystemAccessibilityRouteImport.update({
+    id: '/accessibility',
+    path: '/accessibility',
+    getParentRoute: () => DesignSystemRouteRoute,
+  } as any)
 const DotinternalEditRoute = DotinternalEditRouteImport.update({
   id: '/.internal/edit',
   path: '/.internal/edit',
@@ -690,9 +746,18 @@ const LocaleAcademicsStudentTypeCourseChangesEditYearRoute =
 
 export interface FileRoutesByFullPath {
   '/$locale': typeof LocaleRouteRouteWithChildren
+  '/design-system': typeof DesignSystemRouteRouteWithChildren
   '/img': typeof ImgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/.internal/edit': typeof DotinternalEditRoute
+  '/design-system/accessibility': typeof DesignSystemAccessibilityRoute
+  '/design-system/color': typeof DesignSystemColorRoute
+  '/design-system/components': typeof DesignSystemComponentsRoute
+  '/design-system/icon': typeof DesignSystemIconRoute
+  '/design-system/layout': typeof DesignSystemLayoutRoute
+  '/design-system/typography': typeof DesignSystemTypographyRoute
+  '/design-system/visual-language': typeof DesignSystemVisualLanguageRoute
+  '/design-system/writing': typeof DesignSystemWritingRoute
   '/sitemap/$file': typeof SitemapFileRoute
   '/$locale/': typeof LocaleIndexRoute
   '/.internal/': typeof DotinternalIndexRoute
@@ -794,6 +859,14 @@ export interface FileRoutesByTo {
   '/img': typeof ImgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/.internal/edit': typeof DotinternalEditRoute
+  '/design-system/accessibility': typeof DesignSystemAccessibilityRoute
+  '/design-system/color': typeof DesignSystemColorRoute
+  '/design-system/components': typeof DesignSystemComponentsRoute
+  '/design-system/icon': typeof DesignSystemIconRoute
+  '/design-system/layout': typeof DesignSystemLayoutRoute
+  '/design-system/typography': typeof DesignSystemTypographyRoute
+  '/design-system/visual-language': typeof DesignSystemVisualLanguageRoute
+  '/design-system/writing': typeof DesignSystemWritingRoute
   '/sitemap/$file': typeof SitemapFileRoute
   '/$locale': typeof LocaleIndexRoute
   '/.internal': typeof DotinternalIndexRoute
@@ -894,9 +967,18 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/$locale': typeof LocaleRouteRouteWithChildren
+  '/design-system': typeof DesignSystemRouteRouteWithChildren
   '/img': typeof ImgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/.internal/edit': typeof DotinternalEditRoute
+  '/design-system/accessibility': typeof DesignSystemAccessibilityRoute
+  '/design-system/color': typeof DesignSystemColorRoute
+  '/design-system/components': typeof DesignSystemComponentsRoute
+  '/design-system/icon': typeof DesignSystemIconRoute
+  '/design-system/layout': typeof DesignSystemLayoutRoute
+  '/design-system/typography': typeof DesignSystemTypographyRoute
+  '/design-system/visual-language': typeof DesignSystemVisualLanguageRoute
+  '/design-system/writing': typeof DesignSystemWritingRoute
   '/sitemap/$file': typeof SitemapFileRoute
   '/$locale/': typeof LocaleIndexRoute
   '/.internal/': typeof DotinternalIndexRoute
@@ -998,9 +1080,18 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/$locale'
+    | '/design-system'
     | '/img'
     | '/sitemap.xml'
     | '/.internal/edit'
+    | '/design-system/accessibility'
+    | '/design-system/color'
+    | '/design-system/components'
+    | '/design-system/icon'
+    | '/design-system/layout'
+    | '/design-system/typography'
+    | '/design-system/visual-language'
+    | '/design-system/writing'
     | '/sitemap/$file'
     | '/$locale/'
     | '/.internal/'
@@ -1102,6 +1193,14 @@ export interface FileRouteTypes {
     | '/img'
     | '/sitemap.xml'
     | '/.internal/edit'
+    | '/design-system/accessibility'
+    | '/design-system/color'
+    | '/design-system/components'
+    | '/design-system/icon'
+    | '/design-system/layout'
+    | '/design-system/typography'
+    | '/design-system/visual-language'
+    | '/design-system/writing'
     | '/sitemap/$file'
     | '/$locale'
     | '/.internal'
@@ -1201,9 +1300,18 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/$locale'
+    | '/design-system'
     | '/img'
     | '/sitemap.xml'
     | '/.internal/edit'
+    | '/design-system/accessibility'
+    | '/design-system/color'
+    | '/design-system/components'
+    | '/design-system/icon'
+    | '/design-system/layout'
+    | '/design-system/typography'
+    | '/design-system/visual-language'
+    | '/design-system/writing'
     | '/sitemap/$file'
     | '/$locale/'
     | '/.internal/'
@@ -1304,13 +1412,13 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   LocaleRouteRoute: typeof LocaleRouteRouteWithChildren
+  DesignSystemRouteRoute: typeof DesignSystemRouteRouteWithChildren
   ImgRoute: typeof ImgRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   DotinternalEditRoute: typeof DotinternalEditRoute
   SitemapFileRoute: typeof SitemapFileRoute
   DotinternalIndexRoute: typeof DotinternalIndexRoute
   AdminIndexRoute: typeof AdminIndexRoute
-  DesignSystemIndexRoute: typeof DesignSystemIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -1329,6 +1437,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ImgRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/design-system': {
+      id: '/design-system'
+      path: '/design-system'
+      fullPath: '/design-system'
+      preLoaderRoute: typeof DesignSystemRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/$locale': {
       id: '/$locale'
       path: '/$locale'
@@ -1338,10 +1453,10 @@ declare module '@tanstack/react-router' {
     }
     '/design-system/': {
       id: '/design-system/'
-      path: '/design-system'
+      path: '/'
       fullPath: '/design-system/'
       preLoaderRoute: typeof DesignSystemIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof DesignSystemRouteRoute
     }
     '/admin/': {
       id: '/admin/'
@@ -1370,6 +1485,62 @@ declare module '@tanstack/react-router' {
       fullPath: '/sitemap/$file'
       preLoaderRoute: typeof SitemapFileRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/design-system/writing': {
+      id: '/design-system/writing'
+      path: '/writing'
+      fullPath: '/design-system/writing'
+      preLoaderRoute: typeof DesignSystemWritingRouteImport
+      parentRoute: typeof DesignSystemRouteRoute
+    }
+    '/design-system/visual-language': {
+      id: '/design-system/visual-language'
+      path: '/visual-language'
+      fullPath: '/design-system/visual-language'
+      preLoaderRoute: typeof DesignSystemVisualLanguageRouteImport
+      parentRoute: typeof DesignSystemRouteRoute
+    }
+    '/design-system/typography': {
+      id: '/design-system/typography'
+      path: '/typography'
+      fullPath: '/design-system/typography'
+      preLoaderRoute: typeof DesignSystemTypographyRouteImport
+      parentRoute: typeof DesignSystemRouteRoute
+    }
+    '/design-system/layout': {
+      id: '/design-system/layout'
+      path: '/layout'
+      fullPath: '/design-system/layout'
+      preLoaderRoute: typeof DesignSystemLayoutRouteImport
+      parentRoute: typeof DesignSystemRouteRoute
+    }
+    '/design-system/icon': {
+      id: '/design-system/icon'
+      path: '/icon'
+      fullPath: '/design-system/icon'
+      preLoaderRoute: typeof DesignSystemIconRouteImport
+      parentRoute: typeof DesignSystemRouteRoute
+    }
+    '/design-system/components': {
+      id: '/design-system/components'
+      path: '/components'
+      fullPath: '/design-system/components'
+      preLoaderRoute: typeof DesignSystemComponentsRouteImport
+      parentRoute: typeof DesignSystemRouteRoute
+    }
+    '/design-system/color': {
+      id: '/design-system/color'
+      path: '/color'
+      fullPath: '/design-system/color'
+      preLoaderRoute: typeof DesignSystemColorRouteImport
+      parentRoute: typeof DesignSystemRouteRoute
+    }
+    '/design-system/accessibility': {
+      id: '/design-system/accessibility'
+      path: '/accessibility'
+      fullPath: '/design-system/accessibility'
+      preLoaderRoute: typeof DesignSystemAccessibilityRouteImport
+      parentRoute: typeof DesignSystemRouteRoute
     }
     '/.internal/edit': {
       id: '/.internal/edit'
@@ -2253,15 +2424,42 @@ const LocaleRouteRouteWithChildren = LocaleRouteRoute._addFileChildren(
   LocaleRouteRouteChildren,
 )
 
+interface DesignSystemRouteRouteChildren {
+  DesignSystemAccessibilityRoute: typeof DesignSystemAccessibilityRoute
+  DesignSystemColorRoute: typeof DesignSystemColorRoute
+  DesignSystemComponentsRoute: typeof DesignSystemComponentsRoute
+  DesignSystemIconRoute: typeof DesignSystemIconRoute
+  DesignSystemLayoutRoute: typeof DesignSystemLayoutRoute
+  DesignSystemTypographyRoute: typeof DesignSystemTypographyRoute
+  DesignSystemVisualLanguageRoute: typeof DesignSystemVisualLanguageRoute
+  DesignSystemWritingRoute: typeof DesignSystemWritingRoute
+  DesignSystemIndexRoute: typeof DesignSystemIndexRoute
+}
+
+const DesignSystemRouteRouteChildren: DesignSystemRouteRouteChildren = {
+  DesignSystemAccessibilityRoute: DesignSystemAccessibilityRoute,
+  DesignSystemColorRoute: DesignSystemColorRoute,
+  DesignSystemComponentsRoute: DesignSystemComponentsRoute,
+  DesignSystemIconRoute: DesignSystemIconRoute,
+  DesignSystemLayoutRoute: DesignSystemLayoutRoute,
+  DesignSystemTypographyRoute: DesignSystemTypographyRoute,
+  DesignSystemVisualLanguageRoute: DesignSystemVisualLanguageRoute,
+  DesignSystemWritingRoute: DesignSystemWritingRoute,
+  DesignSystemIndexRoute: DesignSystemIndexRoute,
+}
+
+const DesignSystemRouteRouteWithChildren =
+  DesignSystemRouteRoute._addFileChildren(DesignSystemRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   LocaleRouteRoute: LocaleRouteRouteWithChildren,
+  DesignSystemRouteRoute: DesignSystemRouteRouteWithChildren,
   ImgRoute: ImgRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   DotinternalEditRoute: DotinternalEditRoute,
   SitemapFileRoute: SitemapFileRoute,
   DotinternalIndexRoute: DotinternalIndexRoute,
   AdminIndexRoute: AdminIndexRoute,
-  DesignSystemIndexRoute: DesignSystemIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

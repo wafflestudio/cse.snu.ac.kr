@@ -30,3 +30,6 @@ blob-report/
 # Lighthouse 측정 산출물 (pnpm perf)
 perf/.output/
 perf/.lighthouseci/
+
+# TanStack Router 가 빌드 중 쓰는 임시 파일
+apps/web/.tanstack/
