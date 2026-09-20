@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { SegmentedControl } from './SegmentedControl';
 
 const VALUES = {
-  desktop: { title: 44, section: 88, bottom: 150 },
-  mobile: { title: 28, section: 64, bottom: 64 },
+  desktop: { title: 44, section: 88, band: 64, bottom: 150 },
+  mobile: { title: 28, section: 64, band: 48, bottom: 64 },
 };
 
 function Measure({ px, scale }: { px: number; scale: number }) {
@@ -42,14 +42,21 @@ export function VerticalRhythm() {
           <Measure px={v.title} scale={scale} />
           <Block label="본문 첫 단락" />
           <Measure px={v.section} scale={scale} />
-          <Block label="다음 섹션" />
+          {/* 면이 있는 섹션은 가장자리에서 내용까지가 따로 있다. */}
+          <div className="bg-neutral-100">
+            <Measure px={v.band} scale={scale} />
+            <Block label="띠 안의 내용" />
+            <Measure px={v.band} scale={scale} />
+          </div>
           <Measure px={v.bottom} scale={scale} />
           <div className="grid h-10 place-items-center bg-neutral-800 text-[11px] text-neutral-300">
             {'푸터'}
           </div>
         </div>
       </div>
-      <p className="mt-3 text-xs/[1.7] text-neutral-500">{'세로 축척 1:2.'}</p>
+      <p className="mt-3 text-xs/[1.7] text-neutral-500">
+        {'세로 축척 1:2. 회색 띠는 배경이 있는 섹션이다.'}
+      </p>
     </div>
   );
 }
