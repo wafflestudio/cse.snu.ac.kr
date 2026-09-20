@@ -148,66 +148,66 @@
    `SubNavbar` 의 `right` 가 같은 식을 쓴다. 한쪽만 고치면 서브내비가 본문에서 떨어져 나간다. */
 @layer components {
   /* 가로 기준은 식 하나에서 나온다. 쓰는 방식만 다르다 —
-       .page-gutter-x   본문 칸. 서브내비 자리를 비운다
-       .page-band-x     헤더·제목·푸터처럼 배경이 화면 끝까지 가는 띠
+       .page-gutter-x   본문 칸. 오른쪽에 서브내비 자리를 비운다
+       .page-band-x     헤더·제목·푸터. 서브내비 위를 지나가는 띠라 오른쪽도 가장자리까지 간다
        .page-inset-x    마진으로 밀어 넣는 것(메인의 어두운 카드는 면 자체가 안쪽에 있어야 한다)
-       .page-band-start 왼쪽만(메인 새 소식은 캐러셀이 오른쪽으로 흘러나간다) */
+       .page-band-start 왼쪽만(메인 새 소식은 캐러셀이 오른쪽으로 흘러나간다)
+     왼쪽 선은 넷이 공유한다 — `--block` 이 같아야 넓은 화면에서 층끼리 어긋나지 않는다. */
   .page-gutter-x,
   .page-band-x,
   .page-inset-x,
   .page-band-start {
     /* 모바일 레이아웃이 1023 까지 늘어난다 — 20px 만 두면 넓은 화면에서 글이 가장자리에 붙는다.
        160 = 640px. 그 폭을 넘으면 남는 공간을 좌우로 나눠 가운데에 둔다. */
-    --gutter-start: max(
-      calc(var(--spacing) * 5),
-      calc((100% - calc(var(--spacing) * 160)) / 2)
+    --edge: calc(var(--spacing) * 5);
+    --edge-end: var(--edge);
+    --block: calc(var(--spacing) * 160 + var(--edge) * 2);
+    --start: max(var(--edge), calc((100% - var(--block)) / 2 + var(--edge)));
+    --end: max(
+      var(--edge-end),
+      calc((100% - var(--block)) / 2 + var(--edge-end))
     );
-    --gutter-end: var(--gutter-start);
   }
 
   @media (width >= 64rem) {
-    /* 25 = 왼쪽 거터, 350 = 25 + 본문 상한 300 + 오른쪽 25. 단위는 --spacing(4px). */
+    /* 25 = 가장자리 거터, 350 = 25 + 본문 상한 300 + 25. 단위는 --spacing(4px). */
     .page-gutter-x,
     .page-band-x,
     .page-inset-x,
     .page-band-start {
       --edge: calc(var(--spacing) * 25);
       --block: calc(var(--spacing) * 350);
-      --gutter-start: max(
-        var(--edge),
-        calc((100% - var(--block)) / 2 + var(--edge))
-      );
-      --gutter-end: var(--gutter-start);
     }
   }
 
   /* 서브내비가 실제로 보이는 폭(xl)부터 그 자리를 비운다 — 1024~1279 는 서브내비를 감추고
      본문이 그 자리를 쓴다. `:has()` 로 푸터까지 덮는다(푸터는 `__root` 에 있어 서브내비
-     여부를 모르는데, 기준 폭이 층마다 갈리면 넓은 화면에서 본문과 130px 어긋난다). */
+     여부를 모르는데, `--block` 이 층마다 갈리면 넓은 화면에서 본문과 130px 어긋난다). */
   @media (width >= 80rem) {
     body:has([data-subnav]) .page-gutter-x,
     body:has([data-subnav]) .page-band-x,
     body:has([data-subnav]) .page-inset-x,
     body:has([data-subnav]) .page-band-start {
+      --edge-end: calc(var(--spacing) * 90);
       --block: calc(var(--spacing) * 415);
-      --gutter-end: max(
-        calc(var(--spacing) * 90),
-        calc((100% - var(--block)) / 2 + var(--spacing) * 90)
-      );
     }
   }
 
-  .page-gutter-x,
+  .page-gutter-x {
+    padding-inline: var(--start) var(--end);
+  }
+
+  /* 띠는 서브내비 위를 지나간다 — 오른쪽을 360 에서 멈추면 검색바가 안쪽에 어정쩡하게 선다. */
   .page-band-x {
-    padding-inline: var(--gutter-start) var(--gutter-end);
+    padding-inline: var(--start);
   }
 
   .page-inset-x {
-    margin-inline: var(--gutter-start) var(--gutter-end);
+    margin-inline: var(--start) var(--end);
   }
 
   .page-band-start {
-    padding-inline-start: var(--gutter-start);
+    padding-inline-start: var(--start);
   }
 
   /* 페이지가 끝나는 자리의 아래 여백 — 데스크톱 150 · 모바일 64.
