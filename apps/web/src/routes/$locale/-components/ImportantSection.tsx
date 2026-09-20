@@ -11,7 +11,7 @@ export default function ImportantSection({
   importantList: MainImportant[];
 }) {
   return (
-    <div className="mt-10 grid grid-cols-1 gap-8 sm:mx-30 sm:mt-16.25 sm:grid-cols-2 sm:gap-7">
+    <div className="page-inset-x mt-16 grid grid-cols-1 gap-8 sm:mt-22 sm:grid-cols-2 sm:gap-8">
       {importantList.map((important) => (
         <ImportantBanner key={important.id} important={important} />
       ))}

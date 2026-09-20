@@ -70,7 +70,7 @@ function SeminarDetailPage() {
       <h2 className="page-gutter-x py-9 text-xl font-bold leading-[1.4]">
         {seminar.title}
       </h2>
-      <div className="bg-neutral-50 page-gutter-x pb-36 pt-9">
+      <div className="bg-neutral-50 page-gutter-x pt-9 page-end">
         <Attachments files={seminar.attachments ?? []} />
         <div className="mb-9 flex flex-col-reverse justify-between gap-5 text-md sm:flex-row">
           <div className="flex flex-col gap-3">

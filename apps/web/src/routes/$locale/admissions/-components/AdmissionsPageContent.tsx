@@ -126,7 +126,7 @@ export default function AdmissionsPageContent({
   const { activeItem } = useNavItem();
   const subNav = useAdmissionsSubNav();
   const title = activeItem ? tUnsafe(activeItem.key) : t('입학');
-  const wrapperClass = layout === 'extraBottom' ? 'pb-16 sm:pb-55' : '';
+  const wrapperClass = layout === 'extraBottom' ? 'page-end' : '';
 
   // activeItem.path가 있으면 자동으로 editPath 생성
   const editPath = activeItem?.path ? `${activeItem.path}/edit` : null;

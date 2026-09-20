@@ -5,7 +5,7 @@ export default function LinkSection() {
   const { t, localizedPath } = useLanguage();
 
   return (
-    <div className="mx-6 mb-28 mt-15 flex flex-col gap-16 sm:mx-31 sm:mb-48 sm:mt-22.5 sm:flex-row sm:gap-32">
+    <div className="page-inset-x mb-16 mt-16 flex flex-col gap-16 sm:mt-22 sm:mb-37.5 sm:flex-row sm:gap-32">
       <div className="flex flex-1 flex-col gap-6 sm:gap-9">
         <h3 className="text-md font-medium text-neutral-400 sm:text-xl">
           {t('바로가기')}

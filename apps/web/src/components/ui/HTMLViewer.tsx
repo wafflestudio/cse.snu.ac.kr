@@ -32,7 +32,9 @@ export default function HTMLViewer({
   const hasComponent = isNotFalsy(component);
 
   return (
-    <div className="flow-root">
+    // 읽는 글의 폭은 본문 칸과 다르다 — 본문 칸이 1200 까지 가면 한 줄이 122자가 된다(권장 45~90).
+    // 180 = 720px, 지금 1280 화면의 본문 폭 그대로라 좁은 화면에서는 달라지지 않는다.
+    <div className="flow-root max-w-180">
       {hasImage && (
         <div
           className={clsx(

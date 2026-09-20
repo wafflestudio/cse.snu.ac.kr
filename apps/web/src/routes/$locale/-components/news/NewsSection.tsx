@@ -9,8 +9,10 @@ export default function NewsSection({ mainNews }: { mainNews: MainNews[] }) {
   const { t, localizedPath } = useLanguage();
 
   return (
-    <div className="relative flex flex-col gap-6.5 overflow-hidden bg-neutral-100 pb-12 pl-5 pt-8 sm:flex-row sm:gap-15 sm:py-10 sm:pl-15 sm:pr-37.5 sm:pt-18">
-      <div className="flex flex-col gap-2">
+    <div className="relative flex flex-col gap-6.5 overflow-hidden bg-neutral-100 page-band-start pb-12 pt-8 sm:flex-row sm:gap-15 sm:py-10 sm:pr-37.5 sm:pt-18">
+      {/* 캐러셀이 고정폭이라 `shrink-0` 이 없으면 제목 칸이 34px 까지 눌려 「새 소식」이
+          석 줄로 접힌다. 캐러셀은 `overflow-hidden` 안에서 오른쪽으로 흘러나가는 게 제 모양이다. */}
+      <div className="flex shrink-0 flex-col gap-2">
         <h3 className="text-xl font-bold text-neutral-800 sm:text-3xl sm:font-medium">
           {t('새 소식')}
         </h3>

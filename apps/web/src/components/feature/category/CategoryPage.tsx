@@ -42,7 +42,7 @@ export default function CategoryPage({
   return (
     <div className="bg-neutral-850">
       <Header />
-      <div className="max-w-7xl px-5 py-8 sm:px-25 sm:pb-18 sm:pt-12">
+      <div className="page-gutter-x page-end pt-8 sm:pt-12">
         <div className="mb-2 text-sm font-normal text-neutral-400 sm:text-xl">
           {subtitle}
         </div>
@@ -60,7 +60,7 @@ export default function CategoryPage({
       </div>
       <CategoryGrid currentPage={currentPage} theme="dark" />
       {description && (
-        <div className="px-5 pb-14 pt-7 sm:hidden">
+        <div className="page-gutter-x page-end pt-7 sm:hidden">
           <Description contentClassName="text-neutral-400 text-sm font-normal">
             {description}
           </Description>

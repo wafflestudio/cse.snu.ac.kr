@@ -134,7 +134,7 @@ function RootDocument() {
       <body
         className={clsx(
           'font-normal text-neutral-800',
-          isDesignSystem ? 'bg-white' : 'sm:min-w-[1200px] bg-neutral-900',
+          isDesignSystem ? 'bg-white' : 'bg-neutral-900',
         )}
       >
         {!isDesignSystem && <LNB />}

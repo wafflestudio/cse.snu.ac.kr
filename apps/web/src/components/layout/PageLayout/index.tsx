@@ -59,10 +59,10 @@ export default function PageLayout({
     padding === 'none'
       ? 'p-0'
       : padding === 'noTop'
-        ? 'page-gutter-x pb-16 sm:pb-37.5'
+        ? 'page-gutter-x page-end'
         : padding === 'noBottom'
           ? 'page-gutter-x pt-7 sm:pt-11'
-          : 'page-gutter-x pt-7 pb-16 sm:pt-11 sm:pb-37.5';
+          : 'page-gutter-x page-end pt-7 sm:pt-11';
 
   return (
     <>
@@ -92,9 +92,14 @@ export default function PageLayout({
             margin={titleMargin}
           />
         )}
-        <div className={`relative grow bg-white ${paddingClass}`}>
-          {children}
+        <div
+          className={`relative grow bg-white ${paddingClass}`}
+          data-subnav={subNav ? '' : undefined}
+        >
+          {/* 서브내비를 먼저 둔다 — 절대 배치라 자리는 그대로고, 뒤에 두면 `.page-end` 의
+              `:last-child` 가 서브내비를 가리켜 본문 마지막 블록의 마진이 안 지워진다. */}
           {subNav && <SubNavbar {...subNav} />}
+          {children}
         </div>
       </div>
     </>

@@ -66,7 +66,7 @@ function StaffDetailPage() {
         </div>
       </LoginVisible>
 
-      <div className="relative mb-32 flex flex-col items-start sm:flex-row sm:gap-15">
+      <div className="relative mb-16 flex flex-col items-start sm:mb-37.5 sm:flex-row sm:gap-15">
         <PeopleProfileImage imageURL={staff.imageURL} />
         <div className="mt-6 sm:mt-0">
           <PeopleContactList title={t('연락처')} items={contactItems} />

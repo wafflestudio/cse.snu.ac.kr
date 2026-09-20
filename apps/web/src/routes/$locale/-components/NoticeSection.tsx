@@ -39,7 +39,7 @@ export default function NoticeSection({
   const { t, localizedPath, locale } = useLanguage();
 
   return (
-    <div className="relative mt-16 bg-neutral-800 sm:mx-31 sm:mt-22 sm:h-112">
+    <div className="page-inset-x relative mt-16 bg-neutral-800 sm:mt-22 sm:h-112">
       <div className="absolute left-0 top-0 hidden aspect-827/295 w-[77%] sm:block">
         <Image
           src={noticeGraphicImg}

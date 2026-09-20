@@ -26,12 +26,13 @@ export default function SubNavbar({ title, titlePath, items }: SubNavConfig) {
   const { localizedPath } = useLanguage();
 
   // 본문이 1200px 에서 멈추면 서브내비도 거기 붙어 따라온다 — 화면 끝을 기준으로 두면 넓은
-  // 화면에서 본문과 1000px 가까이 벌어진다. 기준값은 `.page-gutter-x` 의 오른쪽 패딩과 한 쌍이다.
+  // 화면에서 본문과 1000px 가까이 벌어진다. 식은 `.page-gutter-x` 의 오른쪽 패딩과 한 쌍이다.
+  // 20 = 서브내비와 오른쪽 끝 사이, 415 = 왼쪽 25 + 본문 300 + 서브내비 자리 90.
   const anchor =
-    'right-[max(calc(var(--spacing)*20),calc(100%-calc(var(--spacing)*395)))]';
+    'right-[max(calc(var(--spacing)*20),calc((100%-calc(var(--spacing)*415))/2+var(--spacing)*20))]';
 
   return (
-    <div className={`absolute top-0 hidden h-full sm:block ${anchor}`}>
+    <div className={`absolute top-0 hidden h-full xl:block ${anchor}`}>
       <div
         className={clsx(
           'sticky top-[52px] col-start-2 row-span-full mb-8 mt-13 flex',

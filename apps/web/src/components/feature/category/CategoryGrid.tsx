@@ -12,9 +12,9 @@ interface CategoryGridProps {
 }
 
 const ROOT_GRID_CLASS =
-  'mb-5 grid grid-cols-[repeat(2,1fr)] gap-9 sm:mb-10 sm:grid-cols-[repeat(auto-fill,300px)] sm:gap-9';
+  'mb-5 grid grid-cols-[repeat(2,1fr)] gap-8 sm:mb-10 sm:grid-cols-[repeat(auto-fill,300px)] sm:gap-8';
 const LEAF_GRID_CLASS =
-  'grid grid-cols-[repeat(2,1fr)] gap-5 sm:mb-10 sm:grid-cols-[repeat(auto-fill,300px)] sm:gap-10';
+  'grid grid-cols-[repeat(2,1fr)] gap-5 sm:mb-10 sm:grid-cols-[repeat(auto-fill,300px)] sm:gap-8';
 
 export default function CategoryGrid({
   currentPage,
@@ -43,7 +43,7 @@ export default function CategoryGrid({
     <div
       className={clsx(
         isLight ? 'bg-white' : 'bg-neutral-900',
-        'px-5 py-7 sm:px-25 sm:pb-45 sm:pt-20',
+        'page-gutter-x page-end pt-7 sm:pt-20',
       )}
     >
       <div className={ROOT_GRID_CLASS}>

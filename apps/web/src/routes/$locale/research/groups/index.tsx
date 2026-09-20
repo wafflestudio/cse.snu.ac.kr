@@ -86,7 +86,7 @@ function ResearchGroupsPage() {
         <SelectionList items={items} />
       </div>
       {item && (
-        <div className="flex flex-col bg-neutral-100 page-gutter-x pb-9 pt-8 sm:pb-25 sm:pt-12.5">
+        <div className="flex flex-col bg-neutral-100 page-gutter-x page-end pt-8 sm:pt-12.5">
           <LoginVisible allow="ROLE_STAFF">
             <div className="mb-7 flex justify-end gap-3">
               <Button

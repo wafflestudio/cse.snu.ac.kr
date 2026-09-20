@@ -8,7 +8,7 @@ interface SelectionListProps {
 
 export default function SelectionList({ items }: SelectionListProps) {
   return (
-    <ul className="mb-6 grid grid-cols-2 gap-3 pt-7 sm:mb-9 sm:pt-11 lg:grid-cols-[repeat(auto-fit,minmax(236px,auto))]">
+    <ul className="mb-6 grid grid-cols-2 gap-4 pt-7 sm:mb-9 sm:pt-11 xl:grid-cols-[repeat(auto-fit,minmax(236px,auto))]">
       {items.map((item) => (
         <SelectionItem
           key={item.id}
@@ -29,7 +29,7 @@ interface SelectionItemProps {
 
 function SelectionItem({ name, isSelected, href }: SelectionItemProps) {
   const itemCommonStyle =
-    'flex items-center justify-center w-full h-10 py-3 text-center text-xs sm:text-sm lg:text-md';
+    'flex items-center justify-center w-full h-10 py-3 text-center text-xs sm:text-sm xl:text-md';
 
   return (
     <li>

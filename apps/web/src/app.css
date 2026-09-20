@@ -35,6 +35,11 @@
 }
 
 @theme {
+  /* 이 앱의 레이아웃은 모바일과 데스크톱 둘뿐이고 `sm:` 이 그 스위치다(442곳).
+     데스크톱은 사이드바 100 + 왼쪽 거터 100 + 본문 + 오른쪽 거터를 요구해 1024 아래에선
+     본문이 눌린다 — 기본값 640 을 쓰면 640~1023 이 잘린 화면이 된다. 서브내비는 `xl:`(1280). */
+  --breakpoint-sm: 64rem;
+
   /* Tailwind 기본 팔레트를 끈다. 이 블록에 없는 색은 클래스 자체가 만들어지지 않아
      `bg-rose-400` 같은 게 조용히 통과하는 일이 없다. 대신 white·transparent·inherit 처럼
      기본에 기대던 것도 여기서 직접 선언해야 한다. */
@@ -126,25 +131,90 @@
   }
 }
 
-/* 표준 페이지 본문 가로 거터 — 단일 출처.
-   좌 100px(pl-25) / 모바일 20px(px-5). 페이지·섹션은 가로 거터를 인라인 재선언하지 말고
-   이 클래스를 쓴다(세로 패딩만 각자).
+/* 레이어 밖에 둔다 — 카스케이드 레이어는 명시도를 이겨서, `@layer components` 안에 두면
+   마지막 자식의 유틸리티 `mb-10` 에 무조건 진다. */
+.page-end > :last-child {
+  margin-bottom: 0;
+}
 
-   오른쪽은 최소 360px(서브내비 자리)이되, 본문이 1200px 를 넘으면 남는 만큼 더 가져간다.
-   1300 = 왼쪽 거터 100 + 본문 상한 1200. `SubNavbar` 의 `right` 가 같은 기준을 쓴다 —
-   한쪽만 고치면 서브내비가 본문에서 떨어져 나간다. */
+/* 표준 페이지 본문 가로 거터 — 단일 출처.
+
+   왼쪽 100(모바일 20) 하나. 오른쪽은 서브내비가 있을 때만 360 을 비운다 —
+   `PageLayout` 이 `data-subnav` 를 달고, 없으면 왼쪽과 같은 100 이다.
+   서브내비 자리를 늘 비워두면 넓은 화면에서 가운데 정렬을 해도 내용이 그만큼 왼쪽으로 치우친다.
+
+   본문 상한 1200 을 넘기면 남는 공간을 좌우로 나눈다. 배경을 자르지 않고 패딩만 키우는 이유는
+   흰 면·검은 띠가 화면 끝까지 가야 하기 때문이다 — 잘라내면 페이지가 한쪽으로 쏠려 보인다.
+   `SubNavbar` 의 `right` 가 같은 식을 쓴다. 한쪽만 고치면 서브내비가 본문에서 떨어져 나간다. */
 @layer components {
-  .page-gutter-x {
-    @apply px-5 sm:pl-25;
+  /* 가로 기준은 식 하나에서 나온다. 쓰는 방식만 다르다 —
+       .page-gutter-x   본문 칸. 서브내비 자리를 비운다
+       .page-band-x     헤더·제목·푸터처럼 배경이 화면 끝까지 가는 띠
+       .page-inset-x    마진으로 밀어 넣는 것(메인의 어두운 카드는 면 자체가 안쪽에 있어야 한다)
+       .page-band-start 왼쪽만(메인 새 소식은 캐러셀이 오른쪽으로 흘러나간다) */
+  .page-gutter-x,
+  .page-band-x,
+  .page-inset-x,
+  .page-band-start {
+    /* 모바일 레이아웃이 1023 까지 늘어난다 — 20px 만 두면 넓은 화면에서 글이 가장자리에 붙는다.
+       160 = 640px. 그 폭을 넘으면 남는 공간을 좌우로 나눠 가운데에 둔다. */
+    --gutter-start: max(
+      calc(var(--spacing) * 5),
+      calc((100% - calc(var(--spacing) * 160)) / 2)
+    );
+    --gutter-end: var(--gutter-start);
   }
 
-  @media (width >= 40rem) {
-    .page-gutter-x {
-      padding-right: max(
+  @media (width >= 64rem) {
+    /* 25 = 왼쪽 거터, 350 = 25 + 본문 상한 300 + 오른쪽 25. 단위는 --spacing(4px). */
+    .page-gutter-x,
+    .page-band-x,
+    .page-inset-x,
+    .page-band-start {
+      --edge: calc(var(--spacing) * 25);
+      --block: calc(var(--spacing) * 350);
+      --gutter-start: max(
+        var(--edge),
+        calc((100% - var(--block)) / 2 + var(--edge))
+      );
+      --gutter-end: var(--gutter-start);
+    }
+  }
+
+  /* 서브내비가 실제로 보이는 폭(xl)부터 그 자리를 비운다 — 1024~1279 는 서브내비를 감추고
+     본문이 그 자리를 쓴다. `:has()` 로 푸터까지 덮는다(푸터는 `__root` 에 있어 서브내비
+     여부를 모르는데, 기준 폭이 층마다 갈리면 넓은 화면에서 본문과 130px 어긋난다). */
+  @media (width >= 80rem) {
+    body:has([data-subnav]) .page-gutter-x,
+    body:has([data-subnav]) .page-band-x,
+    body:has([data-subnav]) .page-inset-x,
+    body:has([data-subnav]) .page-band-start {
+      --block: calc(var(--spacing) * 415);
+      --gutter-end: max(
         calc(var(--spacing) * 90),
-        calc(100% - calc(var(--spacing) * 325))
+        calc((100% - var(--block)) / 2 + var(--spacing) * 90)
       );
     }
+  }
+
+  .page-gutter-x,
+  .page-band-x {
+    padding-inline: var(--gutter-start) var(--gutter-end);
+  }
+
+  .page-inset-x {
+    margin-inline: var(--gutter-start) var(--gutter-end);
+  }
+
+  .page-band-start {
+    padding-inline-start: var(--gutter-start);
+  }
+
+  /* 페이지가 끝나는 자리의 아래 여백 — 데스크톱 150 · 모바일 64.
+     마지막 자식의 `mb` 를 지우는 게 핵심이다. 안 지우면 컨테이너를 150 으로 맞춰도
+     페이지마다 150·178·190·222 로 갈린다 — 여백은 부모가 갖는다. */
+  .page-end {
+    @apply pb-16 sm:pb-37.5;
   }
 
   /* SNU 로고는 흰색·회색·주황 세 가지로만 쓰인다. 인라인 <svg> 로 두면 소수 2178개짜리 path 가
