@@ -2,19 +2,19 @@
 .themeOrange {
   background-color: #ff6914;
   border: 1px solid #ff6914;
-  border-radius: 0.125rem;
+  border-radius: var(--radius-surface);
 }
 
 .themeLightGray {
   background-color: #fafafa;
   border: 1px solid #f5f5f5;
-  border-radius: 0.125rem;
+  border-radius: var(--radius-surface);
 }
 
 .themeBlack {
   background-color: #fafafa;
   border: 1px solid #f5f5f5;
-  border-radius: 0.125rem;
+  border-radius: var(--radius-surface);
 }
 
 /* Triangle base */
@@ -47,12 +47,12 @@
 /* Triangle sizes */
 .triangleSizeSmall {
   border-width: 1.25rem 0 0 1.25rem;
-  border-bottom-left-radius: 0.125rem;
+  border-bottom-left-radius: var(--radius-surface);
 }
 
 .triangleSizeLarge {
   border-width: 2.5rem 0 0 2.5rem;
-  border-bottom-left-radius: 0.125rem;
+  border-bottom-left-radius: var(--radius-surface);
 }
 
 /* Shadows */
@@ -86,7 +86,7 @@
   width: 0;
   height: 0;
   transition: 0.3s;
-  border-bottom-left-radius: 2px;
+  border-bottom-left-radius: var(--radius-surface);
 }
 
 .folding::before {

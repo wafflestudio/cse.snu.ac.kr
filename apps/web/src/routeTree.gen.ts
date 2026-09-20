@@ -25,7 +25,6 @@ import { Route as DesignSystemLayoutRouteImport } from './routes/design-system/l
 import { Route as DesignSystemIconRouteImport } from './routes/design-system/icon'
 import { Route as DesignSystemComponentsRouteImport } from './routes/design-system/components'
 import { Route as DesignSystemColorRouteImport } from './routes/design-system/color'
-import { Route as DesignSystemAccessibilityRouteImport } from './routes/design-system/accessibility'
 import { Route as DotinternalEditRouteImport } from './routes/[.]internal/edit'
 import { Route as LocaleSearchIndexRouteImport } from './routes/$locale/search/index'
 import { Route as LocaleReservationsIndexRouteImport } from './routes/$locale/reservations/index'
@@ -200,12 +199,6 @@ const DesignSystemColorRoute = DesignSystemColorRouteImport.update({
   path: '/color',
   getParentRoute: () => DesignSystemRouteRoute,
 } as any)
-const DesignSystemAccessibilityRoute =
-  DesignSystemAccessibilityRouteImport.update({
-    id: '/accessibility',
-    path: '/accessibility',
-    getParentRoute: () => DesignSystemRouteRoute,
-  } as any)
 const DotinternalEditRoute = DotinternalEditRouteImport.update({
   id: '/.internal/edit',
   path: '/.internal/edit',
@@ -750,7 +743,6 @@ export interface FileRoutesByFullPath {
   '/img': typeof ImgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/.internal/edit': typeof DotinternalEditRoute
-  '/design-system/accessibility': typeof DesignSystemAccessibilityRoute
   '/design-system/color': typeof DesignSystemColorRoute
   '/design-system/components': typeof DesignSystemComponentsRoute
   '/design-system/icon': typeof DesignSystemIconRoute
@@ -859,7 +851,6 @@ export interface FileRoutesByTo {
   '/img': typeof ImgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/.internal/edit': typeof DotinternalEditRoute
-  '/design-system/accessibility': typeof DesignSystemAccessibilityRoute
   '/design-system/color': typeof DesignSystemColorRoute
   '/design-system/components': typeof DesignSystemComponentsRoute
   '/design-system/icon': typeof DesignSystemIconRoute
@@ -971,7 +962,6 @@ export interface FileRoutesById {
   '/img': typeof ImgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/.internal/edit': typeof DotinternalEditRoute
-  '/design-system/accessibility': typeof DesignSystemAccessibilityRoute
   '/design-system/color': typeof DesignSystemColorRoute
   '/design-system/components': typeof DesignSystemComponentsRoute
   '/design-system/icon': typeof DesignSystemIconRoute
@@ -1084,7 +1074,6 @@ export interface FileRouteTypes {
     | '/img'
     | '/sitemap.xml'
     | '/.internal/edit'
-    | '/design-system/accessibility'
     | '/design-system/color'
     | '/design-system/components'
     | '/design-system/icon'
@@ -1193,7 +1182,6 @@ export interface FileRouteTypes {
     | '/img'
     | '/sitemap.xml'
     | '/.internal/edit'
-    | '/design-system/accessibility'
     | '/design-system/color'
     | '/design-system/components'
     | '/design-system/icon'
@@ -1304,7 +1292,6 @@ export interface FileRouteTypes {
     | '/img'
     | '/sitemap.xml'
     | '/.internal/edit'
-    | '/design-system/accessibility'
     | '/design-system/color'
     | '/design-system/components'
     | '/design-system/icon'
@@ -1533,13 +1520,6 @@ declare module '@tanstack/react-router' {
       path: '/color'
       fullPath: '/design-system/color'
       preLoaderRoute: typeof DesignSystemColorRouteImport
-      parentRoute: typeof DesignSystemRouteRoute
-    }
-    '/design-system/accessibility': {
-      id: '/design-system/accessibility'
-      path: '/accessibility'
-      fullPath: '/design-system/accessibility'
-      preLoaderRoute: typeof DesignSystemAccessibilityRouteImport
       parentRoute: typeof DesignSystemRouteRoute
     }
     '/.internal/edit': {
@@ -2425,7 +2405,6 @@ const LocaleRouteRouteWithChildren = LocaleRouteRoute._addFileChildren(
 )
 
 interface DesignSystemRouteRouteChildren {
-  DesignSystemAccessibilityRoute: typeof DesignSystemAccessibilityRoute
   DesignSystemColorRoute: typeof DesignSystemColorRoute
   DesignSystemComponentsRoute: typeof DesignSystemComponentsRoute
   DesignSystemIconRoute: typeof DesignSystemIconRoute
@@ -2437,7 +2416,6 @@ interface DesignSystemRouteRouteChildren {
 }
 
 const DesignSystemRouteRouteChildren: DesignSystemRouteRouteChildren = {
-  DesignSystemAccessibilityRoute: DesignSystemAccessibilityRoute,
   DesignSystemColorRoute: DesignSystemColorRoute,
   DesignSystemComponentsRoute: DesignSystemComponentsRoute,
   DesignSystemIconRoute: DesignSystemIconRoute,

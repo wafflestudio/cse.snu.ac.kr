@@ -27,7 +27,7 @@ export default function Text({
       type="text"
       className={clsx(
         maxWidth,
-        'autofill-bg-white min-h-8 rounded-xs border border-neutral-300',
+        'autofill-bg-white min-h-8 rounded-control border border-neutral-300',
         bgColor,
         'pl-2 text-sm outline-none placeholder:text-neutral-300 disabled:text-neutral-400',
         textCenter && 'pr-2 text-center',

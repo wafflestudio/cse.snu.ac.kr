@@ -105,7 +105,7 @@ function FacilitiesEdit() {
                   );
                   if (selected) handleFacilityChange(selected);
                 }}
-                className="w-full max-w-md rounded-md border border-neutral-300 px-3 py-2"
+                className="w-full max-w-md rounded-control border border-neutral-300 px-3 py-2"
               >
                 {allFacilities.map((f) => (
                   <option key={f.id} value={f.id}>

@@ -47,7 +47,7 @@ export default function FilePicker({
   return (
     <div className={`flex gap-3 ${multiple && 'flex-col'}`}>
       <SelectFileButton onChange={handleChange} multiple={multiple} />
-      <ol className="self-start rounded-sm border border-neutral-200 bg-neutral-50">
+      <ol className="self-start rounded-surface border border-neutral-200 bg-neutral-50">
         {(files as EditorFile[]).map((item, idx) => (
           <FilePickerRow
             key={idx}
@@ -71,7 +71,7 @@ function SelectFileButton({
   multiple: boolean;
 }) {
   return (
-    <label className="mr-3 flex h-8 cursor-pointer items-center self-start rounded-sm border border-neutral-300 px-2.5 text-xs hover:bg-neutral-100">
+    <label className="mr-3 flex h-8 cursor-pointer items-center self-start rounded-control border border-neutral-300 px-2.5 text-xs hover:bg-neutral-100">
       파일 선택
       <input
         type="file"

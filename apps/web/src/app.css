@@ -40,6 +40,13 @@
      본문이 눌린다 — 기본값 640 을 쓰면 640~1023 이 잘린 화면이 된다. 서브내비는 `xl:`(1280). */
   --breakpoint-sm: 64rem;
 
+  /* 모서리는 역할로 고른다 — 컨트롤은 각지고, 면은 살짝 둥글고, 알약은 완전히 둥글다.
+     팔레트를 닫아 `rounded-sm` 같은 기본 단계를 못 쓰게 한다. `rounded-full`·`rounded-none`
+     은 토큰이 아니라 고정 유틸리티라 그대로 남는다. */
+  --radius-*: initial;
+  --radius-control: 1px;
+  --radius-surface: 4px;
+
   /* Tailwind 기본 팔레트를 끈다. 이 블록에 없는 색은 클래스 자체가 만들어지지 않아
      `bg-rose-400` 같은 게 조용히 통과하는 일이 없다. 대신 white·transparent·inherit 처럼
      기본에 기대던 것도 여기서 직접 선언해야 한다. */

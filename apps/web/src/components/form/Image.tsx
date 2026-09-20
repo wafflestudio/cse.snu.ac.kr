@@ -23,7 +23,7 @@ export default function ImagePicker({ name, options }: Props) {
 
   return (
     <>
-      <label className="mb-3 flex min-h-7 w-fit cursor-pointer items-center self-start rounded-sm border border-neutral-300 px-2.5 text-xs/4 hover:bg-neutral-100">
+      <label className="mb-3 flex min-h-7 w-fit cursor-pointer items-center self-start rounded-control border border-neutral-300 px-2.5 text-xs/4 hover:bg-neutral-100">
         {`이미지 ${file ? '변경' : '업로드'}`}
         <input
           type="file"
@@ -90,7 +90,7 @@ const SelectedImageViewer = ({
   };
 
   return (
-    <div className="relative flex gap-3 self-start rounded-sm border border-neutral-200 bg-neutral-50 pb-2 pl-2 pr-4 pt-2">
+    <div className="relative flex gap-3 self-start rounded-surface border border-neutral-200 bg-neutral-50 pb-2 pl-2 pr-4 pt-2">
       <Image
         src={imageURL}
         alt="선택된 이미지"

@@ -18,7 +18,7 @@ export default function TextArea({
       {...register(name, options)}
       {...props}
       className={clsx(
-        'autofill-bg-white h-20 w-full resize-none rounded-xs border border-neutral-300 p-2 text-sm outline-none placeholder:text-neutral-300',
+        'autofill-bg-white h-20 w-full resize-none rounded-control border border-neutral-300 p-2 text-sm outline-none placeholder:text-neutral-300',
         className,
       )}
     />

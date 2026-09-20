@@ -108,7 +108,7 @@ export function SurfaceExamples() {
 
           <div className="mt-3 flex items-center gap-3 bg-neutral-50 p-3">
             <span className="shrink-0 text-xs font-bold">검색</span>
-            <span className="flex h-7 w-44 items-center justify-between rounded-sm bg-white pr-2">
+            <span className="flex h-7 w-44 items-center justify-between rounded-control bg-white pr-2">
               <span className="px-2 text-xs text-neutral-300">
                 검색어를 입력하세요
               </span>

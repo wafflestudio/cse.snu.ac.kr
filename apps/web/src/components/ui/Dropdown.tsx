@@ -132,7 +132,7 @@ export default function Dropdown({
         aria-controls={open ? listboxId : undefined}
         onClick={() => setOpen((o) => !o)}
         onKeyDown={handleTriggerKeyDown}
-        className={`flex min-h-8 select-none items-center gap-4 rounded-xs border bg-white py-1 pr-1.5 pl-2.5 text-md/5 ${borderStyle} ${height ?? ''}`}
+        className={`flex min-h-8 select-none items-center gap-4 rounded-control border bg-white py-1 pr-1.5 pl-2.5 text-md/5 ${borderStyle} ${height ?? ''}`}
       >
         <span className="text-md font-normal">
           {contents[selectedIndex] ?? ''}
@@ -150,7 +150,7 @@ export default function Dropdown({
           tabIndex={-1}
           aria-activedescendant={`${listboxId}-opt-${activeIndex}`}
           onKeyDown={handleListKeyDown}
-          className={`styled-scrollbar absolute top-full left-0 z-10 max-h-[168px] w-full overflow-y-auto overscroll-contain rounded-bl-sm rounded-br-sm border-x border-b bg-white outline-none ${borderStyle}`}
+          className={`styled-scrollbar absolute top-full left-0 z-10 max-h-[168px] w-full overflow-y-auto overscroll-contain rounded-bl-control rounded-br-control border-x border-b bg-white outline-none ${borderStyle}`}
         >
           {contents.map((content, index) => (
             // 키보드는 listbox onKeyDown에서 aria-activedescendant로 일괄 처리하는 WAI-ARIA

@@ -126,7 +126,7 @@ export default function ImageModal({
           </VisuallyHidden.Root>
 
           {/* 세로 레이아웃 */}
-          <div className="flex flex-col w-[90vw] max-w-[320px] max-h-[70vh] sm:max-w-[400px] sm:max-h-[90vh] rounded-[4px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] overflow-hidden bg-white">
+          <div className="flex flex-col w-[90vw] max-w-[320px] max-h-[70vh] sm:max-w-[400px] sm:max-h-[90vh] rounded-surface shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] overflow-hidden bg-white">
             {/* 이미지 영역 */}
             <div className="flex-1 flex items-center justify-center overflow-auto">
               <img

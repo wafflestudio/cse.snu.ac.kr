@@ -61,11 +61,11 @@ const TEXT_SIZE_CLASSES: Record<ButtonSize, string> = {
 // 채움은 hover 에서 밝아지고 누르면 어두워진다. 텍스트형은 표면이 어두워서 방향이 뒤집힌다.
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
   primary:
-    'rounded-[.0625rem] bg-main-orange text-white hover:bg-main-orange-hover active:bg-main-orange-active',
+    'rounded-control bg-main-orange text-white hover:bg-main-orange-hover active:bg-main-orange-active',
   neutral:
-    'rounded-[.0625rem] bg-neutral-700 text-white hover:bg-neutral-500 active:bg-neutral-800',
+    'rounded-control bg-neutral-700 text-white hover:bg-neutral-500 active:bg-neutral-800',
   secondary:
-    'rounded-[.0625rem] border border-neutral-200 bg-neutral-100 text-neutral-500 hover:bg-neutral-200 active:border-neutral-300 active:bg-neutral-300 active:text-neutral-700',
+    'rounded-control border border-neutral-200 bg-neutral-100 text-neutral-500 hover:bg-neutral-200 active:border-neutral-300 active:bg-neutral-300 active:text-neutral-700',
   quiet: 'text-neutral-400 hover:text-white active:text-neutral-300',
   nav: 'text-white hover:text-neutral-300 active:text-neutral-400',
 };

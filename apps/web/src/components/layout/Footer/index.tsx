@@ -176,7 +176,7 @@ function CserealMembers() {
 
 function CserealPart({ part, members }: { part: string; members: string[] }) {
   return (
-    <div className="rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-5">
+    <div className="rounded-surface border border-neutral-200 bg-neutral-50 px-5 py-5">
       <h4 className="text-sm font-medium text-main-orange">{part}</h4>
       <div className="mt-4 flex flex-wrap gap-2">
         {members.map((member) => (

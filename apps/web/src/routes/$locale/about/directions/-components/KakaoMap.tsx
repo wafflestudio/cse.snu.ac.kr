@@ -56,7 +56,7 @@ export default function KakaoMap() {
     <div
       id="map"
       ref={containerRef}
-      className="h-80 w-full rounded-lg bg-neutral-100"
+      className="h-80 w-full rounded-surface bg-neutral-100"
     />
   );
 }

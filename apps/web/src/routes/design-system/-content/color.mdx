@@ -1,4 +1,6 @@
+import { Callout } from '../-components/Callout';
 import { AccentExamples, BorderExamples, ShellExamples, SurfaceExamples, TextExamples } from '../-components/ColorExamples';
+import { ContrastPreview } from '../-components/ContrastPreview';
 import { BrandColors, NeutralColors, ShellColors } from '../-components/ColorSwatches';
 
 주황색은 서울대학교 공과대학 홈페이지에서 사용하는 색 계열을 이어받았습니다. 공과대학과의 시각적 연속성을 유지하면서 메인 그래픽, 주요 행동, 선택 상태를 드러내는 학부의 강조색으로 사용합니다.
@@ -34,3 +36,15 @@ import { BrandColors, NeutralColors, ShellColors } from '../-components/ColorSwa
 ## 강조와 상태
 
 <AccentExamples />
+
+## 대비
+
+<ContrastPreview />
+
+WCAG AA의 최소 대비는 일반 텍스트 4.5:1, 큰 텍스트 3:1입니다. 큰 텍스트는 24px 이상 또는 약 18.7px 이상의 굵은 글자를 뜻합니다.
+
+<Callout>
+
+밝은 주황 면 위의 흰 글자는 2.88 로 본문 기준에 미달합니다. 주황을 갈색에 가깝게 낮추지 않는 한 넘길 수 없어, **버튼과 태그의 짧은 라벨에 한해 브랜드 표현을 우선하기로 했습니다.** 읽는 글이 올라가는 면에는 진한 주황과 `neutral-950` 을 씁니다(5.44).
+
+</Callout>

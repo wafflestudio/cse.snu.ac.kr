@@ -118,7 +118,7 @@ function CourseCardFront({
       ref={ref}
     >
       <div className="mb-4 flex items-center justify-between">
-        <div className="flex h-[26px] items-center whitespace-nowrap rounded-[1.875rem] border bg-white px-2.5 text-sm font-medium text-main-orange">
+        <div className="flex h-[26px] items-center whitespace-nowrap rounded-full border bg-white px-2.5 text-sm font-medium text-main-orange">
           {sortedProperties[0]}
         </div>
         <span className="ml-2 whitespace-nowrap text-xs text-neutral-500">

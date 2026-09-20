@@ -40,11 +40,6 @@ export const SECTIONS: {
     summary: '버튼·태그·입력처럼 화면을 이루는 공통 요소.',
   },
   {
-    to: '/design-system/accessibility',
-    title: '접근성',
-    summary: '대비와 초점, 이름과 대체 설명.',
-  },
-  {
     to: '/design-system/writing',
     title: '문구',
     summary: '제목·버튼·안내를 쓰는 기준.',

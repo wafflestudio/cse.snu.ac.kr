@@ -13,7 +13,7 @@ export default function Attachments({ files }: AttachmentsProps) {
 
   return (
     <div
-      className={`relative flex flex-col gap-2 self-start rounded-sm border border-neutral-200 bg-white sm:w-auto sm:max-w-fit ${variantSpacing}`}
+      className={`relative flex flex-col gap-2 self-start rounded-surface border border-neutral-200 bg-white sm:w-auto sm:max-w-fit ${variantSpacing}`}
     >
       {files.map((file, index) => {
         const byteStr = formatBytes(file.bytes);
