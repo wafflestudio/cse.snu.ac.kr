@@ -1,4 +1,5 @@
 import { AttachmentDemo } from '../-components/AttachmentDemo';
+import { ControlHeights } from '../-components/ControlHeights';
 import { ButtonDemo } from '../-components/ButtonDemo';
 import { DateDemo } from '../-components/DateDemo';
 import { DialogDemo } from '../-components/DialogDemo';
@@ -10,6 +11,14 @@ import { SelectionDemo } from '../-components/SelectionDemo';
 import { TagDemo } from '../-components/TagDemo';
 
 같은 역할의 요소는 형태와 상태 표현을 공유합니다. 채움, 테두리, 글자색의 차이로 강조와 선택을 구분합니다.
+
+## 높이
+
+한 줄에 놓이는 컨트롤은 높이가 같아야 합니다. 세 단계이고, 값은 **바닥값**입니다 — 글자가 두 줄이 되면 그만큼 자랍니다.
+
+<ControlHeights />
+
+테두리는 바닥값 **안**에 들어갑니다. 테두리가 있고 없고로 높이가 갈리지 않습니다.
 
 ## 버튼
 

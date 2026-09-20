@@ -2,6 +2,7 @@ import mdx from '@mdx-js/rollup';
 import tailwindcss from '@tailwindcss/vite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import viteReact from '@vitejs/plugin-react';
+import remarkGfm from 'remark-gfm';
 import { defineConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -12,7 +13,8 @@ export default defineConfig(() => {
     plugins: [
       tailwindcss(),
       // react plugin 보다 앞서야 .mdx 가 JSX 로 바뀐 뒤 변환된다.
-      { enforce: 'pre', ...mdx() },
+      // 표는 디자인 시스템 문서가 값을 늘어놓을 때 쓴다 — 기본 MDX 는 표를 모른다.
+      { enforce: 'pre', ...mdx({ remarkPlugins: [remarkGfm] }) },
       tanstackStart({
         router: {
           routesDirectory: 'routes',
