@@ -25,8 +25,13 @@ const heightMap = [
 export default function SubNavbar({ title, titlePath, items }: SubNavConfig) {
   const { localizedPath } = useLanguage();
 
+  // 본문이 1200px 에서 멈추면 서브내비도 거기 붙어 따라온다 — 화면 끝을 기준으로 두면 넓은
+  // 화면에서 본문과 1000px 가까이 벌어진다. 기준값은 `.page-gutter-x` 의 오른쪽 패딩과 한 쌍이다.
+  const anchor =
+    'right-[max(calc(var(--spacing)*20),calc(100%-calc(var(--spacing)*395)))]';
+
   return (
-    <div className="absolute right-[80px] top-0 hidden h-full sm:block">
+    <div className={`absolute top-0 hidden h-full sm:block ${anchor}`}>
       <div
         className={clsx(
           'sticky top-[52px] col-start-2 row-span-full mb-8 mt-13 flex',

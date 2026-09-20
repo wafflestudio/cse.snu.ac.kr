@@ -127,11 +127,24 @@
 }
 
 /* 표준 페이지 본문 가로 거터 — 단일 출처.
-   좌 100px(pl-25) / 우 360px(pr-90) / 모바일 20px(px-5). PageLayout 문서값 기준.
-   페이지·섹션은 가로 거터를 인라인 재선언하지 말고 이 클래스를 쓴다(세로 패딩만 각자). */
+   좌 100px(pl-25) / 모바일 20px(px-5). 페이지·섹션은 가로 거터를 인라인 재선언하지 말고
+   이 클래스를 쓴다(세로 패딩만 각자).
+
+   오른쪽은 최소 360px(서브내비 자리)이되, 본문이 1200px 를 넘으면 남는 만큼 더 가져간다.
+   1300 = 왼쪽 거터 100 + 본문 상한 1200. `SubNavbar` 의 `right` 가 같은 기준을 쓴다 —
+   한쪽만 고치면 서브내비가 본문에서 떨어져 나간다. */
 @layer components {
   .page-gutter-x {
-    @apply px-5 sm:pl-25 sm:pr-90;
+    @apply px-5 sm:pl-25;
+  }
+
+  @media (width >= 40rem) {
+    .page-gutter-x {
+      padding-right: max(
+        calc(var(--spacing) * 90),
+        calc(100% - calc(var(--spacing) * 325))
+      );
+    }
   }
 
   /* SNU 로고는 흰색·회색·주황 세 가지로만 쓰인다. 인라인 <svg> 로 두면 소수 2178개짜리 path 가
