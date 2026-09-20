@@ -75,7 +75,7 @@ export default function NewsCarousel({ news }: { news: MainNews[] }) {
     <div className="flex flex-col items-center">
       <div
         ref={emblaRef}
-        className={`mx-auto cursor-grab overflow-hidden pb-10 active:cursor-grabbing ${VIEWPORT_WIDTH}`}
+        className={`mx-auto cursor-grab overflow-hidden pb-6 active:cursor-grabbing ${VIEWPORT_WIDTH}`}
       >
         <div className={`flex ${CARD_GAP_TAILWIND}`}>
           {news.map((news) => (

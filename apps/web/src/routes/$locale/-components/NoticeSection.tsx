@@ -39,7 +39,7 @@ export default function NoticeSection({
   const { t, localizedPath, locale } = useLanguage();
 
   return (
-    <div className="page-inset-x relative mt-16 bg-neutral-800 sm:mt-22 sm:h-112">
+    <div className="page-inset-x relative mt-16 bg-neutral-800 sm:mt-22 sm:py-16">
       <div className="absolute left-0 top-0 hidden aspect-827/295 w-[77%] sm:block">
         <Image
           src={noticeGraphicImg}
@@ -48,7 +48,8 @@ export default function NoticeSection({
           className="absolute inset-0 h-full w-full"
         />
       </div>
-      <div className="flex flex-col px-7 pb-6.5 pt-12 sm:absolute sm:bottom-12 sm:right-12 sm:w-132 sm:p-0">
+      {/* 배경 그림이 절대 배치라 본문에 `relative` 가 없으면 그림 아래로 깔린다. */}
+      <div className="relative flex flex-col px-7 pb-12 pt-12 sm:ml-auto sm:mr-12 sm:w-132 sm:p-0">
         <h3 className="text-3xl font-bold text-white">{t('공지사항')}</h3>
         <div className="mt-6 flex items-center justify-between sm:mt-9">
           <fieldset
