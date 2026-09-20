@@ -31,46 +31,77 @@ export default function HTMLViewer({
   const hasImage = isNotFalsy(image);
   const hasComponent = isNotFalsy(component);
 
+  const layout = hasImage ? IMAGE_LAYOUT[image.width] : null;
+
   return (
-    // 읽는 글의 폭은 본문 칸과 다르다 — 본문 칸이 1200 까지 가면 한 줄이 122자가 된다(권장 45~90).
-    // 180 = 720px, 지금 1280 화면의 본문 폭 그대로라 좁은 화면에서는 달라지지 않는다.
-    <div className="flow-root max-w-180">
-      {hasImage && (
-        <div
-          className={clsx(
-            'relative mb-7 w-full sm:float-right sm:ml-7',
-            IMAGE_WIDTH_CLASS[image.width],
-          )}
-        >
-          <Image
-            src={image.src}
-            alt="대표 이미지"
-            width={image.width}
-            sizes={`${image.width}px`}
-            height={image.height}
-            className="w-full object-contain"
-          />
-        </div>
-      )}
-      {hasComponent && <div className="relative float-right">{component}</div>}
+    // 읽는 글의 폭은 본문 칸과 다르다 — 1200 까지 가면 한 줄이 74자가 된다(720 에서 49자).
+    <div>
       <div
-        className="sun-editor-editable"
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: HTML 콘텐츠 렌더링 필요
-        dangerouslySetInnerHTML={{ __html: trimmedHTML }}
-      />
-      {/* strict CSP: <style precedence>는 React가 head로 hoisting하며, hoisted style의 nonce를
-          "렌더옵션의 style nonce"로만 채운다. 그런데 react-dom은 렌더 nonce가 문자열이면 script용으로만
-          쓰고 style nonce는 비운다(객체 {script,style}여야 style도 채움). TanStack은 ssr.nonce(문자열)를
-          그대로 React 렌더에 넘기므로 hoisted style이 nonce 없이 나가 → strict CSP(style-src 'nonce-…')에
-          막힌다(처리된 인라인 폰트 크기 등이 소실). precedence를 빼면 in-place 렌더라 JSX nonce가 그대로
-          출력 → CSP 통과 → 적용된다. (정석은 TanStack이 {script,style} nonce를 렌더에 넘기는 것.) */}
-      {cssRules.length > 0 && <style nonce={nonce}>{cssRules}</style>}
+        className={clsx(
+          'max-w-180',
+          layout ? `grid gap-7 ${layout.grid}` : 'flow-root',
+        )}
+      >
+        {hasImage && (
+          <div className={clsx('relative w-full self-start', layout?.image)}>
+            <Image
+              src={image.src}
+              alt="대표 이미지"
+              width={image.width}
+              sizes={`${image.width}px`}
+              height={image.height}
+              className="w-full object-contain"
+            />
+          </div>
+        )}
+        {hasComponent && (
+          <div className="relative float-right">{component}</div>
+        )}
+        <div
+          className={clsx('sun-editor-editable', layout?.text)}
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: HTML 콘텐츠 렌더링 필요
+          dangerouslySetInnerHTML={{ __html: trimmedHTML }}
+        />
+        {/* strict CSP: <style precedence>는 React가 head로 hoisting하며, hoisted style의 nonce를
+            "렌더옵션의 style nonce"로만 채운다. 그런데 react-dom은 렌더 nonce가 문자열이면 script용으로만
+            쓰고 style nonce는 비운다(객체 {script,style}여야 style도 채움). TanStack은 ssr.nonce(문자열)를
+            그대로 React 렌더에 넘기므로 hoisted style이 nonce 없이 나가 → strict CSP(style-src 'nonce-…')에
+            막힌다(처리된 인라인 폰트 크기 등이 소실). precedence를 빼면 in-place 렌더라 JSX nonce가 그대로
+            출력 → CSP 통과 → 적용된다. (정석은 TanStack이 {script,style} nonce를 렌더에 넘기는 것.) */}
+        {cssRules.length > 0 && <style nonce={nonce}>{cssRules}</style>}
+      </div>
     </div>
   );
 }
 
-const IMAGE_WIDTH_CLASS: Record<TopRightImage['width'], string> = {
-  200: 'sm:w-[200px]',
-  240: 'sm:w-[240px]',
-  320: 'sm:w-[320px]',
+/**
+ * 글은 언제나 720 이다. 이미지는 줄이지 않는다. 둘이 나란히 들어갈 폭이 아니면 이미지를
+ * 글 위로 내린다 — 그래서 배치가 바뀔 때 글 폭은 움직이지 않는다.
+ *
+ * ⚠️ 기준이 화면 폭인 이유: 1280 에서 보조 탐색 자리를 비우느라 본문 칸이 979 → 720 으로
+ * 떨어진다. 칸을 보고 정하면 화면을 넓히는 동안 가로 → 세로 → 가로로 뒤집힌다.
+ * 전환점은 720 + 간격 28 + 이미지가 본문 칸에 들어가는 화면 폭이다(칸 = 화면 − 560).
+ */
+const IMAGE_LAYOUT: Record<
+  TopRightImage['width'],
+  { grid: string; image: string; text: string }
+> = {
+  200: {
+    grid: 'min-[1508px]:max-w-none min-[1508px]:grid-cols-[45rem_12.5rem]',
+    image:
+      'min-[30rem]:max-w-[12.5rem] min-[1508px]:col-start-2 min-[1508px]:row-start-1',
+    text: 'min-[1508px]:col-start-1 min-[1508px]:row-start-1',
+  },
+  240: {
+    grid: 'min-[1548px]:max-w-none min-[1548px]:grid-cols-[45rem_15rem]',
+    image:
+      'min-[30rem]:max-w-[15rem] min-[1548px]:col-start-2 min-[1548px]:row-start-1',
+    text: 'min-[1548px]:col-start-1 min-[1548px]:row-start-1',
+  },
+  320: {
+    grid: 'min-[1628px]:max-w-none min-[1628px]:grid-cols-[45rem_20rem]',
+    image:
+      'min-[30rem]:max-w-[20rem] min-[1628px]:col-start-2 min-[1628px]:row-start-1',
+    text: 'min-[1628px]:col-start-1 min-[1628px]:row-start-1',
+  },
 };
