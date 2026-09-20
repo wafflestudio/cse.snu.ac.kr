@@ -19,6 +19,7 @@ enum class TagInNoticeEnum(val krName: String, val guide: String) {
     UNDERGRADUATE("학부", "대상이 학부생일 때. 주제가 학사인지와 무관하다"),
     GRADUATE("대학원", "대상이 대학원생일 때"),
     MINOR("다전공/전과", "다전공·부전공·전과"),
+    REGISTRATIONS("등록/복학/휴학/재입학", "등록금 납부·복학·휴학·재입학 절차. 대상 과정의 학부·대학원도 함께 붙인다"),
     ADMISSIONS("입학", "학부·대학원 입시"),
     GRADUATIONS("졸업", "졸업 요건·학위수여"),
     RECRUIT("채용정보", "기업·기관 채용. 채용설명회·박람회도 여기 포함한다"),
