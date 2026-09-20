@@ -3,6 +3,7 @@ import { FormProvider, useForm, useWatch } from 'react-hook-form';
 
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
+import Button from '@/components/ui/Button';
 import { toastError } from '@/components/ui/sonner';
 import type { TagSuggestion } from '@/types/api';
 import type { EditorFile } from '@/types/form';
@@ -109,14 +110,17 @@ export default function NoticeEditor({
         <Fieldset title="태그" spacing="8" titleSpacing="3">
           <div className="flex grow flex-col gap-3">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-              <button
-                type="button"
-                className="min-h-8 shrink-0 rounded-sm border border-neutral-300 px-2.5 text-xs/4 hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-40"
-                onClick={suggestTags}
-                disabled={isSuggesting}
-              >
-                {isSuggesting ? '제안받는 중…' : '태그 제안받기'}
-              </button>
+              {/* 줄바꿈되는 줄이라 눌리지 않게 래퍼가 폭을 잡는다. */}
+              <span className="shrink-0">
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={suggestTags}
+                  disabled={isSuggesting}
+                >
+                  {isSuggesting ? '제안받는 중…' : '태그 제안받기'}
+                </Button>
+              </span>
               {suggestion && (
                 <p className="text-xs font-normal text-neutral-500">
                   {suggestion.length

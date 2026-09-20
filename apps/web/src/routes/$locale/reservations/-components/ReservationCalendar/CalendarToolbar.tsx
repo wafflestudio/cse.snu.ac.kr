@@ -4,13 +4,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react';
-import {
-  type ButtonHTMLAttributes,
-  type DetailedHTMLProps,
-  useReducer,
-  useRef,
-  useState,
-} from 'react';
+import { useReducer, useRef, useState } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import Button from '@/components/ui/Button';
 import Calendar from '@/components/ui/Calendar';
@@ -68,19 +62,19 @@ function SelectDayButton({ date }: { date: dayjs.Dayjs }) {
 
   return (
     <div>
-      <SquareButton
-        className="flex h-full w-24 items-center justify-center gap-1 px-2.5"
-        onClick={toggleCalendar}
-      >
-        {isDateToday ? (
-          '날짜 선택'
-        ) : (
-          <>
-            <CalendarIcon className="size-3" />
-            {date.format('YY.MM.DD.')}
-          </>
-        )}
-      </SquareButton>
+      {/* 격자 칸이 버튼을 늘린다 — `Button` 에 폭 프롭이 없어도 된다. */}
+      <div className="grid h-full w-24">
+        <Button variant="secondary" size="sm" onClick={toggleCalendar}>
+          {isDateToday ? (
+            '날짜 선택'
+          ) : (
+            <>
+              <CalendarIcon className="size-3" />
+              {date.format('YY.MM.DD.')}
+            </>
+          )}
+        </Button>
+      </div>
       {showCalendar && (
         <div className="relative" ref={calendarRef}>
           <div className="absolute top-2 z-10">
@@ -111,17 +105,20 @@ function ChangeDateButton({ direction }: { direction: 'prev' | 'next' }) {
   };
 
   return (
-    <SquareButton
-      className="w-7.5"
-      onClick={handleClick}
-      aria-label={direction === 'prev' ? '이전 날짜' : '다음 날짜'}
-    >
-      {direction === 'prev' ? (
-        <ChevronLeft className="size-4" />
-      ) : (
-        <ChevronRight className="size-4" />
-      )}
-    </SquareButton>
+    <div className="grid w-7.5">
+      <Button
+        variant="secondary"
+        size="sm"
+        onClick={handleClick}
+        ariaLabel={direction === 'prev' ? '이전 날짜' : '다음 날짜'}
+      >
+        {direction === 'prev' ? (
+          <ChevronLeft className="size-4" />
+        ) : (
+          <ChevronRight className="size-4" />
+        )}
+      </Button>
+    </div>
   );
 }
 
@@ -130,26 +127,10 @@ function TodayButton() {
   const handleClick = () => setSelectedDate(kstDayjs());
 
   return (
-    <SquareButton className="w-10.75" onClick={handleClick}>
-      오늘
-    </SquareButton>
-  );
-}
-
-function SquareButton({
-  className,
-  children,
-  ...props
-}: DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->) {
-  return (
-    <button
-      className={`rounded-sm border border-neutral-200 bg-white text-xs text-neutral-800 enabled:hover:bg-neutral-100 disabled:text-neutral-300 ${className ?? ''}`}
-      {...props}
-    >
-      {children}
-    </button>
+    <div className="grid w-10.75">
+      <Button variant="secondary" size="sm" onClick={handleClick}>
+        {'오늘'}
+      </Button>
+    </div>
   );
 }

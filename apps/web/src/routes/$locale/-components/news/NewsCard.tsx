@@ -11,7 +11,8 @@ export default function NewsCard({ news }: { news: MainNews }) {
   return (
     <Link
       to={localizedPath(`/community/news/${news.id}`)}
-      className={`flex h-76 shrink-0 flex-col bg-neutral-50 shadow-[0_0_31.9px_0_rgba(0,0,0,0.07)] ${CARD_WIDTH_TAILWIND}`}
+      // 캐러셀 뷰포트가 `overflow-hidden` 이라 바깥 링은 잘린다. 링을 안쪽으로 넣는다.
+      className={`flex h-76 shrink-0 flex-col bg-neutral-50 shadow-[0_0_31.9px_0_rgba(0,0,0,0.07)] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-neutral-800 ${CARD_WIDTH_TAILWIND}`}
     >
       <div className="relative h-25 w-full">
         <Image

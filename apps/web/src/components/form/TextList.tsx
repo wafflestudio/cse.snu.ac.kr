@@ -1,6 +1,5 @@
-import clsx from 'clsx';
-import type { ReactNode } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
+import Button from '@/components/ui/Button';
 
 import Text from './Text';
 
@@ -37,7 +36,7 @@ export default function TextList({ name, placeholder }: Props) {
           bgColor="bg-neutral-50"
           placeholder={placeholder}
         />
-        <Button onClick={handleAdd} bgColor="bg-neutral-50">
+        <Button variant="secondary" onClick={handleAdd}>
           추가
         </Button>
       </div>
@@ -48,32 +47,11 @@ export default function TextList({ name, placeholder }: Props) {
             name={`${name}.${idx}`}
             placeholder={placeholder}
           />
-          <Button onClick={() => handleDelete(idx)}>삭제</Button>
+          <Button variant="secondary" onClick={() => handleDelete(idx)}>
+            삭제
+          </Button>
         </div>
       ))}
     </div>
-  );
-}
-
-function Button({
-  bgColor,
-  onClick,
-  children,
-}: {
-  bgColor?: string;
-  onClick?: () => void;
-  children?: ReactNode;
-}) {
-  return (
-    <button
-      className={clsx(
-        'h-8 rounded-sm border border-neutral-300 px-2.5 text-sm text-neutral-800 hover:bg-neutral-300',
-        bgColor,
-      )}
-      onClick={onClick}
-      type="button"
-    >
-      {children}
-    </button>
   );
 }

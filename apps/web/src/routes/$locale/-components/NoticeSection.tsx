@@ -23,7 +23,7 @@ const NOTICE_TAGS = [
 const noticeTagPillClass = (selected: boolean) =>
   clsx(
     'inline-flex min-h-8 cursor-pointer select-none items-center justify-center rounded-[1.875rem] border border-solid border-main-orange-muted px-3 py-1 text-md/5 font-medium transition duration-200',
-    'has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-main-orange-muted',
+    'has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-white',
     selected
       ? 'bg-main-orange-muted text-neutral-950'
       : 'bg-neutral-800 text-main-orange-muted',

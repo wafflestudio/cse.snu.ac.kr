@@ -113,6 +113,13 @@ export default function ImageModal({
         <DialogPrimitive.Content
           className="fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95"
           aria-describedby={undefined}
+          // 이 팝업은 사용자가 연 게 아니라 화면에 들어오자마자 뜬다. Radix 기본대로
+          // 첫 버튼에 초점을 주면 누른 적도 없는 「닫기」에 초점 링이 그려진다.
+          // 상자 자체로 초점을 옮겨 읽기 도구에는 알리고 링은 안 보이게 한다.
+          onOpenAutoFocus={(event) => {
+            event.preventDefault();
+            (event.currentTarget as HTMLElement | null)?.focus();
+          }}
         >
           <VisuallyHidden.Root>
             <DialogPrimitive.Title>{t('이벤트 안내')}</DialogPrimitive.Title>
@@ -128,12 +135,12 @@ export default function ImageModal({
                 className="w-full h-auto object-contain"
               />
             </div>
-            {/* 버튼 영역 */}
+            {/* 버튼 영역 — 모달이 `overflow-hidden` 이라 초점 링을 안쪽에 그린다. */}
             <div className="flex shrink-0">
               <button
                 type="button"
                 onClick={() => handleOpenChange(false)}
-                className="flex-1 px-6 py-3 bg-neutral-100 text-neutral-500 hover:bg-neutral-50 hover:text-neutral-400 active:bg-neutral-200 active:text-neutral-500 text-md font-medium leading-[22px] focus:outline-none transition-colors"
+                className="flex-1 px-6 py-3 bg-neutral-100 text-neutral-500 hover:bg-neutral-50 hover:text-neutral-400 active:bg-neutral-200 active:text-neutral-500 text-md font-medium leading-[22px] transition-colors focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-neutral-800"
               >
                 {t('닫기')}
               </button>
@@ -141,7 +148,7 @@ export default function ImageModal({
                 <button
                   type="button"
                   onClick={handleAction}
-                  className="flex-1 px-6 py-3 bg-main-orange text-white hover:bg-main-orange-hover hover:text-white active:bg-main-orange-active active:text-main-orange-subtle text-md font-medium leading-[22px] focus:outline-none transition-colors"
+                  className="flex-1 px-6 py-3 bg-main-orange text-white hover:bg-main-orange-hover hover:text-white active:bg-main-orange-active active:text-main-orange-subtle text-md font-medium leading-[22px] transition-colors focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-neutral-800"
                 >
                   {t('자세히 보기')}
                 </button>

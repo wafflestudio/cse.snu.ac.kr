@@ -10,7 +10,8 @@ export function PaginationDemo() {
     : 1;
   return (
     <div
-      className="leading-[1.2] max-w-[560px] overflow-x-auto [&_output]:mt-0 [&_output]:mb-5 [&_output]:text-center max-sm:[&>div>ul]:gap-0.5 max-sm:[&>div>ul>div]:gap-0.5 max-sm:[&>div>ul>div]:px-0.5"
+      // 가로로 넘칠 수 있는 상자라 초점 링이 잘린다 — 링 두께만큼 안쪽 여백을 둔다.
+      className="leading-[1.2] max-w-[560px] overflow-x-auto p-1 [&_output]:mt-0 [&_output]:mb-5 [&_output]:text-center max-sm:[&>div>ul]:gap-0.5 max-sm:[&>div>ul>div]:gap-0.5 max-sm:[&>div>ul>div]:px-0.5"
       onClickCapture={remember}
     >
       <output className="mt-3 block text-xs/[1.7] text-neutral-500">

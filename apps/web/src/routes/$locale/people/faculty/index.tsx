@@ -25,7 +25,7 @@ const SORT_OPTIONS = [
 const sortPillClass = (selected: boolean) =>
   clsx(
     'inline-flex min-h-8 cursor-pointer select-none items-center justify-center gap-2 rounded-[.0625rem] px-3.5 py-1 text-md/5 font-medium transition duration-200',
-    'has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-neutral-700',
+    'has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-neutral-800',
     selected
       ? 'bg-neutral-700 text-white hover:bg-neutral-500'
       : 'bg-neutral-200 text-neutral-800',

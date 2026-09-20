@@ -33,7 +33,7 @@ export function DialogDemo() {
         onOpenChange={setOpen}
         title={'자료 이용 안내'}
         closeLabel={'닫기'}
-        contentClassName="sm:w-[480px] [&_:where(a,button):focus-visible]:outline-2 [&_:where(a,button):focus-visible]:outline-link [&_:where(a,button):focus-visible]:outline-offset-4"
+        contentClassName="sm:w-[480px] [&_:where(a,button):focus-visible]:outline-2 [&_:where(a,button):focus-visible]:outline-neutral-800 [&_:where(a,button):focus-visible]:outline-offset-2"
         onCloseAutoFocus={(event) => {
           event.preventDefault();
           trigger.current?.focus();

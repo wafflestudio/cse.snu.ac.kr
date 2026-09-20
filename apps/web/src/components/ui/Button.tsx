@@ -11,11 +11,11 @@ import { forwardRef } from 'react';
 //   primary   = 강조 CTA(추가/재시도)            ← 오렌지 solid
 //   neutral   = 폼·다이얼로그 커밋(저장/삭제/확인) ← 다크 solid
 //   secondary = 보조(취소/필터/페이지네이션)       ← 아웃라인
-//   quiet     = 저강조 텍스트(밝은 표면)           ← 텍스트
-//   nav       = 다크 헤더 유틸 버튼(흰 글자)        ← 텍스트(흰색)
+//   quiet     = 어두운 표면의 저강조 텍스트         ← 텍스트(회색, 헤더 검색·모바일 내비)
+//   nav       = 어두운 표면의 유틸 버튼             ← 텍스트(흰색)
 // (단일 선택 토글은 Button variant이 아니라 네이티브 radiogroup으로 — faculty 정렬·공지 필터.)
 type ButtonVariant = 'primary' | 'neutral' | 'secondary' | 'quiet' | 'nav';
-type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
+type ButtonSize = 'sm' | 'md' | 'lg';
 
 type BaseProps = {
   variant: ButtonVariant;
@@ -47,31 +47,35 @@ type ButtonAsAnchor = BaseProps & {
 type ButtonProps = ButtonAsButton | ButtonAsLink | ButtonAsAnchor;
 
 const SIZE_CLASSES: Record<ButtonSize, string> = {
-  xs: 'text-xs sm:text-md px-0 py-0',
   sm: 'min-h-7 text-sm/4 px-2.5 py-1',
   md: 'min-h-8 text-md/5 px-3.5 py-1',
   lg: 'min-h-10 text-lg/6 px-4 py-1.5',
 };
 
 const TEXT_SIZE_CLASSES: Record<ButtonSize, string> = {
-  xs: 'text-xs sm:text-md font-normal',
   sm: 'text-sm font-normal',
   md: 'text-md font-normal',
   lg: 'text-lg font-normal',
 };
 
-// variant → 시각 클래스(기존 variant/tone 조합과 바이트 동일).
+// 채움은 hover 에서 밝아지고 누르면 어두워진다. 텍스트형은 표면이 어두워서 방향이 뒤집힌다.
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
-  primary: 'rounded-[.0625rem] bg-main-orange text-white',
-  neutral: 'rounded-[.0625rem] bg-neutral-700 text-white hover:bg-neutral-500',
+  primary:
+    'rounded-[.0625rem] bg-main-orange text-white hover:bg-main-orange-hover active:bg-main-orange-active',
+  neutral:
+    'rounded-[.0625rem] bg-neutral-700 text-white hover:bg-neutral-500 active:bg-neutral-800',
   secondary:
-    'rounded-[.0625rem] border border-neutral-200 bg-neutral-100 text-neutral-500 hover:bg-neutral-200',
-  quiet: 'text-neutral-400 hover:text-white',
-  nav: 'text-white hover:text-neutral-300',
+    'rounded-[.0625rem] border border-neutral-200 bg-neutral-100 text-neutral-500 hover:bg-neutral-200 active:border-neutral-300 active:bg-neutral-300 active:text-neutral-700',
+  quiet: 'text-neutral-400 hover:text-white active:text-neutral-300',
+  nav: 'text-white hover:text-neutral-300 active:text-neutral-400',
 };
 
 // 텍스트형 variant는 padding 없는 TEXT_SIZE_CLASSES를 쓴다.
 const TEXT_VARIANTS = new Set<ButtonVariant>(['quiet', 'nav']);
+
+// 초점 링은 표면을 따른다 — 링크 색(파랑)은 뜻이 겹쳐 쓰지 않는다.
+// 밝은 면 neutral-800(15:1) · 어두운 면 흰색(18:1). 둘 다 기준 3:1 을 넘는다.
+const DARK_SURFACE_VARIANTS = new Set<ButtonVariant>(['quiet', 'nav']);
 
 function getButtonClass({
   variant,
@@ -81,11 +85,14 @@ function getButtonClass({
   size: ButtonSize;
 }) {
   const base =
-    'inline-flex items-center justify-center gap-2 font-medium transition duration-200';
+    'inline-flex items-center justify-center gap-2 font-medium transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2';
   const sizeClass = TEXT_VARIANTS.has(variant)
     ? TEXT_SIZE_CLASSES[size]
     : SIZE_CLASSES[size];
-  return clsx(base, sizeClass, VARIANT_CLASSES[variant]);
+  const ring = DARK_SURFACE_VARIANTS.has(variant)
+    ? 'focus-visible:outline-white'
+    : 'focus-visible:outline-neutral-800';
+  return clsx(base, sizeClass, VARIANT_CLASSES[variant], ring);
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
