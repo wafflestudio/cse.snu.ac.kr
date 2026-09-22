@@ -1,0 +1,300 @@
+{
+  "status": "C-Q4 proposal only, not applied",
+  "sourceBase": "60fb8612",
+  "environment": "Playwright 1.57.0 Chromium Linux; existing production frontend from DS-008 and cached local API; no DB changes",
+  "method": "Same DOM and layout, locally override only rendered neutral-400 information in the course content to neutral-500. Includes list metadata, classification description and view-mode control; no global palette edits.",
+  "samples": [
+    {
+      "name": "courses-ko-1280",
+      "path": "/academics/undergraduate/courses",
+      "changed": 5,
+      "before": {
+        "width": 1180,
+        "height": 393.390625,
+        "text": "교과목 정보목록형|카드형학년교과목 구분학점교과목명교과목 구분교과목 번호학점학년컴퓨터의 개념 및 실습전공필수M1522.0006003학점1학년학사 및 교과학부학부 안내교과과정전공 이수 표준 형태필수 교양 과목졸업 규정교과목 변경 내역장학 제도대학원대학원 안내교과과정교과목 변경 내역장학 제도",
+        "colors": [
+          {
+            "text": "목록형|카드형",
+            "color": "rgb(163, 163, 163)"
+          },
+          {
+            "text": "전공필수",
+            "color": "rgb(163, 163, 163)"
+          },
+          {
+            "text": "M1522.000600",
+            "color": "rgb(163, 163, 163)"
+          },
+          {
+            "text": "3학점",
+            "color": "rgb(163, 163, 163)"
+          },
+          {
+            "text": "1학년",
+            "color": "rgb(163, 163, 163)"
+          }
+        ],
+        "screenshot": {
+          "width": 1280,
+          "height": 1062
+        }
+      },
+      "after": {
+        "width": 1180,
+        "height": 393.390625,
+        "text": "교과목 정보목록형|카드형학년교과목 구분학점교과목명교과목 구분교과목 번호학점학년컴퓨터의 개념 및 실습전공필수M1522.0006003학점1학년학사 및 교과학부학부 안내교과과정전공 이수 표준 형태필수 교양 과목졸업 규정교과목 변경 내역장학 제도대학원대학원 안내교과과정교과목 변경 내역장학 제도",
+        "colors": [
+          {
+            "text": "목록형|카드형",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "전공필수",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "M1522.000600",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "3학점",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "1학년",
+            "color": "rgb(115, 115, 115)"
+          }
+        ],
+        "screenshot": {
+          "width": 1280,
+          "height": 1062
+        }
+      },
+      "viewportWidth": 1280
+    },
+    {
+      "name": "courses-ko-390",
+      "path": "/academics/undergraduate/courses",
+      "changed": 4,
+      "before": {
+        "width": 390,
+        "height": 304.953125,
+        "text": "교과목 정보목록형|카드형학년교과목 구분학점교과목명교과목 구분교과목 번호학점학년컴퓨터의 개념 및 실습전공필수M1522.0006003학점1학년학사 및 교과학부학부 안내교과과정전공 이수 표준 형태필수 교양 과목졸업 규정교과목 변경 내역장학 제도대학원대학원 안내교과과정교과목 변경 내역장학 제도",
+        "colors": [
+          {
+            "text": "목록형|카드형",
+            "color": "rgb(163, 163, 163)"
+          },
+          {
+            "text": "전공필수",
+            "color": "rgb(163, 163, 163)"
+          },
+          {
+            "text": "M1522.000600",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "3학점",
+            "color": "rgb(163, 163, 163)"
+          },
+          {
+            "text": "1학년",
+            "color": "rgb(163, 163, 163)"
+          }
+        ],
+        "screenshot": {
+          "width": 390,
+          "height": 1074
+        }
+      },
+      "after": {
+        "width": 390,
+        "height": 304.953125,
+        "text": "교과목 정보목록형|카드형학년교과목 구분학점교과목명교과목 구분교과목 번호학점학년컴퓨터의 개념 및 실습전공필수M1522.0006003학점1학년학사 및 교과학부학부 안내교과과정전공 이수 표준 형태필수 교양 과목졸업 규정교과목 변경 내역장학 제도대학원대학원 안내교과과정교과목 변경 내역장학 제도",
+        "colors": [
+          {
+            "text": "목록형|카드형",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "전공필수",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "M1522.000600",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "3학점",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "1학년",
+            "color": "rgb(115, 115, 115)"
+          }
+        ],
+        "screenshot": {
+          "width": 390,
+          "height": 1074
+        }
+      },
+      "viewportWidth": 390
+    },
+    {
+      "name": "courses-en-1280",
+      "path": "/en/academics/undergraduate/courses",
+      "changed": 6,
+      "before": {
+        "width": 1180,
+        "height": 427.390625,
+        "text": "Course InformationList|Card학년교과목 구분학점RM: Required course for Major  /  EM: Elective course for Major  /  LE: Liberal Education courseCourse NameClassificationCourse CodeCreditsYearComputer Concepts and PracticeMajor RequiredM1522.0006003CreditsFreshmanAcademicsUndergraduateGuideCoursesCurriculumGeneral Studies RequirementsDegree RequirementsCourse ChangesScholarshipGraduateGuideCoursesCourse ChangesScholarship",
+        "colors": [
+          {
+            "text": "List|Card",
+            "color": "rgb(163, 163, 163)"
+          },
+          {
+            "text": "RM: Required course for Major  /  EM: Elective course for Major  /  LE: Liberal Education course",
+            "color": "rgb(163, 163, 163)"
+          },
+          {
+            "text": "Major Required",
+            "color": "rgb(163, 163, 163)"
+          },
+          {
+            "text": "M1522.000600",
+            "color": "rgb(163, 163, 163)"
+          },
+          {
+            "text": "3Credits",
+            "color": "rgb(163, 163, 163)"
+          },
+          {
+            "text": "Freshman",
+            "color": "rgb(163, 163, 163)"
+          }
+        ],
+        "screenshot": {
+          "width": 1280,
+          "height": 1111
+        }
+      },
+      "after": {
+        "width": 1180,
+        "height": 427.390625,
+        "text": "Course InformationList|Card학년교과목 구분학점RM: Required course for Major  /  EM: Elective course for Major  /  LE: Liberal Education courseCourse NameClassificationCourse CodeCreditsYearComputer Concepts and PracticeMajor RequiredM1522.0006003CreditsFreshmanAcademicsUndergraduateGuideCoursesCurriculumGeneral Studies RequirementsDegree RequirementsCourse ChangesScholarshipGraduateGuideCoursesCourse ChangesScholarship",
+        "colors": [
+          {
+            "text": "List|Card",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "RM: Required course for Major  /  EM: Elective course for Major  /  LE: Liberal Education course",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "Major Required",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "M1522.000600",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "3Credits",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "Freshman",
+            "color": "rgb(115, 115, 115)"
+          }
+        ],
+        "screenshot": {
+          "width": 1280,
+          "height": 1111
+        }
+      },
+      "viewportWidth": 1280
+    },
+    {
+      "name": "courses-en-390",
+      "path": "/en/academics/undergraduate/courses",
+      "changed": 5,
+      "before": {
+        "width": 390,
+        "height": 349.140625,
+        "text": "Course InformationList|Card학년교과목 구분학점RM: Required course for Major  /  EM: Elective course for Major  /  LE: Liberal Education courseCourse NameClassificationCourse CodeCreditsYearComputer Concepts and PracticeMajor RequiredM1522.0006003CreditsFreshmanAcademicsUndergraduateGuideCoursesCurriculumGeneral Studies RequirementsDegree RequirementsCourse ChangesScholarshipGraduateGuideCoursesCourse ChangesScholarship",
+        "colors": [
+          {
+            "text": "List|Card",
+            "color": "rgb(163, 163, 163)"
+          },
+          {
+            "text": "RM: Required course for Major  /  EM: Elective course for Major  /  LE: Liberal Education course",
+            "color": "rgb(163, 163, 163)"
+          },
+          {
+            "text": "Major Required",
+            "color": "rgb(163, 163, 163)"
+          },
+          {
+            "text": "M1522.000600",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "3Credits",
+            "color": "rgb(163, 163, 163)"
+          },
+          {
+            "text": "Freshman",
+            "color": "rgb(163, 163, 163)"
+          }
+        ],
+        "screenshot": {
+          "width": 436,
+          "height": 1133
+        }
+      },
+      "after": {
+        "width": 390,
+        "height": 349.140625,
+        "text": "Course InformationList|Card학년교과목 구분학점RM: Required course for Major  /  EM: Elective course for Major  /  LE: Liberal Education courseCourse NameClassificationCourse CodeCreditsYearComputer Concepts and PracticeMajor RequiredM1522.0006003CreditsFreshmanAcademicsUndergraduateGuideCoursesCurriculumGeneral Studies RequirementsDegree RequirementsCourse ChangesScholarshipGraduateGuideCoursesCourse ChangesScholarship",
+        "colors": [
+          {
+            "text": "List|Card",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "RM: Required course for Major  /  EM: Elective course for Major  /  LE: Liberal Education course",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "Major Required",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "M1522.000600",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "3Credits",
+            "color": "rgb(115, 115, 115)"
+          },
+          {
+            "text": "Freshman",
+            "color": "rgb(115, 115, 115)"
+          }
+        ],
+        "screenshot": {
+          "width": 436,
+          "height": 1133
+        }
+      },
+      "viewportWidth": 390
+    }
+  ],
+  "limitations": [
+    "Single course in local seed data; not full regression or implementation verification.",
+    "English 390px viewport has existing footer overflow; before and after full-page captures are 436px wide. Tracked in PLAN Q-05."
+  ]
+}
