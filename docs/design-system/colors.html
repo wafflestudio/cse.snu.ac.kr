@@ -12,9 +12,9 @@
 </style>
 </head>
 <body><main>
-<header><span class="eyebrow">CSE · 디자인 시스템 / 3-2 색상 · 첫 비교</span><h1>주황의 인상을 살리면서<br>작은 글자를 읽기 쉽게</h1><span class="badge">C-Q1 · 제안됨 / 앱 미적용</span><p class="lead">주황의 그래픽·선택 역할은 유지하기로 했다. 이제 글자가 올라가는 주황 면을 비교한다. 기존 태그와 접힌 선택 표시의 글꼴·크기·모양을 기준으로 색 조합만 바꾼 견본이다.</p></header>
+<header><span class="eyebrow">CSE · 디자인 시스템 / 3-2 색상 · 첫 비교</span><h1>주황의 인상을 살리면서<br>작은 글자를 읽기 쉽게</h1><span class="badge">DS-007 · 기존 주황 배경 + 흰 글씨 유지</span><p class="lead">주황의 그래픽·선택 역할은 유지하기로 했다. 이제 글자가 올라가는 주황 면을 비교한다. 기존 태그와 접힌 선택 표시의 글꼴·크기·모양을 기준으로 색 조합만 바꾼 견본이다.</p></header>
 <nav aria-label="검토 내용"><a href="#compare">세 가지 조합</a><a href="#question">이번 판단</a><a href="COLORS.md">사용처와 범위</a><a href="PLAN.md">현재 위치</a></nav>
-<p class="note">앱 화면 캡처가 아닌 소스 기반 비교 견본이다. 아래 카드 배치와 녹색 검토 표시는 사이트 디자인 제안이 아니다. 초점·보조 글자·링크 색은 이번 선택 다음에 검토한다.</p>
+<p class="note"><strong>검토 결과: 사용자가 A·B 모두 선호하지 않아 채택하지 않았다.</strong> 주황 #ff6914 배경과 기존 흰 글씨를 유지하기로 확정했다(DS-007). 대비 미달 개선은 보류한다. 아래는 첫 제안의 기록이며 현재 승인 요청이나 적용 결정이 아니다. 앱 화면 캡처가 아닌 소스 기반 비교 견본이다. 아래 카드 배치와 녹색 검토 표시는 사이트 디자인 제안이 아니다. 초점·보조 글자·링크 색은 이번 선택 다음에 검토한다.</p>
 <section id="compare" aria-label="현재와 두 가지 변경안"><div class="grid">
 <article class="card current" aria-label="현재"><span class="badge">현재</span><h2>밝은 주황 + 밝은 글자</h2><p class="meta">기존 값</p>
 <p class="label">채운 태그 · 13px</p><div class="sample sample-row"><span class="tag solid">학부</span><span class="tag solid">대학원</span></div><p class="meta">흰 글자 2.88:1 · 선택 글자 2.76:1</p>
@@ -44,6 +44,6 @@
 <tr><td>흰 바탕의 주황 글자</td><td>#ff6914</td><td>#b54708</td><td>#b54708</td></tr>
 <tr><td>그래픽 주황</td><td colspan="3">#ff6914 유지</td></tr>
 </tbody></table></div><p class="meta">대비 수치는 불투명한 글자/바탕 조합의 계산값이다. 테두리·초점·비활성 상태를 포함한 전체 접근성 판정은 아니다. #b54708은 새 후보이며 기존 main-orange-dark(#e65817)를 확정값으로 가져온 것이 아니다.</p></section>
-<section id="question" class="decision"><h2>이번 판단 · C-Q1</h2><p><strong>A처럼 밝은 주황 면을 유지하고 짙은 글자를 쓰는 방향으로 갈까?</strong></p><p>A를 추천한다. 보존하기로 한 선명한 주황 면을 유지하면서 작은 글자의 대비를 높인다. 흰 글자를 유지하는 인상이 더 중요하다면 B가 대안이다.</p><p>선택하면 태그와 선택 표시의 관련 색·호버 상태를 실제 앱에 적용해 확인한다. 이 질문은 모든 주황을 한꺼번에 바꾸거나 색 규칙 전체를 확정하는 결정이 아니다. 저장·게시 같은 주요 실행은 앞서 정한 짙은 중립색 방향(DS-004)을 따른다.</p></section>
+<section id="question" class="decision"><h2>결정 · DS-007</h2><p><strong>기존 주황 #ff6914 배경과 흰 글씨를 유지한다.</strong> A·B는 채택하지 않았다. 외곽선·별도 고대비 보기 등도 이번 작업에 추가하지 않는다.</p><p>약 2.88:1의 글자 대비는 알려진 한계로 남긴다. 기준을 충족하거나 해결된 것으로 표시하지 않는다.</p><p>다음 비교: <a href="neutral-focus.html">입력 예시·보조 버튼·키보드 초점</a></p></section>
 <footer><a href="COLORS.md">계산 근거와 적용 경계</a> · <a href="typography.html">완료한 서체 연결</a> · <a href="DECISIONS.md">결정 기록</a></footer>
 </main></body></html>
