@@ -39,7 +39,7 @@ export default function CalendarToolbar({ roomId }: { roomId: number }) {
       </div>
       <LoginVisible allow={['ROLE_STAFF', 'ROLE_RESERVE', 'ROLE_LABMASTER']}>
         <Button
-          variant="primary"
+          variant="neutral"
           size="md"
           onClick={() => setShowAddModal(true)}
         >

@@ -71,7 +71,7 @@ function ScholarshipPage() {
       />
       <LoginVisible allow="ROLE_STAFF">
         <div className="mt-3">
-          <Button variant="primary" as="link" to="create">
+          <Button variant="neutral" as="link" to="create">
             장학금 추가
           </Button>
         </div>

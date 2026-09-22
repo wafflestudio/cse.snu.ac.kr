@@ -77,7 +77,7 @@ function ResearchGroupsPage() {
             <Button
               as="link"
               to={localizedPath('/research/groups/create')}
-              variant="primary"
+              variant="neutral"
               size="md"
             >
               연구 스트림 추가

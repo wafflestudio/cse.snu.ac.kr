@@ -199,7 +199,7 @@ export default function AddReservationModal({
               {t('취소')}
             </Button>
             <Button
-              variant="primary"
+              variant="neutral"
               size="md"
               type="submit"
               disabled={!isValid || isSubmitting}

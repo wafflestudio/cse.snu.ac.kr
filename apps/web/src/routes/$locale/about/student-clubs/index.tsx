@@ -55,7 +55,7 @@ function StudentClubsPage() {
           <Button
             as="link"
             to={localizedPath('/about/student-clubs/create')}
-            variant="primary"
+            variant="neutral"
             size="md"
           >
             동아리 추가

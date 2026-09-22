@@ -74,7 +74,7 @@ function ResearchCentersPage() {
             <Button
               as="link"
               to={localizedPath('/research/centers/create')}
-              variant="primary"
+              variant="neutral"
               size="md"
             >
               연구 센터 추가

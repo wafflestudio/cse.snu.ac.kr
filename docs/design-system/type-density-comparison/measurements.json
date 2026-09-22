@@ -1,0 +1,227 @@
+{
+  "question": "T-Q2",
+  "source": "DS-014 fresh production build, public HTMLViewer only",
+  "method": "Temporary local notice with identical Korean/English long paragraphs, headings, list and authored 18px sample. Change only viewer container font-size from 14px to 16px in browser. Existing line-height 2 and authored content unchanged. No editor opened.",
+  "records": [
+    {
+      "width": 1280,
+      "a": {
+        "body": {
+          "fontSize": "14px",
+          "lineHeight": "28px",
+          "fontWeight": "400",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "width": 720,
+          "height": 736.546875,
+          "lines": 31
+        },
+        "firstParagraph": {
+          "fontSize": "14px",
+          "lineHeight": "28px",
+          "fontWeight": "400",
+          "marginTop": "0px",
+          "marginBottom": "10px",
+          "width": 720,
+          "height": 56,
+          "lines": 2
+        },
+        "englishParagraph": {
+          "fontSize": "14px",
+          "lineHeight": "28px",
+          "fontWeight": "400",
+          "marginTop": "0px",
+          "marginBottom": "10px",
+          "width": 720,
+          "height": 112,
+          "lines": 4
+        },
+        "heading": {
+          "fontSize": "21px",
+          "lineHeight": "42px",
+          "fontWeight": "700",
+          "marginTop": "0px",
+          "marginBottom": "17.43px",
+          "width": 720,
+          "height": 42,
+          "lines": 1
+        },
+        "authored": {
+          "fontSize": "18px",
+          "lineHeight": "36px",
+          "fontWeight": "400",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "width": 290,
+          "height": 21,
+          "lines": 1
+        }
+      },
+      "b": {
+        "body": {
+          "fontSize": "16px",
+          "lineHeight": "32px",
+          "fontWeight": "400",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "width": 720,
+          "height": 924.0625,
+          "lines": 34
+        },
+        "firstParagraph": {
+          "fontSize": "16px",
+          "lineHeight": "32px",
+          "fontWeight": "400",
+          "marginTop": "0px",
+          "marginBottom": "10px",
+          "width": 720,
+          "height": 96,
+          "lines": 3
+        },
+        "englishParagraph": {
+          "fontSize": "16px",
+          "lineHeight": "32px",
+          "fontWeight": "400",
+          "marginTop": "0px",
+          "marginBottom": "10px",
+          "width": 720,
+          "height": 128,
+          "lines": 4
+        },
+        "heading": {
+          "fontSize": "24px",
+          "lineHeight": "48px",
+          "fontWeight": "700",
+          "marginTop": "0px",
+          "marginBottom": "19.92px",
+          "width": 720,
+          "height": 48,
+          "lines": 1
+        },
+        "authored": {
+          "fontSize": "18px",
+          "lineHeight": "36px",
+          "fontWeight": "400",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "width": 290,
+          "height": 21,
+          "lines": 1
+        }
+      }
+    },
+    {
+      "width": 390,
+      "a": {
+        "body": {
+          "fontSize": "14px",
+          "lineHeight": "28px",
+          "fontWeight": "400",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "width": 350,
+          "height": 1142.546875,
+          "lines": 45
+        },
+        "firstParagraph": {
+          "fontSize": "14px",
+          "lineHeight": "28px",
+          "fontWeight": "400",
+          "marginTop": "0px",
+          "marginBottom": "10px",
+          "width": 350,
+          "height": 112,
+          "lines": 4
+        },
+        "englishParagraph": {
+          "fontSize": "14px",
+          "lineHeight": "28px",
+          "fontWeight": "400",
+          "marginTop": "0px",
+          "marginBottom": "10px",
+          "width": 350,
+          "height": 196,
+          "lines": 7
+        },
+        "heading": {
+          "fontSize": "21px",
+          "lineHeight": "42px",
+          "fontWeight": "700",
+          "marginTop": "0px",
+          "marginBottom": "17.43px",
+          "width": 350,
+          "height": 84,
+          "lines": 2
+        },
+        "authored": {
+          "fontSize": "18px",
+          "lineHeight": "36px",
+          "fontWeight": "400",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "width": 290,
+          "height": 21,
+          "lines": 1
+        }
+      },
+      "b": {
+        "body": {
+          "fontSize": "16px",
+          "lineHeight": "32px",
+          "fontWeight": "400",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "width": 350,
+          "height": 1388.0625,
+          "lines": 48
+        },
+        "firstParagraph": {
+          "fontSize": "16px",
+          "lineHeight": "32px",
+          "fontWeight": "400",
+          "marginTop": "0px",
+          "marginBottom": "10px",
+          "width": 350,
+          "height": 160,
+          "lines": 5
+        },
+        "englishParagraph": {
+          "fontSize": "16px",
+          "lineHeight": "32px",
+          "fontWeight": "400",
+          "marginTop": "0px",
+          "marginBottom": "10px",
+          "width": 350,
+          "height": 224,
+          "lines": 7
+        },
+        "heading": {
+          "fontSize": "24px",
+          "lineHeight": "48px",
+          "fontWeight": "700",
+          "marginTop": "0px",
+          "marginBottom": "19.92px",
+          "width": 350,
+          "height": 96,
+          "lines": 2
+        },
+        "authored": {
+          "fontSize": "18px",
+          "lineHeight": "36px",
+          "fontWeight": "400",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "width": 290,
+          "height": 21,
+          "lines": 1
+        }
+      }
+    }
+  ],
+  "limits": [
+    "Local specimen, not operational notice or full content audit.",
+    "Relative body headings and em margins scale with base size; page and post titles remain unchanged.",
+    "Authored 18px sample retained; not a guarantee for every authored HTML structure.",
+    "No application typography code changed."
+  ]
+}

@@ -1,0 +1,407 @@
+{
+  "decision": "DS-014",
+  "source": "00d70f6f plus 11 approved variant changes",
+  "environment": "Fresh production frontend; cached local Docker API; Playwright 1.57.0 Linux Chromium",
+  "records": [
+    {
+      "name": "labs-1280",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 91,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": true,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "reservation-1280",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 76,
+      "height": 30,
+      "disabled": false,
+      "sameApprovedViewportImage": true,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(251, 251, 251) auto 1px"
+      }
+    },
+    {
+      "name": "reservation-disabled-1280",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "0.4",
+      "width": 76,
+      "height": 36,
+      "disabled": true,
+      "sameApprovedViewportImage": true,
+      "keyboardFocus": null
+    },
+    {
+      "name": "reservation-390",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 76,
+      "height": 30,
+      "disabled": false,
+      "sameApprovedViewportImage": true,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "ko:/research/groups:연구 스트림 추가",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 118,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "ko:/research/centers:연구 센터 추가",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 106,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "ko:/research/labs:연구실 추가",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 91,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "ko:/academics/undergraduate/scholarship:장학금 추가",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 91,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "ko:/academics/graduate/scholarship",
+      "render": "unavailable",
+      "status": 404,
+      "sourceSharesUndergraduateComponent": true
+    },
+    {
+      "name": "ko:/academics/undergraduate/courses:새 교과목",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 79,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "ko:/academics/graduate/courses:새 교과목",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 79,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "ko:/about/facilities:시설 추가",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 79,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "ko:/about/student-clubs:동아리 추가",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 91,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "ko:/about/future-careers:기업 추가",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 79,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "ko:/about/future-careers:연도 추가",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 79,
+      "height": 36,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "en:/research/groups:연구 스트림 추가",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 118,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(251, 251, 251) auto 1px"
+      }
+    },
+    {
+      "name": "en:/research/centers:연구 센터 추가",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 106,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "en:/research/labs:연구실 추가",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 91,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "en:/academics/undergraduate/scholarship:장학금 추가",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 91,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "en:/academics/graduate/scholarship",
+      "render": "unavailable",
+      "status": 404,
+      "sourceSharesUndergraduateComponent": true
+    },
+    {
+      "name": "en:/academics/undergraduate/courses:새 교과목",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 79,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "en:/academics/graduate/courses:새 교과목",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 79,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "en:/about/facilities:시설 추가",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 79,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "en:/about/student-clubs:동아리 추가",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 91,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "en:/about/future-careers:기업 추가",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 79,
+      "height": 34,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "en:/about/future-careers:연도 추가",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 79,
+      "height": 36,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "en-reservation-1280",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 76,
+      "height": 30,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "en-reservation-submit-1280",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "0.4",
+      "width": 80,
+      "height": 36,
+      "disabled": true,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": null
+    },
+    {
+      "name": "en-reservation-390",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "width": 76,
+      "height": 30,
+      "disabled": false,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": {
+        "visible": true,
+        "outline": "rgb(255, 255, 255) auto 1px"
+      }
+    },
+    {
+      "name": "en-reservation-submit-390",
+      "background": "rgb(64, 64, 64)",
+      "color": "rgb(255, 255, 255)",
+      "opacity": "0.4",
+      "width": 80,
+      "height": 36,
+      "disabled": true,
+      "sameApprovedViewportImage": null,
+      "keyboardFocus": null
+    }
+  ],
+  "limits": [
+    "Local exploratory verification, not formal full regression.",
+    "No booking or form submission. Existing mobile modal layout issue remains.",
+    "Viewport comparisons may include time-sensitive calendar data; button colors and dimensions checked separately."
+  ]
+}
