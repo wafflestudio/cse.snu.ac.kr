@@ -80,7 +80,7 @@ function NoticeDetailPage() {
         </div>
       </div>
 
-      <div className="bg-neutral-50 page-gutter-x pt-9 pb-36">
+      <div className="bg-neutral-50 page-gutter-x pt-9 pb-36 [&_.sun-editor-editable]:text-base">
         <Attachments files={notice.attachments ?? []} />
 
         <HTMLViewer html={notice.description} />

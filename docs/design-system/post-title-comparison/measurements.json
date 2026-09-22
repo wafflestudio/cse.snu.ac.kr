@@ -1,0 +1,120 @@
+{
+  "question": "T-Q3",
+  "source": "996848f9 plus approved DS-015 notice body size",
+  "method": "Fresh production frontend, cached local API, Playwright 1.57.0 Linux Chromium. Same DOM title only: 20px/600 to 24px/700; line-height ratio 1.4 retained. App title source unchanged.",
+  "records": [
+    {
+      "name": "notice-1280",
+      "a": {
+        "fontSize": "20px",
+        "fontWeight": "600",
+        "lineHeight": "28px",
+        "width": 720,
+        "height": 28,
+        "lines": 1,
+        "text": "디자인 검토용 긴 글 · Research programmes",
+        "color": "rgb(10, 10, 10)"
+      },
+      "b": {
+        "fontSize": "24px",
+        "fontWeight": "700",
+        "lineHeight": "33.6px",
+        "width": 720,
+        "height": 33.59375,
+        "lines": 1,
+        "text": "디자인 검토용 긴 글 · Research programmes",
+        "color": "rgb(10, 10, 10)"
+      },
+      "bodyUnchanged": {
+        "size": "16px",
+        "height": 924.0625
+      }
+    },
+    {
+      "name": "notice-390",
+      "a": {
+        "fontSize": "20px",
+        "fontWeight": "600",
+        "lineHeight": "28px",
+        "width": 350,
+        "height": 56,
+        "lines": 2,
+        "text": "디자인 검토용 긴 글 · Research programmes",
+        "color": "rgb(10, 10, 10)"
+      },
+      "b": {
+        "fontSize": "24px",
+        "fontWeight": "700",
+        "lineHeight": "33.6px",
+        "width": 350,
+        "height": 67.1875,
+        "lines": 2,
+        "text": "디자인 검토용 긴 글 · Research programmes",
+        "color": "rgb(10, 10, 10)"
+      },
+      "bodyUnchanged": {
+        "size": "16px",
+        "height": 1388.0625
+      }
+    },
+    {
+      "name": "news-1280",
+      "a": {
+        "fontSize": "20px",
+        "fontWeight": "600",
+        "lineHeight": "28px",
+        "width": 720,
+        "height": 28,
+        "lines": 1,
+        "text": "연구실 수상 소식",
+        "color": "rgb(10, 10, 10)"
+      },
+      "b": {
+        "fontSize": "24px",
+        "fontWeight": "700",
+        "lineHeight": "33.6px",
+        "width": 720,
+        "height": 33.59375,
+        "lines": 1,
+        "text": "연구실 수상 소식",
+        "color": "rgb(10, 10, 10)"
+      },
+      "bodyUnchanged": {
+        "size": "14px",
+        "height": 28
+      }
+    },
+    {
+      "name": "seminar-390",
+      "a": {
+        "fontSize": "20px",
+        "fontWeight": "600",
+        "lineHeight": "28px",
+        "width": 390,
+        "height": 100,
+        "lines": 1,
+        "text": "인공지능 특별 세미나",
+        "color": "rgb(10, 10, 10)"
+      },
+      "b": {
+        "fontSize": "24px",
+        "fontWeight": "700",
+        "lineHeight": "33.6px",
+        "width": 390,
+        "height": 105.59375,
+        "lines": 1,
+        "text": "인공지능 특별 세미나",
+        "color": "rgb(10, 10, 10)"
+      },
+      "bodyUnchanged": {
+        "size": "14px",
+        "height": 28
+      }
+    }
+  ],
+  "limits": [
+    "Notice is a temporary Korean/English mixed long-title specimen, removed after capture. News/seminar are existing local seeds.",
+    "Not all titles, English page shells, widths or authored body headings are covered.",
+    "Page labels, metadata, body typography, margins and layout code are unchanged."
+  ]
+}
