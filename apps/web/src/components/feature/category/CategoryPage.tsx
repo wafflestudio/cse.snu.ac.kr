@@ -46,7 +46,7 @@ export default function CategoryPage({
         <div className="mb-2 text-sm font-normal text-neutral-400 sm:text-xl">
           {subtitle}
         </div>
-        <div className="text-[32px] font-bold text-white sm:text-[64px]">
+        <div className="text-3xl font-bold text-white sm:text-4xl">
           {resolvedTitle}
         </div>
         {description && (

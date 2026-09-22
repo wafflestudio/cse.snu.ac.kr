@@ -150,7 +150,7 @@ export default function Dropdown({
           tabIndex={-1}
           aria-activedescendant={`${listboxId}-opt-${activeIndex}`}
           onKeyDown={handleListKeyDown}
-          className={`styled-scrollbar absolute top-full left-0 z-10 max-h-[168px] w-full overflow-y-auto overscroll-contain rounded-bl-control rounded-br-control border-x border-b bg-white outline-none ${borderStyle}`}
+          className={`styled-scrollbar absolute top-full left-0 z-10 max-h-[168px] w-full overflow-y-auto overscroll-contain rounded-bl-control rounded-br-control border-x border-b bg-white shadow-overlay outline-none ${borderStyle}`}
         >
           {contents.map((content, index) => (
             // 키보드는 listbox onKeyDown에서 aria-activedescendant로 일괄 처리하는 WAI-ARIA

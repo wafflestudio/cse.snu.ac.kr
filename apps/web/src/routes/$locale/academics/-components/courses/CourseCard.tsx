@@ -7,6 +7,10 @@ import type { Course } from '@/types/api';
 import styles from './style.module.css';
 import translations from './translations.json';
 
+// 카드 앞뒤가 같은 값을 보게 파일 안에 둔다 — 이 컴포넌트에서만 쓴다.
+const CARD_INSET_SHADOW =
+  'shadow-[inset_2px_2px_4px_0_rgba(255,255,255,0.05),inset_-2px_-2px_6px_0_rgba(0,0,0,0.05)]';
+
 interface CourseCardProps {
   course: Course;
   selectedOption: SortOption;
@@ -112,7 +116,7 @@ function CourseCardFront({
         isFlipped
           ? 'transform-[rotateY(-180deg)]'
           : 'transform-[rotateY(0deg)]',
-        'shadow-[2px_2px_4px_0_rgba(255,255,255,0.05)_inset,-2px_-2px_6px_0_rgba(0,0,0,0.05)_inset]',
+        CARD_INSET_SHADOW,
         styles.face,
       )}
       ref={ref}
@@ -153,7 +157,7 @@ function CourseCardBack({
       className={clsx(
         'py-5 px-4.5 bg-neutral-200',
         isFlipped ? 'transform-[rotateY(0deg)]' : 'transform-[rotateY(180deg)]',
-        'shadow-[2px_2px_4px_0_rgba(255,255,255,0.07)_inset,-2px_-2px_4px_0_rgba(0,0,0,0.05)_inset]',
+        CARD_INSET_SHADOW,
         styles.face,
       )}
       ref={ref}

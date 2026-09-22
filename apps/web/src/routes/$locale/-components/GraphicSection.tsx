@@ -25,7 +25,7 @@ const SloganP = ({
   className: string;
   children: ReactNode;
 }) => (
-  <p className={`font-[Gowun_Batang] text-[1.8rem] text-white ${className}`}>
+  <p className={`font-[Gowun_Batang] text-3xl text-white ${className}`}>
     {children}
   </p>
 );

@@ -53,7 +53,7 @@ function NewsDetailPage() {
       pageDescription={pageDescription}
     >
       <div className="flex flex-col gap-4 page-gutter-x py-9">
-        <h2 className="text-xl font-bold leading-[1.4]">{news.title}</h2>
+        <h2 className="text-xl font-bold leading-snug">{news.title}</h2>
         <div className="flex gap-5 text-sm font-normal text-neutral-500">
           <time>
             {dayjs(news.date).locale(locale).format('YYYY/M/DD (ddd)')}

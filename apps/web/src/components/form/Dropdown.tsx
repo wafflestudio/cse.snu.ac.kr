@@ -117,7 +117,7 @@ function DropdownListWithScroll({
       id={id}
       role="listbox"
       className={clsx(
-        'styled-scrollbar absolute flex flex-col left-0 top-0 max-h-[168px] origin-top overflow-y-auto overscroll-contain rounded-bl-control rounded-br-control border bg-white transition duration-200',
+        'styled-scrollbar absolute flex flex-col left-0 top-0 max-h-[168px] origin-top overflow-y-auto overscroll-contain rounded-bl-control rounded-br-control border bg-white shadow-overlay transition duration-200',
         className,
         borderStyle,
       )}

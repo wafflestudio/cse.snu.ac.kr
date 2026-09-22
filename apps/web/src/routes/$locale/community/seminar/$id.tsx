@@ -67,7 +67,7 @@ function SeminarDetailPage() {
       subNav={subNav}
       padding="none"
     >
-      <h2 className="page-gutter-x py-9 text-xl font-bold leading-[1.4]">
+      <h2 className="page-gutter-x py-9 text-xl font-bold leading-snug">
         {seminar.title}
       </h2>
       <div className="bg-neutral-50 page-gutter-x pt-9 page-end">

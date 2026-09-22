@@ -8,6 +8,7 @@ import { FileDemo } from '../-components/FileDemo';
 import { MenuDemo } from '../-components/MenuDemo';
 import { PaginationDemo } from '../-components/PaginationDemo';
 import { RadiusRoles } from '../-components/RadiusRoles';
+import { ShadowRoles } from '../-components/ShadowRoles';
 import { SelectionDemo } from '../-components/SelectionDemo';
 import { TagDemo } from '../-components/TagDemo';
 
@@ -28,6 +29,16 @@ import { TagDemo } from '../-components/TagDemo';
 <RadiusRoles />
 
 컨트롤이 각진 건 이 사이트의 모양입니다. 알약꼴로 쓰는 버튼(연도 추가 같은)은 컨트롤이 아니라 알약으로 셉니다 — 생김새가 역할을 정합니다.
+
+## 그림자
+
+**공용 그림자는 하나입니다.** 화면 위에 뜬 것은 대화상자든 드롭다운 목록이든 같은 값을 씁니다 — 뜬 높이가 다르다고 읽힐 만큼 크기 차이가 나는 면이 없습니다.
+
+<ShadowRoles />
+
+한 컴포넌트에서만 쓰는 그림자는 그 파일에 둡니다. **토큰은 여럿이 공유할 때만 만듭니다.**
+
+사진과 도형의 외곽을 흐리는 건 그림자가 아니라 `drop-shadow` 입니다. 면을 띄우는 게 아니라 윤곽을 배경에서 떼어 놓는 일이라 따로 셉니다.
 
 ## 버튼
 

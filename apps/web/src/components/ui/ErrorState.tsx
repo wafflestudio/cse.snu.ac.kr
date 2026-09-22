@@ -21,7 +21,7 @@ export default function ErrorState({
     <div className="flex grow flex-col items-center justify-center bg-neutral-900 px-6 py-24 sm:py-32">
       <div className="text-center">
         <div className="mb-8">
-          <div className="mb-6 text-[120px] font-bold leading-none text-main-orange sm:text-[160px]">
+          <div className="mb-6 text-3xl font-bold text-main-orange sm:text-4xl">
             {title}
           </div>
           <p className="text-xl text-white sm:text-2xl">{message}</p>
