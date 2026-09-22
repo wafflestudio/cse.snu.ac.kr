@@ -29,7 +29,8 @@ export default function Text({
         maxWidth,
         'autofill-bg-white h-8 rounded-xs border border-neutral-300',
         bgColor,
-        'pl-2 text-sm outline-none placeholder:text-neutral-300 disabled:text-neutral-400',
+        'pl-2 text-sm outline-none placeholder:text-neutral-500 disabled:text-neutral-400',
+        'focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-neutral-700',
         textCenter && 'pr-2 text-center',
         className,
       )}
