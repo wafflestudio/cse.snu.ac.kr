@@ -1,0 +1,32 @@
+{
+  "url": "/ko/reservations/seminar-room/301-417?selectedDate=2024-03-15",
+  "note": "고정 날짜 / 다음 날짜 클릭 전",
+  "title": "",
+  "viewport": {
+    "width": 1024,
+    "height": 844,
+    "deviceScaleFactor": 1
+  },
+  "document": {
+    "width": 1200,
+    "height": 1806
+  },
+  "headings": [
+    "301-417 (20석)",
+    "2024 03월",
+    "시설 예약",
+    "About",
+    "Resources",
+    "Research",
+    "More"
+  ],
+  "visibleDates": [
+    "2024-03-11",
+    "2024-03-12",
+    "2024-03-13",
+    "2024-03-14",
+    "2024-03-15",
+    "2024-03-16",
+    "2024-03-17"
+  ]
+}

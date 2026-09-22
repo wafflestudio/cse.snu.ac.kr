@@ -1,0 +1,25 @@
+{
+  "url": "/en/research/groups",
+  "note": "기존 E2E 시드 / 공개 화면 / 영어",
+  "title": "Research Streams ⋅ Dept. of CSE, SNU",
+  "viewport": {
+    "width": 1024,
+    "height": 844,
+    "deviceScaleFactor": 1
+  },
+  "document": {
+    "width": 1200,
+    "height": 1292
+  },
+  "headings": [
+    "Research & Edu Streams",
+    "System Stream",
+    "Labs",
+    "Research & Edu",
+    "About",
+    "Resources",
+    "Research",
+    "More"
+  ],
+  "visibleDates": []
+}

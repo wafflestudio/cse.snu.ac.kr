@@ -1,0 +1,34 @@
+{
+  "url": "/en",
+  "note": "기존 E2E 시드 / 공개 화면 / 영어",
+  "title": "Dept. of Computer Science and Engineering, SNU",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "deviceScaleFactor": 1
+  },
+  "document": {
+    "width": 436,
+    "height": 2965
+  },
+  "headings": [
+    "News",
+    "연구실 수상 소식",
+    "학사 일정 안내",
+    "SNU Computing Commons 건축기금 모금",
+    "Notice",
+    "장학금 신청 공지",
+    "학사 일정 안내",
+    "스크롤표본 01",
+    "스크롤표본 02",
+    "스크롤표본 03",
+    "스크롤표본 04",
+    "Quick Links",
+    "Undergraduate",
+    "About",
+    "Resources",
+    "Research",
+    "More"
+  ],
+  "visibleDates": []
+}

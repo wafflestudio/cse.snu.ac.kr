@@ -1,0 +1,29 @@
+{
+  "url": "/ko/about",
+  "note": "모바일 메뉴 열림",
+  "title": "",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "deviceScaleFactor": 1
+  },
+  "document": {
+    "width": 390,
+    "height": 844
+  },
+  "headings": [
+    "학부 소개",
+    "학부장 인사말",
+    "연혁",
+    "졸업생 진로",
+    "동아리 소개",
+    "시설 안내",
+    "연락처",
+    "찾아오는 길",
+    "About",
+    "Resources",
+    "Research",
+    "More"
+  ],
+  "visibleDates": []
+}

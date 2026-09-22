@@ -1,0 +1,25 @@
+{
+  "url": "/ko/academics/undergraduate/courses?view=%EC%B9%B4%EB%93%9C%ED%98%95",
+  "note": "기존 교과목 시드 / 카드형",
+  "title": "교과과정 ⋅ 서울대학교 컴퓨터공학부",
+  "viewport": {
+    "width": 1280,
+    "height": 844,
+    "deviceScaleFactor": 1
+  },
+  "document": {
+    "width": 1280,
+    "height": 1165
+  },
+  "headings": [
+    "교과과정",
+    "컴퓨터의 개념 및 실습M1522.000600",
+    "컴퓨터의 개념 및 실습M1522.000600",
+    "학사 및 교과",
+    "About",
+    "Resources",
+    "Research",
+    "More"
+  ],
+  "visibleDates": []
+}

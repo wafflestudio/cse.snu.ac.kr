@@ -1,0 +1,16 @@
+{
+  "url": "/ko/community/notice/create",
+  "note": "STAFF / 빈 공지 편집기",
+  "title": "",
+  "viewport": {
+    "width": 1280,
+    "height": 844,
+    "deviceScaleFactor": 1
+  },
+  "document": {
+    "width": 1280,
+    "height": 2067
+  },
+  "headings": ["공지사항 작성", "About", "Resources", "Research", "More"],
+  "visibleDates": []
+}

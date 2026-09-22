@@ -1,0 +1,26 @@
+{
+  "url": "/ko/community/notice/28",
+  "note": "조사 전용 로컬 API 생성 데이터 / 긴 한영 제목·6문단·목록·표·링크 / 실제 HTMLViewer",
+  "title": "디자인 조사용 긴 제목 — Undergraduate and Graduate Research Programme Application Guidelines and Academic Calendar ⋅ 공지사항 ⋅ 서울대학교 컴퓨터공학부",
+  "viewport": {
+    "width": 768,
+    "height": 844,
+    "deviceScaleFactor": 1
+  },
+  "document": {
+    "width": 1200,
+    "height": 2181
+  },
+  "headings": [
+    "공지사항",
+    "디자인 조사용 긴 제목 — Undergraduate and Graduate Research Programme Application Guidelines and Academic Calendar",
+    "조사 전용 콘텐츠 / Survey fixture",
+    "신청 단계",
+    "소식",
+    "About",
+    "Resources",
+    "Research",
+    "More"
+  ],
+  "visibleDates": []
+}

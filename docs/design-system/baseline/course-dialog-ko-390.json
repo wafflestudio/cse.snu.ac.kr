@@ -1,0 +1,23 @@
+{
+  "url": "/ko/academics/undergraduate/courses",
+  "note": "교과목 목록에서 상세 모달 열림",
+  "title": "교과과정 ⋅ 서울대학교 컴퓨터공학부",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "deviceScaleFactor": 1
+  },
+  "document": {
+    "width": 390,
+    "height": 1074
+  },
+  "headings": [
+    "교과과정",
+    "About",
+    "Resources",
+    "Research",
+    "More",
+    "교과목 상세"
+  ],
+  "visibleDates": []
+}

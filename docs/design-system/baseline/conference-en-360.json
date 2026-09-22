@@ -1,0 +1,23 @@
+{
+  "url": "/en/research/top-conference-list",
+  "note": "기존 E2E 시드 / 공개 화면 / 영어",
+  "title": "Top Conference List ⋅ Dept. of CSE, SNU",
+  "viewport": {
+    "width": 360,
+    "height": 844,
+    "deviceScaleFactor": 1
+  },
+  "document": {
+    "width": 436,
+    "height": 1287
+  },
+  "headings": [
+    "Top Conference List",
+    "Department of Computer Science and Engineering, Seoul National University Top Conference List",
+    "About",
+    "Resources",
+    "Research",
+    "More"
+  ],
+  "visibleDates": []
+}

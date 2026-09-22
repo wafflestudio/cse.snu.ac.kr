@@ -1,0 +1,16 @@
+{
+  "url": "/en/people/faculty",
+  "note": "기존 E2E 시드 / 공개 화면 / 영어",
+  "title": "Faculty ⋅ Dept. of CSE, SNU",
+  "viewport": {
+    "width": 1024,
+    "height": 844,
+    "deviceScaleFactor": 1
+  },
+  "document": {
+    "width": 1200,
+    "height": 1245
+  },
+  "headings": ["Faculty", "People", "About", "Resources", "Research", "More"],
+  "visibleDates": []
+}

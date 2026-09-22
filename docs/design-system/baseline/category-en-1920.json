@@ -1,0 +1,23 @@
+{
+  "url": "/en/academics",
+  "note": "기존 E2E 시드 / 공개 화면 / 영어",
+  "title": "",
+  "viewport": {
+    "width": 1920,
+    "height": 844,
+    "deviceScaleFactor": 1
+  },
+  "document": {
+    "width": 1920,
+    "height": 1196
+  },
+  "headings": [
+    "Undergraduate",
+    "Graduate",
+    "About",
+    "Resources",
+    "Research",
+    "More"
+  ],
+  "visibleDates": []
+}

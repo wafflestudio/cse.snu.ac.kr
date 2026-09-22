@@ -1,0 +1,16 @@
+{
+  "url": "/ko/people/faculty/create",
+  "note": "STAFF / 영어 입력 탭 / 미저장",
+  "title": "",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "deviceScaleFactor": 1
+  },
+  "document": {
+    "width": 692,
+    "height": 2119
+  },
+  "headings": ["교수진 추가", "About", "Resources", "Research", "More"],
+  "visibleDates": []
+}

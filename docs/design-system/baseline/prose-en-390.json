@@ -1,0 +1,22 @@
+{
+  "url": "/en/about/greetings",
+  "note": "기존 E2E 시드 / 공개 화면 / 영어",
+  "title": "Greetings ⋅ Dept. of CSE, SNU",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "deviceScaleFactor": 1
+  },
+  "document": {
+    "width": 436,
+    "height": 926
+  },
+  "headings": [
+    "Greetings from the Head",
+    "About",
+    "Resources",
+    "Research",
+    "More"
+  ],
+  "visibleDates": []
+}

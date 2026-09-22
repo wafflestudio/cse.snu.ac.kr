@@ -1,0 +1,16 @@
+{
+  "url": "/ko/community/notice/create",
+  "note": "빈 폼 제출 / 필수 검증 오류 / DB 저장 없음",
+  "title": "",
+  "viewport": {
+    "width": 1280,
+    "height": 844,
+    "deviceScaleFactor": 1
+  },
+  "document": {
+    "width": 1280,
+    "height": 2067
+  },
+  "headings": ["공지사항 작성", "About", "Resources", "Research", "More"],
+  "visibleDates": []
+}

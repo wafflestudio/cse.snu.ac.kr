@@ -1,0 +1,23 @@
+{
+  "url": "/admin?selected=important",
+  "note": "STAFF / 중요 안내 관리",
+  "title": "",
+  "viewport": {
+    "width": 1280,
+    "height": 844,
+    "deviceScaleFactor": 1
+  },
+  "document": {
+    "width": 1280,
+    "height": 1424
+  },
+  "headings": [
+    "관리자 메뉴",
+    "관련 페이지",
+    "About",
+    "Resources",
+    "Research",
+    "More"
+  ],
+  "visibleDates": []
+}

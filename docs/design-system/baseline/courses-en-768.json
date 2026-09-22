@@ -1,0 +1,23 @@
+{
+  "url": "/en/academics/undergraduate/courses",
+  "note": "기존 E2E 시드 / 공개 화면 / 영어",
+  "title": "Courses ⋅ Dept. of CSE, SNU",
+  "viewport": {
+    "width": 768,
+    "height": 844,
+    "deviceScaleFactor": 1
+  },
+  "document": {
+    "width": 1200,
+    "height": 1111
+  },
+  "headings": [
+    "Courses",
+    "Academics",
+    "About",
+    "Resources",
+    "Research",
+    "More"
+  ],
+  "visibleDates": []
+}

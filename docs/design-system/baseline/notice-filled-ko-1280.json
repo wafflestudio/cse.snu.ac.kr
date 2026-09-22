@@ -1,0 +1,16 @@
+{
+  "url": "/ko/community/notice/create",
+  "note": "긴 제목·첨부·고정 만료일 / 미저장 / 브라우저 날짜 2026-09-22 KST",
+  "title": "",
+  "viewport": {
+    "width": 1280,
+    "height": 844,
+    "deviceScaleFactor": 1
+  },
+  "document": {
+    "width": 1280,
+    "height": 2185
+  },
+  "headings": ["공지사항 작성", "About", "Resources", "Research", "More"],
+  "visibleDates": []
+}
