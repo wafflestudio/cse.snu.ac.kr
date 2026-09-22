@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>정보 링크의 색과 밑줄 · CSE 디자인 시스템</title><link rel="stylesheet" href="../../apps/web/src/assets/pretendard/pretendardvariable-dynamic-subset.css">
+<style>
+*{box-sizing:border-box}body{margin:0;color:#0a0a0a;background:white;font:16px/1.65 "Pretendard Variable",sans-serif}main{max-width:1120px;margin:auto;padding:44px 28px}h1{font-size:34px;line-height:1.3;margin:12px 0 20px}h2{font-size:24px;line-height:1.4;margin:36px 0 16px}h3{font-size:18px;margin:0 0 12px}p{margin:10px 0}a{color:#404040;text-underline-offset:3px}.meta{font-size:13px;color:#737373}.badge{display:inline-block;border:1px solid #a3a3a3;border-radius:3px;font-size:12px;padding:3px 9px}nav{display:flex;gap:20px;flex-wrap:wrap;margin:24px 0}.note{background:#fafafa;border-left:3px solid #a3a3a3;padding:14px 18px;font-size:14px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.sample{border:1px solid #d4d4d4;padding:20px;min-width:0}.sample.recommended{border:2px solid #404040;padding:19px}.demo{font-size:13px;line-height:26px;color:#404040}.demo a{color:#3c7be4;text-decoration:none;text-underline-offset:auto}.demo a:hover{text-decoration:underline}.demo.proposed a{color:#2867cf}.demo.underlined a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid #e5e5e5}th{background:#fafafa}.controls{display:flex;align-items:center;flex-wrap:wrap;gap:20px;margin:18px 0}select{font:inherit;max-width:100%;border:1px solid #a3a3a3;background:white;padding:8px}fieldset{margin:0;padding:8px 12px;border:1px solid #d4d4d4}legend{font-size:13px}.frame{border:1px solid #d4d4d4;padding:20px;max-height:620px;overflow:auto}.frame img{display:block;width:auto;max-width:100%;height:auto}.frame.original img{max-width:none}.decision{border-top:1px solid #d4d4d4;margin-top:36px;padding-top:8px}a:focus-visible,select:focus-visible,input:focus-visible,.frame:focus-visible{outline:2px solid #404040;outline-offset:3px}footer{margin-top:32px;font-size:14px}
+@media(max-width:720px){main{padding:28px 20px}h1{font-size:28px}.grid{grid-template-columns:1fr}.table-wrap table{min-width:520px}.frame{padding:12px}}
+</style></head><body><main>
+<header><span class="meta">CSE · 기반 규칙 / 3-2 색 / C-Q5</span><h1>정보 링크를<br>어떻게 구분할까?</h1><span class="badge">제안 · 앱 미적용</span><p>주황과 중립색은 확정한 규칙을 유지한다. 이번에는 연락처·홈페이지·관련 정보로 연결하는 파란 글자의 농도와 밑줄을 정한다.</p></header>
+<nav aria-label="검토 내용"><a href="index.html">현재 DS 전체</a><a href="#examples">세 안의 차이</a><a href="#compare">실제 화면 비교</a><a href="#question">이번 판단</a><a href="LINK-COLORS.md">근거와 적용 범위</a></nav>
+<section id="examples"><h2>01. 색을 짙게 하고, 링크라는 단서를 더하기</h2><div class="grid">
+<div class="sample"><h3>기존</h3><div class="demo"><p>이메일: <a href="#examples">staff@snu.ac.kr</a></p></div><p>#3c7be4</p><p class="meta">마우스를 올릴 때 밑줄<br>흰 바탕 대비 약 4.08:1</p></div>
+<div class="sample"><h3>A · 농도만 조정</h3><div class="demo proposed"><p>이메일: <a href="#examples">staff@snu.ac.kr</a></p></div><p>#2867cf</p><p class="meta">마우스를 올릴 때 밑줄<br>흰 바탕 대비 약 5.34:1</p></div>
+<div class="sample recommended"><h3>B · 농도 + 항상 밑줄</h3><div class="demo proposed underlined"><p>이메일: <a href="#examples">staff@snu.ac.kr</a></p></div><p>#2867cf · 추천</p><p class="meta">기본 상태에도 1px 밑줄, 간격 2px<br>터치 환경에서도 링크를 구분</p></div>
+</div><p class="meta">위는 13px 연락처 표현을 참고한 HTML 견본이다. 예시 링크는 이 문서 안에 머문다. 문서 링크에 보이는 초점 외곽선은 검토 도구용이며 이번 앱 변경 제안에 포함하지 않는다.</p>
+<div class="table-wrap"><table><thead><tr><th>글자 / 바탕</th><th>흰색</th><th>#fafafa</th><th>#f5f5f5</th></tr></thead><tbody><tr><td>기존 #3c7be4</td><td>4.08:1</td><td>3.91:1</td><td>3.74:1</td></tr><tr><td>제안 #2867cf</td><td>5.34:1</td><td>5.12:1</td><td>4.90:1</td></tr></tbody></table></div><p class="meta">불투명 두 색의 계산값이다. 전체 접근성 검증을 뜻하지 않는다.</p></section>
+<section id="compare"><h2>02. 실제 연락처와 기업 목록에서 비교</h2><p>같은 앱 화면의 해당 영역을 캡처했다. 기존·A·B를 전환하면 배치와 내용을 유지한 채 링크 표현만 비교할 수 있다.</p>
+<div class="controls"><label for="scene">화면 <select id="scene"><option value="company-1280">기업 목록 · 1280px</option><option value="company-390">기업 목록 · 390px</option><option value="contact-1280">연락처 · 1280px</option><option value="contact-390">연락처 · 390px</option></select></label><fieldset><legend>표시할 안</legend><label><input type="radio" name="variant" value="before" checked>기존</label> <label><input type="radio" name="variant" value="color">A</label> <label><input type="radio" name="variant" value="underline">B</label></fieldset><label><input id="original" type="checkbox">원본 크기</label></div>
+<div class="frame" tabindex="0" role="region" aria-label="정보 링크 비교 이미지 스크롤"><img id="preview" src="link-comparison/company-1280-before.png" alt="기업 목록 1280px 기존 링크"></div><p><a id="full" href="link-comparison/company-1280-before.png">표시한 원본 이미지</a> · <a href="link-comparison/measurements.json">측정 기록</a></p><p class="meta">한국어 실제 화면의 부분 캡처이며, 숫자는 캡처 당시 브라우저 폭이다. 좁은 문서에서는 큰 이미지가 축소된다. 원본 크기로 실제 글자 농도를 볼 수 있다.</p>
+<p class="note">정보 링크를 쓰는 연락처·프로필·찾아오는 길·창업 기업·세미나의 다섯 사용처가 적용 대상이다. 내비게이션·카드·버튼이나 작성자가 넣은 본문 링크까지 이 규칙으로 통일하지 않는다.</p></section>
+<section id="question" class="decision"><h2>이번 판단 · C-Q5</h2><p><strong>정보 링크는 B처럼 파랑을 조금 짙게 하고 밑줄을 항상 표시할까?</strong></p><p>B를 추천해. 마우스를 올리지 않아도 클릭 가능한 글자를 구분할 수 있어. 밑줄이 많아 보인다면 A처럼 농도만 조정할 수 있어.</p><p class="meta">앱에는 아직 적용하지 않았다. 선택 후 해당 사용처에 적용·확인하고 오류 색과 검색/컨트롤 상태로 이어간다. 주황과 확정한 중립색은 유지한다.</p></section>
+<footer><a href="index.html">누적 DS</a> · <a href="LINK-COLORS.md">출처·범위·예외</a> · <a href="PLAN.md">진행 계획</a></footer>
+</main><script>
+const scene=document.getElementById('scene');
+const preview=document.getElementById('preview');
+const frame=document.querySelector('.frame');
+function update(){
+ const variant=document.querySelector('input[name="variant"]:checked').value;
+ const src=`link-comparison/${scene.value}-${variant}.png`;
+ preview.src=src;preview.alt=`${scene.selectedOptions[0].textContent} · ${{before:'기존',color:'A · 농도만 조정',underline:'B · 농도와 밑줄'}[variant]}`;
+ document.getElementById('full').href=src;
+}
+scene.addEventListener('change',()=>{update();frame.scrollTop=frame.scrollLeft=0;});
+for(const input of document.querySelectorAll('input[name="variant"]'))input.addEventListener('change',update);
+document.getElementById('original').addEventListener('change',event=>frame.classList.toggle('original',event.target.checked));
+update();
+</script></body></html>

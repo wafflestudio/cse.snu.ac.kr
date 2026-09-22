@@ -146,7 +146,7 @@ const getSortOption = (sort: unknown): SortOption => {
 
 function ClassificationDescription() {
   return (
-    <div className="mb-3 ml-5 flex items-center gap-1.5 text-sm text-neutral-400">
+    <div className="mb-3 ml-5 flex items-center gap-1.5 text-sm text-neutral-500">
       <Info className="h-[22px] w-[22px]" strokeWidth={1.5} />
       <span className="pt-px">
         RM: Required course for Major&nbsp;&nbsp;/&nbsp;&nbsp;EM: Elective

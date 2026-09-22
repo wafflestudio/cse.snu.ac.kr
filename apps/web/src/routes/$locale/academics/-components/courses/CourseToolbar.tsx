@@ -55,7 +55,7 @@ function ViewOptions({ selectedOption, changeOption }: ViewOptionsProps) {
 
   // 카드형은 데스크톱 전용이라 토글도 데스크톱만 보인다.
   return (
-    <div className="hidden gap-3 text-md text-neutral-400 sm:flex">
+    <div className="hidden gap-3 text-md text-neutral-500 sm:flex">
       <button
         type="button"
         className={

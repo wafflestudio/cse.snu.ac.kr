@@ -1,0 +1,64 @@
+{
+  "decision": "DS-010",
+  "sourceBase": "99016dc4 plus three approved course CSS changes",
+  "environment": "Fresh production frontend build; cached local Docker API; Playwright 1.57.0 Chromium Linux; no DB writes",
+  "samples": [
+    {
+      "name": "courses-ko-1280",
+      "path": "/academics/undergraduate/courses",
+      "width": 1280,
+      "geometry": {
+        "width": 1180,
+        "height": 393.390625,
+        "text": "교과목 정보목록형|카드형학년교과목 구분학점교과목명교과목 구분교과목 번호학점학년컴퓨터의 개념 및 실습전공필수M1522.0006003학점1학년학사 및 교과학부학부 안내교과과정전공 이수 표준 형태필수 교양 과목졸업 규정교과목 변경 내역장학 제도대학원대학원 안내교과과정교과목 변경 내역장학 제도"
+      },
+      "approvedScreenshotIdentical": true,
+      "metadataColor": "#737373",
+      "desktopViewToggle": "passed"
+    },
+    {
+      "name": "courses-ko-390",
+      "path": "/academics/undergraduate/courses",
+      "width": 390,
+      "geometry": {
+        "width": 390,
+        "height": 304.953125,
+        "text": "교과목 정보목록형|카드형학년교과목 구분학점교과목명교과목 구분교과목 번호학점학년컴퓨터의 개념 및 실습전공필수M1522.0006003학점1학년학사 및 교과학부학부 안내교과과정전공 이수 표준 형태필수 교양 과목졸업 규정교과목 변경 내역장학 제도대학원대학원 안내교과과정교과목 변경 내역장학 제도"
+      },
+      "approvedScreenshotIdentical": true,
+      "metadataColor": "#737373",
+      "desktopViewToggle": "hidden as before"
+    },
+    {
+      "name": "courses-en-1280",
+      "path": "/en/academics/undergraduate/courses",
+      "width": 1280,
+      "geometry": {
+        "width": 1180,
+        "height": 427.390625,
+        "text": "Course InformationList|Card학년교과목 구분학점RM: Required course for Major  /  EM: Elective course for Major  /  LE: Liberal Education courseCourse NameClassificationCourse CodeCreditsYearComputer Concepts and PracticeMajor RequiredM1522.0006003CreditsFreshmanAcademicsUndergraduateGuideCoursesCurriculumGeneral Studies RequirementsDegree RequirementsCourse ChangesScholarshipGraduateGuideCoursesCourse ChangesScholarship"
+      },
+      "approvedScreenshotIdentical": true,
+      "metadataColor": "#737373",
+      "desktopViewToggle": "passed"
+    },
+    {
+      "name": "courses-en-390",
+      "path": "/en/academics/undergraduate/courses",
+      "width": 390,
+      "geometry": {
+        "width": 390,
+        "height": 349.140625,
+        "text": "Course InformationList|Card학년교과목 구분학점RM: Required course for Major  /  EM: Elective course for Major  /  LE: Liberal Education courseCourse NameClassificationCourse CodeCreditsYearComputer Concepts and PracticeMajor RequiredM1522.0006003CreditsFreshmanAcademicsUndergraduateGuideCoursesCurriculumGeneral Studies RequirementsDegree RequirementsCourse ChangesScholarshipGraduateGuideCoursesCourse ChangesScholarship"
+      },
+      "approvedScreenshotIdentical": true,
+      "metadataColor": "#737373",
+      "desktopViewToggle": "hidden as before"
+    }
+  ],
+  "graduate": "English 1280 and Korean 390 shell checked; no graduate course rows in seed",
+  "limitations": [
+    "Not full regression; existing English mobile footer overflow preserved.",
+    "Prior formal runner image build timed out; uses cached local API image."
+  ]
+}

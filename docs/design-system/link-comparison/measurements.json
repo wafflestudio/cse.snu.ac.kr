@@ -1,0 +1,289 @@
+{
+  "status": "C-Q5 proposal, not applied",
+  "environment": "DS-010 production frontend and cached local API; Playwright 1.57.0 Chromium Linux",
+  "method": "Same real DOM; override only text-link foreground, then underline; element screenshots; no navigation to external links or DB writes",
+  "samples": [
+    {
+      "scene": "contact",
+      "viewportWidth": 1280,
+      "path": "/ko/people/staff/1",
+      "variants": [
+        {
+          "variant": "before",
+          "geometry": {
+            "width": 161,
+            "height": 110,
+            "text": "연락처위치: 301동 316호전화: 02-880-1234이메일: staff@snu.ac.kr"
+          },
+          "styles": [
+            {
+              "text": "staff@snu.ac.kr",
+              "color": "rgb(60, 123, 228)",
+              "decoration": "none",
+              "offset": "auto",
+              "fontSize": "13px"
+            }
+          ]
+        },
+        {
+          "variant": "color",
+          "geometry": {
+            "width": 161,
+            "height": 110,
+            "text": "연락처위치: 301동 316호전화: 02-880-1234이메일: staff@snu.ac.kr"
+          },
+          "styles": [
+            {
+              "text": "staff@snu.ac.kr",
+              "color": "rgb(40, 103, 207)",
+              "decoration": "none",
+              "offset": "auto",
+              "fontSize": "13px"
+            }
+          ]
+        },
+        {
+          "variant": "underline",
+          "geometry": {
+            "width": 161,
+            "height": 110,
+            "text": "연락처위치: 301동 316호전화: 02-880-1234이메일: staff@snu.ac.kr"
+          },
+          "styles": [
+            {
+              "text": "staff@snu.ac.kr",
+              "color": "rgb(40, 103, 207)",
+              "decoration": "underline",
+              "offset": "2px",
+              "fontSize": "13px"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scene": "company",
+      "viewportWidth": 1280,
+      "path": "/ko/about/future-careers",
+      "variants": [
+        {
+          "variant": "before",
+          "geometry": {
+            "width": 708,
+            "height": 153.1875,
+            "text": "졸업생 창업 기업연번창업 기업명홈페이지창업연도1에이아이비전https://aivision.example.com20202데이터스케이프https://datascape.example.com2021"
+          },
+          "styles": [
+            {
+              "text": "https://aivision.example.com",
+              "color": "rgb(60, 123, 228)",
+              "decoration": "none",
+              "offset": "auto",
+              "fontSize": "12px"
+            },
+            {
+              "text": "https://datascape.example.com",
+              "color": "rgb(60, 123, 228)",
+              "decoration": "none",
+              "offset": "auto",
+              "fontSize": "12px"
+            }
+          ]
+        },
+        {
+          "variant": "color",
+          "geometry": {
+            "width": 708,
+            "height": 153.1875,
+            "text": "졸업생 창업 기업연번창업 기업명홈페이지창업연도1에이아이비전https://aivision.example.com20202데이터스케이프https://datascape.example.com2021"
+          },
+          "styles": [
+            {
+              "text": "https://aivision.example.com",
+              "color": "rgb(40, 103, 207)",
+              "decoration": "none",
+              "offset": "auto",
+              "fontSize": "12px"
+            },
+            {
+              "text": "https://datascape.example.com",
+              "color": "rgb(40, 103, 207)",
+              "decoration": "none",
+              "offset": "auto",
+              "fontSize": "12px"
+            }
+          ]
+        },
+        {
+          "variant": "underline",
+          "geometry": {
+            "width": 708,
+            "height": 153.1875,
+            "text": "졸업생 창업 기업연번창업 기업명홈페이지창업연도1에이아이비전https://aivision.example.com20202데이터스케이프https://datascape.example.com2021"
+          },
+          "styles": [
+            {
+              "text": "https://aivision.example.com",
+              "color": "rgb(40, 103, 207)",
+              "decoration": "underline",
+              "offset": "2px",
+              "fontSize": "12px"
+            },
+            {
+              "text": "https://datascape.example.com",
+              "color": "rgb(40, 103, 207)",
+              "decoration": "underline",
+              "offset": "2px",
+              "fontSize": "12px"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scene": "contact",
+      "viewportWidth": 390,
+      "path": "/ko/people/staff/1",
+      "variants": [
+        {
+          "variant": "before",
+          "geometry": {
+            "width": 161,
+            "height": 110,
+            "text": "연락처위치: 301동 316호전화: 02-880-1234이메일: staff@snu.ac.kr"
+          },
+          "styles": [
+            {
+              "text": "staff@snu.ac.kr",
+              "color": "rgb(60, 123, 228)",
+              "decoration": "none",
+              "offset": "auto",
+              "fontSize": "13px"
+            }
+          ]
+        },
+        {
+          "variant": "color",
+          "geometry": {
+            "width": 161,
+            "height": 110,
+            "text": "연락처위치: 301동 316호전화: 02-880-1234이메일: staff@snu.ac.kr"
+          },
+          "styles": [
+            {
+              "text": "staff@snu.ac.kr",
+              "color": "rgb(40, 103, 207)",
+              "decoration": "none",
+              "offset": "auto",
+              "fontSize": "13px"
+            }
+          ]
+        },
+        {
+          "variant": "underline",
+          "geometry": {
+            "width": 161,
+            "height": 110,
+            "text": "연락처위치: 301동 316호전화: 02-880-1234이메일: staff@snu.ac.kr"
+          },
+          "styles": [
+            {
+              "text": "staff@snu.ac.kr",
+              "color": "rgb(40, 103, 207)",
+              "decoration": "underline",
+              "offset": "2px",
+              "fontSize": "13px"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scene": "company",
+      "viewportWidth": 390,
+      "path": "/ko/about/future-careers",
+      "variants": [
+        {
+          "variant": "before",
+          "geometry": {
+            "width": 350,
+            "height": 199.5625,
+            "text": "졸업생 창업 기업연번창업 기업명홈페이지창업연도1에이아이비전https://aivision.example.com20202데이터스케이프https://datascape.example.com2021"
+          },
+          "styles": [
+            {
+              "text": "https://aivision.example.com",
+              "color": "rgb(60, 123, 228)",
+              "decoration": "none",
+              "offset": "auto",
+              "fontSize": "12px"
+            },
+            {
+              "text": "https://datascape.example.com",
+              "color": "rgb(60, 123, 228)",
+              "decoration": "none",
+              "offset": "auto",
+              "fontSize": "12px"
+            }
+          ]
+        },
+        {
+          "variant": "color",
+          "geometry": {
+            "width": 350,
+            "height": 199.5625,
+            "text": "졸업생 창업 기업연번창업 기업명홈페이지창업연도1에이아이비전https://aivision.example.com20202데이터스케이프https://datascape.example.com2021"
+          },
+          "styles": [
+            {
+              "text": "https://aivision.example.com",
+              "color": "rgb(40, 103, 207)",
+              "decoration": "none",
+              "offset": "auto",
+              "fontSize": "12px"
+            },
+            {
+              "text": "https://datascape.example.com",
+              "color": "rgb(40, 103, 207)",
+              "decoration": "none",
+              "offset": "auto",
+              "fontSize": "12px"
+            }
+          ]
+        },
+        {
+          "variant": "underline",
+          "geometry": {
+            "width": 350,
+            "height": 199.5625,
+            "text": "졸업생 창업 기업연번창업 기업명홈페이지창업연도1에이아이비전https://aivision.example.com20202데이터스케이프https://datascape.example.com2021"
+          },
+          "styles": [
+            {
+              "text": "https://aivision.example.com",
+              "color": "rgb(40, 103, 207)",
+              "decoration": "underline",
+              "offset": "2px",
+              "fontSize": "12px"
+            },
+            {
+              "text": "https://datascape.example.com",
+              "color": "rgb(40, 103, 207)",
+              "decoration": "underline",
+              "offset": "2px",
+              "fontSize": "12px"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errorColor": {
+    "css": "oklch(57.7% .245 27.325)",
+    "srgb": [231, 0, 11, 255]
+  },
+  "limitations": [
+    "Korean contact and company regions only; no claim of full route or state coverage.",
+    "Error CSS token read from app; error interaction is not tested in this comparison."
+  ]
+}
