@@ -25,7 +25,10 @@ export default function PeopleContactList({
           <BulletRow key={item.label}>
             {item.label}:{' '}
             {item.href ? (
-              <a className="ml-1 text-link hover:underline" href={item.href}>
+              <a
+                className="ml-1 text-link underline decoration-1 underline-offset-2"
+                href={item.href}
+              >
                 {item.value}
               </a>
             ) : (

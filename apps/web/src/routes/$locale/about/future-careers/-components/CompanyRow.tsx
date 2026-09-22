@@ -86,7 +86,7 @@ function CareerCompanyViewer({
           {name}
         </p>
         <a
-          className={`order-last col-span-2 col-start-2 w-fit text-xs text-link hover:underline sm:order-0 sm:mt-0 sm:pl-2
+          className={`order-last col-span-2 col-start-2 w-fit text-xs text-link underline decoration-1 underline-offset-2 sm:order-0 sm:mt-0 sm:pl-2
             ${url && 'mt-1'} ${TABLE_COLUMN_SIZE[2]}`}
           href={url ?? undefined}
           target="_blank"

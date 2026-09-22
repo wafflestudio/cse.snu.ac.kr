@@ -1,0 +1,111 @@
+{
+  "status": "C-Q6 proposal only; not applied",
+  "method": "Real app input focused by keyboard; local wrapper outline override for after snapshot, not implemented focus logic. Actual screenshot crop includes 10px surrounding area.",
+  "environment": "DS-011 production frontend; cached local API; Playwright 1.57.0 Chromium Linux; no submit or DB write",
+  "samples": [
+    {
+      "scene": "header",
+      "viewportWidth": 1280,
+      "path": "/ko/community/notice",
+      "focused": true,
+      "before": {
+        "width": 216,
+        "height": 30,
+        "outline": "rgb(10, 10, 10) none 0px",
+        "offset": "0px",
+        "inputOutline": "rgb(16, 16, 16) none 0px"
+      },
+      "after": {
+        "width": 216,
+        "height": 30,
+        "outline": "rgb(255, 255, 255) solid 2px",
+        "offset": "2px",
+        "inputOutline": "rgb(16, 16, 16) none 0px"
+      }
+    },
+    {
+      "scene": "list",
+      "viewportWidth": 1280,
+      "path": "/ko/community/notice",
+      "focused": true,
+      "before": {
+        "width": 216,
+        "height": 30,
+        "outline": "rgb(10, 10, 10) none 0px",
+        "offset": "0px",
+        "inputOutline": "rgb(16, 16, 16) none 0px"
+      },
+      "after": {
+        "width": 216,
+        "height": 30,
+        "outline": "rgb(64, 64, 64) solid 2px",
+        "offset": "2px",
+        "inputOutline": "rgb(16, 16, 16) none 0px"
+      }
+    },
+    {
+      "scene": "list",
+      "viewportWidth": 390,
+      "path": "/ko/community/notice",
+      "focused": true,
+      "before": {
+        "width": 216,
+        "height": 30,
+        "outline": "rgb(10, 10, 10) none 0px",
+        "offset": "0px",
+        "inputOutline": "rgb(16, 16, 16) none 0px"
+      },
+      "after": {
+        "width": 216,
+        "height": 30,
+        "outline": "rgb(64, 64, 64) solid 2px",
+        "offset": "2px",
+        "inputOutline": "rgb(16, 16, 16) none 0px"
+      }
+    },
+    {
+      "scene": "seminar",
+      "viewportWidth": 1280,
+      "path": "/ko/community/seminar",
+      "focused": true,
+      "before": {
+        "width": 240,
+        "height": 30,
+        "outline": "rgb(10, 10, 10) none 0px",
+        "offset": "0px",
+        "inputOutline": "rgb(16, 16, 16) none 0px"
+      },
+      "after": {
+        "width": 240,
+        "height": 30,
+        "outline": "rgb(64, 64, 64) solid 2px",
+        "offset": "2px",
+        "inputOutline": "rgb(16, 16, 16) none 0px"
+      }
+    },
+    {
+      "scene": "seminar",
+      "viewportWidth": 390,
+      "path": "/ko/community/seminar",
+      "focused": true,
+      "before": {
+        "width": 240,
+        "height": 30,
+        "outline": "rgb(10, 10, 10) none 0px",
+        "offset": "0px",
+        "inputOutline": "rgb(16, 16, 16) none 0px"
+      },
+      "after": {
+        "width": 240,
+        "height": 30,
+        "outline": "rgb(64, 64, 64) solid 2px",
+        "offset": "2px",
+        "inputOutline": "rgb(16, 16, 16) none 0px"
+      }
+    }
+  ],
+  "limits": [
+    "Korean representative scenes; header hidden on mobile as before.",
+    "Button focus, default boundaries and non-search controls are outside this proposal."
+  ]
+}

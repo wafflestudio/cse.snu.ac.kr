@@ -1,0 +1,119 @@
+{
+  "decision": "DS-011",
+  "sourceBase": "1baa9558 plus approved link token and five class changes",
+  "environment": "Fresh production frontend build; cached local Docker API; Playwright 1.57.0 Chromium Linux; no external link navigation or DB writes",
+  "approvedB": "Four Korean contact/company region PNGs identical to approved B",
+  "samples": [
+    {
+      "name": "contact-ko-1280",
+      "path": "/ko/people/staff/1",
+      "links": 1,
+      "defaultAndHover": "B matches",
+      "focus": {
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px"
+      }
+    },
+    {
+      "name": "company-ko-1280",
+      "path": "/ko/about/future-careers",
+      "links": 2,
+      "defaultAndHover": "B matches",
+      "focus": {
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px"
+      }
+    },
+    {
+      "name": "contact-ko-390",
+      "path": "/ko/people/staff/1",
+      "links": 1,
+      "defaultAndHover": "B matches",
+      "focus": {
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px"
+      }
+    },
+    {
+      "name": "company-ko-390",
+      "path": "/ko/about/future-careers",
+      "links": 2,
+      "defaultAndHover": "B matches",
+      "focus": {
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px"
+      }
+    },
+    {
+      "name": "contact-en-1280",
+      "path": "/en/people/staff/1",
+      "links": 1,
+      "defaultAndHover": "B matches",
+      "focus": {
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px"
+      }
+    },
+    {
+      "name": "company-en-1280",
+      "path": "/en/about/future-careers",
+      "links": 2,
+      "defaultAndHover": "B matches",
+      "focus": {
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px"
+      }
+    },
+    {
+      "name": "contact-en-390",
+      "path": "/en/people/staff/1",
+      "links": 1,
+      "defaultAndHover": "B matches",
+      "focus": {
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px"
+      }
+    },
+    {
+      "name": "company-en-390",
+      "path": "/en/about/future-careers",
+      "links": 2,
+      "defaultAndHover": "B matches",
+      "focus": {
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px"
+      }
+    },
+    {
+      "name": "profile",
+      "path": "/ko/people/emeritus-faculty/3",
+      "links": 1,
+      "defaultAndHover": "B matches",
+      "focus": {
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px"
+      }
+    },
+    {
+      "name": "directions",
+      "path": "/ko/about/directions",
+      "links": 1,
+      "defaultAndHover": "B matches",
+      "focus": {
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px"
+      }
+    },
+    {
+      "name": "seminar",
+      "path": "/ko/community/seminar/1",
+      "links": 0,
+      "status": "Seed has no link href; source class checked, runtime link unverified"
+    }
+  ],
+  "limits": [
+    "Profile and directions checked in Korean desktop only. Seminar seed has no link href; source check only.",
+    "No exhaustive long URL or all-content regression. Browser focus preserved; not a new common focus rule.",
+    "Existing cached API image; not formal full regression."
+  ]
+}

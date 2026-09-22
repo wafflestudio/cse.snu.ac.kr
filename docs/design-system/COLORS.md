@@ -127,6 +127,7 @@ C-Q4는 [중립색 역할표](NEUTRAL-ROLES.md)와 [실제 화면 비교](neutra
 기본·보조 배경, 주요·설명·보조 글자, 내용 구분선의 사용 기준을 제안한다.
 교과목의 밝은 바탕 보조 정보 #a3a3a3 → #737373을 한국어·영어 1280·390px에서 비교했고,
 콘텐츠 영역의 크기·텍스트는 동일했다. DS-010으로 확정하고 공유 교과목 컴포넌트 3곳에 적용했다.
-[새 프론트 적용 확인](neutral-roles-implementation/measurements.json)에서 4장면의 승인 이미지 일치와 보기 전환 색을 확인했다. 다음은 [정보 링크 색과 밑줄 비교](link-colors.html)의 C-Q5다.
+[새 프론트 적용 확인](neutral-roles-implementation/measurements.json)에서 4장면의 승인 이미지 일치와 보기 전환 색을 확인했다. [정보 링크 색과 밑줄 비교](link-colors.html)의 C-Q5는 B로 확정했다(DS-011).
 기존 #3c7be4와 #2867cf, 항상 보이는 밑줄 여부를 실제 연락처·기업 목록에서 비교했다.
-[근거와 범위](LINK-COLORS.md). 아직 앱에 적용하지 않았으며, 오류 색은 후속 검토에 남는다.
+[근거와 범위](LINK-COLORS.md). 기존 정보 링크 5곳에 적용했고 [적용 기록](link-implementation/measurements.json)에 검증 범위와 한계를 남겼다.
+[변경 이유](LINK-COLORS.md)에 현재 문제·대비 기준·농도와 밑줄의 별도 목적을 설명했다. 다음은 [오류 글자 유지와 검색 초점 비교](state-colors.html) C-Q6이다. [변경 이유·범위](STATE-COLORS.md)를 문서 앞에 정리했다.

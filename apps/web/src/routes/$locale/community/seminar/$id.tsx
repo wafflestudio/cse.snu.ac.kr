@@ -152,7 +152,7 @@ const LinkOrText = ({
 
   return (
     <a
-      className="text-link hover:underline"
+      className="text-link underline decoration-1 underline-offset-2"
       href={href}
       target="_blank"
       rel="noreferrer"
