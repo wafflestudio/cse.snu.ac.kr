@@ -1,0 +1,137 @@
+{
+  "question": "C-Q7",
+  "sourceBase": "686fd92c",
+  "environment": "Existing production frontend at 686fd92c, cached local Docker API, Playwright 1.57.0 Linux Chromium",
+  "method": "Proposal only: swap orange background class for existing neutral button classes on same DOM; app sources unchanged. Korean 1280/390 reservation, desktop-only administrative lab add; no submit.",
+  "records": [
+    {
+      "name": "labs-1280",
+      "before": {
+        "background": "rgb(255, 105, 20)",
+        "color": "rgb(255, 255, 255)",
+        "opacity": "1",
+        "outline": "rgb(255, 255, 255) none 0px",
+        "width": 91,
+        "height": 34,
+        "disabled": false,
+        "text": "연구실 추가"
+      },
+      "proposal": {
+        "background": "rgb(64, 64, 64)",
+        "color": "rgb(255, 255, 255)",
+        "opacity": "1",
+        "outline": "rgb(255, 255, 255) none 0px",
+        "width": 91,
+        "height": 34,
+        "disabled": false,
+        "text": "연구실 추가"
+      },
+      "hover": {
+        "background": "rgb(115, 115, 115)",
+        "color": "rgb(255, 255, 255)",
+        "opacity": "1",
+        "outline": "rgb(255, 255, 255) none 0px",
+        "width": 91,
+        "height": 34,
+        "disabled": false,
+        "text": "연구실 추가"
+      }
+    },
+    {
+      "name": "reservation-1280",
+      "before": {
+        "background": "rgb(255, 105, 20)",
+        "color": "rgb(255, 255, 255)",
+        "opacity": "1",
+        "outline": "rgb(255, 255, 255) none 0px",
+        "width": 76,
+        "height": 30,
+        "disabled": false,
+        "text": "예약하기"
+      },
+      "proposal": {
+        "background": "rgb(64, 64, 64)",
+        "color": "rgb(255, 255, 255)",
+        "opacity": "1",
+        "outline": "rgb(255, 255, 255) none 0px",
+        "width": 76,
+        "height": 30,
+        "disabled": false,
+        "text": "예약하기"
+      },
+      "hover": {
+        "background": "rgb(115, 115, 115)",
+        "color": "rgb(255, 255, 255)",
+        "opacity": "1",
+        "outline": "rgb(255, 255, 255) none 0px",
+        "width": 76,
+        "height": 30,
+        "disabled": false,
+        "text": "예약하기"
+      }
+    },
+    {
+      "name": "reservation-disabled-1280",
+      "before": {
+        "background": "rgb(255, 105, 20)",
+        "color": "rgb(255, 255, 255)",
+        "opacity": "0.4",
+        "outline": "rgb(255, 255, 255) none 0px",
+        "width": 76,
+        "height": 36,
+        "disabled": true,
+        "text": "예약하기"
+      },
+      "proposal": {
+        "background": "rgb(64, 64, 64)",
+        "color": "rgb(255, 255, 255)",
+        "opacity": "0.4",
+        "outline": "rgb(255, 255, 255) none 0px",
+        "width": 76,
+        "height": 36,
+        "disabled": true,
+        "text": "예약하기"
+      },
+      "hover": null
+    },
+    {
+      "name": "reservation-390",
+      "before": {
+        "background": "rgb(255, 105, 20)",
+        "color": "rgb(255, 255, 255)",
+        "opacity": "1",
+        "outline": "rgb(255, 255, 255) none 0px",
+        "width": 76,
+        "height": 30,
+        "disabled": false,
+        "text": "예약하기"
+      },
+      "proposal": {
+        "background": "rgb(64, 64, 64)",
+        "color": "rgb(255, 255, 255)",
+        "opacity": "1",
+        "outline": "rgb(255, 255, 255) none 0px",
+        "width": 76,
+        "height": 30,
+        "disabled": false,
+        "text": "예약하기"
+      },
+      "hover": {
+        "background": "rgb(115, 115, 115)",
+        "color": "rgb(255, 255, 255)",
+        "opacity": "1",
+        "outline": "rgb(255, 255, 255) none 0px",
+        "width": 76,
+        "height": 30,
+        "disabled": false,
+        "text": "예약하기"
+      }
+    }
+  ],
+  "limits": [
+    "Not implementation validation, not full regression or accessibility audit.",
+    "English and remaining add-button sites not captured; verify after decision.",
+    "Disabled sample stays disabled and opacity .4; no disabled interaction rule change.",
+    "Reservation mobile layout issue Q-10 remains."
+  ]
+}
