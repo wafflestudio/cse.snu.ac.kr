@@ -1,0 +1,1145 @@
+{
+  "sourceBase": "d1baf83c",
+  "comparisonStart": "6249c8fb",
+  "date": "2026-09-22",
+  "environment": "Playwright 1.57.0 Chromium Linux / production build / DPR 1",
+  "method": "Same DOM before/after; prepend registered Pretendard Variable only on .sun-editor-editable. CDP actual fonts, computed CSS, geometry and screenshots. No app CSS or saved HTML edits.",
+  "samples": [
+    {
+      "name": "notice-ko-1280",
+      "path": "/ko/community/notice/31",
+      "before": {
+        "viewport": {
+          "width": 1280,
+          "height": 844
+        },
+        "document": {
+          "width": 1280,
+          "height": 2237
+        },
+        "body": {
+          "text": "학사 일정과 연구 프로그램 / Research programmes이 글은 디자인 조사용 로컬 표본이며 실제 공지가 아닙니다. 문단의 길이가 달라",
+          "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "14px",
+          "weight": "400",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 720,
+          "height": 988.921875,
+          "textLineTops": [
+            0, 8, 59.421875, 64.421875, 92.421875, 120.421875, 153.421875,
+            158.421875, 186.421875, 214.421875, 247.421875, 252.421875,
+            280.421875, 308.421875, 341.421875, 346.421875, 374.421875,
+            402.421875, 435.421875, 440.421875, 468.421875, 496.421875,
+            529.421875, 534.421875, 562.421875, 590.421875, 629.796875,
+            634.796875, 676.546875, 681.546875, 714.546875, 747.546875,
+            784.546875, 789.546875, 822.546875, 829.546875, 868.546875,
+            880.140625, 921.328125, 960.921875, 965.921875
+          ]
+        },
+        "paragraphs": [
+          {
+            "text": "이 글은 디자인 조사용 로컬 표본이며 실제 공지가 아닙니다. 문단의 길이가 달라질 때 줄바꿈과 읽기 흐름을 확인합니다. Research proj",
+            "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 720,
+            "height": 84,
+            "textLineTops": [5, 33, 61]
+          },
+          {
+            "text": "Undergraduate and graduate students can find application instructions, programme",
+            "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 720,
+            "height": 84,
+            "textLineTops": [5, 33, 61]
+          }
+        ],
+        "authoredSize": {
+          "text": "작성자가 지정한 18px 글자 / Authored size",
+          "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "18px",
+          "weight": "400",
+          "lineHeight": "36px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 343.9375,
+          "height": 22,
+          "textLineTops": [0],
+          "inlineStyle": null
+        },
+        "uiFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+        "cspViolations": [],
+        "fonts": [
+          {
+            "selector": ".sun-editor-editable p",
+            "fonts": [
+              {
+                "familyName": "WenQuanYi Zen Hei",
+                "postScriptName": "WenQuanYiZenHei",
+                "isCustomFont": false,
+                "glyphCount": 204
+              }
+            ]
+          },
+          {
+            "selector": ".sun-editor-editable p:nth-of-type(2)",
+            "fonts": [
+              {
+                "familyName": "WenQuanYi Zen Hei",
+                "postScriptName": "WenQuanYiZenHei",
+                "isCustomFont": false,
+                "glyphCount": 266
+              }
+            ]
+          },
+          {
+            "selector": ".sun-editor-editable strong",
+            "fonts": [
+              {
+                "familyName": "WenQuanYi Zen Hei",
+                "postScriptName": "WenQuanYiZenHei",
+                "isCustomFont": false,
+                "glyphCount": 29
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "viewport": {
+          "width": 1280,
+          "height": 844
+        },
+        "document": {
+          "width": 1280,
+          "height": 2237
+        },
+        "body": {
+          "text": "학사 일정과 연구 프로그램 / Research programmes이 글은 디자인 조사용 로컬 표본이며 실제 공지가 아닙니다. 문단의 길이가 달라",
+          "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "14px",
+          "weight": "400",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 720,
+          "height": 988.921875,
+          "textLineTops": [
+            0, 8, 59.421875, 65.421875, 93.421875, 121.421875, 153.421875,
+            159.421875, 187.421875, 215.421875, 247.421875, 253.421875,
+            281.421875, 309.421875, 341.421875, 347.421875, 375.421875,
+            403.421875, 435.421875, 441.421875, 469.421875, 497.421875,
+            529.421875, 535.421875, 563.421875, 591.421875, 629.796875,
+            635.796875, 676.546875, 682.546875, 715.546875, 748.546875,
+            784.546875, 790.546875, 822.546875, 829.546875, 868.546875,
+            881.140625, 922.328125, 960.921875, 966.921875
+          ]
+        },
+        "paragraphs": [
+          {
+            "text": "이 글은 디자인 조사용 로컬 표본이며 실제 공지가 아닙니다. 문단의 길이가 달라질 때 줄바꿈과 읽기 흐름을 확인합니다. Research proj",
+            "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 720,
+            "height": 84,
+            "textLineTops": [6, 34, 62]
+          },
+          {
+            "text": "Undergraduate and graduate students can find application instructions, programme",
+            "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 720,
+            "height": 84,
+            "textLineTops": [6, 34, 62]
+          }
+        ],
+        "authoredSize": {
+          "text": "작성자가 지정한 18px 글자 / Authored size",
+          "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "18px",
+          "weight": "400",
+          "lineHeight": "36px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 327,
+          "height": 21,
+          "textLineTops": [0],
+          "inlineStyle": null
+        },
+        "uiFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+        "cspViolations": [],
+        "fonts": [
+          {
+            "selector": ".sun-editor-editable p",
+            "fonts": [
+              {
+                "familyName": "Pretendard Variable",
+                "postScriptName": "PretendardVariable-Regular",
+                "isCustomFont": true,
+                "glyphCount": 203
+              }
+            ]
+          },
+          {
+            "selector": ".sun-editor-editable p:nth-of-type(2)",
+            "fonts": [
+              {
+                "familyName": "Pretendard Variable",
+                "postScriptName": "PretendardVariable-Regular",
+                "isCustomFont": true,
+                "glyphCount": 266
+              }
+            ]
+          },
+          {
+            "selector": ".sun-editor-editable strong",
+            "fonts": [
+              {
+                "familyName": "Pretendard Variable",
+                "postScriptName": "PretendardVariable-Regular",
+                "isCustomFont": true,
+                "glyphCount": 29
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "notice-ko-390",
+      "path": "/ko/community/notice/31",
+      "before": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 390,
+          "height": 2871
+        },
+        "body": {
+          "text": "학사 일정과 연구 프로그램 / Research programmes이 글은 디자인 조사용 로컬 표본이며 실제 공지가 아닙니다. 문단의 길이가 달라",
+          "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "14px",
+          "weight": "400",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 350,
+          "height": 1478.921875,
+          "textLineTops": [
+            0, 8, 50, 101.421875, 106.421875, 134.421875, 162.421875,
+            190.421875, 218.421875, 251.421875, 256.421875, 284.421875,
+            312.421875, 340.421875, 368.421875, 396.421875, 429.421875,
+            434.421875, 462.421875, 490.421875, 518.421875, 546.421875,
+            579.421875, 584.421875, 612.421875, 640.421875, 668.421875,
+            696.421875, 724.421875, 757.421875, 762.421875, 790.421875,
+            818.421875, 846.421875, 874.421875, 907.421875, 912.421875,
+            940.421875, 968.421875, 996.421875, 1024.421875, 1052.421875,
+            1091.796875, 1096.796875, 1138.546875, 1143.546875, 1176.546875,
+            1209.546875, 1246.546875, 1251.546875, 1284.546875, 1291.546875,
+            1330.546875, 1342.140625, 1383.328125, 1411.328125, 1450.921875,
+            1455.921875
+          ]
+        },
+        "paragraphs": [
+          {
+            "text": "이 글은 디자인 조사용 로컬 표본이며 실제 공지가 아닙니다. 문단의 길이가 달라질 때 줄바꿈과 읽기 흐름을 확인합니다. Research proj",
+            "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 350,
+            "height": 140,
+            "textLineTops": [5, 33, 61, 89, 117]
+          },
+          {
+            "text": "Undergraduate and graduate students can find application instructions, programme",
+            "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 350,
+            "height": 168,
+            "textLineTops": [5, 33, 61, 89, 117, 145]
+          }
+        ],
+        "authoredSize": {
+          "text": "작성자가 지정한 18px 글자 / Authored size",
+          "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "18px",
+          "weight": "400",
+          "lineHeight": "36px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 343.9375,
+          "height": 22,
+          "textLineTops": [0],
+          "inlineStyle": null
+        },
+        "uiFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+        "cspViolations": [],
+        "fonts": [
+          {
+            "selector": ".sun-editor-editable p",
+            "fonts": [
+              {
+                "familyName": "WenQuanYi Zen Hei",
+                "postScriptName": "WenQuanYiZenHei",
+                "isCustomFont": false,
+                "glyphCount": 203
+              }
+            ]
+          },
+          {
+            "selector": ".sun-editor-editable p:nth-of-type(2)",
+            "fonts": [
+              {
+                "familyName": "WenQuanYi Zen Hei",
+                "postScriptName": "WenQuanYiZenHei",
+                "isCustomFont": false,
+                "glyphCount": 263
+              }
+            ]
+          },
+          {
+            "selector": ".sun-editor-editable strong",
+            "fonts": [
+              {
+                "familyName": "WenQuanYi Zen Hei",
+                "postScriptName": "WenQuanYiZenHei",
+                "isCustomFont": false,
+                "glyphCount": 29
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 390,
+          "height": 2871
+        },
+        "body": {
+          "text": "학사 일정과 연구 프로그램 / Research programmes이 글은 디자인 조사용 로컬 표본이며 실제 공지가 아닙니다. 문단의 길이가 달라",
+          "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "14px",
+          "weight": "400",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 350,
+          "height": 1478.921875,
+          "textLineTops": [
+            0, 8, 50, 101.421875, 107.421875, 135.421875, 163.421875,
+            191.421875, 219.421875, 251.421875, 257.421875, 285.421875,
+            313.421875, 341.421875, 369.421875, 397.421875, 429.421875,
+            435.421875, 463.421875, 491.421875, 519.421875, 547.421875,
+            579.421875, 585.421875, 613.421875, 641.421875, 669.421875,
+            697.421875, 725.421875, 757.421875, 763.421875, 791.421875,
+            819.421875, 847.421875, 875.421875, 907.421875, 913.421875,
+            941.421875, 969.421875, 997.421875, 1025.421875, 1053.421875,
+            1091.796875, 1097.796875, 1138.546875, 1144.546875, 1177.546875,
+            1210.546875, 1246.546875, 1252.546875, 1284.546875, 1291.546875,
+            1330.546875, 1343.140625, 1384.328125, 1412.328125, 1450.921875,
+            1456.921875
+          ]
+        },
+        "paragraphs": [
+          {
+            "text": "이 글은 디자인 조사용 로컬 표본이며 실제 공지가 아닙니다. 문단의 길이가 달라질 때 줄바꿈과 읽기 흐름을 확인합니다. Research proj",
+            "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 350,
+            "height": 140,
+            "textLineTops": [6, 34, 62, 90, 118]
+          },
+          {
+            "text": "Undergraduate and graduate students can find application instructions, programme",
+            "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 350,
+            "height": 168,
+            "textLineTops": [6, 34, 62, 90, 118, 146]
+          }
+        ],
+        "authoredSize": {
+          "text": "작성자가 지정한 18px 글자 / Authored size",
+          "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "18px",
+          "weight": "400",
+          "lineHeight": "36px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 327,
+          "height": 21,
+          "textLineTops": [0],
+          "inlineStyle": null
+        },
+        "uiFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+        "cspViolations": [],
+        "fonts": [
+          {
+            "selector": ".sun-editor-editable p",
+            "fonts": [
+              {
+                "familyName": "Pretendard Variable",
+                "postScriptName": "PretendardVariable-Regular",
+                "isCustomFont": true,
+                "glyphCount": 202
+              }
+            ]
+          },
+          {
+            "selector": ".sun-editor-editable p:nth-of-type(2)",
+            "fonts": [
+              {
+                "familyName": "Pretendard Variable",
+                "postScriptName": "PretendardVariable-Regular",
+                "isCustomFont": true,
+                "glyphCount": 263
+              }
+            ]
+          },
+          {
+            "selector": ".sun-editor-editable strong",
+            "fonts": [
+              {
+                "familyName": "Pretendard Variable",
+                "postScriptName": "PretendardVariable-Regular",
+                "isCustomFont": true,
+                "glyphCount": 29
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "notice-ko-768",
+      "path": "/ko/community/notice/31",
+      "before": {
+        "viewport": {
+          "width": 768,
+          "height": 844
+        },
+        "document": {
+          "width": 1200,
+          "height": 2237
+        },
+        "body": {
+          "text": "학사 일정과 연구 프로그램 / Research programmes이 글은 디자인 조사용 로컬 표본이며 실제 공지가 아닙니다. 문단의 길이가 달라",
+          "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "14px",
+          "weight": "400",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 640,
+          "height": 988.921875,
+          "textLineTops": [
+            0, 8, 59.421875, 64.421875, 92.421875, 120.421875, 153.421875,
+            158.421875, 186.421875, 214.421875, 247.421875, 252.421875,
+            280.421875, 308.421875, 341.421875, 346.421875, 374.421875,
+            402.421875, 435.421875, 440.421875, 468.421875, 496.421875,
+            529.421875, 534.421875, 562.421875, 590.421875, 629.796875,
+            634.796875, 676.546875, 681.546875, 714.546875, 747.546875,
+            784.546875, 789.546875, 822.546875, 829.546875, 868.546875,
+            880.140625, 921.328125, 960.921875, 965.921875
+          ]
+        },
+        "paragraphs": [
+          {
+            "text": "이 글은 디자인 조사용 로컬 표본이며 실제 공지가 아닙니다. 문단의 길이가 달라질 때 줄바꿈과 읽기 흐름을 확인합니다. Research proj",
+            "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 640,
+            "height": 84,
+            "textLineTops": [5, 33, 61]
+          },
+          {
+            "text": "Undergraduate and graduate students can find application instructions, programme",
+            "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 640,
+            "height": 84,
+            "textLineTops": [5, 33, 61]
+          }
+        ],
+        "authoredSize": {
+          "text": "작성자가 지정한 18px 글자 / Authored size",
+          "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "18px",
+          "weight": "400",
+          "lineHeight": "36px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 343.9375,
+          "height": 22,
+          "textLineTops": [0],
+          "inlineStyle": null
+        },
+        "uiFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+        "cspViolations": [],
+        "fonts": [
+          {
+            "selector": ".sun-editor-editable p",
+            "fonts": [
+              {
+                "familyName": "WenQuanYi Zen Hei",
+                "postScriptName": "WenQuanYiZenHei",
+                "isCustomFont": false,
+                "glyphCount": 203
+              }
+            ]
+          },
+          {
+            "selector": ".sun-editor-editable p:nth-of-type(2)",
+            "fonts": [
+              {
+                "familyName": "WenQuanYi Zen Hei",
+                "postScriptName": "WenQuanYiZenHei",
+                "isCustomFont": false,
+                "glyphCount": 266
+              }
+            ]
+          },
+          {
+            "selector": ".sun-editor-editable strong",
+            "fonts": [
+              {
+                "familyName": "WenQuanYi Zen Hei",
+                "postScriptName": "WenQuanYiZenHei",
+                "isCustomFont": false,
+                "glyphCount": 29
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "viewport": {
+          "width": 768,
+          "height": 844
+        },
+        "document": {
+          "width": 1200,
+          "height": 2237
+        },
+        "body": {
+          "text": "학사 일정과 연구 프로그램 / Research programmes이 글은 디자인 조사용 로컬 표본이며 실제 공지가 아닙니다. 문단의 길이가 달라",
+          "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "14px",
+          "weight": "400",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 640,
+          "height": 988.921875,
+          "textLineTops": [
+            0, 8, 59.421875, 65.421875, 93.421875, 121.421875, 153.421875,
+            159.421875, 187.421875, 215.421875, 247.421875, 253.421875,
+            281.421875, 309.421875, 341.421875, 347.421875, 375.421875,
+            403.421875, 435.421875, 441.421875, 469.421875, 497.421875,
+            529.421875, 535.421875, 563.421875, 591.421875, 629.796875,
+            635.796875, 676.546875, 682.546875, 715.546875, 748.546875,
+            784.546875, 790.546875, 822.546875, 829.546875, 868.546875,
+            881.140625, 922.328125, 960.921875, 966.921875
+          ]
+        },
+        "paragraphs": [
+          {
+            "text": "이 글은 디자인 조사용 로컬 표본이며 실제 공지가 아닙니다. 문단의 길이가 달라질 때 줄바꿈과 읽기 흐름을 확인합니다. Research proj",
+            "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 640,
+            "height": 84,
+            "textLineTops": [6, 34, 62]
+          },
+          {
+            "text": "Undergraduate and graduate students can find application instructions, programme",
+            "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 640,
+            "height": 84,
+            "textLineTops": [6, 34, 62]
+          }
+        ],
+        "authoredSize": {
+          "text": "작성자가 지정한 18px 글자 / Authored size",
+          "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "18px",
+          "weight": "400",
+          "lineHeight": "36px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 327,
+          "height": 21,
+          "textLineTops": [0],
+          "inlineStyle": null
+        },
+        "uiFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+        "cspViolations": [],
+        "fonts": [
+          {
+            "selector": ".sun-editor-editable p",
+            "fonts": [
+              {
+                "familyName": "Pretendard Variable",
+                "postScriptName": "PretendardVariable-Regular",
+                "isCustomFont": true,
+                "glyphCount": 204
+              }
+            ]
+          },
+          {
+            "selector": ".sun-editor-editable p:nth-of-type(2)",
+            "fonts": [
+              {
+                "familyName": "Pretendard Variable",
+                "postScriptName": "PretendardVariable-Regular",
+                "isCustomFont": true,
+                "glyphCount": 266
+              }
+            ]
+          },
+          {
+            "selector": ".sun-editor-editable strong",
+            "fonts": [
+              {
+                "familyName": "Pretendard Variable",
+                "postScriptName": "PretendardVariable-Regular",
+                "isCustomFont": true,
+                "glyphCount": 29
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "greetings-en-1280",
+      "path": "/en/about/greetings",
+      "before": {
+        "viewport": {
+          "width": 1280,
+          "height": 844
+        },
+        "document": {
+          "width": 1280,
+          "height": 916
+        },
+        "body": {
+          "text": "Greetings from the chair.",
+          "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "14px",
+          "weight": "400",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 720,
+          "height": 28,
+          "textLineTops": [0, 5]
+        },
+        "paragraphs": [
+          {
+            "text": "Greetings from the chair.",
+            "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 720,
+            "height": 28,
+            "textLineTops": [5]
+          }
+        ],
+        "authoredSize": null,
+        "uiFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+        "cspViolations": [],
+        "fonts": [
+          {
+            "selector": ".sun-editor-editable p",
+            "fonts": [
+              {
+                "familyName": "WenQuanYi Zen Hei",
+                "postScriptName": "WenQuanYiZenHei",
+                "isCustomFont": false,
+                "glyphCount": 25
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "viewport": {
+          "width": 1280,
+          "height": 844
+        },
+        "document": {
+          "width": 1280,
+          "height": 916
+        },
+        "body": {
+          "text": "Greetings from the chair.",
+          "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "14px",
+          "weight": "400",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 720,
+          "height": 28,
+          "textLineTops": [0, 6]
+        },
+        "paragraphs": [
+          {
+            "text": "Greetings from the chair.",
+            "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 720,
+            "height": 28,
+            "textLineTops": [6]
+          }
+        ],
+        "authoredSize": null,
+        "uiFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+        "cspViolations": [],
+        "fonts": [
+          {
+            "selector": ".sun-editor-editable p",
+            "fonts": [
+              {
+                "familyName": "Pretendard Variable",
+                "postScriptName": "PretendardVariable-Regular",
+                "isCustomFont": true,
+                "glyphCount": 25
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "greetings-en-390",
+      "path": "/en/about/greetings",
+      "before": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 436,
+          "height": 926
+        },
+        "body": {
+          "text": "Greetings from the chair.",
+          "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "14px",
+          "weight": "400",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 152.109375,
+          "height": 28,
+          "textLineTops": [0, 5]
+        },
+        "paragraphs": [
+          {
+            "text": "Greetings from the chair.",
+            "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 152.109375,
+            "height": 28,
+            "textLineTops": [5]
+          }
+        ],
+        "authoredSize": null,
+        "uiFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+        "cspViolations": [],
+        "fonts": [
+          {
+            "selector": ".sun-editor-editable p",
+            "fonts": [
+              {
+                "familyName": "WenQuanYi Zen Hei",
+                "postScriptName": "WenQuanYiZenHei",
+                "isCustomFont": false,
+                "glyphCount": 25
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 436,
+          "height": 926
+        },
+        "body": {
+          "text": "Greetings from the chair.",
+          "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "14px",
+          "weight": "400",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 160,
+          "height": 28,
+          "textLineTops": [0, 6]
+        },
+        "paragraphs": [
+          {
+            "text": "Greetings from the chair.",
+            "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 160,
+            "height": 28,
+            "textLineTops": [6]
+          }
+        ],
+        "authoredSize": null,
+        "uiFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+        "cspViolations": [],
+        "fonts": [
+          {
+            "selector": ".sun-editor-editable p",
+            "fonts": [
+              {
+                "familyName": "Pretendard Variable",
+                "postScriptName": "PretendardVariable-Regular",
+                "isCustomFont": true,
+                "glyphCount": 25
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "editor-ko-1280",
+      "path": "/ko/community/notice/edit/31",
+      "before": {
+        "viewport": {
+          "width": 1280,
+          "height": 844
+        },
+        "document": {
+          "width": 1280,
+          "height": 2690
+        },
+        "body": {
+          "text": "학사 일정과 연구 프로그램 / Research programmes이 글은 디자인 조사용 로컬 표본이며 실제 공지가 아닙니다. 문단의 길이가 달라",
+          "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "14px",
+          "weight": "400",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "16px",
+          "width": 718,
+          "height": 1022.921875,
+          "textLineTops": [
+            16, 24, 75.421875, 80.421875, 108.421875, 136.421875, 169.421875,
+            174.421875, 202.421875, 230.421875, 263.421875, 268.421875,
+            296.421875, 324.421875, 357.421875, 362.421875, 390.421875,
+            418.421875, 451.421875, 456.421875, 484.421875, 512.421875,
+            545.421875, 550.421875, 578.421875, 606.421875, 645.796875,
+            650.796875, 692.546875, 697.546875, 730.546875, 763.546875,
+            800.546875, 805.546875, 838.546875, 843.546875, 876.546875,
+            888.140625, 929.328125, 968.921875, 973.921875
+          ]
+        },
+        "paragraphs": [
+          {
+            "text": "이 글은 디자인 조사용 로컬 표본이며 실제 공지가 아닙니다. 문단의 길이가 달라질 때 줄바꿈과 읽기 흐름을 확인합니다. Research proj",
+            "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 686,
+            "height": 84,
+            "textLineTops": [5, 33, 61]
+          },
+          {
+            "text": "Undergraduate and graduate students can find application instructions, programme",
+            "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 686,
+            "height": 84,
+            "textLineTops": [5, 33, 61]
+          }
+        ],
+        "authoredSize": {
+          "text": "작성자가 지정한 18px 글자 / Authored size",
+          "family": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "14px",
+          "weight": "400",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 267.515625,
+          "height": 17,
+          "textLineTops": [0],
+          "inlineStyle": "font-size:18px"
+        },
+        "uiFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+        "cspViolations": ["style-src-attr: inline"],
+        "fonts": [
+          {
+            "selector": ".sun-editor-editable p",
+            "fonts": [
+              {
+                "familyName": "WenQuanYi Zen Hei",
+                "postScriptName": "WenQuanYiZenHei",
+                "isCustomFont": false,
+                "glyphCount": 203
+              }
+            ]
+          },
+          {
+            "selector": ".sun-editor-editable p:nth-of-type(2)",
+            "fonts": [
+              {
+                "familyName": "WenQuanYi Zen Hei",
+                "postScriptName": "WenQuanYiZenHei",
+                "isCustomFont": false,
+                "glyphCount": 266
+              }
+            ]
+          },
+          {
+            "selector": ".sun-editor-editable strong",
+            "fonts": [
+              {
+                "familyName": "WenQuanYi Zen Hei",
+                "postScriptName": "WenQuanYiZenHei",
+                "isCustomFont": false,
+                "glyphCount": 29
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "viewport": {
+          "width": 1280,
+          "height": 844
+        },
+        "document": {
+          "width": 1280,
+          "height": 2690
+        },
+        "body": {
+          "text": "학사 일정과 연구 프로그램 / Research programmes이 글은 디자인 조사용 로컬 표본이며 실제 공지가 아닙니다. 문단의 길이가 달라",
+          "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "14px",
+          "weight": "400",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "16px",
+          "width": 718,
+          "height": 1022.921875,
+          "textLineTops": [
+            16, 24, 75.421875, 81.421875, 109.421875, 137.421875, 169.421875,
+            175.421875, 203.421875, 231.421875, 263.421875, 269.421875,
+            297.421875, 325.421875, 357.421875, 363.421875, 391.421875,
+            419.421875, 451.421875, 457.421875, 485.421875, 513.421875,
+            545.421875, 551.421875, 579.421875, 607.421875, 645.796875,
+            651.796875, 692.546875, 698.546875, 731.546875, 764.546875,
+            800.546875, 806.546875, 838.546875, 844.546875, 876.546875,
+            889.140625, 930.328125, 968.921875, 974.921875
+          ]
+        },
+        "paragraphs": [
+          {
+            "text": "이 글은 디자인 조사용 로컬 표본이며 실제 공지가 아닙니다. 문단의 길이가 달라질 때 줄바꿈과 읽기 흐름을 확인합니다. Research proj",
+            "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 686,
+            "height": 84,
+            "textLineTops": [6, 34, 62]
+          },
+          {
+            "text": "Undergraduate and graduate students can find application instructions, programme",
+            "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+            "size": "14px",
+            "weight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "normal",
+            "color": "rgb(10, 10, 10)",
+            "padding": "0px",
+            "width": 686,
+            "height": 84,
+            "textLineTops": [6, 34, 62]
+          }
+        ],
+        "authoredSize": {
+          "text": "작성자가 지정한 18px 글자 / Authored size",
+          "family": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+          "size": "14px",
+          "weight": "400",
+          "lineHeight": "28px",
+          "letterSpacing": "normal",
+          "color": "rgb(10, 10, 10)",
+          "padding": "0px",
+          "width": 253,
+          "height": 16,
+          "textLineTops": [0],
+          "inlineStyle": "font-size:18px"
+        },
+        "uiFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+        "cspViolations": ["style-src-attr: inline"],
+        "fonts": [
+          {
+            "selector": ".sun-editor-editable p",
+            "fonts": [
+              {
+                "familyName": "Pretendard Variable",
+                "postScriptName": "PretendardVariable-Regular",
+                "isCustomFont": true,
+                "glyphCount": 203
+              }
+            ]
+          },
+          {
+            "selector": ".sun-editor-editable p:nth-of-type(2)",
+            "fonts": [
+              {
+                "familyName": "Pretendard Variable",
+                "postScriptName": "PretendardVariable-Regular",
+                "isCustomFont": true,
+                "glyphCount": 266
+              }
+            ]
+          },
+          {
+            "selector": ".sun-editor-editable strong",
+            "fonts": [
+              {
+                "familyName": "Pretendard Variable",
+                "postScriptName": "PretendardVariable-Regular",
+                "isCustomFont": true,
+                "glyphCount": 29
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
