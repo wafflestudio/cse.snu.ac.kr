@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { expect, type Page, test } from '@playwright/test';
 import { loginAsStaff } from '../tests/helpers/auth';
@@ -7,9 +7,17 @@ import { normalizeDates } from '../tests/setup/db';
 import { mockLoginCookie, postMultipart } from '../tests/setup/seed/client';
 
 // 승인 전 비교: 프로덕션 빌드의 DOM에서 본문 컨테이너 font-family만 바꾼다.
-// 앱 CSS·기존 스크린샷 기준·저장된 본문은 바꾸지 않는다.
+// 적용 전 커밋 e71c63fc에서만 기존 비교를 재생성한다.
+// 적용 확인: DESIGN_FONT_MODE=applied는 실제 CSS를 승인 견본과 대조한다.
+const verifyApplied = process.env.DESIGN_FONT_MODE === 'applied';
+const comparison = new URL(
+  '../../docs/design-system/font-comparison/',
+  import.meta.url,
+);
 const output = fileURLToPath(
-  new URL('../../docs/design-system/font-comparison/', import.meta.url),
+  verifyApplied
+    ? new URL('../../docs/design-system/font-implementation/', import.meta.url)
+    : comparison,
 );
 const korean =
   '이 글은 디자인 조사용 로컬 표본이며 실제 공지가 아닙니다. 문단의 길이가 달라질 때 줄바꿈과 읽기 흐름을 확인합니다. Research projects require clear application instructions, accessible information, and consistent navigation across different screen sizes.';
@@ -67,25 +75,30 @@ test('본문 서체 연결 전후 비교', async ({ page }) => {
       await open(page, '/about/greetings', width, 'en');
       results.push(await compare(page, `greetings-en-${width}`));
     }
-    await open(page, `/community/notice/${created.id}`, 1280, 'ko');
-    await loginAsStaff(page);
-    await open(page, `/community/notice/edit/${created.id}`, 1280, 'ko');
-    await expect(page.locator('.sun-editor-editable')).toHaveAttribute(
-      'contenteditable',
-      'true',
-    );
-    results.push(await compare(page, 'editor-ko-1280'));
+    if (!verifyApplied) {
+      await open(page, `/community/notice/${created.id}`, 1280, 'ko');
+      await loginAsStaff(page);
+      await open(page, `/community/notice/edit/${created.id}`, 1280, 'ko');
+      await expect(page.locator('.sun-editor-editable')).toHaveAttribute(
+        'contenteditable',
+        'true',
+      );
+      results.push(await compare(page, 'editor-ko-1280'));
+    }
     await writeFile(
       `${output}measurements.json`,
       `${JSON.stringify(
         {
-          sourceBase: 'd1baf83c',
+          sourceBase: verifyApplied
+            ? 'DS-006 font CSS working tree from e71c63fc'
+            : 'd1baf83c',
           comparisonStart: '6249c8fb',
           date: '2026-09-22',
           environment:
             'Playwright 1.57.0 Chromium Linux / production build / DPR 1',
-          method:
-            'Same DOM before/after; prepend registered Pretendard Variable only on .sun-editor-editable. CDP actual fonts, computed CSS, geometry and screenshots. No app CSS or saved HTML edits.',
+          method: verifyApplied
+            ? 'Actual app CSS without browser style overrides. Compare viewer geometry with approved proposal; Editor behavior excluded by user scope. Cached API image; fresh production frontend build.'
+            : 'Same DOM before/after; prepend registered Pretendard Variable only on .sun-editor-editable. CDP actual fonts, computed CSS, geometry and screenshots. No app CSS or saved HTML edits.',
           samples: results,
         },
         null,
@@ -120,7 +133,7 @@ async function compare(page: Page, name: string) {
   const cdp = await page.context().newCDPSession(page);
   await cdp.send('DOM.enable');
   await cdp.send('CSS.enable');
-  const sample = async (variant: 'before' | 'after') => {
+  const sample = async (variant: 'before' | 'after' | 'applied') => {
     await page.evaluate(async () => {
       await document.fonts.ready;
       for (const img of document.images) img.loading = 'eager';
@@ -220,6 +233,43 @@ async function compare(page: Page, name: string) {
     });
     return { ...geometry, fonts };
   };
+  if (verifyApplied) {
+    const actual = await sample('applied');
+    const reference = JSON.parse(
+      await readFile(new URL('measurements.json', comparison), 'utf8'),
+    );
+    const approved = reference.samples.find(
+      (item: { name: string }) => item.name === name,
+    ).after;
+    expect(
+      actual.fonts[0].fonts.every(
+        (font) =>
+          font.isCustomFont && font.familyName === 'Pretendard Variable',
+      ),
+    ).toBe(true);
+    for (const key of [
+      'size',
+      'weight',
+      'lineHeight',
+      'letterSpacing',
+      'color',
+      'padding',
+      'width',
+    ] as const) {
+      expect(actual.body[key]).toBe(approved.body[key]);
+    }
+    expect(actual.body.height).toBe(approved.body.height);
+    const expectedImage = await readFile(
+      new URL(`${name}-after-body.png`, comparison),
+    );
+    const actualImage = await readFile(`${output}${name}-applied-body.png`);
+    expect(
+      actualImage.equals(expectedImage),
+      '승인한 본문 이미지와 실제 CSS 적용 결과',
+    ).toBe(true);
+    await cdp.detach();
+    return { name, path: new URL(page.url()).pathname, actual };
+  }
   const before = await sample('before');
   await body.evaluate((el) => {
     (el as HTMLElement).style.fontFamily =

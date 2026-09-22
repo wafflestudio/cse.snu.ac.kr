@@ -10,19 +10,19 @@
 </style>
 </head>
 <body><main>
-<header><span class="eyebrow">CSE · 디자인 시스템 / 3-1</span><h1>본문도 등록된 서체로<br>제대로 연결하면?</h1><span class="badge">서체 연결안 · 사용자 검토 전</span><p class="lead">일반 UI는 Pretendard Variable을 쓰지만, 본문과 편집기는 다른 이름을 찾고 있다. 글자 크기와 행간을 유지한 채 연결만 고친 결과를 비교한다.</p></header>
-<nav aria-label="검토 내용"><a href="#compare">실제 화면 비교</a><a href="#scope">변경 범위</a><a href="#question">이번 판단</a><a href="TYPOGRAPHY.md">측정·실행 근거</a><a href="PLAN.md">현재 위치</a></nav>
-<section id="compare"><h2>01. 같은 내용, 같은 폭에서 비교</h2><p>장면을 고른 뒤 ‘현재’와 ‘연결안’을 전환해 보자. 아래 이미지는 실제 앱을 렌더한 본문 영역이다. 편집기도 같은 로컬 공지의 내용을 사용한다.</p>
+<header><span class="eyebrow">CSE · 디자인 시스템 / 3-1</span><h1>본문도 등록된 서체로<br>제대로 연결하면?</h1><span class="badge">DS-006 · 기본 서체 연결 적용 완료</span><p class="lead">기존 본문 스타일이 다른 서체 이름을 찾던 문제를 바로잡았다. 글자 크기와 행간을 유지한 채 연결만 고친 결과를 비교한다.</p></header>
+<nav aria-label="검토 내용"><a href="#compare">실제 화면 비교</a><a href="#scope">변경 범위</a><a href="#question">결정과 적용</a><a href="TYPOGRAPHY.md">측정·실행 근거</a><a href="PLAN.md">현재 위치</a></nav>
+<section id="compare"><h2>01. 같은 내용, 같은 폭에서 비교</h2><p>장면을 고른 뒤 ‘적용 전’과 ‘승인한 연결안’을 전환해 보자. 아래 이미지는 실제 앱을 렌더한 본문 영역이다. 편집기도 같은 로컬 공지의 내용을 사용한다.</p>
 <div class="controls"><label class="scene" for="scene">비교 장면<select id="scene">
 <option value="notice-ko-1280">긴 한영 공지 · 데스크톱 1280px</option><option value="notice-ko-390">긴 한영 공지 · 모바일 390px</option><option value="notice-ko-768">긴 한영 공지 · 중간 폭 768px</option><option value="editor-ko-1280">같은 공지의 편집기 · 1280px</option><option value="greetings-en-1280">영어 인사말 · 1280px</option><option value="greetings-en-390">영어 인사말 · 390px</option>
-</select></label><fieldset><legend>표시할 안</legend><div class="variants"><label><input type="radio" name="variant" value="before" checked>현재</label><label><input type="radio" name="variant" value="after">연결안 · 권장</label></div></fieldset><label><input id="original" type="checkbox">원본 크기</label></div>
+</select></label><fieldset><legend>표시할 안</legend><div class="variants"><label><input type="radio" name="variant" value="before" checked>적용 전</label><label><input type="radio" name="variant" value="after">승인한 연결안</label></div></fieldset><label><input id="original" type="checkbox">원본 크기</label></div>
 <div class="readout" aria-live="polite"><div>첫 문단의 실제 서체<strong id="font">측정 불러오는 중</strong></div><div>첫 문단 줄 수<strong id="lines">—</strong></div><div>전체 본문 영역 높이<strong id="height">—</strong></div></div>
 <div class="frame" tabindex="0" role="region" aria-label="서체 비교 본문 이미지 스크롤"><img id="preview" src="font-comparison/notice-ko-1280-before-body.png" alt="현재 서체의 긴 공지 본문"></div>
-<p id="scene-note" class="note"></p><p class="links"><a id="current-full" href="font-comparison/notice-ko-1280-before.png">현재 전체 화면</a><a id="candidate-full" href="font-comparison/notice-ko-1280-after.png">연결안 전체 화면</a><a href="font-comparison/measurements.json">측정 원자료</a></p>
+<p id="scene-note" class="note"></p><p class="links"><a id="current-full" href="font-comparison/notice-ko-1280-before.png">적용 전 전체 화면</a><a id="candidate-full" href="font-comparison/notice-ko-1280-after.png">승인안 전체 화면</a><a href="font-comparison/measurements.json">측정 원자료</a></p>
 <p class="meta">기본 표시는 화면에 맞게 축소된다. 글자 모양을 자세히 보려면 ‘원본 크기’를 선택하거나 전체 화면 이미지를 연다. 비교 페이지의 글자·여백·녹색 표시는 앱 디자인 제안이 아니다.</p></section>
-<section id="scope"><h2>02. 이번에 바꾸는 것은 기본 서체 연결</h2><div class="table-wrap"><table><thead><tr><th scope="col">항목</th><th scope="col">현재 → 연결안</th></tr></thead><tbody><tr><td>본문·편집기의 기본 서체</td><td>Pretendard부터 검색 → 등록된 <strong>Pretendard Variable</strong>부터 검색</td></tr><tr><td>일반 문단 크기·행간</td><td>14px · 28px 유지. 최종 타이포 스케일의 승인으로 취급하지 않는다.</td></tr><tr><td>폭 지정·색·문단 정렬·패딩</td><td>CSS 지정은 유지. 글자 폭이 바뀌어 줄 수·높이와 내용에 맞춰 줄어드는 영역의 실측 폭은 달라질 수 있다.</td></tr><tr><td>기존 UI·메인 슬로건</td><td>이번 비교의 변경 범위 밖. 본문 컨테이너에만 서체를 연결한다.</td></tr><tr><td>작성한 본문</td><td>HTML 내용은 그대로. 명시한 18px는 뷰어에서 18px, 편집기에서 14px로 나타나는 기존 차이가 있다. 서체 연결 전후 모두 같으며 별도 수정 대상으로 기록했다.</td></tr></tbody></table></div>
+<section id="scope"><h2>02. 이번에 바꾸는 것은 기본 서체 연결</h2><div class="table-wrap"><table><thead><tr><th scope="col">항목</th><th scope="col">현재 → 연결안</th></tr></thead><tbody><tr><td>본문·편집기의 기본 서체</td><td>Pretendard부터 검색 → 등록된 <strong>Pretendard Variable</strong>부터 검색</td></tr><tr><td>일반 문단 크기·행간</td><td>14px · 28px 유지. 최종 타이포 스케일의 승인으로 취급하지 않는다.</td></tr><tr><td>폭 지정·색·문단 정렬·패딩</td><td>CSS 지정은 유지. 글자 폭이 바뀌어 줄 수·높이와 내용에 맞춰 줄어드는 영역의 실측 폭은 달라질 수 있다.</td></tr><tr><td>기존 UI·메인 슬로건</td><td>이번 비교의 변경 범위 밖. 본문 컨테이너에만 서체를 연결한다.</td></tr><tr><td>작성한 본문</td><td>HTML 내용은 그대로. 명시한 18px는 뷰어에서 18px, 편집기에서 14px로 나타나는 기존 차이가 있다. 서체 연결 전후 모두 같으며 사용자 요청으로 기록만 남기고 보류했다.</td></tr></tbody></table></div>
 <p class="note">Linux Chromium에서 확인한 결과다. 현재 대체 서체는 운영체제에 따라 다를 수 있다. 768px에서 원래 있던 페이지 넘침은 이번 서체 연결로 해결한 것이 아니다. 글자 크기·행간·반응형 배치는 다음 비교에서 다룬다.</p></section>
-<section id="question" class="decision"><h2>이번 판단 · T-Q1</h2><p><strong>본문과 편집기의 기본 서체를 일반 UI와 같은 Pretendard Variable로 연결할까?</strong></p><p>연결안을 권장한다. 이미 포함된 웹폰트를 실제로 사용하게 하고, 읽기와 편집의 기본 서체를 맞추는 변경이다. 줄바꿈 위치와 글자 모양이 달라진다. 이번 표본의 본문 높이는 같았지만 콘텐츠에 따라 달라질 수 있다. 지금은 이 연결만 결정하고 크기·행간 조정은 실제 결과를 기준으로 이어서 검토한다.</p><p>앱 CSS에는 아직 적용하지 않았다. 승인 후 공유 본문 스타일에 반영하고, 실제 빌드에서 비교 결과와 일치하는지 확인한다.</p></section>
+<section id="question" class="decision"><h2>결정과 적용 · DS-006</h2><p><strong>공유 본문 CSS의 기본 서체를 Pretendard Variable로 연결했다.</strong> 크기·행간 등은 다음 타이포 검토에서 다룬다.</p><p>공개 본문 5장면에서 실제 CSS 적용 이미지가 승인한 연결안과 일치했다. <a href="font-implementation/measurements.json">적용 측정 결과</a>. 이 페이지의 6장면은 승인 전 비교 기록이며, 편집기 서식 차이는 사용자 요청으로 보류했다.</p><p>다음 검토는 <a href="colors.html">색상과 글자 대비</a>다.</p></section>
 <details><summary>실행 방법과 한계</summary><p>Playwright 1.57.0 Linux Chromium과 현재 소스의 프로덕션 빌드에서 같은 DOM의 본문 컨테이너 font-family만 변경했다. 로컬 API가 제공한 HTMLViewer와 실제 편집기이며, 이미지를 새로 그린 모형이 아니다.</p><p>정식 실행의 Docker 빌드는 프록시 연결 시간 초과로 실패했다. 이번 비교는 기존 로컬 API 이미지와 설치된 의존성을 사용한 탐색 실행이다. API 명세 일치를 확인했고 프론트는 새로 빌드했다. 백엔드 이미지를 이번에 재빌드한 결과나 전체 앱 회귀 통과로 해석하지 않는다.</p><p>시드의 영어 인사말은 짧다. 긴 영어 문장은 혼합 공지의 두 번째 문단으로 보충했다. 작성자별 모든 글꼴·복잡한 붙여넣기·운영 데이터·다른 OS를 검증한 것은 아니다.</p></details>
 <footer><a href="TYPOGRAPHY.md">서체 규칙의 근거와 남은 작업</a> · <a href="DECISIONS.md">결정 기록</a> · <a href="DIRECTION.md">방향과 예외</a></footer>
 </main>
@@ -37,7 +37,7 @@ function update(reset = false) {
   const variant = document.querySelector('input[name="variant"]:checked').value;
   const data = sample[variant];
   preview.src = `font-comparison/${sample.name}-${variant}-body.png`;
-  preview.alt = `${scene.selectedOptions[0].textContent} — ${variant === 'before' ? '현재' : '서체 연결안'}`;
+  preview.alt = `${scene.selectedOptions[0].textContent} — ${variant === 'before' ? '적용 전' : '승인한 서체 연결안'}`;
   preview.style.width = `${data.body.width}px`;
   document.getElementById('font').textContent = [...new Set(data.fonts[0].fonts.map(font => font.familyName))].join(' / ');
   document.getElementById('lines').textContent = `${data.paragraphs[0].textLineTops.length}줄`;

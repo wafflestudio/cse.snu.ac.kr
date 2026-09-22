@@ -1,0 +1,43 @@
+{
+  "status": "C-Q1 proposal, not approved or applied",
+  "date": "2026-09-23",
+  "method": "sRGB relative luminance; (lighter + .05) / (darker + .05). Opaque color pairs only. No assessment of borders, focus or disabled states.",
+  "pairs": [
+    {
+      "role": "현재 채운 태그",
+      "foreground": "#ffffff",
+      "background": "#ff6914",
+      "ratio": 2.8835334698733264
+    },
+    {
+      "role": "현재 선택 글자",
+      "foreground": "#fafafa",
+      "background": "#ff6914",
+      "ratio": 2.7626265084714468
+    },
+    {
+      "role": "현재 테두리 태그",
+      "foreground": "#ff6914",
+      "background": "#ffffff",
+      "ratio": 2.8835334698733264
+    },
+    {
+      "role": "A 채운 태그·선택 글자",
+      "foreground": "#171717",
+      "background": "#ff6914",
+      "ratio": 6.217316511264623
+    },
+    {
+      "role": "A·B 흰 바탕 주황 글자",
+      "foreground": "#b54708",
+      "background": "#ffffff",
+      "ratio": 5.42698337241409
+    },
+    {
+      "role": "B 채운 태그·선택 글자",
+      "foreground": "#ffffff",
+      "background": "#b54708",
+      "ratio": 5.42698337241409
+    }
+  ]
+}
