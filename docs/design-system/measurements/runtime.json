@@ -1,0 +1,779 @@
+{
+  "sourceBase": "d1baf83c",
+  "surveyStart": "4534063a",
+  "date": "2026-09-22",
+  "environment": "Playwright 1.57.0 Chromium Linux / production build / Asia/Seoul / DPR 1",
+  "method": "Computed CSS, bounding boxes and Chrome DevTools CSS.getPlatformFontsForNode. Text input focus reached with Tab then Shift+Tab. No CSS overrides.",
+  "samples": [
+    {
+      "role": "mobile-menu-closed",
+      "path": "/ko/community/notice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "tag": "BUTTON",
+      "text": "",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "19.2px",
+      "letterSpacing": "normal",
+      "color": "rgb(10, 10, 10)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": ["0px", "solid", "rgb(10, 10, 10)"],
+      "radius": "0px",
+      "padding": "0px",
+      "gap": "normal",
+      "width": 24,
+      "height": 24,
+      "outline": ["0px", "none", "rgb(10, 10, 10)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": false,
+      "focusVisible": false,
+      "hovered": false,
+      "placeholderColor": null,
+      "renderedFonts": []
+    },
+    {
+      "role": "mobile-menu-open",
+      "path": "/ko/community/notice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "tag": "BUTTON",
+      "text": "",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "19.2px",
+      "letterSpacing": "normal",
+      "color": "rgb(10, 10, 10)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": ["0px", "solid", "rgb(10, 10, 10)"],
+      "radius": "0px",
+      "padding": "0px",
+      "gap": "normal",
+      "width": 20,
+      "height": 20,
+      "outline": ["0px", "none", "rgb(10, 10, 10)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": true,
+      "focusVisible": false,
+      "hovered": true,
+      "placeholderColor": null,
+      "renderedFonts": []
+    },
+    {
+      "role": "search-action",
+      "path": "/ko/community/notice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "tag": "BUTTON",
+      "text": "",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "19.2px",
+      "letterSpacing": "normal",
+      "color": "rgb(38, 38, 38)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": ["0px", "solid", "rgb(38, 38, 38)"],
+      "radius": "0px",
+      "padding": "2px",
+      "gap": "normal",
+      "width": 24,
+      "height": 24,
+      "outline": ["0px", "none", "rgb(38, 38, 38)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": false,
+      "focusVisible": false,
+      "hovered": false,
+      "placeholderColor": null,
+      "renderedFonts": []
+    },
+    {
+      "role": "filter-checkbox-label",
+      "path": "/ko/community/notice",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "tag": "LABEL",
+      "text": "학부",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "19.2px",
+      "letterSpacing": "normal",
+      "color": "rgb(10, 10, 10)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": ["0px", "solid", "rgb(10, 10, 10)"],
+      "radius": "0px",
+      "padding": "0px",
+      "gap": "4px",
+      "width": 50.703125,
+      "height": 20,
+      "outline": ["0px", "none", "rgb(10, 10, 10)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": false,
+      "focusVisible": false,
+      "hovered": false,
+      "placeholderColor": null,
+      "renderedFonts": [
+        {
+          "familyName": "Pretendard Variable",
+          "postScriptName": "PretendardVariable-Regular",
+          "isCustomFont": true,
+          "glyphCount": 2
+        }
+      ]
+    },
+    {
+      "role": "page-title-mobile",
+      "path": "/ko/community/notice/26",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "tag": "SPAN",
+      "text": "공지사항",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "24px",
+      "fontWeight": "700",
+      "lineHeight": "28.8px",
+      "letterSpacing": "0.6px",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": ["0px", "solid", "rgb(255, 255, 255)"],
+      "radius": "0px",
+      "padding": "0px",
+      "gap": "normal",
+      "width": 86.40625,
+      "height": 29,
+      "outline": ["0px", "none", "rgb(255, 255, 255)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": false,
+      "focusVisible": false,
+      "hovered": false,
+      "placeholderColor": null,
+      "renderedFonts": [
+        {
+          "familyName": "Pretendard Variable",
+          "postScriptName": "PretendardVariable-Regular",
+          "isCustomFont": true,
+          "glyphCount": 4
+        }
+      ]
+    },
+    {
+      "role": "post-title",
+      "path": "/ko/community/notice/26",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "tag": "H2",
+      "text": "학사 일정 안내",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "20px",
+      "fontWeight": "600",
+      "lineHeight": "28px",
+      "letterSpacing": "normal",
+      "color": "rgb(10, 10, 10)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": ["0px", "solid", "rgb(10, 10, 10)"],
+      "radius": "0px",
+      "padding": "0px",
+      "gap": "normal",
+      "width": 350,
+      "height": 28,
+      "outline": ["0px", "none", "rgb(10, 10, 10)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": false,
+      "focusVisible": false,
+      "hovered": false,
+      "placeholderColor": null,
+      "renderedFonts": [
+        {
+          "familyName": "Pretendard Variable",
+          "postScriptName": "PretendardVariable-Regular",
+          "isCustomFont": true,
+          "glyphCount": 8
+        }
+      ]
+    },
+    {
+      "role": "viewer-body",
+      "path": "/ko/community/notice/26",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "tag": "P",
+      "text": "학사 일정 본문입니다.",
+      "fontFamily": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "28px",
+      "letterSpacing": "normal",
+      "color": "rgb(10, 10, 10)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": ["0px", "solid", "rgb(10, 10, 10)"],
+      "radius": "0px",
+      "padding": "0px",
+      "gap": "normal",
+      "width": 350,
+      "height": 28,
+      "outline": ["0px", "none", "rgb(10, 10, 10)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": false,
+      "focusVisible": false,
+      "hovered": false,
+      "placeholderColor": null,
+      "renderedFonts": [
+        {
+          "familyName": "WenQuanYi Zen Hei",
+          "postScriptName": "WenQuanYiZenHei",
+          "isCustomFont": false,
+          "glyphCount": 12
+        }
+      ]
+    },
+    {
+      "role": "tag-default",
+      "path": "/ko/community/notice/26",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "tag": "A",
+      "text": "학부",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "13px",
+      "fontWeight": "500",
+      "lineHeight": "15.6px",
+      "letterSpacing": "normal",
+      "color": "rgb(255, 105, 20)",
+      "background": "rgb(255, 255, 255)",
+      "border": ["1px", "solid", "rgb(255, 105, 20)"],
+      "radius": "30px",
+      "padding": "0px 10px",
+      "gap": "normal",
+      "width": 44,
+      "height": 26,
+      "outline": ["0px", "none", "rgb(255, 105, 20)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": false,
+      "focusVisible": false,
+      "hovered": false,
+      "placeholderColor": null,
+      "renderedFonts": [
+        {
+          "familyName": "Pretendard Variable",
+          "postScriptName": "PretendardVariable-Regular",
+          "isCustomFont": true,
+          "glyphCount": 2
+        }
+      ]
+    },
+    {
+      "role": "tag-hover",
+      "path": "/ko/community/notice/26",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "tag": "A",
+      "text": "학부",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "13px",
+      "fontWeight": "500",
+      "lineHeight": "15.6px",
+      "letterSpacing": "normal",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(255, 105, 20)",
+      "border": ["1px", "solid", "rgb(255, 105, 20)"],
+      "radius": "30px",
+      "padding": "0px 10px",
+      "gap": "normal",
+      "width": 44,
+      "height": 26,
+      "outline": ["0px", "none", "rgb(255, 255, 255)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": false,
+      "focusVisible": false,
+      "hovered": true,
+      "placeholderColor": null,
+      "renderedFonts": [
+        {
+          "familyName": "Pretendard Variable",
+          "postScriptName": "PretendardVariable-Regular",
+          "isCustomFont": true,
+          "glyphCount": 2
+        }
+      ]
+    },
+    {
+      "role": "page-title-desktop",
+      "path": "/ko/community/notice/26",
+      "viewport": {
+        "width": 1280,
+        "height": 844
+      },
+      "tag": "SPAN",
+      "text": "공지사항",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "32px",
+      "fontWeight": "700",
+      "lineHeight": "38.4px",
+      "letterSpacing": "0.8px",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": ["0px", "solid", "rgb(255, 255, 255)"],
+      "radius": "0px",
+      "padding": "0px",
+      "gap": "normal",
+      "width": 115.203125,
+      "height": 38,
+      "outline": ["0px", "none", "rgb(255, 255, 255)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": false,
+      "focusVisible": false,
+      "hovered": false,
+      "placeholderColor": null,
+      "renderedFonts": [
+        {
+          "familyName": "Pretendard Variable",
+          "postScriptName": "PretendardVariable-Regular",
+          "isCustomFont": true,
+          "glyphCount": 4
+        }
+      ]
+    },
+    {
+      "role": "category-title-desktop",
+      "path": "/ko/about",
+      "viewport": {
+        "width": 1280,
+        "height": 844
+      },
+      "tag": "DIV",
+      "text": "소개",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "64px",
+      "fontWeight": "600",
+      "lineHeight": "76.8px",
+      "letterSpacing": "1.6px",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": ["0px", "solid", "rgb(255, 255, 255)"],
+      "radius": "0px",
+      "padding": "0px",
+      "gap": "normal",
+      "width": 980,
+      "height": 76.796875,
+      "outline": ["0px", "none", "rgb(255, 255, 255)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": false,
+      "focusVisible": false,
+      "hovered": false,
+      "placeholderColor": null,
+      "renderedFonts": [
+        {
+          "familyName": "Pretendard Variable",
+          "postScriptName": "PretendardVariable-Regular",
+          "isCustomFont": true,
+          "glyphCount": 2
+        }
+      ]
+    },
+    {
+      "role": "slogan",
+      "path": "/ko",
+      "viewport": {
+        "width": 1280,
+        "height": 844
+      },
+      "tag": "P",
+      "text": "창의와 지식을 융합하여",
+      "fontFamily": "\"Gowun Batang\"",
+      "fontSize": "28.8px",
+      "fontWeight": "400",
+      "lineHeight": "34.56px",
+      "letterSpacing": "normal",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": ["0px", "solid", "rgb(255, 255, 255)"],
+      "radius": "0px",
+      "padding": "0px",
+      "gap": "normal",
+      "width": 282,
+      "height": 34.546875,
+      "outline": ["0px", "none", "rgb(255, 255, 255)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": false,
+      "focusVisible": false,
+      "hovered": false,
+      "placeholderColor": null,
+      "renderedFonts": [
+        {
+          "familyName": "Gowun Batang",
+          "postScriptName": "GowunBatang-Regular",
+          "isCustomFont": true,
+          "glyphCount": 12
+        }
+      ]
+    },
+    {
+      "role": "form-text-default",
+      "path": "/ko/community/notice/create",
+      "viewport": {
+        "width": 1280,
+        "height": 844
+      },
+      "tag": "INPUT",
+      "text": "",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "13px",
+      "fontWeight": "400",
+      "lineHeight": "15.6px",
+      "letterSpacing": "normal",
+      "color": "rgb(10, 10, 10)",
+      "background": "rgb(255, 255, 255)",
+      "border": ["1px", "solid", "rgb(212, 212, 212)"],
+      "radius": "2px",
+      "padding": "0px 0px 0px 8px",
+      "gap": "normal",
+      "width": 720,
+      "height": 32,
+      "outline": ["0px", "none", "rgb(10, 10, 10)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": false,
+      "focusVisible": false,
+      "hovered": false,
+      "placeholderColor": "rgb(212, 212, 212)",
+      "renderedFonts": [
+        {
+          "familyName": "Pretendard Variable",
+          "postScriptName": "PretendardVariable-Regular",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ]
+    },
+    {
+      "role": "form-text-keyboard-focus",
+      "path": "/ko/community/notice/create",
+      "viewport": {
+        "width": 1280,
+        "height": 844
+      },
+      "tag": "INPUT",
+      "text": "",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "13px",
+      "fontWeight": "400",
+      "lineHeight": "15.6px",
+      "letterSpacing": "normal",
+      "color": "rgb(10, 10, 10)",
+      "background": "rgb(255, 255, 255)",
+      "border": ["1px", "solid", "rgb(212, 212, 212)"],
+      "radius": "2px",
+      "padding": "0px 0px 0px 8px",
+      "gap": "normal",
+      "width": 720,
+      "height": 32,
+      "outline": ["0px", "none", "rgb(16, 16, 16)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": true,
+      "focusVisible": true,
+      "hovered": false,
+      "placeholderColor": "rgb(212, 212, 212)",
+      "renderedFonts": [
+        {
+          "familyName": "Pretendard Variable",
+          "postScriptName": "PretendardVariable-Regular",
+          "isCustomFont": true,
+          "glyphCount": 10
+        }
+      ]
+    },
+    {
+      "role": "form-label",
+      "path": "/ko/community/notice/create",
+      "viewport": {
+        "width": 1280,
+        "height": 844
+      },
+      "tag": "LEGEND",
+      "text": "메인-중요 안내용 제목",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "lineHeight": "16.8px",
+      "letterSpacing": "0.35px",
+      "color": "rgb(10, 10, 10)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": ["0px", "solid", "rgb(10, 10, 10)"],
+      "radius": "0px",
+      "padding": "0px",
+      "gap": "normal",
+      "width": 124.203125,
+      "height": 16.796875,
+      "outline": ["0px", "none", "rgb(10, 10, 10)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": false,
+      "focusVisible": false,
+      "hovered": false,
+      "placeholderColor": null,
+      "renderedFonts": [
+        {
+          "familyName": "Pretendard Variable",
+          "postScriptName": "PretendardVariable-Regular",
+          "isCustomFont": true,
+          "glyphCount": 12
+        }
+      ]
+    },
+    {
+      "role": "editor-body",
+      "path": "/ko/community/notice/create",
+      "viewport": {
+        "width": 1280,
+        "height": 844
+      },
+      "tag": "DIV",
+      "text": "서체 확인용 한글과 English text",
+      "fontFamily": "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "28px",
+      "letterSpacing": "normal",
+      "color": "rgb(10, 10, 10)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": ["0px", "solid", "rgb(10, 10, 10)"],
+      "radius": "0px",
+      "padding": "16px",
+      "gap": "normal",
+      "width": 718,
+      "height": 400,
+      "outline": ["0px", "none", "rgb(10, 10, 10)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": true,
+      "focusVisible": true,
+      "hovered": true,
+      "placeholderColor": null,
+      "renderedFonts": [
+        {
+          "familyName": "WenQuanYi Zen Hei",
+          "postScriptName": "WenQuanYiZenHei",
+          "isCustomFont": false,
+          "glyphCount": 23
+        }
+      ]
+    },
+    {
+      "role": "form-commit",
+      "path": "/ko/community/notice/create",
+      "viewport": {
+        "width": 1280,
+        "height": 844
+      },
+      "tag": "BUTTON",
+      "text": "게시하기",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "lineHeight": "24px",
+      "letterSpacing": "normal",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(64, 64, 64)",
+      "border": ["0px", "solid", "rgb(255, 255, 255)"],
+      "radius": "1px",
+      "padding": "5px 14px",
+      "gap": "8px",
+      "width": 76,
+      "height": 34,
+      "outline": ["0px", "none", "rgb(255, 255, 255)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": false,
+      "focusVisible": false,
+      "hovered": false,
+      "placeholderColor": null,
+      "renderedFonts": [
+        {
+          "familyName": "Pretendard Variable",
+          "postScriptName": "PretendardVariable-Regular",
+          "isCustomFont": true,
+          "glyphCount": 4
+        }
+      ]
+    },
+    {
+      "role": "form-commit-hover",
+      "path": "/ko/community/notice/create",
+      "viewport": {
+        "width": 1280,
+        "height": 844
+      },
+      "tag": "BUTTON",
+      "text": "게시하기",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "lineHeight": "24px",
+      "letterSpacing": "normal",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(115, 115, 115)",
+      "border": ["0px", "solid", "rgb(255, 255, 255)"],
+      "radius": "1px",
+      "padding": "5px 14px",
+      "gap": "8px",
+      "width": 76,
+      "height": 34,
+      "outline": ["0px", "none", "rgb(255, 255, 255)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": false,
+      "focusVisible": false,
+      "hovered": true,
+      "placeholderColor": null,
+      "renderedFonts": [
+        {
+          "familyName": "Pretendard Variable",
+          "postScriptName": "PretendardVariable-Regular",
+          "isCustomFont": true,
+          "glyphCount": 4
+        }
+      ]
+    },
+    {
+      "role": "form-cancel",
+      "path": "/ko/community/notice/create",
+      "viewport": {
+        "width": 1280,
+        "height": 844
+      },
+      "tag": "BUTTON",
+      "text": "취소",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "lineHeight": "24px",
+      "letterSpacing": "normal",
+      "color": "rgb(115, 115, 115)",
+      "background": "rgb(245, 245, 245)",
+      "border": ["1px", "solid", "rgb(229, 229, 229)"],
+      "radius": "1px",
+      "padding": "5px 14px",
+      "gap": "8px",
+      "width": 54,
+      "height": 36,
+      "outline": ["0px", "none", "rgb(115, 115, 115)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": false,
+      "focusVisible": false,
+      "hovered": false,
+      "placeholderColor": null,
+      "renderedFonts": [
+        {
+          "familyName": "Pretendard Variable",
+          "postScriptName": "PretendardVariable-Regular",
+          "isCustomFont": true,
+          "glyphCount": 2
+        }
+      ]
+    },
+    {
+      "role": "primary-action",
+      "path": "/ko/academics/undergraduate/courses",
+      "viewport": {
+        "width": 1280,
+        "height": 844
+      },
+      "tag": "BUTTON",
+      "text": "새 교과목",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "lineHeight": "24px",
+      "letterSpacing": "normal",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(255, 105, 20)",
+      "border": ["0px", "solid", "rgb(255, 255, 255)"],
+      "radius": "1px",
+      "padding": "5px 14px",
+      "gap": "8px",
+      "width": 79,
+      "height": 34,
+      "outline": ["0px", "none", "rgb(255, 255, 255)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": false,
+      "focusVisible": false,
+      "hovered": false,
+      "placeholderColor": null,
+      "renderedFonts": [
+        {
+          "familyName": "Pretendard Variable",
+          "postScriptName": "PretendardVariable-Regular",
+          "isCustomFont": true,
+          "glyphCount": 5
+        }
+      ]
+    },
+    {
+      "role": "dialog-close",
+      "path": "/ko/academics/undergraduate/courses",
+      "viewport": {
+        "width": 1280,
+        "height": 844
+      },
+      "tag": "BUTTON",
+      "text": "",
+      "fontFamily": "\"Pretendard Variable\", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, \"Helvetica Neue\", \"Segoe UI\", \"Apple SD Gothic Neo\", \"Noto Sans KR\", \"Malgun Gothic\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "19.2px",
+      "letterSpacing": "normal",
+      "color": "rgb(115, 115, 115)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": ["0px", "solid", "rgb(115, 115, 115)"],
+      "radius": "0px",
+      "padding": "0px",
+      "gap": "normal",
+      "width": 24,
+      "height": 24,
+      "outline": ["0px", "none", "rgb(115, 115, 115)"],
+      "boxShadow": "none",
+      "opacity": "1",
+      "focused": true,
+      "focusVisible": false,
+      "hovered": false,
+      "placeholderColor": null,
+      "renderedFonts": []
+    }
+  ]
+}

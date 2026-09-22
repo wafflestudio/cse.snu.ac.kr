@@ -1,0 +1,1600 @@
+{
+  "sourceBase": "d1baf83c",
+  "scannedFiles": 273,
+  "method": "TS AST string/template fragments; excludes generated route tree and types. Counts declarations, not rendered instances. Dynamic class fragments, CSS, SVG and third-party styles are not utility counts. Top 30 per category; color literals and CSS inspected separately.",
+  "groups": {
+    "color": {
+      "uniqueCandidates": 112,
+      "occurrences": 533,
+      "top": [
+        {
+          "group": "color",
+          "utility": "text-neutral-500",
+          "count": 55,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryPage.tsx:46",
+            "apps/web/src/components/feature/selection/SelectionList.tsx:58",
+            "apps/web/src/components/layout/Footer/index.tsx:75"
+          ],
+          "fileCount": 40
+        },
+        {
+          "group": "color",
+          "utility": "border-neutral-200",
+          "count": 36,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:103",
+            "apps/web/src/components/form/Dropdown.tsx:106",
+            "apps/web/src/components/form/File.tsx:50"
+          ],
+          "fileCount": 20
+        },
+        {
+          "group": "color",
+          "utility": "bg-neutral-100",
+          "count": 30,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:108",
+            "apps/web/src/components/layout/Footer/index.tsx:40",
+            "apps/web/src/components/ui/Button.tsx:68"
+          ],
+          "fileCount": 23
+        },
+        {
+          "group": "color",
+          "utility": "text-main-orange",
+          "count": 28,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/SelectedTags.tsx:68",
+            "apps/web/src/components/form/Dropdown.tsx:133",
+            "apps/web/src/components/form/Fieldset.tsx:62"
+          ],
+          "fileCount": 23
+        },
+        {
+          "group": "color",
+          "utility": "text-white",
+          "count": 28,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryPage.tsx:49",
+            "apps/web/src/components/layout/Header/HeaderRight.tsx:23",
+            "apps/web/src/components/layout/Header/MobileNavButton.tsx:35"
+          ],
+          "fileCount": 17
+        },
+        {
+          "group": "color",
+          "utility": "text-neutral-800",
+          "count": 26,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/Input.tsx:35",
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:149",
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:152"
+          ],
+          "fileCount": 17
+        },
+        {
+          "group": "color",
+          "utility": "bg-white",
+          "count": 25,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/Input.tsx:23",
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:45",
+            "apps/web/src/components/form/DatePicker.tsx:66"
+          ],
+          "fileCount": 23
+        },
+        {
+          "group": "color",
+          "utility": "border-neutral-300",
+          "count": 24,
+          "examples": [
+            "apps/web/src/components/form/DatePicker.tsx:66",
+            "apps/web/src/components/form/DatePicker.tsx:98",
+            "apps/web/src/components/form/File.tsx:74"
+          ],
+          "fileCount": 16
+        },
+        {
+          "group": "color",
+          "utility": "text-neutral-400",
+          "count": 23,
+          "examples": [
+            "apps/web/src/components/form/Checkbox.tsx:51",
+            "apps/web/src/components/ui/Checkbox.tsx:39",
+            "apps/web/src/components/ui/Pagination.tsx:113"
+          ],
+          "fileCount": 15
+        },
+        {
+          "group": "color",
+          "utility": "bg-neutral-50",
+          "count": 21,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/index.tsx:43",
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:101",
+            "apps/web/src/components/form/File.tsx:50"
+          ],
+          "fileCount": 14
+        },
+        {
+          "group": "color",
+          "utility": "text-neutral-700",
+          "count": 17,
+          "examples": [
+            "apps/web/src/components/form/TextList.tsx:70",
+            "apps/web/src/components/layout/PageLayout/SubNavbar.tsx:75",
+            "apps/web/src/routes/$locale/academics/-components/courses/AddCourseModal.tsx:76"
+          ],
+          "fileCount": 14
+        },
+        {
+          "group": "color",
+          "utility": "hover:text-main-orange",
+          "count": 15,
+          "examples": [
+            "apps/web/src/components/layout/LeftNav/LeftNavMenuItem.tsx:97",
+            "apps/web/src/components/layout/MobileNav/MobileNavDetail.tsx:101",
+            "apps/web/src/components/layout/PageLayout/PageTitle.tsx:120"
+          ],
+          "fileCount": 10
+        },
+        {
+          "group": "color",
+          "utility": "border-main-orange",
+          "count": 12,
+          "examples": [
+            "apps/web/src/components/ui/Dialog.tsx:27",
+            "apps/web/src/components/ui/Nodes.tsx:111",
+            "apps/web/src/components/ui/Nodes.tsx:138"
+          ],
+          "fileCount": 9
+        },
+        {
+          "group": "color",
+          "utility": "bg-neutral-200",
+          "count": 9,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:102",
+            "apps/web/src/components/layout/Header/HeaderSearchBar.tsx:36",
+            "apps/web/src/components/ui/Dropdown.tsx:168"
+          ],
+          "fileCount": 9
+        },
+        {
+          "group": "color",
+          "utility": "text-neutral-600",
+          "count": 8,
+          "examples": [
+            "apps/web/src/components/form/Checkbox.tsx:54",
+            "apps/web/src/components/form/Checkbox.tsx:60",
+            "apps/web/src/components/layout/Footer/index.tsx:72"
+          ],
+          "fileCount": 5
+        },
+        {
+          "group": "color",
+          "utility": "text-neutral-950",
+          "count": 8,
+          "examples": [
+            "apps/web/src/components/layout/RootErrorBoundary.tsx:34",
+            "apps/web/src/routes/$locale/-components/ImportantSection.tsx:31",
+            "apps/web/src/routes/$locale/-components/ImportantSection.tsx:53"
+          ],
+          "fileCount": 7
+        },
+        {
+          "group": "color",
+          "utility": "bg-main-orange",
+          "count": 6,
+          "examples": [
+            "apps/web/src/components/layout/LeftNav/LeftNavSidebar.tsx:47",
+            "apps/web/src/components/ui/Button.tsx:65",
+            "apps/web/src/components/ui/ImageModal.tsx:144"
+          ],
+          "fileCount": 5
+        },
+        {
+          "group": "color",
+          "utility": "bg-main-orange-dark",
+          "count": 5,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:93",
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:94",
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:109"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "color",
+          "utility": "bg-neutral-900",
+          "count": 5,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:45",
+            "apps/web/src/components/layout/PageLayout/index.tsx:87",
+            "apps/web/src/components/layout/RootErrorBoundary.tsx:34"
+          ],
+          "fileCount": 5
+        },
+        {
+          "group": "color",
+          "utility": "group-active:text-main-orange",
+          "count": 5,
+          "examples": [
+            "apps/web/src/components/form/Checkbox.tsx:53",
+            "apps/web/src/components/form/Checkbox.tsx:61",
+            "apps/web/src/components/ui/Checkbox.tsx:41"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "color",
+          "utility": "hover:text-white",
+          "count": 5,
+          "examples": [
+            "apps/web/src/components/ui/Button.tsx:69",
+            "apps/web/src/components/ui/ImageModal.tsx:144",
+            "apps/web/src/components/ui/Tag.tsx:25"
+          ],
+          "fileCount": 5
+        },
+        {
+          "group": "color",
+          "utility": "text-link",
+          "count": 5,
+          "examples": [
+            "apps/web/src/routes/$locale/about/directions/index.tsx:75",
+            "apps/web/src/routes/$locale/about/future-careers/-components/CompanyRow.tsx:89",
+            "apps/web/src/routes/$locale/community/seminar/$id.tsx:155"
+          ],
+          "fileCount": 5
+        },
+        {
+          "group": "color",
+          "utility": "text-neutral-300",
+          "count": 5,
+          "examples": [
+            "apps/web/src/components/form/LanguagePicker.tsx:30",
+            "apps/web/src/components/layout/Footer/index.tsx:76",
+            "apps/web/src/components/layout/PageLayout/PageTitle.tsx:74"
+          ],
+          "fileCount": 5
+        },
+        {
+          "group": "color",
+          "utility": "bg-transparent",
+          "count": 4,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/Input.tsx:28",
+            "apps/web/src/components/layout/Header/HeaderSearchBar.tsx:46",
+            "apps/web/src/components/layout/MobileNav/MobileNavList.tsx:90"
+          ],
+          "fileCount": 4
+        },
+        {
+          "group": "color",
+          "utility": "group-hover:text-main-orange",
+          "count": 4,
+          "examples": [
+            "apps/web/src/routes/$locale/-components/LinkRow.tsx:25",
+            "apps/web/src/routes/$locale/-components/LinkRow.tsx:39",
+            "apps/web/src/routes/$locale/academics/-components/ScholarshipList.tsx:35"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "color",
+          "utility": "hover:bg-neutral-100",
+          "count": 4,
+          "examples": [
+            "apps/web/src/components/form/File.tsx:74",
+            "apps/web/src/components/form/Image.tsx:26",
+            "apps/web/src/routes/$locale/academics/-components/courses/CourseCard.tsx:111"
+          ],
+          "fileCount": 4
+        },
+        {
+          "group": "color",
+          "utility": "bg-[rgba(0,0,0,0.5)]",
+          "count": 3,
+          "examples": [
+            "apps/web/src/components/ui/AlertDialog.tsx:34",
+            "apps/web/src/components/ui/Dialog.tsx:24",
+            "apps/web/src/components/ui/ImageModal.tsx:112"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "color",
+          "utility": "border-neutral-100",
+          "count": 3,
+          "examples": [
+            "apps/web/src/components/layout/Footer/index.tsx:42",
+            "apps/web/src/routes/$locale/academics/-components/courses/CourseList.tsx:43",
+            "apps/web/src/routes/$locale/community/news/-components/NewsListRow.tsx:26"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "color",
+          "utility": "border-neutral-600",
+          "count": 3,
+          "examples": [
+            "apps/web/src/components/ui/Nodes.tsx:111",
+            "apps/web/src/components/ui/Nodes.tsx:138",
+            "apps/web/src/components/ui/Nodes.tsx:153"
+          ],
+          "fileCount": 1
+        },
+        {
+          "group": "color",
+          "utility": "odd:bg-neutral-50",
+          "count": 3,
+          "examples": [
+            "apps/web/src/routes/$locale/academics/-components/courses/CourseList.tsx:66",
+            "apps/web/src/routes/$locale/community/notice/-components/NoticeListRow.tsx:38",
+            "apps/web/src/routes/$locale/research/labs/-components/ResearchLabRow.tsx:23"
+          ],
+          "fileCount": 3
+        }
+      ]
+    },
+    "typography": {
+      "uniqueCandidates": 71,
+      "occurrences": 613,
+      "top": [
+        {
+          "group": "typography",
+          "utility": "text-sm",
+          "count": 84,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/Input.tsx:28",
+            "apps/web/src/components/feature/category/CategoryPage.tsx:46",
+            "apps/web/src/components/feature/category/CategoryPage.tsx:88"
+          ],
+          "fileCount": 61
+        },
+        {
+          "group": "typography",
+          "utility": "text-md",
+          "count": 68,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/Input.tsx:19",
+            "apps/web/src/components/feature/SearchBox/SelectedTags.tsx:72",
+            "apps/web/src/components/feature/SearchBox/TagCheckboxes.tsx:43"
+          ],
+          "fileCount": 50
+        },
+        {
+          "group": "typography",
+          "utility": "font-normal",
+          "count": 67,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryPage.tsx:46",
+            "apps/web/src/components/feature/category/CategoryPage.tsx:64",
+            "apps/web/src/components/form/Action.tsx:138"
+          ],
+          "fileCount": 42
+        },
+        {
+          "group": "typography",
+          "utility": "font-medium",
+          "count": 53,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:149",
+            "apps/web/src/components/feature/selection/SelectionList.tsx:43",
+            "apps/web/src/components/feature/selection/SelectionTitle.tsx:20"
+          ],
+          "fileCount": 35
+        },
+        {
+          "group": "typography",
+          "utility": "tracking-wide",
+          "count": 49,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/Input.tsx:19",
+            "apps/web/src/components/feature/SearchBox/Input.tsx:28",
+            "apps/web/src/components/feature/SearchBox/TagCheckboxes.tsx:43"
+          ],
+          "fileCount": 34
+        },
+        {
+          "group": "typography",
+          "utility": "font-bold",
+          "count": 41,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/Input.tsx:19",
+            "apps/web/src/components/feature/SearchBox/TagCheckboxes.tsx:43",
+            "apps/web/src/components/feature/selection/SelectionTitle.tsx:16"
+          ],
+          "fileCount": 35
+        },
+        {
+          "group": "typography",
+          "utility": "text-xs",
+          "count": 39,
+          "examples": [
+            "apps/web/src/components/feature/selection/SelectionTitle.tsx:20",
+            "apps/web/src/components/form/File.tsx:74",
+            "apps/web/src/components/form/Image.tsx:26"
+          ],
+          "fileCount": 23
+        },
+        {
+          "group": "typography",
+          "utility": "text-base",
+          "count": 29,
+          "examples": [
+            "apps/web/src/components/feature/selection/SelectionTitle.tsx:16",
+            "apps/web/src/components/feature/selection/SelectionTitle.tsx:18",
+            "apps/web/src/components/layout/PageLayout/SubNavbar.tsx:43"
+          ],
+          "fileCount": 25
+        },
+        {
+          "group": "typography",
+          "utility": "font-semibold",
+          "count": 26,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryPage.tsx:49",
+            "apps/web/src/components/form/LanguagePicker.tsx:30",
+            "apps/web/src/components/form/Section.tsx:51"
+          ],
+          "fileCount": 19
+        },
+        {
+          "group": "typography",
+          "utility": "leading-5",
+          "count": 11,
+          "examples": [
+            "apps/web/src/components/layout/LeftNav/LeftNavMenuItem.tsx:39",
+            "apps/web/src/components/layout/LeftNav/LeftNavMenuItem.tsx:97",
+            "apps/web/src/components/layout/LeftNav/LeftNavMenuItem.tsx:107"
+          ],
+          "fileCount": 7
+        },
+        {
+          "group": "typography",
+          "utility": "leading-loose",
+          "count": 9,
+          "examples": [
+            "apps/web/src/components/feature/selection/SelectionTitle.tsx:16",
+            "apps/web/src/routes/$locale/academics/-components/courses/CourseDetailModal.tsx:92",
+            "apps/web/src/routes/$locale/academics/undergraduate/general-studies-requirements/index.tsx:47"
+          ],
+          "fileCount": 6
+        },
+        {
+          "group": "typography",
+          "utility": "sm:text-sm",
+          "count": 8,
+          "examples": [
+            "apps/web/src/components/feature/selection/SelectionList.tsx:32",
+            "apps/web/src/components/layout/Footer/index.tsx:104",
+            "apps/web/src/routes/$locale/about/future-careers/-components/CompanyRow.tsx:84"
+          ],
+          "fileCount": 4
+        },
+        {
+          "group": "typography",
+          "utility": "leading-normal",
+          "count": 7,
+          "examples": [
+            "apps/web/src/routes/$locale/academics/-components/courses/CourseCard.tsx:130",
+            "apps/web/src/routes/$locale/academics/-components/courses/CourseCard.tsx:131",
+            "apps/web/src/routes/$locale/academics/-components/courses/CourseCard.tsx:134"
+          ],
+          "fileCount": 2
+        },
+        {
+          "group": "typography",
+          "utility": "sm:font-normal",
+          "count": 7,
+          "examples": [
+            "apps/web/src/routes/$locale/about/future-careers/-components/CompanyRow.tsx:84",
+            "apps/web/src/routes/$locale/about/future-careers/-components/CompanyRow.tsx:162",
+            "apps/web/src/routes/$locale/about/future-careers/-components/CompanyRow.tsx:167"
+          ],
+          "fileCount": 4
+        },
+        {
+          "group": "typography",
+          "utility": "sm:text-md",
+          "count": 7,
+          "examples": [
+            "apps/web/src/components/feature/selection/SelectionTitle.tsx:20",
+            "apps/web/src/components/layout/PageLayout/PageTitle.tsx:111",
+            "apps/web/src/components/ui/Button.tsx:50"
+          ],
+          "fileCount": 6
+        },
+        {
+          "group": "typography",
+          "utility": "text-lg",
+          "count": 6,
+          "examples": [
+            "apps/web/src/components/layout/PageLayout/PageTitle.tsx:29",
+            "apps/web/src/components/ui/Button.tsx:53",
+            "apps/web/src/components/ui/Button.tsx:60"
+          ],
+          "fileCount": 4
+        },
+        {
+          "group": "typography",
+          "utility": "sm:text-[24px]",
+          "count": 5,
+          "examples": [
+            "apps/web/src/components/feature/selection/SelectionTitle.tsx:16",
+            "apps/web/src/components/feature/selection/SelectionTitle.tsx:18",
+            "apps/web/src/routes/$locale/research/centers/index.tsx:142"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "typography",
+          "utility": "text-[1.25rem]",
+          "count": 5,
+          "examples": [
+            "apps/web/src/routes/$locale/-components/news/NewsSection.tsx:14",
+            "apps/web/src/routes/$locale/community/news/$id.tsx:57",
+            "apps/web/src/routes/$locale/community/notice/$id.tsx:63"
+          ],
+          "fileCount": 5
+        },
+        {
+          "group": "typography",
+          "utility": "leading-[26px]",
+          "count": 4,
+          "examples": [
+            "apps/web/src/routes/$locale/community/news/-components/NewsListRow.tsx:61",
+            "apps/web/src/routes/$locale/people/-components/PeopleBulletRow.tsx:5",
+            "apps/web/src/routes/$locale/research/top-conference-list/index.tsx:54"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "typography",
+          "utility": "text-xl",
+          "count": 4,
+          "examples": [
+            "apps/web/src/components/ui/ErrorState.tsx:27",
+            "apps/web/src/routes/$locale/academics/-components/courses/AddCourseModal.tsx:76",
+            "apps/web/src/routes/$locale/reservations/-components/ReservationCalendar/AddReservationModal.tsx:55"
+          ],
+          "fileCount": 4
+        },
+        {
+          "group": "typography",
+          "utility": "leading-[1.4]",
+          "count": 3,
+          "examples": [
+            "apps/web/src/routes/$locale/community/news/$id.tsx:57",
+            "apps/web/src/routes/$locale/community/notice/$id.tsx:63",
+            "apps/web/src/routes/$locale/community/seminar/$id.tsx:71"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "typography",
+          "utility": "leading-6",
+          "count": 3,
+          "examples": [
+            "apps/web/src/components/layout/Footer/index.tsx:150",
+            "apps/web/src/components/ui/Button.tsx:52",
+            "apps/web/src/routes/$locale/people/faculty/index.tsx:27"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "typography",
+          "utility": "leading-8",
+          "count": 3,
+          "examples": [
+            "apps/web/src/routes/$locale/people/-components/PeopleContactList.tsx:22",
+            "apps/web/src/routes/$locale/people/-components/PeopleInfoList.tsx:13",
+            "apps/web/src/routes/$locale/research/top-conference-list/index.tsx:51"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "typography",
+          "utility": "sm:text-[20px]",
+          "count": 3,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:149",
+            "apps/web/src/components/feature/category/CategoryPage.tsx:46",
+            "apps/web/src/routes/$locale/research/groups/index.tsx:129"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "typography",
+          "utility": "sm:text-base",
+          "count": 3,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:152",
+            "apps/web/src/components/layout/Footer/index.tsx:150",
+            "apps/web/src/routes/$locale/-components/NoticeSection.tsx:88"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "typography",
+          "utility": "text-[15px]",
+          "count": 3,
+          "examples": [
+            "apps/web/src/components/ui/ImageModal.tsx:136",
+            "apps/web/src/components/ui/ImageModal.tsx:144",
+            "apps/web/src/routes/$locale/community/notice/index.tsx:87"
+          ],
+          "fileCount": 2
+        },
+        {
+          "group": "typography",
+          "utility": "tracking-[0.02em]",
+          "count": 3,
+          "examples": [
+            "apps/web/src/routes/$locale/academics/-components/timeline/Timeline.tsx:52",
+            "apps/web/src/routes/$locale/research/labs/-components/ResearchLabRow.tsx:23",
+            "apps/web/src/routes/$locale/research/labs/index.tsx:62"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "typography",
+          "utility": "leading-[22px]",
+          "count": 2,
+          "examples": [
+            "apps/web/src/components/ui/ImageModal.tsx:136",
+            "apps/web/src/components/ui/ImageModal.tsx:144"
+          ],
+          "fileCount": 1
+        },
+        {
+          "group": "typography",
+          "utility": "leading-4.5",
+          "count": 2,
+          "examples": [
+            "apps/web/src/components/layout/Footer/index.tsx:127",
+            "apps/web/src/components/layout/LeftNav/LeftNavMenuItem.tsx:47"
+          ],
+          "fileCount": 2
+        },
+        {
+          "group": "typography",
+          "utility": "leading-7",
+          "count": 2,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryPage.tsx:88",
+            "apps/web/src/components/layout/PageLayout/PageTitle.tsx:51"
+          ],
+          "fileCount": 2
+        }
+      ]
+    },
+    "spacing": {
+      "uniqueCandidates": 297,
+      "occurrences": 878,
+      "top": [
+        {
+          "group": "spacing",
+          "utility": "gap-2",
+          "count": 39,
+          "examples": [
+            "apps/web/src/components/feature/selection/SelectionTitle.tsx:17",
+            "apps/web/src/components/form/DatePicker.tsx:61",
+            "apps/web/src/components/form/DatePicker.tsx:66"
+          ],
+          "fileCount": 25
+        },
+        {
+          "group": "spacing",
+          "utility": "gap-3",
+          "count": 30,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/SelectedTags.tsx:38",
+            "apps/web/src/components/feature/selection/SelectionList.tsx:11",
+            "apps/web/src/components/form/Action.tsx:28"
+          ],
+          "fileCount": 27
+        },
+        {
+          "group": "spacing",
+          "utility": "mb-8",
+          "count": 26,
+          "examples": [
+            "apps/web/src/components/form/Fieldset.tsx:12",
+            "apps/web/src/components/form/Section.tsx:12",
+            "apps/web/src/components/layout/PageLayout/SubNavbar.tsx:32"
+          ],
+          "fileCount": 24
+        },
+        {
+          "group": "spacing",
+          "utility": "mb-3",
+          "count": 22,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/TagCheckboxes.tsx:43",
+            "apps/web/src/components/feature/SearchBox/index.tsx:65",
+            "apps/web/src/components/form/Fieldset.tsx:21"
+          ],
+          "fileCount": 21
+        },
+        {
+          "group": "spacing",
+          "utility": "gap-1",
+          "count": 21,
+          "examples": [
+            "apps/web/src/components/form/Checkbox.tsx:43",
+            "apps/web/src/components/form/Radio.tsx:15",
+            "apps/web/src/components/layout/Header/HeaderLeft.tsx:38"
+          ],
+          "fileCount": 17
+        },
+        {
+          "group": "spacing",
+          "utility": "mb-6",
+          "count": 21,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryPage.tsx:54",
+            "apps/web/src/components/feature/selection/SelectionList.tsx:11",
+            "apps/web/src/components/form/Action.tsx:28"
+          ],
+          "fileCount": 17
+        },
+        {
+          "group": "spacing",
+          "utility": "gap-5",
+          "count": 16,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/index.tsx:43",
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:17",
+            "apps/web/src/components/layout/Footer/index.tsx:146"
+          ],
+          "fileCount": 14
+        },
+        {
+          "group": "spacing",
+          "utility": "mb-7",
+          "count": 16,
+          "examples": [
+            "apps/web/src/components/ui/HTMLViewer.tsx:39",
+            "apps/web/src/routes/$locale/about/directions/index.tsx:88",
+            "apps/web/src/routes/$locale/about/facilities/index.tsx:43"
+          ],
+          "fileCount": 16
+        },
+        {
+          "group": "spacing",
+          "utility": "gap-4",
+          "count": 15,
+          "examples": [
+            "apps/web/src/components/form/Dropdown.tsx:67",
+            "apps/web/src/components/layout/Header/HeaderLeft.tsx:36",
+            "apps/web/src/components/ui/Dropdown.tsx:135"
+          ],
+          "fileCount": 15
+        },
+        {
+          "group": "spacing",
+          "utility": "gap-2.5",
+          "count": 14,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/SelectedTags.tsx:39",
+            "apps/web/src/components/layout/Footer/index.tsx:86",
+            "apps/web/src/routes/$locale/academics/-components/ScholarshipList.tsx:32"
+          ],
+          "fileCount": 11
+        },
+        {
+          "group": "spacing",
+          "utility": "mb-10",
+          "count": 12,
+          "examples": [
+            "apps/web/src/components/form/Fieldset.tsx:13",
+            "apps/web/src/components/form/Section.tsx:13",
+            "apps/web/src/routes/$locale/about/overview/index.tsx:97"
+          ],
+          "fileCount": 10
+        },
+        {
+          "group": "spacing",
+          "utility": "mb-5",
+          "count": 12,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:15",
+            "apps/web/src/components/feature/selection/SelectionTitle.tsx:15",
+            "apps/web/src/components/form/Fieldset.tsx:10"
+          ],
+          "fileCount": 11
+        },
+        {
+          "group": "spacing",
+          "utility": "ml-6",
+          "count": 12,
+          "examples": [
+            "apps/web/src/routes/$locale/community/news/$id.tsx:90",
+            "apps/web/src/routes/$locale/community/news/-components/NewsEditor.tsx:128",
+            "apps/web/src/routes/$locale/community/news/-components/NewsEditor.tsx:144"
+          ],
+          "fileCount": 6
+        },
+        {
+          "group": "spacing",
+          "utility": "px-3",
+          "count": 12,
+          "examples": [
+            "apps/web/src/components/form/File.tsx:93",
+            "apps/web/src/components/layout/Footer/index.tsx:179",
+            "apps/web/src/routes/$locale/-components/NoticeSection.tsx:25"
+          ],
+          "fileCount": 7
+        },
+        {
+          "group": "spacing",
+          "utility": "mb-9",
+          "count": 11,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/index.tsx:40",
+            "apps/web/src/components/feature/SearchBox/index.tsx:44",
+            "apps/web/src/components/form/LanguagePicker.tsx:16"
+          ],
+          "fileCount": 10
+        },
+        {
+          "group": "spacing",
+          "utility": "mt-6",
+          "count": 11,
+          "examples": [
+            "apps/web/src/components/layout/MobileNav/MobileNavList.tsx:117",
+            "apps/web/src/routes/$locale/-components/NoticeSection.tsx:55",
+            "apps/web/src/routes/$locale/-components/NoticeSection.tsx:84"
+          ],
+          "fileCount": 9
+        },
+        {
+          "group": "spacing",
+          "utility": "px-2.5",
+          "count": 11,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/SelectedTags.tsx:38",
+            "apps/web/src/components/feature/selection/SelectionTitle.tsx:16",
+            "apps/web/src/components/form/DatePicker.tsx:66"
+          ],
+          "fileCount": 9
+        },
+        {
+          "group": "spacing",
+          "utility": "mb-4",
+          "count": 10,
+          "examples": [
+            "apps/web/src/components/form/Fieldset.tsx:9",
+            "apps/web/src/components/form/Section.tsx:9",
+            "apps/web/src/routes/$locale/academics/-components/courses/AddCourseModal.tsx:76"
+          ],
+          "fileCount": 9
+        },
+        {
+          "group": "spacing",
+          "utility": "gap-6",
+          "count": 9,
+          "examples": [
+            "apps/web/src/components/layout/Footer/index.tsx:163",
+            "apps/web/src/routes/$locale/about/greetings.tsx:56",
+            "apps/web/src/routes/$locale/about/overview/index.tsx:76"
+          ],
+          "fileCount": 7
+        },
+        {
+          "group": "spacing",
+          "utility": "mb-2",
+          "count": 9,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryPage.tsx:46",
+            "apps/web/src/components/form/Fieldset.tsx:20",
+            "apps/web/src/components/form/Section.tsx:20"
+          ],
+          "fileCount": 8
+        },
+        {
+          "group": "spacing",
+          "utility": "mt-10",
+          "count": 9,
+          "examples": [
+            "apps/web/src/routes/$locale/-components/ImportantSection.tsx:14",
+            "apps/web/src/routes/$locale/academics/-components/ScholarshipList.tsx:21",
+            "apps/web/src/routes/$locale/community/news/index.tsx:100"
+          ],
+          "fileCount": 6
+        },
+        {
+          "group": "spacing",
+          "utility": "pt-7",
+          "count": 9,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryPage.tsx:63",
+            "apps/web/src/components/feature/selection/SelectionList.tsx:11",
+            "apps/web/src/components/layout/PageLayout/index.tsx:66"
+          ],
+          "fileCount": 6
+        },
+        {
+          "group": "spacing",
+          "utility": "px-6",
+          "count": 9,
+          "examples": [
+            "apps/web/src/components/layout/Footer/index.tsx:47",
+            "apps/web/src/components/ui/ErrorState.tsx:21",
+            "apps/web/src/components/ui/ImageModal.tsx:136"
+          ],
+          "fileCount": 6
+        },
+        {
+          "group": "spacing",
+          "utility": "mb-2.5",
+          "count": 8,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:149",
+            "apps/web/src/components/form/Fieldset.tsx:8",
+            "apps/web/src/components/form/Section.tsx:8"
+          ],
+          "fileCount": 6
+        },
+        {
+          "group": "spacing",
+          "utility": "px-2",
+          "count": 8,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/Input.tsx:28",
+            "apps/web/src/components/layout/Header/HeaderSearchBar.tsx:46",
+            "apps/web/src/components/ui/Pagination.tsx:63"
+          ],
+          "fileCount": 7
+        },
+        {
+          "group": "spacing",
+          "utility": "py-5",
+          "count": 8,
+          "examples": [
+            "apps/web/src/components/layout/Footer/index.tsx:173",
+            "apps/web/src/routes/$locale/about/facilities/-components/FacilitiesList.tsx:48",
+            "apps/web/src/routes/$locale/academics/-components/courses/CourseCard.tsx:152"
+          ],
+          "fileCount": 6
+        },
+        {
+          "group": "spacing",
+          "utility": "mb-1",
+          "count": 7,
+          "examples": [
+            "apps/web/src/components/form/Fieldset.tsx:19",
+            "apps/web/src/components/form/Section.tsx:19",
+            "apps/web/src/components/layout/Footer/index.tsx:105"
+          ],
+          "fileCount": 7
+        },
+        {
+          "group": "spacing",
+          "utility": "mb-11",
+          "count": 7,
+          "examples": [
+            "apps/web/src/components/form/Fieldset.tsx:14",
+            "apps/web/src/components/form/Section.tsx:14",
+            "apps/web/src/components/layout/LeftNav/LeftNavDetail.tsx:49"
+          ],
+          "fileCount": 6
+        },
+        {
+          "group": "spacing",
+          "utility": "mt-12",
+          "count": 7,
+          "examples": [
+            "apps/web/src/components/layout/LeftNav/LeftNavSidebar.tsx:106",
+            "apps/web/src/routes/$locale/community/-components/PostFooter.tsx:51",
+            "apps/web/src/routes/$locale/community/notice/-components/AdminFeatures.tsx:60"
+          ],
+          "fileCount": 7
+        },
+        {
+          "group": "spacing",
+          "utility": "pl-2",
+          "count": 7,
+          "examples": [
+            "apps/web/src/components/form/Image.tsx:93",
+            "apps/web/src/components/form/Text.tsx:32",
+            "apps/web/src/routes/$locale/about/future-careers/-components/CareerCompanies.tsx:96"
+          ],
+          "fileCount": 5
+        }
+      ]
+    },
+    "shape": {
+      "uniqueCandidates": 33,
+      "occurrences": 111,
+      "top": [
+        {
+          "group": "shape",
+          "utility": "border-b",
+          "count": 25,
+          "examples": [
+            "apps/web/src/components/form/File.tsx:93",
+            "apps/web/src/components/layout/MobileNav/MobileNavList.tsx:85",
+            "apps/web/src/components/ui/Dialog.tsx:27"
+          ],
+          "fileCount": 19
+        },
+        {
+          "group": "shape",
+          "utility": "rounded-sm",
+          "count": 19,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/Input.tsx:23",
+            "apps/web/src/components/feature/SearchBox/Input.tsx:28",
+            "apps/web/src/components/feature/SearchBox/index.tsx:43"
+          ],
+          "fileCount": 13
+        },
+        {
+          "group": "shape",
+          "utility": "border-y",
+          "count": 8,
+          "examples": [
+            "apps/web/src/routes/$locale/about/future-careers/-components/CareerCompanies.tsx:63",
+            "apps/web/src/routes/$locale/about/future-careers/-components/CareerStat.tsx:63",
+            "apps/web/src/routes/$locale/about/future-careers/stat/create.tsx:95"
+          ],
+          "fileCount": 8
+        },
+        {
+          "group": "shape",
+          "utility": "rounded-full",
+          "count": 8,
+          "examples": [
+            "apps/web/src/components/form/Radio.tsx:18",
+            "apps/web/src/components/layout/Footer/index.tsx:179",
+            "apps/web/src/components/ui/Nodes.tsx:155"
+          ],
+          "fileCount": 8
+        },
+        {
+          "group": "shape",
+          "utility": "rounded-[.0625rem]",
+          "count": 5,
+          "examples": [
+            "apps/web/src/components/layout/Header/HeaderSearchBar.tsx:36",
+            "apps/web/src/components/ui/Button.tsx:65",
+            "apps/web/src/components/ui/Button.tsx:66"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "shape",
+          "utility": "border-0",
+          "count": 4,
+          "examples": [
+            "apps/web/src/components/feature/SearchBox/TagCheckboxes.tsx:42",
+            "apps/web/src/components/layout/Header/HeaderSearchBar.tsx:46",
+            "apps/web/src/routes/$locale/-components/NoticeSection.tsx:58"
+          ],
+          "fileCount": 4
+        },
+        {
+          "group": "shape",
+          "utility": "border-r",
+          "count": 4,
+          "examples": [
+            "apps/web/src/components/ui/Nodes.tsx:142",
+            "apps/web/src/routes/$locale/reservations/-components/ReservationCalendar/CalendarColumn.tsx:46",
+            "apps/web/src/routes/$locale/reservations/-components/ReservationCalendar/CalendarContent.tsx:90"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "shape",
+          "utility": "border-t",
+          "count": 4,
+          "examples": [
+            "apps/web/src/components/ui/Nodes.tsx:115",
+            "apps/web/src/components/ui/Nodes.tsx:142",
+            "apps/web/src/routes/$locale/community/seminar/index.tsx:81"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "shape",
+          "utility": "rounded-xs",
+          "count": 4,
+          "examples": [
+            "apps/web/src/components/form/Text.tsx:30",
+            "apps/web/src/components/form/TextArea.tsx:21",
+            "apps/web/src/components/ui/Dropdown.tsx:135"
+          ],
+          "fileCount": 4
+        },
+        {
+          "group": "shape",
+          "utility": "last:border-0",
+          "count": 3,
+          "examples": [
+            "apps/web/src/routes/$locale/about/future-careers/-components/CareerStat.tsx:96",
+            "apps/web/src/routes/$locale/about/future-careers/stat/create.tsx:126",
+            "apps/web/src/routes/$locale/about/future-careers/stat/edit.tsx:124"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "shape",
+          "utility": "rounded-[1.875rem]",
+          "count": 3,
+          "examples": [
+            "apps/web/src/components/ui/Tag.tsx:17",
+            "apps/web/src/routes/$locale/-components/NoticeSection.tsx:25",
+            "apps/web/src/routes/$locale/academics/-components/courses/CourseCard.tsx:121"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "shape",
+          "utility": "rounded-bl-sm",
+          "count": 2,
+          "examples": [
+            "apps/web/src/components/form/Dropdown.tsx:120",
+            "apps/web/src/components/ui/Dropdown.tsx:153"
+          ],
+          "fileCount": 2
+        },
+        {
+          "group": "shape",
+          "utility": "rounded-br-sm",
+          "count": 2,
+          "examples": [
+            "apps/web/src/components/form/Dropdown.tsx:120",
+            "apps/web/src/components/ui/Dropdown.tsx:153"
+          ],
+          "fileCount": 2
+        },
+        {
+          "group": "shape",
+          "utility": "border-2",
+          "count": 1,
+          "examples": ["apps/web/src/components/form/Radio.tsx:18"],
+          "fileCount": 1
+        },
+        {
+          "group": "shape",
+          "utility": "border-dashed",
+          "count": 1,
+          "examples": ["apps/web/src/components/form/File.tsx:93"],
+          "fileCount": 1
+        },
+        {
+          "group": "shape",
+          "utility": "border-solid",
+          "count": 1,
+          "examples": [
+            "apps/web/src/routes/$locale/-components/NoticeSection.tsx:25"
+          ],
+          "fileCount": 1
+        },
+        {
+          "group": "shape",
+          "utility": "border-x",
+          "count": 1,
+          "examples": ["apps/web/src/components/ui/Dropdown.tsx:153"],
+          "fileCount": 1
+        },
+        {
+          "group": "shape",
+          "utility": "checked:border-[3px]",
+          "count": 1,
+          "examples": ["apps/web/src/components/form/Radio.tsx:18"],
+          "fileCount": 1
+        },
+        {
+          "group": "shape",
+          "utility": "checked:shadow-[0_0_0_1.3px_#ff6914]",
+          "count": 1,
+          "examples": ["apps/web/src/components/form/Radio.tsx:18"],
+          "fileCount": 1
+        },
+        {
+          "group": "shape",
+          "utility": "last:border-none",
+          "count": 1,
+          "examples": ["apps/web/src/components/form/File.tsx:93"],
+          "fileCount": 1
+        },
+        {
+          "group": "shape",
+          "utility": "rounded-[4px]",
+          "count": 1,
+          "examples": ["apps/web/src/components/ui/ImageModal.tsx:122"],
+          "fileCount": 1
+        },
+        {
+          "group": "shape",
+          "utility": "rounded-2xl",
+          "count": 1,
+          "examples": [
+            "apps/web/src/routes/$locale/academics/-components/timeline/TimelineViewer.tsx:68"
+          ],
+          "fileCount": 1
+        },
+        {
+          "group": "shape",
+          "utility": "rounded-lg",
+          "count": 1,
+          "examples": [
+            "apps/web/src/routes/$locale/about/directions/-components/KakaoMap.tsx:59"
+          ],
+          "fileCount": 1
+        },
+        {
+          "group": "shape",
+          "utility": "rounded-md",
+          "count": 1,
+          "examples": [
+            "apps/web/src/routes/$locale/about/facilities/edit.tsx:108"
+          ],
+          "fileCount": 1
+        },
+        {
+          "group": "shape",
+          "utility": "rounded-t-sm",
+          "count": 1,
+          "examples": ["apps/web/src/components/form/Dropdown.tsx:65"],
+          "fileCount": 1
+        },
+        {
+          "group": "shape",
+          "utility": "rounded-xl",
+          "count": 1,
+          "examples": ["apps/web/src/components/layout/Footer/index.tsx:173"],
+          "fileCount": 1
+        },
+        {
+          "group": "shape",
+          "utility": "shadow-[0_0_31.9px_0_rgba(0,0,0,0.07)]",
+          "count": 1,
+          "examples": [
+            "apps/web/src/routes/$locale/-components/news/NewsCard.tsx:14"
+          ],
+          "fileCount": 1
+        },
+        {
+          "group": "shape",
+          "utility": "shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)]",
+          "count": 1,
+          "examples": ["apps/web/src/components/ui/ImageModal.tsx:122"],
+          "fileCount": 1
+        },
+        {
+          "group": "shape",
+          "utility": "shadow-[2px_2px_4px_0_rgba(255,255,255,0.05)_inset,-2px_-2px_6px_0_rgba(0,0,0,0.05)_inset]",
+          "count": 1,
+          "examples": [
+            "apps/web/src/routes/$locale/academics/-components/courses/CourseCard.tsx:115"
+          ],
+          "fileCount": 1
+        },
+        {
+          "group": "shape",
+          "utility": "shadow-[2px_2px_4px_0_rgba(255,255,255,0.07)_inset,-2px_-2px_4px_0_rgba(0,0,0,0.05)_inset]",
+          "count": 1,
+          "examples": [
+            "apps/web/src/routes/$locale/academics/-components/courses/CourseCard.tsx:154"
+          ],
+          "fileCount": 1
+        }
+      ]
+    },
+    "motion": {
+      "uniqueCandidates": 14,
+      "occurrences": 57,
+      "top": [
+        {
+          "group": "motion",
+          "utility": "duration-300",
+          "count": 14,
+          "examples": [
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:141",
+            "apps/web/src/components/feature/category/CategoryGrid.tsx:159",
+            "apps/web/src/components/feature/selection/SelectionList.tsx:58"
+          ],
+          "fileCount": 8
+        },
+        {
+          "group": "motion",
+          "utility": "duration-200",
+          "count": 12,
+          "examples": [
+            "apps/web/src/components/form/Dropdown.tsx:120",
+            "apps/web/src/components/layout/PageLayout/PageTitle.tsx:120",
+            "apps/web/src/components/ui/AlertDialog.tsx:35"
+          ],
+          "fileCount": 11
+        },
+        {
+          "group": "motion",
+          "utility": "data-[state=closed]:animate-out",
+          "count": 6,
+          "examples": [
+            "apps/web/src/components/ui/AlertDialog.tsx:34",
+            "apps/web/src/components/ui/AlertDialog.tsx:35",
+            "apps/web/src/components/ui/Dialog.tsx:24"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "motion",
+          "utility": "data-[state=open]:animate-in",
+          "count": 6,
+          "examples": [
+            "apps/web/src/components/ui/AlertDialog.tsx:34",
+            "apps/web/src/components/ui/AlertDialog.tsx:35",
+            "apps/web/src/components/ui/Dialog.tsx:24"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "motion",
+          "utility": "transition-colors",
+          "count": 5,
+          "examples": [
+            "apps/web/src/components/ui/ImageModal.tsx:136",
+            "apps/web/src/components/ui/ImageModal.tsx:144",
+            "apps/web/src/components/ui/ImageModal.tsx:155"
+          ],
+          "fileCount": 1
+        },
+        {
+          "group": "motion",
+          "utility": "transition-all",
+          "count": 3,
+          "examples": [
+            "apps/web/src/components/feature/selection/SelectionList.tsx:58",
+            "apps/web/src/components/layout/LeftNav/LeftNavSidebar.tsx:23",
+            "apps/web/src/routes/$locale/people/-components/PeopleGrid.tsx:97"
+          ],
+          "fileCount": 3
+        },
+        {
+          "group": "motion",
+          "utility": "animate-stretch",
+          "count": 2,
+          "examples": [
+            "apps/web/src/components/feature/selection/SelectionTitle.tsx:26",
+            "apps/web/src/routes/$locale/research/centers/index.tsx:153"
+          ],
+          "fileCount": 2
+        },
+        {
+          "group": "motion",
+          "utility": "duration-700",
+          "count": 2,
+          "examples": [
+            "apps/web/src/routes/$locale/-components/news/NewsCarousel.tsx:140",
+            "apps/web/src/routes/$locale/people/-components/PeopleGrid.tsx:97"
+          ],
+          "fileCount": 2
+        },
+        {
+          "group": "motion",
+          "utility": "ease-out",
+          "count": 2,
+          "examples": [
+            "apps/web/src/routes/$locale/-components/MainGraphic.tsx:88",
+            "apps/web/src/routes/$locale/people/-components/PeopleGrid.tsx:97"
+          ],
+          "fileCount": 2
+        },
+        {
+          "group": "motion",
+          "utility": "animate-arrowBounce",
+          "count": 1,
+          "examples": [
+            "apps/web/src/routes/$locale/-components/GraphicSection.tsx:14"
+          ],
+          "fileCount": 1
+        },
+        {
+          "group": "motion",
+          "utility": "animate-spin",
+          "count": 1,
+          "examples": [
+            "apps/web/src/routes/$locale/search/-components/SearchResultList.tsx:109"
+          ],
+          "fileCount": 1
+        },
+        {
+          "group": "motion",
+          "utility": "duration-100",
+          "count": 1,
+          "examples": [
+            "apps/web/src/routes/$locale/-components/MainGraphic.tsx:88"
+          ],
+          "fileCount": 1
+        },
+        {
+          "group": "motion",
+          "utility": "ease-in-out",
+          "count": 1,
+          "examples": [
+            "apps/web/src/components/layout/LeftNav/LeftNavSidebar.tsx:23"
+          ],
+          "fileCount": 1
+        },
+        {
+          "group": "motion",
+          "utility": "transition-transform",
+          "count": 1,
+          "examples": [
+            "apps/web/src/routes/$locale/-components/MainGraphic.tsx:88"
+          ],
+          "fileCount": 1
+        }
+      ]
+    }
+  },
+  "lucide": {
+    "icons": 24,
+    "importOccurrences": 48,
+    "files": 31,
+    "names": [
+      "AlertCircle",
+      "ArrowDown",
+      "ArrowRight",
+      "Calendar",
+      "ChevronDown",
+      "ChevronLeft",
+      "ChevronRight",
+      "ChevronUp",
+      "ChevronsLeft",
+      "ChevronsRight",
+      "FileText",
+      "Globe",
+      "Info",
+      "LoaderCircle",
+      "Mail",
+      "MapPin",
+      "PhoneCall",
+      "Plus",
+      "Printer",
+      "RefreshCw",
+      "Search",
+      "Square",
+      "SquareCheck",
+      "X"
+    ]
+  },
+  "svgImports": [
+    {
+      "file": "apps/web/src/components/form/File.tsx",
+      "module": "./assets/clear_icon.svg?react"
+    },
+    {
+      "file": "apps/web/src/components/layout/Footer/index.tsx",
+      "module": "./assets/SNU_Engineering.svg?url"
+    },
+    {
+      "file": "apps/web/src/components/layout/Footer/index.tsx",
+      "module": "./assets/SNU_Logo_with_Text.svg?url"
+    },
+    {
+      "file": "apps/web/src/components/layout/Header/HeaderLeft.tsx",
+      "module": "./assets/header_logo.svg?url"
+    },
+    {
+      "file": "apps/web/src/components/layout/Header/HeaderLeft.tsx",
+      "module": "./assets/header_sub_text.svg?url"
+    },
+    {
+      "file": "apps/web/src/components/layout/Header/HeaderLeft.tsx",
+      "module": "./assets/header_text.svg?url"
+    },
+    {
+      "file": "apps/web/src/components/layout/Header/MobileNavButton.tsx",
+      "module": "./assets/menu.svg?react"
+    },
+    {
+      "file": "apps/web/src/components/layout/LeftNav/LeftNavSidebar.tsx",
+      "module": "./assets/dot_empty.svg?react"
+    },
+    {
+      "file": "apps/web/src/components/layout/LeftNav/LeftNavSidebar.tsx",
+      "module": "./assets/dot_fill.svg?react"
+    },
+    {
+      "file": "apps/web/src/components/layout/MobileNav/MobileNavList.tsx",
+      "module": "./assets/search.svg?react"
+    },
+    {
+      "file": "apps/web/src/components/ui/Attachments.tsx",
+      "module": "./assets/clip.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/-components/GraphicSection.tsx",
+      "module": "../assets/down_arrow.svg?url"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/-components/ImportantSection.tsx",
+      "module": "../assets/important_arrow.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/-components/NoticeSection.tsx",
+      "module": "../assets/plus.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/-components/news/NewsCarousel.tsx",
+      "module": "./assets/pause.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/-components/news/NewsCarousel.tsx",
+      "module": "./assets/play.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/-components/news/NewsSection.tsx",
+      "module": "@/components/ui/assets/small_right_arrow.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/about/facilities/-components/FacilitiesList.tsx",
+      "module": "../assets/distance.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/academics/-components/courses/CourseDetailModal.tsx",
+      "module": "./assets/bookmark_icon.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/academics/-components/courses/CourseEditor.tsx",
+      "module": "./assets/bookmark_icon.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/community/notice/-components/NoticeListRow.tsx",
+      "module": "../assets/clip.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/community/notice/-components/NoticeListRow.tsx",
+      "module": "../assets/lock.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/community/notice/-components/NoticeListRow.tsx",
+      "module": "../assets/pin.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/community/seminar/-components/SeminarRow.tsx",
+      "module": "../assets/calendar.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/community/seminar/-components/SeminarRow.tsx",
+      "module": "../assets/distance.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/community/seminar/-components/SeminarRow.tsx",
+      "module": "../assets/person.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/research/centers/index.tsx",
+      "module": "./assets/link_icon.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/research/labs/$id/index.tsx",
+      "module": "../assets/pentagon_long.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/research/labs/$id/index.tsx",
+      "module": "../assets/pentagon_short.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/research/labs/-components/ResearchLabRow.tsx",
+      "module": "../assets/youtube_icon.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/search/-components/ui/NoSearchResult.tsx",
+      "module": "../../assets/magnificent_glass.svg?react"
+    },
+    {
+      "file": "apps/web/src/routes/$locale/search/index.tsx",
+      "module": "./assets/magnificent_glass.svg?react"
+    }
+  ]
+}

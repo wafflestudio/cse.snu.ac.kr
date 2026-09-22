@@ -1,0 +1,70 @@
+{
+  "sourceBase": "d1baf83c",
+  "method": "sRGB relative luminance; (lighter + .05) / (darker + .05). Opaque color pairs only. Values loaded from app.css. AA normal-text threshold 4.5; compare unrounded ratio.",
+  "reference": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+  "pairs": [
+    {
+      "role": "primary / filled tag",
+      "foreground": "#ffffff",
+      "background": "#ff6914",
+      "ratio": 2.8835334698733264,
+      "meetsNormalTextAA": false
+    },
+    {
+      "role": "outline tag",
+      "foreground": "#ff6914",
+      "background": "#ffffff",
+      "ratio": 2.8835334698733264,
+      "meetsNormalTextAA": false
+    },
+    {
+      "role": "secondary text",
+      "foreground": "#a3a3a3",
+      "background": "#ffffff",
+      "ratio": 2.5225067929953044,
+      "meetsNormalTextAA": false
+    },
+    {
+      "role": "placeholder",
+      "foreground": "#d4d4d4",
+      "background": "#ffffff",
+      "ratio": 1.482266131414131,
+      "meetsNormalTextAA": false
+    },
+    {
+      "role": "muted text",
+      "foreground": "#737373",
+      "background": "#ffffff",
+      "ratio": 4.741667181590045,
+      "meetsNormalTextAA": true
+    },
+    {
+      "role": "secondary button",
+      "foreground": "#737373",
+      "background": "#f5f5f5",
+      "ratio": 4.34923168556426,
+      "meetsNormalTextAA": false
+    },
+    {
+      "role": "text link",
+      "foreground": "#3c7be4",
+      "background": "#ffffff",
+      "ratio": 4.081154677043155,
+      "meetsNormalTextAA": false
+    },
+    {
+      "role": "neutral button",
+      "foreground": "#ffffff",
+      "background": "#404040",
+      "ratio": 10.368377760269818,
+      "meetsNormalTextAA": true
+    },
+    {
+      "role": "neutral button hover",
+      "foreground": "#ffffff",
+      "background": "#737373",
+      "ratio": 4.741667181590045,
+      "meetsNormalTextAA": true
+    }
+  ]
+}
