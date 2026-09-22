@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>디자인 시스템 · 첫 방향 검토</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;background:#f5f5f3;color:#202421;font:16px/1.65 system-ui,sans-serif}main{max-width:1240px;margin:auto;padding:48px 24px 80px}a{color:#175540;text-underline-offset:3px}a:focus-visible,summary:focus-visible{outline:3px solid #175540;outline-offset:5px}header{max-width:880px}h1{font-size:clamp(28px,4vw,44px);line-height:1.2;letter-spacing:-.04em;margin:12px 0 20px}h2{font-size:26px;line-height:1.4;margin:8px 0 16px}p{margin:10px 0}.eyebrow,.meta{font-size:13px;color:#555f58}.status{display:inline-block;padding:5px 10px;background:#e3e9e5;border-radius:4px}.lead{font-size:19px}.note{padding:16px 20px;border-left:3px solid #687b70;background:#fff}nav{display:flex;flex-wrap:wrap;gap:12px 24px;padding:24px 0;border-bottom:1px solid #cbd2cc}section{padding-top:40px;scroll-margin-top:20px}.intro{max-width:860px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:24px 0}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}figure{min-width:0;margin:0;border:1px solid #cbd2cc;background:white;border-radius:6px;overflow:hidden}.picture{display:block;height:360px;overflow:auto;background:#e8ece9;border-bottom:1px solid #cbd2cc}.picture img{display:block;width:100%;height:auto}.picture:focus-visible{outline-offset:-4px}figcaption{padding:18px}figcaption strong,.meta{display:block}figcaption p{font-size:14px}.question{padding:16px 20px;border:1px solid #abb9af;border-radius:6px;background:#edf2ee}.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0}.fact{padding:20px;background:white;border:1px solid #cbd2cc}.fact strong{display:block;font-size:20px}.fact p{font-size:14px}details{background:white;padding:18px 20px;border:1px solid #cbd2cc;margin-top:24px}summary{cursor:pointer;font-weight:600}footer{margin-top:44px;padding-top:24px;border-top:1px solid #cbd2cc;font-size:14px}code{overflow-wrap:anywhere}@media(max-width:720px){main{padding:28px 16px 48px}.grid,.grid.two,.facts{grid-template-columns:1fr}.picture{height:400px}h2{font-size:23px}.lead{font-size:17px}}
+</style>
+</head>
+<body><main>
+<header><span class="eyebrow">CSE · 디자인 시스템 현황 조사 / 1-4 검토물</span><h1>무엇을 남기고,<br>어디를 바꿀까?</h1><span class="status">제안 · 사용자 결정 전</span><p class="lead">기존의 시각적 특징은 살리고, 읽기와 조작의 문제는 해결한다.</p><p>이 문장은 첫 검토를 위한 권장 방향이다. 아직 디자인 규칙으로 확정하지 않았다. 세 질문을 차례로 검토하고, 새 색·크기·컴포넌트 형태는 이후 실제 적용 비교로 정한다.</p></header>
+<nav aria-label="검토 질문"><a href="#identity">01 남길 특징</a><a href="#reading">02 변경 범위</a><a href="#editing">03 작은 화면의 작업</a><a href="CLASSIFICATION.md">전체 분류표</a></nav>
+<p class="note">모든 이미지는 변경 전 캡처다. 미리보기는 축소되어 있으며 안쪽으로 스크롤하거나 원본을 열어 볼 수 있다. 캡처는 전체 문서여서 실제 뷰포트보다 넓을 수 있다. 이 검토 페이지의 서체·색·배치는 사이트 디자인 제안이 아니다.</p>
+
+<section id="identity" aria-labelledby="title-identity"><div class="intro"><span class="eyebrow">질문 01</span><h2 id="title-identity">남기고 싶은 특징</h2><p>어두운 큰 면, 주황, 원과 선, 접힌 모서리가 현재 사이트의 인상을 만든다. 표현의 역할을 정리하면서 이 특징을 남기는 방향을 권장한다.</p></div>
+<div class="grid">
+<figure>
+  <a class="picture" href="baseline/main-en-1280.png" aria-label="메인 · 영어 / 1280px 원본 보기"><img src="baseline/main-en-1280.png" alt="메인 · 영어 / 1280px 변경 전 전체 문서 캡처" width="1280" height="2677"></a>
+  <figcaption><strong>메인 · 영어 / 1280px</strong><span class="meta">뷰포트 1280px · 문서 1280px · <a href="baseline/main-en-1280.json">측정 정보</a></span><p>큰 어두운 면, 원과 막대, 별도 서체의 슬로건. 자홍색 뉴스 영역은 테스트 마스크다.</p><a href="baseline/main-en-1280.png">이미지 원본 열기 ↗</a></figcaption>
+</figure>
+<figure>
+  <a class="picture" href="baseline/category-en-1920.png" aria-label="학사 카테고리 · 영어 / 1920px 원본 보기"><img src="baseline/category-en-1920.png" alt="학사 카테고리 · 영어 / 1920px 변경 전 전체 문서 캡처" width="1920" height="1196"></a>
+  <figcaption><strong>학사 카테고리 · 영어 / 1920px</strong><span class="meta">뷰포트 1920px · 문서 1920px · <a href="baseline/category-en-1920.json">측정 정보</a></span><p>큰 제목과 넓은 탐색 카드. 일반 본문과 같은 밀도로 맞출 필요가 있는지 검토한다.</p><a href="baseline/category-en-1920.png">이미지 원본 열기 ↗</a></figcaption>
+</figure>
+<figure>
+  <a class="picture" href="baseline/selection-en-390.png" aria-label="연구 스트림 · 영어 / 390px 원본 보기"><img src="baseline/selection-en-390.png" alt="연구 스트림 · 영어 / 390px 변경 전 전체 문서 캡처" width="436" height="1251"></a>
+  <figcaption><strong>연구 스트림 · 영어 / 390px</strong><span class="meta">뷰포트 390px · 문서 436px · <a href="baseline/selection-en-390.json">측정 정보</a></span><p>선택 표시와 접힌 모서리. 모양을 보존할지와 선택 의미를 명확히 할지는 함께 검토한다.</p><a href="baseline/selection-en-390.png">이미지 원본 열기 ↗</a></figcaption>
+</figure>
+</div><p class="question">J-01 · 이 특징을 유지할지, 일부를 바꿀지부터 정한다. 아래는 새 디자인안이 아닌 기존 화면이다.</p>
+</section>
+<section id="reading" aria-labelledby="title-reading"><div class="intro"><span class="eyebrow">질문 02</span><h2 id="title-reading">읽기와 배치를 위해 바뀔 부분</h2><p>서체 연결, 작은 글자의 대비, 화면 넘침은 해결할 문제다. 기존 정보 구조를 유지하면서 색·글줄·간격·중간 폭 배치를 조정하는 방향을 권장한다.</p></div>
+<div class="grid two">
+<figure>
+  <a class="picture" href="baseline/long-notice-ko-360.png" aria-label="긴 공지 · 한국어 / 360px 원본 보기"><img src="baseline/long-notice-ko-360.png" alt="긴 공지 · 한국어 / 360px 변경 전 전체 문서 캡처" width="360" height="2773"></a>
+  <figcaption><strong>긴 공지 · 한국어 / 360px</strong><span class="meta">뷰포트 360px · 문서 360px · <a href="baseline/long-notice-ko-360.json">측정 정보</a></span><p>이 표본은 문서 폭이 화면에 맞는다. 현재 본문 서체가 의도한 웹폰트인지는 별도의 실측으로 확인해야 한다.</p><a href="baseline/long-notice-ko-360.png">이미지 원본 열기 ↗</a></figcaption>
+</figure>
+<figure>
+  <a class="picture" href="baseline/long-notice-ko-768.png" aria-label="같은 긴 공지 · 한국어 / 768px 원본 보기"><img src="baseline/long-notice-ko-768.png" alt="같은 긴 공지 · 한국어 / 768px 변경 전 전체 문서 캡처" width="1200" height="2181"></a>
+  <figcaption><strong>같은 긴 공지 · 한국어 / 768px</strong><span class="meta">뷰포트 768px · 문서 1200px · <a href="baseline/long-notice-ko-768.json">측정 정보</a></span><p>화면은 768px인데 문서가 1200px로 넓어진다. 오른쪽 내비를 포함한 중간 폭 배치의 검토가 필요하다.</p><a href="baseline/long-notice-ko-768.png">이미지 원본 열기 ↗</a></figcaption>
+</figure>
+</div><p class="question">J-02 · 읽기와 조작을 개선하기 위한 시각 변경 범위를 정한다. 정확한 새 색과 크기는 이후 적용 비교에서 결정한다.</p>
+<div class="facts"><div class="fact"><strong>본문의 실제 서체</strong><p>Linux 표본은 WenQuanYi Zen Hei. UI의 Pretendard Variable과 다르다. 서체를 정한 후 줄바꿈과 높이를 다시 봐야 한다.</p></div><div class="fact"><strong>주황 / 흰색 · 2.88:1</strong><p>작은 활성 버튼·태그의 대비 문제다. 장식의 주황을 남길지와 정보/행동 색의 조합을 함께 검토한다.</p></div><div class="fact"><strong>입력칸의 키보드 초점</strong><p>공지 제목은 초점을 받아도 선·테두리·배경 변화가 없었다. 사진만으로 알 수 없는 상태는 실제 조작으로 확인했다.</p></div></div><p><a href="ROLE-AUDIT.md">측정 방법·기준·한계</a> · <a href="measurements/runtime.json">실측 원자료</a> · <a href="measurements/contrast.json">대비 계산</a></p>
+</section>
+<section id="editing" aria-labelledby="title-editing"><div class="intro"><span class="eyebrow">질문 03</span><h2 id="title-editing">작은 화면에서 가능한 작업</h2><p>빈 폼과 값이 채워진 폼의 결과가 다르다. 공개 읽기뿐 아니라 핵심 편집·첨부·저장까지 작은 화면에서 수행할 수 있도록 하는 방향을 권장한다.</p></div>
+<div class="grid">
+<figure>
+  <a class="picture" href="baseline/notice-editor-ko-390.png" aria-label="빈 공지 폼 · 390px 원본 보기"><img src="baseline/notice-editor-ko-390.png" alt="빈 공지 폼 · 390px 변경 전 전체 문서 캡처" width="390" height="2211"></a>
+  <figcaption><strong>빈 공지 폼 · 390px</strong><span class="meta">뷰포트 390px · 문서 390px · <a href="baseline/notice-editor-ko-390.json">측정 정보</a></span><p>빈 폼은 화면 폭에 맞는다. 이 상태만 보고 입력 패턴을 승인하면 첨부 후의 문제를 놓친다.</p><a href="baseline/notice-editor-ko-390.png">이미지 원본 열기 ↗</a></figcaption>
+</figure>
+<figure>
+  <a class="picture" href="baseline/notice-filled-ko-390.png" aria-label="첨부가 있는 같은 폼 · 390px 원본 보기"><img src="baseline/notice-filled-ko-390.png" alt="첨부가 있는 같은 폼 · 390px 변경 전 전체 문서 캡처" width="542" height="2329"></a>
+  <figcaption><strong>첨부가 있는 같은 폼 · 390px</strong><span class="meta">뷰포트 390px · 문서 542px · <a href="baseline/notice-filled-ko-390.json">측정 정보</a></span><p>첨부 행을 넣으면 문서 폭이 542px이 된다. 파일명과 삭제 조작까지 함께 검토한다.</p><a href="baseline/notice-filled-ko-390.png">이미지 원본 열기 ↗</a></figcaption>
+</figure>
+<figure>
+  <a class="picture" href="baseline/faculty-editor-en-390.png" aria-label="교수 폼 · 영어 입력 / 390px 원본 보기"><img src="baseline/faculty-editor-en-390.png" alt="교수 폼 · 영어 입력 / 390px 변경 전 전체 문서 캡처" width="692" height="2119"></a>
+  <figcaption><strong>교수 폼 · 영어 입력 / 390px</strong><span class="meta">뷰포트 390px · 문서 692px · <a href="baseline/faculty-editor-en-390.json">측정 정보</a></span><p>반복 입력과 전화·팩스 구간이 있는 폼은 문서 폭이 692px이다. 관리 작업의 최소 지원 폭을 정해야 한다.</p><a href="baseline/faculty-editor-en-390.png">이미지 원본 열기 ↗</a></figcaption>
+</figure>
+</div><p class="question">J-03 · 작은 화면에서 보장할 작업을 정한다. 복잡한 표나 달력의 내부 스크롤은 페이지 전체의 가로 넘침과 구분한다.</p>
+</section>
+<details><summary>이번에 확정하지 않은 것과 검증 한계</summary><p>새 팔레트, 타이포 단계, 아이콘 크기, 컴포넌트 모양, 문구 가이드는 아직 미결정이다. 그림의 접합 보정·달력·작성자 HTML 같은 고유한 조건도 별도로 검토한다.</p><p>배열 체크박스의 색, 드롭다운 키보드 동작, 처리 중·실패 상태 등에는 추가 재현이 필요하다. 기존 시각 회귀 3개 실패도 해결된 것이 아니다. 자세한 범위는 <a href="CLASSIFICATION.md">분류표의 U 항목</a>에 있다.</p></details>
+<footer><p>앱 소스 기준 <code>d1baf83c</code> · 캡처/실측 2026-09-22 · 디자인 변경 없음</p><p><a href="PLAN.md">현재 위치와 다음 작업</a> · <a href="CLASSIFICATION.md">분류와 검토 순서</a> · <a href="baseline/README.md">전체 캡처 목록</a></p></footer>
+</main></body></html>
