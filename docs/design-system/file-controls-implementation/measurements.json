@@ -1,0 +1,79 @@
+{
+  "records": [
+    {
+      "viewportWidth": 1200,
+      "name": "2026학년도_컴퓨터공학부_학부생_졸업논문_제출_및_심사_일정_최종안내_추가수정사항_확인용_제출양식_개정내역_대상자별_유의사항_사전검토용_배포본_재학생_복수전공생_휴학생_외국인학생_공통안내_문의사항_학과행정실_최종검토본_첨부문서.pdf",
+      "width": 520,
+      "scroll": 520,
+      "height": 30,
+      "textWidth": 461,
+      "textScroll": 1283,
+      "ellipsis": "ellipsis",
+      "whiteSpace": "nowrap",
+      "button": 19
+    },
+    {
+      "viewportWidth": 1200,
+      "name": "첨부.pdf",
+      "width": 520,
+      "scroll": 520,
+      "height": 30,
+      "textWidth": 45,
+      "textScroll": 45,
+      "ellipsis": "ellipsis",
+      "whiteSpace": "nowrap",
+      "button": 19
+    },
+    {
+      "viewportWidth": 1200,
+      "name": "VeryLongUnbrokenFilenameVeryLongUnbrokenFilenameVeryLongUnbrokenFilenameVeryLongUnbrokenFilenameVeryLongUnbrokenFilenameVeryLongUnbrokenFilenameVeryLongUnbrokenFilenameVeryLongUnbrokenFilenameVeryLongUnbrokenFilenameVeryLongUnbrokenFilename.pdf",
+      "width": 520,
+      "scroll": 520,
+      "height": 30,
+      "textWidth": 461,
+      "textScroll": 1714,
+      "ellipsis": "ellipsis",
+      "whiteSpace": "nowrap",
+      "button": 19
+    },
+    {
+      "viewportWidth": 1280,
+      "name": "2026학년도_컴퓨터공학부_학부생_졸업논문_제출_및_심사_일정_최종안내_추가수정사항_확인용_제출양식_개정내역_대상자별_유의사항_사전검토용_배포본_재학생_복수전공생_휴학생_외국인학생_공통안내_문의사항_학과행정실_최종검토본_첨부문서.pdf",
+      "width": 520,
+      "scroll": 520,
+      "height": 30,
+      "textWidth": 461,
+      "textScroll": 1283,
+      "ellipsis": "ellipsis",
+      "whiteSpace": "nowrap",
+      "button": 19
+    },
+    {
+      "viewportWidth": 1280,
+      "name": "첨부.pdf",
+      "width": 520,
+      "scroll": 520,
+      "height": 30,
+      "textWidth": 45,
+      "textScroll": 45,
+      "ellipsis": "ellipsis",
+      "whiteSpace": "nowrap",
+      "button": 19
+    },
+    {
+      "viewportWidth": 1280,
+      "name": "VeryLongUnbrokenFilenameVeryLongUnbrokenFilenameVeryLongUnbrokenFilenameVeryLongUnbrokenFilenameVeryLongUnbrokenFilenameVeryLongUnbrokenFilenameVeryLongUnbrokenFilenameVeryLongUnbrokenFilenameVeryLongUnbrokenFilenameVeryLongUnbrokenFilename.pdf",
+      "width": 520,
+      "scroll": 520,
+      "height": 30,
+      "textWidth": 461,
+      "textScroll": 1714,
+      "ellipsis": "ellipsis",
+      "whiteSpace": "nowrap",
+      "button": 19
+    }
+  ],
+  "hoverAndLeave": true,
+  "keyboardDelete": true,
+  "note": "Production app, local in-memory files; no upload/save. title attribute provided, native tooltip visual behavior not asserted."
+}

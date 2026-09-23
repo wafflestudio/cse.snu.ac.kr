@@ -1,0 +1,14 @@
+{
+  "name-excluding-icon": {
+    "sameSize": true,
+    "identical": true
+  },
+  "delete-default": {
+    "sameSize": true,
+    "identical": true
+  },
+  "delete-hover": {
+    "sameSize": true,
+    "identical": true
+  }
+}

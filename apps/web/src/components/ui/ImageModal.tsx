@@ -150,7 +150,7 @@ export default function ImageModal({
           </div>
 
           {/* 다시 보지 않기 체크박스 */}
-          <label className="group absolute -bottom-8 left-0 flex items-center gap-1 cursor-pointer">
+          <label className="group absolute -bottom-8 left-0 flex items-center gap-1 cursor-pointer has-[:focus-visible]:focus-ring-inverse">
             {hideModal ? (
               <CheckboxChecked className="fill-white group-hover:fill-neutral-400 group-active:fill-main-orange transition-colors" />
             ) : (
@@ -163,7 +163,7 @@ export default function ImageModal({
               type="checkbox"
               checked={hideModal}
               onChange={(e) => setHideModal(e.target.checked)}
-              className="appearance-none"
+              className="appearance-none focus-visible:outline-none"
             />
           </label>
         </DialogPrimitive.Content>

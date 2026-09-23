@@ -126,7 +126,10 @@ const PostNavLink = ({
   title: string;
   icon: ReactNode;
 }) => (
-  <Link to={href} className="group mb-1 flex w-fit items-center">
+  <Link
+    to={href}
+    className="group mb-1 flex w-fit items-center focus-visible:focus-ring"
+  >
     <span className="text-main-orange">{icon}</span>
     <p className="mr-3 shrink-0 text-md font-medium text-main-orange">
       {label}

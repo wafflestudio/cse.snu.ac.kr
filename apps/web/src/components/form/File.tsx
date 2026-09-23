@@ -91,10 +91,12 @@ interface FileRowProps {
 function FilePickerRow({ file, deleteFile }: FileRowProps) {
   return (
     <li className="flex h-7.5 w-[520px] items-center border-b border-dashed border-neutral-200 px-3 last:border-none">
-      <p className="mr-4 text-sm">{file.file.name}</p>
+      <p className="mr-4 min-w-0 truncate text-sm" title={file.file.name}>
+        {file.file.name}
+      </p>
       <button
         type="button"
-        className="ml-auto focus-visible:focus-ring"
+        className="ml-auto shrink-0 text-neutral-500 hover:text-neutral-700 focus-visible:focus-ring"
         aria-label={`${file.file.name} 삭제`}
         onClick={deleteFile}
       >

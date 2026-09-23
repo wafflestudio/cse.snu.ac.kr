@@ -1,0 +1,19 @@
+{
+  "records": [
+    {
+      "locale": "ko",
+      "width": 400,
+      "scrollWidth": 400,
+      "height": 46,
+      "viewportWidth": 1280
+    },
+    {
+      "locale": "en",
+      "width": 288,
+      "scrollWidth": 288,
+      "height": 46,
+      "viewportWidth": 320
+    }
+  ],
+  "note": "Browser-only proposal. Image modal buttons: 2px outline, -4px offset. Main card inset prototype is rejected as-is because its image covers the top outline. Local fixture modal deleted."
+}

@@ -1,0 +1,58 @@
+{
+  "records": [
+    {
+      "name": "pagination",
+      "color": "rgb(64, 64, 64)"
+    },
+    {
+      "name": "notice-title",
+      "color": "rgb(64, 64, 64)"
+    },
+    {
+      "name": "post-footer",
+      "color": "rgb(64, 64, 64)"
+    },
+    {
+      "name": "alert-cancel",
+      "color": "rgb(64, 64, 64)"
+    },
+    {
+      "name": "category-dark",
+      "color": "rgb(255, 255, 255)"
+    },
+    {
+      "name": "category-academics",
+      "color": "rgb(255, 255, 255)"
+    },
+    {
+      "name": "ui-dropdown",
+      "color": "rgb(64, 64, 64)"
+    },
+    {
+      "name": "news-clipping",
+      "geometry": {
+        "card": {
+          "left": 375,
+          "top": 595.65625,
+          "right": 595.796875,
+          "bottom": 899.65625
+        },
+        "clips": [
+          {
+            "left": 375,
+            "top": 595.65625,
+            "right": 1100.59375,
+            "bottom": 939.65625
+          },
+          {
+            "left": 176,
+            "top": 523.65625,
+            "right": 1280,
+            "bottom": 1003.65625
+          }
+        ]
+      }
+    }
+  ],
+  "note": "DS020 repeated connections; navigation and cancel tested. News inset and image modal button proposals are browser-only; fixture modal created and removed."
+}

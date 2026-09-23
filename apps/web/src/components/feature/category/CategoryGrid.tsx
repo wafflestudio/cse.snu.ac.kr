@@ -42,7 +42,9 @@ export default function CategoryGrid({
   return (
     <div
       className={clsx(
-        isLight ? 'bg-white' : 'bg-neutral-900',
+        isLight
+          ? 'bg-white [&>div>button:focus-visible]:focus-ring'
+          : 'bg-neutral-900 [&>div>button:focus-visible]:focus-ring-inverse',
         'px-5 py-7 shell:px-25 shell:pb-45 shell:pt-20',
       )}
     >

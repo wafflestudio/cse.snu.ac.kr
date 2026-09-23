@@ -112,7 +112,7 @@ function TitleCell({
   return (
     <Wrapper
       to={detailPath}
-      className={`flex items-center gap-1.5 font-semibold sm:font-normal ${NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow sm:pl-3`}
+      className={`flex items-center gap-1.5 font-semibold sm:font-normal ${NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow sm:pl-3 focus-visible:focus-ring`}
     >
       <span
         className={`${

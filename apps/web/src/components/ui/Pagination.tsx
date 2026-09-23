@@ -115,7 +115,7 @@ function PaginationArrow({
     <button
       type="button"
       onClick={onClick}
-      className="cursor-pointer hover:text-main-orange"
+      className="cursor-pointer hover:text-main-orange focus-visible:focus-ring"
       aria-label={ariaLabel}
     >
       <Icon className="h-6 w-6" />
@@ -150,7 +150,7 @@ function PaginationNumber({
     <button
       type="button"
       className={clsx(
-        'flex items-center justify-center px-2',
+        'flex items-center justify-center px-2 focus-visible:focus-ring',
         cursorStyle,
         textStyle,
       )}
