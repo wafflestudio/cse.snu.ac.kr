@@ -40,7 +40,7 @@ export default function Checkbox({
     <label
       htmlFor={value}
       className={clsx(
-        'group flex h-5 w-fit items-center gap-1 whitespace-nowrap',
+        'group flex h-5 w-fit items-center gap-1 whitespace-nowrap has-[:focus-visible]:focus-ring',
         {
           'cursor-pointer': !disabled,
         },
@@ -66,7 +66,7 @@ export default function Checkbox({
       <input
         type="checkbox"
         id={value}
-        className="appearance-none"
+        className="appearance-none focus-visible:outline-none"
         value={value}
         disabled={disabled}
         {...registerProps}

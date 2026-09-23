@@ -64,7 +64,7 @@ export default function Dropdown({
         aria-controls={listboxId}
         {...errorAttributes}
         className={clsx(
-          'flex w-full items-center border bg-white py-[.3125rem] pl-[.625rem] pr-[.3125rem]',
+          'flex w-full items-center border bg-white py-1.25 pl-2.5 pr-1.25 focus-visible:focus-ring',
           expanded ? 'rounded-t-sm' : 'rounded-sm',
           borderStyle,
           width ? `${width} justify-between` : 'gap-4',

@@ -132,7 +132,7 @@ export default function Dropdown({
         aria-controls={open ? listboxId : undefined}
         onClick={() => setOpen((o) => !o)}
         onKeyDown={handleTriggerKeyDown}
-        className={`flex select-none items-center gap-4 rounded-xs border bg-white py-[.3125rem] pl-[.625rem] pr-[.3125rem] ${borderStyle} ${height ?? ''}`}
+        className={`flex select-none items-center gap-4 rounded-xs border bg-white py-1.25 pl-2.5 pr-1.25 ${borderStyle} ${height ?? ''}`}
       >
         <span className="text-md font-normal">
           {contents[selectedIndex] ?? ''}

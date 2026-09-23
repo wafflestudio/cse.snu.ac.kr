@@ -98,15 +98,15 @@ export default function ReservationDetailModal({
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange} title="예약 상세">
-        <div className="min-w-[320px]">
-          <div className="mb-5 flex items-center justify-between">
-            <h2 className="text-xl font-bold text-neutral-800">
+        <div className="min-w-0 sm:min-w-[320px]">
+          <div className="mb-5 flex items-center justify-between pr-8">
+            <h2 className="min-w-0 text-xl font-bold text-neutral-800 [overflow-wrap:anywhere]">
               {reservation?.title ?? t('불러오는중')}
             </h2>
           </div>
 
           <div className="mb-[2.19rem] flex flex-col gap-6">
-            <p className="text-neutral-800">
+            <p className="min-w-0 text-neutral-800 [overflow-wrap:anywhere]">
               {reservation
                 ? (reservation.purpose ?? t('예약 목적 미기입'))
                 : '-'}
@@ -168,7 +168,7 @@ export default function ReservationDetailModal({
           <LoginVisible
             allow={['ROLE_STAFF', 'ROLE_RESERVE', 'ROLE_LABMASTER']}
           >
-            <div className="flex justify-end gap-2">
+            <div className="flex flex-wrap justify-end gap-2">
               <Button
                 variant="secondary"
                 size="sm"
@@ -206,10 +206,18 @@ export default function ReservationDetailModal({
 }
 
 const Row = ({ title, body }: { title: string; body: string }) => {
+  const { isEnglish } = useLanguage();
+
   return (
     <div className="flex gap-3">
-      <p className="w-16.25 text-md text-neutral-500">{title}</p>
-      <p className="text-md text-neutral-800">{body}</p>
+      <p
+        className={`shrink-0 text-md text-neutral-500 ${isEnglish ? 'w-20' : 'w-16.25'}`}
+      >
+        {title}
+      </p>
+      <p className="min-w-0 text-md text-neutral-800 [overflow-wrap:anywhere]">
+        {body}
+      </p>
     </div>
   );
 };

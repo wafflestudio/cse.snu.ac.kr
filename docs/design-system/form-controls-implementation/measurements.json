@@ -1,0 +1,48 @@
+{
+  "note": "Approved DS020 connections; checkbox/radio native keyboard; actual filechooser Space and local file deletion; no upload/save. Dropdown existing hidden-option keyboard behavior recorded only.",
+  "records": [
+    {
+      "scene": "checkbox",
+      "focus": true
+    },
+    {
+      "scene": "file-select",
+      "focus": true
+    },
+    {
+      "scene": "file-delete",
+      "focus": true
+    },
+    {
+      "scene": "radio",
+      "focus": true
+    },
+    {
+      "scene": "image-select",
+      "focus": true
+    },
+    {
+      "scene": "image-delete",
+      "focus": true
+    },
+    {
+      "scene": "dropdown",
+      "focus": true
+    },
+    {
+      "scene": "dropdown-padding",
+      "left": "10px",
+      "right": "5px",
+      "top": "5px"
+    },
+    {
+      "scene": "closed-dropdown-tab",
+      "activeRole": "option",
+      "activeVisible": false
+    },
+    {
+      "scene": "date-trigger",
+      "focus": true
+    }
+  ]
+}

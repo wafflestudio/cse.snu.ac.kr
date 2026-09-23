@@ -1,0 +1,28 @@
+{
+  "note": "Browser-only filename and delete-icon proposals; not application styles",
+  "names": [
+    {
+      "mode": "before",
+      "width": 520,
+      "scrollWidth": 520,
+      "height": 30,
+      "textHeight": 46.78125
+    },
+    {
+      "mode": "a-short",
+      "height": 30
+    },
+    {
+      "mode": "a",
+      "width": 520,
+      "scrollWidth": 520,
+      "height": 56.78125
+    },
+    {
+      "mode": "b",
+      "width": 520,
+      "scrollWidth": 520,
+      "height": 30
+    }
+  ]
+}

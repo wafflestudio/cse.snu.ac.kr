@@ -422,6 +422,66 @@ test.describe('공지사항 - 목록 일괄 관리', () => {
 
 /** 첨부파일(어드민): 공지 작성 시 파일 업로드 → 상세에 파일명 노출. */
 test.describe('공지사항 - 첨부파일', () => {
+  test('파일 키보드 선택과 이름이 있는 삭제 버튼을 사용할 수 있다', async ({
+    page,
+  }) => {
+    const fileName = '키보드-첨부.txt';
+
+    await setLocale(page, 'ko');
+    await page.goto('/community/notice');
+    await loginAsStaff(page);
+    await page.goto('/community/notice/create');
+    await expect(page.locator('.sun-editor-editable')).toHaveAttribute(
+      'contenteditable',
+      'true',
+    );
+
+    const attachments = page.getByRole('group', {
+      name: '첨부파일',
+      exact: true,
+    });
+    const fileInput = attachments.locator('input[type="file"]');
+    await expect(fileInput).toHaveCount(1);
+
+    // 폼 끝에서 역방향으로 이동해 파일 입력 자체가 Tab 순서에 있는지 확인한다.
+    // 에디터 안의 별도 파일 입력은 대상으로 삼지 않는다.
+    await page.getByRole('button', { name: '취소', exact: true }).focus();
+    for (let step = 0; step < 50; step += 1) {
+      await page.keyboard.press('Shift+Tab');
+      if (
+        await fileInput.evaluate((input) => input === document.activeElement)
+      ) {
+        break;
+      }
+    }
+    await expect(fileInput).toBeFocused();
+
+    const chooserPromise = page.waitForEvent('filechooser');
+    await page.keyboard.press('Space');
+    const chooser = await chooserPromise;
+    await chooser.setFiles({
+      name: fileName,
+      mimeType: 'text/plain',
+      buffer: Buffer.from('keyboard attachment'),
+    });
+    await expect(
+      attachments.getByText(fileName, { exact: true }),
+    ).toBeVisible();
+
+    const remove = attachments.getByRole('button', {
+      name: `${fileName} 삭제`,
+      exact: true,
+    });
+    await page.keyboard.press('Tab');
+    await expect(remove).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(remove).toHaveCount(0);
+    await expect(attachments.getByText(fileName, { exact: true })).toHaveCount(
+      0,
+    );
+    await expect(page).toHaveURL(/\/community\/notice\/create$/);
+  });
+
   test('staff가 첨부파일과 함께 공지를 작성한다', async ({ page }) => {
     const title = `첨부공지 ${Date.now()}`;
     const fileName = `첨부문서-${Date.now()}.txt`;

@@ -63,7 +63,7 @@ export default function DatePicker({
         <button
           type="button"
           className={clsx(
-            'flex h-7.5 items-center gap-2 rounded-sm border border-neutral-300 bg-white px-2.5 text-sm hover:bg-neutral-50',
+            'flex h-7.5 items-center gap-2 rounded-sm border border-neutral-300 bg-white px-2.5 text-sm hover:bg-neutral-50 focus-visible:focus-ring',
             buttonClassName,
           )}
           onClick={toggleCalendar}

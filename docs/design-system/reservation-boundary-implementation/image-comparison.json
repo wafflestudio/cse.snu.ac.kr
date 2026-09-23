@@ -1,0 +1,37 @@
+[
+  {
+    "scene": "date-320",
+    "identical": false,
+    "differenceBounds": [45, 130, 223, 418]
+  },
+  {
+    "scene": "date-360",
+    "identical": false,
+    "differenceBounds": [18, 845, 342, 846]
+  },
+  {
+    "scene": "date-390",
+    "identical": false,
+    "differenceBounds": [20, 309, 371, 846]
+  },
+  {
+    "scene": "detail-ko-390",
+    "identical": true,
+    "differenceBounds": null
+  },
+  {
+    "scene": "detail-en-390",
+    "identical": false,
+    "differenceBounds": [370, 197, 371, 697]
+  },
+  {
+    "scene": "detail-ko-1280",
+    "identical": true,
+    "differenceBounds": null
+  },
+  {
+    "scene": "detail-en-1280",
+    "identical": false,
+    "differenceBounds": [95, 0, 1280, 900]
+  }
+]

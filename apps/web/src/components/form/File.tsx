@@ -71,11 +71,11 @@ function SelectFileButton({
   multiple: boolean;
 }) {
   return (
-    <label className="mr-3 flex h-8 cursor-pointer items-center self-start rounded-sm border border-neutral-300 px-[.62rem] text-xs hover:bg-neutral-100">
+    <label className="mr-3 flex h-8 cursor-pointer items-center self-start rounded-sm border border-neutral-300 px-[.62rem] text-xs hover:bg-neutral-100 has-[:focus-visible]:focus-ring">
       파일 선택
       <input
         type="file"
-        className="hidden"
+        className="sr-only focus-visible:outline-none"
         onChange={onChange}
         multiple={multiple}
       />
@@ -92,7 +92,12 @@ function FilePickerRow({ file, deleteFile }: FileRowProps) {
   return (
     <li className="flex h-7.5 w-[520px] items-center border-b border-dashed border-neutral-200 px-3 last:border-none">
       <p className="mr-4 text-sm">{file.file.name}</p>
-      <button type="button" className="ml-auto" onClick={deleteFile}>
+      <button
+        type="button"
+        className="ml-auto focus-visible:focus-ring"
+        aria-label={`${file.file.name} 삭제`}
+        onClick={deleteFile}
+      >
         <ClearIcon />
       </button>
     </li>

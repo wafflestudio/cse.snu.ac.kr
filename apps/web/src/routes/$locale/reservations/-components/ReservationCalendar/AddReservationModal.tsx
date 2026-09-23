@@ -65,7 +65,9 @@ export default function AddReservationModal({
                 disablePast
                 onSelect={updateDate}
                 buttonClassName="h-7 border-neutral-200 text-sm font-normal"
-                calendarClassName="absolute top-2 z-10"
+                // Keep the 244px calendar inside the 90vw dialog: 28px padding,
+                // 64px label/gap and 12px right inset. Wider dialogs keep the anchor.
+                calendarClassName="max-sm:left-[min(0px,calc(90vw-348px))]"
               />
             </fieldset>
 
