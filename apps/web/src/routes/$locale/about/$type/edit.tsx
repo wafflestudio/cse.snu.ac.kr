@@ -87,7 +87,7 @@ function AboutEdit() {
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />
 
-          <Fieldset.HTML>
+          <Fieldset.HTML errorName={language === 'ko' ? 'htmlKo' : 'htmlEn'}>
             <Form.HTML
               name="htmlKo"
               options={{

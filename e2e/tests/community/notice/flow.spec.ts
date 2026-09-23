@@ -8,6 +8,64 @@ import {
 } from '../../helpers/forms';
 import { setLocale } from '../../helpers/locale';
 
+test.describe('공지사항 - 필드 오류 안내', () => {
+  test('필드와 요약에 오류를 표시하고 수정한 필드의 안내를 해제한다', async ({
+    page,
+  }) => {
+    await setLocale(page, 'ko');
+    await page.goto('/community/notice');
+    await loginAsStaff(page);
+    await page.goto('/community/notice/create');
+    await expect(page.locator('.sun-editor-editable')).toHaveAttribute(
+      'contenteditable',
+      'true',
+    );
+
+    const title = page.locator('input[name="title"]');
+    const titleField = page.locator('fieldset').filter({ has: title });
+    const titleMessage = '제목을 입력해주세요.';
+    const contentMessage = '내용을 입력해주세요.';
+    const titleError = titleField.getByText(titleMessage, { exact: true });
+    const contentField = page.locator('fieldset').filter({
+      has: page.locator('legend').filter({ hasText: /^내용\*$/ }),
+    });
+    const contentError = contentField.getByText(contentMessage, {
+      exact: true,
+    });
+    const summary = page.locator('ul').filter({
+      has: page.getByText(contentMessage, { exact: true }),
+    });
+
+    // 필수 내용을 비워 두므로 게시 요청 없이 기존 클라이언트 검증만 실행한다.
+    await submitForm(page, '게시하기');
+    await expect(titleError).toBeVisible();
+    await expect(title).toHaveAttribute('aria-invalid', 'true');
+    await expect(title).toHaveAttribute('aria-describedby', /.+/);
+    await expect(title).toHaveAccessibleDescription(titleMessage);
+    await expect(contentError).toBeVisible();
+    await expect(contentField).toHaveAccessibleDescription(contentMessage);
+    await expect(
+      summary.getByText(titleMessage, { exact: true }),
+    ).toBeVisible();
+    await expect(
+      summary.getByText(contentMessage, { exact: true }),
+    ).toBeVisible();
+
+    await fillTextInput(page, 'title', '필드 오류 안내 확인');
+    await expect(titleError).toHaveCount(0);
+    await expect(title).not.toHaveAttribute('aria-invalid', 'true');
+    await expect(title).not.toHaveAttribute('aria-describedby', /.+/);
+    await expect(summary.getByText(titleMessage, { exact: true })).toHaveCount(
+      0,
+    );
+    await expect(contentError).toBeVisible();
+    await expect(
+      summary.getByText(contentMessage, { exact: true }),
+    ).toBeVisible();
+    await expect(page).toHaveURL(/\/community\/notice\/create$/);
+  });
+});
+
 async function createNoticeViaApi(page: Page, title: string) {
   const response = await page.request.post('/api/v2/notice', {
     multipart: {

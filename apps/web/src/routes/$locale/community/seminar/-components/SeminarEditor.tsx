@@ -75,7 +75,13 @@ export default function SeminarEditor({
   return (
     <FormProvider {...formMethods}>
       <Form>
-        <Fieldset title="제목" spacing="8" titleSpacing="2" required>
+        <Fieldset
+          title="제목"
+          spacing="8"
+          titleSpacing="2"
+          required
+          errorName="title"
+        >
           <Form.Text
             name="title"
             placeholder="제목을 입력하세요."
@@ -96,7 +102,13 @@ export default function SeminarEditor({
           <Form.HTML name="description" />
         </Fieldset>
 
-        <Fieldset title="장소" spacing="4" titleSpacing="2" required>
+        <Fieldset
+          title="장소"
+          spacing="4"
+          titleSpacing="2"
+          required
+          errorName="location"
+        >
           <Form.Text
             name="location"
             placeholder="장소를 입력하세요."
@@ -118,7 +130,7 @@ export default function SeminarEditor({
           </legend>
           <div className="flex flex-col gap-4">
             <div className="flex gap-5">
-              <Fieldset title="이름" required>
+              <Fieldset title="이름" required errorName="name">
                 <Form.Text
                   name="name"
                   options={{
@@ -134,7 +146,7 @@ export default function SeminarEditor({
               <Form.Text name="speakerTitle" />
             </Fieldset>
             <div className="flex gap-5">
-              <Fieldset title="소속" required>
+              <Fieldset title="소속" required errorName="affiliation">
                 <Form.Text
                   name="affiliation"
                   options={{

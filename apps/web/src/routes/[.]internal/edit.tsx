@@ -42,7 +42,7 @@ function InternalEdit() {
     <PageLayout title="학부 메일링리스트 편집" titleSize="xl" padding="default">
       <FormProvider {...methods}>
         <Form>
-          <Fieldset.HTML>
+          <Fieldset.HTML errorName="description">
             <Form.HTML
               name="description"
               options={{

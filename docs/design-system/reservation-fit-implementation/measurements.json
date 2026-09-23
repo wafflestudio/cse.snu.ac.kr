@@ -1,0 +1,1078 @@
+{
+  "note": "Fresh production build; real STAFF; source max-w-full; approved image comparisons recorded; no saves; narrow and short boundaries exploratory",
+  "records": [
+    {
+      "locale": "ko",
+      "width": 390,
+      "height": 900,
+      "state": "form",
+      "dialog": {
+        "width": 351,
+        "right": 370.5,
+        "clientWidth": 351,
+        "scrollWidth": 351,
+        "clientHeight": 787,
+        "scrollHeight": 787
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "contactEmail",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "contactPhone",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "professor",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "purpose",
+          "width": 295,
+          "right": 342.5
+        }
+      ],
+      "calendar": null
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "height": 900,
+      "state": "image",
+      "byteIdentical": false
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "height": 900,
+      "state": "date",
+      "dialog": {
+        "width": 351,
+        "right": 370.5,
+        "clientWidth": 351,
+        "scrollWidth": 351,
+        "clientHeight": 787,
+        "scrollHeight": 787
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "contactEmail",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "contactPhone",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "professor",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "purpose",
+          "width": 295,
+          "right": 342.5
+        }
+      ],
+      "calendar": {
+        "width": 244,
+        "right": 355.5
+      }
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "height": 900,
+      "state": "date-image",
+      "byteIdentical": false
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "height": 900,
+      "state": "form",
+      "dialog": {
+        "width": 408,
+        "right": 844,
+        "clientWidth": 408,
+        "scrollWidth": 408,
+        "clientHeight": 730,
+        "scrollHeight": 730
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 352,
+          "right": 816
+        },
+        {
+          "name": "contactEmail",
+          "width": 352,
+          "right": 816
+        },
+        {
+          "name": "contactPhone",
+          "width": 352,
+          "right": 816
+        },
+        {
+          "name": "professor",
+          "width": 352,
+          "right": 816
+        },
+        {
+          "name": "purpose",
+          "width": 352,
+          "right": 816
+        }
+      ],
+      "calendar": null
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "height": 900,
+      "state": "image",
+      "byteIdentical": true
+    },
+    {
+      "locale": "ko",
+      "width": 320,
+      "height": 900,
+      "state": "form",
+      "dialog": {
+        "width": 288,
+        "right": 304,
+        "clientWidth": 288,
+        "scrollWidth": 288,
+        "clientHeight": 806,
+        "scrollHeight": 823
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 232,
+          "right": 276
+        },
+        {
+          "name": "contactEmail",
+          "width": 232,
+          "right": 276
+        },
+        {
+          "name": "contactPhone",
+          "width": 232,
+          "right": 276
+        },
+        {
+          "name": "professor",
+          "width": 232,
+          "right": 276
+        },
+        {
+          "name": "purpose",
+          "width": 232,
+          "right": 276
+        }
+      ],
+      "calendar": null
+    },
+    {
+      "locale": "ko",
+      "width": 320,
+      "height": 900,
+      "state": "date",
+      "dialog": {
+        "width": 288,
+        "right": 304,
+        "clientWidth": 288,
+        "scrollWidth": 336,
+        "clientHeight": 806,
+        "scrollHeight": 823
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 232,
+          "right": 276
+        },
+        {
+          "name": "contactEmail",
+          "width": 232,
+          "right": 276
+        },
+        {
+          "name": "contactPhone",
+          "width": 232,
+          "right": 276
+        },
+        {
+          "name": "professor",
+          "width": 232,
+          "right": 276
+        },
+        {
+          "name": "purpose",
+          "width": 232,
+          "right": 276
+        }
+      ],
+      "calendar": {
+        "width": 244,
+        "right": 352
+      }
+    },
+    {
+      "locale": "ko",
+      "width": 360,
+      "height": 900,
+      "state": "form",
+      "dialog": {
+        "width": 324,
+        "right": 342,
+        "clientWidth": 324,
+        "scrollWidth": 324,
+        "clientHeight": 787,
+        "scrollHeight": 787
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 268,
+          "right": 314
+        },
+        {
+          "name": "contactEmail",
+          "width": 268,
+          "right": 314
+        },
+        {
+          "name": "contactPhone",
+          "width": 268,
+          "right": 314
+        },
+        {
+          "name": "professor",
+          "width": 268,
+          "right": 314
+        },
+        {
+          "name": "purpose",
+          "width": 268,
+          "right": 314
+        }
+      ],
+      "calendar": null
+    },
+    {
+      "locale": "ko",
+      "width": 360,
+      "height": 900,
+      "state": "date",
+      "dialog": {
+        "width": 324,
+        "right": 342,
+        "clientWidth": 324,
+        "scrollWidth": 336,
+        "clientHeight": 787,
+        "scrollHeight": 787
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 268,
+          "right": 314
+        },
+        {
+          "name": "contactEmail",
+          "width": 268,
+          "right": 314
+        },
+        {
+          "name": "contactPhone",
+          "width": 268,
+          "right": 314
+        },
+        {
+          "name": "professor",
+          "width": 268,
+          "right": 314
+        },
+        {
+          "name": "purpose",
+          "width": 268,
+          "right": 314
+        }
+      ],
+      "calendar": {
+        "width": 244,
+        "right": 354
+      }
+    },
+    {
+      "locale": "ko",
+      "width": 639,
+      "height": 900,
+      "state": "form",
+      "dialog": {
+        "width": 575.09375,
+        "right": 607.046875,
+        "clientWidth": 575,
+        "scrollWidth": 575,
+        "clientHeight": 730,
+        "scrollHeight": 730
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 352,
+          "right": 411.953125
+        },
+        {
+          "name": "contactEmail",
+          "width": 352,
+          "right": 411.953125
+        },
+        {
+          "name": "contactPhone",
+          "width": 352,
+          "right": 411.953125
+        },
+        {
+          "name": "professor",
+          "width": 352,
+          "right": 411.953125
+        },
+        {
+          "name": "purpose",
+          "width": 519.09375,
+          "right": 579.046875
+        }
+      ],
+      "calendar": null
+    },
+    {
+      "locale": "ko",
+      "width": 639,
+      "height": 900,
+      "state": "date",
+      "dialog": {
+        "width": 575.09375,
+        "right": 607.046875,
+        "clientWidth": 575,
+        "scrollWidth": 575,
+        "clientHeight": 730,
+        "scrollHeight": 730
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 352,
+          "right": 411.953125
+        },
+        {
+          "name": "contactEmail",
+          "width": 352,
+          "right": 411.953125
+        },
+        {
+          "name": "contactPhone",
+          "width": 352,
+          "right": 411.953125
+        },
+        {
+          "name": "professor",
+          "width": 352,
+          "right": 411.953125
+        },
+        {
+          "name": "purpose",
+          "width": 519.09375,
+          "right": 579.046875
+        }
+      ],
+      "calendar": {
+        "width": 244,
+        "right": 367.953125
+      }
+    },
+    {
+      "locale": "ko",
+      "width": 640,
+      "height": 900,
+      "state": "form",
+      "dialog": {
+        "width": 408,
+        "right": 524,
+        "clientWidth": 408,
+        "scrollWidth": 408,
+        "clientHeight": 730,
+        "scrollHeight": 730
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 352,
+          "right": 496
+        },
+        {
+          "name": "contactEmail",
+          "width": 352,
+          "right": 496
+        },
+        {
+          "name": "contactPhone",
+          "width": 352,
+          "right": 496
+        },
+        {
+          "name": "professor",
+          "width": 352,
+          "right": 496
+        },
+        {
+          "name": "purpose",
+          "width": 352,
+          "right": 496
+        }
+      ],
+      "calendar": null
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "height": 600,
+      "state": "form",
+      "dialog": {
+        "width": 351,
+        "right": 370.5,
+        "clientWidth": 351,
+        "scrollWidth": 351,
+        "clientHeight": 536,
+        "scrollHeight": 787
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "contactEmail",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "contactPhone",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "professor",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "purpose",
+          "width": 295,
+          "right": 342.5
+        }
+      ],
+      "calendar": null
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "height": 600,
+      "state": "date",
+      "dialog": {
+        "width": 351,
+        "right": 370.5,
+        "clientWidth": 351,
+        "scrollWidth": 351,
+        "clientHeight": 536,
+        "scrollHeight": 787
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "contactEmail",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "contactPhone",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "professor",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "purpose",
+          "width": 295,
+          "right": 342.5
+        }
+      ],
+      "calendar": {
+        "width": 244,
+        "right": 355.5
+      }
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "height": 900,
+      "state": "form",
+      "dialog": {
+        "width": 351,
+        "right": 370.5,
+        "clientWidth": 351,
+        "scrollWidth": 351,
+        "clientHeight": 787,
+        "scrollHeight": 787
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "contactEmail",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "contactPhone",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "professor",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "purpose",
+          "width": 295,
+          "right": 342.5
+        }
+      ],
+      "calendar": null
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "height": 900,
+      "state": "image",
+      "byteIdentical": false
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "height": 900,
+      "state": "date",
+      "dialog": {
+        "width": 351,
+        "right": 370.5,
+        "clientWidth": 351,
+        "scrollWidth": 351,
+        "clientHeight": 787,
+        "scrollHeight": 787
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "contactEmail",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "contactPhone",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "professor",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "purpose",
+          "width": 295,
+          "right": 342.5
+        }
+      ],
+      "calendar": {
+        "width": 244,
+        "right": 355.5
+      }
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "height": 900,
+      "state": "form",
+      "dialog": {
+        "width": 408,
+        "right": 844,
+        "clientWidth": 408,
+        "scrollWidth": 408,
+        "clientHeight": 730,
+        "scrollHeight": 730
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 352,
+          "right": 816
+        },
+        {
+          "name": "contactEmail",
+          "width": 352,
+          "right": 816
+        },
+        {
+          "name": "contactPhone",
+          "width": 352,
+          "right": 816
+        },
+        {
+          "name": "professor",
+          "width": 352,
+          "right": 816
+        },
+        {
+          "name": "purpose",
+          "width": 352,
+          "right": 816
+        }
+      ],
+      "calendar": null
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "height": 900,
+      "state": "image",
+      "byteIdentical": true
+    },
+    {
+      "locale": "en",
+      "width": 320,
+      "height": 900,
+      "state": "form",
+      "dialog": {
+        "width": 288,
+        "right": 304,
+        "clientWidth": 288,
+        "scrollWidth": 288,
+        "clientHeight": 787,
+        "scrollHeight": 787
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 232,
+          "right": 276
+        },
+        {
+          "name": "contactEmail",
+          "width": 232,
+          "right": 276
+        },
+        {
+          "name": "contactPhone",
+          "width": 232,
+          "right": 276
+        },
+        {
+          "name": "professor",
+          "width": 232,
+          "right": 276
+        },
+        {
+          "name": "purpose",
+          "width": 232,
+          "right": 276
+        }
+      ],
+      "calendar": null
+    },
+    {
+      "locale": "en",
+      "width": 320,
+      "height": 900,
+      "state": "date",
+      "dialog": {
+        "width": 288,
+        "right": 304,
+        "clientWidth": 288,
+        "scrollWidth": 336,
+        "clientHeight": 787,
+        "scrollHeight": 787
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 232,
+          "right": 276
+        },
+        {
+          "name": "contactEmail",
+          "width": 232,
+          "right": 276
+        },
+        {
+          "name": "contactPhone",
+          "width": 232,
+          "right": 276
+        },
+        {
+          "name": "professor",
+          "width": 232,
+          "right": 276
+        },
+        {
+          "name": "purpose",
+          "width": 232,
+          "right": 276
+        }
+      ],
+      "calendar": {
+        "width": 244,
+        "right": 352
+      }
+    },
+    {
+      "locale": "en",
+      "width": 360,
+      "height": 900,
+      "state": "form",
+      "dialog": {
+        "width": 324,
+        "right": 342,
+        "clientWidth": 324,
+        "scrollWidth": 324,
+        "clientHeight": 787,
+        "scrollHeight": 787
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 268,
+          "right": 314
+        },
+        {
+          "name": "contactEmail",
+          "width": 268,
+          "right": 314
+        },
+        {
+          "name": "contactPhone",
+          "width": 268,
+          "right": 314
+        },
+        {
+          "name": "professor",
+          "width": 268,
+          "right": 314
+        },
+        {
+          "name": "purpose",
+          "width": 268,
+          "right": 314
+        }
+      ],
+      "calendar": null
+    },
+    {
+      "locale": "en",
+      "width": 360,
+      "height": 900,
+      "state": "date",
+      "dialog": {
+        "width": 324,
+        "right": 342,
+        "clientWidth": 324,
+        "scrollWidth": 336,
+        "clientHeight": 787,
+        "scrollHeight": 787
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 268,
+          "right": 314
+        },
+        {
+          "name": "contactEmail",
+          "width": 268,
+          "right": 314
+        },
+        {
+          "name": "contactPhone",
+          "width": 268,
+          "right": 314
+        },
+        {
+          "name": "professor",
+          "width": 268,
+          "right": 314
+        },
+        {
+          "name": "purpose",
+          "width": 268,
+          "right": 314
+        }
+      ],
+      "calendar": {
+        "width": 244,
+        "right": 354
+      }
+    },
+    {
+      "locale": "en",
+      "width": 639,
+      "height": 900,
+      "state": "form",
+      "dialog": {
+        "width": 575.09375,
+        "right": 607.046875,
+        "clientWidth": 575,
+        "scrollWidth": 575,
+        "clientHeight": 730,
+        "scrollHeight": 730
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 352,
+          "right": 411.953125
+        },
+        {
+          "name": "contactEmail",
+          "width": 352,
+          "right": 411.953125
+        },
+        {
+          "name": "contactPhone",
+          "width": 352,
+          "right": 411.953125
+        },
+        {
+          "name": "professor",
+          "width": 352,
+          "right": 411.953125
+        },
+        {
+          "name": "purpose",
+          "width": 519.09375,
+          "right": 579.046875
+        }
+      ],
+      "calendar": null
+    },
+    {
+      "locale": "en",
+      "width": 639,
+      "height": 900,
+      "state": "date",
+      "dialog": {
+        "width": 575.09375,
+        "right": 607.046875,
+        "clientWidth": 575,
+        "scrollWidth": 575,
+        "clientHeight": 730,
+        "scrollHeight": 730
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 352,
+          "right": 411.953125
+        },
+        {
+          "name": "contactEmail",
+          "width": 352,
+          "right": 411.953125
+        },
+        {
+          "name": "contactPhone",
+          "width": 352,
+          "right": 411.953125
+        },
+        {
+          "name": "professor",
+          "width": 352,
+          "right": 411.953125
+        },
+        {
+          "name": "purpose",
+          "width": 519.09375,
+          "right": 579.046875
+        }
+      ],
+      "calendar": {
+        "width": 244,
+        "right": 367.953125
+      }
+    },
+    {
+      "locale": "en",
+      "width": 640,
+      "height": 900,
+      "state": "form",
+      "dialog": {
+        "width": 408,
+        "right": 524,
+        "clientWidth": 408,
+        "scrollWidth": 408,
+        "clientHeight": 730,
+        "scrollHeight": 730
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 352,
+          "right": 496
+        },
+        {
+          "name": "contactEmail",
+          "width": 352,
+          "right": 496
+        },
+        {
+          "name": "contactPhone",
+          "width": 352,
+          "right": 496
+        },
+        {
+          "name": "professor",
+          "width": 352,
+          "right": 496
+        },
+        {
+          "name": "purpose",
+          "width": 352,
+          "right": 496
+        }
+      ],
+      "calendar": null
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "height": 600,
+      "state": "form",
+      "dialog": {
+        "width": 351,
+        "right": 370.5,
+        "clientWidth": 351,
+        "scrollWidth": 351,
+        "clientHeight": 536,
+        "scrollHeight": 787
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "contactEmail",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "contactPhone",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "professor",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "purpose",
+          "width": 295,
+          "right": 342.5
+        }
+      ],
+      "calendar": null
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "height": 600,
+      "state": "date",
+      "dialog": {
+        "width": 351,
+        "right": 370.5,
+        "clientWidth": 351,
+        "scrollWidth": 351,
+        "clientHeight": 536,
+        "scrollHeight": 787
+      },
+      "fields": [
+        {
+          "name": "title",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "contactEmail",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "contactPhone",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "professor",
+          "width": 295,
+          "right": 342.5
+        },
+        {
+          "name": "purpose",
+          "width": 295,
+          "right": 342.5
+        }
+      ],
+      "calendar": {
+        "width": 244,
+        "right": 355.5
+      }
+    }
+  ]
+}

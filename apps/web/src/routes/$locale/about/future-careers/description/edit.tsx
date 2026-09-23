@@ -57,7 +57,7 @@ function CareerDescriptionEdit() {
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />
 
-          <Fieldset.HTML>
+          <Fieldset.HTML errorName={language}>
             <Form.HTML
               name="ko"
               options={{

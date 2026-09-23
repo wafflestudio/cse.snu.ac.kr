@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import type { InputHTMLAttributes } from 'react';
 import type { RegisterOptions } from 'react-hook-form';
 import { useFormContext } from 'react-hook-form';
+import { useFieldErrorAttributes } from './FieldError';
 
 interface BasicTextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -21,6 +22,7 @@ export default function Text({
   ...props
 }: BasicTextInputProps) {
   const { register } = useFormContext();
+  const errorAttributes = useFieldErrorAttributes(name);
 
   return (
     <input
@@ -35,6 +37,11 @@ export default function Text({
       )}
       {...props}
       {...register(name, options)}
+      aria-invalid={errorAttributes['aria-invalid'] ?? props['aria-invalid']}
+      aria-describedby={
+        clsx(props['aria-describedby'], errorAttributes['aria-describedby']) ||
+        undefined
+      }
     />
   );
 }

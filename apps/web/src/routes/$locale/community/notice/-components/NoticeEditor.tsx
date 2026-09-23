@@ -80,7 +80,13 @@ export default function NoticeEditor({
   return (
     <FormProvider {...formMethods}>
       <Form>
-        <Fieldset title="제목" spacing="8" titleSpacing="2" required>
+        <Fieldset
+          title="제목"
+          spacing="8"
+          titleSpacing="2"
+          required
+          errorName="title"
+        >
           <Form.Text
             name="title"
             placeholder="제목을 입력하세요."
@@ -95,7 +101,7 @@ export default function NoticeEditor({
             placeholder="미입력시 제목과 동일하게 표시됩니다."
           />
         </Fieldset>
-        <Fieldset.HTML>
+        <Fieldset.HTML errorName="description">
           <Form.HTML
             name="description"
             options={{

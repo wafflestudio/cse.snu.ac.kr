@@ -1,0 +1,69 @@
+{
+  "note": "Approved DS020 reused on common controls; representative keyboard, Space, Escape, disabled, translated close names; no submissions",
+  "records": [
+    {
+      "name": "tag",
+      "outline": "rgb(64, 64, 64) solid 2px",
+      "offset": "2px",
+      "shadow": "none",
+      "width": 50.703125,
+      "height": 20
+    },
+    {
+      "name": "header-search",
+      "outline": "rgb(64, 64, 64) solid 2px",
+      "offset": "2px",
+      "shadow": "rgb(255, 255, 255) 0px 0px 0px 2px",
+      "width": 24,
+      "height": 30
+    },
+    {
+      "name": "form-submit",
+      "outline": "rgb(64, 64, 64) solid 2px",
+      "offset": "2px",
+      "shadow": "none",
+      "width": 76,
+      "height": 34
+    },
+    {
+      "name": "form-cancel",
+      "outline": "rgb(64, 64, 64) solid 2px",
+      "offset": "2px",
+      "shadow": "none",
+      "width": 54,
+      "height": 36
+    },
+    {
+      "name": "ko-dialog-close",
+      "outline": "rgb(64, 64, 64) solid 2px",
+      "offset": "2px",
+      "shadow": "none",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "name": "en-dialog-close",
+      "outline": "rgb(64, 64, 64) solid 2px",
+      "offset": "2px",
+      "shadow": "none",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "name": "mobile-quiet",
+      "outline": "rgb(255, 255, 255) solid 2px",
+      "offset": "2px",
+      "shadow": "none",
+      "width": 19,
+      "height": 18
+    },
+    {
+      "name": "error-action",
+      "outline": "rgb(255, 255, 255) solid 2px",
+      "offset": "2px",
+      "shadow": "none",
+      "width": 132,
+      "height": 37.59375
+    }
+  ]
+}

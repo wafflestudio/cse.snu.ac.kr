@@ -1,0 +1,123 @@
+{
+  "note": "Browser-only proposals. Date aligns inward only when overflowing. Detail limits local min-width, wraps action row and long values. Temporary real local fixture deleted in finally.",
+  "records": [
+    {
+      "scene": "date",
+      "viewportWidth": 320,
+      "mode": "before",
+      "width": 288,
+      "scrollWidth": 336,
+      "calendarRight": 352,
+      "dialogRight": 304
+    },
+    {
+      "scene": "date",
+      "viewportWidth": 320,
+      "mode": "after",
+      "width": 288,
+      "scrollWidth": 288,
+      "calendarRight": 292,
+      "dialogRight": 304
+    },
+    {
+      "scene": "date",
+      "viewportWidth": 360,
+      "mode": "before",
+      "width": 324,
+      "scrollWidth": 336,
+      "calendarRight": 354,
+      "dialogRight": 342
+    },
+    {
+      "scene": "date",
+      "viewportWidth": 360,
+      "mode": "after",
+      "width": 324,
+      "scrollWidth": 324,
+      "calendarRight": 330,
+      "dialogRight": 342
+    },
+    {
+      "scene": "date",
+      "viewportWidth": 390,
+      "mode": "before",
+      "width": 351,
+      "scrollWidth": 351,
+      "calendarRight": 355.5,
+      "dialogRight": 370.5
+    },
+    {
+      "scene": "date",
+      "viewportWidth": 390,
+      "mode": "after",
+      "width": 351,
+      "scrollWidth": 351,
+      "calendarRight": 355.5,
+      "dialogRight": 370.5
+    },
+    {
+      "scene": "detail",
+      "locale": "ko",
+      "viewportWidth": 390,
+      "mode": "before",
+      "width": 351,
+      "scrollWidth": 368
+    },
+    {
+      "scene": "detail",
+      "locale": "ko",
+      "viewportWidth": 390,
+      "mode": "after",
+      "width": 351,
+      "scrollWidth": 351
+    },
+    {
+      "scene": "detail",
+      "locale": "ko",
+      "viewportWidth": 1280,
+      "mode": "before",
+      "width": 368,
+      "scrollWidth": 368
+    },
+    {
+      "scene": "detail",
+      "locale": "ko",
+      "viewportWidth": 1280,
+      "mode": "after",
+      "width": 368,
+      "scrollWidth": 368
+    },
+    {
+      "scene": "detail",
+      "locale": "en",
+      "viewportWidth": 390,
+      "mode": "before",
+      "width": 351,
+      "scrollWidth": 368
+    },
+    {
+      "scene": "detail",
+      "locale": "en",
+      "viewportWidth": 390,
+      "mode": "after",
+      "width": 351,
+      "scrollWidth": 351
+    },
+    {
+      "scene": "detail",
+      "locale": "en",
+      "viewportWidth": 1280,
+      "mode": "before",
+      "width": 434,
+      "scrollWidth": 434
+    },
+    {
+      "scene": "detail",
+      "locale": "en",
+      "viewportWidth": 1280,
+      "mode": "after",
+      "width": 434,
+      "scrollWidth": 434
+    }
+  ]
+}

@@ -19,7 +19,7 @@ export default function ErrorState({
 }: ErrorStateProps) {
   return (
     <div className="flex grow flex-col items-center justify-center bg-neutral-900 px-6 py-24 sm:py-32">
-      <div className="text-center">
+      <div className="text-center [&_button:focus-visible]:focus-ring-inverse">
         <div className="mb-8">
           <div className="mb-6 text-[120px] font-bold leading-none text-main-orange sm:text-[160px]">
             {title}

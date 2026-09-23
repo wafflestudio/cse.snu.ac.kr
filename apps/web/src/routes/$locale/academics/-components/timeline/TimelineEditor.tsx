@@ -37,7 +37,13 @@ export default function TimelineEditor({
   return (
     <FormProvider {...formMethods}>
       <Form>
-        <Fieldset title="연도" spacing="6" titleSpacing="2" required>
+        <Fieldset
+          title="연도"
+          spacing="6"
+          titleSpacing="2"
+          required
+          errorName="year"
+        >
           <Form.Text
             name="year"
             maxWidth="w-[55px]"
@@ -48,7 +54,7 @@ export default function TimelineEditor({
             }}
           />
         </Fieldset>
-        <Fieldset.HTML>
+        <Fieldset.HTML errorName="description">
           <Form.HTML
             name="description"
             options={{

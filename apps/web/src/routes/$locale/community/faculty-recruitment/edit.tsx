@@ -62,7 +62,7 @@ function FacultyRecruitmentEditPage() {
     <PageLayout title="신임교수초빙 편집" titleSize="xl">
       <FormProvider {...methods}>
         <Form>
-          <Fieldset.Title>
+          <Fieldset.Title errorName="title">
             <Form.Text
               name="title"
               options={{
@@ -70,7 +70,7 @@ function FacultyRecruitmentEditPage() {
               }}
             />
           </Fieldset.Title>
-          <Fieldset.HTML>
+          <Fieldset.HTML errorName="description">
             <Form.HTML
               name="description"
               options={{

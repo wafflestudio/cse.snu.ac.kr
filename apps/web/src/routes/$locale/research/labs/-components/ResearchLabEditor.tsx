@@ -134,7 +134,12 @@ const SharedEditor = ({
         </Fieldset>
       </div>
 
-      <Fieldset title="연구·교육 스트림" spacing="11" required>
+      <Fieldset
+        title="연구·교육 스트림"
+        spacing="11"
+        required
+        errorName="groupId"
+      >
         <Form.Dropdown
           name="groupId"
           contents={[
@@ -174,7 +179,12 @@ const SharedEditor = ({
 const TranslationEditor = ({ language }: { language: Language }) => {
   return (
     <>
-      <Fieldset title="연구실명" spacing="6" required>
+      <Fieldset
+        title="연구실명"
+        spacing="6"
+        required
+        errorName={`${language}.name`}
+      >
         <Form.Text
           name={`${language}.name`}
           maxWidth="max-w-[30rem]"
@@ -192,7 +202,12 @@ const TranslationEditor = ({ language }: { language: Language }) => {
         />
       </Fieldset>
 
-      <Fieldset title="연구실 설명 및 이미지" spacing="10" required>
+      <Fieldset
+        title="연구실 설명 및 이미지"
+        spacing="10"
+        required
+        errorName={`${language}.description`}
+      >
         <Form.HTML
           name={`${language}.description`}
           options={{

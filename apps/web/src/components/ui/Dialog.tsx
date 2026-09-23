@@ -2,6 +2,7 @@ import * as DialogPrimitive from '@radix-ui/react-dialog';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import { X } from 'lucide-react';
 import type { ReactNode } from 'react';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface DialogProps {
   open: boolean;
@@ -18,6 +19,8 @@ export default function Dialog({
   children,
   contentClassName = '',
 }: DialogProps) {
+  const { t } = useLanguage({ 닫기: 'Close' });
+
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
       <DialogPrimitive.Portal>
@@ -29,7 +32,10 @@ export default function Dialog({
           <VisuallyHidden.Root>
             <DialogPrimitive.Title>{title}</DialogPrimitive.Title>
           </VisuallyHidden.Root>
-          <DialogPrimitive.Close className="absolute right-4 top-4 text-neutral-500 hover:text-neutral-700">
+          <DialogPrimitive.Close
+            aria-label={t('닫기')}
+            className="absolute right-4 top-4 text-neutral-500 hover:text-neutral-700 focus-visible:focus-ring"
+          >
             <X className="h-6 w-6" />
           </DialogPrimitive.Close>
           {children}

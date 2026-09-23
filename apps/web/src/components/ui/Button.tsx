@@ -11,7 +11,7 @@ import { forwardRef } from 'react';
 //   primary   = 강조 CTA(추가/재시도)            ← 오렌지 solid
 //   neutral   = 폼·다이얼로그 커밋(저장/삭제/확인) ← 다크 solid
 //   secondary = 보조(취소/필터/페이지네이션)       ← 아웃라인
-//   quiet     = 저강조 텍스트(밝은 표면)           ← 텍스트
+//   quiet     = 모바일 탐색·검색의 저강조 텍스트   ← 텍스트
 //   nav       = 다크 헤더 유틸 버튼(흰 글자)        ← 텍스트(흰색)
 // (단일 선택 토글은 Button variant이 아니라 네이티브 radiogroup으로 — faculty 정렬·공지 필터.)
 type ButtonVariant = 'primary' | 'neutral' | 'secondary' | 'quiet' | 'nav';
@@ -85,7 +85,16 @@ function getButtonClass({
   const sizeClass = TEXT_VARIANTS.has(variant)
     ? TEXT_SIZE_CLASSES[size]
     : SIZE_CLASSES[size];
-  return clsx(base, sizeClass, VARIANT_CLASSES[variant]);
+  return clsx(
+    base,
+    sizeClass,
+    VARIANT_CLASSES[variant],
+    // DS-020: current text variants sit on dark navigation surfaces.
+    // Header search and other mixed surfaces keep their local overrides.
+    TEXT_VARIANTS.has(variant)
+      ? 'focus-visible:focus-ring-inverse'
+      : 'focus-visible:focus-ring',
+  );
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {

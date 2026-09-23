@@ -71,7 +71,7 @@ function StudentClubsEdit() {
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />
 
-          <Fieldset.Title>
+          <Fieldset.Title errorName={`${language}.name`}>
             <Form.Text
               name="ko.name"
               options={{
@@ -91,7 +91,7 @@ function StudentClubsEdit() {
             />
           </Fieldset.Title>
 
-          <Fieldset.HTML>
+          <Fieldset.HTML errorName={`${language}.description`}>
             <Form.HTML
               name="ko.description"
               options={{

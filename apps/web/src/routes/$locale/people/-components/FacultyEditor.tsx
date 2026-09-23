@@ -212,7 +212,13 @@ const SharedEditor = ({ labs }: { labs: SimpleResearchLab[] }) => {
 const TranslationEditor = ({ language }: { language: Language }) => {
   return (
     <>
-      <Fieldset title="이름" spacing="5" titleSpacing="2" required>
+      <Fieldset
+        title="이름"
+        spacing="5"
+        titleSpacing="2"
+        required
+        errorName={`${language}.name`}
+      >
         <Form.Text
           name={`${language}.name`}
           maxWidth="max-w-[30rem]"
@@ -222,7 +228,13 @@ const TranslationEditor = ({ language }: { language: Language }) => {
         />
       </Fieldset>
 
-      <Fieldset title="직함" spacing="5" titleSpacing="2" required>
+      <Fieldset
+        title="직함"
+        spacing="5"
+        titleSpacing="2"
+        required
+        errorName={`${language}.academicRank`}
+      >
         <Form.Text
           name={`${language}.academicRank`}
           maxWidth="max-w-[30rem]"

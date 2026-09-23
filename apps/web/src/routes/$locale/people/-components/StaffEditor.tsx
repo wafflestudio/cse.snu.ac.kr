@@ -76,7 +76,13 @@ export default function StaffEditor({
         </Fieldset>
 
         <Form.Section title="연락처 정보" titleSpacing="3" spacing="12">
-          <Fieldset title="전화번호" spacing="5" titleSpacing="2" required>
+          <Fieldset
+            title="전화번호"
+            spacing="5"
+            titleSpacing="2"
+            required
+            errorName="phone"
+          >
             <Form.Text
               name="phone"
               maxWidth="max-w-[20rem]"
@@ -86,7 +92,7 @@ export default function StaffEditor({
               }}
             />
           </Fieldset>
-          <Fieldset title="이메일" titleSpacing="2" required>
+          <Fieldset title="이메일" titleSpacing="2" required errorName="email">
             <Form.Text
               name="email"
               maxWidth="max-w-[25rem]"
@@ -113,7 +119,13 @@ export default function StaffEditor({
 const TranslationEditor = ({ language }: { language: Language }) => {
   return (
     <>
-      <Fieldset title="이름" spacing="5" titleSpacing="2" required>
+      <Fieldset
+        title="이름"
+        spacing="5"
+        titleSpacing="2"
+        required
+        errorName={`${language}.name`}
+      >
         <Form.Text
           name={`${language}.name`}
           maxWidth="max-w-[30rem]"
@@ -122,7 +134,13 @@ const TranslationEditor = ({ language }: { language: Language }) => {
           }}
         />
       </Fieldset>
-      <Fieldset title="위치" spacing="5" titleSpacing="2" required>
+      <Fieldset
+        title="위치"
+        spacing="5"
+        titleSpacing="2"
+        required
+        errorName={`${language}.office`}
+      >
         <Form.Text
           name={`${language}.office`}
           maxWidth="max-w-[20rem]"
@@ -132,7 +150,13 @@ const TranslationEditor = ({ language }: { language: Language }) => {
           }}
         />
       </Fieldset>
-      <Fieldset title="업무 요약" spacing="10" titleSpacing="2" required>
+      <Fieldset
+        title="업무 요약"
+        spacing="10"
+        titleSpacing="2"
+        required
+        errorName={`${language}.role`}
+      >
         <Form.Text
           name={`${language}.role`}
           maxWidth="max-w-[30rem]"

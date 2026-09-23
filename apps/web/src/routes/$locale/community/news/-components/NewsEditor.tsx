@@ -58,7 +58,13 @@ export default function NewsEditor({
   return (
     <FormProvider {...formMethods}>
       <Form>
-        <Fieldset title="제목" spacing="8" titleSpacing="2" required>
+        <Fieldset
+          title="제목"
+          spacing="8"
+          titleSpacing="2"
+          required
+          errorName="title"
+        >
           <Form.Text
             name="title"
             placeholder="제목을 입력하세요."
@@ -76,7 +82,7 @@ export default function NewsEditor({
         <Fieldset title="시기" spacing="8" titleSpacing="2" required>
           <Form.Date name="date" hideTime />
         </Fieldset>
-        <Fieldset.HTML>
+        <Fieldset.HTML errorName="description">
           <Form.HTML
             name="description"
             options={{

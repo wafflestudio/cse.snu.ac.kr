@@ -118,7 +118,12 @@ function FacilitiesEdit() {
 
           <LanguagePicker onChange={setLanguage} selected={language} />
 
-          <Fieldset title="시설명" spacing="8" required>
+          <Fieldset
+            title="시설명"
+            spacing="8"
+            required
+            errorName={`${language}.name`}
+          >
             {language === 'ko' && (
               <Form.Text
                 name="ko.name"
@@ -139,7 +144,12 @@ function FacilitiesEdit() {
             )}
           </Fieldset>
 
-          <Fieldset title="시설 설명" spacing="10" required>
+          <Fieldset
+            title="시설 설명"
+            spacing="10"
+            required
+            errorName={`${language}.description`}
+          >
             {language === 'ko' && (
               <Form.HTML
                 name="ko.description"

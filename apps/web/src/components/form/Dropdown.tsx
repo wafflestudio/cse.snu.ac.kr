@@ -5,6 +5,7 @@ import { useController } from 'react-hook-form';
 
 import { useClickOutside } from '@/hooks/useClickOutside';
 import type { Rules } from '@/types/form';
+import { useFieldErrorAttributes } from './FieldError';
 
 interface DropdownProps {
   contents: { label: string; value: unknown }[];
@@ -34,6 +35,7 @@ export default function Dropdown({
   const [expanded, setExpanded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const listboxId = useId();
+  const errorAttributes = useFieldErrorAttributes(name);
 
   useClickOutside(
     ref,
@@ -60,6 +62,7 @@ export default function Dropdown({
         aria-haspopup="listbox"
         aria-expanded={expanded}
         aria-controls={listboxId}
+        {...errorAttributes}
         className={clsx(
           'flex w-full items-center border bg-white py-[.3125rem] pl-[.625rem] pr-[.3125rem]',
           expanded ? 'rounded-t-sm' : 'rounded-sm',

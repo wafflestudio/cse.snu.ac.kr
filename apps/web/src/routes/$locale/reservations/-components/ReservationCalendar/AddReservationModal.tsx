@@ -225,7 +225,7 @@ function Fieldset({
   children: ReactNode;
 }) {
   return (
-    <fieldset className={`${fullWidth ? '' : 'w-88'} font-normal`}>
+    <fieldset className={`${fullWidth ? '' : 'w-88 max-w-full'} font-normal`}>
       <legend className="mb-1">
         {title}
         {required && <span className="text-main-orange">*</span>}

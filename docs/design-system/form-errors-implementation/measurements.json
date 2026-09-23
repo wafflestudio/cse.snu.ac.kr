@@ -1,0 +1,31 @@
+{
+  "note": "Current production build; real STAFF; blank invalid submission and field correction only, no saves; editor internals unchanged",
+  "records": [
+    {
+      "scene": "notice-error",
+      "approvedImageIdentical": true,
+      "baseField": {
+        "x": 200,
+        "y": 352.84375,
+        "width": 720,
+        "height": 56.796875
+      },
+      "errorField": {
+        "x": 200,
+        "y": 352.84375,
+        "width": 720,
+        "height": 76.390625
+      }
+    },
+    {
+      "scene": "notice-title",
+      "approvedImageIdentical": true
+    },
+    {
+      "scene": "staff-nested",
+      "languageErrorsIsolated": true,
+      "hiddenFieldErrorsRevalidatedByExistingSubmit": true,
+      "clearingPreservesOtherErrors": true
+    }
+  ]
+}

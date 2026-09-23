@@ -60,7 +60,7 @@ export default function ScholarshipEditor({
 function Editor({ language }: { language: Locale }) {
   return (
     <>
-      <Fieldset.Title>
+      <Fieldset.Title errorName={`${language}Name`}>
         <Form.Text
           name={`${language}Name`}
           options={{
@@ -68,7 +68,7 @@ function Editor({ language }: { language: Locale }) {
           }}
         />
       </Fieldset.Title>
-      <Fieldset.HTML>
+      <Fieldset.HTML errorName={`${language}Description`}>
         <Form.HTML
           name={`${language}Description`}
           options={{

@@ -1,5 +1,10 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
+import {
+  FieldErrorMessage,
+  FieldErrorScope,
+  useFieldErrorAttributes,
+} from './FieldError';
 
 type Spacing = '2.5' | '4' | '5' | '6' | '8' | '10' | '11' | '12';
 type TitleSpacing = '1' | '2' | '3';
@@ -30,9 +35,19 @@ interface FieldsetProps {
   grow?: boolean;
   hidden?: boolean;
   className?: string;
+  errorName?: string;
 }
 
-function Fieldset({
+function Fieldset(props: FieldsetProps) {
+  const content = <FieldsetContent {...props} />;
+  return props.errorName ? (
+    <FieldErrorScope name={props.errorName}>{content}</FieldErrorScope>
+  ) : (
+    content
+  );
+}
+
+function FieldsetContent({
   title,
   titleSpacing = '2',
   children,
@@ -41,9 +56,12 @@ function Fieldset({
   grow = true,
   hidden = false,
   className,
+  errorName,
 }: FieldsetProps) {
+  const errorAttributes = useFieldErrorAttributes(errorName);
   return (
     <fieldset
+      {...errorAttributes}
       className={clsx(
         'flex flex-col',
         spacing && SPACING_MAP[spacing],
@@ -62,13 +80,23 @@ function Fieldset({
         {required && <span className="text-main-orange">*</span>}
       </legend>
       {children}
+      <FieldErrorMessage name={errorName} />
     </fieldset>
   );
 }
 
-function HTML({ children }: { children: ReactNode }) {
+function HTML({
+  children,
+  errorName,
+}: Pick<FieldsetProps, 'children' | 'errorName'>) {
   return (
-    <Fieldset title="내용" spacing="6" titleSpacing="2" required>
+    <Fieldset
+      title="내용"
+      spacing="6"
+      titleSpacing="2"
+      required
+      errorName={errorName}
+    >
       {children}
     </Fieldset>
   );
@@ -90,9 +118,18 @@ function File({ children }: { children: ReactNode }) {
   );
 }
 
-function Title({ children }: { children: ReactNode }) {
+function Title({
+  children,
+  errorName,
+}: Pick<FieldsetProps, 'children' | 'errorName'>) {
   return (
-    <Fieldset title="제목" spacing="6" titleSpacing="2" required>
+    <Fieldset
+      title="제목"
+      spacing="6"
+      titleSpacing="2"
+      required
+      errorName={errorName}
+    >
       {children}
     </Fieldset>
   );

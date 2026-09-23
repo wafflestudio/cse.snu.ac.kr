@@ -33,7 +33,7 @@ export default function HeaderSearchBar() {
 
   return (
     <form
-      className="flex h-7.5 w-54 justify-center rounded-[.0625rem] bg-neutral-200 pr-0.5 outline-none [&>button]:min-h-6 [&>button]:min-w-6 [&>button]:shrink-0 [&>button:hover]:text-neutral-700 [&>button:focus-visible]:focus-ring-boundary"
+      className="flex h-7.5 w-54 justify-center rounded-[.0625rem] bg-neutral-200 pr-0.5 outline-none [&>button]:min-h-6 [&>button]:min-w-6 [&>button]:shrink-0 [&>button:hover]:text-neutral-700 [&>button:focus-visible]:focus-ring-boundary [&>button:focus-visible]:[--ds-focus-color:var(--color-neutral-700)]"
       onSubmit={(e) => {
         e.preventDefault();
         submitSearch();

@@ -1,0 +1,45 @@
+{
+  "note": "Mobile content crop x22..368/y60..842 excludes outer border/scrollbar; whole desktop exact. Mobile differences inspected at native scrollbar/right edge and bottom border only.",
+  "results": [
+    {
+      "locale": "ko",
+      "width": 390,
+      "state": "form",
+      "differenceBounds": [20, 309, 371, 846],
+      "changedPixels": 618,
+      "dialogContentIdentical": true
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "state": "form",
+      "differenceBounds": [20, 309, 371, 846],
+      "changedPixels": 683,
+      "dialogContentIdentical": true
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "state": "form",
+      "differenceBounds": null,
+      "changedPixels": 0,
+      "dialogContentIdentical": true
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "state": "form",
+      "differenceBounds": null,
+      "changedPixels": 0,
+      "dialogContentIdentical": true
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "state": "-date",
+      "differenceBounds": [20, 83, 371, 846],
+      "changedPixels": 534,
+      "dialogContentIdentical": true
+    }
+  ]
+}
