@@ -82,7 +82,7 @@ function SearchPage({ onClose }: { onClose: () => void }) {
           <X className="h-5 w-5 text-white" />
         </Button>
       </div>
-      <div className="mx-[1.94rem] mt-9 flex items-center border-b border-neutral-400">
+      <div className="mx-[1.94rem] mt-9 flex items-center border-b border-neutral-400 [&>button]:mr-[-2.5px] [&>button]:min-h-6 [&>button]:min-w-6 [&>button]:shrink-0">
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}

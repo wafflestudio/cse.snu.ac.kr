@@ -36,7 +36,7 @@ export default function SeminarSearchBar() {
       <label htmlFor="seminar-search" className="font-bold">
         {t('검색')}
       </label>
-      <div className="flex h-7.5 w-60 items-center rounded-sm bg-neutral-100 pr-3">
+      <div className="flex h-7.5 w-60 items-center rounded-sm bg-neutral-100 pr-2.5">
         <input
           type="text"
           id="seminar-search"
@@ -46,7 +46,7 @@ export default function SeminarSearchBar() {
         />
         <button
           type="submit"
-          className="text-neutral-800 hover:text-neutral-500"
+          className="inline-flex min-h-6 min-w-6 shrink-0 items-center justify-center text-neutral-800 hover:text-neutral-500"
           aria-label={t('검색')}
         >
           <Search className="h-5 w-5" strokeWidth={1.5} />

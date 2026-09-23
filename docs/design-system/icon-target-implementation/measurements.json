@@ -1,0 +1,389 @@
+{
+  "decision": "DS-018",
+  "source": "8a51e80d + scoped target CSS",
+  "method": "Actual app CSS, no DOM overrides. Compare approved rectangles and pixels, hit test expanded corners, hover edge, Tab focus and long input layout.",
+  "environment": "Fresh production build, cached local API, Playwright 1.57.0 Chromium Linux",
+  "records": [
+    {
+      "id": "ko-header",
+      "kind": "header",
+      "url": "http://localhost:3000/ko/community/notice",
+      "viewport": {
+        "width": 1280,
+        "height": 850
+      },
+      "actual": {
+        "button": {
+          "x": 1194,
+          "y": 78.625,
+          "width": 24,
+          "height": 30
+        },
+        "icon": {
+          "x": 1196,
+          "y": 83.625,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 1004,
+          "y": 78.625,
+          "width": 216,
+          "height": 30
+        },
+        "input": {
+          "x": 1004,
+          "y": 78.625,
+          "width": 190,
+          "height": 30
+        },
+        "color": "rgb(115, 115, 115)"
+      },
+      "approvedPixelsMatch": true,
+      "expandedCornersHitButton": true,
+      "focus": {
+        "visible": true,
+        "outline": "rgb(65, 65, 65) auto 1px"
+      },
+      "longInput": {
+        "clientWidth": 190,
+        "scrollWidth": 1651,
+        "outline": "0px"
+      }
+    },
+    {
+      "id": "ko-seminar-1280",
+      "kind": "seminar",
+      "url": "http://localhost:3000/ko/community/seminar",
+      "viewport": {
+        "width": 1280,
+        "height": 850
+      },
+      "actual": {
+        "button": {
+          "x": 454,
+          "y": 355.84375,
+          "width": 24,
+          "height": 24
+        },
+        "icon": {
+          "x": 456,
+          "y": 357.84375,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 248,
+          "y": 352.84375,
+          "width": 240,
+          "height": 30
+        },
+        "input": {
+          "x": 248,
+          "y": 360.046875,
+          "width": 206,
+          "height": 15.59375
+        },
+        "color": "rgb(38, 38, 38)"
+      },
+      "approvedPixelsMatch": true,
+      "expandedCornersHitButton": true,
+      "focus": {
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px"
+      },
+      "longInput": {
+        "clientWidth": 206,
+        "scrollWidth": 1864,
+        "outline": "0px"
+      }
+    },
+    {
+      "id": "ko-seminar-390",
+      "kind": "seminar",
+      "url": "http://localhost:3000/ko/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "actual": {
+        "button": {
+          "x": 274,
+          "y": 228.1875,
+          "width": 24,
+          "height": 24
+        },
+        "icon": {
+          "x": 276,
+          "y": 230.1875,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 68,
+          "y": 225.1875,
+          "width": 240,
+          "height": 30
+        },
+        "input": {
+          "x": 68,
+          "y": 232.390625,
+          "width": 206,
+          "height": 15.59375
+        },
+        "color": "rgb(38, 38, 38)"
+      },
+      "approvedPixelsMatch": true,
+      "expandedCornersHitButton": true,
+      "focus": {
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px"
+      },
+      "longInput": {
+        "clientWidth": 206,
+        "scrollWidth": 1864,
+        "outline": "0px"
+      }
+    },
+    {
+      "id": "ko-mobile",
+      "kind": "mobile",
+      "url": "http://localhost:3000/ko/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "actual": {
+        "button": {
+          "x": 337.46875,
+          "y": 108,
+          "width": 24,
+          "height": 24
+        },
+        "icon": {
+          "x": 339.96875,
+          "y": 111,
+          "width": 19,
+          "height": 18
+        },
+        "bar": {
+          "x": 31.03125,
+          "y": 104,
+          "width": 327.9375,
+          "height": 33
+        },
+        "input": {
+          "x": 31.03125,
+          "y": 104,
+          "width": 306.4375,
+          "height": 32
+        },
+        "color": "rgb(115, 115, 115)"
+      },
+      "approvedPixelsMatch": true,
+      "expandedCornersHitButton": true,
+      "focus": {
+        "visible": true,
+        "outline": "rgb(253, 253, 253) auto 1px"
+      },
+      "longInput": {
+        "clientWidth": 306,
+        "scrollWidth": 1980,
+        "outline": "0px"
+      }
+    },
+    {
+      "id": "en-header",
+      "kind": "header",
+      "url": "http://localhost:3000/en/community/notice",
+      "viewport": {
+        "width": 1280,
+        "height": 850
+      },
+      "actual": {
+        "button": {
+          "x": 1194,
+          "y": 78.625,
+          "width": 24,
+          "height": 30
+        },
+        "icon": {
+          "x": 1196,
+          "y": 83.625,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 1004,
+          "y": 78.625,
+          "width": 216,
+          "height": 30
+        },
+        "input": {
+          "x": 1004,
+          "y": 78.625,
+          "width": 190,
+          "height": 30
+        },
+        "color": "rgb(115, 115, 115)"
+      },
+      "approvedPixelsMatch": true,
+      "expandedCornersHitButton": true,
+      "focus": {
+        "visible": true,
+        "outline": "rgb(65, 65, 65) auto 1px"
+      },
+      "longInput": {
+        "clientWidth": 190,
+        "scrollWidth": 2386,
+        "outline": "0px"
+      }
+    },
+    {
+      "id": "en-seminar-1280",
+      "kind": "seminar",
+      "url": "http://localhost:3000/en/community/seminar",
+      "viewport": {
+        "width": 1280,
+        "height": 850
+      },
+      "actual": {
+        "button": {
+          "x": 482,
+          "y": 355.84375,
+          "width": 24,
+          "height": 24
+        },
+        "icon": {
+          "x": 484,
+          "y": 357.84375,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 276,
+          "y": 352.84375,
+          "width": 240,
+          "height": 30
+        },
+        "input": {
+          "x": 276,
+          "y": 360.046875,
+          "width": 206,
+          "height": 15.59375
+        },
+        "color": "rgb(38, 38, 38)"
+      },
+      "approvedPixelsMatch": true,
+      "expandedCornersHitButton": true,
+      "focus": {
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px"
+      },
+      "longInput": {
+        "clientWidth": 206,
+        "scrollWidth": 2693,
+        "outline": "0px"
+      }
+    },
+    {
+      "id": "en-seminar-390",
+      "kind": "seminar",
+      "url": "http://localhost:3000/en/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "actual": {
+        "button": {
+          "x": 302,
+          "y": 228.1875,
+          "width": 24,
+          "height": 24
+        },
+        "icon": {
+          "x": 304,
+          "y": 230.1875,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 96,
+          "y": 225.1875,
+          "width": 240,
+          "height": 30
+        },
+        "input": {
+          "x": 96,
+          "y": 232.390625,
+          "width": 206,
+          "height": 15.59375
+        },
+        "color": "rgb(38, 38, 38)"
+      },
+      "approvedPixelsMatch": true,
+      "expandedCornersHitButton": true,
+      "focus": {
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px"
+      },
+      "longInput": {
+        "clientWidth": 206,
+        "scrollWidth": 2693,
+        "outline": "0px"
+      }
+    },
+    {
+      "id": "en-mobile",
+      "kind": "mobile",
+      "url": "http://localhost:3000/en/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "actual": {
+        "button": {
+          "x": 337.46875,
+          "y": 108,
+          "width": 24,
+          "height": 24
+        },
+        "icon": {
+          "x": 339.96875,
+          "y": 111,
+          "width": 19,
+          "height": 18
+        },
+        "bar": {
+          "x": 31.03125,
+          "y": 104,
+          "width": 327.9375,
+          "height": 33
+        },
+        "input": {
+          "x": 31.03125,
+          "y": 104,
+          "width": 306.4375,
+          "height": 32
+        },
+        "color": "rgb(115, 115, 115)"
+      },
+      "approvedPixelsMatch": true,
+      "expandedCornersHitButton": true,
+      "focus": {
+        "visible": true,
+        "outline": "rgb(253, 253, 253) auto 1px"
+      },
+      "longInput": {
+        "clientWidth": 306,
+        "scrollWidth": 2745,
+        "outline": "0px"
+      }
+    }
+  ],
+  "limits": [
+    "No search submitted; rendering and input interaction only.",
+    "Existing mobile SVG paint remains fixed; button hover color does not recolor the path.",
+    "Not a full accessibility or regression assessment."
+  ]
+}

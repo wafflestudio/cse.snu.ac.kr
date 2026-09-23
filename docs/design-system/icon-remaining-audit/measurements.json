@@ -1,0 +1,834 @@
+{
+  "source": "8a51e80d + DS-018 target CSS",
+  "method": "Public pages, actual keyboard Tab focus with pointer away. Course arrow proposal is temporary focus-within opacity only; no app source change.",
+  "environment": "Production build, cached local API, Playwright 1.57.0 Chromium Linux",
+  "records": [
+    {
+      "id": "ko-tag-delete-0",
+      "url": "http://localhost:3000/ko/community/notice?tag=%5B%22%ED%95%99%EB%B6%80%22%2C%22%EB%8C%80%ED%95%99%EC%9B%90%22%5D",
+      "viewport": 1280,
+      "label": "학부 삭제",
+      "rect": {
+        "x": 249,
+        "y": 684.140625,
+        "width": 13,
+        "height": 13
+      },
+      "icon": {
+        "x": 249,
+        "y": 684.140625,
+        "width": 13,
+        "height": 13
+      },
+      "color": "rgb(255, 105, 20)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(255, 105, 20) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "ko-tag-delete-1",
+      "url": "http://localhost:3000/ko/community/notice?tag=%5B%22%ED%95%99%EB%B6%80%22%2C%22%EB%8C%80%ED%95%99%EC%9B%90%22%5D",
+      "viewport": 1280,
+      "label": "대학원 삭제",
+      "rect": {
+        "x": 333,
+        "y": 684.140625,
+        "width": 13,
+        "height": 13
+      },
+      "icon": {
+        "x": 333,
+        "y": 684.140625,
+        "width": 13,
+        "height": 13
+      },
+      "color": "rgb(255, 105, 20)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(255, 105, 20) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "ko-tag-reset-0",
+      "url": "http://localhost:3000/ko/community/notice?tag=%5B%22%ED%95%99%EB%B6%80%22%2C%22%EB%8C%80%ED%95%99%EC%9B%90%22%5D",
+      "viewport": 1280,
+      "label": "태그 초기화",
+      "rect": {
+        "x": 828,
+        "y": 677.640625,
+        "width": 82,
+        "height": 16.796875
+      },
+      "icon": {
+        "x": 828,
+        "y": 678.03125,
+        "width": 16,
+        "height": 16
+      },
+      "color": "rgb(255, 105, 20)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "ko-pagination-0",
+      "url": "http://localhost:3000/ko/community/notice",
+      "viewport": 1280,
+      "label": "마지막 페이지",
+      "rect": {
+        "x": 635.90625,
+        "y": 437.640625,
+        "width": 24,
+        "height": 24
+      },
+      "icon": {
+        "x": 635.90625,
+        "y": 437.640625,
+        "width": 24,
+        "height": 24
+      },
+      "color": "rgb(38, 38, 38)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "ko-course-arrow-0",
+      "url": "http://localhost:3000/ko/academics/undergraduate/courses?view=%EC%B9%B4%EB%93%9C%ED%98%95",
+      "viewport": 1280,
+      "label": "",
+      "rect": {
+        "x": 200,
+        "y": 533.234375,
+        "width": 44,
+        "height": 44
+      },
+      "icon": {
+        "x": 200,
+        "y": 533.234375,
+        "width": 44,
+        "height": 44
+      },
+      "color": "rgb(255, 105, 20)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(13, 13, 13) auto 1px",
+        "effectiveOpacity": 0
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "ko-course-arrow-1",
+      "url": "http://localhost:3000/ko/academics/undergraduate/courses?view=%EC%B9%B4%EB%93%9C%ED%98%95",
+      "viewport": 1280,
+      "label": "",
+      "rect": {
+        "x": 517,
+        "y": 533.234375,
+        "width": 44,
+        "height": 44
+      },
+      "icon": {
+        "x": 517,
+        "y": 533.234375,
+        "width": 44,
+        "height": 44
+      },
+      "color": "rgb(255, 105, 20)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(13, 13, 13) auto 1px",
+        "effectiveOpacity": 0
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "ko-reservation-arrow-0",
+      "url": "http://localhost:3000/ko/reservations/seminar-room/301-417?selectedDate=2024-03-15",
+      "viewport": 1280,
+      "label": "이전 날짜",
+      "rect": {
+        "x": 304,
+        "y": 456.828125,
+        "width": 30,
+        "height": 30
+      },
+      "icon": {
+        "x": 305,
+        "y": 460.828125,
+        "width": 22,
+        "height": 22
+      },
+      "color": "rgb(64, 64, 64)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "ko-reservation-arrow-1",
+      "url": "http://localhost:3000/ko/reservations/seminar-room/301-417?selectedDate=2024-03-15",
+      "viewport": 1280,
+      "label": "다음 날짜",
+      "rect": {
+        "x": 342,
+        "y": 456.828125,
+        "width": 30,
+        "height": 30
+      },
+      "icon": {
+        "x": 343,
+        "y": 460.828125,
+        "width": 22,
+        "height": 22
+      },
+      "color": "rgb(64, 64, 64)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "ko-carousel-0",
+      "url": "http://localhost:3000/ko",
+      "viewport": 1280,
+      "label": "1번째 페이지로 이동",
+      "rect": {
+        "x": 697.796875,
+        "y": 437.65625,
+        "width": 56,
+        "height": 24
+      },
+      "icon": null,
+      "color": null,
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(11, 11, 11) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "ko-carousel-1",
+      "url": "http://localhost:3000/ko",
+      "viewport": 1280,
+      "label": "자동 스크롤 시작",
+      "rect": {
+        "x": 753.796875,
+        "y": 437.65625,
+        "width": 24,
+        "height": 24
+      },
+      "icon": {
+        "x": 753.796875,
+        "y": 437.65625,
+        "width": 24,
+        "height": 24
+      },
+      "color": "rgb(10, 10, 10)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "ko-tag-delete-0",
+      "url": "http://localhost:3000/ko/community/notice?tag=%5B%22%ED%95%99%EB%B6%80%22%2C%22%EB%8C%80%ED%95%99%EC%9B%90%22%5D",
+      "viewport": 390,
+      "label": "학부 삭제",
+      "rect": {
+        "x": 69,
+        "y": 826.484375,
+        "width": 13,
+        "height": 13
+      },
+      "icon": {
+        "x": 69,
+        "y": 826.484375,
+        "width": 13,
+        "height": 13
+      },
+      "color": "rgb(255, 105, 20)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(255, 105, 20) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "ko-tag-delete-1",
+      "url": "http://localhost:3000/ko/community/notice?tag=%5B%22%ED%95%99%EB%B6%80%22%2C%22%EB%8C%80%ED%95%99%EC%9B%90%22%5D",
+      "viewport": 390,
+      "label": "대학원 삭제",
+      "rect": {
+        "x": 153,
+        "y": 826.484375,
+        "width": 13,
+        "height": 13
+      },
+      "icon": {
+        "x": 153,
+        "y": 826.484375,
+        "width": 13,
+        "height": 13
+      },
+      "color": "rgb(255, 105, 20)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(255, 105, 20) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "ko-tag-reset-0",
+      "url": "http://localhost:3000/ko/community/notice?tag=%5B%22%ED%95%99%EB%B6%80%22%2C%22%EB%8C%80%ED%95%99%EC%9B%90%22%5D",
+      "viewport": 390,
+      "label": "태그 초기화",
+      "rect": {
+        "x": 278,
+        "y": 819.984375,
+        "width": 82,
+        "height": 16.796875
+      },
+      "icon": {
+        "x": 278,
+        "y": 820.375,
+        "width": 16,
+        "height": 16
+      },
+      "color": "rgb(255, 105, 20)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "ko-pagination-0",
+      "url": "http://localhost:3000/ko/community/notice",
+      "viewport": 390,
+      "label": "마지막 페이지",
+      "rect": {
+        "x": 270.90625,
+        "y": 437.671875,
+        "width": 24,
+        "height": 24
+      },
+      "icon": {
+        "x": 270.90625,
+        "y": 437.671875,
+        "width": 24,
+        "height": 24
+      },
+      "color": "rgb(38, 38, 38)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "ko-reservation-arrow-0",
+      "url": "http://localhost:3000/ko/reservations/seminar-room/301-417?selectedDate=2024-03-15",
+      "viewport": 390,
+      "label": "이전 날짜",
+      "rect": {
+        "x": 124,
+        "y": 344.765625,
+        "width": 30,
+        "height": 30
+      },
+      "icon": {
+        "x": 125,
+        "y": 348.765625,
+        "width": 22,
+        "height": 22
+      },
+      "color": "rgb(64, 64, 64)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "ko-reservation-arrow-1",
+      "url": "http://localhost:3000/ko/reservations/seminar-room/301-417?selectedDate=2024-03-15",
+      "viewport": 390,
+      "label": "다음 날짜",
+      "rect": {
+        "x": 162,
+        "y": 344.765625,
+        "width": 30,
+        "height": 30
+      },
+      "icon": {
+        "x": 163,
+        "y": 348.765625,
+        "width": 22,
+        "height": 22
+      },
+      "color": "rgb(64, 64, 64)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "en-tag-delete-0",
+      "url": "http://localhost:3000/en/community/notice?tag=%ED%95%99%EB%B6%80&tag=%EB%8C%80%ED%95%99%EC%9B%90",
+      "viewport": 1280,
+      "label": "Undergraduate 삭제",
+      "rect": {
+        "x": 319,
+        "y": 684.140625,
+        "width": 13,
+        "height": 13
+      },
+      "icon": {
+        "x": 319,
+        "y": 684.140625,
+        "width": 13,
+        "height": 13
+      },
+      "color": "rgb(255, 105, 20)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(255, 105, 20) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "en-tag-delete-1",
+      "url": "http://localhost:3000/en/community/notice?tag=%ED%95%99%EB%B6%80&tag=%EB%8C%80%ED%95%99%EC%9B%90",
+      "viewport": 1280,
+      "label": "Graduate 삭제",
+      "rect": {
+        "x": 427,
+        "y": 684.140625,
+        "width": 13,
+        "height": 13
+      },
+      "icon": {
+        "x": 427,
+        "y": 684.140625,
+        "width": 13,
+        "height": 13
+      },
+      "color": "rgb(255, 105, 20)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(255, 105, 20) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "en-tag-reset-0",
+      "url": "http://localhost:3000/en/community/notice?tag=%ED%95%99%EB%B6%80&tag=%EB%8C%80%ED%95%99%EC%9B%90",
+      "viewport": 1280,
+      "label": "Reset Tags",
+      "rect": {
+        "x": 820,
+        "y": 677.640625,
+        "width": 90,
+        "height": 16.796875
+      },
+      "icon": {
+        "x": 820,
+        "y": 678.03125,
+        "width": 16,
+        "height": 16
+      },
+      "color": "rgb(255, 105, 20)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "en-pagination-0",
+      "url": "http://localhost:3000/en/community/notice",
+      "viewport": 1280,
+      "label": "마지막 페이지",
+      "rect": {
+        "x": 635.90625,
+        "y": 437.640625,
+        "width": 24,
+        "height": 24
+      },
+      "icon": {
+        "x": 635.90625,
+        "y": 437.640625,
+        "width": 24,
+        "height": 24
+      },
+      "color": "rgb(38, 38, 38)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "en-course-arrow-0",
+      "url": "http://localhost:3000/en/academics/undergraduate/courses?view=%EC%B9%B4%EB%93%9C%ED%98%95",
+      "viewport": 1280,
+      "label": "",
+      "rect": {
+        "x": 200,
+        "y": 575.234375,
+        "width": 44,
+        "height": 44
+      },
+      "icon": {
+        "x": 200,
+        "y": 575.234375,
+        "width": 44,
+        "height": 44
+      },
+      "color": "rgb(255, 105, 20)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(13, 13, 13) auto 1px",
+        "effectiveOpacity": 0
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "en-course-arrow-1",
+      "url": "http://localhost:3000/en/academics/undergraduate/courses?view=%EC%B9%B4%EB%93%9C%ED%98%95",
+      "viewport": 1280,
+      "label": "",
+      "rect": {
+        "x": 645,
+        "y": 575.234375,
+        "width": 44,
+        "height": 44
+      },
+      "icon": {
+        "x": 645,
+        "y": 575.234375,
+        "width": 44,
+        "height": 44
+      },
+      "color": "rgb(255, 105, 20)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(13, 13, 13) auto 1px",
+        "effectiveOpacity": 0
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "en-reservation-arrow-0",
+      "url": "http://localhost:3000/en/reservations/seminar-room/301-417?selectedDate=2024-03-15",
+      "viewport": 1280,
+      "label": "이전 날짜",
+      "rect": {
+        "x": 304,
+        "y": 472.421875,
+        "width": 30,
+        "height": 30
+      },
+      "icon": {
+        "x": 305,
+        "y": 476.421875,
+        "width": 22,
+        "height": 22
+      },
+      "color": "rgb(64, 64, 64)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "en-reservation-arrow-1",
+      "url": "http://localhost:3000/en/reservations/seminar-room/301-417?selectedDate=2024-03-15",
+      "viewport": 1280,
+      "label": "다음 날짜",
+      "rect": {
+        "x": 342,
+        "y": 472.421875,
+        "width": 30,
+        "height": 30
+      },
+      "icon": {
+        "x": 343,
+        "y": 476.421875,
+        "width": 22,
+        "height": 22
+      },
+      "color": "rgb(64, 64, 64)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "en-carousel-0",
+      "url": "http://localhost:3000/en",
+      "viewport": 1280,
+      "label": "1번째 페이지로 이동",
+      "rect": {
+        "x": 691.796875,
+        "y": 437.65625,
+        "width": 56,
+        "height": 24
+      },
+      "icon": null,
+      "color": null,
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(11, 11, 11) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "en-carousel-1",
+      "url": "http://localhost:3000/en",
+      "viewport": 1280,
+      "label": "자동 스크롤 시작",
+      "rect": {
+        "x": 747.796875,
+        "y": 437.65625,
+        "width": 24,
+        "height": 24
+      },
+      "icon": {
+        "x": 747.796875,
+        "y": 437.65625,
+        "width": 24,
+        "height": 24
+      },
+      "color": "rgb(10, 10, 10)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "en-tag-delete-0",
+      "url": "http://localhost:3000/en/community/notice?tag=%ED%95%99%EB%B6%80&tag=%EB%8C%80%ED%95%99%EC%9B%90",
+      "viewport": 390,
+      "label": "Undergraduate 삭제",
+      "rect": {
+        "x": 139,
+        "y": 826.484375,
+        "width": 13,
+        "height": 13
+      },
+      "icon": {
+        "x": 139,
+        "y": 826.484375,
+        "width": 13,
+        "height": 13
+      },
+      "color": "rgb(255, 105, 20)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(255, 105, 20) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "en-tag-delete-1",
+      "url": "http://localhost:3000/en/community/notice?tag=%ED%95%99%EB%B6%80&tag=%EB%8C%80%ED%95%99%EC%9B%90",
+      "viewport": 390,
+      "label": "Graduate 삭제",
+      "rect": {
+        "x": 104,
+        "y": 862.484375,
+        "width": 13,
+        "height": 13
+      },
+      "icon": {
+        "x": 104,
+        "y": 862.484375,
+        "width": 13,
+        "height": 13
+      },
+      "color": "rgb(255, 105, 20)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(255, 105, 20) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "en-tag-reset-0",
+      "url": "http://localhost:3000/en/community/notice?tag=%ED%95%99%EB%B6%80&tag=%EB%8C%80%ED%95%99%EC%9B%90",
+      "viewport": 390,
+      "label": "Reset Tags",
+      "rect": {
+        "x": 270,
+        "y": 819.984375,
+        "width": 90,
+        "height": 16.796875
+      },
+      "icon": {
+        "x": 270,
+        "y": 820.375,
+        "width": 16,
+        "height": 16
+      },
+      "color": "rgb(255, 105, 20)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "en-pagination-0",
+      "url": "http://localhost:3000/en/community/notice",
+      "viewport": 390,
+      "label": "마지막 페이지",
+      "rect": {
+        "x": 270.90625,
+        "y": 437.671875,
+        "width": 24,
+        "height": 24
+      },
+      "icon": {
+        "x": 270.90625,
+        "y": 437.671875,
+        "width": 24,
+        "height": 24
+      },
+      "color": "rgb(38, 38, 38)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "en-reservation-arrow-0",
+      "url": "http://localhost:3000/en/reservations/seminar-room/301-417?selectedDate=2024-03-15",
+      "viewport": 390,
+      "label": "이전 날짜",
+      "rect": {
+        "x": 124,
+        "y": 390.34375,
+        "width": 30,
+        "height": 30
+      },
+      "icon": {
+        "x": 125,
+        "y": 394.34375,
+        "width": 22,
+        "height": 22
+      },
+      "color": "rgb(64, 64, 64)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    },
+    {
+      "id": "en-reservation-arrow-1",
+      "url": "http://localhost:3000/en/reservations/seminar-room/301-417?selectedDate=2024-03-15",
+      "viewport": 390,
+      "label": "다음 날짜",
+      "rect": {
+        "x": 162,
+        "y": 390.34375,
+        "width": 30,
+        "height": 30
+      },
+      "icon": {
+        "x": 163,
+        "y": 394.34375,
+        "width": 22,
+        "height": 22
+      },
+      "color": "rgb(64, 64, 64)",
+      "focus": {
+        "active": true,
+        "visible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "effectiveOpacity": 1
+      },
+      "spacingConflicts": []
+    }
+  ],
+  "limits": [
+    "Attachments and form icon contexts reviewed from source separately.",
+    "No form submission or persistent data changes.",
+    "Not full accessibility conformance."
+  ]
+}
