@@ -1,0 +1,4647 @@
+{
+  "question": "L-Q1",
+  "source": "DS-021 build, local API, Playwright 1.57.0 Chromium",
+  "method": "Actual public overview at 10 widths and two locales. Proposal temporarily allows footer group links to wrap only below 640px; source unchanged.",
+  "records": [
+    {
+      "locale": "ko",
+      "width": 320,
+      "before": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "bodyMinWidth": "0px",
+        "headerWidth": 320,
+        "footerWidth": 320,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 24,
+            "right": 71,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 24,
+            "right": 57,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 24,
+            "right": 71,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 24,
+            "right": 82,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 144,
+            "right": 188,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 144,
+            "right": 177,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 144,
+            "right": 216,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 24,
+            "right": 90,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 24,
+            "right": 82,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 24,
+            "right": 146,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 24,
+            "right": 104,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 168,
+            "right": 289,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 168,
+            "right": 267,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 168,
+            "right": 237,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 168,
+            "right": 245,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "bodyMinWidth": "0px",
+        "headerWidth": 320,
+        "footerWidth": 320,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 24,
+            "right": 71,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 24,
+            "right": 57,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 24,
+            "right": 71,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 24,
+            "right": 82,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 144,
+            "right": 188,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 144,
+            "right": 177,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 144,
+            "right": 216,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 24,
+            "right": 90,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 24,
+            "right": 82,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 24,
+            "right": 146,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 24,
+            "right": 104,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 168,
+            "right": 289,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 168,
+            "right": 267,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 168,
+            "right": 237,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 168,
+            "right": 245,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      }
+    },
+    {
+      "locale": "ko",
+      "width": 360,
+      "before": {
+        "viewport": 360,
+        "documentWidth": 360,
+        "bodyMinWidth": "0px",
+        "headerWidth": 360,
+        "footerWidth": 360,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 24,
+            "right": 71,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 24,
+            "right": 57,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 24,
+            "right": 71,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 24,
+            "right": 82,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 144,
+            "right": 188,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 144,
+            "right": 177,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 144,
+            "right": 216,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 24,
+            "right": 90,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 24,
+            "right": 82,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 24,
+            "right": 146,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 24,
+            "right": 104,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 168,
+            "right": 289,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 168,
+            "right": 267,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 168,
+            "right": 237,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 168,
+            "right": 245,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 360,
+        "documentWidth": 360,
+        "bodyMinWidth": "0px",
+        "headerWidth": 360,
+        "footerWidth": 360,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 24,
+            "right": 71,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 24,
+            "right": 57,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 24,
+            "right": 71,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 24,
+            "right": 82,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 144,
+            "right": 188,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 144,
+            "right": 177,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 144,
+            "right": 216,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 24,
+            "right": 90,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 24,
+            "right": 82,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 24,
+            "right": 146,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 24,
+            "right": 104,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 168,
+            "right": 289,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 168,
+            "right": 267,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 168,
+            "right": 237,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 168,
+            "right": 245,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      }
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "before": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "bodyMinWidth": "0px",
+        "headerWidth": 390,
+        "footerWidth": 390,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 24,
+            "right": 71,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 24,
+            "right": 57,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 24,
+            "right": 71,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 24,
+            "right": 82,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 144,
+            "right": 188,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 144,
+            "right": 177,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 144,
+            "right": 216,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 24,
+            "right": 90,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 24,
+            "right": 82,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 24,
+            "right": 146,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 24,
+            "right": 104,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 168,
+            "right": 289,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 168,
+            "right": 267,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 168,
+            "right": 237,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 168,
+            "right": 245,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "bodyMinWidth": "0px",
+        "headerWidth": 390,
+        "footerWidth": 390,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 24,
+            "right": 71,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 24,
+            "right": 57,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 24,
+            "right": 71,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 24,
+            "right": 82,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 144,
+            "right": 188,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 144,
+            "right": 177,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 144,
+            "right": 216,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 24,
+            "right": 90,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 24,
+            "right": 82,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 24,
+            "right": 146,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 24,
+            "right": 104,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 168,
+            "right": 289,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 168,
+            "right": 267,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 168,
+            "right": 237,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 168,
+            "right": 245,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      }
+    },
+    {
+      "locale": "ko",
+      "width": 639,
+      "before": {
+        "viewport": 639,
+        "documentWidth": 639,
+        "bodyMinWidth": "0px",
+        "headerWidth": 639,
+        "footerWidth": 639,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 24,
+            "right": 71,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 24,
+            "right": 57,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 24,
+            "right": 71,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 24,
+            "right": 82,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 144,
+            "right": 188,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 144,
+            "right": 177,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 144,
+            "right": 216,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 276,
+            "right": 342,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 276,
+            "right": 334,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 276,
+            "right": 398,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 276,
+            "right": 356,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 420,
+            "right": 541,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 420,
+            "right": 519,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 420,
+            "right": 489,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 420,
+            "right": 497,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 639,
+        "documentWidth": 639,
+        "bodyMinWidth": "0px",
+        "headerWidth": 639,
+        "footerWidth": 639,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 24,
+            "right": 71,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 24,
+            "right": 57,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 24,
+            "right": 71,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 24,
+            "right": 82,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 144,
+            "right": 188,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 144,
+            "right": 177,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 144,
+            "right": 216,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 276,
+            "right": 342,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 276,
+            "right": 334,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 276,
+            "right": 398,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 276,
+            "right": 356,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 420,
+            "right": 541,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 420,
+            "right": 519,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 420,
+            "right": 489,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 420,
+            "right": 497,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      }
+    },
+    {
+      "locale": "ko",
+      "width": 640,
+      "before": {
+        "viewport": 640,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 160,
+            "right": 193,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 160,
+            "right": 218,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 280,
+            "right": 324,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 280,
+            "right": 313,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 280,
+            "right": 352,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 412,
+            "right": 478,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 412,
+            "right": 470,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 412,
+            "right": 534,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 412,
+            "right": 492,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 556,
+            "right": 677,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 556,
+            "right": 655,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 556,
+            "right": 625,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 556,
+            "right": 633,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 640,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 160,
+            "right": 193,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 160,
+            "right": 218,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 280,
+            "right": 324,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 280,
+            "right": 313,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 280,
+            "right": 352,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 412,
+            "right": 478,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 412,
+            "right": 470,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 412,
+            "right": 534,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 412,
+            "right": 492,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 556,
+            "right": 677,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 556,
+            "right": 655,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 556,
+            "right": 625,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 556,
+            "right": 633,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      }
+    },
+    {
+      "locale": "ko",
+      "width": 768,
+      "before": {
+        "viewport": 768,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 160,
+            "right": 193,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 160,
+            "right": 218,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 280,
+            "right": 324,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 280,
+            "right": 313,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 280,
+            "right": 352,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 412,
+            "right": 478,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 412,
+            "right": 470,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 412,
+            "right": 534,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 412,
+            "right": 492,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 556,
+            "right": 677,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 556,
+            "right": 655,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 556,
+            "right": 625,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 556,
+            "right": 633,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 768,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 160,
+            "right": 193,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 160,
+            "right": 218,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 280,
+            "right": 324,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 280,
+            "right": 313,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 280,
+            "right": 352,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 412,
+            "right": 478,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 412,
+            "right": 470,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 412,
+            "right": 534,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 412,
+            "right": 492,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 556,
+            "right": 677,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 556,
+            "right": 655,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 556,
+            "right": 625,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 556,
+            "right": 633,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      }
+    },
+    {
+      "locale": "ko",
+      "width": 1024,
+      "before": {
+        "viewport": 1024,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 160,
+            "right": 193,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 160,
+            "right": 218,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 280,
+            "right": 324,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 280,
+            "right": 313,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 280,
+            "right": 352,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 412,
+            "right": 478,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 412,
+            "right": 470,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 412,
+            "right": 534,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 412,
+            "right": 492,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 556,
+            "right": 677,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 556,
+            "right": 655,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 556,
+            "right": 625,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 556,
+            "right": 633,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 1024,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 160,
+            "right": 193,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 160,
+            "right": 218,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 280,
+            "right": 324,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 280,
+            "right": 313,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 280,
+            "right": 352,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 412,
+            "right": 478,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 412,
+            "right": 470,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 412,
+            "right": 534,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 412,
+            "right": 492,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 556,
+            "right": 677,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 556,
+            "right": 655,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 556,
+            "right": 625,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 556,
+            "right": 633,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      }
+    },
+    {
+      "locale": "ko",
+      "width": 1199,
+      "before": {
+        "viewport": 1199,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 160,
+            "right": 193,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 160,
+            "right": 218,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 280,
+            "right": 324,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 280,
+            "right": 313,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 280,
+            "right": 352,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 412,
+            "right": 478,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 412,
+            "right": 470,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 412,
+            "right": 534,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 412,
+            "right": 492,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 556,
+            "right": 677,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 556,
+            "right": 655,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 556,
+            "right": 625,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 556,
+            "right": 633,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 1199,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 160,
+            "right": 193,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 160,
+            "right": 218,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 280,
+            "right": 324,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 280,
+            "right": 313,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 280,
+            "right": 352,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 412,
+            "right": 478,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 412,
+            "right": 470,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 412,
+            "right": 534,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 412,
+            "right": 492,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 556,
+            "right": 677,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 556,
+            "right": 655,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 556,
+            "right": 625,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 556,
+            "right": 633,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      }
+    },
+    {
+      "locale": "ko",
+      "width": 1200,
+      "before": {
+        "viewport": 1200,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 160,
+            "right": 193,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 160,
+            "right": 218,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 280,
+            "right": 324,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 280,
+            "right": 313,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 280,
+            "right": 352,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 412,
+            "right": 478,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 412,
+            "right": 470,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 412,
+            "right": 534,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 412,
+            "right": 492,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 556,
+            "right": 677,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 556,
+            "right": 655,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 556,
+            "right": 625,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 556,
+            "right": 633,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 1200,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 160,
+            "right": 193,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 160,
+            "right": 218,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 280,
+            "right": 324,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 280,
+            "right": 313,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 280,
+            "right": 352,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 412,
+            "right": 478,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 412,
+            "right": 470,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 412,
+            "right": 534,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 412,
+            "right": 492,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 556,
+            "right": 677,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 556,
+            "right": 655,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 556,
+            "right": 625,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 556,
+            "right": 633,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      }
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "before": {
+        "viewport": 1280,
+        "documentWidth": 1280,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1180,
+        "footerWidth": 1180,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 160,
+            "right": 193,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 160,
+            "right": 218,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 280,
+            "right": 324,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 280,
+            "right": 313,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 280,
+            "right": 352,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 412,
+            "right": 478,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 412,
+            "right": 470,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 412,
+            "right": 534,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 412,
+            "right": 492,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 556,
+            "right": 677,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 556,
+            "right": 655,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 556,
+            "right": 625,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 556,
+            "right": 633,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 1280,
+        "documentWidth": 1280,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1180,
+        "footerWidth": 1180,
+        "footerLinks": [
+          {
+            "text": "학부 소개",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "교수진",
+            "x": 160,
+            "right": 193,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "학부 안내",
+            "x": 160,
+            "right": 207,
+            "width": 47,
+            "height": 15
+          },
+          {
+            "text": "대학원 안내",
+            "x": 160,
+            "right": 218,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "공지사항",
+            "x": 280,
+            "right": 324,
+            "width": 44,
+            "height": 15
+          },
+          {
+            "text": "세미나",
+            "x": 280,
+            "right": 313,
+            "width": 33,
+            "height": 15
+          },
+          {
+            "text": "시설 예약 안내",
+            "x": 280,
+            "right": 352,
+            "width": 72,
+            "height": 15
+          },
+          {
+            "text": "신임교수초빙",
+            "x": 412,
+            "right": 478,
+            "width": 66,
+            "height": 15
+          },
+          {
+            "text": "연구실 목록",
+            "x": 412,
+            "right": 470,
+            "width": 58,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 412,
+            "right": 534,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 412,
+            "right": 492,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "연합전공 인공지능(학사)",
+            "x": 556,
+            "right": 677,
+            "width": 121,
+            "height": 15
+          },
+          {
+            "text": "지능형컴퓨팅사업단",
+            "x": 556,
+            "right": 655,
+            "width": 99,
+            "height": 15
+          },
+          {
+            "text": "컴퓨터 연구소",
+            "x": 556,
+            "right": 625,
+            "width": 69,
+            "height": 15
+          },
+          {
+            "text": "해동학술정보실",
+            "x": 556,
+            "right": 633,
+            "width": 77,
+            "height": 15
+          }
+        ]
+      }
+    },
+    {
+      "locale": "en",
+      "width": 320,
+      "before": {
+        "viewport": 320,
+        "documentWidth": 436,
+        "bodyMinWidth": "0px",
+        "headerWidth": 320,
+        "footerWidth": 320,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 24,
+            "right": 156,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 24,
+            "right": 66,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 24,
+            "right": 60,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 24,
+            "right": 60,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 24,
+            "right": 63,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 24,
+            "right": 80,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 24,
+            "right": 95,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 24,
+            "right": 141,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 24,
+            "right": 101,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 24,
+            "right": 146,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 24,
+            "right": 104,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 168,
+            "right": 436,
+            "width": 268,
+            "height": 15
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 168,
+            "right": 375,
+            "width": 207,
+            "height": 15
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 168,
+            "right": 367,
+            "width": 199,
+            "height": 15
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 168,
+            "right": 316,
+            "width": 148,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 320,
+        "documentWidth": 320,
+        "bodyMinWidth": "0px",
+        "headerWidth": 320,
+        "footerWidth": 320,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 24,
+            "right": 156,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 24,
+            "right": 66,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 24,
+            "right": 60,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 24,
+            "right": 60,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 24,
+            "right": 63,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 24,
+            "right": 80,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 24,
+            "right": 95,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 24,
+            "right": 141,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 24,
+            "right": 101,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 24,
+            "right": 146,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 24,
+            "right": 104,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 168,
+            "right": 266,
+            "width": 98,
+            "height": 46.1875
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 168,
+            "right": 237,
+            "width": 69,
+            "height": 46.1875
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 168,
+            "right": 293,
+            "width": 125,
+            "height": 30.59375
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 168,
+            "right": 271,
+            "width": 103,
+            "height": 30.59375
+          }
+        ]
+      }
+    },
+    {
+      "locale": "en",
+      "width": 360,
+      "before": {
+        "viewport": 360,
+        "documentWidth": 436,
+        "bodyMinWidth": "0px",
+        "headerWidth": 360,
+        "footerWidth": 360,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 24,
+            "right": 156,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 24,
+            "right": 66,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 24,
+            "right": 60,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 24,
+            "right": 60,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 184,
+            "right": 223,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 184,
+            "right": 240,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 184,
+            "right": 255,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 24,
+            "right": 141,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 24,
+            "right": 101,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 24,
+            "right": 146,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 24,
+            "right": 104,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 168,
+            "right": 436,
+            "width": 268,
+            "height": 15
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 168,
+            "right": 375,
+            "width": 207,
+            "height": 15
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 168,
+            "right": 367,
+            "width": 199,
+            "height": 15
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 168,
+            "right": 316,
+            "width": 148,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 360,
+        "documentWidth": 360,
+        "bodyMinWidth": "0px",
+        "headerWidth": 360,
+        "footerWidth": 360,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 24,
+            "right": 156,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 24,
+            "right": 66,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 24,
+            "right": 60,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 24,
+            "right": 60,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 184,
+            "right": 223,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 184,
+            "right": 240,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 184,
+            "right": 255,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 24,
+            "right": 141,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 24,
+            "right": 101,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 24,
+            "right": 146,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 24,
+            "right": 104,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 168,
+            "right": 266,
+            "width": 98,
+            "height": 46.1875
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 168,
+            "right": 237,
+            "width": 69,
+            "height": 46.1875
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 168,
+            "right": 293,
+            "width": 125,
+            "height": 30.59375
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 168,
+            "right": 271,
+            "width": 103,
+            "height": 30.59375
+          }
+        ]
+      }
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "before": {
+        "viewport": 390,
+        "documentWidth": 436,
+        "bodyMinWidth": "0px",
+        "headerWidth": 390,
+        "footerWidth": 390,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 24,
+            "right": 156,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 24,
+            "right": 66,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 24,
+            "right": 60,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 24,
+            "right": 60,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 184,
+            "right": 223,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 184,
+            "right": 240,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 184,
+            "right": 255,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 24,
+            "right": 141,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 24,
+            "right": 101,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 24,
+            "right": 146,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 24,
+            "right": 104,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 168,
+            "right": 436,
+            "width": 268,
+            "height": 15
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 168,
+            "right": 375,
+            "width": 207,
+            "height": 15
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 168,
+            "right": 367,
+            "width": 199,
+            "height": 15
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 168,
+            "right": 316,
+            "width": 148,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "bodyMinWidth": "0px",
+        "headerWidth": 390,
+        "footerWidth": 390,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 24,
+            "right": 156,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 24,
+            "right": 66,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 24,
+            "right": 60,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 24,
+            "right": 60,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 184,
+            "right": 223,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 184,
+            "right": 240,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 184,
+            "right": 255,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 24,
+            "right": 141,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 24,
+            "right": 101,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 24,
+            "right": 146,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 24,
+            "right": 104,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 168,
+            "right": 266,
+            "width": 98,
+            "height": 46.1875
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 168,
+            "right": 237,
+            "width": 69,
+            "height": 46.1875
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 168,
+            "right": 293,
+            "width": 125,
+            "height": 30.59375
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 168,
+            "right": 271,
+            "width": 103,
+            "height": 30.59375
+          }
+        ]
+      }
+    },
+    {
+      "locale": "en",
+      "width": 639,
+      "before": {
+        "viewport": 639,
+        "documentWidth": 728,
+        "bodyMinWidth": "0px",
+        "headerWidth": 639,
+        "footerWidth": 639,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 24,
+            "right": 156,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 24,
+            "right": 66,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 24,
+            "right": 60,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 24,
+            "right": 60,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 184,
+            "right": 223,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 184,
+            "right": 240,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 184,
+            "right": 255,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 316,
+            "right": 433,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 316,
+            "right": 393,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 316,
+            "right": 438,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 316,
+            "right": 396,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 460,
+            "right": 728,
+            "width": 268,
+            "height": 15
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 460,
+            "right": 667,
+            "width": 207,
+            "height": 15
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 460,
+            "right": 659,
+            "width": 199,
+            "height": 15
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 460,
+            "right": 608,
+            "width": 148,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 639,
+        "documentWidth": 639,
+        "bodyMinWidth": "0px",
+        "headerWidth": 639,
+        "footerWidth": 639,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 24,
+            "right": 156,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 24,
+            "right": 66,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 24,
+            "right": 60,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 24,
+            "right": 60,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 184,
+            "right": 223,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 184,
+            "right": 240,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 184,
+            "right": 255,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 316,
+            "right": 433,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 316,
+            "right": 393,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 316,
+            "right": 438,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 316,
+            "right": 396,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 460,
+            "right": 558,
+            "width": 98,
+            "height": 46.1875
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 460,
+            "right": 529,
+            "width": 69,
+            "height": 46.1875
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 460,
+            "right": 585,
+            "width": 125,
+            "height": 30.59375
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 460,
+            "right": 563,
+            "width": 103,
+            "height": 30.59375
+          }
+        ]
+      }
+    },
+    {
+      "locale": "en",
+      "width": 640,
+      "before": {
+        "viewport": 640,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 160,
+            "right": 292,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 160,
+            "right": 202,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 320,
+            "right": 359,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 320,
+            "right": 376,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 320,
+            "right": 391,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 452,
+            "right": 569,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 452,
+            "right": 529,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 452,
+            "right": 574,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 452,
+            "right": 532,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 596,
+            "right": 864,
+            "width": 268,
+            "height": 15
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 596,
+            "right": 803,
+            "width": 207,
+            "height": 15
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 596,
+            "right": 795,
+            "width": 199,
+            "height": 15
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 596,
+            "right": 744,
+            "width": 148,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 640,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 160,
+            "right": 292,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 160,
+            "right": 202,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 320,
+            "right": 359,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 320,
+            "right": 376,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 320,
+            "right": 391,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 452,
+            "right": 569,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 452,
+            "right": 529,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 452,
+            "right": 574,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 452,
+            "right": 532,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 596,
+            "right": 864,
+            "width": 268,
+            "height": 15
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 596,
+            "right": 803,
+            "width": 207,
+            "height": 15
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 596,
+            "right": 795,
+            "width": 199,
+            "height": 15
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 596,
+            "right": 744,
+            "width": 148,
+            "height": 15
+          }
+        ]
+      }
+    },
+    {
+      "locale": "en",
+      "width": 768,
+      "before": {
+        "viewport": 768,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 160,
+            "right": 292,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 160,
+            "right": 202,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 320,
+            "right": 359,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 320,
+            "right": 376,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 320,
+            "right": 391,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 452,
+            "right": 569,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 452,
+            "right": 529,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 452,
+            "right": 574,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 452,
+            "right": 532,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 596,
+            "right": 864,
+            "width": 268,
+            "height": 15
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 596,
+            "right": 803,
+            "width": 207,
+            "height": 15
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 596,
+            "right": 795,
+            "width": 199,
+            "height": 15
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 596,
+            "right": 744,
+            "width": 148,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 768,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 160,
+            "right": 292,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 160,
+            "right": 202,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 320,
+            "right": 359,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 320,
+            "right": 376,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 320,
+            "right": 391,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 452,
+            "right": 569,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 452,
+            "right": 529,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 452,
+            "right": 574,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 452,
+            "right": 532,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 596,
+            "right": 864,
+            "width": 268,
+            "height": 15
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 596,
+            "right": 803,
+            "width": 207,
+            "height": 15
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 596,
+            "right": 795,
+            "width": 199,
+            "height": 15
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 596,
+            "right": 744,
+            "width": 148,
+            "height": 15
+          }
+        ]
+      }
+    },
+    {
+      "locale": "en",
+      "width": 1024,
+      "before": {
+        "viewport": 1024,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 160,
+            "right": 292,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 160,
+            "right": 202,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 320,
+            "right": 359,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 320,
+            "right": 376,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 320,
+            "right": 391,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 452,
+            "right": 569,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 452,
+            "right": 529,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 452,
+            "right": 574,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 452,
+            "right": 532,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 596,
+            "right": 864,
+            "width": 268,
+            "height": 15
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 596,
+            "right": 803,
+            "width": 207,
+            "height": 15
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 596,
+            "right": 795,
+            "width": 199,
+            "height": 15
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 596,
+            "right": 744,
+            "width": 148,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 1024,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 160,
+            "right": 292,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 160,
+            "right": 202,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 320,
+            "right": 359,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 320,
+            "right": 376,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 320,
+            "right": 391,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 452,
+            "right": 569,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 452,
+            "right": 529,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 452,
+            "right": 574,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 452,
+            "right": 532,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 596,
+            "right": 864,
+            "width": 268,
+            "height": 15
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 596,
+            "right": 803,
+            "width": 207,
+            "height": 15
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 596,
+            "right": 795,
+            "width": 199,
+            "height": 15
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 596,
+            "right": 744,
+            "width": 148,
+            "height": 15
+          }
+        ]
+      }
+    },
+    {
+      "locale": "en",
+      "width": 1199,
+      "before": {
+        "viewport": 1199,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 160,
+            "right": 292,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 160,
+            "right": 202,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 320,
+            "right": 359,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 320,
+            "right": 376,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 320,
+            "right": 391,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 452,
+            "right": 569,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 452,
+            "right": 529,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 452,
+            "right": 574,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 452,
+            "right": 532,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 596,
+            "right": 864,
+            "width": 268,
+            "height": 15
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 596,
+            "right": 803,
+            "width": 207,
+            "height": 15
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 596,
+            "right": 795,
+            "width": 199,
+            "height": 15
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 596,
+            "right": 744,
+            "width": 148,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 1199,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 160,
+            "right": 292,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 160,
+            "right": 202,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 320,
+            "right": 359,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 320,
+            "right": 376,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 320,
+            "right": 391,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 452,
+            "right": 569,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 452,
+            "right": 529,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 452,
+            "right": 574,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 452,
+            "right": 532,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 596,
+            "right": 864,
+            "width": 268,
+            "height": 15
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 596,
+            "right": 803,
+            "width": 207,
+            "height": 15
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 596,
+            "right": 795,
+            "width": 199,
+            "height": 15
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 596,
+            "right": 744,
+            "width": 148,
+            "height": 15
+          }
+        ]
+      }
+    },
+    {
+      "locale": "en",
+      "width": 1200,
+      "before": {
+        "viewport": 1200,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 160,
+            "right": 292,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 160,
+            "right": 202,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 320,
+            "right": 359,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 320,
+            "right": 376,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 320,
+            "right": 391,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 452,
+            "right": 569,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 452,
+            "right": 529,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 452,
+            "right": 574,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 452,
+            "right": 532,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 596,
+            "right": 864,
+            "width": 268,
+            "height": 15
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 596,
+            "right": 803,
+            "width": 207,
+            "height": 15
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 596,
+            "right": 795,
+            "width": 199,
+            "height": 15
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 596,
+            "right": 744,
+            "width": 148,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 1200,
+        "documentWidth": 1200,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1100,
+        "footerWidth": 1100,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 160,
+            "right": 292,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 160,
+            "right": 202,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 320,
+            "right": 359,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 320,
+            "right": 376,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 320,
+            "right": 391,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 452,
+            "right": 569,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 452,
+            "right": 529,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 452,
+            "right": 574,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 452,
+            "right": 532,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 596,
+            "right": 864,
+            "width": 268,
+            "height": 15
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 596,
+            "right": 803,
+            "width": 207,
+            "height": 15
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 596,
+            "right": 795,
+            "width": 199,
+            "height": 15
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 596,
+            "right": 744,
+            "width": 148,
+            "height": 15
+          }
+        ]
+      }
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "before": {
+        "viewport": 1280,
+        "documentWidth": 1280,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1180,
+        "footerWidth": 1180,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 160,
+            "right": 292,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 160,
+            "right": 202,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 320,
+            "right": 359,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 320,
+            "right": 376,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 320,
+            "right": 391,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 452,
+            "right": 569,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 452,
+            "right": 529,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 452,
+            "right": 574,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 452,
+            "right": 532,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 596,
+            "right": 864,
+            "width": 268,
+            "height": 15
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 596,
+            "right": 803,
+            "width": 207,
+            "height": 15
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 596,
+            "right": 795,
+            "width": 199,
+            "height": 15
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 596,
+            "right": 744,
+            "width": 148,
+            "height": 15
+          }
+        ]
+      },
+      "proposal": {
+        "viewport": 1280,
+        "documentWidth": 1280,
+        "bodyMinWidth": "1200px",
+        "headerWidth": 1180,
+        "footerWidth": 1180,
+        "footerLinks": [
+          {
+            "text": "Department Overview",
+            "x": 160,
+            "right": 292,
+            "width": 132,
+            "height": 15
+          },
+          {
+            "text": "Faculty",
+            "x": 160,
+            "right": 202,
+            "width": 42,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Guide",
+            "x": 160,
+            "right": 196,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "text": "Notice",
+            "x": 320,
+            "right": 359,
+            "width": 39,
+            "height": 15
+          },
+          {
+            "text": "Seminars",
+            "x": 320,
+            "right": 376,
+            "width": 56,
+            "height": 15
+          },
+          {
+            "text": "Introduction",
+            "x": 320,
+            "right": 391,
+            "width": 71,
+            "height": 15
+          },
+          {
+            "text": "Faculty Recruitment",
+            "x": 452,
+            "right": 569,
+            "width": 117,
+            "height": 15
+          },
+          {
+            "text": "Laboratories",
+            "x": 452,
+            "right": 529,
+            "width": 77,
+            "height": 15
+          },
+          {
+            "text": "Top Conference List",
+            "x": 452,
+            "right": 574,
+            "width": 122,
+            "height": 15
+          },
+          {
+            "text": "10-10 Project",
+            "x": 452,
+            "right": 532,
+            "width": 80,
+            "height": 15
+          },
+          {
+            "text": "Interdisciplinary Major in Artificial Intelligence",
+            "x": 596,
+            "right": 864,
+            "width": 268,
+            "height": 15
+          },
+          {
+            "text": "BK21 FOUR Intelligence Computing",
+            "x": 596,
+            "right": 803,
+            "width": 207,
+            "height": 15
+          },
+          {
+            "text": "Institute of Computer Technology",
+            "x": 596,
+            "right": 795,
+            "width": 199,
+            "height": 15
+          },
+          {
+            "text": "HAEDONG Digital Library",
+            "x": 596,
+            "right": 744,
+            "width": 148,
+            "height": 15
+          }
+        ]
+      }
+    }
+  ]
+}

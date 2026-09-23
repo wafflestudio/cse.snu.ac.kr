@@ -123,13 +123,13 @@ function LabMaterialsCell({
         <a
           href={pdf.url}
           download={`${name} 소개자료`}
-          className="h-5"
+          className="h-5 focus-visible:focus-ring"
           title="PDF"
           target="_blank"
           rel="noopener noreferrer"
         >
           <FileText
-            className="h-5 w-5 text-neutral-400 hover:text-neutral-800"
+            className="h-5 w-5 text-neutral-500 hover:text-neutral-800"
             strokeWidth={1.5}
           />
         </a>
@@ -137,12 +137,12 @@ function LabMaterialsCell({
       {youtube && (
         <a
           href={youtube}
-          className="h-5 py-0.75"
+          className="h-5 py-0.75 focus-visible:focus-ring"
           title="YOUTUBE"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <YoutubeIcon className="fill-neutral-400 hover:fill-neutral-800" />
+          <YoutubeIcon className="fill-neutral-500 hover:fill-neutral-800" />
         </a>
       )}
     </span>
