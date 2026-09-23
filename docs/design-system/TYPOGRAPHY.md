@@ -3,7 +3,7 @@
 [진행 현황](PLAN.md) · [전후 화면 비교](typography.html) · [방향과 예외](DIRECTION.md)
 
 3-1의 기본 서체 연결은 **DS-006으로 결정하고 앱 CSS에 적용했다.** 공개 본문 5장면에서 승인안과 일치함을 확인했다.
-3-3의 [역할표와 본문 읽기 밀도 비교](TYPE-DENSITY.md)를 시작했다. [T-Q2 실제 견본](type-density.html)은 B로 확정했다(DS-015). 공지 상세의 본문에 16px/32px를 적용했고 한국어·영어 두 폭의 승인 이미지 일치를 확인했다. 제목·보조 정보·나머지 읽기 규칙은 이어서 검토한다.
+3-3은 DS-016에 따라 [기존 타이포 역할표](TYPOGRAPHY-BASELINE.md)를 정리했다. 본문 14px/28px와 글 제목 20px/600을 유지한다. DS-015 확대는 철회·복원했다. [복원 기록](type-density-restoration/measurements.json).
 
 ## 문제와 결정 T-Q1 → DS-006
 

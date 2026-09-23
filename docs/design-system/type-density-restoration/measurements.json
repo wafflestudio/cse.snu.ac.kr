@@ -1,0 +1,60 @@
+{
+  "decision": "DS-016",
+  "source": "12488913 with notice-only size override removed",
+  "method": "Fresh production build, cached local API, Playwright 1.57.0 Linux Chromium. Four actual body images compared byte-for-byte to original A. Temporary local notice removed afterward; no editor opened.",
+  "records": [
+    {
+      "locale": "ko",
+      "width": 720,
+      "fontSize": "14px",
+      "lineHeight": "28px",
+      "height": 736.546875,
+      "heading": "21px",
+      "authored": "18px",
+      "approvedBodyImageIdentical": true,
+      "postTitleUnchanged": true
+    },
+    {
+      "locale": "ko",
+      "width": 350,
+      "fontSize": "14px",
+      "lineHeight": "28px",
+      "height": 1142.546875,
+      "heading": "21px",
+      "authored": "18px",
+      "approvedBodyImageIdentical": true,
+      "postTitleUnchanged": true
+    },
+    {
+      "locale": "en",
+      "width": 720,
+      "fontSize": "14px",
+      "lineHeight": "28px",
+      "height": 736.546875,
+      "heading": "21px",
+      "authored": "18px",
+      "approvedBodyImageIdentical": true,
+      "postTitleUnchanged": true
+    },
+    {
+      "locale": "en",
+      "width": 350,
+      "fontSize": "14px",
+      "lineHeight": "28px",
+      "height": 1142.546875,
+      "heading": "21px",
+      "authored": "18px",
+      "approvedBodyImageIdentical": true,
+      "postTitleUnchanged": true
+    }
+  ],
+  "otherViewer": {
+    "path": "/about/greetings",
+    "size": "14px"
+  },
+  "limits": [
+    "Not a full content or accessibility audit.",
+    "Authored size verification limited to the explicit 18px specimen.",
+    "Existing layouts, editor and shared CSS not changed."
+  ]
+}
