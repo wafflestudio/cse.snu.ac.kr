@@ -1,0 +1,31 @@
+{
+  "decision": "DS-019",
+  "source": "6b42dbb1 + CourseCardGrid focus-within CSS",
+  "environment": "Fresh production frontend, cached local API, Playwright 1.57.0 Linux Chromium",
+  "method": "Actual CSS. Pointer away, Tab to both arrows and outside, hover/leave; byte comparisons to original and approved captures.",
+  "records": [
+    {
+      "locale": "ko",
+      "normalMatchesOriginal": true,
+      "focusMatchesApproved": true,
+      "leftAndRightTab": true,
+      "tabStepsBetweenArrows": 2,
+      "hideAfterTabOut": true,
+      "pointerHoverRetained": true
+    },
+    {
+      "locale": "en",
+      "normalMatchesOriginal": true,
+      "focusMatchesApproved": true,
+      "leftAndRightTab": true,
+      "tabStepsBetweenArrows": 2,
+      "hideAfterTabOut": true,
+      "pointerHoverRetained": true
+    }
+  ],
+  "limits": [
+    "Two languages at 1280px. Mobile uses list view.",
+    "Single local course card; scrolling movement and accessible names not changed or validated.",
+    "Common focus appearance remains a separate proposal."
+  ]
+}

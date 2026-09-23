@@ -1,0 +1,125 @@
+{
+  "question": "F-Q1",
+  "source": "6b42dbb1 + approved DS-019 reveal only",
+  "environment": "Production build, cached local API, Playwright 1.57.0 Linux Chromium, Korean 1280px",
+  "method": "Actual keyboard focus vs temporary 2px solid outline/2px offset, white support line at mixed search background, and positioned foreground course focus ring to avoid sibling occlusion. No app-wide focus CSS applied. Geometry unchanged.",
+  "records": [
+    {
+      "id": "course-light",
+      "before": {
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "offset": "0px",
+        "shadow": "none",
+        "background": "rgb(255, 255, 255)",
+        "rect": {
+          "x": 200,
+          "y": 533.234375,
+          "width": 44,
+          "height": 44
+        }
+      },
+      "after": {
+        "outline": "rgb(64, 64, 64) solid 2px",
+        "offset": "2px",
+        "shadow": "none",
+        "background": "rgb(255, 255, 255)",
+        "rect": {
+          "x": 200,
+          "y": 533.234375,
+          "width": 44,
+          "height": 44
+        }
+      },
+      "focusVisible": true
+    },
+    {
+      "id": "nav-dark",
+      "before": {
+        "outline": "rgb(255, 255, 255) auto 1px",
+        "offset": "0px",
+        "shadow": "none",
+        "background": "rgb(23, 23, 23)",
+        "rect": {
+          "x": 1135.296875,
+          "y": 48,
+          "width": 33,
+          "height": 15.59375
+        }
+      },
+      "after": {
+        "outline": "rgb(255, 255, 255) solid 2px",
+        "offset": "2px",
+        "shadow": "none",
+        "background": "rgb(23, 23, 23)",
+        "rect": {
+          "x": 1135.296875,
+          "y": 48,
+          "width": 33,
+          "height": 15.59375
+        }
+      },
+      "focusVisible": true
+    },
+    {
+      "id": "search-light",
+      "before": {
+        "outline": "rgb(115, 115, 115) auto 1px",
+        "offset": "0px",
+        "shadow": "none",
+        "background": "rgb(229, 229, 229)",
+        "rect": {
+          "x": 1194,
+          "y": 78.625,
+          "width": 24,
+          "height": 30
+        }
+      },
+      "after": {
+        "outline": "rgb(64, 64, 64) solid 2px",
+        "offset": "2px",
+        "shadow": "rgb(255, 255, 255) 0px 0px 0px 2px",
+        "background": "rgb(229, 229, 229)",
+        "rect": {
+          "x": 1194,
+          "y": 78.625,
+          "width": 24,
+          "height": 30
+        }
+      },
+      "focusVisible": true
+    },
+    {
+      "id": "selection-light",
+      "before": {
+        "outline": "rgb(64, 64, 64) solid 2px",
+        "offset": "2px",
+        "shadow": "none",
+        "background": "rgb(255, 255, 255)",
+        "rect": {
+          "x": 200,
+          "y": 352.84375,
+          "width": 76,
+          "height": 34
+        }
+      },
+      "after": {
+        "outline": "rgb(64, 64, 64) solid 2px",
+        "offset": "2px",
+        "shadow": "none",
+        "background": "rgb(255, 255, 255)",
+        "rect": {
+          "x": 200,
+          "y": 352.84375,
+          "width": 76,
+          "height": 34
+        }
+      },
+      "focusVisible": true
+    }
+  ],
+  "limits": [
+    "Representative review, not all browsers or all components.",
+    "Input caret rule unchanged; fields are not included in outline proposal.",
+    "Each component still needs clipping/contrast/forced-colors verification when implemented."
+  ]
+}

@@ -85,7 +85,7 @@ function ArrowButton({ direction, onClick }: ArrowButtonProps) {
   return (
     <button
       type="button"
-      className="opacity-0 duration-300 group-hover:opacity-100"
+      className="opacity-0 duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
       onClick={onClick}
     >
       {direction === 'left' ? (
