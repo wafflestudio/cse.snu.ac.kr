@@ -1,0 +1,167 @@
+{
+  "decision": "DS-022",
+  "source": "DS-022 build, local API, Playwright 1.57.0 Chromium",
+  "method": "Actual public overview at 10 widths and two locales. Actual app styles, 20 states match approved proposal geometry; 6 captured images byte-identical.",
+  "records": [
+    {
+      "locale": "ko",
+      "width": 320,
+      "documentWidth": 320,
+      "footerWidth": 320,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": true
+    },
+    {
+      "locale": "ko",
+      "width": 360,
+      "documentWidth": 360,
+      "footerWidth": 360,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": null
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "documentWidth": 390,
+      "footerWidth": 390,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": true
+    },
+    {
+      "locale": "ko",
+      "width": 639,
+      "documentWidth": 639,
+      "footerWidth": 639,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": null
+    },
+    {
+      "locale": "ko",
+      "width": 640,
+      "documentWidth": 1200,
+      "footerWidth": 1100,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": null
+    },
+    {
+      "locale": "ko",
+      "width": 768,
+      "documentWidth": 1200,
+      "footerWidth": 1100,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": null
+    },
+    {
+      "locale": "ko",
+      "width": 1024,
+      "documentWidth": 1200,
+      "footerWidth": 1100,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": null
+    },
+    {
+      "locale": "ko",
+      "width": 1199,
+      "documentWidth": 1200,
+      "footerWidth": 1100,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": null
+    },
+    {
+      "locale": "ko",
+      "width": 1200,
+      "documentWidth": 1200,
+      "footerWidth": 1100,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": null
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "documentWidth": 1280,
+      "footerWidth": 1180,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": true
+    },
+    {
+      "locale": "en",
+      "width": 320,
+      "documentWidth": 320,
+      "footerWidth": 320,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": true
+    },
+    {
+      "locale": "en",
+      "width": 360,
+      "documentWidth": 360,
+      "footerWidth": 360,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": null
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "documentWidth": 390,
+      "footerWidth": 390,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": true
+    },
+    {
+      "locale": "en",
+      "width": 639,
+      "documentWidth": 639,
+      "footerWidth": 639,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": null
+    },
+    {
+      "locale": "en",
+      "width": 640,
+      "documentWidth": 1200,
+      "footerWidth": 1100,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": null
+    },
+    {
+      "locale": "en",
+      "width": 768,
+      "documentWidth": 1200,
+      "footerWidth": 1100,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": null
+    },
+    {
+      "locale": "en",
+      "width": 1024,
+      "documentWidth": 1200,
+      "footerWidth": 1100,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": null
+    },
+    {
+      "locale": "en",
+      "width": 1199,
+      "documentWidth": 1200,
+      "footerWidth": 1100,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": null
+    },
+    {
+      "locale": "en",
+      "width": 1200,
+      "documentWidth": 1200,
+      "footerWidth": 1100,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": null
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "documentWidth": 1280,
+      "footerWidth": 1180,
+      "geometryMatchesProposal": true,
+      "imageMatchesProposal": true
+    }
+  ]
+}

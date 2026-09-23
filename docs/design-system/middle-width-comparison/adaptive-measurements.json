@@ -1,0 +1,202 @@
+{
+  "question": "L-Q2",
+  "method": "Review-only browser prototype: same compact shell as A; brochures remain horizontal; at >=1024 existing course controls and 7-day calendar retain desktop utilities and matching content JS query. Root menu scroll locking remains an implementation dependency at 1024 because current app shares one query. No source changes.",
+  "records": [
+    {
+      "mode": "adaptive",
+      "locale": "ko",
+      "scene": "overview",
+      "width": 768,
+      "documentWidth": 768,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        },
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        }
+      ],
+      "overflowing": []
+    },
+    {
+      "mode": "adaptive",
+      "locale": "ko",
+      "scene": "courses",
+      "width": 768,
+      "documentWidth": 768,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [],
+      "overflowing": []
+    },
+    {
+      "mode": "adaptive",
+      "locale": "ko",
+      "scene": "reservation",
+      "width": 768,
+      "documentWidth": 768,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": ["2024-03-15", "2024-03-16", "2024-03-17"],
+      "images": [],
+      "overflowing": []
+    },
+    {
+      "mode": "adaptive",
+      "locale": "ko",
+      "scene": "overview",
+      "width": 1024,
+      "documentWidth": 1024,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        },
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        }
+      ],
+      "overflowing": []
+    },
+    {
+      "mode": "adaptive",
+      "locale": "ko",
+      "scene": "courses",
+      "width": 1024,
+      "documentWidth": 1024,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [],
+      "overflowing": []
+    },
+    {
+      "mode": "adaptive",
+      "locale": "ko",
+      "scene": "reservation",
+      "width": 1024,
+      "documentWidth": 1024,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [
+        "2024-03-11",
+        "2024-03-12",
+        "2024-03-13",
+        "2024-03-14",
+        "2024-03-15",
+        "2024-03-16",
+        "2024-03-17"
+      ],
+      "images": [],
+      "overflowing": []
+    },
+    {
+      "mode": "adaptive",
+      "locale": "en",
+      "scene": "overview",
+      "width": 768,
+      "documentWidth": 768,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        },
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        }
+      ],
+      "overflowing": []
+    },
+    {
+      "mode": "adaptive",
+      "locale": "en",
+      "scene": "courses",
+      "width": 768,
+      "documentWidth": 768,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [],
+      "overflowing": []
+    },
+    {
+      "mode": "adaptive",
+      "locale": "en",
+      "scene": "reservation",
+      "width": 768,
+      "documentWidth": 768,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": ["2024-03-15", "2024-03-16", "2024-03-17"],
+      "images": [],
+      "overflowing": []
+    },
+    {
+      "mode": "adaptive",
+      "locale": "en",
+      "scene": "overview",
+      "width": 1024,
+      "documentWidth": 1024,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        },
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        }
+      ],
+      "overflowing": []
+    },
+    {
+      "mode": "adaptive",
+      "locale": "en",
+      "scene": "courses",
+      "width": 1024,
+      "documentWidth": 1024,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [],
+      "overflowing": []
+    },
+    {
+      "mode": "adaptive",
+      "locale": "en",
+      "scene": "reservation",
+      "width": 1024,
+      "documentWidth": 1024,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [
+        "2024-03-11",
+        "2024-03-12",
+        "2024-03-13",
+        "2024-03-14",
+        "2024-03-15",
+        "2024-03-16",
+        "2024-03-17"
+      ],
+      "images": [],
+      "overflowing": []
+    }
+  ]
+}

@@ -1,0 +1,1064 @@
+{
+  "question": "L-Q2",
+  "method": "Actual DS-022 production app. Review-only CSSOM media query 40rem -> 75rem and matching existing responsive JS query remapped in isolated browser context; no app source change. Image sizes not changed, recorded as implementation dependency. Public representative screens only.",
+  "records": [
+    {
+      "mode": "before",
+      "locale": "ko",
+      "width": 768,
+      "scene": "overview",
+      "rules": 0,
+      "documentWidth": 1200,
+      "bodyMinWidth": "1200px",
+      "headerHeight": 147.65625,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        },
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        }
+      ],
+      "overflowing": [
+        {
+          "tag": "DIV",
+          "cls": "flex grow flex-col bg-neutral-900",
+          "right": 1200
+        },
+        {
+          "tag": "HEADER",
+          "cls": "flex h-[68px] shrink-0 items-center justify-between bg-[#2D2D30] px-5 sm:h-auto sm:bg-transparent sm:px-15 sm:pb-[2.44rem] sm:pt-12",
+          "right": 1200
+        },
+        {
+          "tag": "DIV",
+          "cls": "hidden flex-col items-end justify-between gap-[0.94rem] sm:flex",
+          "right": 1140
+        },
+        {
+          "tag": "DIV",
+          "cls": "flex items-center gap-3 text-sm font-normal text-white [&>button:focus-visible]:focus-ring-inverse [&>a:focus-visible]:focus-ring-inverse",
+          "right": 1140
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1088.296875
+        },
+        {
+          "tag": "DIV",
+          "cls": "h-3 w-[0.03125rem] bg-white",
+          "right": 1100.796875
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1140
+        },
+        {
+          "tag": "SPAN",
+          "cls": "tracking-[0.025rem]",
+          "right": 1140
+        }
+      ]
+    },
+    {
+      "mode": "before",
+      "locale": "ko",
+      "width": 768,
+      "scene": "courses",
+      "rules": 0,
+      "documentWidth": 1200,
+      "bodyMinWidth": "1200px",
+      "headerHeight": 147.65625,
+      "visibleDates": [],
+      "images": [],
+      "overflowing": [
+        {
+          "tag": "DIV",
+          "cls": "flex grow flex-col bg-neutral-900",
+          "right": 1200
+        },
+        {
+          "tag": "HEADER",
+          "cls": "flex h-[68px] shrink-0 items-center justify-between bg-[#2D2D30] px-5 sm:h-auto sm:bg-transparent sm:px-15 sm:pb-[2.44rem] sm:pt-12",
+          "right": 1200
+        },
+        {
+          "tag": "DIV",
+          "cls": "hidden flex-col items-end justify-between gap-[0.94rem] sm:flex",
+          "right": 1140
+        },
+        {
+          "tag": "DIV",
+          "cls": "flex items-center gap-3 text-sm font-normal text-white [&>button:focus-visible]:focus-ring-inverse [&>a:focus-visible]:focus-ring-inverse",
+          "right": 1140
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1088.296875
+        },
+        {
+          "tag": "DIV",
+          "cls": "h-3 w-[0.03125rem] bg-white",
+          "right": 1100.796875
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1140
+        },
+        {
+          "tag": "SPAN",
+          "cls": "tracking-[0.025rem]",
+          "right": 1140
+        }
+      ]
+    },
+    {
+      "mode": "before",
+      "locale": "ko",
+      "width": 768,
+      "scene": "reservation",
+      "rules": 0,
+      "documentWidth": 1200,
+      "bodyMinWidth": "1200px",
+      "headerHeight": 147.65625,
+      "visibleDates": [
+        "2024-03-11",
+        "2024-03-12",
+        "2024-03-13",
+        "2024-03-14",
+        "2024-03-15",
+        "2024-03-16",
+        "2024-03-17"
+      ],
+      "images": [],
+      "overflowing": [
+        {
+          "tag": "DIV",
+          "cls": "flex grow flex-col bg-neutral-900",
+          "right": 1200
+        },
+        {
+          "tag": "HEADER",
+          "cls": "flex h-[68px] shrink-0 items-center justify-between bg-[#2D2D30] px-5 sm:h-auto sm:bg-transparent sm:px-15 sm:pb-[2.44rem] sm:pt-12",
+          "right": 1200
+        },
+        {
+          "tag": "DIV",
+          "cls": "hidden flex-col items-end justify-between gap-[0.94rem] sm:flex",
+          "right": 1140
+        },
+        {
+          "tag": "DIV",
+          "cls": "flex items-center gap-3 text-sm font-normal text-white [&>button:focus-visible]:focus-ring-inverse [&>a:focus-visible]:focus-ring-inverse",
+          "right": 1140
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1088.296875
+        },
+        {
+          "tag": "DIV",
+          "cls": "h-3 w-[0.03125rem] bg-white",
+          "right": 1100.796875
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1140
+        },
+        {
+          "tag": "SPAN",
+          "cls": "tracking-[0.025rem]",
+          "right": 1140
+        }
+      ]
+    },
+    {
+      "mode": "before",
+      "locale": "ko",
+      "width": 1024,
+      "scene": "overview",
+      "rules": 0,
+      "documentWidth": 1200,
+      "bodyMinWidth": "1200px",
+      "headerHeight": 147.65625,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        },
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        }
+      ],
+      "overflowing": [
+        {
+          "tag": "DIV",
+          "cls": "flex grow flex-col bg-neutral-900",
+          "right": 1200
+        },
+        {
+          "tag": "HEADER",
+          "cls": "flex h-[68px] shrink-0 items-center justify-between bg-[#2D2D30] px-5 sm:h-auto sm:bg-transparent sm:px-15 sm:pb-[2.44rem] sm:pt-12",
+          "right": 1200
+        },
+        {
+          "tag": "DIV",
+          "cls": "hidden flex-col items-end justify-between gap-[0.94rem] sm:flex",
+          "right": 1140
+        },
+        {
+          "tag": "DIV",
+          "cls": "flex items-center gap-3 text-sm font-normal text-white [&>button:focus-visible]:focus-ring-inverse [&>a:focus-visible]:focus-ring-inverse",
+          "right": 1140
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1088.296875
+        },
+        {
+          "tag": "DIV",
+          "cls": "h-3 w-[0.03125rem] bg-white",
+          "right": 1100.796875
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1140
+        },
+        {
+          "tag": "SPAN",
+          "cls": "tracking-[0.025rem]",
+          "right": 1140
+        }
+      ]
+    },
+    {
+      "mode": "before",
+      "locale": "ko",
+      "width": 1024,
+      "scene": "courses",
+      "rules": 0,
+      "documentWidth": 1200,
+      "bodyMinWidth": "1200px",
+      "headerHeight": 147.65625,
+      "visibleDates": [],
+      "images": [],
+      "overflowing": [
+        {
+          "tag": "DIV",
+          "cls": "flex grow flex-col bg-neutral-900",
+          "right": 1200
+        },
+        {
+          "tag": "HEADER",
+          "cls": "flex h-[68px] shrink-0 items-center justify-between bg-[#2D2D30] px-5 sm:h-auto sm:bg-transparent sm:px-15 sm:pb-[2.44rem] sm:pt-12",
+          "right": 1200
+        },
+        {
+          "tag": "DIV",
+          "cls": "hidden flex-col items-end justify-between gap-[0.94rem] sm:flex",
+          "right": 1140
+        },
+        {
+          "tag": "DIV",
+          "cls": "flex items-center gap-3 text-sm font-normal text-white [&>button:focus-visible]:focus-ring-inverse [&>a:focus-visible]:focus-ring-inverse",
+          "right": 1140
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1088.296875
+        },
+        {
+          "tag": "DIV",
+          "cls": "h-3 w-[0.03125rem] bg-white",
+          "right": 1100.796875
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1140
+        },
+        {
+          "tag": "SPAN",
+          "cls": "tracking-[0.025rem]",
+          "right": 1140
+        }
+      ]
+    },
+    {
+      "mode": "before",
+      "locale": "ko",
+      "width": 1024,
+      "scene": "reservation",
+      "rules": 0,
+      "documentWidth": 1200,
+      "bodyMinWidth": "1200px",
+      "headerHeight": 147.65625,
+      "visibleDates": [
+        "2024-03-11",
+        "2024-03-12",
+        "2024-03-13",
+        "2024-03-14",
+        "2024-03-15",
+        "2024-03-16",
+        "2024-03-17"
+      ],
+      "images": [],
+      "overflowing": [
+        {
+          "tag": "DIV",
+          "cls": "flex grow flex-col bg-neutral-900",
+          "right": 1200
+        },
+        {
+          "tag": "HEADER",
+          "cls": "flex h-[68px] shrink-0 items-center justify-between bg-[#2D2D30] px-5 sm:h-auto sm:bg-transparent sm:px-15 sm:pb-[2.44rem] sm:pt-12",
+          "right": 1200
+        },
+        {
+          "tag": "DIV",
+          "cls": "hidden flex-col items-end justify-between gap-[0.94rem] sm:flex",
+          "right": 1140
+        },
+        {
+          "tag": "DIV",
+          "cls": "flex items-center gap-3 text-sm font-normal text-white [&>button:focus-visible]:focus-ring-inverse [&>a:focus-visible]:focus-ring-inverse",
+          "right": 1140
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1088.296875
+        },
+        {
+          "tag": "DIV",
+          "cls": "h-3 w-[0.03125rem] bg-white",
+          "right": 1100.796875
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1140
+        },
+        {
+          "tag": "SPAN",
+          "cls": "tracking-[0.025rem]",
+          "right": 1140
+        }
+      ]
+    },
+    {
+      "mode": "before",
+      "locale": "en",
+      "width": 768,
+      "scene": "overview",
+      "rules": 0,
+      "documentWidth": 1200,
+      "bodyMinWidth": "1200px",
+      "headerHeight": 147.65625,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        },
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        }
+      ],
+      "overflowing": [
+        {
+          "tag": "DIV",
+          "cls": "flex grow flex-col bg-neutral-900",
+          "right": 1200
+        },
+        {
+          "tag": "HEADER",
+          "cls": "flex h-[68px] shrink-0 items-center justify-between bg-[#2D2D30] px-5 sm:h-auto sm:bg-transparent sm:px-15 sm:pb-[2.44rem] sm:pt-12",
+          "right": 1200
+        },
+        {
+          "tag": "DIV",
+          "cls": "hidden flex-col items-end justify-between gap-[0.94rem] sm:flex",
+          "right": 1140
+        },
+        {
+          "tag": "DIV",
+          "cls": "flex items-center gap-3 text-sm font-normal text-white [&>button:focus-visible]:focus-ring-inverse [&>a:focus-visible]:focus-ring-inverse",
+          "right": 1140
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1082.5
+        },
+        {
+          "tag": "DIV",
+          "cls": "h-3 w-[0.03125rem] bg-white",
+          "right": 1095
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1140
+        },
+        {
+          "tag": "FORM",
+          "cls": "flex h-7.5 w-54 justify-center rounded-[.0625rem] bg-neutral-200 pr-0.5 outline-none [&>button]:min-h-6 [&>button]:min-w-6 [&>button]:shrink-0 [&>button:hover]:text-neutral-700 [&>button:focus-visible]:focus-ring-boundary",
+          "right": 1140
+        }
+      ]
+    },
+    {
+      "mode": "before",
+      "locale": "en",
+      "width": 768,
+      "scene": "courses",
+      "rules": 0,
+      "documentWidth": 1200,
+      "bodyMinWidth": "1200px",
+      "headerHeight": 147.65625,
+      "visibleDates": [],
+      "images": [],
+      "overflowing": [
+        {
+          "tag": "DIV",
+          "cls": "flex grow flex-col bg-neutral-900",
+          "right": 1200
+        },
+        {
+          "tag": "HEADER",
+          "cls": "flex h-[68px] shrink-0 items-center justify-between bg-[#2D2D30] px-5 sm:h-auto sm:bg-transparent sm:px-15 sm:pb-[2.44rem] sm:pt-12",
+          "right": 1200
+        },
+        {
+          "tag": "DIV",
+          "cls": "hidden flex-col items-end justify-between gap-[0.94rem] sm:flex",
+          "right": 1140
+        },
+        {
+          "tag": "DIV",
+          "cls": "flex items-center gap-3 text-sm font-normal text-white [&>button:focus-visible]:focus-ring-inverse [&>a:focus-visible]:focus-ring-inverse",
+          "right": 1140
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1082.5
+        },
+        {
+          "tag": "DIV",
+          "cls": "h-3 w-[0.03125rem] bg-white",
+          "right": 1095
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1140
+        },
+        {
+          "tag": "FORM",
+          "cls": "flex h-7.5 w-54 justify-center rounded-[.0625rem] bg-neutral-200 pr-0.5 outline-none [&>button]:min-h-6 [&>button]:min-w-6 [&>button]:shrink-0 [&>button:hover]:text-neutral-700 [&>button:focus-visible]:focus-ring-boundary",
+          "right": 1140
+        }
+      ]
+    },
+    {
+      "mode": "before",
+      "locale": "en",
+      "width": 768,
+      "scene": "reservation",
+      "rules": 0,
+      "documentWidth": 1200,
+      "bodyMinWidth": "1200px",
+      "headerHeight": 147.65625,
+      "visibleDates": [
+        "2024-03-11",
+        "2024-03-12",
+        "2024-03-13",
+        "2024-03-14",
+        "2024-03-15",
+        "2024-03-16",
+        "2024-03-17"
+      ],
+      "images": [],
+      "overflowing": [
+        {
+          "tag": "DIV",
+          "cls": "flex grow flex-col bg-neutral-900",
+          "right": 1200
+        },
+        {
+          "tag": "HEADER",
+          "cls": "flex h-[68px] shrink-0 items-center justify-between bg-[#2D2D30] px-5 sm:h-auto sm:bg-transparent sm:px-15 sm:pb-[2.44rem] sm:pt-12",
+          "right": 1200
+        },
+        {
+          "tag": "DIV",
+          "cls": "hidden flex-col items-end justify-between gap-[0.94rem] sm:flex",
+          "right": 1140
+        },
+        {
+          "tag": "DIV",
+          "cls": "flex items-center gap-3 text-sm font-normal text-white [&>button:focus-visible]:focus-ring-inverse [&>a:focus-visible]:focus-ring-inverse",
+          "right": 1140
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1082.5
+        },
+        {
+          "tag": "DIV",
+          "cls": "h-3 w-[0.03125rem] bg-white",
+          "right": 1095
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1140
+        },
+        {
+          "tag": "FORM",
+          "cls": "flex h-7.5 w-54 justify-center rounded-[.0625rem] bg-neutral-200 pr-0.5 outline-none [&>button]:min-h-6 [&>button]:min-w-6 [&>button]:shrink-0 [&>button:hover]:text-neutral-700 [&>button:focus-visible]:focus-ring-boundary",
+          "right": 1140
+        }
+      ]
+    },
+    {
+      "mode": "before",
+      "locale": "en",
+      "width": 1024,
+      "scene": "overview",
+      "rules": 0,
+      "documentWidth": 1200,
+      "bodyMinWidth": "1200px",
+      "headerHeight": 147.65625,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        },
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        }
+      ],
+      "overflowing": [
+        {
+          "tag": "DIV",
+          "cls": "flex grow flex-col bg-neutral-900",
+          "right": 1200
+        },
+        {
+          "tag": "HEADER",
+          "cls": "flex h-[68px] shrink-0 items-center justify-between bg-[#2D2D30] px-5 sm:h-auto sm:bg-transparent sm:px-15 sm:pb-[2.44rem] sm:pt-12",
+          "right": 1200
+        },
+        {
+          "tag": "DIV",
+          "cls": "hidden flex-col items-end justify-between gap-[0.94rem] sm:flex",
+          "right": 1140
+        },
+        {
+          "tag": "DIV",
+          "cls": "flex items-center gap-3 text-sm font-normal text-white [&>button:focus-visible]:focus-ring-inverse [&>a:focus-visible]:focus-ring-inverse",
+          "right": 1140
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1082.5
+        },
+        {
+          "tag": "DIV",
+          "cls": "h-3 w-[0.03125rem] bg-white",
+          "right": 1095
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1140
+        },
+        {
+          "tag": "FORM",
+          "cls": "flex h-7.5 w-54 justify-center rounded-[.0625rem] bg-neutral-200 pr-0.5 outline-none [&>button]:min-h-6 [&>button]:min-w-6 [&>button]:shrink-0 [&>button:hover]:text-neutral-700 [&>button:focus-visible]:focus-ring-boundary",
+          "right": 1140
+        }
+      ]
+    },
+    {
+      "mode": "before",
+      "locale": "en",
+      "width": 1024,
+      "scene": "courses",
+      "rules": 0,
+      "documentWidth": 1200,
+      "bodyMinWidth": "1200px",
+      "headerHeight": 147.65625,
+      "visibleDates": [],
+      "images": [],
+      "overflowing": [
+        {
+          "tag": "DIV",
+          "cls": "flex grow flex-col bg-neutral-900",
+          "right": 1200
+        },
+        {
+          "tag": "HEADER",
+          "cls": "flex h-[68px] shrink-0 items-center justify-between bg-[#2D2D30] px-5 sm:h-auto sm:bg-transparent sm:px-15 sm:pb-[2.44rem] sm:pt-12",
+          "right": 1200
+        },
+        {
+          "tag": "DIV",
+          "cls": "hidden flex-col items-end justify-between gap-[0.94rem] sm:flex",
+          "right": 1140
+        },
+        {
+          "tag": "DIV",
+          "cls": "flex items-center gap-3 text-sm font-normal text-white [&>button:focus-visible]:focus-ring-inverse [&>a:focus-visible]:focus-ring-inverse",
+          "right": 1140
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1082.5
+        },
+        {
+          "tag": "DIV",
+          "cls": "h-3 w-[0.03125rem] bg-white",
+          "right": 1095
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1140
+        },
+        {
+          "tag": "FORM",
+          "cls": "flex h-7.5 w-54 justify-center rounded-[.0625rem] bg-neutral-200 pr-0.5 outline-none [&>button]:min-h-6 [&>button]:min-w-6 [&>button]:shrink-0 [&>button:hover]:text-neutral-700 [&>button:focus-visible]:focus-ring-boundary",
+          "right": 1140
+        }
+      ]
+    },
+    {
+      "mode": "before",
+      "locale": "en",
+      "width": 1024,
+      "scene": "reservation",
+      "rules": 0,
+      "documentWidth": 1200,
+      "bodyMinWidth": "1200px",
+      "headerHeight": 147.65625,
+      "visibleDates": [
+        "2024-03-11",
+        "2024-03-12",
+        "2024-03-13",
+        "2024-03-14",
+        "2024-03-15",
+        "2024-03-16",
+        "2024-03-17"
+      ],
+      "images": [],
+      "overflowing": [
+        {
+          "tag": "DIV",
+          "cls": "flex grow flex-col bg-neutral-900",
+          "right": 1200
+        },
+        {
+          "tag": "HEADER",
+          "cls": "flex h-[68px] shrink-0 items-center justify-between bg-[#2D2D30] px-5 sm:h-auto sm:bg-transparent sm:px-15 sm:pb-[2.44rem] sm:pt-12",
+          "right": 1200
+        },
+        {
+          "tag": "DIV",
+          "cls": "hidden flex-col items-end justify-between gap-[0.94rem] sm:flex",
+          "right": 1140
+        },
+        {
+          "tag": "DIV",
+          "cls": "flex items-center gap-3 text-sm font-normal text-white [&>button:focus-visible]:focus-ring-inverse [&>a:focus-visible]:focus-ring-inverse",
+          "right": 1140
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1082.5
+        },
+        {
+          "tag": "DIV",
+          "cls": "h-3 w-[0.03125rem] bg-white",
+          "right": 1095
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "inline-flex items-center justify-center gap-2 font-medium transition duration-200 text-sm font-normal text-white hover:text-neutral-200 disabled:cursor-not-allowed disabled:opacity-40",
+          "right": 1140
+        },
+        {
+          "tag": "FORM",
+          "cls": "flex h-7.5 w-54 justify-center rounded-[.0625rem] bg-neutral-200 pr-0.5 outline-none [&>button]:min-h-6 [&>button]:min-w-6 [&>button]:shrink-0 [&>button:hover]:text-neutral-700 [&>button:focus-visible]:focus-ring-boundary",
+          "right": 1140
+        }
+      ]
+    },
+    {
+      "mode": "compact",
+      "locale": "ko",
+      "width": 768,
+      "scene": "overview",
+      "rules": 2,
+      "documentWidth": 768,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        },
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        }
+      ],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "ko",
+      "width": 768,
+      "scene": "courses",
+      "rules": 2,
+      "documentWidth": 768,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "ko",
+      "width": 768,
+      "scene": "reservation",
+      "rules": 2,
+      "documentWidth": 768,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": ["2024-03-15", "2024-03-16", "2024-03-17"],
+      "images": [],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "ko",
+      "width": 1024,
+      "scene": "overview",
+      "rules": 2,
+      "documentWidth": 1024,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        },
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        }
+      ],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "ko",
+      "width": 1024,
+      "scene": "courses",
+      "rules": 2,
+      "documentWidth": 1024,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "ko",
+      "width": 1024,
+      "scene": "reservation",
+      "rules": 2,
+      "documentWidth": 1024,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": ["2024-03-15", "2024-03-16", "2024-03-17"],
+      "images": [],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "en",
+      "width": 768,
+      "scene": "overview",
+      "rules": 2,
+      "documentWidth": 768,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        },
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        }
+      ],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "en",
+      "width": 768,
+      "scene": "courses",
+      "rules": 2,
+      "documentWidth": 768,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "en",
+      "width": 768,
+      "scene": "reservation",
+      "rules": 2,
+      "documentWidth": 768,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": ["2024-03-15", "2024-03-16", "2024-03-17"],
+      "images": [],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "en",
+      "width": 1024,
+      "scene": "overview",
+      "rules": 2,
+      "documentWidth": 1024,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        },
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        }
+      ],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "en",
+      "width": 1024,
+      "scene": "courses",
+      "rules": 2,
+      "documentWidth": 1024,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "en",
+      "width": 1024,
+      "scene": "reservation",
+      "rules": 2,
+      "documentWidth": 1024,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": ["2024-03-15", "2024-03-16", "2024-03-17"],
+      "images": [],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "en",
+      "scene": "boundary",
+      "width": 390,
+      "documentWidth": 390,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        },
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        }
+      ],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "en",
+      "scene": "boundary",
+      "width": 640,
+      "documentWidth": 640,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        },
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        }
+      ],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "en",
+      "scene": "boundary",
+      "width": 1199,
+      "documentWidth": 1199,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        },
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        }
+      ],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "en",
+      "scene": "boundary",
+      "width": 1200,
+      "documentWidth": 1200,
+      "bodyMinWidth": "1200px",
+      "headerHeight": 147.65625,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        },
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        }
+      ],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "en",
+      "scene": "boundary",
+      "width": 1280,
+      "documentWidth": 1280,
+      "bodyMinWidth": "1200px",
+      "headerHeight": 147.65625,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        },
+        {
+          "sizes": "227px",
+          "renderedWidth": 227
+        }
+      ],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "en",
+      "scene": "main",
+      "width": 768,
+      "documentWidth": 768,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [
+        {
+          "sizes": "(min-width: 640px) 50vw, 100vw",
+          "renderedWidth": 768
+        },
+        {
+          "sizes": "77vw",
+          "renderedWidth": 0
+        }
+      ],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "en",
+      "scene": "category",
+      "width": 768,
+      "documentWidth": 768,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [],
+      "overflowing": []
+    },
+    {
+      "mode": "compact",
+      "locale": "en",
+      "scene": "faculty",
+      "width": 768,
+      "documentWidth": 768,
+      "bodyMinWidth": "0px",
+      "headerHeight": 68,
+      "visibleDates": [],
+      "images": [],
+      "overflowing": []
+    }
+  ]
+}
