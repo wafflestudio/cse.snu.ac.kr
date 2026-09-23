@@ -1,0 +1,25 @@
+{
+  "empty": [
+    {
+      "locale": "ko",
+      "width": 320,
+      "text": "검색 결과가 존재하지 않습니다"
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "text": "검색 결과가 존재하지 않습니다"
+    },
+    {
+      "locale": "en",
+      "width": 320,
+      "text": "No search results found."
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "text": "No search results found."
+    }
+  ],
+  "note": "빈 검색 결과 색만 적용. 함께 시험했던 인물 사진 초점은 사용자 요청으로 앱 변경을 되돌리고 최종 접근성 단계로 보류."
+}
