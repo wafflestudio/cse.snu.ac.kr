@@ -1,0 +1,116 @@
+{
+  "decision": "DS-020",
+  "environment": "Production build, cached local API, Linux Chromium 1.57.0, ko 1280px",
+  "records": [
+    {
+      "id": "course-light",
+      "actual": {
+        "outline": "rgb(64, 64, 64) solid 2px",
+        "offset": "2px",
+        "shadow": "none",
+        "rect": {
+          "x": 200,
+          "y": 533.234375,
+          "width": 44,
+          "height": 44
+        }
+      },
+      "proposalImageIdentical": true,
+      "forcedColors": {
+        "outline": "rgba(5, 0, 73, 0.8) solid 2px",
+        "offset": "2px",
+        "shadow": "none",
+        "rect": {
+          "x": 200,
+          "y": 533.234375,
+          "width": 44,
+          "height": 44
+        }
+      }
+    },
+    {
+      "id": "nav-dark",
+      "actual": {
+        "outline": "rgb(255, 255, 255) solid 2px",
+        "offset": "2px",
+        "shadow": "none",
+        "rect": {
+          "x": 1135.296875,
+          "y": 48,
+          "width": 33,
+          "height": 15.59375
+        }
+      },
+      "proposalImageIdentical": true,
+      "forcedColors": {
+        "outline": "rgba(5, 0, 73, 0.8) solid 2px",
+        "offset": "2px",
+        "shadow": "none",
+        "rect": {
+          "x": 1135.296875,
+          "y": 48,
+          "width": 33,
+          "height": 15.59375
+        }
+      }
+    },
+    {
+      "id": "search-light",
+      "actual": {
+        "outline": "rgb(64, 64, 64) solid 2px",
+        "offset": "2px",
+        "shadow": "rgb(255, 255, 255) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1194,
+          "y": 78.625,
+          "width": 24,
+          "height": 30
+        }
+      },
+      "proposalImageIdentical": true,
+      "forcedColors": {
+        "outline": "rgba(5, 0, 73, 0.8) solid 2px",
+        "offset": "2px",
+        "shadow": "none",
+        "rect": {
+          "x": 1194,
+          "y": 78.625,
+          "width": 24,
+          "height": 30
+        }
+      }
+    },
+    {
+      "id": "selection-light",
+      "actual": {
+        "outline": "rgb(64, 64, 64) solid 2px",
+        "offset": "2px",
+        "shadow": "none",
+        "rect": {
+          "x": 200,
+          "y": 352.84375,
+          "width": 76,
+          "height": 34
+        }
+      },
+      "proposalImageIdentical": true,
+      "forcedColors": {
+        "outline": "rgb(0, 0, 0) solid 2px",
+        "offset": "2px",
+        "shadow": "none",
+        "rect": {
+          "x": 200,
+          "y": 352.84375,
+          "width": 76,
+          "height": 34
+        }
+      }
+    }
+  ],
+  "inputCaretPreserved": true,
+  "radioKeyboardAndBlur": true,
+  "limits": [
+    "Representative uses only; remaining components in stage 4.",
+    "Full regression and other browsers remain stage 5."
+  ]
+}

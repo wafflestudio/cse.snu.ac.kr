@@ -73,6 +73,26 @@
   --text-3xl--line-height: initial;
 }
 
+/* DS-020: opt in at the visible control; text inputs keep their caret treatment. */
+@utility focus-ring {
+  outline: 2px solid var(--ds-focus-color, var(--color-neutral-700));
+  outline-offset: 2px;
+
+  @media (forced-colors: active) {
+    outline-color: Highlight;
+  }
+}
+
+@utility focus-ring-inverse {
+  @apply focus-ring;
+  --ds-focus-color: var(--color-white);
+}
+
+@utility focus-ring-boundary {
+  @apply focus-ring;
+  box-shadow: 0 0 0 2px var(--color-white);
+}
+
 @keyframes stretch {
   0% {
     width: 10px;

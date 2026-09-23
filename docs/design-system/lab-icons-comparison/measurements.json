@@ -1,0 +1,174 @@
+{
+  "question": "I-Q4",
+  "method": "Temporary lab created through local API with PDF and video; actual app rendered in ko/en two widths; temporary icon color only. Fixture removed in finally.",
+  "records": [
+    {
+      "locale": "ko",
+      "width": 1280,
+      "measures": [
+        {
+          "title": "PDF",
+          "color": "rgb(163, 163, 163)",
+          "fill": "none",
+          "background": "rgb(255, 255, 255)",
+          "rect": {
+            "x": 840.15625,
+            "y": 411.34375,
+            "width": 20,
+            "height": 20
+          }
+        },
+        {
+          "title": "YOUTUBE",
+          "color": "rgb(10, 10, 10)",
+          "fill": "rgb(163, 163, 163)",
+          "background": "rgb(255, 255, 255)",
+          "rect": {
+            "x": 872.15625,
+            "y": 411.34375,
+            "width": 18,
+            "height": 20
+          }
+        }
+      ],
+      "states": [
+        {
+          "title": "PDF",
+          "focusVisible": true,
+          "outline": "rgb(16, 16, 16) auto 1px"
+        },
+        {
+          "title": "YOUTUBE",
+          "focusVisible": true,
+          "outline": "rgb(16, 16, 16) auto 1px"
+        }
+      ]
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "measures": [
+        {
+          "title": "PDF",
+          "color": "rgb(163, 163, 163)",
+          "fill": "none",
+          "background": "rgb(250, 250, 250)",
+          "rect": {
+            "x": 48,
+            "y": 348.359375,
+            "width": 20,
+            "height": 20
+          }
+        },
+        {
+          "title": "YOUTUBE",
+          "color": "rgb(10, 10, 10)",
+          "fill": "rgb(163, 163, 163)",
+          "background": "rgb(250, 250, 250)",
+          "rect": {
+            "x": 80,
+            "y": 348.359375,
+            "width": 18,
+            "height": 20
+          }
+        }
+      ],
+      "states": [
+        {
+          "title": "PDF",
+          "focusVisible": true,
+          "outline": "rgb(16, 16, 16) auto 1px"
+        },
+        {
+          "title": "YOUTUBE",
+          "focusVisible": true,
+          "outline": "rgb(16, 16, 16) auto 1px"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "measures": [
+        {
+          "title": "PDF",
+          "color": "rgb(163, 163, 163)",
+          "fill": "none",
+          "background": "rgb(255, 255, 255)",
+          "rect": {
+            "x": 840.15625,
+            "y": 467.34375,
+            "width": 20,
+            "height": 20
+          }
+        },
+        {
+          "title": "YOUTUBE",
+          "color": "rgb(10, 10, 10)",
+          "fill": "rgb(163, 163, 163)",
+          "background": "rgb(255, 255, 255)",
+          "rect": {
+            "x": 872.15625,
+            "y": 467.34375,
+            "width": 18,
+            "height": 20
+          }
+        }
+      ],
+      "states": [
+        {
+          "title": "PDF",
+          "focusVisible": true,
+          "outline": "rgb(16, 16, 16) auto 1px"
+        },
+        {
+          "title": "YOUTUBE",
+          "focusVisible": true,
+          "outline": "rgb(16, 16, 16) auto 1px"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "measures": [
+        {
+          "title": "PDF",
+          "color": "rgb(163, 163, 163)",
+          "fill": "none",
+          "background": "rgb(255, 255, 255)",
+          "rect": {
+            "x": 48,
+            "y": 487.53125,
+            "width": 20,
+            "height": 20
+          }
+        },
+        {
+          "title": "YOUTUBE",
+          "color": "rgb(10, 10, 10)",
+          "fill": "rgb(163, 163, 163)",
+          "background": "rgb(255, 255, 255)",
+          "rect": {
+            "x": 80,
+            "y": 487.53125,
+            "width": 18,
+            "height": 20
+          }
+        }
+      ],
+      "states": [
+        {
+          "title": "PDF",
+          "focusVisible": true,
+          "outline": "rgb(16, 16, 16) auto 1px"
+        },
+        {
+          "title": "YOUTUBE",
+          "focusVisible": true,
+          "outline": "rgb(16, 16, 16) auto 1px"
+        }
+      ]
+    }
+  ]
+}
