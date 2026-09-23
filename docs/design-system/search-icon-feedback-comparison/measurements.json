@@ -1,0 +1,97 @@
+{
+  "question": "I-Q1",
+  "source": "467bf04a",
+  "environment": "Fresh production frontend, cached local API, Playwright 1.57.0 Linux Chromium",
+  "method": "Measure current normal and real pointer hover; revised proposal temporarily darkens the same button from #737373 to #404040 on hover; retains visible color feedback. No app source change to search, no search submission.",
+  "records": [
+    {
+      "locale": "ko",
+      "normal": {
+        "color": "rgb(115, 115, 115)",
+        "background": "rgb(229, 229, 229)",
+        "button": {
+          "width": 20,
+          "height": 30
+        },
+        "icon": {
+          "width": 20,
+          "height": 20,
+          "stroke": "1.5"
+        }
+      },
+      "hover": {
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(229, 229, 229)",
+        "button": {
+          "width": 20,
+          "height": 30
+        },
+        "icon": {
+          "width": 20,
+          "height": 20,
+          "stroke": "1.5"
+        }
+      },
+      "proposal": {
+        "color": "rgb(64, 64, 64)",
+        "background": "rgb(229, 229, 229)",
+        "button": {
+          "width": 20,
+          "height": 30
+        },
+        "icon": {
+          "width": 20,
+          "height": 20,
+          "stroke": "1.5"
+        }
+      }
+    },
+    {
+      "locale": "en",
+      "normal": {
+        "color": "rgb(115, 115, 115)",
+        "background": "rgb(229, 229, 229)",
+        "button": {
+          "width": 20,
+          "height": 30
+        },
+        "icon": {
+          "width": 20,
+          "height": 20,
+          "stroke": "1.5"
+        }
+      },
+      "hover": {
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(229, 229, 229)",
+        "button": {
+          "width": 20,
+          "height": 30
+        },
+        "icon": {
+          "width": 20,
+          "height": 20,
+          "stroke": "1.5"
+        }
+      },
+      "proposal": {
+        "color": "rgb(64, 64, 64)",
+        "background": "rgb(229, 229, 229)",
+        "button": {
+          "width": 20,
+          "height": 30
+        },
+        "icon": {
+          "width": 20,
+          "height": 20,
+          "stroke": "1.5"
+        }
+      }
+    }
+  ],
+  "limits": [
+    "Header search is desktop-only; Korean and English 1280px inspected.",
+    "Button hit area and keyboard focus are separate checks, not changed by this proposal.",
+    "Not full accessibility audit."
+  ]
+}
