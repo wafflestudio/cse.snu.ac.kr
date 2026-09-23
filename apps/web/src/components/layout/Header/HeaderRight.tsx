@@ -19,7 +19,7 @@ export default function HeaderRight() {
   const { isEnglish, changeLanguage, t } = useLanguage(translations);
 
   return (
-    <div className="hidden flex-col items-end justify-between gap-[0.94rem] sm:flex">
+    <div className="hidden flex-col items-end justify-between gap-[0.94rem] shell:flex">
       <div className="flex items-center gap-3 text-sm font-normal text-white [&>button:focus-visible]:focus-ring-inverse [&>a:focus-visible]:focus-ring-inverse">
         {/* Admin menu - only for ROLE_STAFF */}
         <LoginVisible allow="ROLE_STAFF">

@@ -29,11 +29,11 @@ export default function HeaderLeft() {
         alt=""
         width={256}
         height={56}
-        className="hidden sm:block"
+        className="hidden shell:block"
       />
 
       {/* mobile - 작은 화면에서만 표시 */}
-      <div className="flex items-center gap-4 sm:hidden">
+      <div className="flex items-center gap-4 shell:hidden">
         <span className="snu-logo block h-[35px] w-[34px] shrink-0 bg-white" />
         <div className="flex flex-col gap-1">
           <img src={headerTextUrl} alt="" width={133} height={12} />

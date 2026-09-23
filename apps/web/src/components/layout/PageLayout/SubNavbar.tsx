@@ -26,7 +26,7 @@ export default function SubNavbar({ title, titlePath, items }: SubNavConfig) {
   const { localizedPath } = useLanguage();
 
   return (
-    <div className="absolute right-[80px] top-0 hidden h-full sm:block">
+    <div className="absolute right-[80px] top-0 hidden h-full shell:block">
       <div
         className={clsx(
           'sticky top-[52px] col-start-2 row-span-full mb-8 mt-13 flex',

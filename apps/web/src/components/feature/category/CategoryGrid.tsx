@@ -12,9 +12,9 @@ interface CategoryGridProps {
 }
 
 const ROOT_GRID_CLASS =
-  'mb-5 grid grid-cols-[repeat(2,1fr)] gap-9 sm:mb-10 sm:grid-cols-[repeat(auto-fill,300px)] sm:gap-9';
+  'mb-5 grid grid-cols-[repeat(2,1fr)] gap-9 shell:mb-10 shell:grid-cols-[repeat(auto-fill,300px)] shell:gap-9';
 const LEAF_GRID_CLASS =
-  'grid grid-cols-[repeat(2,1fr)] gap-5 sm:mb-10 sm:grid-cols-[repeat(auto-fill,300px)] sm:gap-10';
+  'grid grid-cols-[repeat(2,1fr)] gap-5 shell:mb-10 shell:grid-cols-[repeat(auto-fill,300px)] shell:gap-10';
 
 export default function CategoryGrid({
   currentPage,
@@ -43,7 +43,7 @@ export default function CategoryGrid({
     <div
       className={clsx(
         isLight ? 'bg-white' : 'bg-neutral-900',
-        'px-5 py-7 sm:px-25 sm:pb-45 sm:pt-20',
+        'px-5 py-7 shell:px-25 shell:pb-45 shell:pt-20',
       )}
     >
       <div className={ROOT_GRID_CLASS}>
@@ -138,7 +138,7 @@ function CategoryItem({
     <button
       type="button"
       className={clsx(
-        'group flex h-[96px] cursor-pointer flex-col justify-between px-[14px] py-[13px] duration-300 sm:h-[160px] sm:px-7 sm:py-6',
+        'group flex h-[96px] cursor-pointer flex-col justify-between px-[14px] py-[13px] duration-300 shell:h-[160px] shell:px-7 shell:py-6',
         bgColor,
         hoverBgColor,
         borderColor && `border ${borderColor}`,
@@ -146,17 +146,17 @@ function CategoryItem({
       onClick={onClick}
     >
       <div>
-        <h3 className="mb-2.5 text-md font-medium text-neutral-800 sm:mb-2.5 sm:text-[20px] text-start">
+        <h3 className="mb-2.5 text-md font-medium text-neutral-800 shell:mb-2.5 shell:text-[20px] text-start">
           {title}
         </h3>
-        <p className="text-[11px] text-neutral-800 sm:text-base text-start">
+        <p className="text-[11px] text-neutral-800 shell:text-base text-start">
           {englishLabel}
         </p>
       </div>
       {hasArrow && (
         <div className="text-end">
           <ArrowRight
-            className="h-[18px] w-[18px] text-neutral-800 duration-300 group-hover:translate-x-[10px] sm:h-[32px] sm:w-[32px]"
+            className="h-[18px] w-[18px] text-neutral-800 duration-300 group-hover:translate-x-[10px] shell:h-[32px] shell:w-[32px]"
             strokeWidth={1.5}
           />
         </div>

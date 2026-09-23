@@ -25,11 +25,11 @@ export default function LinkRow({ to, title, subtitle }: LinkRowProps) {
           'group-hover:text-main-orange',
         )}
       >
-        <p className="text-base font-medium sm:text-lg sm:font-semibold">
+        <p className="text-base font-medium shell:text-lg shell:font-semibold">
           {title}
         </p>
         {subtitle && (
-          <p className="text-xs font-medium sm:font-semibold">{subtitle}</p>
+          <p className="text-xs font-medium shell:font-semibold">{subtitle}</p>
         )}
       </div>
       <ArrowRight

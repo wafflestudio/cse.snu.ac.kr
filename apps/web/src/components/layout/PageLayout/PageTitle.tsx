@@ -29,7 +29,7 @@ export default function PageTitle({
     titleSize === 'xl' ? 'text-2xl font-bold' : 'text-lg font-medium';
 
   return (
-    <div className="px-5 pt-[54px] sm:px-25">
+    <div className="px-5 pt-[54px] shell:px-25">
       <div
         className={`col-start-1 row-start-1 w-fit min-w-62.5 max-w-207.5 ${margin}`}
       >
@@ -44,7 +44,7 @@ export default function PageTitle({
             {subtitle ? (
               <span className="flex items-end">
                 <span
-                  className={`${titleStyle} break-keep text-[24px] tracking-wide text-white sm:text-[32px]`}
+                  className={`${titleStyle} break-keep text-[24px] tracking-wide text-white shell:text-[32px]`}
                 >
                   {title}
                 </span>
@@ -54,7 +54,7 @@ export default function PageTitle({
               </span>
             ) : (
               <span
-                className={`${titleStyle} break-keep text-[24px] tracking-wide text-white sm:text-[32px]`}
+                className={`${titleStyle} break-keep text-[24px] tracking-wide text-white shell:text-[32px]`}
               >
                 {title}
               </span>
@@ -108,7 +108,7 @@ function LocationText({ path, name, isCurrent }: LocationTextProps) {
   const { localizedPath } = useLanguage();
   const _navigate = useNavigate();
   const router = useRouter();
-  const textStyle = 'text-xs sm:text-md font-normal tracking-[.02em]';
+  const textStyle = 'text-xs shell:text-md font-normal tracking-[.02em]';
 
   if (isCurrent) {
     // 브레드크럼 현재 항목: 형제 Link/span과 색을 맞춰야 해 색을 상속받는다(text-inherit).

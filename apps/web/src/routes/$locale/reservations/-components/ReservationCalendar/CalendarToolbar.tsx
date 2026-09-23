@@ -15,7 +15,7 @@ import LoginVisible from '@/components/feature/auth/LoginVisible';
 import Button from '@/components/ui/Button';
 import Calendar from '@/components/ui/Calendar';
 import { useClickOutside } from '@/hooks/useClickOutside';
-import { isMobileViewport } from '@/hooks/useResponsive';
+import { isCompactContentViewport } from '@/hooks/useResponsive';
 import {
   DESKTOP_COLUMN_COUNT,
   MOBILE_COLUMN_COUNT,
@@ -102,7 +102,7 @@ function ChangeDateButton({ direction }: { direction: 'prev' | 'next' }) {
   const { selectedDate, setSelectedDate } = useSelectedDate();
 
   const handleClick = () => {
-    const step = isMobileViewport()
+    const step = isCompactContentViewport()
       ? MOBILE_COLUMN_COUNT
       : DESKTOP_COLUMN_COUNT;
     setSelectedDate(

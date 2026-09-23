@@ -1,0 +1,258 @@
+{
+  "referenceCommit": "088fd3c7",
+  "method": "fresh production builds; identical local API and pinned Playwright; full-page screenshots before and after",
+  "records": [
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "overview",
+      "documentWidth": 390,
+      "originalMatches": true
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "courses",
+      "documentWidth": 390,
+      "originalMatches": true
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "reservation",
+      "documentWidth": 390,
+      "originalMatches": true
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "main",
+      "documentWidth": 390,
+      "originalMatches": true
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "category",
+      "documentWidth": 390,
+      "originalMatches": true
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "faculty",
+      "documentWidth": 390,
+      "originalMatches": true
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "notice",
+      "documentWidth": 390,
+      "originalMatches": true
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "news",
+      "documentWidth": 390,
+      "originalMatches": true
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "labs",
+      "documentWidth": 390,
+      "originalMatches": true
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "overview",
+      "documentWidth": 1280,
+      "originalMatches": true
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "courses",
+      "documentWidth": 1280,
+      "originalMatches": true
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "reservation",
+      "documentWidth": 1280,
+      "originalMatches": true
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "main",
+      "documentWidth": 1280,
+      "originalMatches": true
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "category",
+      "documentWidth": 1280,
+      "originalMatches": true
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "faculty",
+      "documentWidth": 1280,
+      "originalMatches": true
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "notice",
+      "documentWidth": 1280,
+      "originalMatches": true
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "news",
+      "documentWidth": 1280,
+      "originalMatches": true
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "labs",
+      "documentWidth": 1280,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "overview",
+      "documentWidth": 390,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "courses",
+      "documentWidth": 390,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "reservation",
+      "documentWidth": 390,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "main",
+      "documentWidth": 420,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "category",
+      "documentWidth": 390,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "faculty",
+      "documentWidth": 390,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "notice",
+      "documentWidth": 390,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "news",
+      "documentWidth": 390,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "labs",
+      "documentWidth": 390,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "overview",
+      "documentWidth": 1280,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "courses",
+      "documentWidth": 1280,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "reservation",
+      "documentWidth": 1280,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "main",
+      "documentWidth": 1280,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "category",
+      "documentWidth": 1280,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "faculty",
+      "documentWidth": 1280,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "notice",
+      "documentWidth": 1280,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "news",
+      "documentWidth": 1280,
+      "originalMatches": true
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "labs",
+      "documentWidth": 1280,
+      "originalMatches": true
+    }
+  ]
+}

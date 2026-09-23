@@ -16,7 +16,7 @@ import NotFound from '@/components/layout/NotFound';
 import RootErrorBoundary from '@/components/layout/RootErrorBoundary';
 import { Toaster } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import useIsMobile from '@/hooks/useResponsive';
+import { useCompactNavigation } from '@/hooks/useResponsive';
 import { type Role, useStore } from '@/store';
 import { fetchSessionRoles } from '@/utils/auth';
 import { detectLangFromHeaders } from '@/utils/lang';
@@ -107,9 +107,9 @@ function RootDocument() {
   const { locale, pathWithoutLocale } = useLanguage();
   const altPath = pathWithoutLocale === '/' ? '' : pathWithoutLocale;
   const isMain = pathWithoutLocale === '/';
-  const paddingLeft = isMain ? 'sm:pl-[11rem]' : 'sm:pl-[6.25rem]';
+  const paddingLeft = isMain ? 'shell:pl-[11rem]' : 'shell:pl-[6.25rem]';
 
-  const isMobile = useIsMobile();
+  const isMobile = useCompactNavigation();
   const isOpen = useStore((s) => s.navbarState.type !== 'closed');
   const isScrollBlocked = isMobile && isOpen;
 
@@ -126,7 +126,7 @@ function RootDocument() {
           href={`${origin}/ko${altPath}`}
         />
       </head>
-      <body className="sm:min-w-[1200px] bg-neutral-900 font-normal text-neutral-950">
+      <body className="shell:min-w-[1200px] bg-neutral-900 font-normal text-neutral-950">
         <LNB />
         <MobileNav />
         <main

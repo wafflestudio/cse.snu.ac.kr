@@ -39,7 +39,7 @@ export default function PageLayout({
   subtitle,
   breadcrumb,
   titleSize,
-  titleMargin = 'mb-6 sm:mb-11',
+  titleMargin = 'mb-6 shell:mb-11',
   padding = 'default',
   subNav,
   pageTitle,
@@ -61,10 +61,10 @@ export default function PageLayout({
     padding === 'none'
       ? 'p-0'
       : padding === 'noTop'
-        ? 'page-gutter-x pb-16 sm:pb-[150px]'
+        ? 'page-gutter-x pb-16 shell:pb-[150px]'
         : padding === 'noBottom'
-          ? 'page-gutter-x pt-7 sm:pt-11'
-          : 'page-gutter-x pt-7 pb-16 sm:pt-11 sm:pb-[150px]';
+          ? 'page-gutter-x pt-7 shell:pt-11'
+          : 'page-gutter-x pt-7 pb-16 shell:pt-11 shell:pb-[150px]';
 
   return (
     <>

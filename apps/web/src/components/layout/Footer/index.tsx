@@ -36,7 +36,7 @@ export default function Footer() {
     : 'light';
 
   const topBg =
-    mode === 'light' ? 'bg-neutral-50' : 'bg-[#262728] sm:bg-neutral-900';
+    mode === 'light' ? 'bg-neutral-50' : 'bg-[#262728] shell:bg-neutral-900';
   const bottomBg = mode === 'light' ? 'bg-neutral-100' : 'bg-[rgb(30,30,30)]';
   const borderTop =
     mode === 'light' ? 'border-neutral-100' : 'border-neutral-800';
@@ -44,14 +44,14 @@ export default function Footer() {
   return (
     <footer className={`border-t-2 ${borderTop}`}>
       <div
-        className={`${topBg} flex flex-wrap gap-y-8 px-6 py-9 sm:px-15 sm:py-10`}
+        className={`${topBg} flex flex-wrap gap-y-8 px-6 py-9 shell:px-15 shell:py-10`}
       >
         {getLinkGroups(locale).map((group) => (
           <LinkGroup key={group.groupName} {...group} mode={mode} />
         ))}
       </div>
       <div
-        className={`${bottomBg} flex flex-col justify-between px-5 py-[30px] sm:flex-row sm:items-center sm:px-15 sm:py-8`}
+        className={`${bottomBg} flex flex-col justify-between px-5 py-[30px] shell:flex-row shell:items-center shell:px-15 shell:py-8`}
       >
         <FooterBottomLeft />
         <FooterBottomRight />
@@ -69,16 +69,16 @@ function LinkGroup({
   const { t } = useLanguage(footerTranslations);
 
   const titleColor =
-    mode === 'light' ? 'text-neutral-600' : 'text-neutral-200 sm:text-white';
+    mode === 'light' ? 'text-neutral-600' : 'text-neutral-200 shell:text-white';
   const itemColor =
     mode === 'light'
       ? 'text-neutral-500'
-      : 'text-neutral-300 sm:text-neutral-500';
+      : 'text-neutral-300 shell:text-neutral-500';
 
   return (
     <section className={width}>
       <h3
-        className={`${titleColor} mb-[.625rem] text-sm font-medium tracking-[0.025rem] sm:text-[0.9375rem]`}
+        className={`${titleColor} mb-[.625rem] text-sm font-medium tracking-[0.025rem] shell:text-[0.9375rem]`}
       >
         {groupName}
       </h3>
@@ -88,7 +88,7 @@ function LinkGroup({
           <li key={i}>
             <Link
               to={link.href}
-              className="whitespace-normal sm:whitespace-nowrap"
+              className="whitespace-normal shell:whitespace-nowrap"
             >
               {t(link.title)}
             </Link>
@@ -104,7 +104,7 @@ function FooterBottomLeft() {
   const [cserealOpen, setCserealOpen] = useState(false);
 
   return (
-    <div className="text-xs text-neutral-500 sm:text-sm">
+    <div className="text-xs text-neutral-500 shell:text-sm">
       <div className="mb-1 flex gap-[1ch] [&>a]:font-bold ">
         <a
           href="https://www.snu.ac.kr/personal_information"
@@ -191,7 +191,7 @@ function CserealPart({ part, members }: { part: string; members: string[] }) {
 
 function FooterBottomRight() {
   return (
-    <div className="mt-7 flex flex-wrap gap-7 sm:mt-0 sm:flex-nowrap sm:items-center">
+    <div className="mt-7 flex flex-wrap gap-7 shell:mt-0 shell:flex-nowrap shell:items-center">
       <a
         href="http://eng.snu.ac.kr/"
         aria-label="서울대 공과대학 홈페이지로 이동"

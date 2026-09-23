@@ -1,0 +1,1723 @@
+{
+  "decision": "DS-023",
+  "environment": "Production build + cached local API; Playwright 1.57.0 Linux Chromium; actual styles (no prototype overrides)",
+  "records": [
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "overview",
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "courses",
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "reservation",
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "visibleDates": ["2024-03-15", "2024-03-16", "2024-03-17"],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "main",
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "category",
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "faculty",
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "notice",
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "news",
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "scene": "labs",
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 639,
+      "scene": "overview",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 639,
+      "scene": "courses",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 639,
+      "scene": "reservation",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": ["2024-03-15", "2024-03-16", "2024-03-17"],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 639,
+      "scene": "main",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 639,
+      "scene": "category",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 639,
+      "scene": "faculty",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 639,
+      "scene": "notice",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 639,
+      "scene": "news",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 639,
+      "scene": "labs",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 640,
+      "scene": "overview",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 640,
+      "scene": "courses",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 640,
+      "scene": "reservation",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": ["2024-03-15", "2024-03-16", "2024-03-17"],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 640,
+      "scene": "main",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 640,
+      "scene": "category",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 640,
+      "scene": "faculty",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 640,
+      "scene": "notice",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 640,
+      "scene": "news",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 640,
+      "scene": "labs",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 768,
+      "scene": "overview",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": true
+    },
+    {
+      "locale": "ko",
+      "width": 768,
+      "scene": "courses",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": true
+    },
+    {
+      "locale": "ko",
+      "width": 768,
+      "scene": "reservation",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": ["2024-03-15", "2024-03-16", "2024-03-17"],
+      "overflow": [],
+      "proposalImageIdentical": true
+    },
+    {
+      "locale": "ko",
+      "width": 768,
+      "scene": "main",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 768,
+      "scene": "category",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 768,
+      "scene": "faculty",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 768,
+      "scene": "notice",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 768,
+      "scene": "news",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 768,
+      "scene": "labs",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1023,
+      "scene": "overview",
+      "documentWidth": 1023,
+      "mainWidth": 1023,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1023,
+      "scene": "courses",
+      "documentWidth": 1023,
+      "mainWidth": 1023,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1023,
+      "scene": "reservation",
+      "documentWidth": 1023,
+      "mainWidth": 1023,
+      "visibleDates": ["2024-03-15", "2024-03-16", "2024-03-17"],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1023,
+      "scene": "main",
+      "documentWidth": 1023,
+      "mainWidth": 1023,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1023,
+      "scene": "category",
+      "documentWidth": 1023,
+      "mainWidth": 1023,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1023,
+      "scene": "faculty",
+      "documentWidth": 1023,
+      "mainWidth": 1023,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1023,
+      "scene": "notice",
+      "documentWidth": 1023,
+      "mainWidth": 1023,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1023,
+      "scene": "news",
+      "documentWidth": 1023,
+      "mainWidth": 1023,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1023,
+      "scene": "labs",
+      "documentWidth": 1023,
+      "mainWidth": 1023,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1024,
+      "scene": "overview",
+      "documentWidth": 1024,
+      "mainWidth": 1024,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": true
+    },
+    {
+      "locale": "ko",
+      "width": 1024,
+      "scene": "courses",
+      "documentWidth": 1024,
+      "mainWidth": 1024,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": true
+    },
+    {
+      "locale": "ko",
+      "width": 1024,
+      "scene": "reservation",
+      "documentWidth": 1024,
+      "mainWidth": 1024,
+      "visibleDates": [
+        "2024-03-11",
+        "2024-03-12",
+        "2024-03-13",
+        "2024-03-14",
+        "2024-03-15",
+        "2024-03-16",
+        "2024-03-17"
+      ],
+      "overflow": [],
+      "proposalImageIdentical": true
+    },
+    {
+      "locale": "ko",
+      "width": 1024,
+      "scene": "main",
+      "documentWidth": 1024,
+      "mainWidth": 1024,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1024,
+      "scene": "category",
+      "documentWidth": 1024,
+      "mainWidth": 1024,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1024,
+      "scene": "faculty",
+      "documentWidth": 1024,
+      "mainWidth": 1024,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1024,
+      "scene": "notice",
+      "documentWidth": 1024,
+      "mainWidth": 1024,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1024,
+      "scene": "news",
+      "documentWidth": 1024,
+      "mainWidth": 1024,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1024,
+      "scene": "labs",
+      "documentWidth": 1024,
+      "mainWidth": 1024,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1199,
+      "scene": "overview",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1199,
+      "scene": "courses",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1199,
+      "scene": "reservation",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [
+        "2024-03-11",
+        "2024-03-12",
+        "2024-03-13",
+        "2024-03-14",
+        "2024-03-15",
+        "2024-03-16",
+        "2024-03-17"
+      ],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1199,
+      "scene": "main",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1199,
+      "scene": "category",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1199,
+      "scene": "faculty",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1199,
+      "scene": "notice",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1199,
+      "scene": "news",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1199,
+      "scene": "labs",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1200,
+      "scene": "overview",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1200,
+      "scene": "courses",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1200,
+      "scene": "reservation",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [
+        "2024-03-11",
+        "2024-03-12",
+        "2024-03-13",
+        "2024-03-14",
+        "2024-03-15",
+        "2024-03-16",
+        "2024-03-17"
+      ],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1200,
+      "scene": "main",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1200,
+      "scene": "category",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1200,
+      "scene": "faculty",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1200,
+      "scene": "notice",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1200,
+      "scene": "news",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1200,
+      "scene": "labs",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "overview",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "courses",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "reservation",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [
+        "2024-03-11",
+        "2024-03-12",
+        "2024-03-13",
+        "2024-03-14",
+        "2024-03-15",
+        "2024-03-16",
+        "2024-03-17"
+      ],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "main",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "category",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "faculty",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "notice",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "news",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "scene": "labs",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "overview",
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "courses",
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "reservation",
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "visibleDates": ["2024-03-15", "2024-03-16", "2024-03-17"],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "main",
+      "documentWidth": 420,
+      "mainWidth": 390,
+      "visibleDates": [],
+      "overflow": [
+        {
+          "tag": "FIELDSET",
+          "cls": "m-0 flex gap-3.5 border-0 p-0",
+          "right": 420
+        },
+        {
+          "tag": "LABEL",
+          "cls": "inline-flex cursor-pointer select-none items-center justify-center rounded-[1.875rem] border border-solid border-main-orange-dark px-3 py-[0.37rem] text-md font-medium transition duration-200 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-main-orange-dark bg-[#202020] text-main-orange-dark",
+          "right": 420
+        }
+      ],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "category",
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "faculty",
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "notice",
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "news",
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "scene": "labs",
+      "documentWidth": 390,
+      "mainWidth": 390,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 639,
+      "scene": "overview",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 639,
+      "scene": "courses",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 639,
+      "scene": "reservation",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": ["2024-03-15", "2024-03-16", "2024-03-17"],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 639,
+      "scene": "main",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 639,
+      "scene": "category",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 639,
+      "scene": "faculty",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 639,
+      "scene": "notice",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 639,
+      "scene": "news",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 639,
+      "scene": "labs",
+      "documentWidth": 639,
+      "mainWidth": 639,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 640,
+      "scene": "overview",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 640,
+      "scene": "courses",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 640,
+      "scene": "reservation",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": ["2024-03-15", "2024-03-16", "2024-03-17"],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 640,
+      "scene": "main",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 640,
+      "scene": "category",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 640,
+      "scene": "faculty",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 640,
+      "scene": "notice",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 640,
+      "scene": "news",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 640,
+      "scene": "labs",
+      "documentWidth": 640,
+      "mainWidth": 640,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 768,
+      "scene": "overview",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": true
+    },
+    {
+      "locale": "en",
+      "width": 768,
+      "scene": "courses",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": true
+    },
+    {
+      "locale": "en",
+      "width": 768,
+      "scene": "reservation",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": ["2024-03-15", "2024-03-16", "2024-03-17"],
+      "overflow": [],
+      "proposalImageIdentical": true
+    },
+    {
+      "locale": "en",
+      "width": 768,
+      "scene": "main",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 768,
+      "scene": "category",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 768,
+      "scene": "faculty",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 768,
+      "scene": "notice",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 768,
+      "scene": "news",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 768,
+      "scene": "labs",
+      "documentWidth": 768,
+      "mainWidth": 768,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1023,
+      "scene": "overview",
+      "documentWidth": 1023,
+      "mainWidth": 1023,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1023,
+      "scene": "courses",
+      "documentWidth": 1023,
+      "mainWidth": 1023,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1023,
+      "scene": "reservation",
+      "documentWidth": 1023,
+      "mainWidth": 1023,
+      "visibleDates": ["2024-03-15", "2024-03-16", "2024-03-17"],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1023,
+      "scene": "main",
+      "documentWidth": 1023,
+      "mainWidth": 1023,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1023,
+      "scene": "category",
+      "documentWidth": 1023,
+      "mainWidth": 1023,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1023,
+      "scene": "faculty",
+      "documentWidth": 1023,
+      "mainWidth": 1023,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1023,
+      "scene": "notice",
+      "documentWidth": 1054,
+      "mainWidth": 1023,
+      "visibleDates": [],
+      "overflow": [
+        {
+          "tag": "LABEL",
+          "cls": "group flex h-5 w-fit items-center gap-1 whitespace-nowrap cursor-pointer ",
+          "right": 1053.546875
+        },
+        {
+          "tag": "SPAN",
+          "cls": "text-md tracking-wide text-neutral-600 group-active:text-main-orange",
+          "right": 1049.546875
+        }
+      ],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1023,
+      "scene": "news",
+      "documentWidth": 1023,
+      "mainWidth": 1023,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1023,
+      "scene": "labs",
+      "documentWidth": 1023,
+      "mainWidth": 1023,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1024,
+      "scene": "overview",
+      "documentWidth": 1024,
+      "mainWidth": 1024,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": true
+    },
+    {
+      "locale": "en",
+      "width": 1024,
+      "scene": "courses",
+      "documentWidth": 1024,
+      "mainWidth": 1024,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": true
+    },
+    {
+      "locale": "en",
+      "width": 1024,
+      "scene": "reservation",
+      "documentWidth": 1024,
+      "mainWidth": 1024,
+      "visibleDates": [
+        "2024-03-11",
+        "2024-03-12",
+        "2024-03-13",
+        "2024-03-14",
+        "2024-03-15",
+        "2024-03-16",
+        "2024-03-17"
+      ],
+      "overflow": [],
+      "proposalImageIdentical": true
+    },
+    {
+      "locale": "en",
+      "width": 1024,
+      "scene": "main",
+      "documentWidth": 1024,
+      "mainWidth": 1024,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1024,
+      "scene": "category",
+      "documentWidth": 1024,
+      "mainWidth": 1024,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1024,
+      "scene": "faculty",
+      "documentWidth": 1024,
+      "mainWidth": 1024,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1024,
+      "scene": "notice",
+      "documentWidth": 1054,
+      "mainWidth": 1024,
+      "visibleDates": [],
+      "overflow": [
+        {
+          "tag": "LABEL",
+          "cls": "group flex h-5 w-fit items-center gap-1 whitespace-nowrap cursor-pointer ",
+          "right": 1054.34375
+        },
+        {
+          "tag": "SPAN",
+          "cls": "text-md tracking-wide text-neutral-600 group-active:text-main-orange",
+          "right": 1050.34375
+        }
+      ],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1024,
+      "scene": "news",
+      "documentWidth": 1024,
+      "mainWidth": 1024,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1024,
+      "scene": "labs",
+      "documentWidth": 1024,
+      "mainWidth": 1024,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1199,
+      "scene": "overview",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1199,
+      "scene": "courses",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1199,
+      "scene": "reservation",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [
+        "2024-03-11",
+        "2024-03-12",
+        "2024-03-13",
+        "2024-03-14",
+        "2024-03-15",
+        "2024-03-16",
+        "2024-03-17"
+      ],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1199,
+      "scene": "main",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1199,
+      "scene": "category",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1199,
+      "scene": "faculty",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1199,
+      "scene": "notice",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1199,
+      "scene": "news",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1199,
+      "scene": "labs",
+      "documentWidth": 1199,
+      "mainWidth": 1199,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1200,
+      "scene": "overview",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1200,
+      "scene": "courses",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1200,
+      "scene": "reservation",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [
+        "2024-03-11",
+        "2024-03-12",
+        "2024-03-13",
+        "2024-03-14",
+        "2024-03-15",
+        "2024-03-16",
+        "2024-03-17"
+      ],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1200,
+      "scene": "main",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1200,
+      "scene": "category",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1200,
+      "scene": "faculty",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1200,
+      "scene": "notice",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1200,
+      "scene": "news",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1200,
+      "scene": "labs",
+      "documentWidth": 1200,
+      "mainWidth": 1200,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "overview",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "courses",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "reservation",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [
+        "2024-03-11",
+        "2024-03-12",
+        "2024-03-13",
+        "2024-03-14",
+        "2024-03-15",
+        "2024-03-16",
+        "2024-03-17"
+      ],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "main",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "category",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "faculty",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "notice",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "news",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "scene": "labs",
+      "documentWidth": 1280,
+      "mainWidth": 1280,
+      "visibleDates": [],
+      "overflow": [],
+      "proposalImageIdentical": null
+    }
+  ]
+}

@@ -73,20 +73,20 @@ function Overview() {
             </Button>
           </div>
         </LoginVisible>
-        <div className="flex flex-col-reverse items-start gap-6 sm:flex-row sm:gap-10">
-          <div className="sm:w-[20rem] sm:grow">
+        <div className="flex flex-col-reverse items-start gap-6 shell:flex-row shell:gap-10">
+          <div className="shell:w-[20rem] shell:grow">
             <HTMLViewer html={description} />
           </div>
           {imageURL && (
-            <div className="w-full sm:w-auto">
+            <div className="w-full shell:w-auto">
               <Image
                 src={imageURL}
                 alt="학교 전경"
                 width={320}
                 height={216}
-                // 모바일 w-full, 데스크톱 sm:w-80(320px)
-                sizes="(min-width: 640px) 320px, 100vw"
-                className="w-full object-contain sm:w-80"
+                // 모바일 w-full, 데스크톱 shell:w-80(320px)
+                sizes="(min-width: 1200px) 320px, calc(100vw - 40px)"
+                className="w-full object-contain shell:w-80"
               />
             </div>
           )}

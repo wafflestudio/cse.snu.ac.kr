@@ -1,0 +1,3473 @@
+{
+  "note": "Browser-only layout proposals on actual DS-023 app; no app source edits",
+  "records": [
+    {
+      "scene": "main",
+      "locale": "en",
+      "width": 390,
+      "variant": "before",
+      "documentWidth": 420,
+      "fieldsetWidth": 392,
+      "labels": [
+        {
+          "text": "All",
+          "x": 28,
+          "y": 350.234375,
+          "width": 41,
+          "right": 69,
+          "height": 30.609375
+        },
+        {
+          "text": "Scholarship",
+          "x": 83,
+          "y": 350.234375,
+          "width": 101,
+          "right": 184,
+          "height": 30.609375
+        },
+        {
+          "text": "Undergraduate",
+          "x": 198,
+          "y": 350.234375,
+          "width": 122,
+          "right": 320,
+          "height": 30.609375
+        },
+        {
+          "text": "Graduate",
+          "x": 334,
+          "y": 350.234375,
+          "width": 86,
+          "right": 420,
+          "height": 30.609375
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "main",
+      "locale": "en",
+      "width": 390,
+      "variant": "wrap",
+      "documentWidth": 390,
+      "fieldsetWidth": 334,
+      "labels": [
+        {
+          "text": "All",
+          "x": 28,
+          "y": 328.234375,
+          "width": 41,
+          "right": 69,
+          "height": 30.609375
+        },
+        {
+          "text": "Scholarship",
+          "x": 83,
+          "y": 328.234375,
+          "width": 101,
+          "right": 184,
+          "height": 30.609375
+        },
+        {
+          "text": "Undergraduate",
+          "x": 198,
+          "y": 328.234375,
+          "width": 122,
+          "right": 320,
+          "height": 30.609375
+        },
+        {
+          "text": "Graduate",
+          "x": 28,
+          "y": 372.84375,
+          "width": 86,
+          "right": 114,
+          "height": 30.609375
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "main",
+      "locale": "en",
+      "width": 768,
+      "variant": "before",
+      "documentWidth": 768,
+      "fieldsetWidth": 392,
+      "labels": [
+        {
+          "text": "All",
+          "x": 28,
+          "y": 350.234375,
+          "width": 41,
+          "right": 69,
+          "height": 30.609375
+        },
+        {
+          "text": "Scholarship",
+          "x": 83,
+          "y": 350.234375,
+          "width": 101,
+          "right": 184,
+          "height": 30.609375
+        },
+        {
+          "text": "Undergraduate",
+          "x": 198,
+          "y": 350.234375,
+          "width": 122,
+          "right": 320,
+          "height": 30.609375
+        },
+        {
+          "text": "Graduate",
+          "x": 334,
+          "y": 350.234375,
+          "width": 86,
+          "right": 420,
+          "height": 30.609375
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "main",
+      "locale": "en",
+      "width": 768,
+      "variant": "wrap",
+      "documentWidth": 768,
+      "fieldsetWidth": 392,
+      "labels": [
+        {
+          "text": "All",
+          "x": 28,
+          "y": 350.234375,
+          "width": 41,
+          "right": 69,
+          "height": 30.609375
+        },
+        {
+          "text": "Scholarship",
+          "x": 83,
+          "y": 350.234375,
+          "width": 101,
+          "right": 184,
+          "height": 30.609375
+        },
+        {
+          "text": "Undergraduate",
+          "x": 198,
+          "y": 350.234375,
+          "width": 122,
+          "right": 320,
+          "height": 30.609375
+        },
+        {
+          "text": "Graduate",
+          "x": 334,
+          "y": 350.234375,
+          "width": 86,
+          "right": 420,
+          "height": 30.609375
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "main",
+      "locale": "en",
+      "width": 1280,
+      "variant": "before",
+      "documentWidth": 1280,
+      "fieldsetWidth": 392,
+      "labels": [
+        {
+          "text": "All",
+          "x": 580,
+          "y": 375.921875,
+          "width": 41,
+          "right": 621,
+          "height": 30.609375
+        },
+        {
+          "text": "Scholarship",
+          "x": 635,
+          "y": 375.921875,
+          "width": 101,
+          "right": 736,
+          "height": 30.609375
+        },
+        {
+          "text": "Undergraduate",
+          "x": 750,
+          "y": 375.921875,
+          "width": 122,
+          "right": 872,
+          "height": 30.609375
+        },
+        {
+          "text": "Graduate",
+          "x": 886,
+          "y": 375.921875,
+          "width": 86,
+          "right": 972,
+          "height": 30.609375
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "main",
+      "locale": "en",
+      "width": 1280,
+      "variant": "wrap",
+      "documentWidth": 1280,
+      "fieldsetWidth": 392,
+      "labels": [
+        {
+          "text": "All",
+          "x": 580,
+          "y": 375.921875,
+          "width": 41,
+          "right": 621,
+          "height": 30.609375
+        },
+        {
+          "text": "Scholarship",
+          "x": 635,
+          "y": 375.921875,
+          "width": 101,
+          "right": 736,
+          "height": 30.609375
+        },
+        {
+          "text": "Undergraduate",
+          "x": 750,
+          "y": 375.921875,
+          "width": 122,
+          "right": 872,
+          "height": 30.609375
+        },
+        {
+          "text": "Graduate",
+          "x": 886,
+          "y": 375.921875,
+          "width": 86,
+          "right": 972,
+          "height": 30.609375
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "en",
+      "width": 390,
+      "variant": "before",
+      "documentWidth": 390,
+      "fieldsetWidth": 302,
+      "labels": [
+        {
+          "text": "Scholarship",
+          "x": 54,
+          "y": 277.984375,
+          "width": 105.859375,
+          "right": 159.859375,
+          "height": 20
+        },
+        {
+          "text": "Undergraduate",
+          "x": 54,
+          "y": 307.984375,
+          "width": 127.5625,
+          "right": 181.5625,
+          "height": 20
+        },
+        {
+          "text": "Graduate",
+          "x": 54,
+          "y": 337.984375,
+          "width": 88.8125,
+          "right": 142.8125,
+          "height": 20
+        },
+        {
+          "text": "Multiple Majors",
+          "x": 54,
+          "y": 367.984375,
+          "width": 129.25,
+          "right": 183.25,
+          "height": 20
+        },
+        {
+          "text": "Enrollment & Leave of Absence",
+          "x": 54,
+          "y": 397.984375,
+          "width": 237.15625,
+          "right": 291.15625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 54,
+          "y": 427.984375,
+          "width": 101.5,
+          "right": 155.5,
+          "height": 20
+        },
+        {
+          "text": "Graduation",
+          "x": 54,
+          "y": 457.984375,
+          "width": 101.5,
+          "right": 155.5,
+          "height": 20
+        },
+        {
+          "text": "Recruitment",
+          "x": 54,
+          "y": 487.984375,
+          "width": 107.859375,
+          "right": 161.859375,
+          "height": 20
+        },
+        {
+          "text": "Exchange & Study Abroad",
+          "x": 54,
+          "y": 517.984375,
+          "width": 202.0625,
+          "right": 256.0625,
+          "height": 20
+        },
+        {
+          "text": "External Events",
+          "x": 54,
+          "y": 547.984375,
+          "width": 130.25,
+          "right": 184.25,
+          "height": 20
+        },
+        {
+          "text": "Internal Events",
+          "x": 54,
+          "y": 577.984375,
+          "width": 126.25,
+          "right": 180.25,
+          "height": 20
+        },
+        {
+          "text": "For International Students",
+          "x": 54,
+          "y": 607.984375,
+          "width": 202.109375,
+          "right": 256.109375,
+          "height": 20
+        },
+        {
+          "text": "Contests",
+          "x": 54,
+          "y": 637.984375,
+          "width": 87.8125,
+          "right": 141.8125,
+          "height": 20
+        },
+        {
+          "text": "Campus Life",
+          "x": 54,
+          "y": 667.984375,
+          "width": 108.859375,
+          "right": 162.859375,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "en",
+      "width": 390,
+      "variant": "wrap",
+      "documentWidth": 390,
+      "fieldsetWidth": 302,
+      "labels": [
+        {
+          "text": "Scholarship",
+          "x": 54,
+          "y": 277.984375,
+          "width": 105.859375,
+          "right": 159.859375,
+          "height": 20
+        },
+        {
+          "text": "Undergraduate",
+          "x": 54,
+          "y": 307.984375,
+          "width": 127.5625,
+          "right": 181.5625,
+          "height": 20
+        },
+        {
+          "text": "Graduate",
+          "x": 54,
+          "y": 337.984375,
+          "width": 88.8125,
+          "right": 142.8125,
+          "height": 20
+        },
+        {
+          "text": "Multiple Majors",
+          "x": 54,
+          "y": 367.984375,
+          "width": 129.25,
+          "right": 183.25,
+          "height": 20
+        },
+        {
+          "text": "Enrollment & Leave of Absence",
+          "x": 54,
+          "y": 397.984375,
+          "width": 237.15625,
+          "right": 291.15625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 54,
+          "y": 427.984375,
+          "width": 101.5,
+          "right": 155.5,
+          "height": 20
+        },
+        {
+          "text": "Graduation",
+          "x": 54,
+          "y": 457.984375,
+          "width": 101.5,
+          "right": 155.5,
+          "height": 20
+        },
+        {
+          "text": "Recruitment",
+          "x": 54,
+          "y": 487.984375,
+          "width": 107.859375,
+          "right": 161.859375,
+          "height": 20
+        },
+        {
+          "text": "Exchange & Study Abroad",
+          "x": 54,
+          "y": 517.984375,
+          "width": 202.0625,
+          "right": 256.0625,
+          "height": 20
+        },
+        {
+          "text": "External Events",
+          "x": 54,
+          "y": 547.984375,
+          "width": 130.25,
+          "right": 184.25,
+          "height": 20
+        },
+        {
+          "text": "Internal Events",
+          "x": 54,
+          "y": 577.984375,
+          "width": 126.25,
+          "right": 180.25,
+          "height": 20
+        },
+        {
+          "text": "For International Students",
+          "x": 54,
+          "y": 607.984375,
+          "width": 202.109375,
+          "right": 256.109375,
+          "height": 20
+        },
+        {
+          "text": "Contests",
+          "x": 54,
+          "y": 637.984375,
+          "width": 87.8125,
+          "right": 141.8125,
+          "height": 20
+        },
+        {
+          "text": "Campus Life",
+          "x": 54,
+          "y": 667.984375,
+          "width": 108.859375,
+          "right": 162.859375,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "en",
+      "width": 390,
+      "variant": "flow",
+      "documentWidth": 390,
+      "fieldsetWidth": 302,
+      "labels": [
+        {
+          "text": "Scholarship",
+          "x": 54,
+          "y": 277.984375,
+          "width": 105.859375,
+          "right": 159.859375,
+          "height": 20
+        },
+        {
+          "text": "Undergraduate",
+          "x": 187.859375,
+          "y": 277.984375,
+          "width": 127.5625,
+          "right": 315.421875,
+          "height": 20
+        },
+        {
+          "text": "Graduate",
+          "x": 54,
+          "y": 307.984375,
+          "width": 88.8125,
+          "right": 142.8125,
+          "height": 20
+        },
+        {
+          "text": "Multiple Majors",
+          "x": 170.8125,
+          "y": 307.984375,
+          "width": 129.25,
+          "right": 300.0625,
+          "height": 20
+        },
+        {
+          "text": "Enrollment & Leave of Absence",
+          "x": 54,
+          "y": 337.984375,
+          "width": 237.15625,
+          "right": 291.15625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 54,
+          "y": 367.984375,
+          "width": 101.5,
+          "right": 155.5,
+          "height": 20
+        },
+        {
+          "text": "Graduation",
+          "x": 183.5,
+          "y": 367.984375,
+          "width": 101.5,
+          "right": 285,
+          "height": 20
+        },
+        {
+          "text": "Recruitment",
+          "x": 54,
+          "y": 397.984375,
+          "width": 107.859375,
+          "right": 161.859375,
+          "height": 20
+        },
+        {
+          "text": "Exchange & Study Abroad",
+          "x": 54,
+          "y": 427.984375,
+          "width": 202.0625,
+          "right": 256.0625,
+          "height": 20
+        },
+        {
+          "text": "External Events",
+          "x": 54,
+          "y": 457.984375,
+          "width": 130.25,
+          "right": 184.25,
+          "height": 20
+        },
+        {
+          "text": "Internal Events",
+          "x": 212.25,
+          "y": 457.984375,
+          "width": 126.25,
+          "right": 338.5,
+          "height": 20
+        },
+        {
+          "text": "For International Students",
+          "x": 54,
+          "y": 487.984375,
+          "width": 202.109375,
+          "right": 256.109375,
+          "height": 20
+        },
+        {
+          "text": "Contests",
+          "x": 54,
+          "y": 517.984375,
+          "width": 87.8125,
+          "right": 141.8125,
+          "height": 20
+        },
+        {
+          "text": "Campus Life",
+          "x": 169.8125,
+          "y": 517.984375,
+          "width": 108.859375,
+          "right": 278.671875,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "en",
+      "width": 768,
+      "variant": "before",
+      "documentWidth": 768,
+      "fieldsetWidth": 680,
+      "labels": [
+        {
+          "text": "Scholarship",
+          "x": 54,
+          "y": 277.984375,
+          "width": 105.859375,
+          "right": 159.859375,
+          "height": 20
+        },
+        {
+          "text": "Undergraduate",
+          "x": 286.65625,
+          "y": 277.984375,
+          "width": 127.5625,
+          "right": 414.21875,
+          "height": 20
+        },
+        {
+          "text": "Graduate",
+          "x": 519.328125,
+          "y": 277.984375,
+          "width": 88.8125,
+          "right": 608.140625,
+          "height": 20
+        },
+        {
+          "text": "Multiple Majors",
+          "x": 54,
+          "y": 307.984375,
+          "width": 129.25,
+          "right": 183.25,
+          "height": 20
+        },
+        {
+          "text": "Enrollment & Leave of Absence",
+          "x": 286.65625,
+          "y": 307.984375,
+          "width": 237.15625,
+          "right": 523.8125,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 519.328125,
+          "y": 307.984375,
+          "width": 101.5,
+          "right": 620.828125,
+          "height": 20
+        },
+        {
+          "text": "Graduation",
+          "x": 54,
+          "y": 337.984375,
+          "width": 101.5,
+          "right": 155.5,
+          "height": 20
+        },
+        {
+          "text": "Recruitment",
+          "x": 286.65625,
+          "y": 337.984375,
+          "width": 107.859375,
+          "right": 394.515625,
+          "height": 20
+        },
+        {
+          "text": "Exchange & Study Abroad",
+          "x": 519.328125,
+          "y": 337.984375,
+          "width": 202.0625,
+          "right": 721.390625,
+          "height": 20
+        },
+        {
+          "text": "External Events",
+          "x": 54,
+          "y": 367.984375,
+          "width": 130.25,
+          "right": 184.25,
+          "height": 20
+        },
+        {
+          "text": "Internal Events",
+          "x": 286.65625,
+          "y": 367.984375,
+          "width": 126.25,
+          "right": 412.90625,
+          "height": 20
+        },
+        {
+          "text": "For International Students",
+          "x": 519.328125,
+          "y": 367.984375,
+          "width": 202.109375,
+          "right": 721.4375,
+          "height": 20
+        },
+        {
+          "text": "Contests",
+          "x": 54,
+          "y": 397.984375,
+          "width": 87.8125,
+          "right": 141.8125,
+          "height": 20
+        },
+        {
+          "text": "Campus Life",
+          "x": 286.65625,
+          "y": 397.984375,
+          "width": 108.859375,
+          "right": 395.515625,
+          "height": 20
+        }
+      ],
+      "overlaps": 1
+    },
+    {
+      "scene": "notice",
+      "locale": "en",
+      "width": 768,
+      "variant": "wrap",
+      "documentWidth": 768,
+      "fieldsetWidth": 680,
+      "labels": [
+        {
+          "text": "Scholarship",
+          "x": 54,
+          "y": 277.984375,
+          "width": 105.859375,
+          "right": 159.859375,
+          "height": 20
+        },
+        {
+          "text": "Undergraduate",
+          "x": 403,
+          "y": 277.984375,
+          "width": 127.5625,
+          "right": 530.5625,
+          "height": 20
+        },
+        {
+          "text": "Graduate",
+          "x": 54,
+          "y": 307.984375,
+          "width": 88.8125,
+          "right": 142.8125,
+          "height": 20
+        },
+        {
+          "text": "Multiple Majors",
+          "x": 403,
+          "y": 307.984375,
+          "width": 129.25,
+          "right": 532.25,
+          "height": 20
+        },
+        {
+          "text": "Enrollment & Leave of Absence",
+          "x": 54,
+          "y": 337.984375,
+          "width": 237.15625,
+          "right": 291.15625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 403,
+          "y": 337.984375,
+          "width": 101.5,
+          "right": 504.5,
+          "height": 20
+        },
+        {
+          "text": "Graduation",
+          "x": 54,
+          "y": 367.984375,
+          "width": 101.5,
+          "right": 155.5,
+          "height": 20
+        },
+        {
+          "text": "Recruitment",
+          "x": 403,
+          "y": 367.984375,
+          "width": 107.859375,
+          "right": 510.859375,
+          "height": 20
+        },
+        {
+          "text": "Exchange & Study Abroad",
+          "x": 54,
+          "y": 397.984375,
+          "width": 202.0625,
+          "right": 256.0625,
+          "height": 20
+        },
+        {
+          "text": "External Events",
+          "x": 403,
+          "y": 397.984375,
+          "width": 130.25,
+          "right": 533.25,
+          "height": 20
+        },
+        {
+          "text": "Internal Events",
+          "x": 54,
+          "y": 427.984375,
+          "width": 126.25,
+          "right": 180.25,
+          "height": 20
+        },
+        {
+          "text": "For International Students",
+          "x": 403,
+          "y": 427.984375,
+          "width": 202.109375,
+          "right": 605.109375,
+          "height": 20
+        },
+        {
+          "text": "Contests",
+          "x": 54,
+          "y": 457.984375,
+          "width": 87.8125,
+          "right": 141.8125,
+          "height": 20
+        },
+        {
+          "text": "Campus Life",
+          "x": 403,
+          "y": 457.984375,
+          "width": 108.859375,
+          "right": 511.859375,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "en",
+      "width": 768,
+      "variant": "flow",
+      "documentWidth": 768,
+      "fieldsetWidth": 680,
+      "labels": [
+        {
+          "text": "Scholarship",
+          "x": 54,
+          "y": 277.984375,
+          "width": 105.859375,
+          "right": 159.859375,
+          "height": 20
+        },
+        {
+          "text": "Undergraduate",
+          "x": 187.859375,
+          "y": 277.984375,
+          "width": 127.5625,
+          "right": 315.421875,
+          "height": 20
+        },
+        {
+          "text": "Graduate",
+          "x": 343.421875,
+          "y": 277.984375,
+          "width": 88.8125,
+          "right": 432.234375,
+          "height": 20
+        },
+        {
+          "text": "Multiple Majors",
+          "x": 460.234375,
+          "y": 277.984375,
+          "width": 129.25,
+          "right": 589.484375,
+          "height": 20
+        },
+        {
+          "text": "Enrollment & Leave of Absence",
+          "x": 54,
+          "y": 307.984375,
+          "width": 237.15625,
+          "right": 291.15625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 319.15625,
+          "y": 307.984375,
+          "width": 101.5,
+          "right": 420.65625,
+          "height": 20
+        },
+        {
+          "text": "Graduation",
+          "x": 448.65625,
+          "y": 307.984375,
+          "width": 101.5,
+          "right": 550.15625,
+          "height": 20
+        },
+        {
+          "text": "Recruitment",
+          "x": 578.15625,
+          "y": 307.984375,
+          "width": 107.859375,
+          "right": 686.015625,
+          "height": 20
+        },
+        {
+          "text": "Exchange & Study Abroad",
+          "x": 54,
+          "y": 337.984375,
+          "width": 202.0625,
+          "right": 256.0625,
+          "height": 20
+        },
+        {
+          "text": "External Events",
+          "x": 284.0625,
+          "y": 337.984375,
+          "width": 130.25,
+          "right": 414.3125,
+          "height": 20
+        },
+        {
+          "text": "Internal Events",
+          "x": 442.3125,
+          "y": 337.984375,
+          "width": 126.25,
+          "right": 568.5625,
+          "height": 20
+        },
+        {
+          "text": "For International Students",
+          "x": 54,
+          "y": 367.984375,
+          "width": 202.109375,
+          "right": 256.109375,
+          "height": 20
+        },
+        {
+          "text": "Contests",
+          "x": 284.109375,
+          "y": 367.984375,
+          "width": 87.8125,
+          "right": 371.921875,
+          "height": 20
+        },
+        {
+          "text": "Campus Life",
+          "x": 399.921875,
+          "y": 367.984375,
+          "width": 108.859375,
+          "right": 508.78125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "en",
+      "width": 1024,
+      "variant": "before",
+      "documentWidth": 1054,
+      "fieldsetWidth": 936,
+      "labels": [
+        {
+          "text": "Scholarship",
+          "x": 54,
+          "y": 277.984375,
+          "width": 105.859375,
+          "right": 159.859375,
+          "height": 20
+        },
+        {
+          "text": "Undergraduate",
+          "x": 244.796875,
+          "y": 277.984375,
+          "width": 127.5625,
+          "right": 372.359375,
+          "height": 20
+        },
+        {
+          "text": "Graduate",
+          "x": 435.59375,
+          "y": 277.984375,
+          "width": 88.8125,
+          "right": 524.40625,
+          "height": 20
+        },
+        {
+          "text": "Multiple Majors",
+          "x": 626.390625,
+          "y": 277.984375,
+          "width": 129.25,
+          "right": 755.640625,
+          "height": 20
+        },
+        {
+          "text": "Enrollment & Leave of Absence",
+          "x": 817.1875,
+          "y": 277.984375,
+          "width": 237.15625,
+          "right": 1054.34375,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 54,
+          "y": 307.984375,
+          "width": 101.5,
+          "right": 155.5,
+          "height": 20
+        },
+        {
+          "text": "Graduation",
+          "x": 244.796875,
+          "y": 307.984375,
+          "width": 101.5,
+          "right": 346.296875,
+          "height": 20
+        },
+        {
+          "text": "Recruitment",
+          "x": 435.59375,
+          "y": 307.984375,
+          "width": 107.859375,
+          "right": 543.453125,
+          "height": 20
+        },
+        {
+          "text": "Exchange & Study Abroad",
+          "x": 626.390625,
+          "y": 307.984375,
+          "width": 202.0625,
+          "right": 828.453125,
+          "height": 20
+        },
+        {
+          "text": "External Events",
+          "x": 817.1875,
+          "y": 307.984375,
+          "width": 130.25,
+          "right": 947.4375,
+          "height": 20
+        },
+        {
+          "text": "Internal Events",
+          "x": 54,
+          "y": 337.984375,
+          "width": 126.25,
+          "right": 180.25,
+          "height": 20
+        },
+        {
+          "text": "For International Students",
+          "x": 244.796875,
+          "y": 337.984375,
+          "width": 202.109375,
+          "right": 446.90625,
+          "height": 20
+        },
+        {
+          "text": "Contests",
+          "x": 435.59375,
+          "y": 337.984375,
+          "width": 87.8125,
+          "right": 523.40625,
+          "height": 20
+        },
+        {
+          "text": "Campus Life",
+          "x": 626.390625,
+          "y": 337.984375,
+          "width": 108.859375,
+          "right": 735.25,
+          "height": 20
+        }
+      ],
+      "overlaps": 2
+    },
+    {
+      "scene": "notice",
+      "locale": "en",
+      "width": 1024,
+      "variant": "wrap",
+      "documentWidth": 1024,
+      "fieldsetWidth": 936,
+      "labels": [
+        {
+          "text": "Scholarship",
+          "x": 54,
+          "y": 277.984375,
+          "width": 105.859375,
+          "right": 159.859375,
+          "height": 20
+        },
+        {
+          "text": "Undergraduate",
+          "x": 372,
+          "y": 277.984375,
+          "width": 127.5625,
+          "right": 499.5625,
+          "height": 20
+        },
+        {
+          "text": "Graduate",
+          "x": 690,
+          "y": 277.984375,
+          "width": 88.8125,
+          "right": 778.8125,
+          "height": 20
+        },
+        {
+          "text": "Multiple Majors",
+          "x": 54,
+          "y": 307.984375,
+          "width": 129.25,
+          "right": 183.25,
+          "height": 20
+        },
+        {
+          "text": "Enrollment & Leave of Absence",
+          "x": 372,
+          "y": 307.984375,
+          "width": 237.15625,
+          "right": 609.15625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 690,
+          "y": 307.984375,
+          "width": 101.5,
+          "right": 791.5,
+          "height": 20
+        },
+        {
+          "text": "Graduation",
+          "x": 54,
+          "y": 337.984375,
+          "width": 101.5,
+          "right": 155.5,
+          "height": 20
+        },
+        {
+          "text": "Recruitment",
+          "x": 372,
+          "y": 337.984375,
+          "width": 107.859375,
+          "right": 479.859375,
+          "height": 20
+        },
+        {
+          "text": "Exchange & Study Abroad",
+          "x": 690,
+          "y": 337.984375,
+          "width": 202.0625,
+          "right": 892.0625,
+          "height": 20
+        },
+        {
+          "text": "External Events",
+          "x": 54,
+          "y": 367.984375,
+          "width": 130.25,
+          "right": 184.25,
+          "height": 20
+        },
+        {
+          "text": "Internal Events",
+          "x": 372,
+          "y": 367.984375,
+          "width": 126.25,
+          "right": 498.25,
+          "height": 20
+        },
+        {
+          "text": "For International Students",
+          "x": 690,
+          "y": 367.984375,
+          "width": 202.109375,
+          "right": 892.109375,
+          "height": 20
+        },
+        {
+          "text": "Contests",
+          "x": 54,
+          "y": 397.984375,
+          "width": 87.8125,
+          "right": 141.8125,
+          "height": 20
+        },
+        {
+          "text": "Campus Life",
+          "x": 372,
+          "y": 397.984375,
+          "width": 108.859375,
+          "right": 480.859375,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "en",
+      "width": 1024,
+      "variant": "flow",
+      "documentWidth": 1024,
+      "fieldsetWidth": 936,
+      "labels": [
+        {
+          "text": "Scholarship",
+          "x": 54,
+          "y": 277.984375,
+          "width": 105.859375,
+          "right": 159.859375,
+          "height": 20
+        },
+        {
+          "text": "Undergraduate",
+          "x": 187.859375,
+          "y": 277.984375,
+          "width": 127.5625,
+          "right": 315.421875,
+          "height": 20
+        },
+        {
+          "text": "Graduate",
+          "x": 343.421875,
+          "y": 277.984375,
+          "width": 88.8125,
+          "right": 432.234375,
+          "height": 20
+        },
+        {
+          "text": "Multiple Majors",
+          "x": 460.234375,
+          "y": 277.984375,
+          "width": 129.25,
+          "right": 589.484375,
+          "height": 20
+        },
+        {
+          "text": "Enrollment & Leave of Absence",
+          "x": 617.484375,
+          "y": 277.984375,
+          "width": 237.15625,
+          "right": 854.640625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 54,
+          "y": 307.984375,
+          "width": 101.5,
+          "right": 155.5,
+          "height": 20
+        },
+        {
+          "text": "Graduation",
+          "x": 183.5,
+          "y": 307.984375,
+          "width": 101.5,
+          "right": 285,
+          "height": 20
+        },
+        {
+          "text": "Recruitment",
+          "x": 313,
+          "y": 307.984375,
+          "width": 107.859375,
+          "right": 420.859375,
+          "height": 20
+        },
+        {
+          "text": "Exchange & Study Abroad",
+          "x": 448.859375,
+          "y": 307.984375,
+          "width": 202.0625,
+          "right": 650.921875,
+          "height": 20
+        },
+        {
+          "text": "External Events",
+          "x": 678.921875,
+          "y": 307.984375,
+          "width": 130.25,
+          "right": 809.171875,
+          "height": 20
+        },
+        {
+          "text": "Internal Events",
+          "x": 837.171875,
+          "y": 307.984375,
+          "width": 126.25,
+          "right": 963.421875,
+          "height": 20
+        },
+        {
+          "text": "For International Students",
+          "x": 54,
+          "y": 337.984375,
+          "width": 202.109375,
+          "right": 256.109375,
+          "height": 20
+        },
+        {
+          "text": "Contests",
+          "x": 284.109375,
+          "y": 337.984375,
+          "width": 87.8125,
+          "right": 371.921875,
+          "height": 20
+        },
+        {
+          "text": "Campus Life",
+          "x": 399.921875,
+          "y": 337.984375,
+          "width": 108.859375,
+          "right": 508.78125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "en",
+      "width": 1280,
+      "variant": "before",
+      "documentWidth": 1280,
+      "fieldsetWidth": 672,
+      "labels": [
+        {
+          "text": "Scholarship",
+          "x": 234,
+          "y": 405.640625,
+          "width": 105.859375,
+          "right": 339.859375,
+          "height": 20
+        },
+        {
+          "text": "Undergraduate",
+          "x": 464,
+          "y": 405.640625,
+          "width": 127.5625,
+          "right": 591.5625,
+          "height": 20
+        },
+        {
+          "text": "Graduate",
+          "x": 694,
+          "y": 405.640625,
+          "width": 88.8125,
+          "right": 782.8125,
+          "height": 20
+        },
+        {
+          "text": "Multiple Majors",
+          "x": 234,
+          "y": 435.640625,
+          "width": 129.25,
+          "right": 363.25,
+          "height": 20
+        },
+        {
+          "text": "Enrollment & Leave of Absence",
+          "x": 464,
+          "y": 435.640625,
+          "width": 237.15625,
+          "right": 701.15625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 694,
+          "y": 435.640625,
+          "width": 101.5,
+          "right": 795.5,
+          "height": 20
+        },
+        {
+          "text": "Graduation",
+          "x": 234,
+          "y": 465.640625,
+          "width": 101.5,
+          "right": 335.5,
+          "height": 20
+        },
+        {
+          "text": "Recruitment",
+          "x": 464,
+          "y": 465.640625,
+          "width": 107.859375,
+          "right": 571.859375,
+          "height": 20
+        },
+        {
+          "text": "Exchange & Study Abroad",
+          "x": 694,
+          "y": 465.640625,
+          "width": 202.0625,
+          "right": 896.0625,
+          "height": 20
+        },
+        {
+          "text": "External Events",
+          "x": 234,
+          "y": 495.640625,
+          "width": 130.25,
+          "right": 364.25,
+          "height": 20
+        },
+        {
+          "text": "Internal Events",
+          "x": 464,
+          "y": 495.640625,
+          "width": 126.25,
+          "right": 590.25,
+          "height": 20
+        },
+        {
+          "text": "For International Students",
+          "x": 694,
+          "y": 495.640625,
+          "width": 202.109375,
+          "right": 896.109375,
+          "height": 20
+        },
+        {
+          "text": "Contests",
+          "x": 234,
+          "y": 525.640625,
+          "width": 87.8125,
+          "right": 321.8125,
+          "height": 20
+        },
+        {
+          "text": "Campus Life",
+          "x": 464,
+          "y": 525.640625,
+          "width": 108.859375,
+          "right": 572.859375,
+          "height": 20
+        }
+      ],
+      "overlaps": 1
+    },
+    {
+      "scene": "notice",
+      "locale": "en",
+      "width": 1280,
+      "variant": "wrap",
+      "documentWidth": 1280,
+      "fieldsetWidth": 672,
+      "labels": [
+        {
+          "text": "Scholarship",
+          "x": 234,
+          "y": 405.640625,
+          "width": 105.859375,
+          "right": 339.859375,
+          "height": 20
+        },
+        {
+          "text": "Undergraduate",
+          "x": 579,
+          "y": 405.640625,
+          "width": 127.5625,
+          "right": 706.5625,
+          "height": 20
+        },
+        {
+          "text": "Graduate",
+          "x": 234,
+          "y": 435.640625,
+          "width": 88.8125,
+          "right": 322.8125,
+          "height": 20
+        },
+        {
+          "text": "Multiple Majors",
+          "x": 579,
+          "y": 435.640625,
+          "width": 129.25,
+          "right": 708.25,
+          "height": 20
+        },
+        {
+          "text": "Enrollment & Leave of Absence",
+          "x": 234,
+          "y": 465.640625,
+          "width": 237.15625,
+          "right": 471.15625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 579,
+          "y": 465.640625,
+          "width": 101.5,
+          "right": 680.5,
+          "height": 20
+        },
+        {
+          "text": "Graduation",
+          "x": 234,
+          "y": 495.640625,
+          "width": 101.5,
+          "right": 335.5,
+          "height": 20
+        },
+        {
+          "text": "Recruitment",
+          "x": 579,
+          "y": 495.640625,
+          "width": 107.859375,
+          "right": 686.859375,
+          "height": 20
+        },
+        {
+          "text": "Exchange & Study Abroad",
+          "x": 234,
+          "y": 525.640625,
+          "width": 202.0625,
+          "right": 436.0625,
+          "height": 20
+        },
+        {
+          "text": "External Events",
+          "x": 579,
+          "y": 525.640625,
+          "width": 130.25,
+          "right": 709.25,
+          "height": 20
+        },
+        {
+          "text": "Internal Events",
+          "x": 234,
+          "y": 555.640625,
+          "width": 126.25,
+          "right": 360.25,
+          "height": 20
+        },
+        {
+          "text": "For International Students",
+          "x": 579,
+          "y": 555.640625,
+          "width": 202.109375,
+          "right": 781.109375,
+          "height": 20
+        },
+        {
+          "text": "Contests",
+          "x": 234,
+          "y": 585.640625,
+          "width": 87.8125,
+          "right": 321.8125,
+          "height": 20
+        },
+        {
+          "text": "Campus Life",
+          "x": 579,
+          "y": 585.640625,
+          "width": 108.859375,
+          "right": 687.859375,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "en",
+      "width": 1280,
+      "variant": "flow",
+      "documentWidth": 1280,
+      "fieldsetWidth": 672,
+      "labels": [
+        {
+          "text": "Scholarship",
+          "x": 234,
+          "y": 405.640625,
+          "width": 105.859375,
+          "right": 339.859375,
+          "height": 20
+        },
+        {
+          "text": "Undergraduate",
+          "x": 367.859375,
+          "y": 405.640625,
+          "width": 127.5625,
+          "right": 495.421875,
+          "height": 20
+        },
+        {
+          "text": "Graduate",
+          "x": 523.421875,
+          "y": 405.640625,
+          "width": 88.8125,
+          "right": 612.234375,
+          "height": 20
+        },
+        {
+          "text": "Multiple Majors",
+          "x": 640.234375,
+          "y": 405.640625,
+          "width": 129.25,
+          "right": 769.484375,
+          "height": 20
+        },
+        {
+          "text": "Enrollment & Leave of Absence",
+          "x": 234,
+          "y": 435.640625,
+          "width": 237.15625,
+          "right": 471.15625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 499.15625,
+          "y": 435.640625,
+          "width": 101.5,
+          "right": 600.65625,
+          "height": 20
+        },
+        {
+          "text": "Graduation",
+          "x": 628.65625,
+          "y": 435.640625,
+          "width": 101.5,
+          "right": 730.15625,
+          "height": 20
+        },
+        {
+          "text": "Recruitment",
+          "x": 758.15625,
+          "y": 435.640625,
+          "width": 107.859375,
+          "right": 866.015625,
+          "height": 20
+        },
+        {
+          "text": "Exchange & Study Abroad",
+          "x": 234,
+          "y": 465.640625,
+          "width": 202.0625,
+          "right": 436.0625,
+          "height": 20
+        },
+        {
+          "text": "External Events",
+          "x": 464.0625,
+          "y": 465.640625,
+          "width": 130.25,
+          "right": 594.3125,
+          "height": 20
+        },
+        {
+          "text": "Internal Events",
+          "x": 622.3125,
+          "y": 465.640625,
+          "width": 126.25,
+          "right": 748.5625,
+          "height": 20
+        },
+        {
+          "text": "For International Students",
+          "x": 234,
+          "y": 495.640625,
+          "width": 202.109375,
+          "right": 436.109375,
+          "height": 20
+        },
+        {
+          "text": "Contests",
+          "x": 464.109375,
+          "y": 495.640625,
+          "width": 87.8125,
+          "right": 551.921875,
+          "height": 20
+        },
+        {
+          "text": "Campus Life",
+          "x": 579.921875,
+          "y": 495.640625,
+          "width": 108.859375,
+          "right": 688.78125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "main",
+      "locale": "ko",
+      "width": 390,
+      "variant": "before",
+      "documentWidth": 390,
+      "fieldsetWidth": 254,
+      "labels": [
+        {
+          "text": "전체",
+          "x": 28,
+          "y": 350.234375,
+          "width": 50,
+          "right": 78,
+          "height": 30.609375
+        },
+        {
+          "text": "장학",
+          "x": 92,
+          "y": 350.234375,
+          "width": 50,
+          "right": 142,
+          "height": 30.609375
+        },
+        {
+          "text": "학부",
+          "x": 156,
+          "y": 350.234375,
+          "width": 50,
+          "right": 206,
+          "height": 30.609375
+        },
+        {
+          "text": "대학원",
+          "x": 220,
+          "y": 350.234375,
+          "width": 62,
+          "right": 282,
+          "height": 30.609375
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "main",
+      "locale": "ko",
+      "width": 390,
+      "variant": "wrap",
+      "documentWidth": 390,
+      "fieldsetWidth": 254,
+      "labels": [
+        {
+          "text": "전체",
+          "x": 28,
+          "y": 350.234375,
+          "width": 50,
+          "right": 78,
+          "height": 30.609375
+        },
+        {
+          "text": "장학",
+          "x": 92,
+          "y": 350.234375,
+          "width": 50,
+          "right": 142,
+          "height": 30.609375
+        },
+        {
+          "text": "학부",
+          "x": 156,
+          "y": 350.234375,
+          "width": 50,
+          "right": 206,
+          "height": 30.609375
+        },
+        {
+          "text": "대학원",
+          "x": 220,
+          "y": 350.234375,
+          "width": 62,
+          "right": 282,
+          "height": 30.609375
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "main",
+      "locale": "ko",
+      "width": 768,
+      "variant": "before",
+      "documentWidth": 768,
+      "fieldsetWidth": 254,
+      "labels": [
+        {
+          "text": "전체",
+          "x": 28,
+          "y": 350.234375,
+          "width": 50,
+          "right": 78,
+          "height": 30.609375
+        },
+        {
+          "text": "장학",
+          "x": 92,
+          "y": 350.234375,
+          "width": 50,
+          "right": 142,
+          "height": 30.609375
+        },
+        {
+          "text": "학부",
+          "x": 156,
+          "y": 350.234375,
+          "width": 50,
+          "right": 206,
+          "height": 30.609375
+        },
+        {
+          "text": "대학원",
+          "x": 220,
+          "y": 350.234375,
+          "width": 62,
+          "right": 282,
+          "height": 30.609375
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "main",
+      "locale": "ko",
+      "width": 768,
+      "variant": "wrap",
+      "documentWidth": 768,
+      "fieldsetWidth": 254,
+      "labels": [
+        {
+          "text": "전체",
+          "x": 28,
+          "y": 350.234375,
+          "width": 50,
+          "right": 78,
+          "height": 30.609375
+        },
+        {
+          "text": "장학",
+          "x": 92,
+          "y": 350.234375,
+          "width": 50,
+          "right": 142,
+          "height": 30.609375
+        },
+        {
+          "text": "학부",
+          "x": 156,
+          "y": 350.234375,
+          "width": 50,
+          "right": 206,
+          "height": 30.609375
+        },
+        {
+          "text": "대학원",
+          "x": 220,
+          "y": 350.234375,
+          "width": 62,
+          "right": 282,
+          "height": 30.609375
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "main",
+      "locale": "ko",
+      "width": 1280,
+      "variant": "before",
+      "documentWidth": 1280,
+      "fieldsetWidth": 254,
+      "labels": [
+        {
+          "text": "전체",
+          "x": 580,
+          "y": 375.921875,
+          "width": 50,
+          "right": 630,
+          "height": 30.609375
+        },
+        {
+          "text": "장학",
+          "x": 644,
+          "y": 375.921875,
+          "width": 50,
+          "right": 694,
+          "height": 30.609375
+        },
+        {
+          "text": "학부",
+          "x": 708,
+          "y": 375.921875,
+          "width": 50,
+          "right": 758,
+          "height": 30.609375
+        },
+        {
+          "text": "대학원",
+          "x": 772,
+          "y": 375.921875,
+          "width": 62,
+          "right": 834,
+          "height": 30.609375
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "main",
+      "locale": "ko",
+      "width": 1280,
+      "variant": "wrap",
+      "documentWidth": 1280,
+      "fieldsetWidth": 254,
+      "labels": [
+        {
+          "text": "전체",
+          "x": 580,
+          "y": 375.921875,
+          "width": 50,
+          "right": 630,
+          "height": 30.609375
+        },
+        {
+          "text": "장학",
+          "x": 644,
+          "y": 375.921875,
+          "width": 50,
+          "right": 694,
+          "height": 30.609375
+        },
+        {
+          "text": "학부",
+          "x": 708,
+          "y": 375.921875,
+          "width": 50,
+          "right": 758,
+          "height": 30.609375
+        },
+        {
+          "text": "대학원",
+          "x": 772,
+          "y": 375.921875,
+          "width": 62,
+          "right": 834,
+          "height": 30.609375
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "ko",
+      "width": 390,
+      "variant": "before",
+      "documentWidth": 390,
+      "fieldsetWidth": 302,
+      "labels": [
+        {
+          "text": "장학",
+          "x": 54,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "학부",
+          "x": 54,
+          "y": 307.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "대학원",
+          "x": 54,
+          "y": 337.984375,
+          "width": 63.0625,
+          "right": 117.0625,
+          "height": 20
+        },
+        {
+          "text": "다전공/전과",
+          "x": 54,
+          "y": 367.984375,
+          "width": 93.109375,
+          "right": 147.109375,
+          "height": 20
+        },
+        {
+          "text": "등록/복학/휴학/재입학",
+          "x": 54,
+          "y": 397.984375,
+          "width": 153.203125,
+          "right": 207.203125,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 54,
+          "y": 427.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "졸업",
+          "x": 54,
+          "y": 457.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "채용정보",
+          "x": 54,
+          "y": 487.984375,
+          "width": 75.40625,
+          "right": 129.40625,
+          "height": 20
+        },
+        {
+          "text": "교환학생/유학",
+          "x": 54,
+          "y": 517.984375,
+          "width": 105.453125,
+          "right": 159.453125,
+          "height": 20
+        },
+        {
+          "text": "외부행사/프로그램",
+          "x": 54,
+          "y": 547.984375,
+          "width": 130.15625,
+          "right": 184.15625,
+          "height": 20
+        },
+        {
+          "text": "내부행사/프로그램",
+          "x": 54,
+          "y": 577.984375,
+          "width": 130.15625,
+          "right": 184.15625,
+          "height": 20
+        },
+        {
+          "text": "international",
+          "x": 54,
+          "y": 607.984375,
+          "width": 111.5625,
+          "right": 165.5625,
+          "height": 20
+        },
+        {
+          "text": "공모전/대회",
+          "x": 54,
+          "y": 637.984375,
+          "width": 93.109375,
+          "right": 147.109375,
+          "height": 20
+        },
+        {
+          "text": "시설/생활",
+          "x": 54,
+          "y": 667.984375,
+          "width": 80.75,
+          "right": 134.75,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "ko",
+      "width": 390,
+      "variant": "wrap",
+      "documentWidth": 390,
+      "fieldsetWidth": 302,
+      "labels": [
+        {
+          "text": "장학",
+          "x": 54,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "학부",
+          "x": 54,
+          "y": 307.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "대학원",
+          "x": 54,
+          "y": 337.984375,
+          "width": 63.0625,
+          "right": 117.0625,
+          "height": 20
+        },
+        {
+          "text": "다전공/전과",
+          "x": 54,
+          "y": 367.984375,
+          "width": 93.109375,
+          "right": 147.109375,
+          "height": 20
+        },
+        {
+          "text": "등록/복학/휴학/재입학",
+          "x": 54,
+          "y": 397.984375,
+          "width": 153.203125,
+          "right": 207.203125,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 54,
+          "y": 427.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "졸업",
+          "x": 54,
+          "y": 457.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "채용정보",
+          "x": 54,
+          "y": 487.984375,
+          "width": 75.40625,
+          "right": 129.40625,
+          "height": 20
+        },
+        {
+          "text": "교환학생/유학",
+          "x": 54,
+          "y": 517.984375,
+          "width": 105.453125,
+          "right": 159.453125,
+          "height": 20
+        },
+        {
+          "text": "외부행사/프로그램",
+          "x": 54,
+          "y": 547.984375,
+          "width": 130.15625,
+          "right": 184.15625,
+          "height": 20
+        },
+        {
+          "text": "내부행사/프로그램",
+          "x": 54,
+          "y": 577.984375,
+          "width": 130.15625,
+          "right": 184.15625,
+          "height": 20
+        },
+        {
+          "text": "international",
+          "x": 54,
+          "y": 607.984375,
+          "width": 111.5625,
+          "right": 165.5625,
+          "height": 20
+        },
+        {
+          "text": "공모전/대회",
+          "x": 54,
+          "y": 637.984375,
+          "width": 93.109375,
+          "right": 147.109375,
+          "height": 20
+        },
+        {
+          "text": "시설/생활",
+          "x": 54,
+          "y": 667.984375,
+          "width": 80.75,
+          "right": 134.75,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "ko",
+      "width": 390,
+      "variant": "flow",
+      "documentWidth": 390,
+      "fieldsetWidth": 302,
+      "labels": [
+        {
+          "text": "장학",
+          "x": 54,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "학부",
+          "x": 132.703125,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 183.40625,
+          "height": 20
+        },
+        {
+          "text": "대학원",
+          "x": 211.40625,
+          "y": 277.984375,
+          "width": 63.0625,
+          "right": 274.46875,
+          "height": 20
+        },
+        {
+          "text": "다전공/전과",
+          "x": 54,
+          "y": 307.984375,
+          "width": 93.109375,
+          "right": 147.109375,
+          "height": 20
+        },
+        {
+          "text": "등록/복학/휴학/재입학",
+          "x": 175.109375,
+          "y": 307.984375,
+          "width": 153.203125,
+          "right": 328.3125,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 54,
+          "y": 337.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "졸업",
+          "x": 132.703125,
+          "y": 337.984375,
+          "width": 50.703125,
+          "right": 183.40625,
+          "height": 20
+        },
+        {
+          "text": "채용정보",
+          "x": 211.40625,
+          "y": 337.984375,
+          "width": 75.40625,
+          "right": 286.8125,
+          "height": 20
+        },
+        {
+          "text": "교환학생/유학",
+          "x": 54,
+          "y": 367.984375,
+          "width": 105.453125,
+          "right": 159.453125,
+          "height": 20
+        },
+        {
+          "text": "외부행사/프로그램",
+          "x": 187.453125,
+          "y": 367.984375,
+          "width": 130.15625,
+          "right": 317.609375,
+          "height": 20
+        },
+        {
+          "text": "내부행사/프로그램",
+          "x": 54,
+          "y": 397.984375,
+          "width": 130.15625,
+          "right": 184.15625,
+          "height": 20
+        },
+        {
+          "text": "international",
+          "x": 212.15625,
+          "y": 397.984375,
+          "width": 111.5625,
+          "right": 323.71875,
+          "height": 20
+        },
+        {
+          "text": "공모전/대회",
+          "x": 54,
+          "y": 427.984375,
+          "width": 93.109375,
+          "right": 147.109375,
+          "height": 20
+        },
+        {
+          "text": "시설/생활",
+          "x": 175.109375,
+          "y": 427.984375,
+          "width": 80.75,
+          "right": 255.859375,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "ko",
+      "width": 768,
+      "variant": "before",
+      "documentWidth": 768,
+      "fieldsetWidth": 680,
+      "labels": [
+        {
+          "text": "장학",
+          "x": 54,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "학부",
+          "x": 286.65625,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 337.359375,
+          "height": 20
+        },
+        {
+          "text": "대학원",
+          "x": 519.328125,
+          "y": 277.984375,
+          "width": 63.0625,
+          "right": 582.390625,
+          "height": 20
+        },
+        {
+          "text": "다전공/전과",
+          "x": 54,
+          "y": 307.984375,
+          "width": 93.109375,
+          "right": 147.109375,
+          "height": 20
+        },
+        {
+          "text": "등록/복학/휴학/재입학",
+          "x": 286.65625,
+          "y": 307.984375,
+          "width": 153.203125,
+          "right": 439.859375,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 519.328125,
+          "y": 307.984375,
+          "width": 50.703125,
+          "right": 570.03125,
+          "height": 20
+        },
+        {
+          "text": "졸업",
+          "x": 54,
+          "y": 337.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "채용정보",
+          "x": 286.65625,
+          "y": 337.984375,
+          "width": 75.40625,
+          "right": 362.0625,
+          "height": 20
+        },
+        {
+          "text": "교환학생/유학",
+          "x": 519.328125,
+          "y": 337.984375,
+          "width": 105.453125,
+          "right": 624.78125,
+          "height": 20
+        },
+        {
+          "text": "외부행사/프로그램",
+          "x": 54,
+          "y": 367.984375,
+          "width": 130.15625,
+          "right": 184.15625,
+          "height": 20
+        },
+        {
+          "text": "내부행사/프로그램",
+          "x": 286.65625,
+          "y": 367.984375,
+          "width": 130.15625,
+          "right": 416.8125,
+          "height": 20
+        },
+        {
+          "text": "international",
+          "x": 519.328125,
+          "y": 367.984375,
+          "width": 111.5625,
+          "right": 630.890625,
+          "height": 20
+        },
+        {
+          "text": "공모전/대회",
+          "x": 54,
+          "y": 397.984375,
+          "width": 93.109375,
+          "right": 147.109375,
+          "height": 20
+        },
+        {
+          "text": "시설/생활",
+          "x": 286.65625,
+          "y": 397.984375,
+          "width": 80.75,
+          "right": 367.40625,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "ko",
+      "width": 768,
+      "variant": "wrap",
+      "documentWidth": 768,
+      "fieldsetWidth": 680,
+      "labels": [
+        {
+          "text": "장학",
+          "x": 54,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "학부",
+          "x": 286.65625,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 337.359375,
+          "height": 20
+        },
+        {
+          "text": "대학원",
+          "x": 519.328125,
+          "y": 277.984375,
+          "width": 63.0625,
+          "right": 582.390625,
+          "height": 20
+        },
+        {
+          "text": "다전공/전과",
+          "x": 54,
+          "y": 307.984375,
+          "width": 93.109375,
+          "right": 147.109375,
+          "height": 20
+        },
+        {
+          "text": "등록/복학/휴학/재입학",
+          "x": 286.65625,
+          "y": 307.984375,
+          "width": 153.203125,
+          "right": 439.859375,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 519.328125,
+          "y": 307.984375,
+          "width": 50.703125,
+          "right": 570.03125,
+          "height": 20
+        },
+        {
+          "text": "졸업",
+          "x": 54,
+          "y": 337.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "채용정보",
+          "x": 286.65625,
+          "y": 337.984375,
+          "width": 75.40625,
+          "right": 362.0625,
+          "height": 20
+        },
+        {
+          "text": "교환학생/유학",
+          "x": 519.328125,
+          "y": 337.984375,
+          "width": 105.453125,
+          "right": 624.78125,
+          "height": 20
+        },
+        {
+          "text": "외부행사/프로그램",
+          "x": 54,
+          "y": 367.984375,
+          "width": 130.15625,
+          "right": 184.15625,
+          "height": 20
+        },
+        {
+          "text": "내부행사/프로그램",
+          "x": 286.65625,
+          "y": 367.984375,
+          "width": 130.15625,
+          "right": 416.8125,
+          "height": 20
+        },
+        {
+          "text": "international",
+          "x": 519.328125,
+          "y": 367.984375,
+          "width": 111.5625,
+          "right": 630.890625,
+          "height": 20
+        },
+        {
+          "text": "공모전/대회",
+          "x": 54,
+          "y": 397.984375,
+          "width": 93.109375,
+          "right": 147.109375,
+          "height": 20
+        },
+        {
+          "text": "시설/생활",
+          "x": 286.65625,
+          "y": 397.984375,
+          "width": 80.75,
+          "right": 367.40625,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "ko",
+      "width": 768,
+      "variant": "flow",
+      "documentWidth": 768,
+      "fieldsetWidth": 680,
+      "labels": [
+        {
+          "text": "장학",
+          "x": 54,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "학부",
+          "x": 132.703125,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 183.40625,
+          "height": 20
+        },
+        {
+          "text": "대학원",
+          "x": 211.40625,
+          "y": 277.984375,
+          "width": 63.0625,
+          "right": 274.46875,
+          "height": 20
+        },
+        {
+          "text": "다전공/전과",
+          "x": 302.46875,
+          "y": 277.984375,
+          "width": 93.109375,
+          "right": 395.578125,
+          "height": 20
+        },
+        {
+          "text": "등록/복학/휴학/재입학",
+          "x": 423.578125,
+          "y": 277.984375,
+          "width": 153.203125,
+          "right": 576.78125,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 604.78125,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 655.484375,
+          "height": 20
+        },
+        {
+          "text": "졸업",
+          "x": 54,
+          "y": 307.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "채용정보",
+          "x": 132.703125,
+          "y": 307.984375,
+          "width": 75.40625,
+          "right": 208.109375,
+          "height": 20
+        },
+        {
+          "text": "교환학생/유학",
+          "x": 236.109375,
+          "y": 307.984375,
+          "width": 105.453125,
+          "right": 341.5625,
+          "height": 20
+        },
+        {
+          "text": "외부행사/프로그램",
+          "x": 369.5625,
+          "y": 307.984375,
+          "width": 130.15625,
+          "right": 499.71875,
+          "height": 20
+        },
+        {
+          "text": "내부행사/프로그램",
+          "x": 527.71875,
+          "y": 307.984375,
+          "width": 130.15625,
+          "right": 657.875,
+          "height": 20
+        },
+        {
+          "text": "international",
+          "x": 54,
+          "y": 337.984375,
+          "width": 111.5625,
+          "right": 165.5625,
+          "height": 20
+        },
+        {
+          "text": "공모전/대회",
+          "x": 193.5625,
+          "y": 337.984375,
+          "width": 93.109375,
+          "right": 286.671875,
+          "height": 20
+        },
+        {
+          "text": "시설/생활",
+          "x": 314.671875,
+          "y": 337.984375,
+          "width": 80.75,
+          "right": 395.421875,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "ko",
+      "width": 1024,
+      "variant": "before",
+      "documentWidth": 1024,
+      "fieldsetWidth": 936,
+      "labels": [
+        {
+          "text": "장학",
+          "x": 54,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "학부",
+          "x": 244.796875,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 295.5,
+          "height": 20
+        },
+        {
+          "text": "대학원",
+          "x": 435.59375,
+          "y": 277.984375,
+          "width": 63.0625,
+          "right": 498.65625,
+          "height": 20
+        },
+        {
+          "text": "다전공/전과",
+          "x": 626.390625,
+          "y": 277.984375,
+          "width": 93.109375,
+          "right": 719.5,
+          "height": 20
+        },
+        {
+          "text": "등록/복학/휴학/재입학",
+          "x": 817.1875,
+          "y": 277.984375,
+          "width": 153.203125,
+          "right": 970.390625,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 54,
+          "y": 307.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "졸업",
+          "x": 244.796875,
+          "y": 307.984375,
+          "width": 50.703125,
+          "right": 295.5,
+          "height": 20
+        },
+        {
+          "text": "채용정보",
+          "x": 435.59375,
+          "y": 307.984375,
+          "width": 75.40625,
+          "right": 511,
+          "height": 20
+        },
+        {
+          "text": "교환학생/유학",
+          "x": 626.390625,
+          "y": 307.984375,
+          "width": 105.453125,
+          "right": 731.84375,
+          "height": 20
+        },
+        {
+          "text": "외부행사/프로그램",
+          "x": 817.1875,
+          "y": 307.984375,
+          "width": 130.15625,
+          "right": 947.34375,
+          "height": 20
+        },
+        {
+          "text": "내부행사/프로그램",
+          "x": 54,
+          "y": 337.984375,
+          "width": 130.15625,
+          "right": 184.15625,
+          "height": 20
+        },
+        {
+          "text": "international",
+          "x": 244.796875,
+          "y": 337.984375,
+          "width": 111.5625,
+          "right": 356.359375,
+          "height": 20
+        },
+        {
+          "text": "공모전/대회",
+          "x": 435.59375,
+          "y": 337.984375,
+          "width": 93.109375,
+          "right": 528.703125,
+          "height": 20
+        },
+        {
+          "text": "시설/생활",
+          "x": 626.390625,
+          "y": 337.984375,
+          "width": 80.75,
+          "right": 707.140625,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "ko",
+      "width": 1024,
+      "variant": "wrap",
+      "documentWidth": 1024,
+      "fieldsetWidth": 936,
+      "labels": [
+        {
+          "text": "장학",
+          "x": 54,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "학부",
+          "x": 244.796875,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 295.5,
+          "height": 20
+        },
+        {
+          "text": "대학원",
+          "x": 435.59375,
+          "y": 277.984375,
+          "width": 63.0625,
+          "right": 498.65625,
+          "height": 20
+        },
+        {
+          "text": "다전공/전과",
+          "x": 626.390625,
+          "y": 277.984375,
+          "width": 93.109375,
+          "right": 719.5,
+          "height": 20
+        },
+        {
+          "text": "등록/복학/휴학/재입학",
+          "x": 817.1875,
+          "y": 277.984375,
+          "width": 153.203125,
+          "right": 970.390625,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 54,
+          "y": 307.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "졸업",
+          "x": 244.796875,
+          "y": 307.984375,
+          "width": 50.703125,
+          "right": 295.5,
+          "height": 20
+        },
+        {
+          "text": "채용정보",
+          "x": 435.59375,
+          "y": 307.984375,
+          "width": 75.40625,
+          "right": 511,
+          "height": 20
+        },
+        {
+          "text": "교환학생/유학",
+          "x": 626.390625,
+          "y": 307.984375,
+          "width": 105.453125,
+          "right": 731.84375,
+          "height": 20
+        },
+        {
+          "text": "외부행사/프로그램",
+          "x": 817.1875,
+          "y": 307.984375,
+          "width": 130.15625,
+          "right": 947.34375,
+          "height": 20
+        },
+        {
+          "text": "내부행사/프로그램",
+          "x": 54,
+          "y": 337.984375,
+          "width": 130.15625,
+          "right": 184.15625,
+          "height": 20
+        },
+        {
+          "text": "international",
+          "x": 244.796875,
+          "y": 337.984375,
+          "width": 111.5625,
+          "right": 356.359375,
+          "height": 20
+        },
+        {
+          "text": "공모전/대회",
+          "x": 435.59375,
+          "y": 337.984375,
+          "width": 93.109375,
+          "right": 528.703125,
+          "height": 20
+        },
+        {
+          "text": "시설/생활",
+          "x": 626.390625,
+          "y": 337.984375,
+          "width": 80.75,
+          "right": 707.140625,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "ko",
+      "width": 1024,
+      "variant": "flow",
+      "documentWidth": 1024,
+      "fieldsetWidth": 936,
+      "labels": [
+        {
+          "text": "장학",
+          "x": 54,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "학부",
+          "x": 132.703125,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 183.40625,
+          "height": 20
+        },
+        {
+          "text": "대학원",
+          "x": 211.40625,
+          "y": 277.984375,
+          "width": 63.0625,
+          "right": 274.46875,
+          "height": 20
+        },
+        {
+          "text": "다전공/전과",
+          "x": 302.46875,
+          "y": 277.984375,
+          "width": 93.109375,
+          "right": 395.578125,
+          "height": 20
+        },
+        {
+          "text": "등록/복학/휴학/재입학",
+          "x": 423.578125,
+          "y": 277.984375,
+          "width": 153.203125,
+          "right": 576.78125,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 604.78125,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 655.484375,
+          "height": 20
+        },
+        {
+          "text": "졸업",
+          "x": 683.484375,
+          "y": 277.984375,
+          "width": 50.703125,
+          "right": 734.1875,
+          "height": 20
+        },
+        {
+          "text": "채용정보",
+          "x": 762.1875,
+          "y": 277.984375,
+          "width": 75.40625,
+          "right": 837.59375,
+          "height": 20
+        },
+        {
+          "text": "교환학생/유학",
+          "x": 865.59375,
+          "y": 277.984375,
+          "width": 105.453125,
+          "right": 971.046875,
+          "height": 20
+        },
+        {
+          "text": "외부행사/프로그램",
+          "x": 54,
+          "y": 307.984375,
+          "width": 130.15625,
+          "right": 184.15625,
+          "height": 20
+        },
+        {
+          "text": "내부행사/프로그램",
+          "x": 212.15625,
+          "y": 307.984375,
+          "width": 130.15625,
+          "right": 342.3125,
+          "height": 20
+        },
+        {
+          "text": "international",
+          "x": 370.3125,
+          "y": 307.984375,
+          "width": 111.5625,
+          "right": 481.875,
+          "height": 20
+        },
+        {
+          "text": "공모전/대회",
+          "x": 509.875,
+          "y": 307.984375,
+          "width": 93.109375,
+          "right": 602.984375,
+          "height": 20
+        },
+        {
+          "text": "시설/생활",
+          "x": 630.984375,
+          "y": 307.984375,
+          "width": 80.75,
+          "right": 711.734375,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "ko",
+      "width": 1280,
+      "variant": "before",
+      "documentWidth": 1280,
+      "fieldsetWidth": 672,
+      "labels": [
+        {
+          "text": "장학",
+          "x": 234,
+          "y": 405.640625,
+          "width": 50.703125,
+          "right": 284.703125,
+          "height": 20
+        },
+        {
+          "text": "학부",
+          "x": 464,
+          "y": 405.640625,
+          "width": 50.703125,
+          "right": 514.703125,
+          "height": 20
+        },
+        {
+          "text": "대학원",
+          "x": 694,
+          "y": 405.640625,
+          "width": 63.0625,
+          "right": 757.0625,
+          "height": 20
+        },
+        {
+          "text": "다전공/전과",
+          "x": 234,
+          "y": 435.640625,
+          "width": 93.109375,
+          "right": 327.109375,
+          "height": 20
+        },
+        {
+          "text": "등록/복학/휴학/재입학",
+          "x": 464,
+          "y": 435.640625,
+          "width": 153.203125,
+          "right": 617.203125,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 694,
+          "y": 435.640625,
+          "width": 50.703125,
+          "right": 744.703125,
+          "height": 20
+        },
+        {
+          "text": "졸업",
+          "x": 234,
+          "y": 465.640625,
+          "width": 50.703125,
+          "right": 284.703125,
+          "height": 20
+        },
+        {
+          "text": "채용정보",
+          "x": 464,
+          "y": 465.640625,
+          "width": 75.40625,
+          "right": 539.40625,
+          "height": 20
+        },
+        {
+          "text": "교환학생/유학",
+          "x": 694,
+          "y": 465.640625,
+          "width": 105.453125,
+          "right": 799.453125,
+          "height": 20
+        },
+        {
+          "text": "외부행사/프로그램",
+          "x": 234,
+          "y": 495.640625,
+          "width": 130.15625,
+          "right": 364.15625,
+          "height": 20
+        },
+        {
+          "text": "내부행사/프로그램",
+          "x": 464,
+          "y": 495.640625,
+          "width": 130.15625,
+          "right": 594.15625,
+          "height": 20
+        },
+        {
+          "text": "international",
+          "x": 694,
+          "y": 495.640625,
+          "width": 111.5625,
+          "right": 805.5625,
+          "height": 20
+        },
+        {
+          "text": "공모전/대회",
+          "x": 234,
+          "y": 525.640625,
+          "width": 93.109375,
+          "right": 327.109375,
+          "height": 20
+        },
+        {
+          "text": "시설/생활",
+          "x": 464,
+          "y": 525.640625,
+          "width": 80.75,
+          "right": 544.75,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "ko",
+      "width": 1280,
+      "variant": "wrap",
+      "documentWidth": 1280,
+      "fieldsetWidth": 672,
+      "labels": [
+        {
+          "text": "장학",
+          "x": 234,
+          "y": 405.640625,
+          "width": 50.703125,
+          "right": 284.703125,
+          "height": 20
+        },
+        {
+          "text": "학부",
+          "x": 464,
+          "y": 405.640625,
+          "width": 50.703125,
+          "right": 514.703125,
+          "height": 20
+        },
+        {
+          "text": "대학원",
+          "x": 694,
+          "y": 405.640625,
+          "width": 63.0625,
+          "right": 757.0625,
+          "height": 20
+        },
+        {
+          "text": "다전공/전과",
+          "x": 234,
+          "y": 435.640625,
+          "width": 93.109375,
+          "right": 327.109375,
+          "height": 20
+        },
+        {
+          "text": "등록/복학/휴학/재입학",
+          "x": 464,
+          "y": 435.640625,
+          "width": 153.203125,
+          "right": 617.203125,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 694,
+          "y": 435.640625,
+          "width": 50.703125,
+          "right": 744.703125,
+          "height": 20
+        },
+        {
+          "text": "졸업",
+          "x": 234,
+          "y": 465.640625,
+          "width": 50.703125,
+          "right": 284.703125,
+          "height": 20
+        },
+        {
+          "text": "채용정보",
+          "x": 464,
+          "y": 465.640625,
+          "width": 75.40625,
+          "right": 539.40625,
+          "height": 20
+        },
+        {
+          "text": "교환학생/유학",
+          "x": 694,
+          "y": 465.640625,
+          "width": 105.453125,
+          "right": 799.453125,
+          "height": 20
+        },
+        {
+          "text": "외부행사/프로그램",
+          "x": 234,
+          "y": 495.640625,
+          "width": 130.15625,
+          "right": 364.15625,
+          "height": 20
+        },
+        {
+          "text": "내부행사/프로그램",
+          "x": 464,
+          "y": 495.640625,
+          "width": 130.15625,
+          "right": 594.15625,
+          "height": 20
+        },
+        {
+          "text": "international",
+          "x": 694,
+          "y": 495.640625,
+          "width": 111.5625,
+          "right": 805.5625,
+          "height": 20
+        },
+        {
+          "text": "공모전/대회",
+          "x": 234,
+          "y": 525.640625,
+          "width": 93.109375,
+          "right": 327.109375,
+          "height": 20
+        },
+        {
+          "text": "시설/생활",
+          "x": 464,
+          "y": 525.640625,
+          "width": 80.75,
+          "right": 544.75,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "scene": "notice",
+      "locale": "ko",
+      "width": 1280,
+      "variant": "flow",
+      "documentWidth": 1280,
+      "fieldsetWidth": 672,
+      "labels": [
+        {
+          "text": "장학",
+          "x": 234,
+          "y": 405.640625,
+          "width": 50.703125,
+          "right": 284.703125,
+          "height": 20
+        },
+        {
+          "text": "학부",
+          "x": 312.703125,
+          "y": 405.640625,
+          "width": 50.703125,
+          "right": 363.40625,
+          "height": 20
+        },
+        {
+          "text": "대학원",
+          "x": 391.40625,
+          "y": 405.640625,
+          "width": 63.0625,
+          "right": 454.46875,
+          "height": 20
+        },
+        {
+          "text": "다전공/전과",
+          "x": 482.46875,
+          "y": 405.640625,
+          "width": 93.109375,
+          "right": 575.578125,
+          "height": 20
+        },
+        {
+          "text": "등록/복학/휴학/재입학",
+          "x": 603.578125,
+          "y": 405.640625,
+          "width": 153.203125,
+          "right": 756.78125,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 784.78125,
+          "y": 405.640625,
+          "width": 50.703125,
+          "right": 835.484375,
+          "height": 20
+        },
+        {
+          "text": "졸업",
+          "x": 234,
+          "y": 435.640625,
+          "width": 50.703125,
+          "right": 284.703125,
+          "height": 20
+        },
+        {
+          "text": "채용정보",
+          "x": 312.703125,
+          "y": 435.640625,
+          "width": 75.40625,
+          "right": 388.109375,
+          "height": 20
+        },
+        {
+          "text": "교환학생/유학",
+          "x": 416.109375,
+          "y": 435.640625,
+          "width": 105.453125,
+          "right": 521.5625,
+          "height": 20
+        },
+        {
+          "text": "외부행사/프로그램",
+          "x": 549.5625,
+          "y": 435.640625,
+          "width": 130.15625,
+          "right": 679.71875,
+          "height": 20
+        },
+        {
+          "text": "내부행사/프로그램",
+          "x": 707.71875,
+          "y": 435.640625,
+          "width": 130.15625,
+          "right": 837.875,
+          "height": 20
+        },
+        {
+          "text": "international",
+          "x": 234,
+          "y": 465.640625,
+          "width": 111.5625,
+          "right": 345.5625,
+          "height": 20
+        },
+        {
+          "text": "공모전/대회",
+          "x": 373.5625,
+          "y": 465.640625,
+          "width": 93.109375,
+          "right": 466.671875,
+          "height": 20
+        },
+        {
+          "text": "시설/생활",
+          "x": 494.671875,
+          "y": 465.640625,
+          "width": 80.75,
+          "right": 575.421875,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    }
+  ]
+}

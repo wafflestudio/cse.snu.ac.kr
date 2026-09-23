@@ -11,7 +11,7 @@ export default function ImportantSection({
   importantList: MainImportant[];
 }) {
   return (
-    <div className="mt-10 grid grid-cols-1 gap-8 sm:mx-[7.5rem] sm:mt-[4.0625rem] sm:grid-cols-2 sm:gap-7">
+    <div className="mt-10 grid grid-cols-1 gap-8 shell:mx-[7.5rem] shell:mt-[4.0625rem] shell:grid-cols-2 shell:gap-7">
       {importantList.map((important) => (
         <ImportantBanner key={important.id} important={important} />
       ))}
@@ -47,7 +47,7 @@ const CharityBanner = () => (
     <Image
       src={charityImg}
       alt=""
-      sizes="(min-width: 640px) 50vw, 100vw"
+      sizes="(min-width: 1200px) 50vw, 100vw"
       className="absolute inset-0 h-full w-full object-cover"
     />
     <h3 className="relative z-10 line-clamp-1 text-lg font-semibold text-neutral-950">

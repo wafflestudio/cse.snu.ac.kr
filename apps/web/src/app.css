@@ -35,6 +35,9 @@
 }
 
 @theme {
+  /* DS-023: navigation/frame; content keeps its own sm/lg breakpoints. */
+  --breakpoint-shell: 75rem;
+
   --color-transparent: transparent;
   --color-white: #ffffff;
   --color-neutral-50: #fafafa;
@@ -128,7 +131,7 @@
    페이지·섹션은 가로 거터를 인라인 재선언하지 말고 이 클래스를 쓴다(세로 패딩만 각자). */
 @layer components {
   .page-gutter-x {
-    @apply px-5 sm:pl-25 sm:pr-90;
+    @apply px-5 shell:pl-25 shell:pr-90;
   }
 
   /* SNU 로고는 흰색·회색·주황 세 가지로만 쓰인다. 인라인 <svg> 로 두면 소수 2178개짜리 path 가

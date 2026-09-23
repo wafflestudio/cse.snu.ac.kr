@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { useState } from 'react';
 import Image from '@/components/ui/Image';
 import { useLanguage } from '@/hooks/useLanguage';
-import useIsMobile from '@/hooks/useResponsive';
+import { useCompactNavigation } from '@/hooks/useResponsive';
 import type { AllMainNotice } from '@/types/api';
 import noticeGraphicImg from '../assets/noticeGraphic.avif';
 import PlusIcon from '../assets/plus.svg?react';
@@ -35,12 +35,12 @@ export default function NoticeSection({
   allMainNotice: AllMainNotice;
 }) {
   const [tag, setTag] = useState<keyof AllMainNotice>('all');
-  const isMobile = useIsMobile();
+  const isMobile = useCompactNavigation();
   const { t, localizedPath, locale } = useLanguage();
 
   return (
-    <div className="relative mt-16 bg-[#212121] sm:mx-31 sm:mt-22 sm:h-112">
-      <div className="absolute left-0 top-0 hidden aspect-827/295 w-[77%] sm:block">
+    <div className="relative mt-16 bg-[#212121] shell:mx-31 shell:mt-22 shell:h-112">
+      <div className="absolute left-0 top-0 hidden aspect-827/295 w-[77%] shell:block">
         <Image
           src={noticeGraphicImg}
           alt=""
@@ -48,11 +48,11 @@ export default function NoticeSection({
           className="absolute inset-0 h-full w-full"
         />
       </div>
-      <div className="flex flex-col px-7 pb-6.5 pt-12 sm:absolute sm:bottom-12 sm:right-12 sm:w-132 sm:p-0">
+      <div className="flex flex-col px-7 pb-6.5 pt-12 shell:absolute shell:bottom-12 shell:right-12 shell:w-132 shell:p-0">
         <h3 className="text-[1.75rem] font-semibold text-white">
           {t('공지사항')}
         </h3>
-        <div className="mt-6 flex items-center justify-between sm:mt-9">
+        <div className="mt-6 flex items-center justify-between shell:mt-9">
           <fieldset
             aria-label={t('공지사항')}
             className="m-0 flex gap-3.5 border-0 p-0"
@@ -85,10 +85,10 @@ export default function NoticeSection({
           {allMainNotice[tag].map((notice) => (
             <Link
               key={notice.id}
-              className="line-clamp-1 flex justify-between gap-2 text-md font-normal text-white sm:text-base"
+              className="line-clamp-1 flex justify-between gap-2 text-md font-normal text-white shell:text-base"
               to={localizedPath(`/community/notice/${notice.id}`)}
             >
-              <h3 className="truncate sm:w-108">{notice.title}</h3>
+              <h3 className="truncate shell:w-108">{notice.title}</h3>
               <p className="whitespace-nowrap">
                 {dayjs(notice.createdAt)
                   .locale(locale)

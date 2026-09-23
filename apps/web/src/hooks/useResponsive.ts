@@ -1,25 +1,41 @@
-import { useSyncExternalStore } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 
-// Tailwind `sm`(min-width: 640px)의 여집합. 소수 뷰포트(브라우저 줌)까지 커버.
+// DS-023: app.css shell=75rem; Tailwind lg=64rem. Keep display and event logic aligned.
 const MOBILE_QUERY = '(max-width: 639.98px)';
+const COMPACT_NAVIGATION_QUERY = '(width < 75rem)';
+const COMPACT_CONTENT_QUERY = '(width < 64rem)';
 
-const subscribe = (onStoreChange: () => void) => {
-  const mql = window.matchMedia(MOBILE_QUERY);
-  // resize와 달리 브레이크포인트를 넘을 때만 발화한다.
-  mql.addEventListener('change', onStoreChange);
-  return () => mql.removeEventListener('change', onStoreChange);
-};
-
-/**
- * 모바일 뷰포트 여부(640px 미만).
- * 서버는 뷰포트를 알 수 없어 모바일로 가정한다 — 데스크톱은 하이드레이션 후 확정된다.
- * CSS(`hidden sm:*`)로 되는 분기는 CSS를 쓰고, 이 훅은 값 계산·컴포넌트 분기에만 쓴다.
- */
-export default function useIsMobile() {
-  return useSyncExternalStore(subscribe, isMobileViewport, () => true);
+function useViewportQuery(query: string) {
+  const subscribe = useCallback(
+    (onStoreChange: () => void) => {
+      const mql = window.matchMedia(query);
+      mql.addEventListener('change', onStoreChange);
+      return () => mql.removeEventListener('change', onStoreChange);
+    },
+    [query],
+  );
+  const getSnapshot = useCallback(
+    () => window.matchMedia(query).matches,
+    [query],
+  );
+  // SSR cannot know the viewport. CSS handles purely visual branches.
+  return useSyncExternalStore(subscribe, getSnapshot, () => true);
 }
 
-/** 이벤트 시점의 뷰포트. 렌더에 쓰면 SSR 과 어긋나니 핸들러 안에서만 부른다. */
-export function isMobileViewport() {
-  return window.matchMedia(MOBILE_QUERY).matches;
+/** Existing small-screen page count; independent of the navigation frame. */
+export default function useIsMobile() {
+  return useViewportQuery(MOBILE_QUERY);
+}
+
+export function useCompactNavigation() {
+  return useViewportQuery(COMPACT_NAVIGATION_QUERY);
+}
+
+export function useCompactContent() {
+  return useViewportQuery(COMPACT_CONTENT_QUERY);
+}
+
+/** For event handlers, paired with the lg calendar columns. */
+export function isCompactContentViewport() {
+  return window.matchMedia(COMPACT_CONTENT_QUERY).matches;
 }

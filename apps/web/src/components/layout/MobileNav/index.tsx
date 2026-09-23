@@ -8,7 +8,7 @@ export default function MobileNav() {
   if (navbarState.type !== 'hovered') return null;
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 top-[68px] z-50 flex sm:hidden">
+    <div className="absolute bottom-0 left-0 right-0 top-[68px] z-50 flex shell:hidden">
       <MobileNavList />
       <MobileNavDetail />
     </div>

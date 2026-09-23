@@ -27,7 +27,7 @@ export default function CalendarContent({
         <RowIndex />
         {/* 서버는 뷰포트를 모르니 두 벌을 다 그리고 CSS 로 하나만 보인다.
             래퍼는 `contents` 라 칼럼이 그대로 flex 자식으로 남는다. */}
-        <div className="contents sm:hidden">
+        <div className="contents lg:hidden">
           <Columns
             startDate={startDate}
             count={MOBILE_COLUMN_COUNT}
@@ -35,7 +35,7 @@ export default function CalendarContent({
             onSelectReservation={setSelectedReservationId}
           />
         </div>
-        <div className="hidden sm:contents">
+        <div className="hidden lg:contents">
           <Columns
             startDate={getStartOfWeek(startDate)}
             count={DESKTOP_COLUMN_COUNT}
@@ -95,7 +95,7 @@ const RowIndex = () => (
       >
         <time className="text-xs font-medium text-neutral-800">
           {hour}
-          <span className="hidden sm:inline">{meridiem}</span>
+          <span className="hidden lg:inline">{meridiem}</span>
         </time>
       </div>
     ))}

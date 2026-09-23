@@ -29,7 +29,7 @@ export default function MobileNavButton() {
     <button
       type="button"
       onClick={toggleNav}
-      className="flex items-center justify-center sm:hidden"
+      className="flex items-center justify-center shell:hidden"
       aria-label={isOpen ? '메뉴 닫기' : '메뉴 열기'}
     >
       {isOpen ? <X className="h-5 w-5 text-white" /> : <MenuSVG />}

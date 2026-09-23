@@ -5,7 +5,7 @@ import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/hooks/useLanguage';
-import useIsMobile from '@/hooks/useResponsive';
+import { useCompactContent } from '@/hooks/useResponsive';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import AddCourseModal from '@/routes/$locale/academics/-components/courses/AddCourseModal';
 import CourseCardGrid from '@/routes/$locale/academics/-components/courses/CourseCardGrid';
@@ -72,7 +72,7 @@ export default function CoursesPage({
   const title = t('교과과정');
   const _studentLabel = studentType === 'graduate' ? t('대학원') : t('학부');
   const meta = META[studentType][locale];
-  const isMobile = useIsMobile();
+  const isMobile = useCompactContent();
   const search = useSearch({ strict: false });
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [isAddCourseModalOpen, setIsAddCourseModalOpen] = useState(false);
@@ -103,7 +103,7 @@ export default function CoursesPage({
           </Button>
         </div>
       </LoginVisible>
-      <h4 className="mb-8 text-[17px] font-bold sm:pl-5">{t('교과목 정보')}</h4>
+      <h4 className="mb-8 text-[17px] font-bold lg:pl-5">{t('교과목 정보')}</h4>
       <CourseToolbar hideSortOption={shouldHideSort} />
       {isEnglish && <ClassificationDescription />}
       {effectiveViewOption === '카드형' ? (
