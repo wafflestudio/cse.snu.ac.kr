@@ -1,0 +1,3788 @@
+{
+  "note": "DS stage 3-5 desktop layout audit; real STAFF session; fixed 2026-09-24 time; field input and local attachments only, no saves; SunEditor internals excluded",
+  "records": [
+    {
+      "scene": "notice-empty",
+      "width": 1200,
+      "documentWidth": 1200,
+      "forms": [
+        {
+          "x": 924,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1140,
+          "bottom": 108.625
+        },
+        {
+          "x": 200,
+          "y": 352.84375,
+          "width": 640,
+          "height": 1205.15625,
+          "right": 840,
+          "bottom": 1558
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        }
+      ],
+      "groups": [
+        {
+          "legend": "제목*",
+          "x": 200,
+          "y": 352.84375,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 409.640625,
+          "marginBottom": "32px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "메인-중요 안내용 제목",
+          "x": 200,
+          "y": 441.640625,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 498.4375,
+          "marginBottom": "32px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "내용*",
+          "x": 200,
+          "y": 530.4375,
+          "width": 640,
+          "height": 531.171875,
+          "right": 840,
+          "bottom": 1061.609375,
+          "marginBottom": "24px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "첨부파일",
+          "x": 200,
+          "y": 1085.609375,
+          "width": 640,
+          "height": 74.796875,
+          "right": 840,
+          "bottom": 1160.40625,
+          "marginBottom": "24px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "태그",
+          "x": 200,
+          "y": 1184.40625,
+          "width": 640,
+          "height": 152.796875,
+          "right": 840,
+          "bottom": 1337.203125,
+          "marginBottom": "32px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "게시 설정",
+          "x": 200,
+          "y": 1369.203125,
+          "width": 640,
+          "height": 104.796875,
+          "right": 840,
+          "bottom": 1474,
+          "marginBottom": "24px",
+          "titleGap": "12px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 924,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1114,
+          "bottom": 108.625
+        },
+        {
+          "name": "title",
+          "x": 200,
+          "y": 377.640625,
+          "width": 640,
+          "height": 32,
+          "right": 840,
+          "bottom": 409.640625
+        },
+        {
+          "name": "titleForMain",
+          "x": 200,
+          "y": 466.4375,
+          "width": 640,
+          "height": 32,
+          "right": 840,
+          "bottom": 498.4375
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "notice-filled",
+      "width": 1200,
+      "documentWidth": 1200,
+      "forms": [
+        {
+          "x": 924,
+          "y": -1055.375,
+          "width": 216,
+          "height": 30,
+          "right": 1140,
+          "bottom": -1025.375
+        },
+        {
+          "x": 200,
+          "y": -781.15625,
+          "width": 640,
+          "height": 1353.171875,
+          "right": 840,
+          "bottom": 572.015625
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        }
+      ],
+      "groups": [
+        {
+          "legend": "제목*",
+          "x": 200,
+          "y": -781.15625,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": -724.359375,
+          "marginBottom": "32px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "메인-중요 안내용 제목",
+          "x": 200,
+          "y": -692.359375,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": -635.5625,
+          "marginBottom": "32px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "내용*",
+          "x": 200,
+          "y": -603.5625,
+          "width": 640,
+          "height": 530.796875,
+          "right": 840,
+          "bottom": -72.765625,
+          "marginBottom": "24px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "첨부파일",
+          "x": 200,
+          "y": -48.765625,
+          "width": 640,
+          "height": 134.796875,
+          "right": 840,
+          "bottom": 86.03125,
+          "marginBottom": "24px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "태그",
+          "x": 200,
+          "y": 110.03125,
+          "width": 640,
+          "height": 152.796875,
+          "right": 840,
+          "bottom": 262.828125,
+          "marginBottom": "32px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "게시 설정",
+          "x": 200,
+          "y": 294.828125,
+          "width": 640,
+          "height": 193.1875,
+          "right": 840,
+          "bottom": 488.015625,
+          "marginBottom": "24px",
+          "titleGap": "12px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 924,
+          "y": -1055.375,
+          "width": 190,
+          "height": 30,
+          "right": 1114,
+          "bottom": -1025.375
+        },
+        {
+          "name": "title",
+          "x": 200,
+          "y": -756.359375,
+          "width": 640,
+          "height": 32,
+          "right": 840,
+          "bottom": -724.359375
+        },
+        {
+          "name": "titleForMain",
+          "x": 200,
+          "y": -667.5625,
+          "width": 640,
+          "height": 32,
+          "right": 840,
+          "bottom": -635.5625
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "faculty-ko",
+      "width": 1200,
+      "documentWidth": 1200,
+      "forms": [
+        {
+          "x": 924,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1140,
+          "bottom": 108.625
+        },
+        {
+          "x": 200,
+          "y": 352.84375,
+          "width": 640,
+          "height": 1257.53125,
+          "right": 840,
+          "bottom": 1610.375
+        }
+      ],
+      "groups": [
+        {
+          "legend": "구분*",
+          "x": 200,
+          "y": 352.84375,
+          "width": 640,
+          "height": 45.59375,
+          "right": 840,
+          "bottom": 398.4375,
+          "marginBottom": "44px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "사진",
+          "x": 200,
+          "y": 442.4375,
+          "width": 640,
+          "height": 94.390625,
+          "right": 840,
+          "bottom": 536.828125,
+          "marginBottom": "48px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "연구실",
+          "x": 200,
+          "y": 584.828125,
+          "width": 640,
+          "height": 53.59375,
+          "right": 840,
+          "bottom": 638.421875,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "전화번호",
+          "x": 200,
+          "y": 687.21875,
+          "width": 336,
+          "height": 56.796875,
+          "right": 536,
+          "bottom": 744.015625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "팩스",
+          "x": 536,
+          "y": 687.21875,
+          "width": 336,
+          "height": 56.796875,
+          "right": 872,
+          "bottom": 744.015625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이메일",
+          "x": 200,
+          "y": 764.015625,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 820.8125,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "웹사이트 URL",
+          "x": 200,
+          "y": 840.8125,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 897.609375,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이름*",
+          "x": 200,
+          "y": 972.796875,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 1029.59375,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "직함*",
+          "x": 200,
+          "y": 1049.59375,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 1106.390625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "소속",
+          "x": 200,
+          "y": 1126.390625,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 1183.1875,
+          "marginBottom": "40px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "위치",
+          "x": 200,
+          "y": 1223.1875,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 1279.984375,
+          "marginBottom": "40px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "학력",
+          "x": 200,
+          "y": 1319.984375,
+          "width": 640,
+          "height": 66.796875,
+          "right": 840,
+          "bottom": 1386.78125,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "연구 분야",
+          "x": 200,
+          "y": 1396.78125,
+          "width": 640,
+          "height": 66.796875,
+          "right": 840,
+          "bottom": 1463.578125,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "경력",
+          "x": 200,
+          "y": 1473.578125,
+          "width": 640,
+          "height": 66.796875,
+          "right": 840,
+          "bottom": 1540.375,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 924,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1114,
+          "bottom": 108.625
+        },
+        {
+          "name": "status",
+          "x": 200,
+          "y": 381.640625,
+          "width": 14,
+          "height": 14,
+          "right": 214,
+          "bottom": 395.640625
+        },
+        {
+          "name": "status",
+          "x": 254.703125,
+          "y": 381.640625,
+          "width": 14,
+          "height": 14,
+          "right": 268.703125,
+          "bottom": 395.640625
+        },
+        {
+          "name": "status",
+          "x": 337.453125,
+          "y": 381.640625,
+          "width": 14,
+          "height": 14,
+          "right": 351.453125,
+          "bottom": 395.640625
+        },
+        {
+          "name": "phone",
+          "x": 200,
+          "y": 712.015625,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 744.015625
+        },
+        {
+          "name": "fax",
+          "x": 536,
+          "y": 712.015625,
+          "width": 320,
+          "height": 32,
+          "right": 856,
+          "bottom": 744.015625
+        },
+        {
+          "name": "email",
+          "x": 200,
+          "y": 788.8125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 820.8125
+        },
+        {
+          "name": "website",
+          "x": 200,
+          "y": 865.609375,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 897.609375
+        },
+        {
+          "name": "ko.name",
+          "x": 200,
+          "y": 997.59375,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 1029.59375
+        },
+        {
+          "name": "ko.academicRank",
+          "x": 200,
+          "y": 1074.390625,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 1106.390625
+        },
+        {
+          "name": "ko.department",
+          "x": 200,
+          "y": 1151.1875,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 1183.1875
+        },
+        {
+          "name": "ko.office",
+          "x": 200,
+          "y": 1247.984375,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 1279.984375
+        },
+        {
+          "name": "ko.educations_new",
+          "x": 200,
+          "y": 1344.78125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1376.78125
+        },
+        {
+          "name": "ko.researchAreas_new",
+          "x": 200,
+          "y": 1421.578125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1453.578125
+        },
+        {
+          "name": "ko.careers_new",
+          "x": 200,
+          "y": 1498.375,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1530.375
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "faculty-en",
+      "width": 1200,
+      "documentWidth": 1200,
+      "forms": [
+        {
+          "x": 924,
+          "y": -400.375,
+          "width": 216,
+          "height": 30,
+          "right": 1140,
+          "bottom": -370.375
+        },
+        {
+          "x": 200,
+          "y": -126.15625,
+          "width": 640,
+          "height": 1299.53125,
+          "right": 840,
+          "bottom": 1173.375
+        }
+      ],
+      "groups": [
+        {
+          "legend": "구분*",
+          "x": 200,
+          "y": -126.15625,
+          "width": 640,
+          "height": 45.59375,
+          "right": 840,
+          "bottom": -80.5625,
+          "marginBottom": "44px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "사진",
+          "x": 200,
+          "y": -36.5625,
+          "width": 640,
+          "height": 94.390625,
+          "right": 840,
+          "bottom": 57.828125,
+          "marginBottom": "48px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "연구실",
+          "x": 200,
+          "y": 105.828125,
+          "width": 640,
+          "height": 53.59375,
+          "right": 840,
+          "bottom": 159.421875,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "전화번호",
+          "x": 200,
+          "y": 208.21875,
+          "width": 336,
+          "height": 56.796875,
+          "right": 536,
+          "bottom": 265.015625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "팩스",
+          "x": 536,
+          "y": 208.21875,
+          "width": 336,
+          "height": 56.796875,
+          "right": 872,
+          "bottom": 265.015625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이메일",
+          "x": 200,
+          "y": 285.015625,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 341.8125,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "웹사이트 URL",
+          "x": 200,
+          "y": 361.8125,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 418.609375,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이름*",
+          "x": 200,
+          "y": 493.796875,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 550.59375,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "직함*",
+          "x": 200,
+          "y": 570.59375,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 627.390625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "소속",
+          "x": 200,
+          "y": 647.390625,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 704.1875,
+          "marginBottom": "40px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "위치",
+          "x": 200,
+          "y": 744.1875,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 800.984375,
+          "marginBottom": "40px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "학력",
+          "x": 200,
+          "y": 840.984375,
+          "width": 640,
+          "height": 108.796875,
+          "right": 840,
+          "bottom": 949.78125,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "연구 분야",
+          "x": 200,
+          "y": 959.78125,
+          "width": 640,
+          "height": 66.796875,
+          "right": 840,
+          "bottom": 1026.578125,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "경력",
+          "x": 200,
+          "y": 1036.578125,
+          "width": 640,
+          "height": 66.796875,
+          "right": 840,
+          "bottom": 1103.375,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 924,
+          "y": -400.375,
+          "width": 190,
+          "height": 30,
+          "right": 1114,
+          "bottom": -370.375
+        },
+        {
+          "name": "status",
+          "x": 200,
+          "y": -97.359375,
+          "width": 14,
+          "height": 14,
+          "right": 214,
+          "bottom": -83.359375
+        },
+        {
+          "name": "status",
+          "x": 254.703125,
+          "y": -97.359375,
+          "width": 14,
+          "height": 14,
+          "right": 268.703125,
+          "bottom": -83.359375
+        },
+        {
+          "name": "status",
+          "x": 337.453125,
+          "y": -97.359375,
+          "width": 14,
+          "height": 14,
+          "right": 351.453125,
+          "bottom": -83.359375
+        },
+        {
+          "name": "phone",
+          "x": 200,
+          "y": 233.015625,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 265.015625
+        },
+        {
+          "name": "fax",
+          "x": 536,
+          "y": 233.015625,
+          "width": 320,
+          "height": 32,
+          "right": 856,
+          "bottom": 265.015625
+        },
+        {
+          "name": "email",
+          "x": 200,
+          "y": 309.8125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 341.8125
+        },
+        {
+          "name": "website",
+          "x": 200,
+          "y": 386.609375,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 418.609375
+        },
+        {
+          "name": "en.name",
+          "x": 200,
+          "y": 518.59375,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 550.59375
+        },
+        {
+          "name": "en.academicRank",
+          "x": 200,
+          "y": 595.390625,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 627.390625
+        },
+        {
+          "name": "en.department",
+          "x": 200,
+          "y": 672.1875,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 704.1875
+        },
+        {
+          "name": "en.office",
+          "x": 200,
+          "y": 768.984375,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 800.984375
+        },
+        {
+          "name": "en.educations_new",
+          "x": 200,
+          "y": 865.78125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 897.78125
+        },
+        {
+          "name": "en.educations.0",
+          "x": 200,
+          "y": 907.78125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 939.78125
+        },
+        {
+          "name": "en.researchAreas_new",
+          "x": 200,
+          "y": 984.578125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1016.578125
+        },
+        {
+          "name": "en.careers_new",
+          "x": 200,
+          "y": 1061.375,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1093.375
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "staff-ko",
+      "width": 1200,
+      "documentWidth": 1200,
+      "forms": [
+        {
+          "x": 924,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1140,
+          "bottom": 108.625
+        },
+        {
+          "x": 200,
+          "y": 352.84375,
+          "width": 640,
+          "height": 795.15625,
+          "right": 840,
+          "bottom": 1148
+        }
+      ],
+      "groups": [
+        {
+          "legend": "사진",
+          "x": 200,
+          "y": 352.84375,
+          "width": 640,
+          "height": 94.390625,
+          "right": 840,
+          "bottom": 447.234375,
+          "marginBottom": "48px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "전화번호*",
+          "x": 200,
+          "y": 524.03125,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 580.828125,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이메일*",
+          "x": 200,
+          "y": 600.828125,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 657.625,
+          "marginBottom": "0px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이름*",
+          "x": 200,
+          "y": 760.8125,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 817.609375,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "위치*",
+          "x": 200,
+          "y": 837.609375,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 894.40625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "업무 요약*",
+          "x": 200,
+          "y": 914.40625,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 971.203125,
+          "marginBottom": "40px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "주요 업무*",
+          "x": 200,
+          "y": 1011.203125,
+          "width": 640,
+          "height": 66.796875,
+          "right": 840,
+          "bottom": 1078,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 924,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1114,
+          "bottom": 108.625
+        },
+        {
+          "name": "phone",
+          "x": 200,
+          "y": 548.828125,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 580.828125
+        },
+        {
+          "name": "email",
+          "x": 200,
+          "y": 625.625,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 657.625
+        },
+        {
+          "name": "ko.name",
+          "x": 200,
+          "y": 785.609375,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 817.609375
+        },
+        {
+          "name": "ko.office",
+          "x": 200,
+          "y": 862.40625,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 894.40625
+        },
+        {
+          "name": "ko.role",
+          "x": 200,
+          "y": 939.203125,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 971.203125
+        },
+        {
+          "name": "ko.tasks_new",
+          "x": 200,
+          "y": 1036,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1068
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "admin-slide",
+      "width": 1200,
+      "documentWidth": 1200,
+      "forms": [
+        {
+          "x": 924,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1140,
+          "bottom": 108.625
+        }
+      ],
+      "groups": [],
+      "inputs": [
+        {
+          "name": null,
+          "x": 924,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1114,
+          "bottom": 108.625
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "admin-important",
+      "width": 1200,
+      "documentWidth": 1200,
+      "forms": [
+        {
+          "x": 924,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1140,
+          "bottom": 108.625
+        }
+      ],
+      "groups": [],
+      "inputs": [
+        {
+          "name": null,
+          "x": 924,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1114,
+          "bottom": 108.625
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "admin-imageModal",
+      "width": 1200,
+      "documentWidth": 1200,
+      "forms": [
+        {
+          "x": 924,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1140,
+          "bottom": 108.625
+        },
+        {
+          "x": 200,
+          "y": 742.046875,
+          "width": 640,
+          "height": 354.78125,
+          "right": 840,
+          "bottom": 1096.828125
+        }
+      ],
+      "groups": [
+        {
+          "legend": "표시 종료일",
+          "x": 200,
+          "y": 742.046875,
+          "width": 640,
+          "height": 75.1875,
+          "right": 840,
+          "bottom": 817.234375,
+          "marginBottom": "24px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "외부 링크",
+          "x": 200,
+          "y": 841.234375,
+          "width": 640,
+          "height": 56.796875,
+          "right": 840,
+          "bottom": 898.03125,
+          "marginBottom": "24px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "사진",
+          "x": 200,
+          "y": 922.03125,
+          "width": 640,
+          "height": 66.796875,
+          "right": 840,
+          "bottom": 988.828125,
+          "marginBottom": "48px",
+          "titleGap": "8px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 924,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1114,
+          "bottom": 108.625
+        },
+        {
+          "name": "displayUntil",
+          "x": 200,
+          "y": 766.84375,
+          "width": 202,
+          "height": 32,
+          "right": 402,
+          "bottom": 798.84375
+        },
+        {
+          "name": "externalLink",
+          "x": 200,
+          "y": 866.03125,
+          "width": 640,
+          "height": 32,
+          "right": 840,
+          "bottom": 898.03125
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "notice-empty",
+      "width": 1280,
+      "documentWidth": 1280,
+      "forms": [
+        {
+          "x": 1004,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1220,
+          "bottom": 108.625
+        },
+        {
+          "x": 200,
+          "y": 352.84375,
+          "width": 720,
+          "height": 1205.15625,
+          "right": 920,
+          "bottom": 1558
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        }
+      ],
+      "groups": [
+        {
+          "legend": "제목*",
+          "x": 200,
+          "y": 352.84375,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 409.640625,
+          "marginBottom": "32px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "메인-중요 안내용 제목",
+          "x": 200,
+          "y": 441.640625,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 498.4375,
+          "marginBottom": "32px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "내용*",
+          "x": 200,
+          "y": 530.4375,
+          "width": 720,
+          "height": 531.171875,
+          "right": 920,
+          "bottom": 1061.609375,
+          "marginBottom": "24px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "첨부파일",
+          "x": 200,
+          "y": 1085.609375,
+          "width": 720,
+          "height": 74.796875,
+          "right": 920,
+          "bottom": 1160.40625,
+          "marginBottom": "24px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "태그",
+          "x": 200,
+          "y": 1184.40625,
+          "width": 720,
+          "height": 152.796875,
+          "right": 920,
+          "bottom": 1337.203125,
+          "marginBottom": "32px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "게시 설정",
+          "x": 200,
+          "y": 1369.203125,
+          "width": 720,
+          "height": 104.796875,
+          "right": 920,
+          "bottom": 1474,
+          "marginBottom": "24px",
+          "titleGap": "12px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 1004,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1194,
+          "bottom": 108.625
+        },
+        {
+          "name": "title",
+          "x": 200,
+          "y": 377.640625,
+          "width": 720,
+          "height": 32,
+          "right": 920,
+          "bottom": 409.640625
+        },
+        {
+          "name": "titleForMain",
+          "x": 200,
+          "y": 466.4375,
+          "width": 720,
+          "height": 32,
+          "right": 920,
+          "bottom": 498.4375
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "notice-filled",
+      "width": 1280,
+      "documentWidth": 1280,
+      "forms": [
+        {
+          "x": 1004,
+          "y": -1055.375,
+          "width": 216,
+          "height": 30,
+          "right": 1220,
+          "bottom": -1025.375
+        },
+        {
+          "x": 200,
+          "y": -781.15625,
+          "width": 720,
+          "height": 1353.171875,
+          "right": 920,
+          "bottom": 572.015625
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        }
+      ],
+      "groups": [
+        {
+          "legend": "제목*",
+          "x": 200,
+          "y": -781.15625,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": -724.359375,
+          "marginBottom": "32px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "메인-중요 안내용 제목",
+          "x": 200,
+          "y": -692.359375,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": -635.5625,
+          "marginBottom": "32px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "내용*",
+          "x": 200,
+          "y": -603.5625,
+          "width": 720,
+          "height": 530.796875,
+          "right": 920,
+          "bottom": -72.765625,
+          "marginBottom": "24px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "첨부파일",
+          "x": 200,
+          "y": -48.765625,
+          "width": 720,
+          "height": 134.796875,
+          "right": 920,
+          "bottom": 86.03125,
+          "marginBottom": "24px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "태그",
+          "x": 200,
+          "y": 110.03125,
+          "width": 720,
+          "height": 152.796875,
+          "right": 920,
+          "bottom": 262.828125,
+          "marginBottom": "32px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "게시 설정",
+          "x": 200,
+          "y": 294.828125,
+          "width": 720,
+          "height": 193.1875,
+          "right": 920,
+          "bottom": 488.015625,
+          "marginBottom": "24px",
+          "titleGap": "12px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 1004,
+          "y": -1055.375,
+          "width": 190,
+          "height": 30,
+          "right": 1194,
+          "bottom": -1025.375
+        },
+        {
+          "name": "title",
+          "x": 200,
+          "y": -756.359375,
+          "width": 720,
+          "height": 32,
+          "right": 920,
+          "bottom": -724.359375
+        },
+        {
+          "name": "titleForMain",
+          "x": 200,
+          "y": -667.5625,
+          "width": 720,
+          "height": 32,
+          "right": 920,
+          "bottom": -635.5625
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "faculty-ko",
+      "width": 1280,
+      "documentWidth": 1280,
+      "forms": [
+        {
+          "x": 1004,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1220,
+          "bottom": 108.625
+        },
+        {
+          "x": 200,
+          "y": 352.84375,
+          "width": 720,
+          "height": 1257.53125,
+          "right": 920,
+          "bottom": 1610.375
+        }
+      ],
+      "groups": [
+        {
+          "legend": "구분*",
+          "x": 200,
+          "y": 352.84375,
+          "width": 720,
+          "height": 45.59375,
+          "right": 920,
+          "bottom": 398.4375,
+          "marginBottom": "44px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "사진",
+          "x": 200,
+          "y": 442.4375,
+          "width": 720,
+          "height": 94.390625,
+          "right": 920,
+          "bottom": 536.828125,
+          "marginBottom": "48px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "연구실",
+          "x": 200,
+          "y": 584.828125,
+          "width": 720,
+          "height": 53.59375,
+          "right": 920,
+          "bottom": 638.421875,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "전화번호",
+          "x": 200,
+          "y": 687.21875,
+          "width": 336,
+          "height": 56.796875,
+          "right": 536,
+          "bottom": 744.015625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "팩스",
+          "x": 536,
+          "y": 687.21875,
+          "width": 336,
+          "height": 56.796875,
+          "right": 872,
+          "bottom": 744.015625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이메일",
+          "x": 200,
+          "y": 764.015625,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 820.8125,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "웹사이트 URL",
+          "x": 200,
+          "y": 840.8125,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 897.609375,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이름*",
+          "x": 200,
+          "y": 972.796875,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 1029.59375,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "직함*",
+          "x": 200,
+          "y": 1049.59375,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 1106.390625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "소속",
+          "x": 200,
+          "y": 1126.390625,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 1183.1875,
+          "marginBottom": "40px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "위치",
+          "x": 200,
+          "y": 1223.1875,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 1279.984375,
+          "marginBottom": "40px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "학력",
+          "x": 200,
+          "y": 1319.984375,
+          "width": 720,
+          "height": 66.796875,
+          "right": 920,
+          "bottom": 1386.78125,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "연구 분야",
+          "x": 200,
+          "y": 1396.78125,
+          "width": 720,
+          "height": 66.796875,
+          "right": 920,
+          "bottom": 1463.578125,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "경력",
+          "x": 200,
+          "y": 1473.578125,
+          "width": 720,
+          "height": 66.796875,
+          "right": 920,
+          "bottom": 1540.375,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 1004,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1194,
+          "bottom": 108.625
+        },
+        {
+          "name": "status",
+          "x": 200,
+          "y": 381.640625,
+          "width": 14,
+          "height": 14,
+          "right": 214,
+          "bottom": 395.640625
+        },
+        {
+          "name": "status",
+          "x": 254.703125,
+          "y": 381.640625,
+          "width": 14,
+          "height": 14,
+          "right": 268.703125,
+          "bottom": 395.640625
+        },
+        {
+          "name": "status",
+          "x": 337.453125,
+          "y": 381.640625,
+          "width": 14,
+          "height": 14,
+          "right": 351.453125,
+          "bottom": 395.640625
+        },
+        {
+          "name": "phone",
+          "x": 200,
+          "y": 712.015625,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 744.015625
+        },
+        {
+          "name": "fax",
+          "x": 536,
+          "y": 712.015625,
+          "width": 320,
+          "height": 32,
+          "right": 856,
+          "bottom": 744.015625
+        },
+        {
+          "name": "email",
+          "x": 200,
+          "y": 788.8125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 820.8125
+        },
+        {
+          "name": "website",
+          "x": 200,
+          "y": 865.609375,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 897.609375
+        },
+        {
+          "name": "ko.name",
+          "x": 200,
+          "y": 997.59375,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 1029.59375
+        },
+        {
+          "name": "ko.academicRank",
+          "x": 200,
+          "y": 1074.390625,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 1106.390625
+        },
+        {
+          "name": "ko.department",
+          "x": 200,
+          "y": 1151.1875,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 1183.1875
+        },
+        {
+          "name": "ko.office",
+          "x": 200,
+          "y": 1247.984375,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 1279.984375
+        },
+        {
+          "name": "ko.educations_new",
+          "x": 200,
+          "y": 1344.78125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1376.78125
+        },
+        {
+          "name": "ko.researchAreas_new",
+          "x": 200,
+          "y": 1421.578125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1453.578125
+        },
+        {
+          "name": "ko.careers_new",
+          "x": 200,
+          "y": 1498.375,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1530.375
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "faculty-en",
+      "width": 1280,
+      "documentWidth": 1280,
+      "forms": [
+        {
+          "x": 1004,
+          "y": -400.375,
+          "width": 216,
+          "height": 30,
+          "right": 1220,
+          "bottom": -370.375
+        },
+        {
+          "x": 200,
+          "y": -126.15625,
+          "width": 720,
+          "height": 1299.53125,
+          "right": 920,
+          "bottom": 1173.375
+        }
+      ],
+      "groups": [
+        {
+          "legend": "구분*",
+          "x": 200,
+          "y": -126.15625,
+          "width": 720,
+          "height": 45.59375,
+          "right": 920,
+          "bottom": -80.5625,
+          "marginBottom": "44px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "사진",
+          "x": 200,
+          "y": -36.5625,
+          "width": 720,
+          "height": 94.390625,
+          "right": 920,
+          "bottom": 57.828125,
+          "marginBottom": "48px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "연구실",
+          "x": 200,
+          "y": 105.828125,
+          "width": 720,
+          "height": 53.59375,
+          "right": 920,
+          "bottom": 159.421875,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "전화번호",
+          "x": 200,
+          "y": 208.21875,
+          "width": 336,
+          "height": 56.796875,
+          "right": 536,
+          "bottom": 265.015625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "팩스",
+          "x": 536,
+          "y": 208.21875,
+          "width": 336,
+          "height": 56.796875,
+          "right": 872,
+          "bottom": 265.015625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이메일",
+          "x": 200,
+          "y": 285.015625,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 341.8125,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "웹사이트 URL",
+          "x": 200,
+          "y": 361.8125,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 418.609375,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이름*",
+          "x": 200,
+          "y": 493.796875,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 550.59375,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "직함*",
+          "x": 200,
+          "y": 570.59375,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 627.390625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "소속",
+          "x": 200,
+          "y": 647.390625,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 704.1875,
+          "marginBottom": "40px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "위치",
+          "x": 200,
+          "y": 744.1875,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 800.984375,
+          "marginBottom": "40px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "학력",
+          "x": 200,
+          "y": 840.984375,
+          "width": 720,
+          "height": 108.796875,
+          "right": 920,
+          "bottom": 949.78125,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "연구 분야",
+          "x": 200,
+          "y": 959.78125,
+          "width": 720,
+          "height": 66.796875,
+          "right": 920,
+          "bottom": 1026.578125,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "경력",
+          "x": 200,
+          "y": 1036.578125,
+          "width": 720,
+          "height": 66.796875,
+          "right": 920,
+          "bottom": 1103.375,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 1004,
+          "y": -400.375,
+          "width": 190,
+          "height": 30,
+          "right": 1194,
+          "bottom": -370.375
+        },
+        {
+          "name": "status",
+          "x": 200,
+          "y": -97.359375,
+          "width": 14,
+          "height": 14,
+          "right": 214,
+          "bottom": -83.359375
+        },
+        {
+          "name": "status",
+          "x": 254.703125,
+          "y": -97.359375,
+          "width": 14,
+          "height": 14,
+          "right": 268.703125,
+          "bottom": -83.359375
+        },
+        {
+          "name": "status",
+          "x": 337.453125,
+          "y": -97.359375,
+          "width": 14,
+          "height": 14,
+          "right": 351.453125,
+          "bottom": -83.359375
+        },
+        {
+          "name": "phone",
+          "x": 200,
+          "y": 233.015625,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 265.015625
+        },
+        {
+          "name": "fax",
+          "x": 536,
+          "y": 233.015625,
+          "width": 320,
+          "height": 32,
+          "right": 856,
+          "bottom": 265.015625
+        },
+        {
+          "name": "email",
+          "x": 200,
+          "y": 309.8125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 341.8125
+        },
+        {
+          "name": "website",
+          "x": 200,
+          "y": 386.609375,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 418.609375
+        },
+        {
+          "name": "en.name",
+          "x": 200,
+          "y": 518.59375,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 550.59375
+        },
+        {
+          "name": "en.academicRank",
+          "x": 200,
+          "y": 595.390625,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 627.390625
+        },
+        {
+          "name": "en.department",
+          "x": 200,
+          "y": 672.1875,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 704.1875
+        },
+        {
+          "name": "en.office",
+          "x": 200,
+          "y": 768.984375,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 800.984375
+        },
+        {
+          "name": "en.educations_new",
+          "x": 200,
+          "y": 865.78125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 897.78125
+        },
+        {
+          "name": "en.educations.0",
+          "x": 200,
+          "y": 907.78125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 939.78125
+        },
+        {
+          "name": "en.researchAreas_new",
+          "x": 200,
+          "y": 984.578125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1016.578125
+        },
+        {
+          "name": "en.careers_new",
+          "x": 200,
+          "y": 1061.375,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1093.375
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "staff-ko",
+      "width": 1280,
+      "documentWidth": 1280,
+      "forms": [
+        {
+          "x": 1004,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1220,
+          "bottom": 108.625
+        },
+        {
+          "x": 200,
+          "y": 352.84375,
+          "width": 720,
+          "height": 795.15625,
+          "right": 920,
+          "bottom": 1148
+        }
+      ],
+      "groups": [
+        {
+          "legend": "사진",
+          "x": 200,
+          "y": 352.84375,
+          "width": 720,
+          "height": 94.390625,
+          "right": 920,
+          "bottom": 447.234375,
+          "marginBottom": "48px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "전화번호*",
+          "x": 200,
+          "y": 524.03125,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 580.828125,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이메일*",
+          "x": 200,
+          "y": 600.828125,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 657.625,
+          "marginBottom": "0px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이름*",
+          "x": 200,
+          "y": 760.8125,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 817.609375,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "위치*",
+          "x": 200,
+          "y": 837.609375,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 894.40625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "업무 요약*",
+          "x": 200,
+          "y": 914.40625,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 971.203125,
+          "marginBottom": "40px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "주요 업무*",
+          "x": 200,
+          "y": 1011.203125,
+          "width": 720,
+          "height": 66.796875,
+          "right": 920,
+          "bottom": 1078,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 1004,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1194,
+          "bottom": 108.625
+        },
+        {
+          "name": "phone",
+          "x": 200,
+          "y": 548.828125,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 580.828125
+        },
+        {
+          "name": "email",
+          "x": 200,
+          "y": 625.625,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 657.625
+        },
+        {
+          "name": "ko.name",
+          "x": 200,
+          "y": 785.609375,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 817.609375
+        },
+        {
+          "name": "ko.office",
+          "x": 200,
+          "y": 862.40625,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 894.40625
+        },
+        {
+          "name": "ko.role",
+          "x": 200,
+          "y": 939.203125,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 971.203125
+        },
+        {
+          "name": "ko.tasks_new",
+          "x": 200,
+          "y": 1036,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1068
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "admin-slide",
+      "width": 1280,
+      "documentWidth": 1280,
+      "forms": [
+        {
+          "x": 1004,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1220,
+          "bottom": 108.625
+        }
+      ],
+      "groups": [],
+      "inputs": [
+        {
+          "name": null,
+          "x": 1004,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1194,
+          "bottom": 108.625
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "admin-important",
+      "width": 1280,
+      "documentWidth": 1280,
+      "forms": [
+        {
+          "x": 1004,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1220,
+          "bottom": 108.625
+        }
+      ],
+      "groups": [],
+      "inputs": [
+        {
+          "name": null,
+          "x": 1004,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1194,
+          "bottom": 108.625
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "admin-imageModal",
+      "width": 1280,
+      "documentWidth": 1280,
+      "forms": [
+        {
+          "x": 1004,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1220,
+          "bottom": 108.625
+        },
+        {
+          "x": 200,
+          "y": 742.046875,
+          "width": 720,
+          "height": 354.78125,
+          "right": 920,
+          "bottom": 1096.828125
+        }
+      ],
+      "groups": [
+        {
+          "legend": "표시 종료일",
+          "x": 200,
+          "y": 742.046875,
+          "width": 720,
+          "height": 75.1875,
+          "right": 920,
+          "bottom": 817.234375,
+          "marginBottom": "24px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "외부 링크",
+          "x": 200,
+          "y": 841.234375,
+          "width": 720,
+          "height": 56.796875,
+          "right": 920,
+          "bottom": 898.03125,
+          "marginBottom": "24px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "사진",
+          "x": 200,
+          "y": 922.03125,
+          "width": 720,
+          "height": 66.796875,
+          "right": 920,
+          "bottom": 988.828125,
+          "marginBottom": "48px",
+          "titleGap": "8px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 1004,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1194,
+          "bottom": 108.625
+        },
+        {
+          "name": "displayUntil",
+          "x": 200,
+          "y": 766.84375,
+          "width": 202,
+          "height": 32,
+          "right": 402,
+          "bottom": 798.84375
+        },
+        {
+          "name": "externalLink",
+          "x": 200,
+          "y": 866.03125,
+          "width": 720,
+          "height": 32,
+          "right": 920,
+          "bottom": 898.03125
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "notice-empty",
+      "width": 1440,
+      "documentWidth": 1440,
+      "forms": [
+        {
+          "x": 1164,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1380,
+          "bottom": 108.625
+        },
+        {
+          "x": 200,
+          "y": 352.84375,
+          "width": 880,
+          "height": 1175.15625,
+          "right": 1080,
+          "bottom": 1528
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        }
+      ],
+      "groups": [
+        {
+          "legend": "제목*",
+          "x": 200,
+          "y": 352.84375,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 409.640625,
+          "marginBottom": "32px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "메인-중요 안내용 제목",
+          "x": 200,
+          "y": 441.640625,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 498.4375,
+          "marginBottom": "32px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "내용*",
+          "x": 200,
+          "y": 530.4375,
+          "width": 880,
+          "height": 531.171875,
+          "right": 1080,
+          "bottom": 1061.609375,
+          "marginBottom": "24px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "첨부파일",
+          "x": 200,
+          "y": 1085.609375,
+          "width": 880,
+          "height": 74.796875,
+          "right": 1080,
+          "bottom": 1160.40625,
+          "marginBottom": "24px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "태그",
+          "x": 200,
+          "y": 1184.40625,
+          "width": 880,
+          "height": 122.796875,
+          "right": 1080,
+          "bottom": 1307.203125,
+          "marginBottom": "32px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "게시 설정",
+          "x": 200,
+          "y": 1339.203125,
+          "width": 880,
+          "height": 104.796875,
+          "right": 1080,
+          "bottom": 1444,
+          "marginBottom": "24px",
+          "titleGap": "12px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 1164,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1354,
+          "bottom": 108.625
+        },
+        {
+          "name": "title",
+          "x": 200,
+          "y": 377.640625,
+          "width": 880,
+          "height": 32,
+          "right": 1080,
+          "bottom": 409.640625
+        },
+        {
+          "name": "titleForMain",
+          "x": 200,
+          "y": 466.4375,
+          "width": 880,
+          "height": 32,
+          "right": 1080,
+          "bottom": 498.4375
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "notice-filled",
+      "width": 1440,
+      "documentWidth": 1440,
+      "forms": [
+        {
+          "x": 1164,
+          "y": -1025.375,
+          "width": 216,
+          "height": 30,
+          "right": 1380,
+          "bottom": -995.375
+        },
+        {
+          "x": 200,
+          "y": -751.15625,
+          "width": 880,
+          "height": 1323.171875,
+          "right": 1080,
+          "bottom": 572.015625
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        }
+      ],
+      "groups": [
+        {
+          "legend": "제목*",
+          "x": 200,
+          "y": -751.15625,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": -694.359375,
+          "marginBottom": "32px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "메인-중요 안내용 제목",
+          "x": 200,
+          "y": -662.359375,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": -605.5625,
+          "marginBottom": "32px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "내용*",
+          "x": 200,
+          "y": -573.5625,
+          "width": 880,
+          "height": 530.796875,
+          "right": 1080,
+          "bottom": -42.765625,
+          "marginBottom": "24px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "첨부파일",
+          "x": 200,
+          "y": -18.765625,
+          "width": 880,
+          "height": 134.796875,
+          "right": 1080,
+          "bottom": 116.03125,
+          "marginBottom": "24px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "태그",
+          "x": 200,
+          "y": 140.03125,
+          "width": 880,
+          "height": 122.796875,
+          "right": 1080,
+          "bottom": 262.828125,
+          "marginBottom": "32px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "게시 설정",
+          "x": 200,
+          "y": 294.828125,
+          "width": 880,
+          "height": 193.1875,
+          "right": 1080,
+          "bottom": 488.015625,
+          "marginBottom": "24px",
+          "titleGap": "12px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 1164,
+          "y": -1025.375,
+          "width": 190,
+          "height": 30,
+          "right": 1354,
+          "bottom": -995.375
+        },
+        {
+          "name": "title",
+          "x": 200,
+          "y": -726.359375,
+          "width": 880,
+          "height": 32,
+          "right": 1080,
+          "bottom": -694.359375
+        },
+        {
+          "name": "titleForMain",
+          "x": 200,
+          "y": -637.5625,
+          "width": 880,
+          "height": 32,
+          "right": 1080,
+          "bottom": -605.5625
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "faculty-ko",
+      "width": 1440,
+      "documentWidth": 1440,
+      "forms": [
+        {
+          "x": 1164,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1380,
+          "bottom": 108.625
+        },
+        {
+          "x": 200,
+          "y": 352.84375,
+          "width": 880,
+          "height": 1257.53125,
+          "right": 1080,
+          "bottom": 1610.375
+        }
+      ],
+      "groups": [
+        {
+          "legend": "구분*",
+          "x": 200,
+          "y": 352.84375,
+          "width": 880,
+          "height": 45.59375,
+          "right": 1080,
+          "bottom": 398.4375,
+          "marginBottom": "44px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "사진",
+          "x": 200,
+          "y": 442.4375,
+          "width": 880,
+          "height": 94.390625,
+          "right": 1080,
+          "bottom": 536.828125,
+          "marginBottom": "48px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "연구실",
+          "x": 200,
+          "y": 584.828125,
+          "width": 880,
+          "height": 53.59375,
+          "right": 1080,
+          "bottom": 638.421875,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "전화번호",
+          "x": 200,
+          "y": 687.21875,
+          "width": 336,
+          "height": 56.796875,
+          "right": 536,
+          "bottom": 744.015625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "팩스",
+          "x": 536,
+          "y": 687.21875,
+          "width": 336,
+          "height": 56.796875,
+          "right": 872,
+          "bottom": 744.015625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이메일",
+          "x": 200,
+          "y": 764.015625,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 820.8125,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "웹사이트 URL",
+          "x": 200,
+          "y": 840.8125,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 897.609375,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이름*",
+          "x": 200,
+          "y": 972.796875,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 1029.59375,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "직함*",
+          "x": 200,
+          "y": 1049.59375,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 1106.390625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "소속",
+          "x": 200,
+          "y": 1126.390625,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 1183.1875,
+          "marginBottom": "40px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "위치",
+          "x": 200,
+          "y": 1223.1875,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 1279.984375,
+          "marginBottom": "40px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "학력",
+          "x": 200,
+          "y": 1319.984375,
+          "width": 880,
+          "height": 66.796875,
+          "right": 1080,
+          "bottom": 1386.78125,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "연구 분야",
+          "x": 200,
+          "y": 1396.78125,
+          "width": 880,
+          "height": 66.796875,
+          "right": 1080,
+          "bottom": 1463.578125,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "경력",
+          "x": 200,
+          "y": 1473.578125,
+          "width": 880,
+          "height": 66.796875,
+          "right": 1080,
+          "bottom": 1540.375,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 1164,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1354,
+          "bottom": 108.625
+        },
+        {
+          "name": "status",
+          "x": 200,
+          "y": 381.640625,
+          "width": 14,
+          "height": 14,
+          "right": 214,
+          "bottom": 395.640625
+        },
+        {
+          "name": "status",
+          "x": 254.703125,
+          "y": 381.640625,
+          "width": 14,
+          "height": 14,
+          "right": 268.703125,
+          "bottom": 395.640625
+        },
+        {
+          "name": "status",
+          "x": 337.453125,
+          "y": 381.640625,
+          "width": 14,
+          "height": 14,
+          "right": 351.453125,
+          "bottom": 395.640625
+        },
+        {
+          "name": "phone",
+          "x": 200,
+          "y": 712.015625,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 744.015625
+        },
+        {
+          "name": "fax",
+          "x": 536,
+          "y": 712.015625,
+          "width": 320,
+          "height": 32,
+          "right": 856,
+          "bottom": 744.015625
+        },
+        {
+          "name": "email",
+          "x": 200,
+          "y": 788.8125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 820.8125
+        },
+        {
+          "name": "website",
+          "x": 200,
+          "y": 865.609375,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 897.609375
+        },
+        {
+          "name": "ko.name",
+          "x": 200,
+          "y": 997.59375,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 1029.59375
+        },
+        {
+          "name": "ko.academicRank",
+          "x": 200,
+          "y": 1074.390625,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 1106.390625
+        },
+        {
+          "name": "ko.department",
+          "x": 200,
+          "y": 1151.1875,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 1183.1875
+        },
+        {
+          "name": "ko.office",
+          "x": 200,
+          "y": 1247.984375,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 1279.984375
+        },
+        {
+          "name": "ko.educations_new",
+          "x": 200,
+          "y": 1344.78125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1376.78125
+        },
+        {
+          "name": "ko.researchAreas_new",
+          "x": 200,
+          "y": 1421.578125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1453.578125
+        },
+        {
+          "name": "ko.careers_new",
+          "x": 200,
+          "y": 1498.375,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1530.375
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "faculty-en",
+      "width": 1440,
+      "documentWidth": 1440,
+      "forms": [
+        {
+          "x": 1164,
+          "y": -400.375,
+          "width": 216,
+          "height": 30,
+          "right": 1380,
+          "bottom": -370.375
+        },
+        {
+          "x": 200,
+          "y": -126.15625,
+          "width": 880,
+          "height": 1299.53125,
+          "right": 1080,
+          "bottom": 1173.375
+        }
+      ],
+      "groups": [
+        {
+          "legend": "구분*",
+          "x": 200,
+          "y": -126.15625,
+          "width": 880,
+          "height": 45.59375,
+          "right": 1080,
+          "bottom": -80.5625,
+          "marginBottom": "44px",
+          "titleGap": "12px"
+        },
+        {
+          "legend": "사진",
+          "x": 200,
+          "y": -36.5625,
+          "width": 880,
+          "height": 94.390625,
+          "right": 1080,
+          "bottom": 57.828125,
+          "marginBottom": "48px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "연구실",
+          "x": 200,
+          "y": 105.828125,
+          "width": 880,
+          "height": 53.59375,
+          "right": 1080,
+          "bottom": 159.421875,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "전화번호",
+          "x": 200,
+          "y": 208.21875,
+          "width": 336,
+          "height": 56.796875,
+          "right": 536,
+          "bottom": 265.015625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "팩스",
+          "x": 536,
+          "y": 208.21875,
+          "width": 336,
+          "height": 56.796875,
+          "right": 872,
+          "bottom": 265.015625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이메일",
+          "x": 200,
+          "y": 285.015625,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 341.8125,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "웹사이트 URL",
+          "x": 200,
+          "y": 361.8125,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 418.609375,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이름*",
+          "x": 200,
+          "y": 493.796875,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 550.59375,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "직함*",
+          "x": 200,
+          "y": 570.59375,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 627.390625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "소속",
+          "x": 200,
+          "y": 647.390625,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 704.1875,
+          "marginBottom": "40px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "위치",
+          "x": 200,
+          "y": 744.1875,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 800.984375,
+          "marginBottom": "40px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "학력",
+          "x": 200,
+          "y": 840.984375,
+          "width": 880,
+          "height": 108.796875,
+          "right": 1080,
+          "bottom": 949.78125,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "연구 분야",
+          "x": 200,
+          "y": 959.78125,
+          "width": 880,
+          "height": 66.796875,
+          "right": 1080,
+          "bottom": 1026.578125,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "경력",
+          "x": 200,
+          "y": 1036.578125,
+          "width": 880,
+          "height": 66.796875,
+          "right": 1080,
+          "bottom": 1103.375,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 1164,
+          "y": -400.375,
+          "width": 190,
+          "height": 30,
+          "right": 1354,
+          "bottom": -370.375
+        },
+        {
+          "name": "status",
+          "x": 200,
+          "y": -97.359375,
+          "width": 14,
+          "height": 14,
+          "right": 214,
+          "bottom": -83.359375
+        },
+        {
+          "name": "status",
+          "x": 254.703125,
+          "y": -97.359375,
+          "width": 14,
+          "height": 14,
+          "right": 268.703125,
+          "bottom": -83.359375
+        },
+        {
+          "name": "status",
+          "x": 337.453125,
+          "y": -97.359375,
+          "width": 14,
+          "height": 14,
+          "right": 351.453125,
+          "bottom": -83.359375
+        },
+        {
+          "name": "phone",
+          "x": 200,
+          "y": 233.015625,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 265.015625
+        },
+        {
+          "name": "fax",
+          "x": 536,
+          "y": 233.015625,
+          "width": 320,
+          "height": 32,
+          "right": 856,
+          "bottom": 265.015625
+        },
+        {
+          "name": "email",
+          "x": 200,
+          "y": 309.8125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 341.8125
+        },
+        {
+          "name": "website",
+          "x": 200,
+          "y": 386.609375,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 418.609375
+        },
+        {
+          "name": "en.name",
+          "x": 200,
+          "y": 518.59375,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 550.59375
+        },
+        {
+          "name": "en.academicRank",
+          "x": 200,
+          "y": 595.390625,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 627.390625
+        },
+        {
+          "name": "en.department",
+          "x": 200,
+          "y": 672.1875,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 704.1875
+        },
+        {
+          "name": "en.office",
+          "x": 200,
+          "y": 768.984375,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 800.984375
+        },
+        {
+          "name": "en.educations_new",
+          "x": 200,
+          "y": 865.78125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 897.78125
+        },
+        {
+          "name": "en.educations.0",
+          "x": 200,
+          "y": 907.78125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 939.78125
+        },
+        {
+          "name": "en.researchAreas_new",
+          "x": 200,
+          "y": 984.578125,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1016.578125
+        },
+        {
+          "name": "en.careers_new",
+          "x": 200,
+          "y": 1061.375,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1093.375
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "staff-ko",
+      "width": 1440,
+      "documentWidth": 1440,
+      "forms": [
+        {
+          "x": 1164,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1380,
+          "bottom": 108.625
+        },
+        {
+          "x": 200,
+          "y": 352.84375,
+          "width": 880,
+          "height": 795.15625,
+          "right": 1080,
+          "bottom": 1148
+        }
+      ],
+      "groups": [
+        {
+          "legend": "사진",
+          "x": 200,
+          "y": 352.84375,
+          "width": 880,
+          "height": 94.390625,
+          "right": 1080,
+          "bottom": 447.234375,
+          "marginBottom": "48px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "전화번호*",
+          "x": 200,
+          "y": 524.03125,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 580.828125,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이메일*",
+          "x": 200,
+          "y": 600.828125,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 657.625,
+          "marginBottom": "0px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "이름*",
+          "x": 200,
+          "y": 760.8125,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 817.609375,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "위치*",
+          "x": 200,
+          "y": 837.609375,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 894.40625,
+          "marginBottom": "20px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "업무 요약*",
+          "x": 200,
+          "y": 914.40625,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 971.203125,
+          "marginBottom": "40px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "주요 업무*",
+          "x": 200,
+          "y": 1011.203125,
+          "width": 880,
+          "height": 66.796875,
+          "right": 1080,
+          "bottom": 1078,
+          "marginBottom": "10px",
+          "titleGap": "8px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 1164,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1354,
+          "bottom": 108.625
+        },
+        {
+          "name": "phone",
+          "x": 200,
+          "y": 548.828125,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 580.828125
+        },
+        {
+          "name": "email",
+          "x": 200,
+          "y": 625.625,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 657.625
+        },
+        {
+          "name": "ko.name",
+          "x": 200,
+          "y": 785.609375,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 817.609375
+        },
+        {
+          "name": "ko.office",
+          "x": 200,
+          "y": 862.40625,
+          "width": 320,
+          "height": 32,
+          "right": 520,
+          "bottom": 894.40625
+        },
+        {
+          "name": "ko.role",
+          "x": 200,
+          "y": 939.203125,
+          "width": 480,
+          "height": 32,
+          "right": 680,
+          "bottom": 971.203125
+        },
+        {
+          "name": "ko.tasks_new",
+          "x": 200,
+          "y": 1036,
+          "width": 400,
+          "height": 32,
+          "right": 600,
+          "bottom": 1068
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "admin-slide",
+      "width": 1440,
+      "documentWidth": 1440,
+      "forms": [
+        {
+          "x": 1164,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1380,
+          "bottom": 108.625
+        }
+      ],
+      "groups": [],
+      "inputs": [
+        {
+          "name": null,
+          "x": 1164,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1354,
+          "bottom": 108.625
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "admin-important",
+      "width": 1440,
+      "documentWidth": 1440,
+      "forms": [
+        {
+          "x": 1164,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1380,
+          "bottom": 108.625
+        }
+      ],
+      "groups": [],
+      "inputs": [
+        {
+          "name": null,
+          "x": 1164,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1354,
+          "bottom": 108.625
+        }
+      ],
+      "overflow": []
+    },
+    {
+      "scene": "admin-imageModal",
+      "width": 1440,
+      "documentWidth": 1440,
+      "forms": [
+        {
+          "x": 1164,
+          "y": 78.625,
+          "width": 216,
+          "height": 30,
+          "right": 1380,
+          "bottom": 108.625
+        },
+        {
+          "x": 200,
+          "y": 660.046875,
+          "width": 880,
+          "height": 354.78125,
+          "right": 1080,
+          "bottom": 1014.828125
+        }
+      ],
+      "groups": [
+        {
+          "legend": "표시 종료일",
+          "x": 200,
+          "y": 660.046875,
+          "width": 880,
+          "height": 75.1875,
+          "right": 1080,
+          "bottom": 735.234375,
+          "marginBottom": "24px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "외부 링크",
+          "x": 200,
+          "y": 759.234375,
+          "width": 880,
+          "height": 56.796875,
+          "right": 1080,
+          "bottom": 816.03125,
+          "marginBottom": "24px",
+          "titleGap": "8px"
+        },
+        {
+          "legend": "사진",
+          "x": 200,
+          "y": 840.03125,
+          "width": 880,
+          "height": 66.796875,
+          "right": 1080,
+          "bottom": 906.828125,
+          "marginBottom": "48px",
+          "titleGap": "8px"
+        }
+      ],
+      "inputs": [
+        {
+          "name": null,
+          "x": 1164,
+          "y": 78.625,
+          "width": 190,
+          "height": 30,
+          "right": 1354,
+          "bottom": 108.625
+        },
+        {
+          "name": "displayUntil",
+          "x": 200,
+          "y": 684.84375,
+          "width": 202,
+          "height": 32,
+          "right": 402,
+          "bottom": 716.84375
+        },
+        {
+          "name": "externalLink",
+          "x": 200,
+          "y": 784.03125,
+          "width": 880,
+          "height": 32,
+          "right": 1080,
+          "bottom": 816.03125
+        }
+      ],
+      "overflow": []
+    }
+  ]
+}

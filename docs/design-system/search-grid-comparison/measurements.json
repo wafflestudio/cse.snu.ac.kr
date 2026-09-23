@@ -1,0 +1,2129 @@
+{
+  "note": "Browser-only comparison on actual DS-024 app. English search tags min-width 80 -> 160; Korean unchanged. No application source edits",
+  "records": [
+    {
+      "locale": "en",
+      "width": 360,
+      "variant": "before",
+      "documentWidth": 360,
+      "fieldsetHeight": 108.796875,
+      "columns": "117px 117px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 54,
+          "y": 293.59375,
+          "width": 66.75,
+          "right": 120.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 199,
+          "y": 293.59375,
+          "width": 101.15625,
+          "right": 300.15625,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 54,
+          "y": 323.59375,
+          "width": 73.109375,
+          "right": 127.109375,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 199,
+          "y": 323.59375,
+          "width": 132.90625,
+          "right": 331.90625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 54,
+          "y": 353.59375,
+          "width": 101.5,
+          "right": 155.5,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 199,
+          "y": 353.59375,
+          "width": 99.15625,
+          "right": 298.15625,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "en",
+      "width": 360,
+      "variant": "after",
+      "documentWidth": 360,
+      "fieldsetHeight": 198.796875,
+      "columns": "262px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 54,
+          "y": 293.59375,
+          "width": 66.75,
+          "right": 120.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 54,
+          "y": 323.59375,
+          "width": 101.15625,
+          "right": 155.15625,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 54,
+          "y": 353.59375,
+          "width": 73.109375,
+          "right": 127.109375,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 54,
+          "y": 383.59375,
+          "width": 132.90625,
+          "right": 186.90625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 54,
+          "y": 413.59375,
+          "width": 101.5,
+          "right": 155.5,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 54,
+          "y": 443.59375,
+          "width": 99.15625,
+          "right": 153.15625,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "variant": "before",
+      "documentWidth": 390,
+      "fieldsetHeight": 108.796875,
+      "columns": "132px 132px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 54,
+          "y": 293.59375,
+          "width": 66.75,
+          "right": 120.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 214,
+          "y": 293.59375,
+          "width": 101.15625,
+          "right": 315.15625,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 54,
+          "y": 323.59375,
+          "width": 73.109375,
+          "right": 127.109375,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 214,
+          "y": 323.59375,
+          "width": 132.90625,
+          "right": 346.90625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 54,
+          "y": 353.59375,
+          "width": 101.5,
+          "right": 155.5,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 214,
+          "y": 353.59375,
+          "width": 99.15625,
+          "right": 313.15625,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "variant": "after",
+      "documentWidth": 390,
+      "fieldsetHeight": 198.796875,
+      "columns": "292px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 54,
+          "y": 293.59375,
+          "width": 66.75,
+          "right": 120.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 54,
+          "y": 323.59375,
+          "width": 101.15625,
+          "right": 155.15625,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 54,
+          "y": 353.59375,
+          "width": 73.109375,
+          "right": 127.109375,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 54,
+          "y": 383.59375,
+          "width": 132.90625,
+          "right": 186.90625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 54,
+          "y": 413.59375,
+          "width": 101.5,
+          "right": 155.5,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 54,
+          "y": 443.59375,
+          "width": 99.15625,
+          "right": 153.15625,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "en",
+      "width": 639,
+      "variant": "before",
+      "documentWidth": 639,
+      "fieldsetHeight": 78.796875,
+      "columns": "85.7969px 85.7969px 85.7969px 85.7969px 85.8125px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 54,
+          "y": 293.59375,
+          "width": 66.75,
+          "right": 120.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 167.796875,
+          "y": 293.59375,
+          "width": 101.15625,
+          "right": 268.953125,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 281.59375,
+          "y": 293.59375,
+          "width": 73.109375,
+          "right": 354.703125,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 395.390625,
+          "y": 293.59375,
+          "width": 132.90625,
+          "right": 528.296875,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 509.1875,
+          "y": 293.59375,
+          "width": 101.5,
+          "right": 610.6875,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 54,
+          "y": 323.59375,
+          "width": 99.15625,
+          "right": 153.15625,
+          "height": 20
+        }
+      ],
+      "overlaps": 1
+    },
+    {
+      "locale": "en",
+      "width": 639,
+      "variant": "after",
+      "documentWidth": 639,
+      "fieldsetHeight": 78.796875,
+      "columns": "161.656px 161.672px 161.672px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 54,
+          "y": 293.59375,
+          "width": 66.75,
+          "right": 120.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 243.65625,
+          "y": 293.59375,
+          "width": 101.15625,
+          "right": 344.8125,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 433.328125,
+          "y": 293.59375,
+          "width": 73.109375,
+          "right": 506.4375,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 54,
+          "y": 323.59375,
+          "width": 132.90625,
+          "right": 186.90625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 243.65625,
+          "y": 323.59375,
+          "width": 101.5,
+          "right": 345.15625,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 433.328125,
+          "y": 323.59375,
+          "width": 99.15625,
+          "right": 532.484375,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "en",
+      "width": 640,
+      "variant": "before",
+      "documentWidth": 640,
+      "fieldsetHeight": 78.796875,
+      "columns": "86px 86px 86px 86px 86px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 54,
+          "y": 293.59375,
+          "width": 66.75,
+          "right": 120.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 168,
+          "y": 293.59375,
+          "width": 101.15625,
+          "right": 269.15625,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 282,
+          "y": 293.59375,
+          "width": 73.109375,
+          "right": 355.109375,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 396,
+          "y": 293.59375,
+          "width": 132.90625,
+          "right": 528.90625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 510,
+          "y": 293.59375,
+          "width": 101.5,
+          "right": 611.5,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 54,
+          "y": 323.59375,
+          "width": 99.15625,
+          "right": 153.15625,
+          "height": 20
+        }
+      ],
+      "overlaps": 1
+    },
+    {
+      "locale": "en",
+      "width": 640,
+      "variant": "after",
+      "documentWidth": 640,
+      "fieldsetHeight": 78.796875,
+      "columns": "162px 162px 162px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 54,
+          "y": 293.59375,
+          "width": 66.75,
+          "right": 120.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 244,
+          "y": 293.59375,
+          "width": 101.15625,
+          "right": 345.15625,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 434,
+          "y": 293.59375,
+          "width": 73.109375,
+          "right": 507.109375,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 54,
+          "y": 323.59375,
+          "width": 132.90625,
+          "right": 186.90625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 244,
+          "y": 323.59375,
+          "width": 101.5,
+          "right": 345.5,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 434,
+          "y": 323.59375,
+          "width": 99.15625,
+          "right": 533.15625,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "en",
+      "width": 768,
+      "variant": "before",
+      "documentWidth": 768,
+      "fieldsetHeight": 48.796875,
+      "columns": "88.3281px 88.3281px 88.3438px 88.3281px 88.3281px 88.3438px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 54,
+          "y": 293.59375,
+          "width": 66.75,
+          "right": 120.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 170.328125,
+          "y": 293.59375,
+          "width": 101.15625,
+          "right": 271.484375,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 286.65625,
+          "y": 293.59375,
+          "width": 73.109375,
+          "right": 359.765625,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 403,
+          "y": 293.59375,
+          "width": 132.90625,
+          "right": 535.90625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 519.328125,
+          "y": 293.59375,
+          "width": 101.5,
+          "right": 620.828125,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 635.65625,
+          "y": 293.59375,
+          "width": 99.15625,
+          "right": 734.8125,
+          "height": 20
+        }
+      ],
+      "overlaps": 1
+    },
+    {
+      "locale": "en",
+      "width": 768,
+      "variant": "after",
+      "documentWidth": 768,
+      "fieldsetHeight": 78.796875,
+      "columns": "204.656px 204.672px 204.672px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 54,
+          "y": 293.59375,
+          "width": 66.75,
+          "right": 120.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 286.65625,
+          "y": 293.59375,
+          "width": 101.15625,
+          "right": 387.8125,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 519.328125,
+          "y": 293.59375,
+          "width": 73.109375,
+          "right": 592.4375,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 54,
+          "y": 323.59375,
+          "width": 132.90625,
+          "right": 186.90625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 286.65625,
+          "y": 323.59375,
+          "width": 101.5,
+          "right": 388.15625,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 519.328125,
+          "y": 323.59375,
+          "width": 99.15625,
+          "right": 618.484375,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "en",
+      "width": 1024,
+      "variant": "before",
+      "documentWidth": 1024,
+      "fieldsetHeight": 48.796875,
+      "columns": "131px 131px 131px 131px 131px 131px 0px 0px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 54,
+          "y": 293.59375,
+          "width": 66.75,
+          "right": 120.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 213,
+          "y": 293.59375,
+          "width": 101.15625,
+          "right": 314.15625,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 372,
+          "y": 293.59375,
+          "width": 73.109375,
+          "right": 445.109375,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 531,
+          "y": 293.59375,
+          "width": 132.90625,
+          "right": 663.90625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 690,
+          "y": 293.59375,
+          "width": 101.5,
+          "right": 791.5,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 849,
+          "y": 293.59375,
+          "width": 99.15625,
+          "right": 948.15625,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "en",
+      "width": 1024,
+      "variant": "after",
+      "documentWidth": 1024,
+      "fieldsetHeight": 78.796875,
+      "columns": "162.797px 162.797px 162.797px 162.797px 162.812px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 54,
+          "y": 293.59375,
+          "width": 66.75,
+          "right": 120.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 244.796875,
+          "y": 293.59375,
+          "width": 101.15625,
+          "right": 345.953125,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 435.59375,
+          "y": 293.59375,
+          "width": 73.109375,
+          "right": 508.703125,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 626.390625,
+          "y": 293.59375,
+          "width": 132.90625,
+          "right": 759.296875,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 817.1875,
+          "y": 293.59375,
+          "width": 101.5,
+          "right": 918.6875,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 54,
+          "y": 323.59375,
+          "width": 99.15625,
+          "right": 153.15625,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "en",
+      "width": 1199,
+      "variant": "before",
+      "documentWidth": 1199,
+      "fieldsetHeight": 48.796875,
+      "columns": "160.156px 160.172px 160.172px 160.156px 160.172px 160.172px 0px 0px 0px 0px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 54,
+          "y": 293.59375,
+          "width": 66.75,
+          "right": 120.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 242.15625,
+          "y": 293.59375,
+          "width": 101.15625,
+          "right": 343.3125,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 430.328125,
+          "y": 293.59375,
+          "width": 73.109375,
+          "right": 503.4375,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 618.5,
+          "y": 293.59375,
+          "width": 132.90625,
+          "right": 751.40625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 806.65625,
+          "y": 293.59375,
+          "width": 101.5,
+          "right": 908.15625,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 994.828125,
+          "y": 293.59375,
+          "width": 99.15625,
+          "right": 1093.984375,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "en",
+      "width": 1199,
+      "variant": "after",
+      "documentWidth": 1199,
+      "fieldsetHeight": 48.796875,
+      "columns": "160.156px 160.172px 160.172px 160.156px 160.172px 160.172px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 54,
+          "y": 293.59375,
+          "width": 66.75,
+          "right": 120.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 242.15625,
+          "y": 293.59375,
+          "width": 101.15625,
+          "right": 343.3125,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 430.328125,
+          "y": 293.59375,
+          "width": 73.109375,
+          "right": 503.4375,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 618.5,
+          "y": 293.59375,
+          "width": 132.90625,
+          "right": 751.40625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 806.65625,
+          "y": 293.59375,
+          "width": 101.5,
+          "right": 908.15625,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 994.828125,
+          "y": 293.59375,
+          "width": 99.15625,
+          "right": 1093.984375,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "en",
+      "width": 1200,
+      "variant": "before",
+      "documentWidth": 1200,
+      "fieldsetHeight": 78.796875,
+      "columns": "94px 94px 94px 94px 94px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 234,
+          "y": 398.84375,
+          "width": 66.75,
+          "right": 300.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 356,
+          "y": 398.84375,
+          "width": 101.15625,
+          "right": 457.15625,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 478,
+          "y": 398.84375,
+          "width": 73.109375,
+          "right": 551.109375,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 600,
+          "y": 398.84375,
+          "width": 132.90625,
+          "right": 732.90625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 722,
+          "y": 398.84375,
+          "width": 101.5,
+          "right": 823.5,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 234,
+          "y": 428.84375,
+          "width": 99.15625,
+          "right": 333.15625,
+          "height": 20
+        }
+      ],
+      "overlaps": 1
+    },
+    {
+      "locale": "en",
+      "width": 1200,
+      "variant": "after",
+      "documentWidth": 1200,
+      "fieldsetHeight": 78.796875,
+      "columns": "175.328px 175.328px 175.328px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 234,
+          "y": 398.84375,
+          "width": 66.75,
+          "right": 300.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 437.328125,
+          "y": 398.84375,
+          "width": 101.15625,
+          "right": 538.484375,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 640.65625,
+          "y": 398.84375,
+          "width": 73.109375,
+          "right": 713.765625,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 234,
+          "y": 428.84375,
+          "width": 132.90625,
+          "right": 366.90625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 437.328125,
+          "y": 428.84375,
+          "width": 101.5,
+          "right": 538.828125,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 640.65625,
+          "y": 428.84375,
+          "width": 99.15625,
+          "right": 739.8125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "variant": "before",
+      "documentWidth": 1280,
+      "fieldsetHeight": 48.796875,
+      "columns": "87px 87px 87px 87px 87px 87px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 234,
+          "y": 398.84375,
+          "width": 66.75,
+          "right": 300.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 349,
+          "y": 398.84375,
+          "width": 101.15625,
+          "right": 450.15625,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 464,
+          "y": 398.84375,
+          "width": 73.109375,
+          "right": 537.109375,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 579,
+          "y": 398.84375,
+          "width": 132.90625,
+          "right": 711.90625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 694,
+          "y": 398.84375,
+          "width": 101.5,
+          "right": 795.5,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 809,
+          "y": 398.84375,
+          "width": 99.15625,
+          "right": 908.15625,
+          "height": 20
+        }
+      ],
+      "overlaps": 1
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "variant": "after",
+      "documentWidth": 1280,
+      "fieldsetHeight": 78.796875,
+      "columns": "202px 202px 202px",
+      "labels": [
+        {
+          "text": "About",
+          "x": 234,
+          "y": 398.84375,
+          "width": 66.75,
+          "right": 300.75,
+          "height": 20
+        },
+        {
+          "text": "Community",
+          "x": 464,
+          "y": 398.84375,
+          "width": 101.15625,
+          "right": 565.15625,
+          "height": 20
+        },
+        {
+          "text": "People",
+          "x": 694,
+          "y": 398.84375,
+          "width": 73.109375,
+          "right": 767.109375,
+          "height": 20
+        },
+        {
+          "text": "Research & Edu",
+          "x": 234,
+          "y": 428.84375,
+          "width": 132.90625,
+          "right": 366.90625,
+          "height": 20
+        },
+        {
+          "text": "Admissions",
+          "x": 464,
+          "y": 428.84375,
+          "width": 101.5,
+          "right": 565.5,
+          "height": 20
+        },
+        {
+          "text": "Academics",
+          "x": 694,
+          "y": 428.84375,
+          "width": 99.15625,
+          "right": 793.15625,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 360,
+      "variant": "before",
+      "documentWidth": 360,
+      "fieldsetHeight": 108.796875,
+      "columns": "117px 117px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 54,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 199,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 249.703125,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 54,
+          "y": 323.59375,
+          "width": 63.0625,
+          "right": 117.0625,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 199,
+          "y": 323.59375,
+          "width": 79.75,
+          "right": 278.75,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 54,
+          "y": 353.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 199,
+          "y": 353.59375,
+          "width": 96.453125,
+          "right": 295.453125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 360,
+      "variant": "after",
+      "documentWidth": 360,
+      "fieldsetHeight": 108.796875,
+      "columns": "117px 117px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 54,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 199,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 249.703125,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 54,
+          "y": 323.59375,
+          "width": 63.0625,
+          "right": 117.0625,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 199,
+          "y": 323.59375,
+          "width": 79.75,
+          "right": 278.75,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 54,
+          "y": 353.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 199,
+          "y": 353.59375,
+          "width": 96.453125,
+          "right": 295.453125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "variant": "before",
+      "documentWidth": 390,
+      "fieldsetHeight": 108.796875,
+      "columns": "132px 132px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 54,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 214,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 264.703125,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 54,
+          "y": 323.59375,
+          "width": 63.0625,
+          "right": 117.0625,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 214,
+          "y": 323.59375,
+          "width": 79.75,
+          "right": 293.75,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 54,
+          "y": 353.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 214,
+          "y": 353.59375,
+          "width": 96.453125,
+          "right": 310.453125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "variant": "after",
+      "documentWidth": 390,
+      "fieldsetHeight": 108.796875,
+      "columns": "132px 132px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 54,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 214,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 264.703125,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 54,
+          "y": 323.59375,
+          "width": 63.0625,
+          "right": 117.0625,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 214,
+          "y": 323.59375,
+          "width": 79.75,
+          "right": 293.75,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 54,
+          "y": 353.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 214,
+          "y": 353.59375,
+          "width": 96.453125,
+          "right": 310.453125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 639,
+      "variant": "before",
+      "documentWidth": 639,
+      "fieldsetHeight": 78.796875,
+      "columns": "85.7969px 85.7969px 85.7969px 85.7969px 85.8125px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 54,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 167.796875,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 218.5,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 281.59375,
+          "y": 293.59375,
+          "width": 63.0625,
+          "right": 344.65625,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 395.390625,
+          "y": 293.59375,
+          "width": 79.75,
+          "right": 475.140625,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 509.1875,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 559.890625,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 54,
+          "y": 323.59375,
+          "width": 96.453125,
+          "right": 150.453125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 639,
+      "variant": "after",
+      "documentWidth": 639,
+      "fieldsetHeight": 78.796875,
+      "columns": "85.7969px 85.7969px 85.7969px 85.7969px 85.8125px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 54,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 167.796875,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 218.5,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 281.59375,
+          "y": 293.59375,
+          "width": 63.0625,
+          "right": 344.65625,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 395.390625,
+          "y": 293.59375,
+          "width": 79.75,
+          "right": 475.140625,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 509.1875,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 559.890625,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 54,
+          "y": 323.59375,
+          "width": 96.453125,
+          "right": 150.453125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 640,
+      "variant": "before",
+      "documentWidth": 640,
+      "fieldsetHeight": 78.796875,
+      "columns": "86px 86px 86px 86px 86px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 54,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 168,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 218.703125,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 282,
+          "y": 293.59375,
+          "width": 63.0625,
+          "right": 345.0625,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 396,
+          "y": 293.59375,
+          "width": 79.75,
+          "right": 475.75,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 510,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 560.703125,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 54,
+          "y": 323.59375,
+          "width": 96.453125,
+          "right": 150.453125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 640,
+      "variant": "after",
+      "documentWidth": 640,
+      "fieldsetHeight": 78.796875,
+      "columns": "86px 86px 86px 86px 86px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 54,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 168,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 218.703125,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 282,
+          "y": 293.59375,
+          "width": 63.0625,
+          "right": 345.0625,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 396,
+          "y": 293.59375,
+          "width": 79.75,
+          "right": 475.75,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 510,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 560.703125,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 54,
+          "y": 323.59375,
+          "width": 96.453125,
+          "right": 150.453125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 768,
+      "variant": "before",
+      "documentWidth": 768,
+      "fieldsetHeight": 48.796875,
+      "columns": "88.3281px 88.3281px 88.3438px 88.3281px 88.3281px 88.3438px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 54,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 170.328125,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 221.03125,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 286.65625,
+          "y": 293.59375,
+          "width": 63.0625,
+          "right": 349.71875,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 403,
+          "y": 293.59375,
+          "width": 79.75,
+          "right": 482.75,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 519.328125,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 570.03125,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 635.65625,
+          "y": 293.59375,
+          "width": 96.453125,
+          "right": 732.109375,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 768,
+      "variant": "after",
+      "documentWidth": 768,
+      "fieldsetHeight": 48.796875,
+      "columns": "88.3281px 88.3281px 88.3438px 88.3281px 88.3281px 88.3438px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 54,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 170.328125,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 221.03125,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 286.65625,
+          "y": 293.59375,
+          "width": 63.0625,
+          "right": 349.71875,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 403,
+          "y": 293.59375,
+          "width": 79.75,
+          "right": 482.75,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 519.328125,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 570.03125,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 635.65625,
+          "y": 293.59375,
+          "width": 96.453125,
+          "right": 732.109375,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 1024,
+      "variant": "before",
+      "documentWidth": 1024,
+      "fieldsetHeight": 48.796875,
+      "columns": "131px 131px 131px 131px 131px 131px 0px 0px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 54,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 213,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 263.703125,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 372,
+          "y": 293.59375,
+          "width": 63.0625,
+          "right": 435.0625,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 531,
+          "y": 293.59375,
+          "width": 79.75,
+          "right": 610.75,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 690,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 740.703125,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 849,
+          "y": 293.59375,
+          "width": 96.453125,
+          "right": 945.453125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 1024,
+      "variant": "after",
+      "documentWidth": 1024,
+      "fieldsetHeight": 48.796875,
+      "columns": "131px 131px 131px 131px 131px 131px 0px 0px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 54,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 213,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 263.703125,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 372,
+          "y": 293.59375,
+          "width": 63.0625,
+          "right": 435.0625,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 531,
+          "y": 293.59375,
+          "width": 79.75,
+          "right": 610.75,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 690,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 740.703125,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 849,
+          "y": 293.59375,
+          "width": 96.453125,
+          "right": 945.453125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 1199,
+      "variant": "before",
+      "documentWidth": 1199,
+      "fieldsetHeight": 48.796875,
+      "columns": "160.156px 160.172px 160.172px 160.156px 160.172px 160.172px 0px 0px 0px 0px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 54,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 242.15625,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 292.859375,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 430.328125,
+          "y": 293.59375,
+          "width": 63.0625,
+          "right": 493.390625,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 618.5,
+          "y": 293.59375,
+          "width": 79.75,
+          "right": 698.25,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 806.65625,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 857.359375,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 994.828125,
+          "y": 293.59375,
+          "width": 96.453125,
+          "right": 1091.28125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 1199,
+      "variant": "after",
+      "documentWidth": 1199,
+      "fieldsetHeight": 48.796875,
+      "columns": "160.156px 160.172px 160.172px 160.156px 160.172px 160.172px 0px 0px 0px 0px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 54,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 104.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 242.15625,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 292.859375,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 430.328125,
+          "y": 293.59375,
+          "width": 63.0625,
+          "right": 493.390625,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 618.5,
+          "y": 293.59375,
+          "width": 79.75,
+          "right": 698.25,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 806.65625,
+          "y": 293.59375,
+          "width": 50.703125,
+          "right": 857.359375,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 994.828125,
+          "y": 293.59375,
+          "width": 96.453125,
+          "right": 1091.28125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 1200,
+      "variant": "before",
+      "documentWidth": 1200,
+      "fieldsetHeight": 78.796875,
+      "columns": "94px 94px 94px 94px 94px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 234,
+          "y": 398.84375,
+          "width": 50.703125,
+          "right": 284.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 356,
+          "y": 398.84375,
+          "width": 50.703125,
+          "right": 406.703125,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 478,
+          "y": 398.84375,
+          "width": 63.0625,
+          "right": 541.0625,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 600,
+          "y": 398.84375,
+          "width": 79.75,
+          "right": 679.75,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 722,
+          "y": 398.84375,
+          "width": 50.703125,
+          "right": 772.703125,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 234,
+          "y": 428.84375,
+          "width": 96.453125,
+          "right": 330.453125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 1200,
+      "variant": "after",
+      "documentWidth": 1200,
+      "fieldsetHeight": 78.796875,
+      "columns": "94px 94px 94px 94px 94px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 234,
+          "y": 398.84375,
+          "width": 50.703125,
+          "right": 284.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 356,
+          "y": 398.84375,
+          "width": 50.703125,
+          "right": 406.703125,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 478,
+          "y": 398.84375,
+          "width": 63.0625,
+          "right": 541.0625,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 600,
+          "y": 398.84375,
+          "width": 79.75,
+          "right": 679.75,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 722,
+          "y": 398.84375,
+          "width": 50.703125,
+          "right": 772.703125,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 234,
+          "y": 428.84375,
+          "width": 96.453125,
+          "right": 330.453125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "variant": "before",
+      "documentWidth": 1280,
+      "fieldsetHeight": 48.796875,
+      "columns": "87px 87px 87px 87px 87px 87px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 234,
+          "y": 398.84375,
+          "width": 50.703125,
+          "right": 284.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 349,
+          "y": 398.84375,
+          "width": 50.703125,
+          "right": 399.703125,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 464,
+          "y": 398.84375,
+          "width": 63.0625,
+          "right": 527.0625,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 579,
+          "y": 398.84375,
+          "width": 79.75,
+          "right": 658.75,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 694,
+          "y": 398.84375,
+          "width": 50.703125,
+          "right": 744.703125,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 809,
+          "y": 398.84375,
+          "width": 96.453125,
+          "right": 905.453125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    },
+    {
+      "locale": "ko",
+      "width": 1280,
+      "variant": "after",
+      "documentWidth": 1280,
+      "fieldsetHeight": 48.796875,
+      "columns": "87px 87px 87px 87px 87px 87px",
+      "labels": [
+        {
+          "text": "소개",
+          "x": 234,
+          "y": 398.84375,
+          "width": 50.703125,
+          "right": 284.703125,
+          "height": 20
+        },
+        {
+          "text": "소식",
+          "x": 349,
+          "y": 398.84375,
+          "width": 50.703125,
+          "right": 399.703125,
+          "height": 20
+        },
+        {
+          "text": "구성원",
+          "x": 464,
+          "y": 398.84375,
+          "width": 63.0625,
+          "right": 527.0625,
+          "height": 20
+        },
+        {
+          "text": "연구·교육",
+          "x": 579,
+          "y": 398.84375,
+          "width": 79.75,
+          "right": 658.75,
+          "height": 20
+        },
+        {
+          "text": "입학",
+          "x": 694,
+          "y": 398.84375,
+          "width": 50.703125,
+          "right": 744.703125,
+          "height": 20
+        },
+        {
+          "text": "학사 및 교과",
+          "x": 809,
+          "y": 398.84375,
+          "width": 96.453125,
+          "right": 905.453125,
+          "height": 20
+        }
+      ],
+      "overlaps": 0
+    }
+  ]
+}

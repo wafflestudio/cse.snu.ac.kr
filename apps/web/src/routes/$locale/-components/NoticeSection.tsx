@@ -22,7 +22,7 @@ const NOTICE_TAGS = [
 
 const noticeTagPillClass = (selected: boolean) =>
   clsx(
-    'inline-flex cursor-pointer select-none items-center justify-center rounded-[1.875rem] border border-solid border-main-orange-dark px-3 py-[0.37rem] text-md font-medium transition duration-200',
+    'inline-flex shrink-0 cursor-pointer select-none items-center justify-center rounded-[1.875rem] border border-solid border-main-orange-dark px-3 py-[0.37rem] text-md font-medium transition duration-200',
     'has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-main-orange-dark',
     selected
       ? 'bg-main-orange-dark text-[#202020]'
@@ -55,7 +55,7 @@ export default function NoticeSection({
         <div className="mt-6 flex items-center justify-between shell:mt-9">
           <fieldset
             aria-label={t('공지사항')}
-            className="m-0 flex gap-3.5 border-0 p-0"
+            className="m-0 flex min-w-0 max-w-full flex-wrap gap-3.5 border-0 p-0"
           >
             {NOTICE_TAGS.map(({ value, label }) => (
               <label key={value} className={noticeTagPillClass(tag === value)}>

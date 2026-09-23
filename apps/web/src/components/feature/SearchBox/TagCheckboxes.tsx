@@ -13,7 +13,7 @@ export default function TagCheckBoxes({
   selectedTags,
   disabled,
 }: TagFilterProps) {
-  const { t, tUnsafe } = useLanguage({ 태그: 'Tags' });
+  const { t, tUnsafe, isEnglish } = useLanguage({ 태그: 'Tags' });
   const navigate = useNavigate();
 
   const toggleCheck = (tag: string, isChecked: boolean) => {
@@ -33,9 +33,14 @@ export default function TagCheckBoxes({
   };
 
   const longestTag = Math.max(...tags.map((tag) => tag.length));
+  // DS-024: the long notice group needs room for its English labels.
+  // Keep the existing Korean grid and the short-tag groups unchanged.
+  const longTagColumns = isEnglish
+    ? 'grid-cols-[repeat(auto-fit,minmax(240px,1fr))]'
+    : 'grid-cols-[repeat(auto-fit,minmax(160px,1fr))]';
   const gridColsTailwind =
     longestTag > 10
-      ? 'grid-cols-[repeat(auto-fit,minmax(160px,1fr))]'
+      ? longTagColumns
       : 'grid-cols-[repeat(auto-fit,minmax(80px,1fr))]';
 
   return (
