@@ -166,14 +166,14 @@
 /* 드롭다운/스크롤 패널용 얇은 스크롤바(.styled-scrollbar) */
 .styled-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #d4d4d4 transparent;
+  scrollbar-color: var(--color-neutral-300) transparent;
 }
 .styled-scrollbar::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 .styled-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #d4d4d4;
+  background-color: var(--color-neutral-300);
   border-radius: 9999px;
 }
 .styled-scrollbar::-webkit-scrollbar-track {

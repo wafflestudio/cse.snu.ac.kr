@@ -227,7 +227,8 @@ export default function NoticeEditor({
         <Form.Action
           onCancel={onCancel}
           onSubmit={handleSubmit(onSubmit)}
-          submitLabel="게시하기"
+          submitLabel={defaultValues ? '변경사항 저장' : '게시하기'}
+          pendingLabel={defaultValues ? '저장 중…' : '게시 중…'}
           onDelete={onDelete}
         />
       </Form>

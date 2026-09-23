@@ -54,7 +54,7 @@ async function reserve(page: Page, title: string, recurringWeeks = 1) {
   await fillTextArea(page, 'purpose', '세미나 진행');
   await dialog.getByText('개인정보 수집 및 이용동의').click();
 
-  const submit = dialog.getByRole('button', { name: '예약하기' });
+  const submit = dialog.getByRole('button', { name: '예약', exact: true });
   await expect(submit).toBeEnabled();
   await submit.click();
   // 성공 시 모달이 닫힘(onSuccess). ephemeral 토스트 대신 모달 닫힘으로 완료를 대기한다.

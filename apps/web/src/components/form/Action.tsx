@@ -3,20 +3,34 @@ import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface Props {
   onCancel: () => void;
   onDelete?: () => Promise<void>;
   onSubmit: () => Promise<void>;
   submitLabel?: string;
+  pendingLabel?: string;
 }
 
 export default function Action({
   onCancel,
   onDelete,
   onSubmit,
-  submitLabel,
+  submitLabel = '저장하기',
+  pendingLabel = '저장 중…',
 }: Props) {
+  const { t, tUnsafe } = useLanguage({
+    취소: 'Cancel',
+    삭제: 'Delete',
+    저장하기: 'Save',
+    게시하기: 'Publish',
+    등록하기: 'Add',
+    '변경사항 저장': 'Save changes',
+    '저장 중…': 'Saving…',
+    '게시 중…': 'Publishing…',
+    '등록 중…': 'Adding…',
+  });
   const {
     formState: { isSubmitting, isDirty },
   } = useFormContext();
@@ -39,7 +53,7 @@ export default function Action({
             }
           }}
         >
-          취소
+          {t('취소')}
         </Button>
         {onDelete && (
           <Button
@@ -50,7 +64,7 @@ export default function Action({
               setShowDeleteDialog(true);
             }}
           >
-            삭제
+            {t('삭제')}
           </Button>
         )}
         <Button
@@ -59,7 +73,17 @@ export default function Action({
           disabled={isSubmitting}
           onClick={onSubmit}
         >
-          {submitLabel ?? '저장하기'}
+          <span className="grid">
+            <span
+              aria-hidden="true"
+              className="invisible col-start-1 row-start-1"
+            >
+              {tUnsafe(submitLabel)}
+            </span>
+            <span className="col-start-1 row-start-1">
+              {tUnsafe(isSubmitting ? pendingLabel : submitLabel)}
+            </span>
+          </span>
         </Button>
       </div>
 

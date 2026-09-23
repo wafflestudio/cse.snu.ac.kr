@@ -129,7 +129,7 @@ test.describe('공지사항 - 작성/편집/삭제 플로우', () => {
     await page.getByRole('link', { name: '편집' }).click();
     await page.waitForURL(/\/community\/notice\/edit\/\d+/);
     await fillTextInput(page, 'title', titleEdited);
-    await submitForm(page, '게시하기');
+    await submitForm(page, '변경사항 저장');
     await expect(page.getByText('공지사항을 수정했습니다.')).toBeVisible();
     await page.waitForURL(/\/community\/notice\/\d+/);
     await expect(

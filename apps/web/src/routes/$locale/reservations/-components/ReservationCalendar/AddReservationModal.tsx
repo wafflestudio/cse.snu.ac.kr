@@ -22,6 +22,8 @@ export default function AddReservationModal({
   const { t, localizedPath } = useLanguage({
     '시설 예약': 'Reservation',
     예약하기: 'Reserve',
+    예약: 'Reserve',
+    '예약 중…': 'Reserving…',
     취소: 'Cancel',
     '개인정보 수집 및 이용동의': 'Privacy Agreement',
     보러가기: 'View',
@@ -206,7 +208,17 @@ export default function AddReservationModal({
               type="submit"
               disabled={!isValid || isSubmitting}
             >
-              {t('예약하기')}
+              <span className="inline-grid">
+                <span
+                  className="invisible col-start-1 row-start-1 whitespace-nowrap"
+                  aria-hidden="true"
+                >
+                  {t('예약하기')}
+                </span>
+                <span className="col-start-1 row-start-1 whitespace-nowrap">
+                  {isSubmitting ? t('예약 중…') : t('예약')}
+                </span>
+              </span>
             </Button>
           </div>
         </form>

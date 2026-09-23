@@ -133,6 +133,7 @@ export default function ImageModalManagement({
           onSubmit={onSubmit}
           onDelete={isEditing ? onDelete : undefined}
           submitLabel={isEditing ? '저장하기' : '등록하기'}
+          pendingLabel={isEditing ? '저장 중…' : '등록 중…'}
         />
       </Form>
     </FormProvider>

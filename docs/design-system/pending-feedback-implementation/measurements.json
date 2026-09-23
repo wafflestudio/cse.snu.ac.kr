@@ -1,0 +1,101 @@
+{
+  "records": [
+    {
+      "name": "notice-save-ko",
+      "before": {
+        "x": 737,
+        "y": 344.625,
+        "width": 103,
+        "height": 34
+      },
+      "after": {
+        "x": 737,
+        "y": 344.625,
+        "width": 103,
+        "height": 34
+      }
+    },
+    {
+      "name": "notice-publish-ko",
+      "before": {
+        "x": 764,
+        "y": 344.625,
+        "width": 76,
+        "height": 34
+      },
+      "after": {
+        "x": 762,
+        "y": 344.625,
+        "width": 78,
+        "height": 34
+      }
+    },
+    {
+      "name": "reservation-ko",
+      "before": {
+        "x": 200,
+        "y": 810.5625,
+        "width": 76,
+        "height": 36
+      },
+      "after": {
+        "x": 198,
+        "y": 810.5625,
+        "width": 78,
+        "height": 36
+      }
+    },
+    {
+      "name": "notice-save-en",
+      "before": {
+        "x": 721,
+        "y": 344.625,
+        "width": 119,
+        "height": 34
+      },
+      "after": {
+        "x": 721,
+        "y": 344.625,
+        "width": 119,
+        "height": 34
+      }
+    },
+    {
+      "name": "notice-publish-en",
+      "before": {
+        "x": 767,
+        "y": 344.625,
+        "width": 73,
+        "height": 34
+      },
+      "after": {
+        "x": 737,
+        "y": 344.625,
+        "width": 103,
+        "height": 34
+      }
+    },
+    {
+      "name": "reservation-en",
+      "before": {
+        "x": 196,
+        "y": 784.28125,
+        "width": 80,
+        "height": 36
+      },
+      "after": {
+        "x": 174,
+        "y": 784.28125,
+        "width": 102,
+        "height": 36
+      }
+    }
+  ],
+  "note": "Fresh production build, actual local API. Requests temporarily gated then continued without mocked responses. Notices and reservations cleaned up. KO/EN at editor1200 and reservation320. No accessibility regression work.",
+  "regression": [
+    "공지 작성·편집·삭제",
+    "새소식 작성·편집·삭제",
+    "예약 생성·취소"
+  ],
+  "formActionSourceAuditModules": 27
+}
