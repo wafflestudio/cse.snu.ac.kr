@@ -22,7 +22,10 @@ export default function SearchResultRow({ item }: { item: SearchResultItem }) {
   return (
     <article>
       {/* 행 전체가 링크다 — 어디를 눌러도 가고, 호버하면 제목에 밑줄이 생긴다. */}
-      <Link to={localizedPath(item.url)} className="group flex gap-6">
+      <Link
+        to={localizedPath(item.url)}
+        className="group flex gap-6 focus-visible:focus-ring"
+      >
         {/* 사진을 오른쪽에 두면 사진이 있고 없고에 따라 제목이 좌우로 튀지 않는다. */}
         {item.thumbnailUrl && (
           <div className="relative order-last flex aspect-4/3 h-[6.25rem] shrink-0">

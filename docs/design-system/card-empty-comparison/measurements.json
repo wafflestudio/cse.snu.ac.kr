@@ -1,0 +1,3 @@
+{
+  "note": "Browser-only proposals, not application code. Card uses actual seeded layout with simulated light/dark placeholder backgrounds, no photograph. A: 2px dark + 2px white outline frame over image; B: dark frame around text area only. Empty search copy/color on actual zero-result state. No writes."
+}

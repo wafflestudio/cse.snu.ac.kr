@@ -1,0 +1,18 @@
+{
+  "default": {
+    "sameSize": true,
+    "identical": false
+  },
+  "hover": {
+    "sameSize": true,
+    "identical": false
+  },
+  "action-ko-1280": {
+    "region": "right half (approved close color changes excluded)",
+    "identical": true
+  },
+  "action-en-320": {
+    "region": "right half (approved close color changes excluded)",
+    "identical": false
+  }
+}

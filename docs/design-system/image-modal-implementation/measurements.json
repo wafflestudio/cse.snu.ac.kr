@@ -1,0 +1,40 @@
+{
+  "records": [
+    {
+      "locale": "ko",
+      "viewportWidth": 320,
+      "width": 288,
+      "scrollWidth": 288,
+      "height": 46
+    },
+    {
+      "locale": "ko",
+      "viewportWidth": 1280,
+      "width": 400,
+      "scrollWidth": 400,
+      "height": 46
+    },
+    {
+      "scene": "forced-colors",
+      "color": "rgba(5, 0, 73, 0.8)"
+    },
+    {
+      "locale": "en",
+      "viewportWidth": 320,
+      "width": 288,
+      "scrollWidth": 288,
+      "height": 46
+    },
+    {
+      "locale": "en",
+      "viewportWidth": 1280,
+      "width": 400,
+      "scrollWidth": 400,
+      "height": 46
+    }
+  ],
+  "closeKeyboard": true,
+  "singleButton": true,
+  "forcedColors": true,
+  "note": "Production build actual implementation. Temporary local API modal created, updated to single-button state, removed in finally. External link was not opened. No global focus or modal logic changes."
+}

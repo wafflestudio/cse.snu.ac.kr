@@ -36,13 +36,16 @@ export default function NewsListRow({ post }: NewsListRowProps) {
         </p>
 
         <div className="flex flex-col items-start">
-          <Link to={detailPath} className="hover:underline">
+          <Link
+            to={detailPath}
+            className="hover:underline focus-visible:focus-ring"
+          >
             <h3 className="mb-2.5 text-base font-bold">{post.title}</h3>
           </Link>
 
           <Link
             to={detailPath}
-            className="mb-3 line-clamp-3 break-all text-md font-normal leading-[1.6] text-neutral-500 hover:cursor-pointer sm:mb-8"
+            className="mb-3 line-clamp-3 break-all text-md font-normal leading-[1.6] text-neutral-500 hover:cursor-pointer focus-visible:focus-ring sm:mb-8"
           >
             {post.description}...
           </Link>
@@ -71,7 +74,10 @@ export default function NewsListRow({ post }: NewsListRowProps) {
       </div>
 
       {post.imageURL ? (
-        <Link to={detailPath} className="relative flex aspect-4/3 sm:h-37.5">
+        <Link
+          to={detailPath}
+          className="relative flex aspect-4/3 focus-visible:focus-ring sm:h-37.5"
+        >
           <Image
             src={post.imageURL}
             alt="포스트 대표 이미지"

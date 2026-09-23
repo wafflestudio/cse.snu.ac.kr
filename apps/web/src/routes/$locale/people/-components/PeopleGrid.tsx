@@ -62,7 +62,7 @@ function PeopleCard({
       <div className="flex flex-col items-start break-keep">
         <Link
           to={href}
-          className={`relative flex w-full cursor-pointer flex-row flex-wrap gap-2 pb-2.5 ${
+          className={`relative flex w-full cursor-pointer flex-row flex-wrap gap-2 pb-2.5 focus-visible:focus-ring ${
             titleNewline ? 'flex-col' : ''
           }`}
         >
@@ -77,7 +77,7 @@ function PeopleCard({
               <Link
                 key={`${text}-${idx}`}
                 to={href}
-                className="hover:underline"
+                className="hover:underline focus-visible:focus-ring"
               >
                 <p>{text}</p>
               </Link>

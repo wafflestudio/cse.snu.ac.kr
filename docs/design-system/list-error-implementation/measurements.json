@@ -1,0 +1,20 @@
+{
+  "focus": [
+    "selection",
+    "search-row",
+    "search-row-320",
+    "news-title",
+    "news-summary",
+    "seminar-row",
+    "people-name",
+    "tag-suggestion"
+  ],
+  "courseErrors": {
+    "locales": ["ko", "en"],
+    "fields": 4,
+    "clearedOnInput": true,
+    "nameWidths": [180, 308],
+    "saveRequests": 0
+  },
+  "note": "Production source; representative list focus, 320px search and course validation only. No tag suggestion request or course save."
+}

@@ -24,7 +24,7 @@ export default function SeminarRow({
     : localizedPath(`/community/seminar/${id}`);
 
   return (
-    <Link to={detailPath} className="group">
+    <Link to={detailPath} className="group focus-visible:focus-ring">
       <article className="flex flex-col gap-4 sm:flex-row sm:gap-5">
         <ImageCell imageURL={imageURL} />
         <div className="flex flex-col items-start gap-1 break-all sm:gap-0">

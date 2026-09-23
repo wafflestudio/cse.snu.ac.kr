@@ -133,7 +133,7 @@ export default function ImageModal({
               <button
                 type="button"
                 onClick={() => handleOpenChange(false)}
-                className="flex-1 px-6 py-3 bg-neutral-100 text-neutral-500 hover:bg-neutral-50 hover:text-neutral-400 active:bg-neutral-200 active:text-neutral-500 text-[15px] font-medium leading-[22px] tracking-[0.025em] focus:outline-none transition-colors"
+                className="flex-1 px-6 py-3 bg-neutral-100 text-neutral-600 hover:bg-neutral-200 active:bg-neutral-200 text-[15px] font-medium leading-[22px] tracking-[0.025em] focus-visible:focus-ring focus-visible:-outline-offset-4 transition-colors"
               >
                 {t('닫기')}
               </button>
@@ -141,7 +141,7 @@ export default function ImageModal({
                 <button
                   type="button"
                   onClick={handleAction}
-                  className="flex-1 px-6 py-3 bg-main-orange text-white hover:bg-[#ff7b34] hover:text-white active:bg-[#f55a00] active:text-[#ffc38f] text-[15px] font-medium leading-[22px] tracking-[0.025em] focus:outline-none transition-colors"
+                  className="flex-1 px-6 py-3 bg-main-orange text-white hover:bg-[#ff7b34] hover:text-white active:bg-[#f55a00] active:text-[#ffc38f] text-[15px] font-medium leading-[22px] tracking-[0.025em] focus-visible:focus-ring focus-visible:-outline-offset-4 transition-colors"
                 >
                   {t('자세히 보기')}
                 </button>
