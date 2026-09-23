@@ -1,0 +1,1648 @@
+{
+  "source": "DS-017 scoped hover applied; no other app change",
+  "environment": "Production frontend, cached local API, Playwright 1.57.0 Chromium Linux",
+  "method": "Rendered rectangles, nearest targets, 24px spacing-circle screening, actual hover and keyboard Shift+Tab/Tab. No search submitted or persisted data changed.",
+  "records": [
+    {
+      "id": "ko-1280-header-search",
+      "url": "http://localhost:3000/ko/community/notice",
+      "viewport": {
+        "width": 1280,
+        "height": 850
+      },
+      "rect": {
+        "x": 1196,
+        "y": 78.625,
+        "width": 20,
+        "height": 30
+      },
+      "icon": {
+        "x": 1196,
+        "y": 83.625,
+        "width": 20,
+        "height": 20
+      },
+      "stroke": "1.5",
+      "paint": {
+        "fill": "none",
+        "stroke": "rgb(115, 115, 115)"
+      },
+      "color": "rgb(115, 115, 115)",
+      "label": "통합검색",
+      "neighbors": [
+        {
+          "tag": "INPUT",
+          "name": "통합검색",
+          "rect": {
+            "x": 1004,
+            "y": 78.625,
+            "width": 192,
+            "height": 30
+          },
+          "distance": 10,
+          "centerDistance": 106
+        },
+        {
+          "tag": "BUTTON",
+          "name": "ENG",
+          "rect": {
+            "x": 1192.796875,
+            "y": 48,
+            "width": 27.203125,
+            "height": 15.59375
+          },
+          "distance": 30.03125,
+          "centerDistance": 37.8302232805601
+        },
+        {
+          "tag": "BUTTON",
+          "name": "로그인",
+          "rect": {
+            "x": 1135.296875,
+            "y": 48,
+            "width": 33,
+            "height": 15.59375
+          },
+          "distance": 48.20167643690544,
+          "centerDistance": 66.09800148855675
+        }
+      ],
+      "spacingConflicts": [
+        {
+          "tag": "INPUT",
+          "name": "통합검색",
+          "rect": {
+            "x": 1004,
+            "y": 78.625,
+            "width": 192,
+            "height": 30
+          },
+          "distance": 10,
+          "centerDistance": 106
+        }
+      ],
+      "hover": "rgb(64, 64, 64)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(115, 115, 115) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "ko-1280-list-search",
+      "url": "http://localhost:3000/ko/community/notice",
+      "viewport": {
+        "width": 1280,
+        "height": 850
+      },
+      "rect": {
+        "x": 458.703125,
+        "y": 568.640625,
+        "width": 24,
+        "height": 24
+      },
+      "icon": {
+        "x": 460.703125,
+        "y": 570.640625,
+        "width": 20,
+        "height": 20
+      },
+      "stroke": "1.5",
+      "paint": {
+        "fill": "none",
+        "stroke": "rgb(38, 38, 38)"
+      },
+      "color": "rgb(38, 38, 38)",
+      "label": "검색",
+      "neighbors": [
+        {
+          "tag": "INPUT",
+          "name": "search",
+          "rect": {
+            "x": 276.703125,
+            "y": 572.84375,
+            "width": 184,
+            "height": 15.59375
+          },
+          "distance": 10,
+          "centerDistance": 102
+        },
+        {
+          "tag": "A",
+          "name": "장학금 신청 공지",
+          "rect": {
+            "x": 260,
+            "y": 798.234375,
+            "width": 438,
+            "height": 16.796875
+          },
+          "distance": 217.59375,
+          "centerDistance": 226.1444382376024
+        },
+        {
+          "tag": "A",
+          "name": "시설 예약",
+          "rect": {
+            "x": 51.5,
+            "y": 476.078125,
+            "width": 73,
+            "height": 18
+          },
+          "distance": 356.8608554689287,
+          "centerDistance": 394.453892477962
+        }
+      ],
+      "spacingConflicts": [],
+      "hover": "rgb(115, 115, 115)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "ko-1280-seminar-search",
+      "url": "http://localhost:3000/ko/community/seminar",
+      "viewport": {
+        "width": 1280,
+        "height": 850
+      },
+      "rect": {
+        "x": 456,
+        "y": 357.84375,
+        "width": 20,
+        "height": 20
+      },
+      "icon": {
+        "x": 456,
+        "y": 357.84375,
+        "width": 20,
+        "height": 20
+      },
+      "stroke": "1.5",
+      "paint": {
+        "fill": "none",
+        "stroke": "rgb(38, 38, 38)"
+      },
+      "color": "rgb(38, 38, 38)",
+      "label": "검색",
+      "neighbors": [
+        {
+          "tag": "INPUT",
+          "name": "seminar-search",
+          "rect": {
+            "x": 248,
+            "y": 360.046875,
+            "width": 208,
+            "height": 15.59375
+          },
+          "distance": 10,
+          "centerDistance": 114
+        },
+        {
+          "tag": "A",
+          "name": "인공지능 특별 세미나김연사|서울대학교2024/2/10 (토) 오후 11:00|30",
+          "rect": {
+            "x": 200,
+            "y": 478.03125,
+            "width": 720,
+            "height": 100
+          },
+          "distance": 110.1875,
+          "centerDistance": 185.7310829028087
+        },
+        {
+          "tag": "BUTTON",
+          "name": "세미나",
+          "rect": {
+            "x": 240.5625,
+            "y": 201.65625,
+            "width": 36.84375,
+            "height": 16.796875
+          },
+          "distance": 240.59335272811077,
+          "centerDistance": 260.2937902424288
+        }
+      ],
+      "spacingConflicts": [
+        {
+          "tag": "INPUT",
+          "name": "seminar-search",
+          "rect": {
+            "x": 248,
+            "y": 360.046875,
+            "width": 208,
+            "height": 15.59375
+          },
+          "distance": 10,
+          "centerDistance": 114
+        }
+      ],
+      "hover": "rgb(115, 115, 115)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "ko-390-list-search",
+      "url": "http://localhost:3000/ko/community/notice",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "rect": {
+        "x": 278.703125,
+        "y": 710.984375,
+        "width": 24,
+        "height": 24
+      },
+      "icon": {
+        "x": 280.703125,
+        "y": 712.984375,
+        "width": 20,
+        "height": 20
+      },
+      "stroke": "1.5",
+      "paint": {
+        "fill": "none",
+        "stroke": "rgb(38, 38, 38)"
+      },
+      "color": "rgb(38, 38, 38)",
+      "label": "검색",
+      "neighbors": [
+        {
+          "tag": "INPUT",
+          "name": "search",
+          "rect": {
+            "x": 96.703125,
+            "y": 715.1875,
+            "width": 184,
+            "height": 15.59375
+          },
+          "distance": 10,
+          "centerDistance": 102
+        },
+        {
+          "tag": "BUTTON",
+          "name": "공지사항",
+          "rect": {
+            "x": 56.484375,
+            "y": 122,
+            "width": 40.96875,
+            "height": 14.390625
+          },
+          "distance": 617.6065009689119,
+          "centerDistance": 631.0846486813551
+        },
+        {
+          "tag": "A",
+          "name": "소식",
+          "rect": {
+            "x": 20,
+            "y": 122,
+            "width": 20.484375,
+            "height": 14.390625
+          },
+          "distance": 637.7316444952571,
+          "centerDistance": 648.4021519921165
+        }
+      ],
+      "spacingConflicts": [],
+      "hover": "rgb(115, 115, 115)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "ko-390-seminar-search",
+      "url": "http://localhost:3000/ko/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "rect": {
+        "x": 276,
+        "y": 230.1875,
+        "width": 20,
+        "height": 20
+      },
+      "icon": {
+        "x": 276,
+        "y": 230.1875,
+        "width": 20,
+        "height": 20
+      },
+      "stroke": "1.5",
+      "paint": {
+        "fill": "none",
+        "stroke": "rgb(38, 38, 38)"
+      },
+      "color": "rgb(38, 38, 38)",
+      "label": "검색",
+      "neighbors": [
+        {
+          "tag": "INPUT",
+          "name": "seminar-search",
+          "rect": {
+            "x": 68,
+            "y": 232.390625,
+            "width": 208,
+            "height": 15.59375
+          },
+          "distance": 10,
+          "centerDistance": 114
+        },
+        {
+          "tag": "A",
+          "name": "인공지능 특별 세미나김연사|서울대학교2024/2/10 (토) 오후 11:00|30",
+          "rect": {
+            "x": 20,
+            "y": 350.375,
+            "width": 350,
+            "height": 245.1875
+          },
+          "distance": 110.1875,
+          "centerDistance": 249.93621256545137
+        },
+        {
+          "tag": "A",
+          "name": "메인으로 이동",
+          "rect": {
+            "x": 20,
+            "y": 16.5,
+            "width": 235,
+            "height": 35
+          },
+          "distance": 191.2170825429831,
+          "centerDistance": 254.09749144029345
+        }
+      ],
+      "spacingConflicts": [
+        {
+          "tag": "INPUT",
+          "name": "seminar-search",
+          "rect": {
+            "x": 68,
+            "y": 232.390625,
+            "width": 208,
+            "height": 15.59375
+          },
+          "distance": 10,
+          "centerDistance": 114
+        }
+      ],
+      "hover": "rgb(115, 115, 115)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "ko-menu-open",
+      "url": "http://localhost:3000/ko/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "rect": {
+        "x": 346,
+        "y": 22,
+        "width": 24,
+        "height": 24
+      },
+      "icon": {
+        "x": 346,
+        "y": 22,
+        "width": 24,
+        "height": 24
+      },
+      "stroke": null,
+      "paint": {
+        "fill": "rgb(255, 255, 255)",
+        "stroke": "none"
+      },
+      "color": "rgb(10, 10, 10)",
+      "label": "메뉴 열기",
+      "neighbors": [
+        {
+          "tag": "A",
+          "name": "메인으로 이동",
+          "rect": {
+            "x": 20,
+            "y": 16.5,
+            "width": 235,
+            "height": 35
+          },
+          "distance": 103,
+          "centerDistance": 220.5
+        },
+        {
+          "tag": "BUTTON",
+          "name": "검색",
+          "rect": {
+            "x": 276,
+            "y": 230.1875,
+            "width": 20,
+            "height": 20
+          },
+          "distance": 205.75114861465536,
+          "centerDistance": 218.39708138216955
+        },
+        {
+          "tag": "INPUT",
+          "name": "seminar-search",
+          "rect": {
+            "x": 68,
+            "y": 232.390625,
+            "width": 208,
+            "height": 15.59375
+          },
+          "distance": 214.66914097720385,
+          "centerDistance": 277.68558687164517
+        }
+      ],
+      "spacingConflicts": [],
+      "hover": "rgb(10, 10, 10)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "ko-menu-close",
+      "url": "http://localhost:3000/ko/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "rect": {
+        "x": 350,
+        "y": 24,
+        "width": 20,
+        "height": 20
+      },
+      "icon": {
+        "x": 350,
+        "y": 24,
+        "width": 20,
+        "height": 20
+      },
+      "stroke": "2",
+      "paint": {
+        "fill": "none",
+        "stroke": "rgb(255, 255, 255)"
+      },
+      "color": "rgb(255, 255, 255)",
+      "label": "메뉴 닫기",
+      "neighbors": [
+        {
+          "tag": "A",
+          "name": "공지사항",
+          "rect": {
+            "x": 182.25,
+            "y": 108,
+            "width": 207.75,
+            "height": 20
+          },
+          "distance": 74,
+          "centerDistance": 111.86382625764239
+        },
+        {
+          "tag": "A",
+          "name": "메인으로 이동",
+          "rect": {
+            "x": 20,
+            "y": 16.5,
+            "width": 235,
+            "height": 35
+          },
+          "distance": 105,
+          "centerDistance": 222.5
+        },
+        {
+          "tag": "A",
+          "name": "새 소식",
+          "rect": {
+            "x": 182.25,
+            "y": 156,
+            "width": 207.75,
+            "height": 20
+          },
+          "distance": 122,
+          "centerDistance": 151.26637308073464
+        }
+      ],
+      "spacingConflicts": [],
+      "hover": "rgb(255, 255, 255)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "ko-mobile-search-open",
+      "url": "http://localhost:3000/ko/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "rect": {
+        "x": 51.625,
+        "y": 726.90625,
+        "width": 19,
+        "height": 18
+      },
+      "icon": {
+        "x": 51.625,
+        "y": 726.90625,
+        "width": 19,
+        "height": 18
+      },
+      "stroke": null,
+      "paint": {
+        "fill": "rgb(229, 229, 229)",
+        "stroke": "none"
+      },
+      "color": "rgb(115, 115, 115)",
+      "label": "검색",
+      "neighbors": [
+        {
+          "tag": "BUTTON",
+          "name": "LOGIN",
+          "rect": {
+            "x": 41.625,
+            "y": 768.90625,
+            "width": 39,
+            "height": 15.59375
+          },
+          "distance": 33,
+          "centerDistance": 40.796875
+        },
+        {
+          "tag": "BUTTON",
+          "name": "ENG",
+          "rect": {
+            "x": 48.125,
+            "y": 794.40625,
+            "width": 26,
+            "height": 15.59375
+          },
+          "distance": 58.5,
+          "centerDistance": 66.296875
+        },
+        {
+          "tag": "A",
+          "name": "신임교수초빙",
+          "rect": {
+            "x": 182.25,
+            "y": 252,
+            "width": 207.75,
+            "height": 20
+          },
+          "distance": 479.45831353107485,
+          "centerDistance": 524.606646725966
+        }
+      ],
+      "spacingConflicts": [],
+      "hover": "rgb(255, 255, 255)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(115, 115, 115) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "ko-mobile-search-submit",
+      "url": "http://localhost:3000/ko/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "rect": {
+        "x": 339.96875,
+        "y": 111,
+        "width": 19,
+        "height": 18
+      },
+      "icon": {
+        "x": 339.96875,
+        "y": 111,
+        "width": 19,
+        "height": 18
+      },
+      "stroke": null,
+      "paint": {
+        "fill": "rgb(229, 229, 229)",
+        "stroke": "none"
+      },
+      "color": "rgb(115, 115, 115)",
+      "label": "검색 실행",
+      "neighbors": [
+        {
+          "tag": "INPUT",
+          "name": "",
+          "rect": {
+            "x": 31.03125,
+            "y": 104,
+            "width": 308.9375,
+            "height": 32
+          },
+          "distance": 9.5,
+          "centerDistance": 163.96875
+        },
+        {
+          "tag": "BUTTON",
+          "name": "메뉴 닫기",
+          "rect": {
+            "x": 350,
+            "y": 24,
+            "width": 20,
+            "height": 20
+          },
+          "distance": 76.00185673102007,
+          "centerDistance": 86.64241009207038
+        },
+        {
+          "tag": "A",
+          "name": "메인으로 이동",
+          "rect": {
+            "x": 20,
+            "y": 16.5,
+            "width": 235,
+            "height": 35
+          },
+          "distance": 116.69016550919146,
+          "centerDistance": 228.75041197025746
+        }
+      ],
+      "spacingConflicts": [
+        {
+          "tag": "INPUT",
+          "name": "",
+          "rect": {
+            "x": 31.03125,
+            "y": 104,
+            "width": 308.9375,
+            "height": 32
+          },
+          "distance": 9.5,
+          "centerDistance": 163.96875
+        }
+      ],
+      "hover": "rgb(255, 255, 255)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(113, 113, 113) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "ko-mobile-search-close",
+      "url": "http://localhost:3000/ko/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "rect": {
+        "x": 185,
+        "y": 809.8125,
+        "width": 20,
+        "height": 20
+      },
+      "icon": {
+        "x": 185,
+        "y": 809.8125,
+        "width": 20,
+        "height": 20
+      },
+      "stroke": "2",
+      "paint": {
+        "fill": "none",
+        "stroke": "rgb(255, 255, 255)"
+      },
+      "color": "rgb(255, 255, 255)",
+      "label": "검색 닫기",
+      "neighbors": [
+        {
+          "tag": "INPUT",
+          "name": "",
+          "rect": {
+            "x": 31.03125,
+            "y": 104,
+            "width": 308.9375,
+            "height": 32
+          },
+          "distance": 683.8125,
+          "centerDistance": 699.87697858713
+        },
+        {
+          "tag": "BUTTON",
+          "name": "검색 실행",
+          "rect": {
+            "x": 339.96875,
+            "y": 111,
+            "width": 19,
+            "height": 18
+          },
+          "distance": 705.8596522204768,
+          "centerDistance": 716.6576099385343
+        },
+        {
+          "tag": "A",
+          "name": "메인으로 이동",
+          "rect": {
+            "x": 20,
+            "y": 16.5,
+            "width": 235,
+            "height": 35
+          },
+          "distance": 768.3125,
+          "centerDistance": 787.9134058741798
+        }
+      ],
+      "spacingConflicts": [],
+      "hover": "rgb(255, 255, 255)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(115, 115, 115) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "en-1280-header-search",
+      "url": "http://localhost:3000/en/community/notice",
+      "viewport": {
+        "width": 1280,
+        "height": 850
+      },
+      "rect": {
+        "x": 1196,
+        "y": 78.625,
+        "width": 20,
+        "height": 30
+      },
+      "icon": {
+        "x": 1196,
+        "y": 83.625,
+        "width": 20,
+        "height": 20
+      },
+      "stroke": "1.5",
+      "paint": {
+        "fill": "none",
+        "stroke": "rgb(115, 115, 115)"
+      },
+      "color": "rgb(115, 115, 115)",
+      "label": "Search",
+      "neighbors": [
+        {
+          "tag": "INPUT",
+          "name": "Search",
+          "rect": {
+            "x": 1004,
+            "y": 78.625,
+            "width": 192,
+            "height": 30
+          },
+          "distance": 10,
+          "centerDistance": 106
+        },
+        {
+          "tag": "BUTTON",
+          "name": "한국어",
+          "rect": {
+            "x": 1187,
+            "y": 48,
+            "width": 33,
+            "height": 15.59375
+          },
+          "distance": 30.03125,
+          "centerDistance": 37.91064548402764
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Log in",
+          "rect": {
+            "x": 1126.5,
+            "y": 48,
+            "width": 36,
+            "height": 15.59375
+          },
+          "distance": 52.859492776250704,
+          "centerDistance": 72.20261104015302
+        }
+      ],
+      "spacingConflicts": [
+        {
+          "tag": "INPUT",
+          "name": "Search",
+          "rect": {
+            "x": 1004,
+            "y": 78.625,
+            "width": 192,
+            "height": 30
+          },
+          "distance": 10,
+          "centerDistance": 106
+        }
+      ],
+      "hover": "rgb(64, 64, 64)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(115, 115, 115) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "en-1280-list-search",
+      "url": "http://localhost:3000/en/community/notice",
+      "viewport": {
+        "width": 1280,
+        "height": 850
+      },
+      "rect": {
+        "x": 488.109375,
+        "y": 568.640625,
+        "width": 24,
+        "height": 24
+      },
+      "icon": {
+        "x": 490.109375,
+        "y": 570.640625,
+        "width": 20,
+        "height": 20
+      },
+      "stroke": "1.5",
+      "paint": {
+        "fill": "none",
+        "stroke": "rgb(38, 38, 38)"
+      },
+      "color": "rgb(38, 38, 38)",
+      "label": "Search",
+      "neighbors": [
+        {
+          "tag": "INPUT",
+          "name": "search",
+          "rect": {
+            "x": 306.109375,
+            "y": 572.84375,
+            "width": 184,
+            "height": 15.59375
+          },
+          "distance": 10,
+          "centerDistance": 102
+        },
+        {
+          "tag": "A",
+          "name": "장학금 신청 공지",
+          "rect": {
+            "x": 260,
+            "y": 798.234375,
+            "width": 438,
+            "height": 16.796875
+          },
+          "distance": 217.59375,
+          "centerDistance": 226.97593379899507
+        },
+        {
+          "tag": "A",
+          "name": "Reservations",
+          "rect": {
+            "x": 32.5,
+            "y": 476.078125,
+            "width": 111,
+            "height": 18
+          },
+          "distance": 366.9650020698712,
+          "centerDistance": 423.0441210667518
+        }
+      ],
+      "spacingConflicts": [],
+      "hover": "rgb(115, 115, 115)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "en-1280-seminar-search",
+      "url": "http://localhost:3000/en/community/seminar",
+      "viewport": {
+        "width": 1280,
+        "height": 850
+      },
+      "rect": {
+        "x": 484,
+        "y": 357.84375,
+        "width": 20,
+        "height": 20
+      },
+      "icon": {
+        "x": 484,
+        "y": 357.84375,
+        "width": 20,
+        "height": 20
+      },
+      "stroke": "1.5",
+      "paint": {
+        "fill": "none",
+        "stroke": "rgb(38, 38, 38)"
+      },
+      "color": "rgb(38, 38, 38)",
+      "label": "Search",
+      "neighbors": [
+        {
+          "tag": "INPUT",
+          "name": "seminar-search",
+          "rect": {
+            "x": 276,
+            "y": 360.046875,
+            "width": 208,
+            "height": 15.59375
+          },
+          "distance": 10,
+          "centerDistance": 114
+        },
+        {
+          "tag": "A",
+          "name": "인공지능 특별 세미나김연사|서울대학교2024/2/10 (Sat) PM 11:00|",
+          "rect": {
+            "x": 200,
+            "y": 478.03125,
+            "width": 720,
+            "height": 100
+          },
+          "distance": 110.1875,
+          "centerDistance": 173.25136408193154
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seminars",
+          "rect": {
+            "x": 290.53125,
+            "y": 201.65625,
+            "width": 61.25,
+            "height": 16.796875
+          },
+          "distance": 206.2613189365692,
+          "centerDistance": 234.0349336289166
+        }
+      ],
+      "spacingConflicts": [
+        {
+          "tag": "INPUT",
+          "name": "seminar-search",
+          "rect": {
+            "x": 276,
+            "y": 360.046875,
+            "width": 208,
+            "height": 15.59375
+          },
+          "distance": 10,
+          "centerDistance": 114
+        }
+      ],
+      "hover": "rgb(115, 115, 115)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "en-390-list-search",
+      "url": "http://localhost:3000/en/community/notice",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "rect": {
+        "x": 308.109375,
+        "y": 710.984375,
+        "width": 24,
+        "height": 24
+      },
+      "icon": {
+        "x": 310.109375,
+        "y": 712.984375,
+        "width": 20,
+        "height": 20
+      },
+      "stroke": "1.5",
+      "paint": {
+        "fill": "none",
+        "stroke": "rgb(38, 38, 38)"
+      },
+      "color": "rgb(38, 38, 38)",
+      "label": "Search",
+      "neighbors": [
+        {
+          "tag": "INPUT",
+          "name": "search",
+          "rect": {
+            "x": 126.109375,
+            "y": 715.1875,
+            "width": 184,
+            "height": 15.59375
+          },
+          "distance": 10,
+          "centerDistance": 102
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Notice",
+          "rect": {
+            "x": 103.171875,
+            "y": 122,
+            "width": 38.453125,
+            "height": 14.390625
+          },
+          "distance": 613.1467195200535,
+          "centerDistance": 625.8394886484535
+        },
+        {
+          "tag": "A",
+          "name": "Community",
+          "rect": {
+            "x": 20,
+            "y": 122,
+            "width": 67.171875,
+            "height": 14.390625
+          },
+          "distance": 631.151413248289,
+          "centerDistance": 650.8611168916494
+        }
+      ],
+      "spacingConflicts": [],
+      "hover": "rgb(115, 115, 115)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "en-390-seminar-search",
+      "url": "http://localhost:3000/en/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "rect": {
+        "x": 304,
+        "y": 230.1875,
+        "width": 20,
+        "height": 20
+      },
+      "icon": {
+        "x": 304,
+        "y": 230.1875,
+        "width": 20,
+        "height": 20
+      },
+      "stroke": "1.5",
+      "paint": {
+        "fill": "none",
+        "stroke": "rgb(38, 38, 38)"
+      },
+      "color": "rgb(38, 38, 38)",
+      "label": "Search",
+      "neighbors": [
+        {
+          "tag": "INPUT",
+          "name": "seminar-search",
+          "rect": {
+            "x": 96,
+            "y": 232.390625,
+            "width": 208,
+            "height": 15.59375
+          },
+          "distance": 10,
+          "centerDistance": 114
+        },
+        {
+          "tag": "A",
+          "name": "인공지능 특별 세미나김연사|서울대학교2024/2/10 (Sat) PM 11:00|",
+          "rect": {
+            "x": 20,
+            "y": 350.375,
+            "width": 350,
+            "height": 245.1875
+          },
+          "distance": 110.1875,
+          "centerDistance": 261.4347152762282
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Seminars",
+          "rect": {
+            "x": 103.171875,
+            "y": 122,
+            "width": 53.921875,
+            "height": 14.390625
+          },
+          "distance": 188.131237567896,
+          "centerDistance": 214.7705946473942
+        }
+      ],
+      "spacingConflicts": [
+        {
+          "tag": "INPUT",
+          "name": "seminar-search",
+          "rect": {
+            "x": 96,
+            "y": 232.390625,
+            "width": 208,
+            "height": 15.59375
+          },
+          "distance": 10,
+          "centerDistance": 114
+        }
+      ],
+      "hover": "rgb(115, 115, 115)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "en-menu-open",
+      "url": "http://localhost:3000/en/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "rect": {
+        "x": 346,
+        "y": 22,
+        "width": 24,
+        "height": 24
+      },
+      "icon": {
+        "x": 346,
+        "y": 22,
+        "width": 24,
+        "height": 24
+      },
+      "stroke": null,
+      "paint": {
+        "fill": "rgb(255, 255, 255)",
+        "stroke": "none"
+      },
+      "color": "rgb(10, 10, 10)",
+      "label": "메뉴 열기",
+      "neighbors": [
+        {
+          "tag": "A",
+          "name": "Go to home",
+          "rect": {
+            "x": 20,
+            "y": 16.5,
+            "width": 235,
+            "height": 35
+          },
+          "distance": 103,
+          "centerDistance": 220.5
+        },
+        {
+          "tag": "BUTTON",
+          "name": "Search",
+          "rect": {
+            "x": 304,
+            "y": 230.1875,
+            "width": 20,
+            "height": 20
+          },
+          "distance": 199.11186593533293,
+          "centerDistance": 210.82999112140092
+        },
+        {
+          "tag": "INPUT",
+          "name": "seminar-search",
+          "rect": {
+            "x": 96,
+            "y": 232.390625,
+            "width": 208,
+            "height": 15.59375
+          },
+          "distance": 205.60846307457928,
+          "centerDistance": 259.7639027198544
+        }
+      ],
+      "spacingConflicts": [],
+      "hover": "rgb(10, 10, 10)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "en-menu-close",
+      "url": "http://localhost:3000/en/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "rect": {
+        "x": 350,
+        "y": 24,
+        "width": 20,
+        "height": 20
+      },
+      "icon": {
+        "x": 350,
+        "y": 24,
+        "width": 20,
+        "height": 20
+      },
+      "stroke": "2",
+      "paint": {
+        "fill": "none",
+        "stroke": "rgb(255, 255, 255)"
+      },
+      "color": "rgb(255, 255, 255)",
+      "label": "메뉴 닫기",
+      "neighbors": [
+        {
+          "tag": "A",
+          "name": "Notice",
+          "rect": {
+            "x": 182.25,
+            "y": 108,
+            "width": 207.75,
+            "height": 20
+          },
+          "distance": 74,
+          "centerDistance": 111.86382625764239
+        },
+        {
+          "tag": "A",
+          "name": "Go to home",
+          "rect": {
+            "x": 20,
+            "y": 16.5,
+            "width": 235,
+            "height": 35
+          },
+          "distance": 105,
+          "centerDistance": 222.5
+        },
+        {
+          "tag": "A",
+          "name": "News",
+          "rect": {
+            "x": 182.25,
+            "y": 156,
+            "width": 207.75,
+            "height": 20
+          },
+          "distance": 122,
+          "centerDistance": 151.26637308073464
+        }
+      ],
+      "spacingConflicts": [],
+      "hover": "rgb(255, 255, 255)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "en-mobile-search-open",
+      "url": "http://localhost:3000/en/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "rect": {
+        "x": 51.625,
+        "y": 726.90625,
+        "width": 19,
+        "height": 18
+      },
+      "icon": {
+        "x": 51.625,
+        "y": 726.90625,
+        "width": 19,
+        "height": 18
+      },
+      "stroke": null,
+      "paint": {
+        "fill": "rgb(229, 229, 229)",
+        "stroke": "none"
+      },
+      "color": "rgb(115, 115, 115)",
+      "label": "검색",
+      "neighbors": [
+        {
+          "tag": "BUTTON",
+          "name": "LOGIN",
+          "rect": {
+            "x": 41.625,
+            "y": 768.90625,
+            "width": 39,
+            "height": 15.59375
+          },
+          "distance": 33,
+          "centerDistance": 40.796875
+        },
+        {
+          "tag": "BUTTON",
+          "name": "한국어",
+          "rect": {
+            "x": 44.625,
+            "y": 794.40625,
+            "width": 33,
+            "height": 15.59375
+          },
+          "distance": 58.5,
+          "centerDistance": 66.296875
+        },
+        {
+          "tag": "A",
+          "name": "Faculty Recruitment",
+          "rect": {
+            "x": 182.25,
+            "y": 252,
+            "width": 207.75,
+            "height": 20
+          },
+          "distance": 479.45831353107485,
+          "centerDistance": 524.606646725966
+        }
+      ],
+      "spacingConflicts": [],
+      "hover": "rgb(255, 255, 255)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(115, 115, 115) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "en-mobile-search-submit",
+      "url": "http://localhost:3000/en/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "rect": {
+        "x": 339.96875,
+        "y": 111,
+        "width": 19,
+        "height": 18
+      },
+      "icon": {
+        "x": 339.96875,
+        "y": 111,
+        "width": 19,
+        "height": 18
+      },
+      "stroke": null,
+      "paint": {
+        "fill": "rgb(229, 229, 229)",
+        "stroke": "none"
+      },
+      "color": "rgb(115, 115, 115)",
+      "label": "검색 실행",
+      "neighbors": [
+        {
+          "tag": "INPUT",
+          "name": "",
+          "rect": {
+            "x": 31.03125,
+            "y": 104,
+            "width": 308.9375,
+            "height": 32
+          },
+          "distance": 9.5,
+          "centerDistance": 163.96875
+        },
+        {
+          "tag": "BUTTON",
+          "name": "메뉴 닫기",
+          "rect": {
+            "x": 350,
+            "y": 24,
+            "width": 20,
+            "height": 20
+          },
+          "distance": 76.00185673102007,
+          "centerDistance": 86.64241009207038
+        },
+        {
+          "tag": "A",
+          "name": "Go to home",
+          "rect": {
+            "x": 20,
+            "y": 16.5,
+            "width": 235,
+            "height": 35
+          },
+          "distance": 116.69016550919146,
+          "centerDistance": 228.75041197025746
+        }
+      ],
+      "spacingConflicts": [
+        {
+          "tag": "INPUT",
+          "name": "",
+          "rect": {
+            "x": 31.03125,
+            "y": 104,
+            "width": 308.9375,
+            "height": 32
+          },
+          "distance": 9.5,
+          "centerDistance": 163.96875
+        }
+      ],
+      "hover": "rgb(255, 255, 255)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(115, 115, 115) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "en-mobile-search-close",
+      "url": "http://localhost:3000/en/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "rect": {
+        "x": 185,
+        "y": 809.8125,
+        "width": 20,
+        "height": 20
+      },
+      "icon": {
+        "x": 185,
+        "y": 809.8125,
+        "width": 20,
+        "height": 20
+      },
+      "stroke": "2",
+      "paint": {
+        "fill": "none",
+        "stroke": "rgb(255, 255, 255)"
+      },
+      "color": "rgb(255, 255, 255)",
+      "label": "검색 닫기",
+      "neighbors": [
+        {
+          "tag": "INPUT",
+          "name": "",
+          "rect": {
+            "x": 31.03125,
+            "y": 104,
+            "width": 308.9375,
+            "height": 32
+          },
+          "distance": 683.8125,
+          "centerDistance": 699.87697858713
+        },
+        {
+          "tag": "BUTTON",
+          "name": "검색 실행",
+          "rect": {
+            "x": 339.96875,
+            "y": 111,
+            "width": 19,
+            "height": 18
+          },
+          "distance": 705.8596522204768,
+          "centerDistance": 716.6576099385343
+        },
+        {
+          "tag": "A",
+          "name": "Go to home",
+          "rect": {
+            "x": 20,
+            "y": 16.5,
+            "width": 235,
+            "height": 35
+          },
+          "distance": 768.3125,
+          "centerDistance": 787.9134058741798
+        }
+      ],
+      "spacingConflicts": [],
+      "hover": "rgb(255, 255, 255)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(115, 115, 115) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "ko-1280-dialog-close",
+      "url": "http://localhost:3000/ko/academics/undergraduate/courses",
+      "viewport": {
+        "width": 1280,
+        "height": 850
+      },
+      "rect": {
+        "x": 843.5,
+        "y": 384,
+        "width": 24,
+        "height": 24
+      },
+      "icon": {
+        "x": 843.5,
+        "y": 384,
+        "width": 24,
+        "height": 24
+      },
+      "stroke": "2",
+      "paint": {
+        "fill": "none",
+        "stroke": "rgb(115, 115, 115)"
+      },
+      "color": "rgb(115, 115, 115)",
+      "label": null,
+      "neighbors": [],
+      "spacingConflicts": [],
+      "hover": "rgb(64, 64, 64)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "shadow": "none"
+      }
+    },
+    {
+      "id": "ko-390-dialog-close",
+      "url": "http://localhost:3000/ko/academics/undergraduate/courses",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "rect": {
+        "x": 330.5,
+        "y": 370.203125,
+        "width": 24,
+        "height": 24
+      },
+      "icon": {
+        "x": 330.5,
+        "y": 370.203125,
+        "width": 24,
+        "height": 24
+      },
+      "stroke": "2",
+      "paint": {
+        "fill": "none",
+        "stroke": "rgb(115, 115, 115)"
+      },
+      "color": "rgb(115, 115, 115)",
+      "label": null,
+      "neighbors": [],
+      "spacingConflicts": [],
+      "hover": "rgb(64, 64, 64)",
+      "focus": {
+        "active": true,
+        "focusVisible": true,
+        "outline": "rgb(16, 16, 16) auto 1px",
+        "shadow": "none"
+      }
+    }
+  ],
+  "limits": [
+    "Representative controls only. Nearby rectangles are a screening aid, not a full accessibility conformance result.",
+    "Dialog close lacks an accessible name; record for component stage.",
+    "No editor or Sonner investigation."
+  ]
+}

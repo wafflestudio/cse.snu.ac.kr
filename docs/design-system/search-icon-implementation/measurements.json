@@ -1,0 +1,82 @@
+{
+  "decision": "DS-017",
+  "source": "bf70c73d + HeaderSearchBar scoped hover change",
+  "environment": "Fresh production build, cached local API, Playwright 1.57.0 Linux Chromium",
+  "method": "Actual normal, hover, pointer exit and keyboard Tab. No DOM color override, no search submission.",
+  "records": [
+    {
+      "locale": "ko",
+      "normal": {
+        "color": "rgb(115, 115, 115)",
+        "background": "rgb(229, 229, 229)",
+        "button": {
+          "width": 20,
+          "height": 30
+        },
+        "icon": {
+          "width": 20,
+          "height": 20,
+          "stroke": "1.5"
+        }
+      },
+      "hover": {
+        "color": "rgb(64, 64, 64)",
+        "background": "rgb(229, 229, 229)",
+        "button": {
+          "width": 20,
+          "height": 30
+        },
+        "icon": {
+          "width": 20,
+          "height": 20,
+          "stroke": "1.5"
+        }
+      },
+      "focus": {
+        "focusVisible": true,
+        "outline": "rgb(115, 115, 115) auto 1px"
+      },
+      "normalMatchesOriginal": true,
+      "hoverMatchesApproved": true
+    },
+    {
+      "locale": "en",
+      "normal": {
+        "color": "rgb(115, 115, 115)",
+        "background": "rgb(229, 229, 229)",
+        "button": {
+          "width": 20,
+          "height": 30
+        },
+        "icon": {
+          "width": 20,
+          "height": 20,
+          "stroke": "1.5"
+        }
+      },
+      "hover": {
+        "color": "rgb(64, 64, 64)",
+        "background": "rgb(229, 229, 229)",
+        "button": {
+          "width": 20,
+          "height": 30
+        },
+        "icon": {
+          "width": 20,
+          "height": 20,
+          "stroke": "1.5"
+        }
+      },
+      "focus": {
+        "focusVisible": true,
+        "outline": "rgb(115, 115, 115) auto 1px"
+      },
+      "normalMatchesOriginal": true,
+      "hoverMatchesApproved": true
+    }
+  ],
+  "limits": [
+    "Desktop header in Korean and English at 1280px.",
+    "Target size assessed separately; not full accessibility or regression audit."
+  ]
+}

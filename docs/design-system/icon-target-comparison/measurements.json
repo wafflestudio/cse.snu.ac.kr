@@ -1,0 +1,533 @@
+{
+  "question": "I-Q2",
+  "method": "Temporary DOM styles only. Actual short entered text and unchanged SVG geometry; before/after bar pixels compared byte for byte; expanded corner hit testing. Blue overlays are explanation only.",
+  "environment": "DS-017 production build, cached local API, Playwright 1.57.0 Chromium Linux",
+  "records": [
+    {
+      "id": "ko-header",
+      "kind": "header",
+      "url": "http://localhost:3000/ko/community/notice",
+      "viewport": {
+        "width": 1280,
+        "height": 850
+      },
+      "before": {
+        "button": {
+          "x": 1196,
+          "y": 78.625,
+          "width": 20,
+          "height": 30
+        },
+        "icon": {
+          "x": 1196,
+          "y": 83.625,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 1004,
+          "y": 78.625,
+          "width": 216,
+          "height": 30
+        },
+        "input": {
+          "x": 1004,
+          "y": 78.625,
+          "width": 192,
+          "height": 30
+        },
+        "color": "rgb(115, 115, 115)"
+      },
+      "after": {
+        "button": {
+          "x": 1194,
+          "y": 78.625,
+          "width": 24,
+          "height": 30
+        },
+        "icon": {
+          "x": 1196,
+          "y": 83.625,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 1004,
+          "y": 78.625,
+          "width": 216,
+          "height": 30
+        },
+        "input": {
+          "x": 1004,
+          "y": 78.625,
+          "width": 190,
+          "height": 30
+        },
+        "color": "rgb(115, 115, 115)"
+      },
+      "pixelIdentical": true,
+      "expandedCornersHitButton": true
+    },
+    {
+      "id": "ko-seminar-1280",
+      "kind": "seminar",
+      "url": "http://localhost:3000/ko/community/seminar",
+      "viewport": {
+        "width": 1280,
+        "height": 850
+      },
+      "before": {
+        "button": {
+          "x": 456,
+          "y": 357.84375,
+          "width": 20,
+          "height": 20
+        },
+        "icon": {
+          "x": 456,
+          "y": 357.84375,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 248,
+          "y": 352.84375,
+          "width": 240,
+          "height": 30
+        },
+        "input": {
+          "x": 248,
+          "y": 360.046875,
+          "width": 208,
+          "height": 15.59375
+        },
+        "color": "rgb(38, 38, 38)"
+      },
+      "after": {
+        "button": {
+          "x": 454,
+          "y": 355.84375,
+          "width": 24,
+          "height": 24
+        },
+        "icon": {
+          "x": 456,
+          "y": 357.84375,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 248,
+          "y": 352.84375,
+          "width": 240,
+          "height": 30
+        },
+        "input": {
+          "x": 248,
+          "y": 360.046875,
+          "width": 206,
+          "height": 15.59375
+        },
+        "color": "rgb(38, 38, 38)"
+      },
+      "pixelIdentical": true,
+      "expandedCornersHitButton": true
+    },
+    {
+      "id": "ko-seminar-390",
+      "kind": "seminar",
+      "url": "http://localhost:3000/ko/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "before": {
+        "button": {
+          "x": 276,
+          "y": 230.1875,
+          "width": 20,
+          "height": 20
+        },
+        "icon": {
+          "x": 276,
+          "y": 230.1875,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 68,
+          "y": 225.1875,
+          "width": 240,
+          "height": 30
+        },
+        "input": {
+          "x": 68,
+          "y": 232.390625,
+          "width": 208,
+          "height": 15.59375
+        },
+        "color": "rgb(38, 38, 38)"
+      },
+      "after": {
+        "button": {
+          "x": 274,
+          "y": 228.1875,
+          "width": 24,
+          "height": 24
+        },
+        "icon": {
+          "x": 276,
+          "y": 230.1875,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 68,
+          "y": 225.1875,
+          "width": 240,
+          "height": 30
+        },
+        "input": {
+          "x": 68,
+          "y": 232.390625,
+          "width": 206,
+          "height": 15.59375
+        },
+        "color": "rgb(38, 38, 38)"
+      },
+      "pixelIdentical": true,
+      "expandedCornersHitButton": true
+    },
+    {
+      "id": "ko-mobile",
+      "kind": "mobile",
+      "url": "http://localhost:3000/ko/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "before": {
+        "button": {
+          "x": 339.96875,
+          "y": 111,
+          "width": 19,
+          "height": 18
+        },
+        "icon": {
+          "x": 339.96875,
+          "y": 111,
+          "width": 19,
+          "height": 18
+        },
+        "bar": {
+          "x": 31.03125,
+          "y": 104,
+          "width": 327.9375,
+          "height": 33
+        },
+        "input": {
+          "x": 31.03125,
+          "y": 104,
+          "width": 308.9375,
+          "height": 32
+        },
+        "color": "rgb(115, 115, 115)"
+      },
+      "after": {
+        "button": {
+          "x": 337.46875,
+          "y": 108,
+          "width": 24,
+          "height": 24
+        },
+        "icon": {
+          "x": 339.96875,
+          "y": 111,
+          "width": 19,
+          "height": 18
+        },
+        "bar": {
+          "x": 31.03125,
+          "y": 104,
+          "width": 327.9375,
+          "height": 33
+        },
+        "input": {
+          "x": 31.03125,
+          "y": 104,
+          "width": 306.4375,
+          "height": 32
+        },
+        "color": "rgb(115, 115, 115)"
+      },
+      "pixelIdentical": true,
+      "expandedCornersHitButton": true
+    },
+    {
+      "id": "en-header",
+      "kind": "header",
+      "url": "http://localhost:3000/en/community/notice",
+      "viewport": {
+        "width": 1280,
+        "height": 850
+      },
+      "before": {
+        "button": {
+          "x": 1196,
+          "y": 78.625,
+          "width": 20,
+          "height": 30
+        },
+        "icon": {
+          "x": 1196,
+          "y": 83.625,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 1004,
+          "y": 78.625,
+          "width": 216,
+          "height": 30
+        },
+        "input": {
+          "x": 1004,
+          "y": 78.625,
+          "width": 192,
+          "height": 30
+        },
+        "color": "rgb(115, 115, 115)"
+      },
+      "after": {
+        "button": {
+          "x": 1194,
+          "y": 78.625,
+          "width": 24,
+          "height": 30
+        },
+        "icon": {
+          "x": 1196,
+          "y": 83.625,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 1004,
+          "y": 78.625,
+          "width": 216,
+          "height": 30
+        },
+        "input": {
+          "x": 1004,
+          "y": 78.625,
+          "width": 190,
+          "height": 30
+        },
+        "color": "rgb(115, 115, 115)"
+      },
+      "pixelIdentical": true,
+      "expandedCornersHitButton": true
+    },
+    {
+      "id": "en-seminar-1280",
+      "kind": "seminar",
+      "url": "http://localhost:3000/en/community/seminar",
+      "viewport": {
+        "width": 1280,
+        "height": 850
+      },
+      "before": {
+        "button": {
+          "x": 484,
+          "y": 357.84375,
+          "width": 20,
+          "height": 20
+        },
+        "icon": {
+          "x": 484,
+          "y": 357.84375,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 276,
+          "y": 352.84375,
+          "width": 240,
+          "height": 30
+        },
+        "input": {
+          "x": 276,
+          "y": 360.046875,
+          "width": 208,
+          "height": 15.59375
+        },
+        "color": "rgb(38, 38, 38)"
+      },
+      "after": {
+        "button": {
+          "x": 482,
+          "y": 355.84375,
+          "width": 24,
+          "height": 24
+        },
+        "icon": {
+          "x": 484,
+          "y": 357.84375,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 276,
+          "y": 352.84375,
+          "width": 240,
+          "height": 30
+        },
+        "input": {
+          "x": 276,
+          "y": 360.046875,
+          "width": 206,
+          "height": 15.59375
+        },
+        "color": "rgb(38, 38, 38)"
+      },
+      "pixelIdentical": true,
+      "expandedCornersHitButton": true
+    },
+    {
+      "id": "en-seminar-390",
+      "kind": "seminar",
+      "url": "http://localhost:3000/en/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "before": {
+        "button": {
+          "x": 304,
+          "y": 230.1875,
+          "width": 20,
+          "height": 20
+        },
+        "icon": {
+          "x": 304,
+          "y": 230.1875,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 96,
+          "y": 225.1875,
+          "width": 240,
+          "height": 30
+        },
+        "input": {
+          "x": 96,
+          "y": 232.390625,
+          "width": 208,
+          "height": 15.59375
+        },
+        "color": "rgb(38, 38, 38)"
+      },
+      "after": {
+        "button": {
+          "x": 302,
+          "y": 228.1875,
+          "width": 24,
+          "height": 24
+        },
+        "icon": {
+          "x": 304,
+          "y": 230.1875,
+          "width": 20,
+          "height": 20
+        },
+        "bar": {
+          "x": 96,
+          "y": 225.1875,
+          "width": 240,
+          "height": 30
+        },
+        "input": {
+          "x": 96,
+          "y": 232.390625,
+          "width": 206,
+          "height": 15.59375
+        },
+        "color": "rgb(38, 38, 38)"
+      },
+      "pixelIdentical": true,
+      "expandedCornersHitButton": true
+    },
+    {
+      "id": "en-mobile",
+      "kind": "mobile",
+      "url": "http://localhost:3000/en/community/seminar",
+      "viewport": {
+        "width": 390,
+        "height": 850
+      },
+      "before": {
+        "button": {
+          "x": 339.96875,
+          "y": 111,
+          "width": 19,
+          "height": 18
+        },
+        "icon": {
+          "x": 339.96875,
+          "y": 111,
+          "width": 19,
+          "height": 18
+        },
+        "bar": {
+          "x": 31.03125,
+          "y": 104,
+          "width": 327.9375,
+          "height": 33
+        },
+        "input": {
+          "x": 31.03125,
+          "y": 104,
+          "width": 308.9375,
+          "height": 32
+        },
+        "color": "rgb(115, 115, 115)"
+      },
+      "after": {
+        "button": {
+          "x": 337.46875,
+          "y": 108,
+          "width": 24,
+          "height": 24
+        },
+        "icon": {
+          "x": 339.96875,
+          "y": 111,
+          "width": 19,
+          "height": 18
+        },
+        "bar": {
+          "x": 31.03125,
+          "y": 104,
+          "width": 327.9375,
+          "height": 33
+        },
+        "input": {
+          "x": 31.03125,
+          "y": 104,
+          "width": 306.4375,
+          "height": 32
+        },
+        "color": "rgb(115, 115, 115)"
+      },
+      "pixelIdentical": true,
+      "expandedCornersHitButton": true
+    }
+  ],
+  "limits": [
+    "Not applied to app; no search submitted.",
+    "Input target width reduces 2px (header/seminar) or 2.5px (mobile); caret and input focus styling unchanged.",
+    "Long overflowing input text not tested; visible drawing unchanged for shown short samples.",
+    "Minimum target criteria are not a full accessibility assessment."
+  ]
+}
