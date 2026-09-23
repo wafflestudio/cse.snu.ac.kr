@@ -1,0 +1,86 @@
+{
+  "note": "Browser-only proposals on current production build; real STAFF; invalid blank submission only, no save; editor internals unchanged",
+  "records": [
+    {
+      "mode": "before",
+      "original": {
+        "scrollY": 1154,
+        "active": "<body class=\"shell:min-w-[1200px] bg-neutral-900 font-normal text-neutral-950\"><nav class=\"fixed bottom-0 left-0 top-0 z-50 hidden shell:flex\" aria-label=\"주 네비게이션\"><nav class=\"no-scrollbar z-50 flex f"
+      },
+      "documentWidth": 1280,
+      "summary": {
+        "x": 661,
+        "y": 1498.03125,
+        "width": 105,
+        "height": 35.1875
+      },
+      "action": {
+        "x": 200,
+        "y": 1497.625,
+        "width": 720,
+        "height": 36
+      },
+      "messages": ["제목을 입력해주세요.", "내용을 입력해주세요."],
+      "title": {
+        "x": 200,
+        "y": 352.84375,
+        "width": 720,
+        "height": 56.796875
+      }
+    },
+    {
+      "mode": "a",
+      "original": {
+        "scrollY": 1154,
+        "active": "<body class=\"shell:min-w-[1200px] bg-neutral-900 font-normal text-neutral-950\"><nav class=\"fixed bottom-0 left-0 top-0 z-50 hidden shell:flex\" aria-label=\"주 네비게이션\"><nav class=\"no-scrollbar z-50 flex f"
+      },
+      "documentWidth": 1280,
+      "summary": {
+        "x": 661,
+        "y": 1537.21875,
+        "width": 105,
+        "height": 35.1875
+      },
+      "action": {
+        "x": 200,
+        "y": 1536.8125,
+        "width": 720,
+        "height": 36
+      },
+      "messages": ["제목을 입력해주세요.", "내용을 입력해주세요."],
+      "title": {
+        "x": 200,
+        "y": 352.84375,
+        "width": 720,
+        "height": 76.390625
+      }
+    },
+    {
+      "mode": "b",
+      "original": {
+        "scrollY": 1154,
+        "active": "<body class=\"shell:min-w-[1200px] bg-neutral-900 font-normal text-neutral-950\"><nav class=\"fixed bottom-0 left-0 top-0 z-50 hidden shell:flex\" aria-label=\"주 네비게이션\"><nav class=\"no-scrollbar z-50 flex f"
+      },
+      "documentWidth": 1280,
+      "summary": {
+        "x": 200,
+        "y": 1497.625,
+        "width": 720,
+        "height": 35.1875
+      },
+      "action": {
+        "x": 200,
+        "y": 1544.8125,
+        "width": 720,
+        "height": 36
+      },
+      "messages": ["제목을 입력해주세요.", "내용을 입력해주세요."],
+      "title": {
+        "x": 200,
+        "y": 352.84375,
+        "width": 720,
+        "height": 56.796875
+      }
+    }
+  ]
+}

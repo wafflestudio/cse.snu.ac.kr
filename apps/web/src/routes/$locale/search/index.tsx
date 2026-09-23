@@ -15,7 +15,11 @@ function SearchPage() {
 
   return (
     <PageLayout title={t('통합 검색')} titleSize="xl" titleMargin="mb-11">
-      <SearchBox tags={[...SEARCH_TAGS]} formOnly />
+      <SearchBox
+        tags={[...SEARCH_TAGS]}
+        formOnly
+        tagMinWidth={locale === 'en' ? 160 : undefined}
+      />
 
       {tooShort && (
         <div className="flex flex-col items-center">

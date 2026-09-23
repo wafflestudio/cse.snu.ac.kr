@@ -3,18 +3,20 @@ import clsx from 'clsx';
 import Node from '@/components/ui/Nodes';
 import Input from './Input';
 import SelectedTags from './SelectedTags';
-import TagCheckBoxes from './TagCheckboxes';
+import TagCheckBoxes, { type TagColumnWidth } from './TagCheckboxes';
 
 interface SearchBoxProps {
   tags: string[];
   disabled?: boolean;
   formOnly?: boolean;
+  tagMinWidth?: TagColumnWidth;
 }
 
 export default function SearchBox({
   tags,
   disabled = false,
   formOnly = false,
+  tagMinWidth,
 }: SearchBoxProps) {
   const navigate = useNavigate();
   const search = useSearch({ strict: false });
@@ -50,6 +52,7 @@ export default function SearchBox({
       >
         <TagCheckBoxes
           tags={tags}
+          minColumnWidth={tagMinWidth}
           selectedTags={selectedTags}
           disabled={disabled}
         />

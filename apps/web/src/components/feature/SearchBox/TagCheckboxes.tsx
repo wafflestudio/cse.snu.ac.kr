@@ -2,16 +2,26 @@ import { useNavigate } from '@tanstack/react-router';
 import Checkbox from '@/components/ui/Checkbox';
 import { useLanguage } from '@/hooks/useLanguage';
 
+const TAG_COLUMNS = {
+  80: 'grid-cols-[repeat(auto-fit,minmax(80px,1fr))]',
+  160: 'grid-cols-[repeat(auto-fit,minmax(160px,1fr))]',
+  240: 'grid-cols-[repeat(auto-fit,minmax(240px,1fr))]',
+} as const;
+
+export type TagColumnWidth = keyof typeof TAG_COLUMNS;
+
 interface TagFilterProps {
   tags: string[];
   selectedTags: string[];
   disabled: boolean;
+  minColumnWidth?: TagColumnWidth;
 }
 
 export default function TagCheckBoxes({
   tags,
   selectedTags,
   disabled,
+  minColumnWidth,
 }: TagFilterProps) {
   const { t, tUnsafe, isEnglish } = useLanguage({ 태그: 'Tags' });
   const navigate = useNavigate();
@@ -33,15 +43,9 @@ export default function TagCheckBoxes({
   };
 
   const longestTag = Math.max(...tags.map((tag) => tag.length));
-  // DS-024: the long notice group needs room for its English labels.
-  // Keep the existing Korean grid and the short-tag groups unchanged.
-  const longTagColumns = isEnglish
-    ? 'grid-cols-[repeat(auto-fit,minmax(240px,1fr))]'
-    : 'grid-cols-[repeat(auto-fit,minmax(160px,1fr))]';
-  const gridColsTailwind =
-    longestTag > 10
-      ? longTagColumns
-      : 'grid-cols-[repeat(auto-fit,minmax(80px,1fr))]';
+  // DS-024 keeps the existing groups; DS-025 search supplies its English width.
+  const defaultWidth = longestTag > 10 ? (isEnglish ? 240 : 160) : 80;
+  const gridColsTailwind = TAG_COLUMNS[minColumnWidth ?? defaultWidth];
 
   return (
     <fieldset className="m-0 border-0 p-0">
