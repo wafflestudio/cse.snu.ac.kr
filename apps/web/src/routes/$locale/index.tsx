@@ -41,8 +41,8 @@ function MainPage() {
       <div className="relative w-full">
         <Header />
         <div className="bg-pattern absolute left-0 right-0 top-0 -z-50 hidden aspect-1336/800 sm:block" />
-        {/* 모바일 배치는 640px 에서 멈추고 가운데 둔다(데스크톱은 전체 폭). */}
-        <div className="mx-auto w-full max-w-160 sm:max-w-none">
+        {/* 모바일 배치는 내용 640px(+여백)에서 멈추고 가운데 둔다(데스크톱은 전체 폭). */}
+        <div className="mx-auto w-full max-w-170 sm:max-w-none">
           <GraphicSection />
           <NewsSection mainNews={loaderData.slides} />
           <ImportantSection importantList={loaderData.importants} />

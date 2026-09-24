@@ -18,6 +18,10 @@
 .sun-editor-editable * {
   line-height: 2;
 }
+/* 읽기 폭(640px). 문단·목록·제목만 멈추고 표·이미지는 본문 폭을 그대로 쓴다. */
+.sun-editor-editable > :is(p, ul, ol, h1, h2, h3, h4, h5, h6, blockquote) {
+  max-width: 40rem;
+}
 .sun-editor-editable strong {
   font-weight: bold;
 }

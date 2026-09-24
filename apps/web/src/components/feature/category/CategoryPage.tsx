@@ -52,7 +52,7 @@ export default function CategoryPage({
         {description && (
           <Description
             className="mb-6 mt-8 hidden sm:block"
-            contentClassName="max-w-240 !text-[#f5f5f5]"
+            contentClassName="max-w-160 !text-[#f5f5f5]"
           >
             {description}
           </Description>
