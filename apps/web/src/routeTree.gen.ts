@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ImgRouteImport } from './routes/img'
 import { Route as LocaleRouteRouteImport } from './routes/$locale/route'
+import { Route as DesignSystemIndexRouteImport } from './routes/design-system/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as DotinternalIndexRouteImport } from './routes/[.]internal/index'
 import { Route as LocaleIndexRouteImport } from './routes/$locale/index'
@@ -122,6 +123,11 @@ const ImgRoute = ImgRouteImport.update({
 const LocaleRouteRoute = LocaleRouteRouteImport.update({
   id: '/$locale',
   path: '/$locale',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DesignSystemIndexRoute = DesignSystemIndexRouteImport.update({
+  id: '/design-system/',
+  path: '/design-system/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
@@ -691,6 +697,7 @@ export interface FileRoutesByFullPath {
   '/$locale/': typeof LocaleIndexRoute
   '/.internal/': typeof DotinternalIndexRoute
   '/admin/': typeof AdminIndexRoute
+  '/design-system/': typeof DesignSystemIndexRoute
   '/$locale/10-10-project/manager': typeof Locale1010ProjectManagerRoute
   '/$locale/10-10-project/participants': typeof Locale1010ProjectParticipantsRoute
   '/$locale/10-10-project/proposal': typeof Locale1010ProjectProposalRoute
@@ -791,6 +798,7 @@ export interface FileRoutesByTo {
   '/$locale': typeof LocaleIndexRoute
   '/.internal': typeof DotinternalIndexRoute
   '/admin': typeof AdminIndexRoute
+  '/design-system': typeof DesignSystemIndexRoute
   '/$locale/10-10-project/manager': typeof Locale1010ProjectManagerRoute
   '/$locale/10-10-project/participants': typeof Locale1010ProjectParticipantsRoute
   '/$locale/10-10-project/proposal': typeof Locale1010ProjectProposalRoute
@@ -893,6 +901,7 @@ export interface FileRoutesById {
   '/$locale/': typeof LocaleIndexRoute
   '/.internal/': typeof DotinternalIndexRoute
   '/admin/': typeof AdminIndexRoute
+  '/design-system/': typeof DesignSystemIndexRoute
   '/$locale/10-10-project/manager': typeof Locale1010ProjectManagerRoute
   '/$locale/10-10-project/participants': typeof Locale1010ProjectParticipantsRoute
   '/$locale/10-10-project/proposal': typeof Locale1010ProjectProposalRoute
@@ -996,6 +1005,7 @@ export interface FileRouteTypes {
     | '/$locale/'
     | '/.internal/'
     | '/admin/'
+    | '/design-system/'
     | '/$locale/10-10-project/manager'
     | '/$locale/10-10-project/participants'
     | '/$locale/10-10-project/proposal'
@@ -1096,6 +1106,7 @@ export interface FileRouteTypes {
     | '/$locale'
     | '/.internal'
     | '/admin'
+    | '/design-system'
     | '/$locale/10-10-project/manager'
     | '/$locale/10-10-project/participants'
     | '/$locale/10-10-project/proposal'
@@ -1197,6 +1208,7 @@ export interface FileRouteTypes {
     | '/$locale/'
     | '/.internal/'
     | '/admin/'
+    | '/design-system/'
     | '/$locale/10-10-project/manager'
     | '/$locale/10-10-project/participants'
     | '/$locale/10-10-project/proposal'
@@ -1298,6 +1310,7 @@ export interface RootRouteChildren {
   SitemapFileRoute: typeof SitemapFileRoute
   DotinternalIndexRoute: typeof DotinternalIndexRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  DesignSystemIndexRoute: typeof DesignSystemIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -1321,6 +1334,13 @@ declare module '@tanstack/react-router' {
       path: '/$locale'
       fullPath: '/$locale'
       preLoaderRoute: typeof LocaleRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/design-system/': {
+      id: '/design-system/'
+      path: '/design-system'
+      fullPath: '/design-system/'
+      preLoaderRoute: typeof DesignSystemIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/': {
@@ -2241,6 +2261,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapFileRoute: SitemapFileRoute,
   DotinternalIndexRoute: DotinternalIndexRoute,
   AdminIndexRoute: AdminIndexRoute,
+  DesignSystemIndexRoute: DesignSystemIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

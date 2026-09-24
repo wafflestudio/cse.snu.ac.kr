@@ -25,6 +25,7 @@ import { getSiteOrigin, isStatsEnabled, readLangHeaders } from '@/utils/ssr';
 // 로케일 프리픽스를 부여하지 않는 최상위(비로케일) 라우트. 정적 에셋은 SSR 전에 서빙돼 여기 도달 안 함.
 const NON_LOCALE_SEGMENTS = new Set([
   'admin',
+  'design-system',
   '.internal',
   'img',
   'sitemap.xml',
