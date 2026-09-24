@@ -85,7 +85,7 @@ function Overview() {
                 width={320}
                 height={216}
                 // 모바일 w-full, 데스크톱 sm:w-80(320px)
-                sizes="(min-width: 1024px) 320px, min(100vw, 640px)"
+                sizes="(min-width: 1024px) 320px, 100vw"
                 className="w-full object-contain sm:w-80"
               />
             </div>

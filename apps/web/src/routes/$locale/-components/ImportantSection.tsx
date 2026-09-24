@@ -47,7 +47,7 @@ const CharityBanner = () => (
     <Image
       src={charityImg}
       alt=""
-      sizes="(min-width: 1024px) 50vw, min(100vw, 640px)"
+      sizes="(min-width: 1024px) 50vw, 100vw"
       className="absolute inset-0 h-full w-full object-cover"
     />
     <h3 className="relative z-10 line-clamp-1 text-lg font-semibold text-neutral-950">

@@ -43,7 +43,7 @@ export default function CategoryGrid({
     <div
       className={clsx(
         isLight ? 'bg-white' : 'bg-neutral-900',
-        'px-compact py-7 sm:px-25 sm:pb-45 sm:pt-20',
+        'px-5 py-7 sm:px-25 sm:pb-45 sm:pt-20',
       )}
     >
       <div className={ROOT_GRID_CLASS}>

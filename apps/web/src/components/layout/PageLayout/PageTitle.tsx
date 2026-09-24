@@ -29,7 +29,7 @@ export default function PageTitle({
     titleSize === 'xl' ? 'text-2xl font-bold' : 'text-lg font-medium';
 
   return (
-    <div className="px-compact pt-[54px] sm:px-25">
+    <div className="px-5 pt-[54px] sm:px-25">
       <div
         className={`col-start-1 row-start-1 w-fit min-w-62.5 max-w-207.5 ${margin}`}
       >

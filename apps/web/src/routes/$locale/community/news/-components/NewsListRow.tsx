@@ -76,7 +76,7 @@ export default function NewsListRow({ post }: NewsListRowProps) {
             src={post.imageURL}
             alt="포스트 대표 이미지"
             // 모바일은 본문 폭을 꽉 채우고 데스크톱은 200px 고정(sm:w-50 폴백과 같은 값).
-            sizes="(min-width: 1024px) 200px, min(100vw, 640px)"
+            sizes="(min-width: 1024px) 200px, 100vw"
             className="h-full w-full object-cover"
           />
         </Link>

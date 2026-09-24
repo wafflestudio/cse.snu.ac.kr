@@ -98,7 +98,7 @@ function FacilitiesRowImage({ imageURL }: { imageURL: string }) {
         alt="대표 이미지"
         src={encodeURI(imageURL)}
         // 모바일 w-full, 데스크톱 sm:w-60(240px)
-        sizes="(min-width: 1024px) 240px, min(100vw, 640px)"
+        sizes="(min-width: 1024px) 240px, 100vw"
         className="absolute inset-0 h-full w-full object-cover"
       />
     </div>
