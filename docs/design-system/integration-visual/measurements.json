@@ -1,0 +1,135 @@
+[
+  {
+    "name": "main-en-320",
+    "url": "http://localhost:3000/en",
+    "width": 320,
+    "scrollWidth": 320,
+    "title": "Dept. of Computer Science and Engineering, SNU",
+    "overflow": []
+  },
+  {
+    "name": "main-ko-1280",
+    "url": "http://localhost:3000/ko",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "title": "서울대학교 컴퓨터공학부",
+    "overflow": []
+  },
+  {
+    "name": "academics-en-768",
+    "url": "http://localhost:3000/en/academics",
+    "width": 768,
+    "scrollWidth": 768,
+    "title": "",
+    "overflow": []
+  },
+  {
+    "name": "greetings-ko-1280",
+    "url": "http://localhost:3000/ko/about/greetings",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "title": "학부장 인사말 ⋅ 서울대학교 컴퓨터공학부",
+    "overflow": []
+  },
+  {
+    "name": "greetings-en-320",
+    "url": "http://localhost:3000/en/about/greetings",
+    "width": 320,
+    "scrollWidth": 320,
+    "title": "Greetings ⋅ Dept. of CSE, SNU",
+    "overflow": []
+  },
+  {
+    "name": "groups-en-390",
+    "url": "http://localhost:3000/en/research/groups",
+    "width": 390,
+    "scrollWidth": 390,
+    "title": "Research Streams ⋅ Dept. of CSE, SNU",
+    "overflow": []
+  },
+  {
+    "name": "faculty-en-1024",
+    "url": "http://localhost:3000/en/people/faculty",
+    "width": 1024,
+    "scrollWidth": 1024,
+    "title": "Faculty ⋅ Dept. of CSE, SNU",
+    "overflow": []
+  },
+  {
+    "name": "courses-en-1023",
+    "url": "http://localhost:3000/en/academics/undergraduate/courses?view=%EC%B9%B4%EB%93%9C%ED%98%95",
+    "width": 1023,
+    "scrollWidth": 1023,
+    "title": "Courses ⋅ Dept. of CSE, SNU",
+    "overflow": []
+  },
+  {
+    "name": "courses-en-1024",
+    "url": "http://localhost:3000/en/academics/undergraduate/courses?view=%EC%B9%B4%EB%93%9C%ED%98%95",
+    "width": 1024,
+    "scrollWidth": 1024,
+    "title": "Courses ⋅ Dept. of CSE, SNU",
+    "overflow": []
+  },
+  {
+    "name": "search-en-390",
+    "url": "http://localhost:3000/en/search?keyword=%ED%95%99%EC%82%AC",
+    "width": 390,
+    "scrollWidth": 390,
+    "title": "",
+    "overflow": []
+  },
+  {
+    "name": "search-empty-en-320",
+    "url": "http://localhost:3000/en/search?keyword=zzqqnothing",
+    "width": 320,
+    "scrollWidth": 320,
+    "title": "",
+    "overflow": []
+  },
+  {
+    "name": "notice-tag-en-390",
+    "url": "http://localhost:3000/en/community/notice?tag=%5B%22%ED%95%99%EB%B6%80%22%5D",
+    "width": 390,
+    "scrollWidth": 390,
+    "title": "Notice ⋅ Dept. of CSE, SNU",
+    "overflow": [],
+    "selectedTag": "학부",
+    "selectedVerified": true
+  },
+  {
+    "name": "reservation-ko-1023",
+    "url": "http://localhost:3000/ko/reservations/seminar-room/301-417?selectedDate=2024-03-15",
+    "width": 1023,
+    "scrollWidth": 1023,
+    "title": "",
+    "overflow": []
+  },
+  {
+    "name": "reservation-en-1024",
+    "url": "http://localhost:3000/en/reservations/seminar-room/301-417?selectedDate=2024-03-15",
+    "width": 1024,
+    "scrollWidth": 1024,
+    "title": "",
+    "overflow": []
+  },
+  {
+    "name": "notice-errors-attachment-ko-1200",
+    "url": "http://localhost:3000/ko/community/notice/create",
+    "width": 1200,
+    "scrollWidth": 1200,
+    "title": "",
+    "overflow": [],
+    "attachmentVerified": true,
+    "fileName": "디자인시스템_첨부파일명이_아주_긴_행정실_공지사항_검토자료_2026년_최종_확정본.pdf"
+  },
+  {
+    "name": "notice-leave-en-1200",
+    "url": "http://localhost:3000/en/community/notice/create",
+    "width": 1200,
+    "scrollWidth": 1200,
+    "title": "",
+    "overflow": [],
+    "capture": "viewport; fixed overlay is viewport-sized"
+  }
+]

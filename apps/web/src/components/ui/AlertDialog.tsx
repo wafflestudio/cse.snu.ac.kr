@@ -36,7 +36,7 @@ export default function AlertDialog({
     <AlertDialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
       <AlertDialogPrimitive.Portal>
         <AlertDialogPrimitive.Overlay className="fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)] backdrop-blur-[2px] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
-        <AlertDialogPrimitive.Content className="fixed left-1/2 top-1/2 z-50 max-w-lg -translate-x-1/2 -translate-y-1/2 bg-white px-10 py-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]">
+        <AlertDialogPrimitive.Content className="fixed left-1/2 top-1/2 z-50 max-w-lg max-sm:w-[90vw] -translate-x-1/2 -translate-y-1/2 bg-white px-10 py-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]">
           <VisuallyHidden.Root>
             <AlertDialogPrimitive.Title>
               {title ?? t('확인')}
@@ -45,7 +45,7 @@ export default function AlertDialog({
           <AlertDialogPrimitive.Description className="mb-6 mt-1 text-neutral-800">
             {description}
           </AlertDialogPrimitive.Description>
-          <div className="flex justify-end gap-3">
+          <div className="flex flex-wrap justify-end gap-3 [&_button]:shrink-0 [&_button]:whitespace-nowrap">
             <AlertDialogPrimitive.Cancel asChild>
               <Button variant="secondary">{cancelText ?? t('취소')}</Button>
             </AlertDialogPrimitive.Cancel>

@@ -79,18 +79,18 @@ test.describe('시설 예약 - 예약 플로우', () => {
       page.getByText(title).filter({ visible: true }).first(),
     ).toBeVisible();
 
-    // === 취소 === (예약 블록 → 상세 모달 → 해당 예약만 삭제 → 확인 '삭제')
+    // === 취소 === (예약 블록 → 상세 모달 → 이 예약만 취소 → 확인 '예약 취소')
     await page.getByText(title).filter({ visible: true }).first().click();
     await deleteItem(
       page,
-      '삭제',
-      page.getByRole('button', { name: '해당 예약만 삭제' }),
+      '예약 취소',
+      page.getByRole('button', { name: '이 예약만 취소' }),
     );
-    await expect(page.getByText('예약을 삭제했습니다.')).toBeVisible();
+    await expect(page.getByText('예약을 취소했습니다.')).toBeVisible();
     await expect(page.getByText(title)).toHaveCount(0);
   });
 
-  test('staff가 반복 예약(2회)을 만들고 전체 삭제하면 모든 주에서 사라진다', async ({
+  test('staff가 반복 예약(2회)을 만들고 전체 취소하면 모든 주에서 사라진다', async ({
     page,
   }) => {
     const title = `반복예약${Date.now()}`;
@@ -116,18 +116,18 @@ test.describe('시설 예약 - 예약 플로우', () => {
       page.getByText(title).filter({ visible: true }).first(),
     ).toBeVisible();
 
-    // 상세 모달: '매주 반복 2회' 노출 → 반복 예약 전체 삭제
+    // 상세 모달: '매주 반복 2회' 노출 → 반복 예약 전체 취소
     await page.getByText(title).filter({ visible: true }).first().click();
     const detail = page.getByRole('dialog');
     await expect(detail.getByText('2회', { exact: true })).toBeVisible();
     await deleteItem(
       page,
-      '삭제',
-      detail.getByRole('button', { name: '반복 예약 전체 삭제' }),
+      '전체 취소',
+      detail.getByRole('button', { name: '반복 예약 전체 취소' }),
     );
-    await expect(page.getByText('예약을 삭제했습니다.')).toBeVisible();
+    await expect(page.getByText('예약을 취소했습니다.')).toBeVisible();
 
-    // 전체 삭제 → 양 주차 모두 사라짐
+    // 전체 취소 → 양 주차 모두 사라짐
     await expect(page.getByText(title)).toHaveCount(0);
     await page.goto(`${ROOM}?selectedDate=${booked.date}`);
     await expect(page.getByText(title)).toHaveCount(0);

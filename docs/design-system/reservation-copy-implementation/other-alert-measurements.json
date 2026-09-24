@@ -1,0 +1,33 @@
+{
+  "records": [
+    {
+      "locale": "ko",
+      "width": 288,
+      "x": 16,
+      "y": 374.8125,
+      "height": 150.375
+    },
+    {
+      "locale": "ko",
+      "width": 310,
+      "x": 445,
+      "y": 384.40625,
+      "height": 131.1875
+    },
+    {
+      "locale": "en",
+      "width": 288,
+      "x": 16,
+      "y": 384.40625,
+      "height": 131.1875
+    },
+    {
+      "locale": "en",
+      "width": 268,
+      "x": 466,
+      "y": 384.40625,
+      "height": 131.1875
+    }
+  ],
+  "note": "Shared alert stress check at320 plus administrative target1200. Not a mobile editing support commitment. No submissions."
+}

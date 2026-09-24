@@ -1,0 +1,235 @@
+{
+  "records": [
+    {
+      "locale": "ko",
+      "width": 288,
+      "kind": "one",
+      "x": 16,
+      "y": 384.40625,
+      "height": 131.1875
+    },
+    {
+      "locale": "ko",
+      "width": 288,
+      "kind": "all",
+      "x": 16,
+      "y": 384.40625,
+      "height": 131.1875
+    },
+    {
+      "locale": "ko",
+      "width": 351,
+      "kind": "one",
+      "x": 19.5,
+      "y": 384.40625,
+      "height": 131.1875
+    },
+    {
+      "locale": "ko",
+      "width": 351,
+      "kind": "all",
+      "x": 19.5,
+      "y": 384.40625,
+      "height": 131.1875
+    },
+    {
+      "locale": "ko",
+      "width": 512,
+      "kind": "one",
+      "x": 63.5,
+      "y": 384.40625,
+      "height": 131.1875
+    },
+    {
+      "locale": "ko",
+      "width": 512,
+      "kind": "all",
+      "x": 63.5,
+      "y": 384.40625,
+      "height": 131.1875
+    },
+    {
+      "locale": "ko",
+      "width": 640,
+      "kind": "one",
+      "originalLayoutHeight": 131.1875,
+      "currentHeight": 131.1875,
+      "note": "Width preserved; whole-button wrapping can increase height."
+    },
+    {
+      "locale": "ko",
+      "width": 252,
+      "kind": "one",
+      "x": 194,
+      "y": 384.40625,
+      "height": 131.1875
+    },
+    {
+      "locale": "ko",
+      "width": 640,
+      "kind": "all",
+      "originalLayoutHeight": 131.1875,
+      "currentHeight": 131.1875,
+      "note": "Width preserved; whole-button wrapping can increase height."
+    },
+    {
+      "locale": "ko",
+      "width": 268,
+      "kind": "all",
+      "x": 186,
+      "y": 384.40625,
+      "height": 131.1875
+    },
+    {
+      "locale": "ko",
+      "width": 1200,
+      "kind": "one",
+      "originalLayoutHeight": 131.1875,
+      "currentHeight": 131.1875,
+      "note": "Width preserved; whole-button wrapping can increase height."
+    },
+    {
+      "locale": "ko",
+      "width": 252,
+      "kind": "one",
+      "x": 474,
+      "y": 384.40625,
+      "height": 131.1875
+    },
+    {
+      "locale": "ko",
+      "width": 1200,
+      "kind": "all",
+      "originalLayoutHeight": 131.1875,
+      "currentHeight": 131.1875,
+      "note": "Width preserved; whole-button wrapping can increase height."
+    },
+    {
+      "locale": "ko",
+      "width": 268,
+      "kind": "all",
+      "x": 466,
+      "y": 384.40625,
+      "height": 131.1875
+    },
+    {
+      "locale": "en",
+      "width": 288,
+      "kind": "one",
+      "x": 16,
+      "y": 361.40625,
+      "height": 177.1875
+    },
+    {
+      "locale": "en",
+      "width": 288,
+      "kind": "all",
+      "x": 16,
+      "y": 351.8125,
+      "height": 196.375
+    },
+    {
+      "locale": "en",
+      "width": 351,
+      "kind": "one",
+      "x": 19.5,
+      "y": 361.40625,
+      "height": 177.1875
+    },
+    {
+      "locale": "en",
+      "width": 351,
+      "kind": "all",
+      "x": 19.5,
+      "y": 384.40625,
+      "height": 131.1875
+    },
+    {
+      "locale": "en",
+      "width": 512,
+      "kind": "one",
+      "x": 63.5,
+      "y": 384.40625,
+      "height": 131.1875
+    },
+    {
+      "locale": "en",
+      "width": 512,
+      "kind": "all",
+      "x": 63.5,
+      "y": 384.40625,
+      "height": 131.1875
+    },
+    {
+      "locale": "en",
+      "width": 640,
+      "kind": "one",
+      "originalLayoutHeight": 155.1875,
+      "currentHeight": 177.1875,
+      "note": "Width preserved; whole-button wrapping can increase height."
+    },
+    {
+      "locale": "en",
+      "width": 320,
+      "kind": "one",
+      "x": 160,
+      "y": 361.40625,
+      "height": 177.1875
+    },
+    {
+      "locale": "en",
+      "width": 640,
+      "kind": "all",
+      "originalLayoutHeight": 155.1875,
+      "currentHeight": 177.1875,
+      "note": "Width preserved; whole-button wrapping can increase height."
+    },
+    {
+      "locale": "en",
+      "width": 320,
+      "kind": "all",
+      "x": 160,
+      "y": 361.40625,
+      "height": 177.1875
+    },
+    {
+      "locale": "en",
+      "width": 1200,
+      "kind": "one",
+      "originalLayoutHeight": 131.1875,
+      "currentHeight": 131.1875,
+      "note": "Width preserved; whole-button wrapping can increase height."
+    },
+    {
+      "locale": "en",
+      "width": 379,
+      "kind": "one",
+      "x": 410.5,
+      "y": 384.40625,
+      "height": 131.1875
+    },
+    {
+      "locale": "en",
+      "width": 1200,
+      "kind": "all",
+      "originalLayoutHeight": 131.1875,
+      "currentHeight": 131.1875,
+      "note": "Width preserved; whole-button wrapping can increase height."
+    },
+    {
+      "locale": "en",
+      "width": 327,
+      "kind": "all",
+      "x": 436.5,
+      "y": 384.40625,
+      "height": 131.1875
+    }
+  ],
+  "actualCancel": {
+    "locales": ["ko", "en"],
+    "single": true,
+    "recurring": true,
+    "localizedSuccess": true
+  },
+  "note": "Fresh production build, actual local API.20confirmation layouts (2languages x5widths x2scopes). Keep buttons preserve reservations; actual single then recurring cancellation at1200. Desktop same-copy original width matched; height can increase with whole-button wrapping. No focus/keyboard audit."
+}
