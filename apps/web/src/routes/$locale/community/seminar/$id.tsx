@@ -106,7 +106,7 @@ function SeminarDetailPage() {
               alt="대표 이미지"
               src={seminar.imageURL}
               // 데스크톱 sm:w-60(240px), 모바일은 좌우 mx-7 을 뺀 폭
-              sizes="(min-width: 640px) 240px, calc(100vw - 3.5rem)"
+              sizes="(min-width: 1024px) 240px, min(calc(100vw - 3.5rem), 640px)"
               className="object-contain mx-7 aspect-square sm:h-60 sm:w-60"
             />
           )}

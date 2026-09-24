@@ -127,7 +127,7 @@ function RootDocument() {
           href={`${origin}/ko${altPath}`}
         />
       </head>
-      <body className="sm:min-w-[1200px] bg-neutral-900 font-normal text-neutral-950">
+      <body className="bg-neutral-900 font-normal text-neutral-950">
         <LNB />
         <MobileNav />
         <main

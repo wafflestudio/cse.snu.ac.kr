@@ -29,9 +29,9 @@ export default function CourseList({
 }
 
 const COURSE_ROW_ITEM_WIDTH = {
-  name: 'sm:w-[16rem]',
+  name: 'sm:w-64',
   classification: 'sm:w-[10rem]',
-  code: 'sm:w-[13rem]',
+  code: 'sm:w-52',
   credit: 'sm:w-[6rem]',
   grade: 'sm:w-[5.25rem]',
 } as const;

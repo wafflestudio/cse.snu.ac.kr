@@ -90,7 +90,7 @@ interface FileRowProps {
 
 function FilePickerRow({ file, deleteFile }: FileRowProps) {
   return (
-    <li className="flex h-7.5 w-[520px] items-center border-b border-dashed border-neutral-200 px-3 last:border-none">
+    <li className="flex h-7.5 w-130 items-center border-b border-dashed border-neutral-200 px-3 last:border-none">
       <p className="mr-4 text-sm">{file.file.name}</p>
       <button type="button" className="ml-auto" onClick={deleteFile}>
         <ClearIcon />

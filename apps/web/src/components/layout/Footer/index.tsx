@@ -44,14 +44,14 @@ export default function Footer() {
   return (
     <footer className={`border-t-2 ${borderTop}`}>
       <div
-        className={`${topBg} flex flex-wrap gap-y-8 px-6 py-9 sm:px-15 sm:py-10`}
+        className={`${topBg} flex flex-wrap gap-y-8 px-compact py-9 sm:px-15 sm:py-10`}
       >
         {getLinkGroups(locale).map((group) => (
           <LinkGroup key={group.groupName} {...group} mode={mode} />
         ))}
       </div>
       <div
-        className={`${bottomBg} flex flex-col justify-between px-5 py-[30px] sm:flex-row sm:items-center sm:px-15 sm:py-8`}
+        className={`${bottomBg} flex flex-col justify-between px-compact py-[30px] sm:flex-row sm:items-center sm:px-15 sm:py-8`}
       >
         <FooterBottomLeft />
         <FooterBottomRight />

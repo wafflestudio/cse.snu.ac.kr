@@ -70,7 +70,7 @@ export default function AddCourseModal({
       open
       onOpenChange={onClose}
       title="교과목 추가"
-      contentClassName="min-w-[500px] max-w-[768px]"
+      contentClassName="min-w-125 max-w-3xl"
     >
       <FormProvider {...formMethods}>
         <h4 className="mb-4 text-xl font-bold text-neutral-700">
@@ -80,7 +80,7 @@ export default function AddCourseModal({
           <Fieldset title={t('교과목명')} titleSpacing="1" spacing="5" required>
             <Form.Text
               name="ko.name"
-              maxWidth="max-w-[480px]"
+              maxWidth="max-w-120"
               options={{ required: { value: true, message: t('교과목명') } }}
             />
           </Fieldset>
@@ -105,7 +105,7 @@ export default function AddCourseModal({
             >
               <Form.Text
                 name="code"
-                maxWidth="max-w-[140px]"
+                maxWidth="max-w-35"
                 options={{
                   required: { value: true, message: t('교과목 번호') },
                 }}
@@ -153,7 +153,7 @@ export default function AddCourseModal({
           >
             <Form.Text
               name="en.name"
-              maxWidth="max-w-[480px]"
+              maxWidth="max-w-120"
               options={{
                 required: { value: true, message: t('(영문) Course Name') },
               }}

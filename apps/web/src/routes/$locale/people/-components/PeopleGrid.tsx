@@ -7,7 +7,7 @@ interface PeopleGridProps {
 
 export default function PeopleGrid({ items }: PeopleGridProps) {
   return (
-    <div className="grid max-w-[800px] gap-16 sm:grid-cols-[repeat(auto-fit,144px)]">
+    <div className="grid max-w-3xl gap-16 sm:grid-cols-[repeat(auto-fit,144px)]">
       {items.map((item) => (
         <PeopleCard key={item.id} {...item} />
       ))}

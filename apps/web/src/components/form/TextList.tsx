@@ -32,7 +32,7 @@ export default function TextList({ name, placeholder }: Props) {
       <div className="mb-2.5 flex gap-3">
         <Text
           key={name}
-          maxWidth="w-[25rem]"
+          maxWidth="w-100"
           name={newValueName}
           bgColor="bg-neutral-50"
           placeholder={placeholder}
@@ -44,7 +44,7 @@ export default function TextList({ name, placeholder }: Props) {
       {list?.map((_, idx) => (
         <div className="mb-2.5 flex gap-3" key={idx}>
           <Text
-            maxWidth="w-[25rem]"
+            maxWidth="w-100"
             name={`${name}.${idx}`}
             placeholder={placeholder}
           />

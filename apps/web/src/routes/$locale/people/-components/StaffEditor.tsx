@@ -79,7 +79,7 @@ export default function StaffEditor({
           <Fieldset title="전화번호" spacing="5" titleSpacing="2" required>
             <Form.Text
               name="phone"
-              maxWidth="max-w-[20rem]"
+              maxWidth="max-w-80"
               placeholder="예: (02) 880-7302"
               options={{
                 required: { value: true, message: '전화번호를 입력해주세요.' },
@@ -89,7 +89,7 @@ export default function StaffEditor({
           <Fieldset title="이메일" titleSpacing="2" required>
             <Form.Text
               name="email"
-              maxWidth="max-w-[25rem]"
+              maxWidth="max-w-100"
               options={{
                 required: { value: true, message: '이메일을 입력해주세요.' },
               }}
@@ -116,7 +116,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
       <Fieldset title="이름" spacing="5" titleSpacing="2" required>
         <Form.Text
           name={`${language}.name`}
-          maxWidth="max-w-[30rem]"
+          maxWidth="max-w-120"
           options={{
             required: { value: true, message: '이름을 입력해주세요.' },
           }}
@@ -125,7 +125,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
       <Fieldset title="위치" spacing="5" titleSpacing="2" required>
         <Form.Text
           name={`${language}.office`}
-          maxWidth="max-w-[20rem]"
+          maxWidth="max-w-80"
           placeholder="예: 301동 316호"
           options={{
             required: { value: true, message: '위치를 입력해주세요.' },
@@ -135,7 +135,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
       <Fieldset title="업무 요약" spacing="10" titleSpacing="2" required>
         <Form.Text
           name={`${language}.role`}
-          maxWidth="max-w-[30rem]"
+          maxWidth="max-w-120"
           placeholder="예: 교원인사, 일반서무 등"
           options={{
             required: { value: true, message: '업무 요약을 입력해주세요.' },

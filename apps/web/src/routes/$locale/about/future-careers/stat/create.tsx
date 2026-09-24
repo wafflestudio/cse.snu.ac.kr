@@ -135,7 +135,7 @@ function TableBody() {
         >
           <Form.Text
             name={`statList.${idx}.${degree}`}
-            maxWidth="max-w-[80px]"
+            maxWidth="max-w-20"
             textCenter
           />
         </div>

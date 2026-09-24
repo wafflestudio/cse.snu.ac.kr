@@ -147,7 +147,7 @@ const SharedEditor = ({ labs }: { labs: SimpleResearchLab[] }) => {
         titleSpacing="2"
         hidden={status === 'ACTIVE'}
       >
-        <div className="flex w-[400px]">
+        <div className="flex w-100">
           <Fieldset title="시작 날짜" titleSpacing="2">
             <Form.Date name="startDate" hideTime />
           </Fieldset>
@@ -188,21 +188,21 @@ const SharedEditor = ({ labs }: { labs: SimpleResearchLab[] }) => {
           <Fieldset title="전화번호" spacing="5" titleSpacing="2">
             <Form.Text
               name="phone"
-              maxWidth="max-w-[20rem]"
+              maxWidth="max-w-80"
               placeholder="예: (02) 880-7302"
             />
           </Fieldset>
           <Fieldset title="팩스" spacing="5" titleSpacing="2">
-            <Form.Text name="fax" maxWidth="max-w-[20rem]" />
+            <Form.Text name="fax" maxWidth="max-w-80" />
           </Fieldset>
         </div>
 
         <Fieldset title="이메일" spacing="5" titleSpacing="2">
-          <Form.Text name="email" maxWidth="max-w-[25rem]" />
+          <Form.Text name="email" maxWidth="max-w-100" />
         </Fieldset>
 
         <Fieldset title="웹사이트 URL" spacing="5" titleSpacing="2">
-          <Form.Text name="website" maxWidth="max-w-[25rem]" />
+          <Form.Text name="website" maxWidth="max-w-100" />
         </Fieldset>
       </Form.Section>
     </>
@@ -215,7 +215,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
       <Fieldset title="이름" spacing="5" titleSpacing="2" required>
         <Form.Text
           name={`${language}.name`}
-          maxWidth="max-w-[30rem]"
+          maxWidth="max-w-120"
           options={{
             required: { value: true, message: '이름을 입력해주세요.' },
           }}
@@ -225,7 +225,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
       <Fieldset title="직함" spacing="5" titleSpacing="2" required>
         <Form.Text
           name={`${language}.academicRank`}
-          maxWidth="max-w-[30rem]"
+          maxWidth="max-w-120"
           placeholder="예: 교수, 조교수, 명예교수 등"
           options={{
             required: { value: true, message: '직함을 입력해주세요.' },
@@ -236,7 +236,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
       <Fieldset title="소속" spacing="10" titleSpacing="2">
         <Form.Text
           name={`${language}.department`}
-          maxWidth="max-w-[30rem]"
+          maxWidth="max-w-120"
           placeholder="예: 컴퓨터공학부"
         />
       </Fieldset>
@@ -244,7 +244,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
       <Fieldset title="위치" spacing="10" titleSpacing="2">
         <Form.Text
           name={`${language}.office`}
-          maxWidth="max-w-[20rem]"
+          maxWidth="max-w-80"
           placeholder="예: 301동 504호"
         />
       </Fieldset>

@@ -74,7 +74,7 @@ function Overview() {
           </div>
         </LoginVisible>
         <div className="flex flex-col-reverse items-start gap-6 sm:flex-row sm:gap-10">
-          <div className="sm:w-[20rem] sm:grow">
+          <div className="sm:w-80 sm:grow">
             <HTMLViewer html={description} />
           </div>
           {imageURL && (
@@ -85,7 +85,7 @@ function Overview() {
                 width={320}
                 height={216}
                 // 모바일 w-full, 데스크톱 sm:w-80(320px)
-                sizes="(min-width: 640px) 320px, 100vw"
+                sizes="(min-width: 1024px) 320px, min(100vw, 640px)"
                 className="w-full object-contain sm:w-80"
               />
             </div>

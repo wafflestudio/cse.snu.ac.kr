@@ -13,7 +13,7 @@ import { api } from '@/utils/api';
 
 export const TABLE_COLUMN_SIZE = [
   'sm:w-[3rem]',
-  'sm:w-[12.5rem]',
+  'sm:w-50',
   'sm:w-80',
   'sm:w-20',
   'sm:w-32',

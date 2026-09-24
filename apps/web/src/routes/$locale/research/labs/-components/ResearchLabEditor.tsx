@@ -114,21 +114,21 @@ const SharedEditor = ({
           />
         </Fieldset>
         <Fieldset title="연구실 약자" spacing="2.5">
-          <Form.Text name="acronym" maxWidth="w-[17rem]" />
+          <Form.Text name="acronym" maxWidth="w-68" />
         </Fieldset>
       </div>
       <div className="mb-6 flex w-180 gap-6">
         <Fieldset title="전화" spacing="2.5">
           <Form.Text
             name="tel"
-            maxWidth="w-[21.75rem]"
+            maxWidth="w-87"
             placeholder="예: (02) 880-7302"
           />
         </Fieldset>
         <Fieldset title="웹사이트 주소" spacing="2.5">
           <Form.Text
             name="websiteURL"
-            maxWidth="w-[21.75rem]"
+            maxWidth="w-87"
             placeholder="예: https://www.example.com"
           />
         </Fieldset>
@@ -162,7 +162,7 @@ const SharedEditor = ({
           <span className="w-14 text-sm text-neutral-400">| 유튜브</span>
           <Form.Text
             name="youtube"
-            maxWidth="w-[41.5rem]"
+            maxWidth="w-166"
             placeholder="예: https://www.youtube.com/watch?v=bCLWYhurBuo"
           />
         </div>
@@ -177,7 +177,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
       <Fieldset title="연구실명" spacing="6" required>
         <Form.Text
           name={`${language}.name`}
-          maxWidth="max-w-[30rem]"
+          maxWidth="max-w-120"
           options={{
             required: { value: true, message: '연구실명을 입력해주세요.' },
           }}
@@ -187,7 +187,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
       <Fieldset title="연구실 위치" spacing="11">
         <Form.Text
           name={`${language}.location`}
-          maxWidth="w-[45rem]"
+          maxWidth="w-180"
           placeholder='복수일 경우 " / "로 구분해주세요. 예: 301동 515호 / 518호 / 551-1호'
         />
       </Fieldset>

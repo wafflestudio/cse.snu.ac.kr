@@ -111,15 +111,15 @@ function ResearchGroupsPage() {
           <h2 className="mb-6 ml-1 whitespace-nowrap text-base font-bold leading-loose sm:mx-0 sm:mb-[18px] sm:text-[24px]">
             {item.name} {t('스트림')}
           </h2>
-          <div className="max-w-[780px] bg-white p-[18px] sm:p-[40px]">
+          <div className="max-w-3xl bg-white p-[18px] sm:p-[40px]">
             <HTMLViewer html={item.description} />
           </div>
           {item.mainImageUrl && (
-            <div className="relative mt-10 aspect-2/1 w-[80%] max-w-[720px] self-end">
+            <div className="relative mt-10 aspect-2/1 w-[80%] max-w-180 self-end">
               <Image
                 src={item.mainImageUrl}
                 alt={`${item.name} 연구 스트림 사진`}
-                // w-[80%] max-w-[720px]
+                // w-[80%] max-w-180
                 sizes="(min-width: 900px) 720px, 80vw"
                 className="h-full w-full object-cover"
               />

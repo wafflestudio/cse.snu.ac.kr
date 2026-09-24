@@ -90,7 +90,7 @@ function ResearchLabsPage() {
 export const LAB_ROW_ITEM_WIDTH = {
   name: 'sm:w-[14.5rem]',
   professor: 'sm:w-[6.875rem]',
-  location: 'sm:w-[12.5rem]',
+  location: 'sm:w-50',
   tel: 'sm:w-[7.5rem]',
   acronym: 'sm:w-20',
   introMaterial: 'sm:w-[5.625rem]',

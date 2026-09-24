@@ -35,6 +35,11 @@
 }
 
 @theme {
+  /* 1024px(`sm:`) 부터 데스크톱 틀(왼쪽 내비), 그 아래는 모바일 배치. 서브내비와 그 자리(오른쪽 360px)만
+     1280px(`xl:`) 부터 — 거기서 켜야 본문 폭이 724→720 으로 이어진다(1200 이면 804→640 으로 튄다).
+     md·lg 는 쓰지 않고, xl 은 서브내비 자리에만 쓴다. */
+  --breakpoint-sm: 64rem;
+
   --color-transparent: transparent;
   --color-white: #ffffff;
   --color-neutral-50: #fafafa;
@@ -103,12 +108,18 @@
   }
 }
 
+/* 모바일 배치의 가로 여백. 좁은 화면에서는 20px, 넓어지면 내용이 600px 에서 멈추고 남는 폭을
+   양옆에 나눈다 — 태블릿에서 모바일 배치가 끝까지 늘어나지 않게. 데스크톱(sm:)에서는 각자의 거터로 덮는다. */
+@utility px-compact {
+  padding-inline: max(1.25rem, calc((100% - 37.5rem) / 2));
+}
+
 /* 표준 페이지 본문 가로 거터 — 단일 출처.
-   좌 100px(pl-25) / 우 360px(pr-90) / 모바일 20px(px-5). PageLayout 문서값 기준.
+   데스크톱 좌우 100px(px-25), 서브내비가 보이는 1280px 부터 오른쪽 360px(pr-90). 모바일은 px-compact.
    페이지·섹션은 가로 거터를 인라인 재선언하지 말고 이 클래스를 쓴다(세로 패딩만 각자). */
 @layer components {
   .page-gutter-x {
-    @apply px-5 sm:pl-25 sm:pr-90;
+    @apply px-compact sm:px-25 xl:pr-90;
   }
 
   /* SNU 로고는 흰색·회색·주황 세 가지로만 쓰인다. 인라인 <svg> 로 두면 소수 2178개짜리 path 가

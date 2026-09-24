@@ -10,7 +10,7 @@ export default function NewsSection({ mainNews }: { mainNews: MainNews[] }) {
 
   return (
     <div className="relative flex flex-col gap-6.5 overflow-hidden bg-neutral-100 pb-12 pl-5 pt-8 sm:flex-row sm:gap-[60px] sm:py-10 sm:pl-[60px] sm:pr-[150px] sm:pt-[72px]">
-      <div className="flex flex-col gap-2">
+      <div className="flex shrink-0 flex-col gap-2">
         <h3 className="text-[1.25rem] font-semibold text-neutral-950 sm:text-[1.75rem] sm:font-medium">
           {t('새 소식')}
         </h3>
