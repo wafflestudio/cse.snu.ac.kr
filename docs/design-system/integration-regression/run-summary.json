@@ -27,6 +27,36 @@
     "Pinned Playwright 1.57, current production build, local real API. Official projects/specs; server command reuses cached build.",
     "First read and flow/language/security runs each used official local reset/seed. Isolated lists reused the read dataset after supplementary captures, 1 worker/no retries.",
     "No snapshot baselines updated. Existing and mixed count-mask differences are withheld from approved DS candidates.",
-    "No application source changed after 46103260 for title comparison; DOM prototype only."
-  ]
+    "No application source changed after 46103260 for title comparison; DOM prototype only.",
+    "DS-040: 6 actual title images match approved preview, 24 other headings match old styling.",
+    "66 reviewed snapshots updated; targeted final 2 passed. Full read has not been rerun after the final 2 updates. Remaining 5 historical/mixed differences not absorbed."
+  ],
+  "read_after_64_baselines_and_ds040": {
+    "startTime": "2026-09-24T07:35:28.947Z",
+    "duration": 97136.924,
+    "expected": 132,
+    "skipped": 0,
+    "unexpected": 7,
+    "flaky": 1
+  },
+  "targeted_after_two_more_baselines": {
+    "startTime": "2026-09-24T07:39:37.745Z",
+    "duration": 1968.2440000000001,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "snapshotUpdates": {
+    "count": 66,
+    "firstReviewedBatch": 64,
+    "subsequent": [
+      "10-10-participants-ko-read-mobile-linux.png",
+      "reservations-privacy-policy-ko-read-mobile-linux.png"
+    ],
+    "remaining": {
+      "listMaskDifferences": 3,
+      "detailBodyAndMaskDifferences": 2
+    }
+  }
 }

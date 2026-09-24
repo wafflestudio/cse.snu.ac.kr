@@ -1,0 +1,362 @@
+[
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/courses",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 259.140625,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 151.140625,
+      "height": 14.390625,
+      "top": 122,
+      "right": 171.140625,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/courses",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 259.140625,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 151.140625,
+      "height": 14.390625,
+      "top": 122,
+      "right": 171.140625,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/exchange",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 349,
+    "headerWidth": 329.46875,
+    "height": 94.375,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 221.46875,
+      "height": 28.78125,
+      "top": 122,
+      "right": 241.46875,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/exchange",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 112.765625,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 47.171875,
+      "top": 122,
+      "right": 192,
+      "bottom": 169.171875,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/undergraduate",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 334,
+    "headerWidth": 313.5,
+    "height": 65.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 205.5,
+      "height": 28.78125,
+      "top": 122,
+      "right": 225.5,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/undergraduate",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 69.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 32.78125,
+      "top": 122,
+      "right": 192,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/courses",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 259.140625,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 151.140625,
+      "height": 14.390625,
+      "top": 122,
+      "right": 171.140625,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/courses",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 259.140625,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 151.140625,
+      "height": 14.390625,
+      "top": 122,
+      "right": 171.140625,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/exchange",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 350,
+    "height": 94.375,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 242,
+      "height": 28.78125,
+      "top": 122,
+      "right": 262,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/exchange",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 350,
+    "height": 98.375,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 242,
+      "height": 32.78125,
+      "top": 122,
+      "right": 262,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/undergraduate",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 323.734375,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 215.734375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 235.734375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/undergraduate",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 323.734375,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 215.734375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 235.734375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/courses",
+    "variant": "original",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "headerWidth": 283.65625,
+    "height": 63.1875,
+    "left": 200,
+    "breadcrumb": {
+      "x": 200,
+      "y": 201.65625,
+      "width": 175.65625,
+      "height": 16.796875,
+      "top": 201.65625,
+      "right": 375.65625,
+      "bottom": 218.453125,
+      "left": 200
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/courses",
+    "variant": "A",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "headerWidth": 283.65625,
+    "height": 63.1875,
+    "left": 200,
+    "breadcrumb": {
+      "x": 200,
+      "y": 201.65625,
+      "width": 175.65625,
+      "height": 16.796875,
+      "top": 201.65625,
+      "right": 375.65625,
+      "bottom": 218.453125,
+      "left": 200
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/exchange",
+    "variant": "original",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "headerWidth": 529,
+    "height": 63.1875,
+    "left": 200,
+    "breadcrumb": {
+      "x": 200,
+      "y": 201.65625,
+      "width": 321.203125,
+      "height": 16.796875,
+      "top": 201.65625,
+      "right": 521.203125,
+      "bottom": 218.453125,
+      "left": 200
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/exchange",
+    "variant": "A",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "headerWidth": 529,
+    "height": 63.1875,
+    "left": 200,
+    "breadcrumb": {
+      "x": 200,
+      "y": 201.65625,
+      "width": 321.203125,
+      "height": 16.796875,
+      "top": 201.65625,
+      "right": 521.203125,
+      "bottom": 218.453125,
+      "left": 200
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/undergraduate",
+    "variant": "original",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "headerWidth": 349.84375,
+    "height": 63.1875,
+    "left": 200,
+    "breadcrumb": {
+      "x": 200,
+      "y": 201.65625,
+      "width": 241.84375,
+      "height": 16.796875,
+      "top": 201.65625,
+      "right": 441.84375,
+      "bottom": 218.453125,
+      "left": 200
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/undergraduate",
+    "variant": "A",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "headerWidth": 349.84375,
+    "height": 63.1875,
+    "left": 200,
+    "breadcrumb": {
+      "x": 200,
+      "y": 201.65625,
+      "width": 241.84375,
+      "height": 16.796875,
+      "top": 201.65625,
+      "right": 441.84375,
+      "bottom": 218.453125,
+      "left": 200
+    }
+  }
+]

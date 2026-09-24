@@ -28,10 +28,19 @@ export default function PageTitle({
   const titleStyle =
     titleSize === 'xl' ? 'text-2xl font-bold' : 'text-lg font-medium';
 
+  // Keep other headings unchanged until long breadcrumb wrapping is resolved.
+  const hasTitleBreak = title?.includes('(');
+  const titleContent = title?.split(/(?=\()/).map((part, index) => (
+    <Fragment key={`${index}-${part}`}>
+      {index > 0 && <wbr />}
+      {part}
+    </Fragment>
+  ));
+
   return (
     <div className="px-5 pt-[54px] shell:px-25">
       <div
-        className={`col-start-1 row-start-1 w-fit min-w-62.5 max-w-207.5 ${margin}`}
+        className={`col-start-1 row-start-1 w-fit min-w-62.5 ${hasTitleBreak ? 'max-w-full shell:max-w-207.5' : 'max-w-207.5'} ${margin}`}
       >
         <div className="mb-2 flex items-center justify-center gap-2">
           {breadcrumb && breadcrumb.length > 0 && (
@@ -46,7 +55,7 @@ export default function PageTitle({
                 <span
                   className={`${titleStyle} break-keep text-[24px] tracking-wide text-white shell:text-[32px]`}
                 >
-                  {title}
+                  {titleContent}
                 </span>
                 <span className="ml-2 text-md font-normal leading-7 text-neutral-500 tracking-wider">
                   {subtitle}
@@ -56,7 +65,7 @@ export default function PageTitle({
               <span
                 className={`${titleStyle} break-keep text-[24px] tracking-wide text-white shell:text-[32px]`}
               >
-                {title}
+                {titleContent}
               </span>
             )}
           </h3>

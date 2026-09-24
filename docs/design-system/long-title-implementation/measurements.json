@@ -1,0 +1,386 @@
+[
+  {
+    "locale": "ko",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 57.59375,
+    "fontSize": "24px",
+    "approvedImageMatched": true
+  },
+  {
+    "locale": "ko",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 57.59375,
+    "fontSize": "24px",
+    "approvedImageMatched": true
+  },
+  {
+    "locale": "ko",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 38.390625,
+    "fontSize": "32px",
+    "approvedImageMatched": true
+  },
+  {
+    "locale": "ko",
+    "width": 320,
+    "path": "/about/greetings",
+    "old": {
+      "w": 250,
+      "scroll": 320
+    },
+    "current": {
+      "w": 250,
+      "scroll": 320
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "ko",
+    "width": 320,
+    "path": "/community/notice",
+    "old": {
+      "w": 250,
+      "scroll": 320
+    },
+    "current": {
+      "w": 250,
+      "scroll": 320
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "ko",
+    "width": 320,
+    "path": "/academics/undergraduate/courses",
+    "old": {
+      "w": 259.140625,
+      "scroll": 320
+    },
+    "current": {
+      "w": 259.140625,
+      "scroll": 320
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "ko",
+    "width": 320,
+    "path": "/research/groups",
+    "old": {
+      "w": 264.40625,
+      "scroll": 320
+    },
+    "current": {
+      "w": 264.40625,
+      "scroll": 320
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "ko",
+    "width": 390,
+    "path": "/about/greetings",
+    "old": {
+      "w": 250,
+      "scroll": 390
+    },
+    "current": {
+      "w": 250,
+      "scroll": 390
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "ko",
+    "width": 390,
+    "path": "/community/notice",
+    "old": {
+      "w": 250,
+      "scroll": 390
+    },
+    "current": {
+      "w": 250,
+      "scroll": 390
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "ko",
+    "width": 390,
+    "path": "/academics/undergraduate/courses",
+    "old": {
+      "w": 259.140625,
+      "scroll": 390
+    },
+    "current": {
+      "w": 259.140625,
+      "scroll": 390
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "ko",
+    "width": 390,
+    "path": "/research/groups",
+    "old": {
+      "w": 264.40625,
+      "scroll": 390
+    },
+    "current": {
+      "w": 264.40625,
+      "scroll": 390
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "ko",
+    "width": 1280,
+    "path": "/about/greetings",
+    "old": {
+      "w": 280.609375,
+      "scroll": 1280
+    },
+    "current": {
+      "w": 280.609375,
+      "scroll": 1280
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "ko",
+    "width": 1280,
+    "path": "/community/notice",
+    "old": {
+      "w": 250,
+      "scroll": 1280
+    },
+    "current": {
+      "w": 250,
+      "scroll": 1280
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "ko",
+    "width": 1280,
+    "path": "/academics/undergraduate/courses",
+    "old": {
+      "w": 283.65625,
+      "scroll": 1280
+    },
+    "current": {
+      "w": 283.65625,
+      "scroll": 1280
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "ko",
+    "width": 1280,
+    "path": "/research/groups",
+    "old": {
+      "w": 319.203125,
+      "scroll": 1280
+    },
+    "current": {
+      "w": 319.203125,
+      "scroll": 1280
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "en",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 57.59375,
+    "fontSize": "24px",
+    "approvedImageMatched": true
+  },
+  {
+    "locale": "en",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 57.59375,
+    "fontSize": "24px",
+    "approvedImageMatched": true
+  },
+  {
+    "locale": "en",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 38.390625,
+    "fontSize": "32px",
+    "approvedImageMatched": true
+  },
+  {
+    "locale": "en",
+    "width": 320,
+    "path": "/about/greetings",
+    "old": {
+      "w": 280,
+      "scroll": 320
+    },
+    "current": {
+      "w": 280,
+      "scroll": 320
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "en",
+    "width": 320,
+    "path": "/community/notice",
+    "old": {
+      "w": 250,
+      "scroll": 320
+    },
+    "current": {
+      "w": 250,
+      "scroll": 320
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "en",
+    "width": 320,
+    "path": "/academics/undergraduate/courses",
+    "old": {
+      "w": 343.984375,
+      "scroll": 364
+    },
+    "current": {
+      "w": 343.984375,
+      "scroll": 364
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "en",
+    "width": 320,
+    "path": "/research/groups",
+    "old": {
+      "w": 280,
+      "scroll": 320
+    },
+    "current": {
+      "w": 280,
+      "scroll": 320
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "en",
+    "width": 390,
+    "path": "/about/greetings",
+    "old": {
+      "w": 350,
+      "scroll": 390
+    },
+    "current": {
+      "w": 350,
+      "scroll": 390
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "en",
+    "width": 390,
+    "path": "/community/notice",
+    "old": {
+      "w": 250,
+      "scroll": 390
+    },
+    "current": {
+      "w": 250,
+      "scroll": 390
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "en",
+    "width": 390,
+    "path": "/academics/undergraduate/courses",
+    "old": {
+      "w": 343.984375,
+      "scroll": 390
+    },
+    "current": {
+      "w": 343.984375,
+      "scroll": 390
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "en",
+    "width": 390,
+    "path": "/research/groups",
+    "old": {
+      "w": 350,
+      "scroll": 390
+    },
+    "current": {
+      "w": 350,
+      "scroll": 390
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "en",
+    "width": 1280,
+    "path": "/about/greetings",
+    "old": {
+      "w": 484.40625,
+      "scroll": 1280
+    },
+    "current": {
+      "w": 484.40625,
+      "scroll": 1280
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "en",
+    "width": 1280,
+    "path": "/community/notice",
+    "old": {
+      "w": 250,
+      "scroll": 1280
+    },
+    "current": {
+      "w": 250,
+      "scroll": 1280
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "en",
+    "width": 1280,
+    "path": "/academics/undergraduate/courses",
+    "old": {
+      "w": 369.140625,
+      "scroll": 1280
+    },
+    "current": {
+      "w": 369.140625,
+      "scroll": 1280
+    },
+    "sameImage": true
+  },
+  {
+    "locale": "en",
+    "width": 1280,
+    "path": "/research/groups",
+    "old": {
+      "w": 483.609375,
+      "scroll": 1280
+    },
+    "current": {
+      "w": 483.609375,
+      "scroll": 1280
+    },
+    "sameImage": true
+  }
+]

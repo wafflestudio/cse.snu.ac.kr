@@ -1,0 +1,1282 @@
+[
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/courses",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 259.140625,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 151.140625,
+      "height": 14.390625,
+      "top": 122,
+      "right": 171.140625,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/courses",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 259.140625,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 151.140625,
+      "height": 14.390625,
+      "top": 122,
+      "right": 171.140625,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/general-studies-requirements",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 65.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 28.78125,
+      "top": 122,
+      "right": 192,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/general-studies-requirements",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 69.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 32.78125,
+      "top": 122,
+      "right": 192,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/degree-requirements",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 262.375,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 154.375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 174.375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/degree-requirements",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 262.375,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 154.375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 174.375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/course-changes",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 65.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 28.78125,
+      "top": 122,
+      "right": 192,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/course-changes",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 69.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 32.78125,
+      "top": 122,
+      "right": 192,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/graduate/course-changes",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 65.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 28.78125,
+      "top": 122,
+      "right": 192,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/graduate/course-changes",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 69.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 32.78125,
+      "top": 122,
+      "right": 192,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/exchange",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 349,
+    "headerWidth": 329.46875,
+    "height": 94.375,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 221.46875,
+      "height": 28.78125,
+      "top": 122,
+      "right": 241.46875,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/exchange",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 112.765625,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 47.171875,
+      "top": 122,
+      "right": 192,
+      "bottom": 169.171875,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/undergraduate",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 334,
+    "headerWidth": 313.5,
+    "height": 65.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 205.5,
+      "height": 28.78125,
+      "top": 122,
+      "right": 225.5,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/undergraduate",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 69.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 32.78125,
+      "top": 122,
+      "right": 192,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/research/top-conference-list",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 123.171875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 28.78125,
+      "top": 122,
+      "right": 192,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/research/top-conference-list",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 127.171875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 32.78125,
+      "top": 122,
+      "right": 192,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/courses",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 259.140625,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 151.140625,
+      "height": 14.390625,
+      "top": 122,
+      "right": 171.140625,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/courses",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 259.140625,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 151.140625,
+      "height": 14.390625,
+      "top": 122,
+      "right": 171.140625,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/general-studies-requirements",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 286.09375,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 178.09375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 198.09375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/general-studies-requirements",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 286.09375,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 178.09375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 198.09375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/degree-requirements",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 262.375,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 154.375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 174.375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/degree-requirements",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 262.375,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 154.375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 174.375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/course-changes",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 296.34375,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 188.34375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 208.34375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/course-changes",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 296.34375,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 188.34375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 208.34375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/graduate/course-changes",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 306.59375,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 198.59375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 218.59375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/graduate/course-changes",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 306.59375,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 198.59375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 218.59375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/exchange",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 350,
+    "height": 94.375,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 242,
+      "height": 28.78125,
+      "top": 122,
+      "right": 262,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/exchange",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 350,
+    "height": 98.375,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 242,
+      "height": 32.78125,
+      "top": 122,
+      "right": 262,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/undergraduate",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 323.734375,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 215.734375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 235.734375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/undergraduate",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 323.734375,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 215.734375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 235.734375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/research/top-conference-list",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 340.40625,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 176.765625,
+      "height": 14.390625,
+      "top": 122,
+      "right": 196.765625,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "ko",
+    "path": "/research/top-conference-list",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 340.40625,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 176.765625,
+      "height": 14.390625,
+      "top": 122,
+      "right": 196.765625,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/courses",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 364,
+    "headerWidth": 343.984375,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 235.984375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 255.984375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/courses",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 69.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 32.78125,
+      "top": 122,
+      "right": 192,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/general-studies-requirements",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 397,
+    "headerWidth": 377.1875,
+    "height": 108.765625,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 269.1875,
+      "height": 43.171875,
+      "top": 122,
+      "right": 289.1875,
+      "bottom": 165.171875,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/general-studies-requirements",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 159.953125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 65.5625,
+      "top": 122,
+      "right": 192,
+      "bottom": 187.5625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/degree-requirements",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 397,
+    "headerWidth": 377.171875,
+    "height": 65.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 269.171875,
+      "height": 28.78125,
+      "top": 122,
+      "right": 289.171875,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/degree-requirements",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 116.765625,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 51.171875,
+      "top": 122,
+      "right": 192,
+      "bottom": 173.171875,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/course-changes",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 369,
+    "headerWidth": 348.984375,
+    "height": 65.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 240.984375,
+      "height": 28.78125,
+      "top": 122,
+      "right": 260.984375,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/course-changes",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 116.765625,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 51.171875,
+      "top": 122,
+      "right": 192,
+      "bottom": 173.171875,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/graduate/course-changes",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 334,
+    "headerWidth": 313.78125,
+    "height": 65.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 205.78125,
+      "height": 28.78125,
+      "top": 122,
+      "right": 225.78125,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/graduate/course-changes",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 98.375,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 32.78125,
+      "top": 122,
+      "right": 192,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/admissions/international/exchange",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 407,
+    "headerWidth": 386.625,
+    "height": 94.375,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 278.625,
+      "height": 28.78125,
+      "top": 122,
+      "right": 298.625,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/admissions/international/exchange",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 112.765625,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 47.171875,
+      "top": 122,
+      "right": 192,
+      "bottom": 169.171875,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/admissions/international/undergraduate",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 391,
+    "headerWidth": 370.65625,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 262.65625,
+      "height": 14.390625,
+      "top": 122,
+      "right": 282.65625,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/admissions/international/undergraduate",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 69.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 32.78125,
+      "top": 122,
+      "right": 192,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/research/top-conference-list",
+    "variant": "original",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 137.5625,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 43.171875,
+      "top": 122,
+      "right": 192,
+      "bottom": 165.171875,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/research/top-conference-list",
+    "variant": "A",
+    "width": 320,
+    "scrollWidth": 320,
+    "headerWidth": 280,
+    "height": 127.171875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 172,
+      "height": 32.78125,
+      "top": 122,
+      "right": 192,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/courses",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 343.984375,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 235.984375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 255.984375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/courses",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 343.984375,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 235.984375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 255.984375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/general-studies-requirements",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 397,
+    "headerWidth": 377.1875,
+    "height": 108.765625,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 269.1875,
+      "height": 43.171875,
+      "top": 122,
+      "right": 289.1875,
+      "bottom": 165.171875,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/general-studies-requirements",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 350,
+    "height": 98.375,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 242,
+      "height": 32.78125,
+      "top": 122,
+      "right": 262,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/degree-requirements",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 397,
+    "headerWidth": 377.171875,
+    "height": 65.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 269.171875,
+      "height": 28.78125,
+      "top": 122,
+      "right": 289.171875,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/degree-requirements",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 350,
+    "height": 98.375,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 242,
+      "height": 32.78125,
+      "top": 122,
+      "right": 262,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/course-changes",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 350,
+    "height": 65.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 242,
+      "height": 28.78125,
+      "top": 122,
+      "right": 262,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/course-changes",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 350,
+    "height": 69.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 242,
+      "height": 32.78125,
+      "top": 122,
+      "right": 262,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/graduate/course-changes",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 350,
+    "height": 65.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 242,
+      "height": 28.78125,
+      "top": 122,
+      "right": 262,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/academics/graduate/course-changes",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 350,
+    "height": 69.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 242,
+      "height": 32.78125,
+      "top": 122,
+      "right": 262,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/admissions/international/exchange",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 407,
+    "headerWidth": 386.625,
+    "height": 94.375,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 278.625,
+      "height": 28.78125,
+      "top": 122,
+      "right": 298.625,
+      "bottom": 150.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/admissions/international/exchange",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 350,
+    "height": 98.375,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 242,
+      "height": 32.78125,
+      "top": 122,
+      "right": 262,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/admissions/international/undergraduate",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 391,
+    "headerWidth": 370.65625,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 262.65625,
+      "height": 14.390625,
+      "top": 122,
+      "right": 282.65625,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/admissions/international/undergraduate",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 350,
+    "height": 69.578125,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 242,
+      "height": 32.78125,
+      "top": 122,
+      "right": 262,
+      "bottom": 154.78125,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/research/top-conference-list",
+    "variant": "original",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 340.40625,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 222.9375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 242.9375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  },
+  {
+    "locale": "en",
+    "path": "/research/top-conference-list",
+    "variant": "A",
+    "width": 390,
+    "scrollWidth": 390,
+    "headerWidth": 340.40625,
+    "height": 51.1875,
+    "left": 20,
+    "breadcrumb": {
+      "x": 20,
+      "y": 122,
+      "width": 222.9375,
+      "height": 14.390625,
+      "top": 122,
+      "right": 242.9375,
+      "bottom": 136.390625,
+      "left": 20
+    }
+  }
+]
