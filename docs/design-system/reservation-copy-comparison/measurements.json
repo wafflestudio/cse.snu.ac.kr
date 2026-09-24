@@ -1,0 +1,77 @@
+{
+  "records": [
+    {
+      "locale": "ko",
+      "width": 390,
+      "box": {
+        "x": 97.5,
+        "y": 338.8125,
+        "width": 195,
+        "height": 222.375
+      },
+      "overflow": {
+        "client": 195,
+        "scroll": 195
+      }
+    },
+    {
+      "locale": "ko",
+      "width": 390,
+      "fit": {
+        "x": 19.5,
+        "y": 384.40625,
+        "width": 351,
+        "height": 131.1875
+      },
+      "proposal": "90vw/max512, button nowrap + row flex-wrap"
+    },
+    {
+      "locale": "ko",
+      "width": 320,
+      "fit": {
+        "x": 16,
+        "y": 384.40625,
+        "width": 288,
+        "height": 131.1875
+      },
+      "proposal": "90vw/max512, button nowrap + row flex-wrap"
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "box": {
+        "x": 57.5,
+        "y": 362.8125,
+        "width": 275,
+        "height": 174.375
+      },
+      "overflow": {
+        "client": 275,
+        "scroll": 275
+      }
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "fit": {
+        "x": 19.5,
+        "y": 384.40625,
+        "width": 351,
+        "height": 131.1875
+      },
+      "proposal": "90vw/max512, button nowrap + row flex-wrap"
+    },
+    {
+      "locale": "en",
+      "width": 320,
+      "fit": {
+        "x": 16,
+        "y": 351.8125,
+        "width": 288,
+        "height": 196.375
+      },
+      "proposal": "90vw/max512, button nowrap + row flex-wrap"
+    }
+  ],
+  "note": "DOM-only copy proposal on actual local recurring reservation.390pxKO/EN. First8 images only copy changes. Additional fit images propose mobile90vw/max512 and whole-button wrapping; no application source/action changes. No UI cancellation executed; two API fixtures deleted in cleanup. Toast wording is a textual proposal, not captured."
+}

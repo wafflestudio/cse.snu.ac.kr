@@ -74,7 +74,7 @@ test.describe('연구실 - 추가/편집/삭제 플로우', () => {
     // === 삭제 ===
     await page.getByRole('link', { name: '편집' }).click();
     await page.waitForURL(/\/research\/labs\/\d+\/edit$/);
-    await deleteItem(page);
+    await deleteItem(page, '삭제');
     await expect(page.getByText('연구실을 삭제했습니다.')).toBeVisible();
     await page.waitForURL('**/research/labs');
 

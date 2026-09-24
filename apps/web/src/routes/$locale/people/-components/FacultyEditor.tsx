@@ -128,6 +128,7 @@ export default function FacultyEditor({
           onCancel={onCancel}
           onSubmit={handleSubmit(onSubmit)}
           onDelete={onDelete}
+          deleteDescription="이 교수 정보를 삭제할까요?"
         />
       </Form>
     </FormProvider>

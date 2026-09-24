@@ -175,6 +175,7 @@ export default function NewsEditor({
           submitLabel={defaultValues ? '변경사항 저장' : '게시하기'}
           pendingLabel={defaultValues ? '저장 중…' : '게시 중…'}
           onDelete={onDelete}
+          deleteDescription="이 새 소식을 삭제할까요?"
         />
       </Form>
     </FormProvider>

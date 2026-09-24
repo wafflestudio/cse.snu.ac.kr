@@ -1,0 +1,41 @@
+{
+  "records": [
+    {
+      "name": "notice",
+      "before": {
+        "x": 763,
+        "y": 432.640625,
+        "width": 52,
+        "height": 34
+      },
+      "after": {
+        "x": 763,
+        "y": 432.640625,
+        "width": 52,
+        "height": 34
+      }
+    },
+    {
+      "name": "error",
+      "before": {
+        "x": 624,
+        "y": 520.453125,
+        "width": 132,
+        "height": 37.59375
+      },
+      "after": {
+        "x": 624,
+        "y": 520.453125,
+        "width": 132,
+        "height": 37.59375
+      }
+    }
+  ],
+  "states": {
+    "default": "#ff6914",
+    "hover": "#e65817",
+    "leave": "#ff6914",
+    "text": "#ffffff"
+  },
+  "note": "Fresh production build. Actual primary usage on notice management and404. No clicks or focus checks. Disabled hover guard source-only: no current disabled primary usage."
+}

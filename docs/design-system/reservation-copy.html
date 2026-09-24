@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>예약 용어·좁은 확인창 · CSE</title>
+  <link rel="stylesheet" href="../../apps/web/src/assets/pretendard/pretendardvariable-dynamic-subset.css">
+  <style>
+    *{box-sizing:border-box}body{margin:0;color:#0a0a0a;background:#fff;font:16px/1.65 "Pretendard Variable",sans-serif}main{max-width:1200px;margin:auto;padding:44px 28px 64px}h1{font-size:34px;line-height:1.3}h2{font-size:24px;margin-top:36px}h3{font-size:18px}a{color:#404040;text-underline-offset:3px}nav{display:flex;flex-wrap:wrap;gap:18px;margin:24px 0}.badge{display:inline-block;font-size:13px;border:1px solid #a3a3a3;padding:3px 9px}.meta{font-size:13px;color:#737373}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}.panel{padding:24px;border:1px solid #d4d4d4;min-width:0;margin:16px 0}.capture{display:block;width:auto;max-width:100%;height:auto}.note{padding:16px 20px;background:#fafafa;border-left:3px solid #737373}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:12px;text-align:left;vertical-align:top;border-bottom:1px solid #e5e5e5}th{background:#f5f5f5}footer{margin-top:36px;font-size:14px}@media(max-width:760px){main{padding:28px 20px}h1{font-size:28px}.grid{grid-template-columns:1fr}.panel{padding:16px}th,td{padding:10px}}
+  </style>
+</head>
+<body>
+<main>
+  <header><span class="meta">CSE · 4단계 행동·문구</span><h1>예약 용어와 좁은 확인창</h1><span class="badge">RC-Q1·2 · 판단 2개 · 제안은 앱 미적용</span></header>
+  <nav><a href="index.html">현재 DS 전체</a><a href="#done">먼저 적용한 내용</a><a href="#reason">1. 예약 용어</a><a href="#ko">한국어</a><a href="#en">English</a><a href="#fit">2. 확인창 배치</a><a href="#answer">답할 사항</a></nav>
+  <section id="done">
+    <h2>먼저, 적용한 내용을 확인해 줘</h2>
+    <p><a href="primary-hover.html"><strong>DS-037 주황 버튼 호버 실제 적용</strong></a>에서 기본 주황을 유지한 포인터 반응을 볼 수 있어. <a href="confirmation-copy.html"><strong>DS-005 확인창 문구 실제 적용</strong></a>에서는 행동과 대상에 맞춘 안내를 확인할 수 있어.</p>
+    <p class="meta">아래 예약 용어와 확인창 배치는 별도 제안이며 둘 다 아직 앱에 적용하지 않았다.</p>
+  </section>
+  <section id="reason">
+    <h2>1. 이용자가 하는 일은 예약 취소 · RC-Q1</h2>
+    <p><strong>현재:</strong> 예약의 버튼·확인창·완료 안내에 ‘삭제’를 쓴다. <strong>추천:</strong> 이용자의 행동을 ‘예약 취소’로 표현하고, 단건과 반복 예약의 범위를 계속 구분한다.</p>
+    <p class="note">‘취소’가 확인창을 닫는다는 뜻과 겹치지 않도록 반대 버튼은 <strong>예약 유지</strong>로 표시한다. 영어는 단건 <strong>Keep reservation</strong>, 반복 <strong>Keep reservations</strong>로 구분한다. 예약을 그대로 두는 기존 동작은 같다.</p>
+    <p>API·delete 함수·권한·반복 처리 범위는 유지한다. 취소 이력이나 복구 기능을 추가한다는 뜻은 아니다.</p>
+  </section>
+  <section id="ko">
+    <h2>한국어 · 행동부터 완료까지 같은 용어</h2>
+    <p class="note">아래는 <strong>문구만 바꾼 비교</strong>다. 390px에서 확인창 폭이195px로 좁아 기존 ‘취소’·‘삭제’도 글자별로 갈라졌다. 제안 문구도 같은 문제를 겪는다. 폭과 버튼 배치를 조정한 결과는 <a href="#fit">RC-Q2 견본</a>에서 별도로 보여준다.</p>
+    <div class="grid">
+      <div class="panel"><h3>예약 상세 · 현재</h3><img class="capture" src="reservation-copy-comparison/actions-before-ko.png" alt="해당 예약만 삭제와 반복 예약 전체 삭제를 표시한 현재 예약 상세"></div>
+      <div class="panel"><h3>예약 상세 · 제안</h3><img class="capture" src="reservation-copy-comparison/actions-after-ko.png" alt="이 예약만 취소와 반복 예약 전체 취소로 바꾼 예약 상세 제안"></div>
+      <div class="panel"><h3>확인창 · 현재</h3><img class="capture" src="reservation-copy-comparison/confirm-before-ko.png" alt="예약 삭제를 묻고 취소와 삭제 버튼을 제공하는 현재 확인창"></div>
+      <div class="panel"><h3>확인창 · 문구만 제안, 폭 문제 남음</h3><img class="capture" src="reservation-copy-comparison/confirm-after-ko.png" alt="예약 취소 용어를 대입했지만 좁은 폭에서 버튼 글자가 갈라지는 비교"></div>
+    </div>
+    <div class="table-wrap"><table><thead><tr><th>위치</th><th>현재</th><th>제안</th></tr></thead><tbody>
+      <tr><td>단건 행동</td><td>해당 예약만 삭제</td><td>이 예약만 취소</td></tr>
+      <tr><td>반복 행동</td><td>반복 예약 전체 삭제</td><td>반복 예약 전체 취소</td></tr>
+      <tr><td>단건 확인</td><td>해당 예약을 삭제하시겠습니까?</td><td>이 예약만 취소할까요?</td></tr>
+      <tr><td>반복 확인</td><td>반복 예약을 모두 삭제하시겠습니까?</td><td>반복 예약을 모두 취소할까요?</td></tr>
+      <tr><td>반대 버튼</td><td>취소</td><td>예약 유지</td></tr>
+      <tr><td>단건 / 반복 실행</td><td>삭제 / 삭제</td><td>예약 취소 / 전체 취소</td></tr>
+      <tr><td>완료 안내</td><td>예약을 삭제했습니다.</td><td>예약을 취소했습니다.</td></tr>
+    </tbody></table></div>
+  </section>
+  <section id="en">
+    <h2>English · 같은 행동과 범위</h2>
+    <p class="meta">여기도 문구만 바꾼 비교이며 좁은 확인창의 배치를 해결한 결과가 아니다.</p>
+    <div class="grid">
+      <div class="panel"><h3>예약 상세 · 현재</h3><img class="capture" src="reservation-copy-comparison/actions-before-en.png" alt="Delete this reservation과 Delete all recurring reservations를 표시한 현재 영어 예약 상세"></div>
+      <div class="panel"><h3>예약 상세 · 제안</h3><img class="capture" src="reservation-copy-comparison/actions-after-en.png" alt="Cancel this reservation과 Cancel all recurring reservations를 표시한 영어 제안"></div>
+      <div class="panel"><h3>확인창 · 현재</h3><img class="capture" src="reservation-copy-comparison/confirm-before-en.png" alt="Cancel과 Delete를 제공하는 현재 영어 확인창"></div>
+      <div class="panel"><h3>확인창 · 문구만 제안, 폭 문제 남음</h3><img class="capture" src="reservation-copy-comparison/confirm-after-en.png" alt="Keep reservations와 취소 실행을 구분하는 영어 문구 비교, 좁은 배치 조정 전"></div>
+    </div>
+    <div class="table-wrap"><table><thead><tr><th>위치</th><th>현재</th><th>제안</th></tr></thead><tbody>
+      <tr><td>단건 행동</td><td>Delete this reservation</td><td>Cancel this reservation</td></tr>
+      <tr><td>반복 행동</td><td>Delete all recurring reservations</td><td>Cancel all recurring reservations</td></tr>
+      <tr><td>단건 확인</td><td>Delete this reservation?</td><td>Cancel only this reservation?</td></tr>
+      <tr><td>반복 확인</td><td>Delete all recurring reservations?</td><td>Cancel all recurring reservations?</td></tr>
+      <tr><td>단건 반대 버튼</td><td>Cancel</td><td>Keep reservation</td></tr>
+      <tr><td>반복 반대 버튼</td><td>Cancel</td><td>Keep reservations</td></tr>
+      <tr><td>단건 / 반복 실행</td><td>Delete / Delete</td><td>Cancel reservation / Cancel all</td></tr>
+      <tr><td>완료 안내</td><td>예약을 삭제했습니다.<br><span class="meta">현재 한국어 고정</span></td><td>Reservation canceled.</td></tr>
+    </tbody></table></div>
+  </section>
+  <section id="fit">
+    <h2>2. 글자 대신 버튼 단위로 줄바꿈 · RC-Q2</h2>
+    <p><strong>실제 문제:</strong> 작은 확인창에서 ‘취/소’, ‘삭/제’처럼 버튼 글자가 갈라진다. 문구만 바꾸면 ‘예약 유지’도 세로로 갈라진다. 기존값을 유지하려던 모달에 이번 실제 배치 문제를 해결하는 변경을 제안한다.</p>
+    <p><strong>추천:</strong> 640px 미만에서는 공용 확인창을 <strong>90vw</strong>로 하고 기존 최대512px를 유지한다. 버튼 글자는 줄바꿈하지 않고, 한 줄에 들어가지 않으면 <strong>버튼 전체가 다음 줄로</strong> 간다. 640px 이상은 기존 내용 기반 폭을 유지한다.</p>
+    <div class="grid">
+      <div class="panel"><h3>한국어 · 390px 배치 제안</h3><img class="capture" src="reservation-copy-comparison/confirm-fit-ko-390.png" alt="390px에서 너비90vw와 버튼 단위 줄바꿈을 대입한 한국어 확인창 제안"></div>
+      <div class="panel"><h3>한국어 · 320px 배치 제안</h3><img class="capture" src="reservation-copy-comparison/confirm-fit-ko-320.png" alt="320px에서 글자별 줄바꿈을 막는 한국어 확인창 배치 제안"></div>
+      <div class="panel"><h3>English · 390px 배치 제안</h3><img class="capture" src="reservation-copy-comparison/confirm-fit-en-390.png" alt="390px에서 예약 유지와 취소 버튼의 글자를 한 줄로 유지하는 영어 확인창 제안"></div>
+      <div class="panel"><h3>English · 320px 배치 제안</h3><img class="capture" src="reservation-copy-comparison/confirm-fit-en-320.png" alt="320px에서 긴 영어 버튼을 버튼 단위로 배치하는 확인창 제안"></div>
+    </div>
+    <p class="note">위 4장은 제안 문구에 폭·버튼 배치를 함께 대입한 별도 견본이다. 색·글자 크기·좌우40px 패딩·모서리·버튼 순서는 유지한다. 버튼이 다음 줄로 가면 창 높이는 늘 수 있다.</p>
+    <p>공용 AlertDialog의 변경이므로 다른 확인창도 영향을 받는다. 승인 후 예약 한·영320/390px·데스크톱과 다른 확인창 대표의 폭·긴 문구·버튼 배치를 확인한다. 내용 모달과 이미지 안내창의 크기를 통일하는 제안은 아니다.</p>
+  </section>
+  <section>
+    <h2>용어와 배치의 적용 범위</h2>
+    <p>반복 예약의 처리 범위와 현재 요청 경로는 바꾸지 않는다. 버튼·확인창·성공 후 완료 안내를 함께 맞추며, <strong>Sonner 라이브러리 내부는 수정하지 않고 예약 화면의 기존 호출부 문자열만 동기화</strong>하는 제안이다.</p>
+    <p>RC-Q1은 예약 문구 묶음, RC-Q2는 작은 공용 확인창의 폭과 버튼 배치다. 둘 다 색·글자 크기·패딩·모서리와 요청 동작은 유지한다.</p>
+    <p class="meta">처음 8개 이미지는 현재/문구만 변경, 다음 4개는 제안 문구와 배치 조정을 함께 대입한 비교용이다. 앱 적용·실제 취소 요청 검증 완료를 뜻하지 않는다. 완료 안내는 표의 문구 제안이며 실제 예약 취소 결과 캡처가 아니다.</p>
+  </section>
+  <section id="answer">
+    <h2>함께 정할 두 가지</h2>
+    <ol><li>RC-Q1: 예약의 버튼·확인창·완료 안내를 ‘예약 취소’ 용어 묶음으로 적용할까?</li><li>RC-Q2: 작은 공용 확인창은90vw로 하고, 글자 대신 버튼 단위로 줄바꿈할까?</li></ol>
+    <p><strong>둘 다 적용을 추천해.</strong> 첫째는 행동을 구분하고, 둘째는 실제로 확인한 글자별 줄바꿈을 해결해. 예: “1 적용, 2 적용”.</p>
+    <p>두 제안 모두 아직 앱에는 적용하지 않았다. <a href="RESERVATION-COPY.md">현재 소스·이유·적용 경계</a>.</p>
+  </section>
+  <footer><a href="PLAN.md">현재 단계와 다음 작업</a> · <a href="index.html">누적 DS</a></footer>
+</main>
+</body>
+</html>

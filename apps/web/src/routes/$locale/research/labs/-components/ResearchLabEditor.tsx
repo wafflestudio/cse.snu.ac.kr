@@ -85,6 +85,7 @@ export default function ResearchLabEditor({
           onCancel={onCancel}
           onSubmit={handleSubmit(onSubmit)}
           onDelete={onDelete}
+          deleteDescription="이 연구실을 삭제할까요?"
         />
       </Form>
     </FormProvider>

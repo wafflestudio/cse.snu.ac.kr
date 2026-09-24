@@ -41,7 +41,7 @@ export default function CourseEditor({
     '영어 교과목 설명을 입력해 주세요.':
       'Please enter the English course description.',
     취소: 'Cancel',
-    확인: 'Confirm',
+    '변경사항 저장': 'Save changes',
     영문: 'English',
   });
   const router = useRouter();
@@ -180,7 +180,7 @@ export default function CourseEditor({
           {t('취소')}
         </Button>
         <Button variant="neutral" onClick={handleSubmit(onSubmit)}>
-          {t('확인')}
+          {t('변경사항 저장')}
         </Button>
       </div>
     </FormProvider>

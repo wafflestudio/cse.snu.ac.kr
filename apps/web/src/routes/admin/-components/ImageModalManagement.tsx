@@ -130,8 +130,10 @@ export default function ImageModalManagement({
 
         <Form.Action
           onCancel={onCancel}
+          cancelConfirmText="되돌리기"
           onSubmit={onSubmit}
           onDelete={isEditing ? onDelete : undefined}
+          deleteDescription="이 이미지 안내를 삭제할까요?"
           submitLabel={isEditing ? '저장하기' : '등록하기'}
           pendingLabel={isEditing ? '저장 중…' : '등록 중…'}
         />

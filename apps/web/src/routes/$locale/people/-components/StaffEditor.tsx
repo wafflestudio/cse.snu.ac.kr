@@ -110,6 +110,7 @@ export default function StaffEditor({
           onCancel={onCancel}
           onSubmit={handleSubmit(onSubmit)}
           onDelete={onDelete}
+          deleteDescription="이 행정직원 정보를 삭제할까요?"
         />
       </Form>
     </FormProvider>

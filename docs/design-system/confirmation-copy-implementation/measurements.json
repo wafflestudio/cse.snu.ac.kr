@@ -1,0 +1,27 @@
+{
+  "records": [
+    {
+      "locale": "ko",
+      "keepEdits": true,
+      "cancelDelete": true,
+      "leave": true
+    },
+    {
+      "locale": "en",
+      "keepEdits": true,
+      "cancelDelete": true,
+      "leave": true
+    }
+  ],
+  "staffDeleteCancelled": true,
+  "adminResetInPlace": true,
+  "note": "Actual production build. Notice KO/EN at1200, staff delete wording and admin same-page reset KO. Only temporary notice fixtures created/deleted. No focus or keyboard audit; original callbacks retained.",
+  "regression": [
+    "교과목 추가·편집·삭제",
+    "이미지 팝업 등록·수정·삭제",
+    "명예교수 추가·편집·삭제",
+    "교수 추가·편집·삭제",
+    "행정직원 추가·편집·삭제",
+    "연구실 추가·편집·삭제"
+  ]
+}

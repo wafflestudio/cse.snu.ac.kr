@@ -11,6 +11,8 @@ interface Props {
   onSubmit: () => Promise<void>;
   submitLabel?: string;
   pendingLabel?: string;
+  cancelConfirmText?: string;
+  deleteDescription?: string;
 }
 
 export default function Action({
@@ -19,6 +21,8 @@ export default function Action({
   onSubmit,
   submitLabel = '저장하기',
   pendingLabel = '저장 중…',
+  cancelConfirmText = '나가기',
+  deleteDescription = '이 항목을 삭제할까요?',
 }: Props) {
   const { t, tUnsafe } = useLanguage({
     취소: 'Cancel',
@@ -30,6 +34,18 @@ export default function Action({
     '저장 중…': 'Saving…',
     '게시 중…': 'Publishing…',
     '등록 중…': 'Adding…',
+    '저장하지 않은 변경사항을 버릴까요?': 'Discard unsaved changes?',
+    '계속 편집': 'Keep editing',
+    나가기: 'Leave',
+    되돌리기: 'Revert',
+    '이 항목을 삭제할까요?': 'Delete this item?',
+    '이 공지사항을 삭제할까요?': 'Delete this notice?',
+    '이 새 소식을 삭제할까요?': 'Delete this news post?',
+    '이 세미나를 삭제할까요?': 'Delete this seminar?',
+    '이 교수 정보를 삭제할까요?': 'Delete this faculty profile?',
+    '이 행정직원 정보를 삭제할까요?': 'Delete this staff profile?',
+    '이 연구실을 삭제할까요?': 'Delete this lab?',
+    '이 이미지 안내를 삭제할까요?': 'Delete this image notice?',
   });
   const {
     formState: { isSubmitting, isDirty },
@@ -90,7 +106,9 @@ export default function Action({
       <AlertDialog
         open={showCancelDialog}
         onOpenChange={setShowCancelDialog}
-        description="편집중인 내용이 사라집니다."
+        description={t('저장하지 않은 변경사항을 버릴까요?')}
+        cancelText={t('계속 편집')}
+        confirmText={tUnsafe(cancelConfirmText)}
         onConfirm={() => {
           onCancel();
           setShowCancelDialog(false);
@@ -101,7 +119,8 @@ export default function Action({
         <AlertDialog
           open={showDeleteDialog}
           onOpenChange={setShowDeleteDialog}
-          description="게시물을 삭제하시겠습니까?"
+          description={tUnsafe(deleteDescription)}
+          confirmText={t('삭제')}
           onConfirm={async () => {
             await onDelete();
             setShowDeleteDialog(false);

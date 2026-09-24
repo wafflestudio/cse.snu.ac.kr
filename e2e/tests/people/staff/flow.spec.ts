@@ -126,7 +126,7 @@ test.describe('행정직원 - 추가/편집/삭제 플로우', () => {
     await page.waitForURL(/\/people\/staff\/\d+\/edit/);
     await deleteItem(
       page,
-      '확인',
+      '삭제',
       page.getByRole('button', { name: '삭제' }).last(),
     );
     await expect(page.getByText('행정직원을 삭제했습니다.')).toBeVisible();

@@ -123,9 +123,12 @@ test.describe('관리자 기능 - 종단 검증', () => {
     await page.getByRole('button', { name: '저장하기' }).click();
     await expect(page.getByText('이미지 팝업을 수정했습니다.')).toBeVisible();
 
-    // 삭제 (Form.Action 삭제 → 확인). 이미지 뷰어의 '삭제'와 구분되도록 last.
+    // 삭제 (Form.Action 삭제 → 삭제 확인창). 이미지 뷰어의 '삭제'와 구분되도록 last.
     await page.getByRole('button', { name: '삭제' }).last().click();
-    await page.getByRole('button', { name: '확인' }).last().click();
+    await page
+      .getByRole('alertdialog')
+      .getByRole('button', { name: '삭제', exact: true })
+      .click();
     await expect(page.getByText('이미지 팝업을 삭제했습니다.')).toBeVisible();
   });
 });

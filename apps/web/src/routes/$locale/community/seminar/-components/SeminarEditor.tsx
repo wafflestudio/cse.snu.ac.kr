@@ -191,6 +191,7 @@ export default function SeminarEditor({
           onCancel={onCancel}
           onSubmit={handleSubmit(onSubmit)}
           onDelete={onDelete}
+          deleteDescription="이 세미나를 삭제할까요?"
         />
       </Form>
     </FormProvider>

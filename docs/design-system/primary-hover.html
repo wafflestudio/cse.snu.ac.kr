@@ -14,32 +14,28 @@
   <header>
     <span class="meta">CSE · 4단계 컴포넌트·상태</span>
     <h1>주황 버튼의 포인터 반응</h1>
-    <span class="badge">PH-Q1 · 제안 · 앱 미적용</span>
+    <span class="badge">DS-037 · 적용·대표 확인</span>
   </header>
-  <nav><a href="index.html">현재 DS 전체</a><a href="#rule">유지할 기준</a><a href="#compare">두 화면 비교</a><a href="#answer">답할 사항</a><a href="PLAN.md">진행 계획</a></nav>
+  <nav><a href="index.html">현재 DS 전체</a><a href="#rule">유지할 기준</a><a href="#compare">두 화면 비교</a><a href="#answer">적용 결과</a><a href="PLAN.md">진행 계획</a></nav>
   <section id="rule">
     <h2>기본 주황과 흰 글씨는 유지</h2>
-    <p>기본 <strong>#ff6914 + 흰 글씨</strong>는 이미 정한 그대로다. 버튼 크기·문구·모서리도 유지한다. 이번 비교는 <strong>포인터를 올렸을 때의 바탕색</strong> 하나다.</p>
-    <p><strong>현재:</strong> 공용 주황 버튼에는 호버 배경색이 없어, 포인터를 올려도 기본색과 같다. <strong>추천:</strong> 기존 주황 태그의 호버에 쓰는 <span class="values">main-orange-dark · #e65817</span>을 연결한다. 포인터가 떠나면 기존 주황으로 돌아온다.</p>
-    <div class="swatches"><div class="swatch"><span class="chip" style="background:#ff6914" aria-hidden="true"></span><span>기본 유지 · #ff6914</span></div><div class="swatch"><span class="chip" style="background:#e65817" aria-hidden="true"></span><span>호버 제안 · #e65817</span></div></div>
+    <p>기본 <strong>#ff6914 + 흰 글씨</strong>는 이미 정한 그대로다. 버튼 크기·문구·모서리도 유지한다. 이번 변경은 <strong>포인터를 올렸을 때의 바탕색</strong> 하나다.</p>
+    <p><strong>변경 전:</strong> 기존 공용 주황 버튼에는 호버 배경색이 없어, 포인터를 올려도 기본색과 같다. <strong>적용:</strong> 기존 주황 태그의 호버에 쓰는 <span class="values">main-orange-dark · #e65817</span>을 연결한다. 포인터가 떠나면 기존 주황으로 돌아온다.</p>
+    <div class="swatches"><div class="swatch"><span class="chip" style="background:#ff6914" aria-hidden="true"></span><span>기본 유지 · #ff6914</span></div><div class="swatch"><span class="chip" style="background:#e65817" aria-hidden="true"></span><span>호버 적용 · #e65817</span></div></div>
     <p class="note">새 색을 추가하지 않고 기존 주황 바탕의 호버 패턴을 재사용한다. DS-014의 주요 실행 중립색 결정은 코드 이름이 primary인 이 버튼들의 기본색을 바꾸라는 뜻이 아니다.</p>
   </section>
   <section id="compare">
     <h2>밝은 공지 목록과 어두운 오류 화면</h2>
-    <p>각 화면의 현재 모습과 호버 제안을 비교한다. 현재 버튼은 기본·호버 배경색이 같다. 아래 제안은 앱 적용 전 비교용이다.</p>
+    <p>실제 앱의 기본·호버 상태를 비교한다. 두 사용처에서 기본색·크기를 유지하고 포인터 호버에서만 진해지는 것을 확인했다.</p>
     <div class="grid">
-      <div class="panel"><h3>공지 목록 · 현재</h3><img class="capture" src="primary-hover-comparison/notice-before.png" alt="기본과 호버 모두 기존 주황인 공지 목록 편집 버튼"></div>
-      <div class="panel"><h3>공지 목록 · 호버 제안</h3><img class="capture" src="primary-hover-comparison/notice-hover-proposal.png" alt="기존 진한 주황을 호버에 연결한 공지 목록 편집 버튼 제안"></div>
-      <div class="panel"><h3>오류 화면 · 현재</h3><img class="capture" src="primary-hover-comparison/error-before.png" alt="어두운 오류 화면의 기존 주황 행동 버튼"></div>
-      <div class="panel"><h3>오류 화면 · 호버 제안</h3><img class="capture" src="primary-hover-comparison/error-hover-proposal.png" alt="어두운 오류 화면에서 기존 진한 주황을 호버에 연결한 버튼 제안"></div>
+      <div class="panel"><h3>공지 목록 · 기본</h3><img class="capture" src="primary-hover-implementation/notice-default.png" alt="기존 주황 기본색을 유지하는 공지 목록 편집 버튼"></div>
+      <div class="panel"><h3>공지 목록 · 호버 적용</h3><img class="capture" src="primary-hover-implementation/notice-hover.png" alt="기존 진한 주황을 호버에 연결한 공지 목록 편집 버튼 실제 적용"></div>
+      <div class="panel"><h3>오류 화면 · 기본</h3><img class="capture" src="primary-hover-implementation/error-default.png" alt="어두운 오류 화면의 기존 주황 행동 버튼"></div>
+      <div class="panel"><h3>오류 화면 · 호버 적용</h3><img class="capture" src="primary-hover-implementation/error-hover.png" alt="어두운 오류 화면에서 기존 진한 주황을 호버에 연결한 버튼 실제 적용"></div>
     </div>
-    <p class="meta">이미지는 원본 크기를 넘겨 확대하지 않는다. 글자·기본색·크기·동작은 그대로이며, ImageModal의 별도 주황 버튼은 이 제안에 포함하지 않는다.</p>
+    <p class="meta">이미지는 원본 크기를 넘겨 확대하지 않는다. 글자·기본색·크기·동작은 그대로이며, ImageModal의 별도 주황 버튼은 이번 변경에 포함하지 않는다.</p>
   </section>
-  <section id="answer">
-    <h2>호버에 기존 진한 주황을 연결할까?</h2>
-    <p><strong>적용을 추천해.</strong> 기본 인상을 유지하면서 버튼의 포인터 반응을 보여줄 수 있어. 예: “적용”.</p>
-    <p>아직 앱에는 적용하지 않았다. 승인 후 두 사용처의 기본·호버·이탈과 크기 보존을 확인한다. <a href="PRIMARY-HOVER.md">이유·소스·적용 범위</a>.</p>
-  </section>
+  <section id="answer"><h2>DS-037 적용 완료</h2><p>사용자 승인대로 적용했다. 새 프로덕션 빌드의 공지 목록·404 화면에서 기본·호버·이탈과 크기·흰 글씨 유지를 확인했다. <a href="primary-hover-implementation/measurements.json">측정 기록</a>.</p><p>다음은 기존 DS-005의 확인창·행동 문구 연결이다. 접근성 후속은 마지막에 진행한다. <a href="PRIMARY-HOVER.md">이유·범위</a>.</p></section>
   <footer><a href="index.html">누적 DS</a> · <a href="PLAN.md">현재 단계와 다음 작업</a></footer>
 </main>
 </body>

@@ -45,7 +45,7 @@ test.describe('교과목 - 추가/편집/삭제 플로우', () => {
     await page.getByRole('button', { name: koName }).click();
     await page.getByRole('button', { name: '편집' }).click();
     await fillTextInput(page, 'ko.name', koNameEdited);
-    await page.getByRole('button', { name: '확인' }).click();
+    await page.getByRole('button', { name: '변경사항 저장' }).click();
     await expect(page.getByText('교과목을 수정했습니다.')).toBeVisible();
     // 모달 뷰어에 수정된 이름 반영
     await expect(
