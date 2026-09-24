@@ -1,0 +1,234 @@
+[
+  {
+    "locale": "ko",
+    "width": 320,
+    "variant": "original",
+    "viewport": 320,
+    "scrollWidth": 412,
+    "title": {
+      "x": 20,
+      "y": 140,
+      "width": 292.40625,
+      "height": 28.796875,
+      "top": 140,
+      "right": 312.40625,
+      "bottom": 168.796875,
+      "left": 20
+    },
+    "fontSize": "24px"
+  },
+  {
+    "locale": "ko",
+    "width": 320,
+    "variant": "A",
+    "viewport": 320,
+    "scrollWidth": 320,
+    "title": {
+      "x": 20,
+      "y": 140,
+      "width": 180,
+      "height": 57.59375,
+      "top": 140,
+      "right": 200,
+      "bottom": 197.59375,
+      "left": 20
+    },
+    "fontSize": "24px"
+  },
+  {
+    "locale": "ko",
+    "width": 390,
+    "variant": "original",
+    "viewport": 390,
+    "scrollWidth": 412,
+    "title": {
+      "x": 20,
+      "y": 140,
+      "width": 292.40625,
+      "height": 28.796875,
+      "top": 140,
+      "right": 312.40625,
+      "bottom": 168.796875,
+      "left": 20
+    },
+    "fontSize": "24px"
+  },
+  {
+    "locale": "ko",
+    "width": 390,
+    "variant": "A",
+    "viewport": 390,
+    "scrollWidth": 390,
+    "title": {
+      "x": 20,
+      "y": 140,
+      "width": 250,
+      "height": 57.59375,
+      "top": 140,
+      "right": 270,
+      "bottom": 197.59375,
+      "left": 20
+    },
+    "fontSize": "24px"
+  },
+  {
+    "locale": "ko",
+    "width": 1280,
+    "variant": "original",
+    "viewport": 1280,
+    "scrollWidth": 1280,
+    "title": {
+      "x": 200,
+      "y": 219.65625,
+      "width": 390.203125,
+      "height": 38.390625,
+      "top": 219.65625,
+      "right": 590.203125,
+      "bottom": 258.046875,
+      "left": 200
+    },
+    "fontSize": "32px"
+  },
+  {
+    "locale": "ko",
+    "width": 1280,
+    "variant": "A",
+    "viewport": 1280,
+    "scrollWidth": 1280,
+    "title": {
+      "x": 200,
+      "y": 219.65625,
+      "width": 390.203125,
+      "height": 38.390625,
+      "top": 219.65625,
+      "right": 590.203125,
+      "bottom": 258.046875,
+      "left": 200
+    },
+    "fontSize": "32px"
+  },
+  {
+    "locale": "en",
+    "width": 320,
+    "variant": "original",
+    "viewport": 320,
+    "scrollWidth": 412,
+    "title": {
+      "x": 20,
+      "y": 140,
+      "width": 292.40625,
+      "height": 28.796875,
+      "top": 140,
+      "right": 312.40625,
+      "bottom": 168.796875,
+      "left": 20
+    },
+    "fontSize": "24px"
+  },
+  {
+    "locale": "en",
+    "width": 320,
+    "variant": "A",
+    "viewport": 320,
+    "scrollWidth": 320,
+    "title": {
+      "x": 20,
+      "y": 140,
+      "width": 180,
+      "height": 57.59375,
+      "top": 140,
+      "right": 200,
+      "bottom": 197.59375,
+      "left": 20
+    },
+    "fontSize": "24px"
+  },
+  {
+    "locale": "en",
+    "width": 390,
+    "variant": "original",
+    "viewport": 390,
+    "scrollWidth": 412,
+    "title": {
+      "x": 20,
+      "y": 140,
+      "width": 292.40625,
+      "height": 28.796875,
+      "top": 140,
+      "right": 312.40625,
+      "bottom": 168.796875,
+      "left": 20
+    },
+    "fontSize": "24px"
+  },
+  {
+    "locale": "en",
+    "width": 390,
+    "variant": "A",
+    "viewport": 390,
+    "scrollWidth": 390,
+    "title": {
+      "x": 20,
+      "y": 140,
+      "width": 250,
+      "height": 57.59375,
+      "top": 140,
+      "right": 270,
+      "bottom": 197.59375,
+      "left": 20
+    },
+    "fontSize": "24px"
+  },
+  {
+    "locale": "en",
+    "width": 1280,
+    "variant": "original",
+    "viewport": 1280,
+    "scrollWidth": 1280,
+    "title": {
+      "x": 200,
+      "y": 219.65625,
+      "width": 390.203125,
+      "height": 38.390625,
+      "top": 219.65625,
+      "right": 590.203125,
+      "bottom": 258.046875,
+      "left": 200
+    },
+    "fontSize": "32px"
+  },
+  {
+    "locale": "en",
+    "width": 1280,
+    "variant": "A",
+    "viewport": 1280,
+    "scrollWidth": 1280,
+    "title": {
+      "x": 200,
+      "y": 219.65625,
+      "width": 390.203125,
+      "height": 38.390625,
+      "top": 219.65625,
+      "right": 590.203125,
+      "bottom": 258.046875,
+      "left": 200
+    },
+    "fontSize": "32px"
+  },
+  {
+    "kind": "existing-table-scroll",
+    "viewport": 320,
+    "width": 280,
+    "scrollWidth": 696,
+    "overflow": "scroll",
+    "scrollLeft": 416
+  },
+  {
+    "kind": "existing-table-scroll",
+    "viewport": 390,
+    "width": 350,
+    "scrollWidth": 696,
+    "overflow": "scroll",
+    "scrollLeft": 346
+  }
+]

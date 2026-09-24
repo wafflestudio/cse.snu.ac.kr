@@ -1,0 +1,32 @@
+{
+  "read": {
+    "startTime": "2026-09-24T07:06:37.269Z",
+    "duration": 155533.774,
+    "expected": 68,
+    "skipped": 0,
+    "unexpected": 71,
+    "flaky": 1
+  },
+  "flow_language_security": {
+    "startTime": "2026-09-24T07:18:11.426Z",
+    "duration": 133377.701,
+    "expected": 79,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "isolated_lists": {
+    "startTime": "2026-09-24T07:14:35.209Z",
+    "duration": 4945.876,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "notes": [
+    "Pinned Playwright 1.57, current production build, local real API. Official projects/specs; server command reuses cached build.",
+    "First read and flow/language/security runs each used official local reset/seed. Isolated lists reused the read dataset after supplementary captures, 1 worker/no retries.",
+    "No snapshot baselines updated. Existing and mixed count-mask differences are withheld from approved DS candidates.",
+    "No application source changed after 46103260 for title comparison; DOM prototype only."
+  ]
+}

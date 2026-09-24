@@ -1,0 +1,939 @@
+{
+  "candidates": [
+    {
+      "id": "ca489f609a88b7dc440f-de1568a5c983853893ab",
+      "file": "e2e/tests/10-10-project/read.spec.ts-snapshots/10-10-proposal-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: 기존 h2/strong 강조가 등록된 서체로 표현됨. 동일 HTML, 줄바꿈으로 높이 56px; 이동량 보정 후 푸터 하단 픽셀 동일",
+      "dimensions": {
+        "expected": [1280, 2692],
+        "actual": [1280, 2748]
+      },
+      "redDiffBounds": [0, 360, 1220, 2748],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "ca489f609a88b7dc440f-212f1f4ec02b8966371b",
+      "file": "e2e/tests/10-10-project/read.spec.ts-snapshots/10-10-manager-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: 동일 HTML의 제목/strong 강조 및 글리프. 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 1286],
+        "actual": [1280, 1286]
+      },
+      "redDiffBounds": [201, 372, 808, 760],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "ca489f609a88b7dc440f-2a3c2f6fc221d9a2ae69",
+      "file": "e2e/tests/10-10-project/read.spec.ts-snapshots/10-10-participants-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: 동일 HTML의 제목/strong 강조 및 글리프. 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 2390],
+        "actual": [1280, 2390]
+      },
+      "redDiffBounds": [201, 372, 466, 1865],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "ca489f609a88b7dc440f-9ef2d778aea8ef230a58",
+      "file": "e2e/tests/10-10-project/read.spec.ts-snapshots/10-10-proposal-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: 기존 h2/strong 강조가 등록된 서체로 표현됨. 동일 HTML, 줄바꿈으로 높이 112px; 이동량 보정 후 푸터 하단 픽셀 동일",
+      "dimensions": {
+        "expected": [390, 3786],
+        "actual": [390, 3898]
+      },
+      "redDiffBounds": [20, 235, 370, 3867],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "ca489f609a88b7dc440f-4719fb4ab83e77804fbd",
+      "file": "e2e/tests/10-10-project/read.spec.ts-snapshots/10-10-manager-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: 동일 HTML의 제목/strong 강조 및 글리프. 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 1343],
+        "actual": [390, 1343]
+      },
+      "redDiffBounds": [21, 247, 368, 691],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "d0894e21ee599a5ba7cb-679fce673219ef90dcde",
+      "file": "e2e/tests/about/contact/read.spec.ts-snapshots/contact-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 900],
+        "actual": [1280, 900]
+      },
+      "redDiffBounds": [201, 361, 319, 373],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "d0894e21ee599a5ba7cb-472caaf3fb5181105523",
+      "file": "e2e/tests/about/contact/read.spec.ts-snapshots/contact-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 883],
+        "actual": [390, 883]
+      },
+      "redDiffBounds": [21, 233, 139, 245],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "172b70777a24294d9211-584b6ae2863846b42f17",
+      "file": "e2e/tests/about/directions/read.spec.ts-snapshots/directions-ko-read-linux.png",
+      "rules": ["DS-006", "DS-011"],
+      "reason": "HTML 본문 글리프 + 정보/기업 링크 밑줄. 표/탭/페이지 틀 유지",
+      "dimensions": {
+        "expected": [1280, 1563],
+        "actual": [1280, 1563]
+      },
+      "redDiffBounds": [212, 430, 476, 1036],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "172b70777a24294d9211-4f5d0badf0f251b80a97",
+      "file": "e2e/tests/about/directions/read.spec.ts-snapshots/directions-ko-read-mobile-linux.png",
+      "rules": ["DS-006", "DS-011"],
+      "reason": "HTML 본문 글리프 + 정보/기업 링크 밑줄. 표/탭/페이지 틀 유지",
+      "dimensions": {
+        "expected": [390, 1552],
+        "actual": [390, 1552]
+      },
+      "redDiffBounds": [32, 330, 296, 898],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "43412d4c40db5c230946-e4736dd3ad4c4dc1b222",
+      "file": "e2e/tests/about/facilities/read.spec.ts-snapshots/facilities-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 1275],
+        "actual": [1280, 1275]
+      },
+      "redDiffBounds": [201, 393, 304, 622],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "43412d4c40db5c230946-6e581884c37675cfa6a7",
+      "file": "e2e/tests/about/facilities/read.spec.ts-snapshots/facilities-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 1494],
+        "actual": [390, 1494]
+      },
+      "redDiffBounds": [21, 461, 124, 800],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "3292cd03ba6ea3991f96-9d6634ba3cf04f148c91",
+      "file": "e2e/tests/about/future-careers/read.spec.ts-snapshots/future-careers-ko-read-linux.png",
+      "rules": ["DS-006", "DS-011"],
+      "reason": "HTML 본문 글리프 + 정보/기업 링크 밑줄. 표/탭/페이지 틀 유지",
+      "dimensions": {
+        "expected": [1280, 1400],
+        "actual": [1280, 1400]
+      },
+      "redDiffBounds": [202, 361, 670, 876],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "3292cd03ba6ea3991f96-9ddb9eafe9986838dbcd",
+      "file": "e2e/tests/about/future-careers/read.spec.ts-snapshots/future-careers-ko-read-mobile-linux.png",
+      "rules": ["DS-006", "DS-011"],
+      "reason": "HTML 본문 글리프 + 정보/기업 링크 밑줄. 표/탭/페이지 틀 유지",
+      "dimensions": {
+        "expected": [390, 1429],
+        "actual": [390, 1429]
+      },
+      "redDiffBounds": [22, 233, 252, 783],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "ef64264779518847e656-02cc318957eef67af5b3",
+      "file": "e2e/tests/about/greetings/read.spec.ts-snapshots/greetings-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 900],
+        "actual": [1280, 900]
+      },
+      "redDiffBounds": [200, 361, 333, 373],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "ef64264779518847e656-a9d2f5fcf7cd3f3657de",
+      "file": "e2e/tests/about/greetings/read.spec.ts-snapshots/greetings-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 883],
+        "actual": [390, 883]
+      },
+      "redDiffBounds": [20, 233, 153, 245],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "5b502c4bc2ab9808a99d-3d4f95dd7a9a73a93b46",
+      "file": "e2e/tests/about/history/read.spec.ts-snapshots/history-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 900],
+        "actual": [1280, 900]
+      },
+      "redDiffBounds": [200, 361, 305, 374],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "5b502c4bc2ab9808a99d-384f7da6d6929a97fb02",
+      "file": "e2e/tests/about/history/read.spec.ts-snapshots/history-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 883],
+        "actual": [390, 883]
+      },
+      "redDiffBounds": [20, 233, 125, 246],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "b129d27d0983b2f488f7-9ed8daf2357d31caaf8f",
+      "file": "e2e/tests/about/overview/read.spec.ts-snapshots/overview-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 1432],
+        "actual": [1280, 1432]
+      },
+      "redDiffBounds": [200, 361, 388, 432],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "b129d27d0983b2f488f7-639c1a2aa42c620fa2cf",
+      "file": "e2e/tests/about/overview/read.spec.ts-snapshots/overview-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 1802],
+        "actual": [390, 1802]
+      },
+      "redDiffBounds": [20, 233, 208, 304],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "2d2d12cde06933f97afd-f61c0f61c8e6f907f3bf",
+      "file": "e2e/tests/about/student-clubs/read.spec.ts-snapshots/student-clubs-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 1056],
+        "actual": [1280, 1056]
+      },
+      "redDiffBounds": [201, 517, 332, 530],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "2d2d12cde06933f97afd-452a8f56dea073efebad",
+      "file": "e2e/tests/about/student-clubs/read.spec.ts-snapshots/student-clubs-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 1027],
+        "actual": [390, 1027]
+      },
+      "redDiffBounds": [21, 361, 152, 374],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "edd45f75cc085bd4f447-6e2e5bb0b1e10c4da5d5",
+      "file": "e2e/tests/academics/course-changes/read.spec.ts-snapshots/course-changes-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 1090],
+        "actual": [1280, 1090]
+      },
+      "redDiffBounds": [221, 510, 409, 522],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "edd45f75cc085bd4f447-7f8e2eac77733d582905",
+      "file": "e2e/tests/academics/course-changes/read.spec.ts-snapshots/course-changes-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 1088],
+        "actual": [390, 1088]
+      },
+      "redDiffBounds": [41, 382, 229, 394],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "7287b4e6fe5f79f851db-2851362642466e4eae59",
+      "file": "e2e/tests/academics/curriculum/read.spec.ts-snapshots/curriculum-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 1090],
+        "actual": [1280, 1090]
+      },
+      "redDiffBounds": [221, 510, 395, 522],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "7287b4e6fe5f79f851db-d0705cd904a6635b53f0",
+      "file": "e2e/tests/academics/curriculum/read.spec.ts-snapshots/curriculum-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 1088],
+        "actual": [390, 1088]
+      },
+      "redDiffBounds": [41, 382, 215, 394],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "f12c4151a4482552fbe7-e240c436876f7c251395",
+      "file": "e2e/tests/academics/degree-requirements/read.spec.ts-snapshots/degree-requirements-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 992],
+        "actual": [1280, 992]
+      },
+      "redDiffBounds": [202, 452, 337, 464],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "f12c4151a4482552fbe7-e24f2fc4d230871fbfae",
+      "file": "e2e/tests/academics/degree-requirements/read.spec.ts-snapshots/degree-requirements-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 991],
+        "actual": [390, 991]
+      },
+      "redDiffBounds": [22, 325, 157, 337],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "4a00cb22d4cf7e65dfcb-b3a1b71fd5f09fe0d458",
+      "file": "e2e/tests/academics/general-studies-requirements/read.spec.ts-snapshots/general-studies-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 1226],
+        "actual": [1280, 1226]
+      },
+      "redDiffBounds": [221, 646, 395, 658],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "4a00cb22d4cf7e65dfcb-138700573431d860110d",
+      "file": "e2e/tests/academics/general-studies-requirements/read.spec.ts-snapshots/general-studies-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 1280],
+        "actual": [390, 1280]
+      },
+      "redDiffBounds": [41, 574, 215, 586],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "4c651ea403be2dec0a61-96a86ab4b47c42dd863c",
+      "file": "e2e/tests/academics/guide/read.spec.ts-snapshots/guide-undergraduate-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 900],
+        "actual": [1280, 900]
+      },
+      "redDiffBounds": [200, 361, 337, 373],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "4c651ea403be2dec0a61-abda26ce73e81354bbca",
+      "file": "e2e/tests/academics/guide/read.spec.ts-snapshots/guide-graduate-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 900],
+        "actual": [1280, 900]
+      },
+      "redDiffBounds": [201, 361, 351, 373],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "4c651ea403be2dec0a61-b480aa8b9832c49220c8",
+      "file": "e2e/tests/academics/guide/read.spec.ts-snapshots/guide-undergraduate-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 899],
+        "actual": [390, 899]
+      },
+      "redDiffBounds": [20, 233, 157, 245],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "4c651ea403be2dec0a61-826ed273b6709f394fde",
+      "file": "e2e/tests/academics/guide/read.spec.ts-snapshots/guide-graduate-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 899],
+        "actual": [390, 899]
+      },
+      "redDiffBounds": [21, 233, 171, 245],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "6719728a4785fe30ff42-7719e329bc02d69d05b9",
+      "file": "e2e/tests/academics/scholarship/read.spec.ts-snapshots/scholarship-list-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 1038],
+        "actual": [1280, 1038]
+      },
+      "redDiffBounds": [201, 361, 337, 373],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "6719728a4785fe30ff42-039cd3531746b9f07d85",
+      "file": "e2e/tests/academics/scholarship/read.spec.ts-snapshots/scholarship-detail-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 900],
+        "actual": [1280, 900]
+      },
+      "redDiffBounds": [201, 361, 397, 374],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "6719728a4785fe30ff42-ae9e6cfc4976fe47715b",
+      "file": "e2e/tests/academics/scholarship/read.spec.ts-snapshots/scholarship-list-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 1037],
+        "actual": [390, 1037]
+      },
+      "redDiffBounds": [21, 233, 157, 245],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "6719728a4785fe30ff42-b5cb32adac0e4604f9fd",
+      "file": "e2e/tests/academics/scholarship/read.spec.ts-snapshots/scholarship-detail-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 899],
+        "actual": [390, 899]
+      },
+      "redDiffBounds": [21, 233, 217, 246],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "3e8b340f13940ee98ba3-3e4a76a6784869a667fb",
+      "file": "e2e/tests/admissions/read.spec.ts-snapshots/admissions-undergraduate-regular-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 900],
+        "actual": [1280, 900]
+      },
+      "redDiffBounds": [200, 361, 369, 373],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "3e8b340f13940ee98ba3-2be71539ef2a361008c4",
+      "file": "e2e/tests/admissions/read.spec.ts-snapshots/admissions-international-scholarships-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 970],
+        "actual": [1280, 970]
+      },
+      "redDiffBounds": [201, 361, 351, 373],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "3e8b340f13940ee98ba3-aced18d82c75bdee2892",
+      "file": "e2e/tests/admissions/read.spec.ts-snapshots/admissions-undergraduate-regular-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 899],
+        "actual": [390, 899]
+      },
+      "redDiffBounds": [20, 233, 189, 245],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "3e8b340f13940ee98ba3-63ded72ab12e60618088",
+      "file": "e2e/tests/admissions/read.spec.ts-snapshots/admissions-international-scholarships-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 899],
+        "actual": [390, 899]
+      },
+      "redDiffBounds": [21, 233, 171, 245],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "53867d4992444b5e93a3-852e6500dbbd01361692",
+      "file": "e2e/tests/community/faculty-recruitment/read.spec.ts-snapshots/recruit-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 976],
+        "actual": [1280, 976]
+      },
+      "redDiffBounds": [202, 437, 365, 449],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "53867d4992444b5e93a3-daec23a2a006eb952fec",
+      "file": "e2e/tests/community/faculty-recruitment/read.spec.ts-snapshots/recruit-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 975],
+        "actual": [390, 975]
+      },
+      "redDiffBounds": [22, 309, 185, 321],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "9788be5623f002cb4d39-114fa49aa32ab7a27e1f",
+      "file": "e2e/tests/community/news/read.spec.ts-snapshots/news-detail-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 1353],
+        "actual": [390, 1353]
+      },
+      "redDiffBounds": [21, 373, 125, 386],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "2d4000f4b4263488ec54-6ca61499f93a199ab24f",
+      "file": "e2e/tests/community/notice/read.spec.ts-snapshots/notice-detail-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 1392],
+        "actual": [390, 1392]
+      },
+      "redDiffBounds": [20, 388, 157, 400],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "fecab5cb95b1120b1947-7f57bc7afa6e4154edae",
+      "file": "e2e/tests/community/seminar/read.spec.ts-snapshots/seminar-detail-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 1563],
+        "actual": [1280, 1563]
+      },
+      "redDiffBounds": [201, 713, 319, 823],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "fecab5cb95b1120b1947-c4dec63213e4dd88ea77",
+      "file": "e2e/tests/community/seminar/read.spec.ts-snapshots/seminar-detail-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 1664],
+        "actual": [390, 1664]
+      },
+      "redDiffBounds": [21, 601, 139, 711],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "0665b30ec9f804941eb5-f14c06303b4f59a913da",
+      "file": "e2e/tests/internal/read.spec.ts-snapshots/internal-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 894],
+        "actual": [1280, 894]
+      },
+      "redDiffBounds": [200, 354, 393, 366],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "0665b30ec9f804941eb5-54ae66d8b4713dfde661",
+      "file": "e2e/tests/internal/read.spec.ts-snapshots/internal-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 895],
+        "actual": [390, 895]
+      },
+      "redDiffBounds": [20, 229, 213, 241],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "77a28123d01ec4615b17-e6ca595e30179d7cd3fe",
+      "file": "e2e/tests/people/emeritus-faculty/read.spec.ts-snapshots/emeritus-detail-ko-read-linux.png",
+      "rules": ["DS-011"],
+      "reason": "이메일 정보 링크 밑줄 1px. 본문/배치 변경 없음",
+      "dimensions": {
+        "expected": [1280, 1028],
+        "actual": [1280, 1028]
+      },
+      "redDiffBounds": [382, 404, 499, 405],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "77a28123d01ec4615b17-c29400dfb79bdab81030",
+      "file": "e2e/tests/people/emeritus-faculty/read.spec.ts-snapshots/emeritus-detail-ko-read-mobile-linux.png",
+      "rules": ["DS-011"],
+      "reason": "이메일 정보 링크 밑줄 1px. 본문/배치 변경 없음",
+      "dimensions": {
+        "expected": [390, 1111],
+        "actual": [390, 1111]
+      },
+      "redDiffBounds": [82, 360, 199, 361],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "bd3bc4f90236582c834b-14ee8d758560fed98040",
+      "file": "e2e/tests/people/staff/read.spec.ts-snapshots/staff-detail-ko-read-linux.png",
+      "rules": ["DS-011"],
+      "reason": "이메일 정보 링크 밑줄 1px. 본문/배치 변경 없음",
+      "dimensions": {
+        "expected": [1280, 1210],
+        "actual": [1280, 1210]
+      },
+      "redDiffBounds": [382, 456, 472, 457],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "bd3bc4f90236582c834b-bdb2337c80b5192365c5",
+      "file": "e2e/tests/people/staff/read.spec.ts-snapshots/staff-detail-ko-read-mobile-linux.png",
+      "rules": ["DS-011"],
+      "reason": "이메일 정보 링크 밑줄 1px. 본문/배치 변경 없음",
+      "dimensions": {
+        "expected": [390, 1293],
+        "actual": [390, 1293]
+      },
+      "redDiffBounds": [82, 412, 172, 413],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "a9bbca8f4aeedd1567d6-5fc20cb79f0bf9fe8b92",
+      "file": "e2e/tests/research/centers/read.spec.ts-snapshots/centers-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 1006],
+        "actual": [1280, 1006]
+      },
+      "redDiffBounds": [212, 517, 356, 529],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "a9bbca8f4aeedd1567d6-209cb9a3952e4143e327",
+      "file": "e2e/tests/research/centers/read.spec.ts-snapshots/centers-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 999],
+        "actual": [390, 999]
+      },
+      "redDiffBounds": [32, 361, 176, 373],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "9c8189db2bf7cc74379c-472c1089b4cb9a47c7f0",
+      "file": "e2e/tests/research/groups/read.spec.ts-snapshots/groups-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 1276],
+        "actual": [1280, 1276]
+      },
+      "redDiffBounds": [250, 595, 345, 608],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "9c8189db2bf7cc74379c-8d2308a0d75544af6051",
+      "file": "e2e/tests/research/groups/read.spec.ts-snapshots/groups-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 1193],
+        "actual": [390, 1193]
+      },
+      "redDiffBounds": [48, 405, 143, 418],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "7679fb8d08e310d21a3c-0080383503bd14599059",
+      "file": "e2e/tests/research/labs/read.spec.ts-snapshots/labs-detail-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [1280, 1068],
+        "actual": [1280, 1068]
+      },
+      "redDiffBounds": [202, 425, 410, 437],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "7679fb8d08e310d21a3c-f50ea2ab2b2d6ccf61fd",
+      "file": "e2e/tests/research/labs/read.spec.ts-snapshots/labs-detail-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: HTML 본문 글꼴 연결; 짧은 본문 글리프에 한정, 전체 크기 동일",
+      "dimensions": {
+        "expected": [390, 1142],
+        "actual": [390, 1142]
+      },
+      "redDiffBounds": [22, 476, 230, 488],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "b0a2797d3c5691e15ed9-0ca552beae29defdadbc",
+      "file": "e2e/tests/reservations/introduction/read.spec.ts-snapshots/reservations-introduction-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: 동일 HTML의 문장/목록 줄바꿈; 높이 -56px. 색 강조·탭·제목 유지",
+      "dimensions": {
+        "expected": [1280, 1652],
+        "actual": [1280, 1596]
+      },
+      "redDiffBounds": [0, 571, 1220, 1652],
+      "recommendation": "candidate",
+      "notes": [
+        "푸터 이동량 보정 시 로고 36×35 영역만 최대 채널차14인 142px AA 잔차; 눈에 보이는 새 형태차/본문외 배치 변경 없음. 완전 픽셀 동일 표현 금지"
+      ]
+    },
+    {
+      "id": "b0a2797d3c5691e15ed9-2f2c9c54d360cb6544d9",
+      "file": "e2e/tests/reservations/introduction/read.spec.ts-snapshots/reservations-introduction-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: 동일 HTML의 문장/목록 줄바꿈; 높이 -28px. 색 강조·탭·제목 유지",
+      "dimensions": {
+        "expected": [390, 1903],
+        "actual": [390, 1875]
+      },
+      "redDiffBounds": [20, 415, 370, 1872],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "d0679f04b1cf17a6da65-4e7e9b07fe8eb6b5618b",
+      "file": "e2e/tests/reservations/privacy-policy/read.spec.ts-snapshots/reservations-privacy-policy-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: 동일 HTML의 문장/표 글리프 폭 변화; 첫 문단 1줄 감소, 높이 -28px. 기존 모바일 표 오른쪽 잘림은 별도 시각 한계",
+      "dimensions": {
+        "expected": [1280, 1176],
+        "actual": [1280, 1148]
+      },
+      "redDiffBounds": [0, 351, 1220, 1176],
+      "recommendation": "candidate",
+      "notes": [
+        "데스크톱 표는 서체 폭 감소로 마지막 열 전체가 보임. 모바일 표 한계는 별도"
+      ]
+    },
+    {
+      "id": "fc19c807e7de4a50d62d-5dcf85654e1b3cc273fd",
+      "file": "e2e/tests/search/read.spec.ts-snapshots/search-empty-ko-read-linux.png",
+      "rules": ["DS-035"],
+      "reason": "빈 결과 문구 neutral-300→500 색 변경만. 문구/글자 위치/화면 크기 유지",
+      "dimensions": {
+        "expected": [1280, 1345],
+        "actual": [1280, 1345]
+      },
+      "redDiffBounds": [464, 531, 656, 545],
+      "recommendation": "candidate",
+      "notes": []
+    },
+    {
+      "id": "fc19c807e7de4a50d62d-43deefc08cc99b558442",
+      "file": "e2e/tests/search/read.spec.ts-snapshots/search-empty-ko-read-mobile-linux.png",
+      "rules": ["DS-035"],
+      "reason": "빈 결과 문구 neutral-300→500 색 변경만. 문구/글자 위치/화면 크기 유지",
+      "dimensions": {
+        "expected": [390, 1426],
+        "actual": [390, 1426]
+      },
+      "redDiffBounds": [99, 486, 291, 500],
+      "recommendation": "candidate",
+      "notes": []
+    }
+  ],
+  "afterRerun": [
+    {
+      "id": "d0679f04b1cf17a6da65-c62274031dc847cb465f",
+      "file": "e2e/tests/reservations/privacy-policy/read.spec.ts-snapshots/reservations-privacy-policy-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: 동일 HTML의 문장/표 글리프 폭 변화; 첫 문단 1줄 감소, 높이 -28px. 기존 모바일 표 오른쪽 잘림은 별도 시각 한계",
+      "dimensions": {
+        "expected": [390, 1279],
+        "actual": [390, 1251]
+      },
+      "redDiffBounds": [20, 243, 370, 1248],
+      "recommendation": "candidate_after_rerun",
+      "notes": [
+        "마지막 시도 브라우저 SIGSEGV; retry1 이미지로 비교. 표 가로 잘림이 예상/실제 모두 남음. 재실행 후 갱신 권장"
+      ]
+    }
+  ],
+  "hold": [
+    {
+      "id": "ca489f609a88b7dc440f-8d3d0835390a063370a2",
+      "file": "e2e/tests/10-10-project/read.spec.ts-snapshots/10-10-participants-ko-read-mobile-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006: 동일 HTML의 제목/strong 강조 및 글리프. 전체 크기 동일",
+      "dimensions": {
+        "expected": [412, 2391],
+        "actual": [412, 2391]
+      },
+      "redDiffBounds": [21, 247, 286, 1739],
+      "recommendation": "hold_existing_layout",
+      "notes": [
+        "390px 뷰포트에서 예상/실제 모두 412px 이미지. 제목 Participants(Professors)과 장식 영역이 오른쪽으로 넘치는 기존 시각 한계; 해결 완료 아님"
+      ]
+    },
+    {
+      "id": "9788be5623f002cb4d39-ad623f0b575cc8543687",
+      "file": "e2e/tests/community/news/read.spec.ts-snapshots/news-list-ko-read-linux.png",
+      "rules": [],
+      "reason": "기존 목록 마스크 경계/날짜 재현성 차이. 승인 DS로 설명하지 않음",
+      "dimensions": {
+        "expected": [1280, 1581],
+        "actual": [1280, 1581]
+      },
+      "redDiffBounds": [487, 778, 582, 804],
+      "recommendation": "hold_prior",
+      "notes": []
+    },
+    {
+      "id": "9788be5623f002cb4d39-ec719fa8b5c833e2c7d3",
+      "file": "e2e/tests/community/news/read.spec.ts-snapshots/news-detail-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006 본문 + 기존 조회수 마스크 오른쪽 1px 경계가 혼재",
+      "dimensions": {
+        "expected": [1280, 1252],
+        "actual": [1280, 1252]
+      },
+      "redDiffBounds": [201, 389, 379, 497],
+      "recommendation": "hold_mixed",
+      "notes": []
+    },
+    {
+      "id": "9788be5623f002cb4d39-c1de6662bcfef5e36c94",
+      "file": "e2e/tests/community/news/read.spec.ts-snapshots/news-list-ko-read-mobile-linux.png",
+      "rules": [],
+      "reason": "기존 목록 마스크 경계/날짜 재현성 차이. 승인 DS로 설명하지 않음",
+      "dimensions": {
+        "expected": [390, 1643],
+        "actual": [390, 1643]
+      },
+      "redDiffBounds": [196, 636, 197, 653],
+      "recommendation": "hold_prior",
+      "notes": []
+    },
+    {
+      "id": "2d4000f4b4263488ec54-98e5e0cbbd76220be644",
+      "file": "e2e/tests/community/notice/read.spec.ts-snapshots/notice-detail-ko-read-linux.png",
+      "rules": ["DS-006"],
+      "reason": "DS-006 본문 + 기존 조회수 마스크 오른쪽 1px 경계가 혼재",
+      "dimensions": {
+        "expected": [1280, 1276],
+        "actual": [1280, 1276]
+      },
+      "redDiffBounds": [200, 389, 593, 496],
+      "recommendation": "hold_mixed",
+      "notes": []
+    },
+    {
+      "id": "2d4000f4b4263488ec54-93aa6467b37486042af6",
+      "file": "e2e/tests/community/notice/read.spec.ts-snapshots/notice-list-ko-read-mobile-linux.png",
+      "rules": [],
+      "reason": "기존 목록 마스크 경계/날짜 재현성 차이. 승인 DS로 설명하지 않음",
+      "dimensions": {
+        "expected": [390, 3498],
+        "actual": [390, 3498]
+      },
+      "redDiffBounds": [208, 1064, 209, 1081],
+      "recommendation": "hold_prior",
+      "notes": []
+    }
+  ]
+}
