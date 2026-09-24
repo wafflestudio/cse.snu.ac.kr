@@ -1,0 +1,434 @@
+[
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/courses",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 51.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/general-studies-requirements",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 69.578125,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/degree-requirements",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 51.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/course-changes",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 69.578125,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/graduate/course-changes",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 69.578125,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/exchange",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 112.765625,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/undergraduate",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 69.578125,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/research/top-conference-list",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 127.171875,
+    "alignments": ["left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/courses",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 51.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/general-studies-requirements",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 51.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/degree-requirements",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 51.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/course-changes",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 51.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/graduate/course-changes",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 51.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/exchange",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 98.375,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/undergraduate",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 51.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/research/top-conference-list",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 51.1875,
+    "alignments": ["left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/courses",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 63.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/general-studies-requirements",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 63.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/degree-requirements",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 63.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/undergraduate/course-changes",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 63.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/academics/graduate/course-changes",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 63.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/exchange",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 63.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/admissions/international/undergraduate",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 63.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "ko",
+    "path": "/research/top-conference-list",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 63.1875,
+    "alignments": ["left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/courses",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 69.578125,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": true
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/general-studies-requirements",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 159.953125,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": true
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/degree-requirements",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 116.765625,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/course-changes",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 116.765625,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/academics/graduate/course-changes",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 98.375,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/admissions/international/exchange",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 112.765625,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": true
+  },
+  {
+    "locale": "en",
+    "path": "/admissions/international/undergraduate",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 69.578125,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/research/top-conference-list",
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 127.171875,
+    "alignments": ["left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/courses",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 51.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": true
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/general-studies-requirements",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 98.375,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": true
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/degree-requirements",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 98.375,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/course-changes",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 69.578125,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/academics/graduate/course-changes",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 69.578125,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/admissions/international/exchange",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 98.375,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": true
+  },
+  {
+    "locale": "en",
+    "path": "/admissions/international/undergraduate",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 69.578125,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/research/top-conference-list",
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 51.1875,
+    "alignments": ["left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/courses",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 63.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/general-studies-requirements",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 63.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/degree-requirements",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 63.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/academics/undergraduate/course-changes",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 63.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/academics/graduate/course-changes",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 63.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/admissions/international/exchange",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 63.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/admissions/international/undergraduate",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 63.1875,
+    "alignments": ["left", "left", "left"],
+    "approvedLeftPreviewMatched": null
+  },
+  {
+    "locale": "en",
+    "path": "/research/top-conference-list",
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 63.1875,
+    "alignments": ["left", "left"],
+    "approvedLeftPreviewMatched": null
+  }
+]

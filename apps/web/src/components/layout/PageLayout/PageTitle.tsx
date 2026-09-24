@@ -28,8 +28,6 @@ export default function PageTitle({
   const titleStyle =
     titleSize === 'xl' ? 'text-2xl font-bold' : 'text-lg font-medium';
 
-  // Keep other headings unchanged until long breadcrumb wrapping is resolved.
-  const hasTitleBreak = title?.includes('(');
   const titleContent = title?.split(/(?=\()/).map((part, index) => (
     <Fragment key={`${index}-${part}`}>
       {index > 0 && <wbr />}
@@ -40,13 +38,15 @@ export default function PageTitle({
   return (
     <div className="px-5 pt-[54px] shell:px-25">
       <div
-        className={`col-start-1 row-start-1 w-fit min-w-62.5 ${hasTitleBreak ? 'max-w-full shell:max-w-207.5' : 'max-w-207.5'} ${margin}`}
+        className={`col-start-1 row-start-1 w-fit min-w-62.5 max-w-full shell:max-w-207.5 ${margin}`}
       >
-        <div className="mb-2 flex items-center justify-center gap-2">
+        <div className="mb-2 flex items-center justify-start gap-2 shell:justify-center">
           {breadcrumb && breadcrumb.length > 0 && (
             <Breadcrumb items={breadcrumb} />
           )}
-          <Node variant="curvedHorizontalGray" />
+          <div className="flex min-w-25 flex-[1_0_100px] shell:contents">
+            <Node variant="curvedHorizontalGray" />
+          </div>
         </div>
         {title && (
           <h3 className="mr-25">
@@ -80,27 +80,29 @@ function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
   const { localizedPath } = useLanguage();
 
   return (
-    <ol className="flex items-center gap-0.5 text-neutral-300">
+    <ol className="flex min-w-0 flex-wrap items-center gap-x-0.5 gap-y-1 text-neutral-300 shell:flex-nowrap shell:gap-y-0">
       {items.map((item, i) => {
         const isCurrent = item.path
           ? pathname === localizedPath(item.path)
           : false;
 
         return (
-          <Fragment key={`${item.name}-${i}`}>
-            <li className="flex">
-              <LocationText
-                path={item.path}
-                name={item.name}
-                isCurrent={isCurrent}
+          <li
+            key={`${item.name}-${i}`}
+            className="flex max-w-full items-center gap-0.5"
+          >
+            {i > 0 && (
+              <ChevronRight
+                className="h-[12px] w-[12px] shrink-0"
+                strokeWidth={1.5}
               />
-            </li>
-            {i !== items.length - 1 && (
-              <li className="text-xs">
-                <ChevronRight className="h-[12px] w-[12px]" strokeWidth={1.5} />
-              </li>
             )}
-          </Fragment>
+            <LocationText
+              path={item.path}
+              name={item.name}
+              isCurrent={isCurrent}
+            />
+          </li>
         );
       })}
     </ol>
@@ -117,7 +119,8 @@ function LocationText({ path, name, isCurrent }: LocationTextProps) {
   const { localizedPath } = useLanguage();
   const _navigate = useNavigate();
   const router = useRouter();
-  const textStyle = 'text-xs shell:text-md font-normal tracking-[.02em]';
+  const textStyle =
+    'min-w-0 text-left text-xs shell:text-md font-normal tracking-[.02em]';
 
   if (isCurrent) {
     // 브레드크럼 현재 항목: 형제 Link/span과 색을 맞춰야 해 색을 상속받는다(text-inherit).
@@ -126,7 +129,7 @@ function LocationText({ path, name, isCurrent }: LocationTextProps) {
       <button
         type="button"
         onClick={() => router.history.go(0)}
-        className={`inline-flex items-center justify-center gap-2 transition duration-200 ${textStyle} text-inherit hover:text-main-orange`}
+        className={`inline-flex items-center justify-start gap-2 transition duration-200 ${textStyle} text-inherit hover:text-main-orange`}
       >
         <span>{name}</span>
       </button>
