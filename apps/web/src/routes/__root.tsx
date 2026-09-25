@@ -14,7 +14,7 @@ import LNB from '@/components/layout/LeftNav';
 import MobileNav from '@/components/layout/MobileNav';
 import NotFound from '@/components/layout/NotFound';
 import RootErrorBoundary from '@/components/layout/RootErrorBoundary';
-import { Toaster } from '@/components/ui/sonner';
+import { TOAST_ICONS, Toaster } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import useIsMobile from '@/hooks/useResponsive';
 import { type Role, useStore } from '@/store';
@@ -139,7 +139,7 @@ function RootDocument() {
         >
           <Outlet />
           <Footer />
-          <Toaster />
+          <Toaster icons={TOAST_ICONS} />
         </main>
         <Scripts />
       </body>

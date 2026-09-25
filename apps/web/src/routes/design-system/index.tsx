@@ -12,6 +12,7 @@ import { SearchSection } from './-sections/search';
 import { SelectionSection } from './-sections/selection';
 import { ShapeSection } from './-sections/shape';
 import { SpacingSection } from './-sections/spacing';
+import { ToastSection } from './-sections/toast';
 import { TypeSection } from './-sections/type';
 
 // 디자인 규칙의 정본. 영역은 SECTIONS 순서대로 이 한 페이지에 쌓는다.
@@ -41,7 +42,7 @@ const GROUPS: Group[] = [
       { id: 'selection', title: '선택·태그', content: <SelectionSection /> },
       { id: 'dialog', title: '모달', content: <DialogSection /> },
       { id: 'search', title: '검색 입력', content: <SearchSection /> },
-      { id: 'toast', title: '토스트' },
+      { id: 'toast', title: '토스트', content: <ToastSection /> },
       { id: 'editor', title: '에디터' },
     ],
   },

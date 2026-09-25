@@ -1,7 +1,8 @@
 html[dir='ltr'],
 [data-sonner-toaster][dir='ltr'] {
-  --toast-icon-margin-start: -3px;
-  --toast-icon-margin-end: 4px;
+  /* DS: 아이콘과 글자 사이는 판의 gap 8 하나 */
+  --toast-icon-margin-start: 0px;
+  --toast-icon-margin-end: 0px;
   --toast-svg-margin-start: -1px;
   --toast-svg-margin-end: 0px;
   --toast-button-margin-start: auto;
@@ -41,7 +42,8 @@ html[dir='rtl'],
   --gray10: hsl(0, 0%, 52.3%);
   --gray11: hsl(0, 0%, 43.5%);
   --gray12: hsl(0, 0%, 9%);
-  --border-radius: 8px;
+  /* DS(/design-system#toast): 판은 모서리 없음 */
+  --border-radius: 0;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -98,16 +100,16 @@ html[dir='rtl'],
   border: 1px solid var(--normal-border);
   color: var(--normal-text);
   border-radius: var(--border-radius);
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-overlay);
   width: var(--width);
-  font-size: 13px;
+  font-size: 14px;
   display: flex;
-  align-items: center;
-  gap: 6px;
+  align-items: flex-start;
+  gap: 8px;
 }
 
 [data-sonner-toast]:focus-visible {
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-overlay), 0 0 0 2px rgba(0, 0, 0, 0.2);
 }
 
 [data-sonner-toast][data-y-position='top'] {
@@ -125,9 +127,10 @@ html[dir='rtl'],
 }
 
 [data-sonner-toast][data-styled='true'] [data-description] {
+  font-size: 13px;
   font-weight: 400;
-  line-height: 1.4;
-  color: #3f3f3f;
+  line-height: 1.2;
+  color: var(--color-neutral-600);
 }
 
 [data-rich-colors='true'][data-sonner-toast][data-styled='true'] [data-description] {
@@ -140,14 +143,15 @@ html[dir='rtl'],
 
 [data-sonner-toast][data-styled='true'] [data-title] {
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.2;
   color: inherit;
 }
 
 [data-sonner-toast][data-styled='true'] [data-icon] {
   display: flex;
-  height: 16px;
-  width: 16px;
+  /* lucide 아이콘 1.2em = 문장 한 줄 높이(14 × 1.2) */
+  height: 1.2em;
+  width: 1.2em;
   position: relative;
   justify-content: flex-start;
   align-items: center;
@@ -175,7 +179,7 @@ html[dir='rtl'],
 [data-sonner-toast][data-styled='true'] [data-content] {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 [data-sonner-toast][data-styled='true'] [data-button] {
@@ -461,8 +465,8 @@ html[dir='rtl'],
 
 [data-sonner-toaster][data-sonner-theme='light'] {
   --normal-bg: #fff;
-  --normal-border: var(--gray4);
-  --normal-text: var(--gray12);
+  --normal-border: var(--color-neutral-200);
+  --normal-text: var(--color-neutral-950);
 
   --success-bg: hsl(143, 85%, 96%);
   --success-border: hsl(145, 92%, 87%);
