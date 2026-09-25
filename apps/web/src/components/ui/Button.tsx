@@ -48,9 +48,10 @@ type ButtonProps = ButtonAsButton | ButtonAsLink | ButtonAsAnchor;
 
 const SIZE_CLASSES: Record<ButtonSize, string> = {
   xs: 'type-label px-0 py-0',
-  sm: 'type-label px-2.5 py-1',
-  md: 'type-label px-[.875rem] py-[.3125rem]',
-  lg: 'type-label px-4 py-2',
+  // 높이는 줄높이가 아니라 h-* 로 정한다(글자 줄높이는 1.2).
+  sm: 'type-label h-6 px-2.5',
+  md: 'type-label h-8.5 px-[.875rem]',
+  lg: 'type-label h-9.5 px-4',
 };
 
 const TEXT_SIZE_CLASSES: Record<ButtonSize, string> = {

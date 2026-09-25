@@ -13,7 +13,7 @@ const LEVELS: Level[] = [
   {
     role: '페이지 제목',
     cls: 'type-page-title',
-    spec: '32 · 700 · 줄높이 40 (모바일 24/32)',
+    spec: '32 · 700 (모바일 24)',
     sample: '학부 소개',
     use: '페이지 맨 위 어두운 제목 영역(PageTitle)',
     preview: 'type-page-title',
@@ -21,7 +21,7 @@ const LEVELS: Level[] = [
   {
     role: '메인 섹션 제목',
     cls: 'type-headline',
-    spec: '24 · 700 · 줄높이 32',
+    spec: '24 · 700',
     sample: '공지사항',
     use: '메인 화면의 공지·새 소식·링크 섹션 제목만',
     preview: 'type-headline',
@@ -29,7 +29,7 @@ const LEVELS: Level[] = [
   {
     role: '섹션 제목',
     cls: 'type-section',
-    spec: '20 · 700 · 줄높이 32',
+    spec: '20 · 700',
     sample: '연구 분야',
     use: '본문 안 큰 구획, 게시물 상세 제목, 모달 제목',
     preview: 'type-section',
@@ -37,7 +37,7 @@ const LEVELS: Level[] = [
   {
     role: '항목 제목',
     cls: 'type-item',
-    spec: '16 · 700 · 줄높이 24',
+    spec: '16 · 700',
     sample: '2026학년도 후기 대학원 입학 설명회',
     use: '피드형 목록(새 소식·세미나·검색)·카드·인물 이름·소제목',
     preview: 'type-item',
@@ -54,7 +54,7 @@ const LEVELS: Level[] = [
   {
     role: 'UI 글자',
     cls: 'type-ui',
-    spec: '14 · 400 · 줄높이 20',
+    spec: '14 · 400',
     sample: '2026학년도 1학기 수강신청 안내',
     use: '한 줄 UI 글자: 표형 목록의 행 제목, 표 셀, 내비·푸터 링크, 드롭다운 항목, 입력 글자',
     preview: 'type-ui',
@@ -62,7 +62,7 @@ const LEVELS: Level[] = [
   {
     role: '라벨',
     cls: 'type-label',
-    spec: '14 · 500 · 줄높이 20',
+    spec: '14 · 500',
     sample: '제목 · 작성자 · 첨부파일',
     use: '폼 필드명, 표 헤더, 탭, 버튼 글자',
     preview: 'type-label',
@@ -70,7 +70,7 @@ const LEVELS: Level[] = [
   {
     role: '보조',
     cls: 'type-meta',
-    spec: '13 · 400 · 줄높이 20',
+    spec: '13 · 400',
     sample: '2026/09/25 · 행정실 · 조회수 1,024',
     use: '날짜·작성자·조회수, 도움말, 짧은 설명',
     preview: 'type-meta text-neutral-500',
@@ -78,7 +78,7 @@ const LEVELS: Level[] = [
   {
     role: '캡션',
     cls: 'type-caption',
-    spec: '12 · 400 · 줄높이 16',
+    spec: '12 · 400',
     sample: '필수 입력 항목입니다',
     use: '아주 작은 표시, breadcrumb(모바일)',
     preview: 'type-caption text-neutral-500',
@@ -129,9 +129,10 @@ export function TypeSection() {
     <div className="space-y-12 text-md leading-7">
       <Sub title="단계">
         <p>
-          역할 7개에 크기·굵기·줄높이를 한 벌로 묶는다. 화면을 만들 때는 역할을
-          고르고 그 클래스 하나만 쓴다. 크기는 12·13·14·16·20·24·32 일곱 가지,
-          굵기는 400·500·700 세 가지다.
+          역할마다 크기·굵기·줄높이를 한 벌로 묶은 클래스(<code>type-*</code>)가
+          있다. 화면을 만들 때는 역할을 고르고 그 클래스 하나만 쓴다.
+          크기·굵기·줄높이 클래스를 따로 쓰지 않는다. 색은 따로 붙인다. 크기는
+          12·13·14·16·20·24·32 일곱 가지, 굵기는 400·500·700 세 가지다.
         </p>
         <div className="divide-y divide-neutral-200 border-y border-neutral-200">
           {LEVELS.map((l) => (
@@ -157,28 +158,23 @@ export function TypeSection() {
         </p>
       </Sub>
 
-      <Sub title="줄높이의 근거">
+      <Sub title="줄간격">
         <ul className="list-disc space-y-1 pl-5">
           <li>
-            모든 줄높이는 4의 배수다. 간격 단위(4px)와 같은 격자에 글줄이
-            놓인다.
+            줄간격은 여러 줄로 읽는 본문(<code>type-body</code>)에만 준다:
+            14px에 28px. 이 사이트의 기존 값이다.
           </li>
           <li>
-            읽는 본문은 넓게(2.0), 한두 줄짜리 제목·UI 글자는 좁게(1.25~1.6)
-            둔다.
+            나머지 역할(제목·UI 글자·라벨·보조·캡션)은 줄높이 1.2다. 사이트
+            기본값이고, 한 줄짜리 컴포넌트 글자가 위아래로 부풀지 않는다.
           </li>
           <li>
-            본문 14/28(2.0)은 이 사이트의 기존 값이다. 다른 한국어 사이트는
-            1.5~2.0이고 대부분 1.6~1.75다(KRDS 1.5, 토스 1.6, 위키백과 1.63,
-            카카오 1.75, 브런치 2.0).
+            여러 줄로 읽히는 작은 보조 글(카드 설명·요약)에만{' '}
+            <code>type-meta leading-normal</code>
+            (1.5)을 쓴다.
           </li>
           <li>
-            큰 제목(28px 이상)은 1.2~1.4, 중간 제목(20~30px)은 1.5~1.6에 모여
-            있다. 그래서 페이지 제목 32/40(1.25), 섹션 제목 20/32(1.6)이다.
-          </li>
-          <li>
-            작은 글자는 16/24·14/20·13/20·12/16(1.33~1.54)으로 애플·위키백과
-            범위 안이다.
+            버튼·컨트롤의 높이는 줄높이가 아니라 <code>h-*</code>로 정한다.
           </li>
         </ul>
       </Sub>

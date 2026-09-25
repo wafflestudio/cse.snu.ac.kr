@@ -111,29 +111,30 @@
 }
 
 /* 글자 역할. 크기·굵기·줄높이를 한 벌로 묶는다 — 화면에서는 역할 하나를 고르고 크기·굵기·줄높이를
-   따로 쓰지 않는다. 색은 따로 붙인다. 줄높이는 모두 4의 배수. 규칙과 근거는 /design-system#type. */
+   따로 쓰지 않는다. 색은 따로 붙인다. 줄간격은 여러 줄로 읽는 본문(type-body, 28px)에만 주고,
+   제목·UI·라벨처럼 컴포넌트 안의 글자는 사이트 기본값 1.2 를 쓴다. 규칙과 근거는 /design-system#type. */
 @utility type-page-title {
   font-size: 1.5rem;
-  line-height: 2rem;
+  line-height: 1.2;
   font-weight: 700;
   @variant sm {
     font-size: 2rem;
-    line-height: 2.5rem;
+    line-height: 1.2;
   }
 }
 @utility type-headline {
   font-size: 1.5rem;
-  line-height: 2rem;
+  line-height: 1.2;
   font-weight: 700;
 }
 @utility type-section {
   font-size: 1.25rem;
-  line-height: 2rem;
+  line-height: 1.2;
   font-weight: 700;
 }
 @utility type-item {
   font-size: 1rem;
-  line-height: 1.5rem;
+  line-height: 1.2;
   font-weight: 700;
 }
 @utility type-body {
@@ -143,22 +144,22 @@
 }
 @utility type-ui {
   font-size: 0.875rem;
-  line-height: 1.25rem;
+  line-height: 1.2;
   font-weight: 400;
 }
 @utility type-label {
   font-size: 0.875rem;
-  line-height: 1.25rem;
+  line-height: 1.2;
   font-weight: 500;
 }
 @utility type-meta {
   font-size: 0.8125rem;
-  line-height: 1.25rem;
+  line-height: 1.2;
   font-weight: 400;
 }
 @utility type-caption {
   font-size: 0.75rem;
-  line-height: 1rem;
+  line-height: 1.2;
   font-weight: 400;
 }
 

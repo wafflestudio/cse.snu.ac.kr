@@ -31,7 +31,7 @@ export default function NewsCard({ news }: { news: MainNews }) {
         <time className="mt-3 block type-meta text-neutral-500">
           {dayjs(news.createdAt).format('YYYY/M/DD')}
         </time>
-        <p className="mt-3 line-clamp-4 type-meta text-neutral-500">
+        <p className="mt-3 line-clamp-4 type-meta leading-normal text-neutral-500">
           {news.description}
         </p>
       </div>
