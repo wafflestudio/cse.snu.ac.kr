@@ -4,6 +4,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import { ButtonSection } from './-sections/button';
 import { ColorSection } from './-sections/color';
 import { DialogSection } from './-sections/dialog';
+import { EditorSection } from './-sections/editor';
 import { FormSection } from './-sections/form';
 import { GraphicSection } from './-sections/graphic';
 import { IconSection } from './-sections/icon';
@@ -43,7 +44,7 @@ const GROUPS: Group[] = [
       { id: 'dialog', title: '모달', content: <DialogSection /> },
       { id: 'search', title: '검색 입력', content: <SearchSection /> },
       { id: 'toast', title: '토스트', content: <ToastSection /> },
-      { id: 'editor', title: '에디터' },
+      { id: 'editor', title: '에디터', content: <EditorSection /> },
     ],
   },
   {
