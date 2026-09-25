@@ -235,6 +235,7 @@
 **적용:** lucide 한 벌, 크기 1.2em·선 1.5px 고정(app.css 공통 규칙), 직접 그린 SVG 16개 교체·삭제, 아이콘 버튼 20px·클릭 24px, 정렬 보정 제거, 헤더 검색 호버·연구실 자료 색. 전후 `.ds-review/1-6-아이콘/`.
 **확인:** 전체 비교판으로 한 번에 확인(사용자). 선 굵기는 1.5px 고정 → 크기에 비례로 바꿈(고정이면 13px 글자보다 진해 보임).
 **메모:** Button 에 `className` prop 추가(헤더 검색 호버를 `hover:text-neutral-700!` 로 덮음) — 2-1 버튼에서 variant 로 정리.
+**후속(2-2 중):** lucide 0.562 → 1.48. 체크박스 체크가 홈페이지보다 작던 원인(1.x 에서 체크 경로가 커짐). 모양이 바뀐 아이콘 4개(square-check·circle-check·calendar·bookmark) — `.ds-review/1-6-아이콘-lucide1/icons.html`.
 
 <details><summary>이전에 본 문제</summary>
 
