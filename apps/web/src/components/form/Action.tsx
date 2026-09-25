@@ -73,6 +73,7 @@ export default function Action({
         open={showCancelDialog}
         onOpenChange={setShowCancelDialog}
         description="편집중인 내용이 사라집니다."
+        confirmText="나가기"
         onConfirm={() => {
           onCancel();
           setShowCancelDialog(false);
@@ -84,6 +85,7 @@ export default function Action({
           open={showDeleteDialog}
           onOpenChange={setShowDeleteDialog}
           description="게시물을 삭제하시겠습니까?"
+          confirmText="삭제"
           onConfirm={async () => {
             await onDelete();
             setShowDeleteDialog(false);

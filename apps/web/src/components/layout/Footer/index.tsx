@@ -139,9 +139,10 @@ function FooterBottomLeft() {
         open={cserealOpen}
         onOpenChange={setCserealOpen}
         title="CSEREAL 팀 소개"
-        contentClassName="w-[92vw] max-w-3xl p-0"
+        hideTitle
+        size="lg"
       >
-        <div className="relative flex flex-col gap-6 overflow-y-auto overflow-x-hidden px-8 pb-12 pt-12 sm:px-12 sm:pb-16 sm:pt-16">
+        <div className="flex flex-col gap-6">
           <h1 className="type-section text-neutral-950">
             Team <span className="text-main-orange">CSEREAL</span>
             <br />

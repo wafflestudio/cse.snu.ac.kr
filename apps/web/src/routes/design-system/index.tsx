@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import PageLayout from '@/components/layout/PageLayout';
 import { ButtonSection } from './-sections/button';
 import { ColorSection } from './-sections/color';
+import { DialogSection } from './-sections/dialog';
 import { FormSection } from './-sections/form';
 import { GraphicSection } from './-sections/graphic';
 import { IconSection } from './-sections/icon';
@@ -37,7 +38,7 @@ const GROUPS: Group[] = [
       { id: 'button', title: '버튼', content: <ButtonSection /> },
       { id: 'form', title: '입력·폼', content: <FormSection /> },
       { id: 'selection', title: '선택·태그', content: <SelectionSection /> },
-      { id: 'dialog', title: '모달' },
+      { id: 'dialog', title: '모달', content: <DialogSection /> },
       { id: 'search', title: '검색 입력' },
       { id: 'toast', title: '토스트' },
       { id: 'editor', title: '에디터' },

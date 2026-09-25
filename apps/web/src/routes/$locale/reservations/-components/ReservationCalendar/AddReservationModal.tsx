@@ -45,18 +45,12 @@ export default function AddReservationModal({
   });
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={onOpenChange}
-      title="시설 예약"
-      contentClassName="border-b border-t-3 border-main-orange bg-neutral-100 px-8 pb-6 pt-8 type-ui text-neutral-700"
-    >
+    <Dialog open={open} onOpenChange={onOpenChange} title={t('시설 예약')}>
       <FormProvider {...methods}>
         <form onSubmit={onSubmit}>
-          <h2 className="mb-4 type-section">{t('시설 예약')}</h2>
-
           <div className="mb-6 flex flex-col items-start gap-3">
-            <fieldset className="flex items-center gap-2">
+            {/* 모바일은 이름을 위로 — 달력 팝오버가 판 폭 안에 들어오게. */}
+            <fieldset className="flex flex-col items-start gap-2 sm:flex-row sm:items-center">
               <label htmlFor="date" className="type-label">
                 예약 날짜:
               </label>
@@ -206,7 +200,7 @@ function Fieldset({
   children: ReactNode;
 }) {
   return (
-    <fieldset className={`${fullWidth ? '' : 'w-88'}`}>
+    <fieldset className={fullWidth ? 'w-full' : 'w-full max-w-88'}>
       <legend className="mb-1 type-label">
         {title}
         {required && <span className="text-main-orange">*</span>}

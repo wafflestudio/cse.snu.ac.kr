@@ -97,8 +97,14 @@ export default function ReservationDetailModal({
 
   return (
     <>
-      <Dialog open={open} onOpenChange={onOpenChange} title="예약 상세">
-        <div className="min-w-[320px]">
+      <Dialog
+        open={open}
+        onOpenChange={onOpenChange}
+        title="예약 상세"
+        hideTitle
+        size="lg"
+      >
+        <div>
           <div className="mb-4 flex items-center justify-between">
             <h2 className="type-section text-neutral-950">
               {reservation?.title ?? t('불러오는중')}

@@ -66,16 +66,8 @@ export default function AddCourseModal({
   };
 
   return (
-    <Dialog
-      open
-      onOpenChange={onClose}
-      title="교과목 추가"
-      contentClassName="min-w-125 max-w-3xl"
-    >
+    <Dialog open onOpenChange={onClose} title={t('교과목 추가')}>
       <FormProvider {...formMethods}>
-        <h4 className="mb-4 type-section text-neutral-700">
-          {t('교과목 추가')}
-        </h4>
         <div className="flex flex-col">
           <Fieldset title={t('교과목명')} required>
             <Form.Text

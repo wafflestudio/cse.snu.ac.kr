@@ -34,7 +34,13 @@ export default function CourseDetailModal({
   if (!course) return null;
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange} title="교과목 상세">
+    <Dialog
+      open={open}
+      onOpenChange={onOpenChange}
+      title="교과목 상세"
+      hideTitle
+      size="lg"
+    >
       <div className="flex flex-col gap-4">
         {isEditMode ? (
           <CourseEditor

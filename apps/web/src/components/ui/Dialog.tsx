@@ -1,37 +1,54 @@
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
+import clsx from 'clsx';
 import { X } from 'lucide-react';
 import type { ReactNode } from 'react';
+import Button from './Button';
+import { OVERLAY_CLASS, PANEL_CLASS, PANEL_SIZE } from './dialogStyle';
 
+// 제목은 판이 20/700 으로 그린다. 내용이 자기 제목을 가진 판(상세·팀 소개)만 hideTitle.
 interface DialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  title?: string;
+  title: string;
+  hideTitle?: boolean;
+  size?: 'md' | 'lg';
   children: ReactNode;
-  contentClassName?: string;
 }
 
 export default function Dialog({
   open,
   onOpenChange,
-  title = 'Dialog',
+  title,
+  hideTitle = false,
+  size = 'md',
   children,
-  contentClassName = '',
 }: DialogProps) {
+  const titleNode = (
+    <DialogPrimitive.Title className="mb-6 pr-8 type-section">
+      {title}
+    </DialogPrimitive.Title>
+  );
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
       <DialogPrimitive.Portal>
-        <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)] backdrop-blur-[2px] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
+        <DialogPrimitive.Overlay className={OVERLAY_CLASS} />
         <DialogPrimitive.Content
           aria-describedby={undefined}
-          className={`fixed left-1/2 top-1/2 z-50 max-h-[90vh] max-w-3xl -translate-x-1/2 -translate-y-1/2 overflow-auto border-t-3 border-main-orange border-b bg-neutral-50 p-6 duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] w-[90vw] sm:w-auto ${contentClassName}`}
+          className={clsx(PANEL_CLASS, PANEL_SIZE[size])}
         >
-          <VisuallyHidden.Root>
-            <DialogPrimitive.Title>{title}</DialogPrimitive.Title>
-          </VisuallyHidden.Root>
-          <DialogPrimitive.Close className="absolute right-3.5 top-3.5 p-0.5 text-neutral-500 hover:text-neutral-700">
-            <X className="size-5" />
-          </DialogPrimitive.Close>
+          {hideTitle ? (
+            <VisuallyHidden.Root>{titleNode}</VisuallyHidden.Root>
+          ) : (
+            titleNode
+          )}
+          <div className="absolute top-4 right-4">
+            <DialogPrimitive.Close asChild>
+              <Button variant="text" ariaLabel="닫기">
+                <X className="size-5" />
+              </Button>
+            </DialogPrimitive.Close>
+          </div>
           {children}
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>
