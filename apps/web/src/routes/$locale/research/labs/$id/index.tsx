@@ -106,7 +106,7 @@ function LabSummary({
 }) {
   return (
     <CornerFoldedRectangle
-      colorTheme="black"
+      colorTheme="summary"
       size="large"
       shadow="light"
       margin="sm:mt-[-64px] sm:mb-12 sm:ml-12"

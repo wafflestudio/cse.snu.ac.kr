@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
 import PageLayout from '@/components/layout/PageLayout';
 import { ColorSection } from './-sections/color';
+import { GraphicSection } from './-sections/graphic';
 import { IconSection } from './-sections/icon';
 import { LayoutSection } from './-sections/layout';
 import { ShapeSection } from './-sections/shape';
@@ -24,7 +25,7 @@ const GROUPS: Group[] = [
       { id: 'spacing', title: '간격', content: <SpacingSection /> },
       { id: 'shape', title: '모서리·그림자·선', content: <ShapeSection /> },
       { id: 'icon', title: '아이콘', content: <IconSection /> },
-      { id: 'graphic', title: '그래픽' },
+      { id: 'graphic', title: '그래픽', content: <GraphicSection /> },
     ],
   },
   {

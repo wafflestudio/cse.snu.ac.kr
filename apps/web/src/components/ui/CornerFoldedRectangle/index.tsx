@@ -3,7 +3,8 @@ import type { ReactNode } from 'react';
 
 import styles from './style.module.css';
 
-type ColorTheme = 'orange' | 'lightGray' | 'black';
+// orange = 선택된 탭, lightGray = 선택 안 된 탭, summary = 한 대상의 정보 요약 묶음(밝은 회색).
+type ColorTheme = 'orange' | 'lightGray' | 'summary';
 type Size = 'small' | 'large';
 type Shadow = 'light' | 'medium';
 
@@ -12,7 +13,7 @@ interface CornerFoldedRectangleProps {
   size?: Size;
   shadow?: Shadow;
   margin?: string;
-  animationType?: 'folding' | 'unfolding';
+  animationType?: 'folding';
   width?: string;
   children: ReactNode;
 }
@@ -23,7 +24,7 @@ const colorThemeMap: Record<ColorTheme, { rect: string; triangle: string }> = {
     rect: styles.themeLightGray,
     triangle: styles.triangleLightGray,
   },
-  black: { rect: styles.themeBlack, triangle: styles.triangleBlack },
+  summary: { rect: styles.themeSummary, triangle: styles.triangleSummary },
 };
 
 const sizeMap: Record<Size, string> = {
