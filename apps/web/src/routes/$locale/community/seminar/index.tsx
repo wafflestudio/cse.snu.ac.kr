@@ -58,7 +58,7 @@ function SeminarPage() {
         <SeminarSearchBar />
       </div>
 
-      <div className="mb-8 mt-8 flex flex-col border-b border-neutral-200">
+      <div className="mb-8 mt-12 flex flex-col border-b border-neutral-200">
         {data.results.length === 0 ? (
           <p className="py-8 text-center text-neutral-500">
             {t('검색 결과가 존재하지 않습니다.')}
