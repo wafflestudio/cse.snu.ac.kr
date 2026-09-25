@@ -20,7 +20,7 @@ export default function SearchResultRow({ item }: { item: SearchResultItem }) {
   const navItem = findNavItemByPath(item.url);
 
   return (
-    <article>
+    <article className="border-b border-neutral-200 pb-6">
       {/* 행 전체가 링크다 — 어디를 눌러도 가고, 호버하면 제목에 밑줄이 생긴다. */}
       <Link to={localizedPath(item.url)} className="group flex gap-6">
         {/* 사진을 오른쪽에 두면 사진이 있고 없고에 따라 제목이 좌우로 튀지 않는다. */}

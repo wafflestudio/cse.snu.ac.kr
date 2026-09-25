@@ -23,7 +23,7 @@ export default function NewsListRow({ post }: NewsListRowProps) {
     : detailPathBase;
 
   return (
-    <article className="flex flex-col-reverse gap-4 border-b border-neutral-100 pb-6 sm:flex-row sm:gap-8">
+    <article className="flex flex-col-reverse gap-4 border-b border-neutral-200 pb-6 sm:flex-row sm:gap-8">
       <div className="flex flex-1 flex-col justify-between break-keep">
         <p className="mb-2 flex items-center gap-2 type-meta text-neutral-950 sm:hidden">
           <time>
