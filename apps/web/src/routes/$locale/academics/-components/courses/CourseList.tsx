@@ -63,7 +63,7 @@ const Row = ({
   const { t } = useLanguage(translations);
 
   return (
-    <li className="grid grid-cols-[auto_auto_1fr] grid-rows-3 gap-1 px-6 py-6 type-ui odd:bg-neutral-50 sm:flex sm:h-11 sm:items-center sm:gap-0 sm:px-4 sm:py-0 sm:odd:bg-white">
+    <li className="grid grid-cols-[auto_auto_1fr] grid-rows-3 gap-x-1 gap-y-2 px-6 py-6 type-ui odd:bg-neutral-50 sm:flex sm:h-11 sm:items-center sm:gap-0 sm:px-4 sm:py-0 sm:odd:bg-white">
       <span
         className={`${COURSE_ROW_ITEM_WIDTH.name} order-1 col-span-3 pr-2 type-item sm:type-ui`}
       >

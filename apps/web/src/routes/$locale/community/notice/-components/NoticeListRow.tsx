@@ -33,7 +33,7 @@ export default function NoticeListRow({
 
   return (
     <li
-      className={`flex flex-col gap-3 px-6 py-6 type-ui sm:h-11 sm:flex-row sm:items-center sm:gap-0 sm:px-0 sm:py-2 ${
+      className={`flex flex-col gap-2 px-6 py-6 type-ui sm:h-11 sm:flex-row sm:items-center sm:gap-0 sm:px-0 sm:py-2 ${
         post.isPinned && 'font-bold'
       } ${!isEditMode && (post.isPrivate ? 'bg-neutral-200' : 'odd:bg-neutral-50')} ${
         isSelected && 'bg-neutral-100'
