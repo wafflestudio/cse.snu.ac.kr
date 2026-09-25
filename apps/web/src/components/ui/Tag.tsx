@@ -2,29 +2,20 @@ import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { X } from 'lucide-react';
 
-type TagVariant = 'outline' | 'solid';
-
 interface TagProps {
   label: string;
   href?: string;
   onClick?: () => void;
   onDelete?: () => void;
   disabled?: boolean;
-  variant?: TagVariant;
 }
 
+// 태그 = 글의 분류(/design-system#selection). 주황 테두리 알약, 13px, 높이 24.
+// 누르면 그 분류의 목록으로 가고 호버하면 주황 채움. 선택 컨트롤로 쓰지 않는다(그건 PillGroup).
 const BASE_CLASS =
-  'inline-flex h-[26px] items-center rounded-full border px-3 type-meta whitespace-nowrap transition duration-200';
+  'inline-flex h-6 items-center rounded-full border border-main-orange bg-white px-3 type-meta whitespace-nowrap text-main-orange transition duration-200';
 
-const VARIANT_CLASSES: Record<TagVariant, string> = {
-  outline: 'bg-white border-main-orange text-main-orange',
-  solid: 'bg-main-orange border-main-orange text-white',
-};
-
-const HOVER_CLASSES: Record<TagVariant, string> = {
-  outline: 'hover:bg-main-orange hover:border-main-orange hover:text-white',
-  solid: 'hover:bg-main-orange-dark hover:border-main-orange-dark',
-};
+const HOVER_CLASS = 'hover:bg-main-orange hover:text-white';
 
 export function Tag({
   label,
@@ -32,13 +23,11 @@ export function Tag({
   onClick,
   onDelete,
   disabled = false,
-  variant = 'outline',
 }: TagProps) {
   const isInteractive = Boolean(href || onClick);
   const className = clsx(
     BASE_CLASS,
-    VARIANT_CLASSES[variant],
-    isInteractive && !disabled && HOVER_CLASSES[variant],
+    isInteractive && !disabled && HOVER_CLASS,
     isInteractive && !disabled && 'cursor-pointer',
     disabled && 'opacity-60 cursor-not-allowed',
   );
@@ -56,7 +45,7 @@ export function Tag({
             onDelete();
           }}
           aria-label={`${label} 삭제`}
-          className="-mr-1 inline-flex size-6 items-center justify-center text-main-orange transition duration-200 hover:text-main-orange/80 disabled:cursor-not-allowed disabled:opacity-40"
+          className="-mr-1 inline-flex size-6 items-center justify-center text-main-orange transition duration-200 hover:text-main-orange-dark disabled:cursor-not-allowed disabled:opacity-40"
         >
           <X />
         </button>

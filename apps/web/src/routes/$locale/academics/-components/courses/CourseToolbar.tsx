@@ -1,5 +1,6 @@
 import { useNavigate, useSearch } from '@tanstack/react-router';
-import { Tag } from '@/components/ui/Tag';
+import PillGroup from '@/components/ui/PillGroup';
+import TextToggle from '@/components/ui/TextToggle';
 import { useLanguage } from '@/hooks/useLanguage';
 import type {
   SortOption,
@@ -55,26 +56,16 @@ function ViewOptions({ selectedOption, changeOption }: ViewOptionsProps) {
 
   // 카드형은 데스크톱 전용이라 토글도 데스크톱만 보인다.
   return (
-    <div className="hidden gap-3 type-label text-neutral-500 sm:flex">
-      <button
-        type="button"
-        className={
-          selectedOption === '목록형' ? 'text-neutral-950' : 'cursor-pointer'
-        }
-        onClick={() => changeOption('목록형')}
-      >
-        {t('목록형')}
-      </button>
-      <span>|</span>
-      <button
-        type="button"
-        className={
-          selectedOption === '카드형' ? 'text-neutral-950' : 'cursor-pointer'
-        }
-        onClick={() => changeOption('카드형')}
-      >
-        {t('카드형')}
-      </button>
+    <div className="hidden sm:block">
+      <TextToggle
+        ariaLabel="보기 방식"
+        options={(['목록형', '카드형'] as const).map((value) => ({
+          value,
+          label: t(value),
+        }))}
+        value={selectedOption}
+        onChange={changeOption}
+      />
     </div>
   );
 }
@@ -89,18 +80,12 @@ const VIEW_OPTIONS: ViewOption[] = ['카드형', '목록형'];
 
 function SortOptions({ selectedOption, changeOption }: SortOptionsProps) {
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      {SORT_OPTIONS.map((option) => (
-        <Tag
-          key={option}
-          label={option}
-          variant={option === selectedOption ? 'solid' : 'outline'}
-          onClick={
-            option === selectedOption ? undefined : () => changeOption(option)
-          }
-        />
-      ))}
-    </div>
+    <PillGroup
+      ariaLabel="정렬"
+      options={SORT_OPTIONS.map((value) => ({ value, label: value }))}
+      value={selectedOption}
+      onChange={changeOption}
+    />
   );
 }
 

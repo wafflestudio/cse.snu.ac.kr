@@ -7,6 +7,7 @@ import { FormSection } from './-sections/form';
 import { GraphicSection } from './-sections/graphic';
 import { IconSection } from './-sections/icon';
 import { LayoutSection } from './-sections/layout';
+import { SelectionSection } from './-sections/selection';
 import { ShapeSection } from './-sections/shape';
 import { SpacingSection } from './-sections/spacing';
 import { TypeSection } from './-sections/type';
@@ -35,7 +36,7 @@ const GROUPS: Group[] = [
     sections: [
       { id: 'button', title: '버튼', content: <ButtonSection /> },
       { id: 'form', title: '입력·폼', content: <FormSection /> },
-      { id: 'selection', title: '선택·태그' },
+      { id: 'selection', title: '선택·태그', content: <SelectionSection /> },
       { id: 'dialog', title: '모달' },
       { id: 'search', title: '검색 입력' },
       { id: 'toast', title: '토스트' },

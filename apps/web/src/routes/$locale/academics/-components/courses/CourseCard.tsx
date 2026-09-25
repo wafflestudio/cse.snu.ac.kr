@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { type RefObject, useEffect, useReducer, useRef } from 'react';
+import { Tag } from '@/components/ui/Tag';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { SortOption } from '@/routes/$locale/academics/-constants';
 import { GRADE } from '@/routes/$locale/academics/-constants';
@@ -118,9 +119,7 @@ function CourseCardFront({
       ref={ref}
     >
       <div className="mb-4 flex items-center justify-between">
-        <div className="flex h-[26px] items-center whitespace-nowrap rounded-full border bg-white px-3 type-meta text-main-orange">
-          {sortedProperties[0]}
-        </div>
+        <Tag label={sortedProperties[0]} />
         <span className="ml-2 whitespace-nowrap type-meta text-neutral-500">
           <span className="mr-2">{sortedProperties[1]}</span>
           <span>{sortedProperties[2]}</span>
