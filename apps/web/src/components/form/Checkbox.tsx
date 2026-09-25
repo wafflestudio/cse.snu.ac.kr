@@ -21,7 +21,7 @@ export default function Checkbox({
   disabled = false,
   onChange,
 }: CheckboxProps) {
-  const { register, setValue, formState } = useFormContext();
+  const { register, setValue } = useFormContext();
   register(name, options);
   const current = useWatch({ name });
 
@@ -40,11 +40,9 @@ export default function Checkbox({
             ? [...current, value]
             : current.filter((x: unknown) => x !== value)
           : next && (value ?? true);
-        // 제출 전엔 검사하지 않는다(register 의 onSubmit 모드와 같게).
-        setValue(name, nextValue, {
-          shouldDirty: true,
-          shouldValidate: formState.isSubmitted,
-        });
+        // 늘 검사한다 — 입력마다 검사하는 폼(예약: mode onChange, 동의해야 제출 가능)의
+        // isValid 가 체크에 따라 바뀌어야 한다. 규칙이 있는 체크박스는 동의 하나뿐이다.
+        setValue(name, nextValue, { shouldDirty: true, shouldValidate: true });
         onChange?.(next);
       }}
     />
