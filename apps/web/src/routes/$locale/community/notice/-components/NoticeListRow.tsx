@@ -117,7 +117,7 @@ function TitleCell({
       <span
         className={`${
           isPinned && 'font-bold text-main-orange sm:text-neutral-950'
-        } overflow-hidden text-ellipsis tracking-wide hover:text-main-orange sm:whitespace-nowrap`}
+        } overflow-hidden text-ellipsis type-item tracking-wide hover:text-main-orange sm:type-ui sm:whitespace-nowrap`}
       >
         {title}
       </span>
