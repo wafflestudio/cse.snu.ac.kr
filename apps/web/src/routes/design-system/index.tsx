@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import PageLayout from '@/components/layout/PageLayout';
 import { ColorSection } from './-sections/color';
 import { LayoutSection } from './-sections/layout';
+import { SpacingSection } from './-sections/spacing';
 import { TypeSection } from './-sections/type';
 
 // 디자인 규칙의 정본. 영역은 SECTIONS 순서대로 이 한 페이지에 쌓는다.
@@ -18,7 +19,7 @@ const GROUPS: Group[] = [
       { id: 'layout', title: '레이아웃·반응형', content: <LayoutSection /> },
       { id: 'color', title: '색', content: <ColorSection /> },
       { id: 'type', title: '글자', content: <TypeSection /> },
-      { id: 'spacing', title: '간격' },
+      { id: 'spacing', title: '간격', content: <SpacingSection /> },
       { id: 'shape', title: '모서리·그림자·선' },
       { id: 'icon', title: '아이콘' },
       { id: 'graphic', title: '그래픽' },
