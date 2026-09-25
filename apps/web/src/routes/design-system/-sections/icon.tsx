@@ -53,9 +53,9 @@ function EmCompare() {
       absolute: false,
     },
     {
-      label: 'B. 글자의 1.2배, 선은 1.5px 고정 (추천)',
+      label: 'B. 글자의 1.2배, 선도 비례 — 채택',
       size: 'size-[1.2em]',
-      absolute: true,
+      absolute: false,
     },
   ];
   return (
@@ -131,8 +131,9 @@ export function IconSection() {
             13px 글자 옆 약 16, 16px 옆 약 19, 20px 옆 24.
           </li>
           <li>
-            선은 크기와 관계없이 1.5px이다. 둘 다 <code>app.css</code>의 공통
-            규칙이 정하므로 아이콘에 크기·선 굵기를 적지 않는다.
+            선은 24칸 기준 1.5로 크기에 비례한다 — 13px 글자 옆 약 1px, 20px 옆
+            1.5px로 옆 글자 획과 비슷한 무게가 된다. 둘 다 <code>app.css</code>
+            의 공통 규칙이 정하므로 아이콘에 크기·선 굵기를 적지 않는다.
           </li>
           <li>
             예외: 옆에 글자가 없는 아이콘만 있는 버튼(닫기·메뉴·검색 실행)은{' '}
@@ -145,8 +146,8 @@ export function IconSection() {
       <Sub title="선 굵기·색·정렬">
         <ul className="list-disc space-y-1 pl-5">
           <li>
-            선 굵기는 1.5 하나다. 지금은 1.5와 기본값 2가 섞여 있다(같은 줄
-            안에서도).
+            선 굵기는 24칸 기준 1.5 하나이고 크기에 비례한다. 아이콘마다 선
+            굵기를 적지 않는다.
           </li>
           <li>
             색은 글자색을 따른다(<code>currentColor</code>). 아이콘 파일에 색을

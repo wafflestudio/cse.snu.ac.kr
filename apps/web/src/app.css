@@ -203,16 +203,13 @@
 }
 
 /* 아이콘(lucide)은 옆 글자의 1.2배다 — 그림이 틀의 약 83%라 그림 높이가 글자와 같아진다.
-   선은 크기와 관계없이 1.5px. base 층이라 size-* 유틸리티로 덮을 수 있다(아이콘만 있는 버튼 등).
+   선은 24칸 기준 1.5 로 크기에 비례한다(13px 글자 옆 약 1px — 옆 글자 획과 비슷). base 층이라 size-* 유틸리티로 덮을 수 있다(아이콘만 있는 버튼 등).
    규칙: /design-system#icon */
 @layer base {
   svg.lucide {
     width: 1.2em;
     height: 1.2em;
     stroke-width: 1.5;
-  }
-  svg.lucide * {
-    vector-effect: non-scaling-stroke;
   }
 }
 
