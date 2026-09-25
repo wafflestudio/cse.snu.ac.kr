@@ -1,8 +1,9 @@
-import clsx from 'clsx';
-import { Square, SquareCheck } from 'lucide-react';
-import type { ChangeHandler, RegisterOptions } from 'react-hook-form';
+import type { RegisterOptions } from 'react-hook-form';
 import { useFormContext, useWatch } from 'react-hook-form';
+import UiCheckbox from '@/components/ui/Checkbox';
 
+// 모양은 ui/Checkbox 한 벌. 여기서는 폼 값에 잇기만 한다.
+// 값이 배열이면(태그) value 를 넣고 빼고, 아니면 켜짐 = value(없으면 true)·꺼짐 = false.
 interface CheckboxProps {
   name: string;
   value?: string;
@@ -18,59 +19,34 @@ export default function Checkbox({
   label = value,
   options,
   disabled = false,
-  onChange: onChangeFromProp,
+  onChange,
 }: CheckboxProps) {
-  const { register } = useFormContext();
-  const tags = useWatch({ name });
+  const { register, setValue, formState } = useFormContext();
+  register(name, options);
+  const current = useWatch({ name });
 
-  const isChecked = Array.isArray(tags) ? tags.includes(value) : Boolean(tags);
-  const { onChange: onChangeFromRegister, ...registerProps } = register(
-    name,
-    options,
-  );
-
-  const onChange: ChangeHandler = (e) => {
-    onChangeFromProp?.(!isChecked);
-    return onChangeFromRegister(e);
-  };
-
-  const Icon = isChecked ? SquareCheck : Square;
+  const isArray = Array.isArray(current);
+  const checked = isArray ? current.includes(value) : Boolean(current);
 
   return (
-    <label
-      htmlFor={value}
-      className={clsx(
-        'group flex h-5 w-fit items-center gap-1 whitespace-nowrap type-ui',
-        {
-          'cursor-pointer': !disabled,
-        },
-      )}
-    >
-      <Icon
-        className={clsx(
-          'text-neutral-400',
-          !disabled &&
-            'group-hover:text-neutral-600 group-active:text-main-orange',
-          tags && 'text-neutral-600',
-        )}
-      />
-      <span
-        className={clsx(
-          'tracking-wide text-neutral-600',
-          !disabled && 'group-active:text-main-orange',
-        )}
-      >
-        {label}
-      </span>
-      <input
-        type="checkbox"
-        id={value}
-        className="appearance-none"
-        value={value}
-        disabled={disabled}
-        {...registerProps}
-        onChange={onChange}
-      />
-    </label>
+    <UiCheckbox
+      label={label}
+      value={value}
+      checked={checked}
+      disabled={disabled}
+      onChange={(next) => {
+        const nextValue = isArray
+          ? next
+            ? [...current, value]
+            : current.filter((x: unknown) => x !== value)
+          : next && (value ?? true);
+        // 제출 전엔 검사하지 않는다(register 의 onSubmit 모드와 같게).
+        setValue(name, nextValue, {
+          shouldDirty: true,
+          shouldValidate: formState.isSubmitted,
+        });
+        onChange?.(next);
+      }}
+    />
   );
 }

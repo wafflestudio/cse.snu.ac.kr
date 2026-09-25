@@ -4,14 +4,13 @@ import { Calendar as CalendarIcon } from 'lucide-react';
 import { useReducer, useRef } from 'react';
 import { useController } from 'react-hook-form';
 import Calendar from '@/components/ui/Calendar';
+import { FIELD_CLASS, fieldBorder } from '@/components/ui/field';
 import { useClickOutside } from '@/hooks/useClickOutside';
 
 interface DateProps {
   name: string;
   hideTime?: boolean;
   onSelect?: (date: Date) => void;
-  buttonClassName?: string;
-  calendarClassName?: string;
   disablePast?: boolean;
 }
 
@@ -19,8 +18,6 @@ export default function DatePicker({
   name,
   hideTime = false,
   onSelect,
-  buttonClassName,
-  calendarClassName,
   disablePast = false,
 }: DateProps) {
   const {
@@ -63,8 +60,9 @@ export default function DatePicker({
         <button
           type="button"
           className={clsx(
-            'flex h-7.5 items-center gap-2 rounded-xs border border-neutral-300 bg-white px-3 type-ui hover:bg-neutral-50',
-            buttonClassName,
+            FIELD_CLASS,
+            fieldBorder(false),
+            'flex items-center gap-2',
           )}
           onClick={toggleCalendar}
         >
@@ -73,7 +71,7 @@ export default function DatePicker({
         </button>
         {showCalendar && (
           <div className="relative" ref={calendarRef}>
-            <div className={clsx('absolute top-2 z-10', calendarClassName)}>
+            <div className="absolute top-1 z-10">
               <Calendar
                 selected={date}
                 disabled={disabled}
@@ -90,12 +88,11 @@ export default function DatePicker({
         )}
       </div>
       {!hideTime && (
-        // TODO: design
         <input
           type="time"
           value={formatTime(date)}
           onChange={handleTimeChange}
-          className="h-7.5 rounded-xs border border-neutral-300 px-3 type-ui outline-none"
+          className={clsx(FIELD_CLASS, fieldBorder(false))}
         />
       )}
     </div>

@@ -86,7 +86,7 @@ function CareerStatEditPage() {
       <FormProvider {...formMethods}>
         <Form>
           <Fieldset title="연도" required>
-            <Form.Text name="year" maxWidth="w-[55px]" />
+            <Form.Text name="year" size="sm" />
           </Fieldset>
 
           <div className="border-y border-neutral-300 type-ui sm:w-[432px]">
@@ -130,11 +130,7 @@ function TableBody() {
           key={degree}
           className="flex flex-1 items-center justify-center py-2 type-ui"
         >
-          <Form.Text
-            name={`statList.${idx}.${degree}`}
-            maxWidth="max-w-20"
-            textCenter
-          />
+          <Form.Text name={`statList.${idx}.${degree}`} size="sm" />
         </div>
       ))}
     </div>

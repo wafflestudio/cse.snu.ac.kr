@@ -40,7 +40,7 @@ export default function TimelineEditor({
         <Fieldset title="연도" required>
           <Form.Text
             name="year"
-            maxWidth="w-[55px]"
+            size="sm"
             disabled={defaultValues !== undefined}
             options={{
               required: { value: true, message: '연도를 입력해주세요.' },

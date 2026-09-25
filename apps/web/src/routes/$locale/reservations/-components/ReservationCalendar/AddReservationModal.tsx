@@ -65,8 +65,6 @@ export default function AddReservationModal({
                 hideTime
                 disablePast
                 onSelect={updateDate}
-                buttonClassName="h-7 border-neutral-200"
-                calendarClassName="absolute top-2 z-10"
               />
             </fieldset>
 
@@ -78,8 +76,6 @@ export default function AddReservationModal({
                 <Form.Dropdown
                   name="startTime"
                   contents={startOptionItems}
-                  borderStyle="border-neutral-200"
-                  height="h-7"
                   onChange={(value) => updateStartTime(String(value))}
                 />
               </fieldset>
@@ -90,8 +86,6 @@ export default function AddReservationModal({
                 <Form.Dropdown
                   name="endTime"
                   contents={endOptionItems}
-                  borderStyle="border-neutral-200"
-                  height="h-7"
                   onChange={(value) => updateEndTime(String(value))}
                 />
               </fieldset>
@@ -104,8 +98,6 @@ export default function AddReservationModal({
               <Form.Dropdown
                 name="recurringWeeks"
                 contents={recurringOptions}
-                borderStyle="border-neutral-200"
-                height="h-7"
                 onChange={(value) => {
                   methods.setValue('recurringWeeks', Number(value));
                 }}
@@ -118,8 +110,6 @@ export default function AddReservationModal({
             <Fieldset title="단체 이름" required>
               <Form.Text
                 name="title"
-                bgColor="bg-neutral-50"
-                className="h-7 w-full border-neutral-200"
                 placeholder=""
                 options={{ validate: (value) => value.trim() !== '' }}
               />
@@ -128,24 +118,15 @@ export default function AddReservationModal({
               <Form.Text
                 name="contactEmail"
                 type="email"
-                bgColor="bg-neutral-50"
-                className="h-7 w-full border-neutral-200"
                 options={{ validate: (value) => value.trim() !== '' }}
               />
             </Fieldset>
             <Fieldset title="연락가능 전화번호" required>
-              <Form.Text
-                name="contactPhone"
-                type="tel"
-                bgColor="bg-neutral-50"
-                className="h-7 w-full border-neutral-200"
-              />
+              <Form.Text name="contactPhone" type="tel" />
             </Fieldset>
             <Fieldset title="지도교수" required>
               <Form.Text
                 name="professor"
-                bgColor="bg-neutral-50"
-                className="h-7 w-full border-neutral-200"
                 placeholder=""
                 options={{ validate: (value) => value.trim() !== '' }}
               />
@@ -154,7 +135,6 @@ export default function AddReservationModal({
             <Fieldset title="사용 목적" required fullWidth>
               <Form.TextArea
                 name="purpose"
-                className="h-14 border-neutral-200 bg-neutral-50"
                 options={{ validate: (value) => value.trim() !== '' }}
               />
             </Fieldset>

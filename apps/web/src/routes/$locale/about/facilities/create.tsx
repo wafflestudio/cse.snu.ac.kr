@@ -64,7 +64,7 @@ function FacilitiesCreate() {
             {language === 'ko' && (
               <Form.Text
                 name="ko.name"
-                maxWidth="max-w-120"
+                size="lg"
                 options={{
                   required: { value: true, message: '시설명을 입력해주세요.' },
                 }}
@@ -73,7 +73,7 @@ function FacilitiesCreate() {
             {language === 'en' && (
               <Form.Text
                 name="en.name"
-                maxWidth="max-w-120"
+                size="lg"
                 options={{
                   required: { value: true, message: '시설명을 입력해주세요.' },
                 }}

@@ -176,23 +176,19 @@ const SharedEditor = ({ labs }: { labs: SimpleResearchLab[] }) => {
       <Form.Section title="연락처 정보">
         <div className="flex w-2xl">
           <Fieldset title="전화번호">
-            <Form.Text
-              name="phone"
-              maxWidth="max-w-80"
-              placeholder="예: (02) 880-7302"
-            />
+            <Form.Text name="phone" size="md" placeholder="예: (02) 880-7302" />
           </Fieldset>
           <Fieldset title="팩스">
-            <Form.Text name="fax" maxWidth="max-w-80" />
+            <Form.Text name="fax" size="md" />
           </Fieldset>
         </div>
 
         <Fieldset title="이메일">
-          <Form.Text name="email" maxWidth="max-w-100" />
+          <Form.Text name="email" size="lg" />
         </Fieldset>
 
         <Fieldset title="웹사이트 URL">
-          <Form.Text name="website" maxWidth="max-w-100" />
+          <Form.Text name="website" size="lg" />
         </Fieldset>
       </Form.Section>
     </>
@@ -205,7 +201,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
       <Fieldset title="이름" required>
         <Form.Text
           name={`${language}.name`}
-          maxWidth="max-w-120"
+          size="lg"
           options={{
             required: { value: true, message: '이름을 입력해주세요.' },
           }}
@@ -215,7 +211,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
       <Fieldset title="직함" required>
         <Form.Text
           name={`${language}.academicRank`}
-          maxWidth="max-w-120"
+          size="lg"
           placeholder="예: 교수, 조교수, 명예교수 등"
           options={{
             required: { value: true, message: '직함을 입력해주세요.' },
@@ -226,7 +222,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
       <Fieldset title="소속">
         <Form.Text
           name={`${language}.department`}
-          maxWidth="max-w-120"
+          size="lg"
           placeholder="예: 컴퓨터공학부"
         />
       </Fieldset>
@@ -234,7 +230,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
       <Fieldset title="위치">
         <Form.Text
           name={`${language}.office`}
-          maxWidth="max-w-80"
+          size="md"
           placeholder="예: 301동 504호"
         />
       </Fieldset>

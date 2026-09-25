@@ -35,7 +35,6 @@ export default function CareerStat({ stat }: { stat: YearStat[] }) {
             contents={stat.map((x) => x.year.toString())}
             selectedIndex={idx}
             onClick={setIdx}
-            height="h-9"
           />
         </div>
         <LoginVisible allow="ROLE_STAFF">

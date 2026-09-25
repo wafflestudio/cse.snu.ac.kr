@@ -1,7 +1,9 @@
+import { CircleX } from 'lucide-react';
 import type { ChangeEventHandler, MouseEventHandler } from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { RegisterOptions } from 'react-hook-form';
 import { useFormContext, useWatch } from 'react-hook-form';
+import Button from '@/components/ui/Button';
 import Image from '@/components/ui/Image';
 import type { LocalImage, UploadedImage } from '@/types/form';
 
@@ -21,24 +23,29 @@ export default function ImagePicker({ name, options }: Props) {
     setValue(name, { type: 'LOCAL_IMAGE', file: e.target.files[0] });
   };
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   return (
-    <>
-      <label className="mb-3 flex h-7.5 w-fit cursor-pointer items-center self-start rounded-xs border border-neutral-300 px-3 type-label hover:bg-neutral-100">
-        {`이미지 ${file ? '변경' : '업로드'}`}
+    <div className="flex flex-col gap-3">
+      <div className="self-start">
+        <Button variant="secondary" onClick={() => inputRef.current?.click()}>
+          {`이미지 ${file ? '변경' : '업로드'}`}
+        </Button>
         <input
+          ref={inputRef}
           type="file"
           accept=".png, .jpg, .jpeg"
           className="hidden"
           onChange={handleChange}
         />
-      </label>
+      </div>
       {file && (
         <SelectedImageViewer
           file={file}
           removeFile={() => setValue(name, null)}
         />
       )}
-    </>
+    </div>
   );
 }
 
@@ -63,7 +70,7 @@ const SelectedImageViewer = ({
 
   if (file.type !== 'LOCAL_IMAGE') {
     return (
-      <div className="flex w-fit items-end gap-2 border border-neutral-200 bg-neutral-50 p-2">
+      <div className="flex w-fit items-start gap-3 self-start rounded-xs border border-neutral-200 bg-neutral-50 p-2">
         <Image
           src={file.url}
           alt="선택된 이미지"
@@ -71,13 +78,9 @@ const SelectedImageViewer = ({
           height={100}
           sizes="100px"
         />
-        <button
-          type="button"
-          className="type-meta underline"
-          onClick={removeFile}
-        >
-          삭제
-        </button>
+        <Button variant="text" ariaLabel="이미지 지우기" onClick={removeFile}>
+          <CircleX className="size-5" />
+        </Button>
       </div>
     );
   }
@@ -90,7 +93,7 @@ const SelectedImageViewer = ({
   };
 
   return (
-    <div className="relative flex gap-3 self-start rounded-xs border border-neutral-200 bg-neutral-50 pb-2 pl-2 pr-4 pt-2">
+    <div className="flex items-start gap-3 self-start rounded-xs border border-neutral-200 bg-neutral-50 p-2">
       <Image
         src={imageURL}
         alt="선택된 이미지"
@@ -98,16 +101,14 @@ const SelectedImageViewer = ({
         sizes={`${IMAGE_WIDTH}px`}
         height={imageHeight}
       />
-      <div className="flex flex-col items-start justify-between">
-        <p className="type-meta">{`${file.file.name}(${fileSizeRounded}KB)`}</p>
-        <button
-          type="button"
-          className="type-meta underline"
-          onClick={handleDeleteBlob}
-        >
-          삭제
-        </button>
-      </div>
+      <p className="type-meta">{`${file.file.name}(${fileSizeRounded}KB)`}</p>
+      <Button
+        variant="text"
+        ariaLabel="이미지 지우기"
+        onClick={handleDeleteBlob}
+      >
+        <CircleX className="size-5" />
+      </Button>
     </div>
   );
 };

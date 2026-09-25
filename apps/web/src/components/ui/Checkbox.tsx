@@ -1,60 +1,53 @@
+import clsx from 'clsx';
 import { Square, SquareCheck } from 'lucide-react';
 import { useId } from 'react';
 
+// 켜짐 neutral-700(주요 버튼 면)·꺼짐 neutral-500, 호버하면 꺼진 아이콘 600(/design-system#form).
 interface CheckboxProps {
-  id?: string;
   label?: string;
   name?: string;
   value?: string;
   checked: boolean;
   onChange: (checked: boolean) => void;
   disabled?: boolean;
-  className?: string;
 }
 
 export default function Checkbox({
-  id,
   label,
   name,
   value,
   checked,
   onChange,
   disabled = false,
-  className,
 }: CheckboxProps) {
-  const generatedId = useId();
-  const inputId = id ?? generatedId;
+  const id = useId();
+  const Icon = checked ? SquareCheck : Square;
 
   return (
     <label
-      htmlFor={inputId}
-      className={`group flex h-5 w-fit items-center gap-1 whitespace-nowrap type-ui ${
-        disabled ? 'cursor-not-allowed opacity-40' : 'cursor-pointer'
-      } ${className ?? ''}`}
+      htmlFor={id}
+      className={clsx(
+        'group flex w-fit items-center gap-1 whitespace-nowrap type-ui text-neutral-600',
+        disabled ? 'cursor-not-allowed opacity-40' : 'cursor-pointer',
+      )}
     >
-      {(() => {
-        const Icon = checked ? SquareCheck : Square;
-        return (
-          <Icon
-            className={`text-neutral-400 ${
-              !disabled &&
-              'group-hover:text-neutral-600 group-active:text-main-orange'
-            } ${checked && 'text-neutral-600'}`}
-          />
-        );
-      })()}
-      <span
-        className={`tracking-wide text-neutral-600 ${
-          !disabled && 'group-active:text-main-orange'
-        }`}
-      >
-        {label}
-      </span>
+      <Icon
+        className={clsx(
+          'shrink-0',
+          checked
+            ? 'text-neutral-700'
+            : clsx(
+                'text-neutral-500',
+                !disabled && 'group-hover:text-neutral-600',
+              ),
+        )}
+      />
+      {label}
       <input
         type="checkbox"
-        id={inputId}
+        id={id}
         name={name}
-        className="appearance-none"
+        className="sr-only"
         value={value ?? label}
         checked={checked}
         disabled={disabled}

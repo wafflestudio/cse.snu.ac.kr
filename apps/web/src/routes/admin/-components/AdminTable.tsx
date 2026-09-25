@@ -126,7 +126,6 @@ export default function AdminTable({
                 <Checkbox
                   checked={isSelected}
                   onChange={() => onToggleSelection(key)}
-                  className="h-6"
                 />
               </div>
 

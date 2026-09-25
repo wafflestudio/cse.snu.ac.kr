@@ -28,13 +28,12 @@ export default function TextList({ name, placeholder }: Props) {
   };
 
   return (
-    <div>
-      <div className="mb-3 flex items-center gap-3">
+    <div className="flex flex-col gap-3">
+      <div className="flex items-center gap-3">
         <Text
           key={name}
-          maxWidth="w-100"
+          size="lg"
           name={newValueName}
-          bgColor="bg-neutral-50"
           placeholder={placeholder}
         />
         <Button variant="secondary" onClick={handleAdd}>
@@ -42,12 +41,8 @@ export default function TextList({ name, placeholder }: Props) {
         </Button>
       </div>
       {list?.map((_, idx) => (
-        <div className="mb-3 flex items-center gap-3" key={idx}>
-          <Text
-            maxWidth="w-100"
-            name={`${name}.${idx}`}
-            placeholder={placeholder}
-          />
+        <div className="flex items-center gap-3" key={idx}>
+          <Text size="lg" name={`${name}.${idx}`} placeholder={placeholder} />
           <Button variant="secondary" onClick={() => handleDelete(idx)}>
             삭제
           </Button>

@@ -157,15 +157,14 @@ export function CareerCompanyEditor({
           {index}
         </p>
         <div className={`type-ui ${TABLE_COLUMN_SIZE[1]}`}>
-          <Form.Text name="name" maxWidth="w-full" />
+          <Form.Text name="name" />
         </div>
         <div className={`type-ui ${TABLE_COLUMN_SIZE[2]}`}>
-          <Form.Text name="url" maxWidth="w-full" />
+          <Form.Text name="url" />
         </div>
         <div className={`type-ui ${TABLE_COLUMN_SIZE[3]}`}>
           <Form.Text
             name="year"
-            maxWidth="w-full"
             type="number"
             options={{ valueAsNumber: true }}
           />

@@ -80,7 +80,7 @@ export default function AddCourseModal({
           <Fieldset title={t('교과목명')} required>
             <Form.Text
               name="ko.name"
-              maxWidth="max-w-120"
+              size="lg"
               options={{ required: { value: true, message: t('교과목명') } }}
             />
           </Fieldset>
@@ -95,7 +95,7 @@ export default function AddCourseModal({
             <Fieldset title={t('교과목 번호')} grow={false} required>
               <Form.Text
                 name="code"
-                maxWidth="max-w-35"
+                size="md"
                 options={{
                   required: { value: true, message: t('교과목 번호') },
                 }}
@@ -108,7 +108,6 @@ export default function AddCourseModal({
                 label: value,
               }))}
               name="ko.classification"
-              width="w-[94px]"
             />
             <DropdownFieldset
               title={t('학점')}
@@ -129,7 +128,6 @@ export default function AddCourseModal({
                   : [{ value: 0, label: GRADE[0] }]
               }
               name="grade"
-              width="w-[90px]"
             />
           </div>
           <div className="mb-12 type-meta text-main-orange">
@@ -138,7 +136,7 @@ export default function AddCourseModal({
           <Fieldset title={t('(영문) Course Name')} required>
             <Form.Text
               name="en.name"
-              maxWidth="max-w-120"
+              size="lg"
               options={{
                 required: { value: true, message: t('(영문) Course Name') },
               }}
@@ -174,22 +172,14 @@ function DropdownFieldset({
   title,
   contents,
   name,
-  width,
 }: {
   title: string;
   contents: { value: unknown; label: string }[];
   name: string;
-  width?: string;
 }) {
   return (
     <Fieldset title={title} grow={false} required>
-      <Form.Dropdown
-        contents={contents}
-        name={name}
-        borderStyle="border-neutral-300"
-        width={width}
-        height="h-8"
-      />
+      <Form.Dropdown contents={contents} name={name} />
     </Fieldset>
   );
 }

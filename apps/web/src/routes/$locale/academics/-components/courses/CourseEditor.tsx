@@ -66,7 +66,7 @@ export default function CourseEditor({
         <Bookmark className="text-main-orange" fill="currentColor" />
         <Form.Text
           name="ko.name"
-          maxWidth="w-[180px]"
+          size="md"
           placeholder={t('교과목명')}
           options={{ required: { value: true, message: t('교과목명') } }}
         />
@@ -83,9 +83,6 @@ export default function CourseEditor({
             value,
           }))}
           name="ko.classification"
-          borderStyle="border-neutral-300"
-          height="h-8"
-          width="w-[94px]"
           onChange={(value) =>
             setValue('en.classification', value as ClassificationEn)
           }
@@ -93,8 +90,6 @@ export default function CourseEditor({
         <Form.Dropdown
           contents={CREDIT.map((value) => ({ label: value.toString(), value }))}
           name="credit"
-          borderStyle="border-neutral-300"
-          height="h-8"
         />
         <Form.Dropdown
           contents={gradeDropdownContents.map((label, idx) => ({
@@ -102,9 +97,6 @@ export default function CourseEditor({
             label,
           }))}
           name="grade"
-          borderStyle="border-neutral-300"
-          height="h-8"
-          width="w-[90px]"
         />
       </h4>
       <Form.TextArea
@@ -117,7 +109,7 @@ export default function CourseEditor({
           <span className="type-label text-neutral-500">{t('영문')}</span>
           <Form.Text
             name="en.name"
-            maxWidth="w-[308px]"
+            size="md"
             placeholder="course name"
             options={{ required: { value: true, message: 'course name' } }}
           />

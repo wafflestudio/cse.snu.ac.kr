@@ -2,6 +2,7 @@ import { useRouter } from '@tanstack/react-router';
 import { FormProvider, useForm } from 'react-hook-form';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
+import { FIELD_CLASS, fieldBorder } from '@/components/ui/field';
 import { toast, toastError } from '@/components/ui/sonner';
 import type { ImageModal } from '@/types/api';
 import type { EditorImage } from '@/types/form';
@@ -110,7 +111,7 @@ export default function ImageModalManagement({
           <input
             type="datetime-local"
             {...methods.register('displayUntil')}
-            className="h-8 w-fit rounded-xs border border-neutral-300 bg-white px-2 type-ui outline-none"
+            className={`w-fit ${FIELD_CLASS} ${fieldBorder(false)}`}
           />
           <span className="mt-1 type-meta text-neutral-500">
             비워두면 종료일 없이 계속 표시됩니다.

@@ -20,7 +20,7 @@ export default function Section({
     <section
       className={clsx('mb-12', disabled && 'opacity-30', hidden && 'hidden')}
     >
-      <div className="mb-4 type-item tracking-wide">{title}</div>
+      <div className="mb-4 type-item">{title}</div>
       {children}
     </section>
   );

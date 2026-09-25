@@ -10,7 +10,6 @@
 
   /* CSS Variables */
   --rdp-accent-color: var(--color-main-orange-dark);
-  --rdp-accent-background-color: #fff5f0;
   --rdp-day-height: 2rem;
   --rdp-day-width: 2rem;
   --rdp-day_button-height: 1.875rem;
@@ -24,13 +23,13 @@
 /* Month Caption */
 .custom-calendar .rdp-month_caption {
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* Weekdays */
 .custom-calendar .rdp-weekday {
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-size: 0.8125rem;
+  font-weight: 400;
 }
 
 /* Day Buttons */
@@ -41,5 +40,6 @@
 
 /* Selected Day */
 .custom-calendar .rdp-selected .rdp-day_button {
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--rdp-accent-color);
 }

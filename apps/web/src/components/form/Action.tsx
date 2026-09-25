@@ -26,8 +26,9 @@ export default function Action({
 
   return (
     <>
-      {/* [삭제] ……… [오류] [취소] [저장] — 삭제는 저장과 멀리 왼쪽 끝에 둔다. */}
-      <div className="mb-6 flex items-center gap-3">
+      {/* [삭제] ……… [오류] [취소] [저장] — 삭제는 저장과 멀리 왼쪽 끝에 둔다.
+          위는 마지막 필드의 24 + 여기 24 = 48(묶음 사이) — 버튼 줄이 필드 하나처럼 붙어 보이지 않게. */}
+      <div className="mt-6 mb-6 flex items-center gap-3">
         {onDelete && (
           <Button
             variant="secondary"
@@ -135,23 +136,19 @@ const ErrorMessages = () => {
       if (value && typeof value === 'object') {
         messages.push(...flattenErrors(value, visited));
       }
-      if (messages.length > 5) break;
     }
 
     return messages;
   };
 
-  const errorMessages = flattenErrors(errors);
+  // 문장은 필드 바로 아래에 있고, 여기에는 개수만 둔다 — 긴 폼에서 위쪽 오류를 놓치지 않게.
+  const count = flattenErrors(errors).length || Object.keys(errors).length;
 
-  if (errorMessages.length === 0) {
+  if (count === 0) {
     return null;
   }
 
   return (
-    <ul className="type-meta text-red-600 space-y-1">
-      {errorMessages.map((message, idx) => (
-        <li key={idx}>{message}</li>
-      ))}
-    </ul>
+    <p className="type-meta text-red-600">확인할 항목이 {count}개 있습니다.</p>
   );
 };

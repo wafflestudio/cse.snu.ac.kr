@@ -30,7 +30,7 @@ function Fieldset({
         className,
       )}
     >
-      <legend className="mb-2 type-label tracking-wide">
+      <legend className="mb-2 type-label">
         {title}
         {required && <span className="text-main-orange">*</span>}
       </legend>

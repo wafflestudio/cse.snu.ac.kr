@@ -2,25 +2,31 @@ import clsx from 'clsx';
 import type { TextareaHTMLAttributes } from 'react';
 import type { RegisterOptions } from 'react-hook-form';
 import { useFormContext } from 'react-hook-form';
+import { fieldBorder } from '@/components/ui/field';
+import FieldError, { useFieldError } from './FieldError';
 
 export default function TextArea({
   name,
   options,
-  className,
   ...props
 }: {
   name: string;
   options?: RegisterOptions;
-} & TextareaHTMLAttributes<HTMLTextAreaElement>) {
+} & Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'className'>) {
   const { register } = useFormContext();
+  const error = useFieldError(name);
   return (
-    <textarea
-      {...register(name, options)}
-      {...props}
-      className={clsx(
-        'autofill-bg-white h-20 w-full resize-none rounded-xs border border-neutral-300 p-2 type-ui outline-none placeholder:text-neutral-300',
-        className,
-      )}
-    />
+    <div className="w-full">
+      <textarea
+        {...register(name, options)}
+        {...props}
+        aria-invalid={error !== undefined || undefined}
+        className={clsx(
+          'autofill-bg-white block h-20 w-full resize-none rounded-xs border bg-white px-3 py-2 type-ui outline-none placeholder:text-neutral-300',
+          fieldBorder(error !== undefined),
+        )}
+      />
+      <FieldError message={error} />
+    </div>
   );
 }

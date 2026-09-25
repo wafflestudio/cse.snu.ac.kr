@@ -2,39 +2,46 @@ import clsx from 'clsx';
 import type { InputHTMLAttributes } from 'react';
 import type { RegisterOptions } from 'react-hook-form';
 import { useFormContext } from 'react-hook-form';
+import {
+  FIELD_CLASS,
+  FIELD_WIDTH,
+  type FieldWidth,
+  fieldBorder,
+} from '@/components/ui/field';
+import FieldError, { useFieldError } from './FieldError';
 
-interface BasicTextInputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface TextProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'className' | 'size'> {
   name: string;
   options?: RegisterOptions;
-  maxWidth?: string;
-  bgColor?: string;
-  textCenter?: boolean;
+  // 폭 네 단계(/design-system#form). 기본은 영역 전체.
+  size?: FieldWidth;
 }
 
 export default function Text({
-  maxWidth,
-  bgColor = 'bg-white',
-  textCenter,
   name,
   options,
-  className,
+  size = 'full',
+  hidden,
   ...props
-}: BasicTextInputProps) {
+}: TextProps) {
   const { register } = useFormContext();
+  const error = useFieldError(name);
 
   return (
-    <input
-      type="text"
-      className={clsx(
-        maxWidth,
-        'autofill-bg-white h-8 rounded-xs border border-neutral-300',
-        bgColor,
-        'pl-2 type-ui outline-none placeholder:text-neutral-300 disabled:text-neutral-300',
-        textCenter && 'pr-2 text-center',
-        className,
-      )}
-      {...props}
-      {...register(name, options)}
-    />
+    <div className={clsx(FIELD_WIDTH[size], hidden && 'hidden')}>
+      <input
+        type="text"
+        className={clsx(
+          'autofill-bg-white w-full',
+          FIELD_CLASS,
+          fieldBorder(error !== undefined),
+        )}
+        aria-invalid={error !== undefined || undefined}
+        {...props}
+        {...register(name, options)}
+      />
+      <FieldError message={error} />
+    </div>
   );
 }

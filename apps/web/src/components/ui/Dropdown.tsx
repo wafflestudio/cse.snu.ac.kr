@@ -1,25 +1,28 @@
+import clsx from 'clsx';
 import { ChevronDown } from 'lucide-react';
 import { useEffect, useId, useRef, useState } from 'react';
+import { FIELD_CLASS, fieldBorder } from './field';
 
 // 인덱스 기반 API는 그대로 유지(호출부 6곳 무변경). 내부는 CSS 위치 기반 커스텀 구현이다.
 // Radix Select(popper)는 floating-ui로 위치를 동적 인라인 스타일(transform: translate(x,y) …)로
 // 주입하는데, 값이 매번 달라 strict CSP의 style-src를 nonce·해시로 못 잡는다(=`unsafe-inline`
 // 강요). 그래서 직접 구현: 리스트박스를 트리거 바로 아래 `absolute`로 깔아 인라인 스타일 0.
 // 키보드 내비·타입어헤드·ARIA combobox/listbox로 접근성은 유지한다.
+// 모양은 입력 칸 한 벌(/design-system#form): 칸 폭은 가장 긴 항목, 목록은 칸 아래 4px 에 뜬 층.
 interface DropdownProps {
   contents: string[];
   selectedIndex: number;
   onClick: (index: number) => void;
-  borderStyle?: string;
-  height?: string;
+  disabled?: boolean;
+  invalid?: boolean;
 }
 
 export default function Dropdown({
   contents,
   selectedIndex,
   onClick,
-  borderStyle = 'border-neutral-200',
-  height,
+  disabled = false,
+  invalid = false,
 }: DropdownProps) {
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(
@@ -122,7 +125,6 @@ export default function Dropdown({
 
   return (
     <div ref={rootRef} className="relative inline-flex flex-col">
-      {/* 닫힌 트리거: 기존 마크업/클래스 유지(픽셀 동일) */}
       <button
         ref={triggerRef}
         type="button"
@@ -130,12 +132,32 @@ export default function Dropdown({
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-controls={open ? listboxId : undefined}
+        aria-invalid={invalid || undefined}
+        disabled={disabled}
         onClick={() => setOpen((o) => !o)}
         onKeyDown={handleTriggerKeyDown}
-        className={`flex select-none items-center gap-4 rounded-xs border bg-white py-1 pl-3 pr-1 ${borderStyle} ${height ?? ''}`}
+        className={clsx(
+          FIELD_CLASS,
+          fieldBorder(invalid),
+          'flex select-none items-center gap-4 disabled:cursor-not-allowed disabled:opacity-40',
+        )}
       >
-        <span className="type-ui">{contents[selectedIndex] ?? ''}</span>
-        <ChevronDown className="shrink-0" />
+        {/* 모든 항목을 한 칸에 겹쳐 두어 칸 폭을 가장 긴 항목에 맞춘다 — 고른 값이 바뀌어도 폭이 그대로다. */}
+        <span className="grid text-left">
+          {contents.map((content, index) => (
+            <span
+              key={index}
+              aria-hidden={index !== selectedIndex}
+              className={clsx(
+                'col-start-1 row-start-1 whitespace-nowrap',
+                index !== selectedIndex && 'invisible',
+              )}
+            >
+              {content}
+            </span>
+          ))}
+        </span>
+        <ChevronDown className="ml-auto shrink-0" />
       </button>
 
       {open && (
@@ -148,7 +170,7 @@ export default function Dropdown({
           tabIndex={-1}
           aria-activedescendant={`${listboxId}-opt-${activeIndex}`}
           onKeyDown={handleListKeyDown}
-          className={`styled-scrollbar absolute top-full left-0 z-10 max-h-[168px] w-full overflow-y-auto overscroll-contain rounded-bl-sm rounded-br-sm border-x border-b bg-white outline-none ${borderStyle}`}
+          className="styled-scrollbar absolute top-full left-0 z-10 mt-1 max-h-[204px] min-w-full overflow-y-auto overscroll-contain rounded-xs border border-neutral-300 bg-white shadow-overlay outline-none"
         >
           {contents.map((content, index) => (
             // 키보드는 listbox onKeyDown에서 aria-activedescendant로 일괄 처리하는 WAI-ARIA
@@ -162,9 +184,11 @@ export default function Dropdown({
               aria-selected={index === selectedIndex}
               onClick={() => select(index)}
               onMouseEnter={() => setActiveIndex(index)}
-              className={`flex h-7 w-full cursor-pointer items-center pl-3 text-left type-ui ${
-                index === activeIndex ? 'bg-neutral-200' : ''
-              } ${index === selectedIndex ? 'text-main-orange' : ''}`}
+              className={clsx(
+                'flex h-8.5 w-full cursor-pointer items-center whitespace-nowrap px-3 type-ui',
+                index === activeIndex && 'bg-neutral-100',
+                index === selectedIndex && 'text-main-orange',
+              )}
             >
               {content}
             </div>
