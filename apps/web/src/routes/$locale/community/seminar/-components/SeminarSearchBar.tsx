@@ -32,7 +32,7 @@ export default function SeminarSearchBar() {
   };
 
   return (
-    <form className="flex w-fit items-center gap-5" onSubmit={handleSubmit}>
+    <form className="flex w-fit items-center gap-4" onSubmit={handleSubmit}>
       <label htmlFor="seminar-search" className="type-label">
         {t('검색')}
       </label>

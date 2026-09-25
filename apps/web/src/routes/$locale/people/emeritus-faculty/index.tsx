@@ -44,7 +44,7 @@ function EmeritusFacultyPage() {
       pageDescription={meta.description}
     >
       <LoginVisible allow="ROLE_STAFF">
-        <div className="mb-7 flex justify-end">
+        <div className="mb-8 flex justify-end">
           <Button
             variant="neutral"
             size="md"

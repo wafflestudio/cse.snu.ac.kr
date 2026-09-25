@@ -53,7 +53,7 @@ function FacultyDetailPage() {
       pageDescription={pageDescription}
     >
       <LoginVisible allow="ROLE_STAFF">
-        <div className="mb-9 text-right">
+        <div className="mb-8 text-right">
           <Button
             as="link"
             to={localizedPath(`/people/faculty/${faculty.id}/edit`)}
@@ -65,7 +65,7 @@ function FacultyDetailPage() {
         </div>
       </LoginVisible>
 
-      <div className="relative mb-10 sm:flow-root">
+      <div className="relative sm:flow-root">
         <PeopleProfileInfo imageURL={faculty.imageURL} items={contactItems} />
         <PeopleLabNode faculty={faculty} />
         <div className="mt-8 break-all">

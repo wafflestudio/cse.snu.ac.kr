@@ -69,7 +69,7 @@ export default function ResearchGroupEditor({
 const Editor = ({ language }: { language: Language }) => {
   return (
     <>
-      <Fieldset title="스트림 이름" spacing="8" required>
+      <Fieldset title="스트림 이름" required>
         <Form.Text
           name={`${language}.name`}
           options={{

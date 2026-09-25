@@ -43,7 +43,7 @@ export default function TagCheckBoxes({
       <legend className="mb-3 mr-6 whitespace-nowrap p-0 type-label tracking-wide">
         {t('태그')}
       </legend>
-      <div className={`grid ${gridColsTailwind} gap-x-7 gap-y-2.5 pl-2.5`}>
+      <div className={`grid ${gridColsTailwind} gap-x-8 gap-y-3 pl-3`}>
         {tags.map((tag) => (
           <Checkbox
             key={tag}

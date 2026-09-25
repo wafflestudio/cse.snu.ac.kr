@@ -29,15 +29,15 @@ interface PageLayoutProps {
  * 본문 기본 스타일
  * padding-left: 100px
  * padding-right: 360px
- * padding-top: 44px
- * padding-bottom: 150px
+ * padding-top: 48px(모바일 32)
+ * padding-bottom: 128px(모바일 64)
  * background-color: white
  */
 export default function PageLayout({
   title,
   subtitle,
   breadcrumb,
-  titleMargin = 'mb-6 sm:mb-11',
+  titleMargin = 'mb-6 sm:mb-12',
   padding = 'default',
   subNav,
   pageTitle,
@@ -59,10 +59,10 @@ export default function PageLayout({
     padding === 'none'
       ? 'p-0'
       : padding === 'noTop'
-        ? 'page-gutter-x pb-16 sm:pb-[150px]'
+        ? 'page-gutter-x pb-16 sm:pb-32'
         : padding === 'noBottom'
-          ? 'page-gutter-x pt-7 sm:pt-11'
-          : 'page-gutter-x pt-7 pb-16 sm:pt-11 sm:pb-[150px]';
+          ? 'page-gutter-x pt-8 sm:pt-12'
+          : 'page-gutter-x pt-8 pb-16 sm:pt-12 sm:pb-32';
 
   return (
     <>

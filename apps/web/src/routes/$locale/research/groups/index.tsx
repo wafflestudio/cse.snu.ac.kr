@@ -72,7 +72,7 @@ function ResearchGroupsPage() {
     >
       <div className="page-gutter-x">
         <LoginVisible allow="ROLE_STAFF">
-          <div className="mt-11 text-right">
+          <div className="mt-12 text-right">
             <Button
               as="link"
               to={localizedPath('/research/groups/create')}
@@ -86,9 +86,9 @@ function ResearchGroupsPage() {
         <SelectionList items={items} />
       </div>
       {item && (
-        <div className="flex flex-col bg-neutral-100 page-gutter-x pb-9 pt-8 sm:pb-[100px] sm:pt-[50px]">
+        <div className="flex flex-col bg-neutral-100 page-gutter-x pt-8 pb-16 sm:pt-12 sm:pb-32">
           <LoginVisible allow="ROLE_STAFF">
-            <div className="mb-7 flex justify-end gap-3">
+            <div className="mb-8 flex justify-end gap-3">
               <Button
                 as="button"
                 onClick={() => setShowDeleteDialog(true)}
@@ -107,14 +107,14 @@ function ResearchGroupsPage() {
               </Button>
             </div>
           </LoginVisible>
-          <h2 className="mb-6 ml-1 whitespace-nowrap type-section sm:mx-0 sm:mb-[18px]">
+          <h2 className="mb-4 ml-1 whitespace-nowrap type-section sm:mx-0">
             {item.name} {t('스트림')}
           </h2>
-          <div className="max-w-3xl bg-white p-[18px] sm:p-[40px]">
+          <div className="max-w-3xl bg-white p-4 sm:p-8">
             <HTMLViewer html={item.description} />
           </div>
           {item.mainImageUrl && (
-            <div className="relative mt-10 aspect-2/1 w-[80%] max-w-180 self-end">
+            <div className="relative mt-12 aspect-2/1 w-[80%] max-w-180 self-end">
               <Image
                 src={item.mainImageUrl}
                 alt={`${item.name} 연구 스트림 사진`}
@@ -124,16 +124,16 @@ function ResearchGroupsPage() {
               />
             </div>
           )}
-          <div className="mt-10 sm:mx-0">
-            <h3 className="mb-1 whitespace-nowrap type-item sm:py-1 sm:pl-2.5">
+          <div className="mt-12 sm:mx-0">
+            <h3 className="mb-2 whitespace-nowrap type-item sm:pl-3">
               {t('연구실')}
             </h3>
             <ul>
               {item.labs.map((lab) => (
-                <li key={lab.id} className="mb-0.5 w-fit whitespace-nowrap">
+                <li key={lab.id} className="mb-1 w-fit whitespace-nowrap">
                   <Link
                     to={localizedPath(`/research/labs/`)}
-                    className="group flex h-7 items-center gap-2.5 sm:px-3"
+                    className="group flex h-7 items-center gap-2 sm:px-3"
                   >
                     <span className="h-2.5 w-2.5 rounded-full border border-main-orange duration-300 group-hover:bg-main-orange" />
                     <span className="type-ui duration-300 group-hover:text-main-orange">

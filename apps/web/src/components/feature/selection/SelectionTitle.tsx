@@ -12,12 +12,12 @@ export default function SelectionTitle({
   animateKey,
 }: SelectionTitleProps) {
   return (
-    <div className="mb-5 sm:w-fit" key={animateKey ?? title}>
-      <h4 className="px-2.5 type-section text-neutral-950">
+    <div className="mb-4 sm:w-fit" key={animateKey ?? title}>
+      <h4 className="px-3 type-section text-neutral-950">
         <div className="flex items-center gap-2">
           <span>{title}</span>
           {subtitle && (
-            <span className="pt-0.75 type-meta tracking-[0.02rem]">
+            <span className="pt-1 type-meta tracking-[0.02rem]">
               {subtitle}
             </span>
           )}

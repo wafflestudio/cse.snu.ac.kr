@@ -99,20 +99,20 @@ export default function ReservationDetailModal({
     <>
       <Dialog open={open} onOpenChange={onOpenChange} title="예약 상세">
         <div className="min-w-[320px]">
-          <div className="mb-5 flex items-center justify-between">
+          <div className="mb-4 flex items-center justify-between">
             <h2 className="type-section text-neutral-950">
               {reservation?.title ?? t('불러오는중')}
             </h2>
           </div>
 
-          <div className="mb-[2.19rem] flex flex-col gap-6">
+          <div className="mb-8 flex flex-col gap-6">
             <p className="text-neutral-950">
               {reservation
                 ? (reservation.purpose ?? t('예약 목적 미기입'))
                 : '-'}
             </p>
 
-            <div className="flex flex-col gap-[6px]">
+            <div className="flex flex-col gap-2">
               <Row
                 title={t('예약 날짜')}
                 body={
@@ -150,7 +150,7 @@ export default function ReservationDetailModal({
               body={reservation?.roomLocation ?? '-'}
             />
 
-            <div className="flex flex-col gap-[6px]">
+            <div className="flex flex-col gap-2">
               <p className="type-ui text-neutral-500">{t('예약자 정보')}</p>
               <Row title={t('계정')} body={reservation?.userName ?? '-'} />
               <Row

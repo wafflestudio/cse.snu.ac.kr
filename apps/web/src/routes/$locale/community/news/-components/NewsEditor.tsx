@@ -58,7 +58,7 @@ export default function NewsEditor({
   return (
     <FormProvider {...formMethods}>
       <Form>
-        <Fieldset title="제목" spacing="8" titleSpacing="2" required>
+        <Fieldset title="제목" required>
           <Form.Text
             name="title"
             placeholder="제목을 입력하세요."
@@ -67,13 +67,13 @@ export default function NewsEditor({
             }}
           />
         </Fieldset>
-        <Fieldset title="메인-중요 안내용 제목" spacing="8" titleSpacing="2">
+        <Fieldset title="메인-중요 안내용 제목">
           <Form.Text
             name="titleForMain"
             placeholder="미입력시 제목과 동일하게 표시됩니다."
           />
         </Fieldset>
-        <Fieldset title="시기" spacing="8" titleSpacing="2" required>
+        <Fieldset title="시기" required>
           <Form.Date name="date" hideTime />
         </Fieldset>
         <Fieldset.HTML>
@@ -84,7 +84,7 @@ export default function NewsEditor({
             }}
           />
         </Fieldset.HTML>
-        <Fieldset title="대표 이미지" spacing="6" titleSpacing="2">
+        <Fieldset title="대표 이미지">
           <label
             htmlFor="image"
             className="mb-3 block type-meta tracking-wide text-neutral-500"
@@ -96,14 +96,14 @@ export default function NewsEditor({
         <Fieldset.File>
           <Form.File name="attachments" />
         </Fieldset.File>
-        <Fieldset title="태그" spacing="8" titleSpacing="3">
-          <div className="flex grow flex-wrap gap-x-6 gap-y-2.5">
+        <Fieldset title="태그">
+          <div className="flex grow flex-wrap gap-x-6 gap-y-2">
             {NEWS_TAGS.map((tag) => (
               <Form.Checkbox key={tag} value={tag} name="tags" />
             ))}
           </div>
         </Fieldset>
-        <Fieldset title="게시 설정" spacing="6" titleSpacing="3">
+        <Fieldset title="게시 설정">
           <div className="flex flex-col gap-2">
             <Form.Checkbox
               label="비공개 글"

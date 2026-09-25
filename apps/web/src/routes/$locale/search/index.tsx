@@ -14,7 +14,7 @@ function SearchPage() {
   const { t, locale } = useLanguage();
 
   return (
-    <PageLayout title={t('통합 검색')} titleMargin="mb-11">
+    <PageLayout title={t('통합 검색')} titleMargin="mb-12">
       <SearchBox tags={[...SEARCH_TAGS]} formOnly />
 
       {tooShort && (
@@ -30,7 +30,7 @@ function SearchPage() {
 
       {!tooShort && keyword && result && result.total > 0 && (
         <>
-          <p className="mb-11 ml-3 type-meta text-neutral-500 sm:mb-14">
+          <p className="mb-8 ml-3 type-meta text-neutral-500">
             {locale === 'en'
               ? `${result.total} results`
               : `${result.total}개의 검색결과`}

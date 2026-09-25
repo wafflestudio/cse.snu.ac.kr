@@ -50,7 +50,7 @@ export default function ImportantManagement({
 
   return (
     <div>
-      <span className="mb-5 ml-6 block type-meta tracking-wide text-neutral-500">
+      <span className="mb-4 ml-6 block type-meta tracking-wide text-neutral-500">
         총 {total}개의 게시물
       </span>
 

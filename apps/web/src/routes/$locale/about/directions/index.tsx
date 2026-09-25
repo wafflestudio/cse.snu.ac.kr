@@ -58,7 +58,7 @@ function DirectionsPage() {
       pageTitle={meta.title}
       pageDescription={meta.description}
     >
-      <div className="mb-12 pt-7 sm:pt-11">
+      <div className="mb-12 pt-8 sm:pt-12">
         <p className="mb-8 type-body">
           {t('컴퓨터공학부는 서울대학교 관악 301동(신공학관1)에 있습니다.')}
           <br />
@@ -84,7 +84,7 @@ function DirectionsPage() {
 
       {selectedDirection && (
         <div>
-          <div className="mb-7 justify-between sm:flex">
+          <div className="mb-4 justify-between sm:flex">
             <h4 className="type-section">{selectedDirection[locale]?.name}</h4>
             <LoginVisible allow="ROLE_STAFF">
               <Button
@@ -99,7 +99,7 @@ function DirectionsPage() {
               </Button>
             </LoginVisible>
           </div>
-          <div className="ml-2.5">
+          <div className="ml-3">
             {selectedDirection[locale]?.description && (
               <HTMLViewer html={selectedDirection[locale].description} />
             )}

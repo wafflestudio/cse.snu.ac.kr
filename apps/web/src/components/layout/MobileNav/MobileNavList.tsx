@@ -23,8 +23,8 @@ export default function MobileNavList() {
   };
 
   return (
-    <nav className="flex min-w-[100px] grow-[6.25] basis-0 flex-col justify-between bg-chrome-menu pt-10">
-      <ul className="flex flex-col gap-9 text-center">
+    <nav className="flex min-w-[100px] grow-[6.25] basis-0 flex-col justify-between bg-chrome-menu pt-8">
+      <ul className="flex flex-col gap-8 text-center">
         {navigationTree.map((item, i) => (
           <li
             key={i}
@@ -39,7 +39,7 @@ export default function MobileNavList() {
         ))}
       </ul>
 
-      <div className="mb-[40px] flex flex-col items-center type-ui text-neutral-500">
+      <div className="mb-8 flex flex-col items-center type-ui text-neutral-500">
         <Button
           variant="quiet"
           size="sm"
@@ -82,7 +82,7 @@ function SearchPage({ onClose }: { onClose: () => void }) {
           <X className="h-5 w-5 text-white" />
         </Button>
       </div>
-      <div className="mx-[1.94rem] mt-9 flex items-center border-b border-neutral-400">
+      <div className="mx-8 mt-8 flex items-center border-b border-neutral-400">
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -127,7 +127,7 @@ function LangButton() {
   const { locale, changeLanguage } = useLanguage();
 
   return (
-    <div className="mt-[0.62rem]">
+    <div className="mt-3">
       <Button variant="quiet" size="sm" onClick={changeLanguage}>
         {locale === 'ko' ? 'ENG' : '한국어'}
       </Button>

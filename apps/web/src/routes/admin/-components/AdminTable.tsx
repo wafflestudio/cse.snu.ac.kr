@@ -44,7 +44,7 @@ export default function AdminTable({
   const { locale, localizedPath } = useLanguage();
 
   return (
-    <div className="mx-2.5 mb-8">
+    <div className="mx-3 mb-8">
       {/* Header */}
       <div className="flex items-center border-b border-neutral-300 bg-neutral-50 py-3 type-label tracking-wide text-neutral-700">
         <div

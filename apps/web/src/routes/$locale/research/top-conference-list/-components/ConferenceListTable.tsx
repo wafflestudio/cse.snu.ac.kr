@@ -47,15 +47,13 @@ function ConferenceRow({
 }) {
   return (
     <div className="flex w-full flex-row items-center wrap-break-word type-ui even:bg-neutral-100">
-      <div className="flex w-12 items-center justify-center px-3 py-2.5">
+      <div className="flex w-12 items-center justify-center px-3 py-3">
         {index}
       </div>
-      <div className="flex w-28 items-center px-3 py-2.5">
+      <div className="flex w-28 items-center px-3 py-3">
         {conference.abbreviation}
       </div>
-      <div className="flex w-135 items-center px-3 py-2.5">
-        {conference.name}
-      </div>
+      <div className="flex w-135 items-center px-3 py-3">{conference.name}</div>
     </div>
   );
 }

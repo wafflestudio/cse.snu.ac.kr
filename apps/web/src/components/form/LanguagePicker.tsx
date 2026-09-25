@@ -13,7 +13,7 @@ export default function LanguagePicker({
   onChange: (language: Language) => void;
 }) {
   return (
-    <div className="mb-9 flex gap-3">
+    <div className="mb-8 flex gap-3">
       {(Object.keys(LANGUAGE) as Language[]).map((language) => (
         <span key={language}>
           <input

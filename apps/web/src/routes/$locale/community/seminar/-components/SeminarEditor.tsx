@@ -75,7 +75,7 @@ export default function SeminarEditor({
   return (
     <FormProvider {...formMethods}>
       <Form>
-        <Fieldset title="제목" spacing="8" titleSpacing="2" required>
+        <Fieldset title="제목" required>
           <Form.Text
             name="title"
             placeholder="제목을 입력하세요."
@@ -85,18 +85,18 @@ export default function SeminarEditor({
           />
         </Fieldset>
 
-        <Fieldset title="메인-중요 안내용 제목" spacing="8" titleSpacing="2">
+        <Fieldset title="메인-중요 안내용 제목">
           <Form.Text
             name="titleForMain"
             placeholder="미입력시 제목과 동일하게 표시됩니다."
           />
         </Fieldset>
 
-        <Fieldset title="요약" spacing="10" titleSpacing="2">
+        <Fieldset title="요약">
           <Form.HTML name="description" />
         </Fieldset>
 
-        <Fieldset title="장소" spacing="4" titleSpacing="2" required>
+        <Fieldset title="장소" required>
           <Form.Text
             name="location"
             placeholder="장소를 입력하세요."
@@ -108,14 +108,14 @@ export default function SeminarEditor({
 
         <ScheduleFieldset />
 
-        <Fieldset title="주최" spacing="10" titleSpacing="2">
+        <Fieldset title="주최">
           <Form.Text name="host" />
         </Fieldset>
 
-        <div className="mb-10">
-          <legend className="mb-3 type-item tracking-wide">연사 정보</legend>
-          <div className="flex flex-col gap-4">
-            <div className="flex gap-5">
+        <div className="mb-12">
+          <legend className="mb-4 type-item tracking-wide">연사 정보</legend>
+          <div className="flex flex-col">
+            <div className="flex gap-6">
               <Fieldset title="이름" required>
                 <Form.Text
                   name="name"
@@ -131,7 +131,7 @@ export default function SeminarEditor({
             <Fieldset title="직함">
               <Form.Text name="speakerTitle" />
             </Fieldset>
-            <div className="flex gap-5">
+            <div className="flex gap-6">
               <Fieldset title="소속" required>
                 <Form.Text
                   name="affiliation"
@@ -147,11 +147,11 @@ export default function SeminarEditor({
           </div>
         </div>
 
-        <Fieldset title="연사 소개" spacing="10" titleSpacing="2">
+        <Fieldset title="연사 소개">
           <Form.HTML name="introduction" />
         </Fieldset>
 
-        <Fieldset title="연사 사진" spacing="6" titleSpacing="2">
+        <Fieldset title="연사 사진">
           <label
             htmlFor="image"
             className="mb-3 block whitespace-pre-wrap type-meta tracking-wide text-neutral-500"
@@ -162,11 +162,11 @@ export default function SeminarEditor({
           <Form.Image name="image" />
         </Fieldset>
 
-        <Fieldset title="첨부파일" spacing="6" titleSpacing="3">
+        <Fieldset title="첨부파일">
           <Form.File name="attachments" />
         </Fieldset>
 
-        <Fieldset title="게시 설정" titleSpacing="3" spacing="11">
+        <Fieldset title="게시 설정">
           <div className="flex flex-col gap-1">
             <Form.Checkbox label="비공개 글" name="isPrivate" />
             <Form.Checkbox label="메인-중요 안내에 표시" name="isImportant" />

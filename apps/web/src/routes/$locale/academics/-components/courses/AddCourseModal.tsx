@@ -76,20 +76,15 @@ export default function AddCourseModal({
         <h4 className="mb-4 type-section text-neutral-700">
           {t('교과목 추가')}
         </h4>
-        <div className="flex flex-col gap-4">
-          <Fieldset title={t('교과목명')} titleSpacing="1" spacing="5" required>
+        <div className="flex flex-col">
+          <Fieldset title={t('교과목명')} required>
             <Form.Text
               name="ko.name"
               maxWidth="max-w-120"
               options={{ required: { value: true, message: t('교과목명') } }}
             />
           </Fieldset>
-          <Fieldset
-            title={t('교과목 설명')}
-            titleSpacing="1"
-            spacing="5"
-            required
-          >
+          <Fieldset title={t('교과목 설명')} required>
             <Form.TextArea
               name="ko.description"
               placeholder={t('교과목 설명')}
@@ -97,12 +92,7 @@ export default function AddCourseModal({
             />
           </Fieldset>
           <div className="flex justify-between">
-            <Fieldset
-              title={t('교과목 번호')}
-              titleSpacing="1"
-              grow={false}
-              required
-            >
+            <Fieldset title={t('교과목 번호')} grow={false} required>
               <Form.Text
                 name="code"
                 maxWidth="max-w-35"
@@ -142,15 +132,10 @@ export default function AddCourseModal({
               width="w-[90px]"
             />
           </div>
-          <div className="mb-10 mt-1.5 type-meta text-main-orange">
+          <div className="mb-12 type-meta text-main-orange">
             {t('* 교과목 번호는 추후 수정할 수 없습니다.')}
           </div>
-          <Fieldset
-            title={t('(영문) Course Name')}
-            titleSpacing="1"
-            spacing="5"
-            required
-          >
+          <Fieldset title={t('(영문) Course Name')} required>
             <Form.Text
               name="en.name"
               maxWidth="max-w-120"
@@ -159,12 +144,7 @@ export default function AddCourseModal({
               }}
             />
           </Fieldset>
-          <Fieldset
-            title={t('(영문) Course Description')}
-            titleSpacing="1"
-            spacing="5"
-            required
-          >
+          <Fieldset title={t('(영문) Course Description')} required>
             <Form.TextArea
               name="en.description"
               placeholder="course description"
@@ -176,7 +156,7 @@ export default function AddCourseModal({
               }}
             />
           </Fieldset>
-          <div className="flex justify-end gap-2">
+          <div className="mt-2 flex justify-end gap-2">
             <Button variant="secondary" onClick={onClose}>
               {t('취소')}
             </Button>
@@ -202,7 +182,7 @@ function DropdownFieldset({
   width?: string;
 }) {
   return (
-    <Fieldset title={title} titleSpacing="1" grow={false} required>
+    <Fieldset title={title} grow={false} required>
       <Form.Dropdown
         contents={contents}
         name={name}

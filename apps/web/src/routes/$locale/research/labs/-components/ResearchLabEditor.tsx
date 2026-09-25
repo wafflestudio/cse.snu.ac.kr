@@ -100,8 +100,8 @@ const SharedEditor = ({
 }) => {
   return (
     <>
-      <div className="mb-11 flex w-120 gap-6">
-        <Fieldset title="지도교수" spacing="2.5">
+      <div className="flex w-120 gap-6">
+        <Fieldset title="지도교수">
           <Form.Dropdown
             name="professorId"
             contents={[
@@ -113,19 +113,19 @@ const SharedEditor = ({
             ]}
           />
         </Fieldset>
-        <Fieldset title="연구실 약자" spacing="2.5">
+        <Fieldset title="연구실 약자">
           <Form.Text name="acronym" maxWidth="w-68" />
         </Fieldset>
       </div>
-      <div className="mb-6 flex w-180 gap-6">
-        <Fieldset title="전화" spacing="2.5">
+      <div className="flex w-180 gap-6">
+        <Fieldset title="전화">
           <Form.Text
             name="tel"
             maxWidth="w-87"
             placeholder="예: (02) 880-7302"
           />
         </Fieldset>
-        <Fieldset title="웹사이트 주소" spacing="2.5">
+        <Fieldset title="웹사이트 주소">
           <Form.Text
             name="websiteURL"
             maxWidth="w-87"
@@ -134,7 +134,7 @@ const SharedEditor = ({
         </Fieldset>
       </div>
 
-      <Fieldset title="연구·교육 스트림" spacing="11" required>
+      <Fieldset title="연구·교육 스트림" required>
         <Form.Dropdown
           name="groupId"
           contents={[
@@ -153,8 +153,8 @@ const SharedEditor = ({
         />
       </Fieldset>
 
-      <Fieldset title="소개 자료" spacing="8">
-        <div className="mb-2.5 flex w-180 items-center">
+      <Fieldset title="소개 자료">
+        <div className="mb-3 flex w-180 items-center">
           <span className="w-14 type-label text-neutral-500">| 문서</span>
           <Form.File name="pdf" multiple={false} />
         </div>
@@ -174,7 +174,7 @@ const SharedEditor = ({
 const TranslationEditor = ({ language }: { language: Language }) => {
   return (
     <>
-      <Fieldset title="연구실명" spacing="6" required>
+      <Fieldset title="연구실명" required>
         <Form.Text
           name={`${language}.name`}
           maxWidth="max-w-120"
@@ -184,7 +184,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
         />
       </Fieldset>
 
-      <Fieldset title="연구실 위치" spacing="11">
+      <Fieldset title="연구실 위치">
         <Form.Text
           name={`${language}.location`}
           maxWidth="w-180"
@@ -192,7 +192,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
         />
       </Fieldset>
 
-      <Fieldset title="연구실 설명 및 이미지" spacing="10" required>
+      <Fieldset title="연구실 설명 및 이미지" required>
         <Form.HTML
           name={`${language}.description`}
           options={{

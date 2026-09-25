@@ -52,9 +52,9 @@ function NewsDetailPage() {
       pageTitle={pageTitle}
       pageDescription={pageDescription}
     >
-      <div className="flex flex-col gap-4 page-gutter-x py-9">
+      <div className="flex flex-col gap-4 page-gutter-x py-8">
         <h2 className="type-section">{news.title}</h2>
-        <div className="flex gap-5 type-meta tracking-wide text-neutral-500">
+        <div className="flex gap-4 type-meta tracking-wide text-neutral-500">
           <time>
             {dayjs(news.date).locale(locale).format('YYYY/M/DD (ddd)')}
           </time>
@@ -65,7 +65,7 @@ function NewsDetailPage() {
         </div>
       </div>
 
-      <div className="bg-neutral-50 page-gutter-x pt-9 pb-36">
+      <div className="bg-neutral-50 page-gutter-x pt-8 pb-16 sm:pb-32">
         <Attachments files={news.attachments ?? []} />
 
         <HTMLViewer
@@ -84,7 +84,7 @@ function NewsDetailPage() {
         <Node variant="straight" />
 
         {news.tags.length > 0 && (
-          <div className="mt-3 ml-6 flex flex-wrap gap-2.5">
+          <div className="mt-3 ml-6 flex flex-wrap gap-2">
             {/* 서버에서 랜덤 순서로 오는듯  */}
             {news.tags
               .toSorted((a, b) => a.localeCompare(b))

@@ -61,7 +61,7 @@ export default function Dropdown({
         aria-expanded={expanded}
         aria-controls={listboxId}
         className={clsx(
-          'flex w-full items-center border bg-white py-[.3125rem] pl-[.625rem] pr-[.3125rem]',
+          'flex w-full items-center border bg-white py-1 pl-3 pr-1',
           expanded ? 'rounded-t-sm' : 'rounded-sm',
           borderStyle,
           width ? `${width} justify-between` : 'gap-4',
@@ -129,7 +129,7 @@ function DropdownListWithScroll({
           role="option"
           aria-selected={selectedIndex === index}
           className={clsx(
-            'h-7 shrink-0 pl-[.62rem] text-left text-nowrap type-ui hover:bg-neutral-200 focus:border focus:border-neutral-400 ',
+            'h-7 shrink-0 pl-3 text-left text-nowrap type-ui hover:bg-neutral-200 focus:border focus:border-neutral-400 ',
             selectedIndex === index && 'text-main-orange',
           )}
           onClick={(e) => {

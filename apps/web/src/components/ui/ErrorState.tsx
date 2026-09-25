@@ -18,7 +18,7 @@ export default function ErrorState({
   action,
 }: ErrorStateProps) {
   return (
-    <div className="flex grow flex-col items-center justify-center bg-neutral-900 px-6 py-24 sm:py-32">
+    <div className="flex grow flex-col items-center justify-center bg-neutral-900 px-6 py-16 sm:py-32">
       <div className="text-center">
         <div className="mb-8">
           <div className="mb-6 text-[120px] font-bold leading-none text-main-orange sm:text-[160px]">

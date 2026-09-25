@@ -37,11 +37,11 @@ export default function SearchBox({
   };
 
   return (
-    <div className={clsx('mb-9 w-full', disabled && 'opacity-30')}>
+    <div className={clsx('mb-8 w-full', disabled && 'opacity-30')}>
       <form
         className={clsx(
-          'flex flex-col gap-5 rounded-sm bg-neutral-50 p-6',
-          !formOnly && 'mb-9',
+          'flex flex-col gap-6 rounded-sm bg-neutral-50 p-6',
+          !formOnly && 'mb-8',
         )}
         onSubmit={(e) => {
           e.preventDefault();
@@ -62,7 +62,7 @@ export default function SearchBox({
 
       {!formOnly && (
         <>
-          <div className="mb-3 mt-9">
+          <div className="mb-3 mt-8">
             <Node variant="straightDouble" direction="row" />
           </div>
           <SelectedTags tags={selectedTags} disabled={disabled} />

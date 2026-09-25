@@ -25,11 +25,11 @@ export default function SeminarRow({
 
   return (
     <Link to={detailPath} className="group">
-      <article className="flex flex-col gap-4 sm:flex-row sm:gap-5">
+      <article className="flex flex-col gap-4 sm:flex-row sm:gap-4">
         <ImageCell imageURL={imageURL} />
         <div className="flex flex-col items-start gap-1 break-all sm:gap-0">
           <TitleCell title={title} />
-          <div className="flex flex-col gap-0.5">
+          <div className="flex flex-col gap-1">
             <HostInformationCell host={name} company={affiliation} />
             <DateAndLocationCell
               date={dayjs(startDate).locale(locale)}
@@ -61,7 +61,7 @@ function ImageCell({ imageURL }: { imageURL: string | null }) {
 
 function TitleCell({ title }: { title: string }) {
   return (
-    <h3 className="mb-1 grow type-item group-hover:underline sm:mb-5">
+    <h3 className="mb-1 grow type-item group-hover:underline sm:mb-2">
       {title}
     </h3>
   );
@@ -75,7 +75,7 @@ function HostInformationCell({
   company: string;
 }) {
   return (
-    <div className="flex flex-wrap gap-x-0.5">
+    <div className="flex flex-wrap gap-x-1">
       <IconTextWrapper>
         <IconWrapper IconComponent={PersonIcon} />
         <Text text={host} />
@@ -94,7 +94,7 @@ function DateAndLocationCell({
   location: string;
 }) {
   return (
-    <div className="flex flex-wrap gap-0.5">
+    <div className="flex flex-wrap gap-1">
       <IconTextWrapper>
         <IconWrapper IconComponent={CalendarIcon} />
         <Text text={date.format('YYYY/M/DD (ddd) A hh:mm')} />
@@ -109,7 +109,7 @@ function DateAndLocationCell({
 }
 
 function IconTextWrapper({ children }: { children: ReactNode }) {
-  return <div className="flex items-start gap-0.5">{children}</div>;
+  return <div className="flex items-start gap-1">{children}</div>;
 }
 
 function IconWrapper({ IconComponent }: { IconComponent: ElementType }) {

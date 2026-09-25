@@ -16,7 +16,7 @@ export default function Input({
     <div className="flex items-center">
       <label
         htmlFor="search"
-        className="mr-7 whitespace-nowrap type-label tracking-wide"
+        className="mr-8 whitespace-nowrap type-label tracking-wide"
       >
         {t('검색')}
       </label>

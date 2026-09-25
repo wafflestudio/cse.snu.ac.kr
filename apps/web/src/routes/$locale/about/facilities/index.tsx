@@ -39,7 +39,7 @@ function FacilitiesPage() {
       pageDescription={meta.description}
     >
       <LoginVisible allow="ROLE_STAFF">
-        <div className="mb-7 text-right">
+        <div className="mb-8 text-right">
           <Button
             as="link"
             to={localizedPath('/about/facilities/create')}

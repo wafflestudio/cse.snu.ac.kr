@@ -24,7 +24,7 @@ const SORT_OPTIONS = [
 
 const sortPillClass = (selected: boolean) =>
   clsx(
-    'inline-flex cursor-pointer select-none items-center justify-center gap-2 rounded-[.0625rem] h-8.5 px-[.875rem] type-label transition duration-200',
+    'inline-flex cursor-pointer select-none items-center justify-center gap-2 rounded-[.0625rem] h-8.5 px-4 type-label transition duration-200',
     'has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-neutral-700',
     selected
       ? 'bg-neutral-700 text-white hover:bg-neutral-500'
@@ -103,7 +103,7 @@ function FacultyPage() {
       pageTitle={meta.title}
       pageDescription={meta.description}
     >
-      <div className="mb-7 flex items-center justify-between">
+      <div className="mb-8 flex items-center justify-between">
         <fieldset aria-label="정렬" className="m-0 flex gap-2 border-0 p-0">
           {SORT_OPTIONS.map(({ value, label }) => (
             <label key={value} className={sortPillClass(sortType === value)}>

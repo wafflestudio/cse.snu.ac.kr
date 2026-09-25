@@ -24,7 +24,7 @@ export default function PageTitle({
   margin,
 }: PageTitleProps) {
   return (
-    <div className="px-5 pt-[54px] sm:px-25">
+    <div className="px-5 pt-12 sm:px-25">
       <div
         className={`col-start-1 row-start-1 w-fit min-w-62.5 max-w-207.5 ${margin}`}
       >
@@ -70,7 +70,7 @@ function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
   const { localizedPath } = useLanguage();
 
   return (
-    <ol className="flex items-center gap-0.5 text-neutral-300">
+    <ol className="flex items-center gap-1 text-neutral-300">
       {items.map((item, i) => {
         const isCurrent = item.path
           ? pathname === localizedPath(item.path)

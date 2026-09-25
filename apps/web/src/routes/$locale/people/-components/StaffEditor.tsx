@@ -65,7 +65,7 @@ export default function StaffEditor({
   return (
     <FormProvider {...formMethods}>
       <Form>
-        <Fieldset title="사진" spacing="12" titleSpacing="2">
+        <Fieldset title="사진">
           <label
             htmlFor="image"
             className="mb-3 whitespace-pre-wrap type-meta tracking-wide text-neutral-500"
@@ -75,8 +75,8 @@ export default function StaffEditor({
           <Form.Image name="image" />
         </Fieldset>
 
-        <Form.Section title="연락처 정보" titleSpacing="3" spacing="12">
-          <Fieldset title="전화번호" spacing="5" titleSpacing="2" required>
+        <Form.Section title="연락처 정보">
+          <Fieldset title="전화번호" required>
             <Form.Text
               name="phone"
               maxWidth="max-w-80"
@@ -86,7 +86,7 @@ export default function StaffEditor({
               }}
             />
           </Fieldset>
-          <Fieldset title="이메일" titleSpacing="2" required>
+          <Fieldset title="이메일" required>
             <Form.Text
               name="email"
               maxWidth="max-w-100"
@@ -113,7 +113,7 @@ export default function StaffEditor({
 const TranslationEditor = ({ language }: { language: Language }) => {
   return (
     <>
-      <Fieldset title="이름" spacing="5" titleSpacing="2" required>
+      <Fieldset title="이름" required>
         <Form.Text
           name={`${language}.name`}
           maxWidth="max-w-120"
@@ -122,7 +122,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
           }}
         />
       </Fieldset>
-      <Fieldset title="위치" spacing="5" titleSpacing="2" required>
+      <Fieldset title="위치" required>
         <Form.Text
           name={`${language}.office`}
           maxWidth="max-w-80"
@@ -132,7 +132,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
           }}
         />
       </Fieldset>
-      <Fieldset title="업무 요약" spacing="10" titleSpacing="2" required>
+      <Fieldset title="업무 요약" required>
         <Form.Text
           name={`${language}.role`}
           maxWidth="max-w-120"
@@ -142,7 +142,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
           }}
         />
       </Fieldset>
-      <Fieldset title="주요 업무" spacing="2.5" titleSpacing="2" required>
+      <Fieldset title="주요 업무" required>
         <Form.TextList
           name={`${language}.tasks`}
           placeholder="예: 학부생 수료, 졸업사정 및 논문 관리"

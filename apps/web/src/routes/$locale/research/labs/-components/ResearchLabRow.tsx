@@ -20,7 +20,7 @@ export default function ResearchLabListRow({
   const hasIntro = Boolean(pdf || youtube);
 
   return (
-    <li className="grid-rows-auto grid grid-cols-[auto_1fr] items-end gap-2 bg-white px-7 py-6 type-ui tracking-[0.02em] odd:bg-neutral-50 sm:flex sm:h-14 sm:flex-nowrap sm:items-center sm:px-2 sm:py-0 sm:odd:bg-white">
+    <li className="grid-rows-auto grid grid-cols-[auto_1fr] items-end gap-2 bg-white px-6 py-6 type-ui tracking-[0.02em] odd:bg-neutral-50 sm:flex sm:h-11 sm:flex-nowrap sm:items-center sm:px-2 sm:py-0 sm:odd:bg-white">
       <LabNameCell id={id} name={name} localizedPath={localizedPath} />
       <LabProfessorsCell
         professors={professors}
@@ -137,7 +137,7 @@ function LabMaterialsCell({
       {youtube && (
         <a
           href={youtube}
-          className="h-5 py-0.75"
+          className="h-5 py-1"
           title="YOUTUBE"
           target="_blank"
           rel="noopener noreferrer"

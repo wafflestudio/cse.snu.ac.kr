@@ -13,7 +13,7 @@ export default function MobileNavDetail() {
 
   return (
     <div className="relative grow-[13.6875] basis-0">
-      <div className="no-scrollbar absolute bottom-0 left-0 right-0 top-0 z-40 overflow-y-scroll bg-neutral-850 pl-10 pt-10">
+      <div className="no-scrollbar absolute bottom-0 left-0 right-0 top-0 z-40 overflow-y-scroll bg-neutral-850 pl-8 pt-8">
         <NavTree item={navbarState.navItem} activeItem={activeItem} depth={0} />
       </div>
     </div>
@@ -41,7 +41,7 @@ function NavTree({ item, activeItem, depth }: NavTreeProps) {
         />
       )}
       {childItems.length > 0 && (
-        <div className="mb-11 ml-5">
+        <div className="mb-12 ml-6">
           {childItems.map((child, i) => (
             <NavTree
               key={i}
@@ -86,7 +86,7 @@ function MobileNavMenuItem({
     );
 
   // depth에 따른 스타일
-  const containerClassName = depth === 1 ? 'mb-[1.75rem]' : 'mb-[1.5rem]';
+  const containerClassName = depth === 1 ? 'mb-8' : 'mb-6';
   const textSize = depth === 1 ? 'type-label' : 'type-ui';
 
   if (to) {

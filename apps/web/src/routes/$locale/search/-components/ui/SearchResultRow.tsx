@@ -35,14 +35,14 @@ export default function SearchResultRow({ item }: { item: SearchResultItem }) {
           </div>
         )}
 
-        <div className="flex min-w-0 flex-1 flex-col gap-[.62rem]">
+        <div className="flex min-w-0 flex-1 flex-col gap-2">
           <span className="type-item tracking-wide text-neutral-950 group-hover:underline">
             {item.title}
           </span>
 
           <HighlightedText segments={item.preview} />
 
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             {navItem && <Tag label={tUnsafe(navItem.key)} />}
             {item.date && (
               <time className="type-meta tracking-wide text-neutral-500">

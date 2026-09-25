@@ -8,7 +8,7 @@ interface SelectionListProps {
 
 export default function SelectionList({ items }: SelectionListProps) {
   return (
-    <ul className="mb-6 grid grid-cols-2 gap-3 pt-7 sm:mb-9 sm:pt-11 lg:grid-cols-[repeat(auto-fit,minmax(236px,auto))]">
+    <ul className="mb-6 grid grid-cols-2 gap-3 pt-8 sm:mb-8 sm:pt-12 lg:grid-cols-[repeat(auto-fit,minmax(236px,auto))]">
       {items.map((item) => (
         <SelectionItem
           key={item.id}

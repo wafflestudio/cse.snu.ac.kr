@@ -69,7 +69,7 @@ function SelectDayButton({ date }: { date: dayjs.Dayjs }) {
   return (
     <div>
       <SquareButton
-        className="flex h-full w-24 items-center justify-center gap-1 px-2.5"
+        className="flex h-full w-24 items-center justify-center gap-1 px-2"
         onClick={toggleCalendar}
       >
         {isDateToday ? (

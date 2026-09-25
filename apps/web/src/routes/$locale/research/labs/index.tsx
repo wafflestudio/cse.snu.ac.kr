@@ -45,7 +45,7 @@ function ResearchLabsPage() {
       pageDescription={meta.description}
     >
       <LoginVisible allow="ROLE_STAFF">
-        <div className="mb-9 text-right">
+        <div className="mb-8 text-right">
           <Button
             as="link"
             to={localizedPath('/research/labs/create')}

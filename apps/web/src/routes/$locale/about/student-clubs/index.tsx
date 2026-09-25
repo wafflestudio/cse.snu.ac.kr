@@ -50,7 +50,7 @@ function StudentClubsPage() {
       pageDescription={meta.description}
     >
       <LoginVisible allow="ROLE_STAFF">
-        <div className="mt-11 text-right">
+        <div className="mt-12 text-right">
           <Button
             as="link"
             to={localizedPath('/about/student-clubs/create')}

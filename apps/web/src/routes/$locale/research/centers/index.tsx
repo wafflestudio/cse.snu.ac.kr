@@ -69,7 +69,7 @@ function ResearchCentersPage() {
     >
       <div className="page-gutter-x">
         <LoginVisible allow="ROLE_STAFF">
-          <div className="mt-11 text-right">
+          <div className="mt-12 text-right">
             <Button
               as="link"
               to={localizedPath('/research/centers/create')}
@@ -83,9 +83,9 @@ function ResearchCentersPage() {
         <SelectionList items={selectionItems} />
       </div>
       {selectedCenter && (
-        <div className="page-gutter-x pb-9 sm:pb-[100px]">
+        <div className="page-gutter-x pb-16 sm:pb-32">
           <LoginVisible allow="ROLE_STAFF">
-            <div className="mb-7 flex justify-end gap-3">
+            <div className="mb-8 flex justify-end gap-3">
               <Button
                 as="button"
                 onClick={() => setShowDeleteDialog(true)}
@@ -110,7 +110,7 @@ function ResearchCentersPage() {
             name={selectedCenter.name}
             link={selectedCenter.websiteURL ?? ''}
           />
-          <div className="px-2.5">
+          <div className="px-3">
             <HTMLViewer
               html={selectedCenter.description}
               image={
@@ -137,8 +137,8 @@ function ResearchCentersPage() {
 
 function ResearchCenterTitle({ name, link }: { name: string; link: string }) {
   return (
-    <div className="mb-5 sm:w-fit" key={name}>
-      <h4 className="px-2.5 type-section text-neutral-950">
+    <div className="mb-4 sm:w-fit" key={name}>
+      <h4 className="mb-2 px-3 type-section text-neutral-950">
         <a
           href={link}
           target="_blank"

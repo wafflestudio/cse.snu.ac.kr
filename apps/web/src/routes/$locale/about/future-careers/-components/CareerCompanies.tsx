@@ -43,8 +43,8 @@ export default function CareerCompanies({
   };
 
   return (
-    <div className="mt-11 sm:max-w-fit">
-      <div className="mb-3 flex items-center justify-between gap-2">
+    <div className="mt-12 sm:max-w-fit">
+      <div className="mb-2 flex items-center justify-between gap-2">
         <h3 className="type-item">{t('졸업생 창업 기업')}</h3>
         {/* UI가 과하게 깨지는 관계로 모바일 버전에서는 편집 X */}
         <div className="hidden sm:block">

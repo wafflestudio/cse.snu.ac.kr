@@ -67,7 +67,7 @@ function EmeritusFacultyDetailPage() {
       pageDescription={pageDescription}
     >
       <LoginVisible allow="ROLE_STAFF">
-        <div className="mb-9 text-right">
+        <div className="mb-8 text-right">
           <Button
             as="link"
             to={localizedPath(`/people/emeritus-faculty/${faculty.id}/edit`)}
@@ -79,7 +79,7 @@ function EmeritusFacultyDetailPage() {
         </div>
       </LoginVisible>
 
-      <div className="relative mb-10 flex flex-col items-start sm:flex-row sm:gap-15">
+      <div className="relative flex flex-col items-start sm:flex-row sm:gap-16">
         <PeopleProfileImage imageURL={faculty.imageURL} />
         <div className="mt-6 sm:mt-0">
           <PeopleContactList title={t('연락처')} items={contactItems} />
@@ -88,7 +88,7 @@ function EmeritusFacultyDetailPage() {
             header={t('연구 분야')}
             items={faculty.researchAreas}
           />
-          <div className="mb-7 type-meta text-neutral-700">{careerTimeStr}</div>
+          <div className="type-meta text-neutral-700">{careerTimeStr}</div>
         </div>
       </div>
     </PageLayout>

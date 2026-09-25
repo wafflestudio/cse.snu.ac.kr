@@ -71,7 +71,7 @@ function SelectFileButton({
   multiple: boolean;
 }) {
   return (
-    <label className="mr-3 flex h-8 cursor-pointer items-center self-start rounded-sm border border-neutral-300 px-[.62rem] type-label hover:bg-neutral-100">
+    <label className="mr-3 flex h-8 cursor-pointer items-center self-start rounded-sm border border-neutral-300 px-3 type-label hover:bg-neutral-100">
       파일 선택
       <input
         type="file"

@@ -105,7 +105,7 @@ export default function FacultyEditor({
   return (
     <FormProvider {...formMethods}>
       <Form>
-        <Fieldset title="구분" spacing="11" titleSpacing="3" required>
+        <Fieldset title="구분" required>
           <div className="flex gap-3">
             {Object.entries(FACULTY_STATUS).map(([status, label]) => (
               <Form.Radio
@@ -141,23 +141,18 @@ const SharedEditor = ({ labs }: { labs: SimpleResearchLab[] }) => {
   return (
     <>
       {/* 재직 기간 (역대 교수진만 활성화) */}
-      <Form.Section
-        title="재직 기간"
-        spacing="10"
-        titleSpacing="2"
-        hidden={status === 'ACTIVE'}
-      >
+      <Form.Section title="재직 기간" hidden={status === 'ACTIVE'}>
         <div className="flex w-100">
-          <Fieldset title="시작 날짜" titleSpacing="2">
+          <Fieldset title="시작 날짜">
             <Form.Date name="startDate" hideTime />
           </Fieldset>
-          <Fieldset title="종료 날짜" titleSpacing="2">
+          <Fieldset title="종료 날짜">
             <Form.Date name="endDate" hideTime />
           </Fieldset>
         </div>
       </Form.Section>
 
-      <Fieldset title="사진" spacing="12" titleSpacing="2">
+      <Fieldset title="사진">
         <label
           htmlFor="image"
           className="mb-3 whitespace-pre-wrap type-meta tracking-wide text-neutral-500"
@@ -168,12 +163,7 @@ const SharedEditor = ({ labs }: { labs: SimpleResearchLab[] }) => {
       </Fieldset>
 
       {/* 연구실 (현직 교수만 활성화) */}
-      <Fieldset
-        title="연구실"
-        spacing="5"
-        titleSpacing="2"
-        hidden={status !== 'ACTIVE'}
-      >
+      <Fieldset title="연구실" hidden={status !== 'ACTIVE'}>
         <Form.Dropdown
           name="labId"
           contents={[
@@ -183,25 +173,25 @@ const SharedEditor = ({ labs }: { labs: SimpleResearchLab[] }) => {
         />
       </Fieldset>
 
-      <Form.Section title="연락처 정보" titleSpacing="3">
+      <Form.Section title="연락처 정보">
         <div className="flex w-2xl">
-          <Fieldset title="전화번호" spacing="5" titleSpacing="2">
+          <Fieldset title="전화번호">
             <Form.Text
               name="phone"
               maxWidth="max-w-80"
               placeholder="예: (02) 880-7302"
             />
           </Fieldset>
-          <Fieldset title="팩스" spacing="5" titleSpacing="2">
+          <Fieldset title="팩스">
             <Form.Text name="fax" maxWidth="max-w-80" />
           </Fieldset>
         </div>
 
-        <Fieldset title="이메일" spacing="5" titleSpacing="2">
+        <Fieldset title="이메일">
           <Form.Text name="email" maxWidth="max-w-100" />
         </Fieldset>
 
-        <Fieldset title="웹사이트 URL" spacing="5" titleSpacing="2">
+        <Fieldset title="웹사이트 URL">
           <Form.Text name="website" maxWidth="max-w-100" />
         </Fieldset>
       </Form.Section>
@@ -212,7 +202,7 @@ const SharedEditor = ({ labs }: { labs: SimpleResearchLab[] }) => {
 const TranslationEditor = ({ language }: { language: Language }) => {
   return (
     <>
-      <Fieldset title="이름" spacing="5" titleSpacing="2" required>
+      <Fieldset title="이름" required>
         <Form.Text
           name={`${language}.name`}
           maxWidth="max-w-120"
@@ -222,7 +212,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
         />
       </Fieldset>
 
-      <Fieldset title="직함" spacing="5" titleSpacing="2" required>
+      <Fieldset title="직함" required>
         <Form.Text
           name={`${language}.academicRank`}
           maxWidth="max-w-120"
@@ -233,7 +223,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
         />
       </Fieldset>
 
-      <Fieldset title="소속" spacing="10" titleSpacing="2">
+      <Fieldset title="소속">
         <Form.Text
           name={`${language}.department`}
           maxWidth="max-w-120"
@@ -241,7 +231,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
         />
       </Fieldset>
 
-      <Fieldset title="위치" spacing="10" titleSpacing="2">
+      <Fieldset title="위치">
         <Form.Text
           name={`${language}.office`}
           maxWidth="max-w-80"
@@ -249,21 +239,21 @@ const TranslationEditor = ({ language }: { language: Language }) => {
         />
       </Fieldset>
 
-      <Fieldset title="학력" spacing="2.5" titleSpacing="2">
+      <Fieldset title="학력">
         <Form.TextList
           name={`${language}.educations`}
           placeholder="예: 서울대학교 컴퓨터공학 학사 (2003)"
         />
       </Fieldset>
 
-      <Fieldset title="연구 분야" spacing="2.5" titleSpacing="2">
+      <Fieldset title="연구 분야">
         <Form.TextList
           name={`${language}.researchAreas`}
           placeholder="예: 스마트 디바이스 최적화"
         />
       </Fieldset>
 
-      <Fieldset title="경력" spacing="2.5" titleSpacing="2">
+      <Fieldset title="경력">
         <Form.TextList
           name={`${language}.careers`}
           placeholder="예: 2015.09. - 현재: 전임교수, 서울대학교 컴퓨터공학부"

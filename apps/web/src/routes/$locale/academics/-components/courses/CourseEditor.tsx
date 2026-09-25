@@ -112,7 +112,7 @@ export default function CourseEditor({
         options={{ required: { value: true, message: t('교과목 설명') } }}
       />
       <div>
-        <div className="mb-4 flex items-center gap-2.5">
+        <div className="mb-4 flex items-center gap-2">
           <span className="type-label text-neutral-500">{t('영문')}</span>
           <Form.Text
             name="en.name"

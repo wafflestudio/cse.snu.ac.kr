@@ -46,7 +46,7 @@ function NavTree({ item, depth = 0 }: NavTreeProps) {
         />
       )}
       {childItems.length > 0 && (
-        <div className="mb-11 ml-5">
+        <div className="mb-12 ml-6">
           {childItems.map((child, i) => (
             <NavTree key={i} item={child} depth={depth + 1} />
           ))}

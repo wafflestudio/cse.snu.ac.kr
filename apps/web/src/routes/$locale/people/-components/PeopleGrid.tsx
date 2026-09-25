@@ -39,7 +39,7 @@ function PeopleCard({
   content,
 }: PeopleCardProps) {
   return (
-    <article className="group flex w-fit flex-row gap-5 type-ui sm:w-36 sm:flex-col sm:gap-3">
+    <article className="group flex w-fit flex-row gap-6 type-ui sm:w-36 sm:flex-col sm:gap-3">
       <Link
         to={href}
         className="relative h-48 w-36 shrink-0 cursor-pointer overflow-hidden drop-shadow-[0px_0px_4px_rgba(0,0,0,0.15)]"
@@ -62,7 +62,7 @@ function PeopleCard({
       <div className="flex flex-col items-start break-keep">
         <Link
           to={href}
-          className={`relative flex w-full cursor-pointer flex-row flex-wrap gap-2 pb-2.5 ${
+          className={`relative flex w-full cursor-pointer flex-row flex-wrap gap-2 pb-2 ${
             titleNewline ? 'flex-col' : ''
           }`}
         >
@@ -71,7 +71,7 @@ function PeopleCard({
           <HoverAnimationUnderline />
         </Link>
 
-        <div className="mt-2.5 flex flex-col items-start gap-2 break-keep">
+        <div className="mt-3 flex flex-col items-start gap-2 break-keep">
           {content.map(({ text, href }, idx) =>
             href ? (
               <Link

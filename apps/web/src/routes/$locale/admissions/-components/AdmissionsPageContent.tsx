@@ -126,7 +126,7 @@ export default function AdmissionsPageContent({
   const { activeItem } = useNavItem();
   const subNav = useAdmissionsSubNav();
   const title = activeItem ? tUnsafe(activeItem.key) : t('입학');
-  const wrapperClass = layout === 'extraBottom' ? 'pb-16 sm:pb-[220px]' : '';
+  const wrapperClass = layout === 'extraBottom' ? 'pb-16 sm:pb-32' : '';
 
   // activeItem.path가 있으면 자동으로 editPath 생성
   const editPath = activeItem?.path ? `${activeItem.path}/edit` : null;
@@ -147,7 +147,7 @@ export default function AdmissionsPageContent({
     >
       {editPath && (
         <LoginVisible allow="ROLE_STAFF">
-          <div className="mb-7 text-right">
+          <div className="mb-8 text-right">
             <Button
               as="link"
               to={localizedPath(editPath)}

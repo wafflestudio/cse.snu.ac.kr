@@ -58,7 +58,7 @@ function SeminarPage() {
         <SeminarSearchBar />
       </div>
 
-      <div className="mb-8 mt-10 flex flex-col border-b border-neutral-200">
+      <div className="mb-8 mt-8 flex flex-col border-b border-neutral-200">
         {data.results.length === 0 ? (
           <p className="py-8 text-center text-neutral-500">
             {t('검색 결과가 존재하지 않습니다.')}
@@ -70,13 +70,13 @@ function SeminarPage() {
                 <div
                   className={`border-b-2 border-neutral-700 ${index !== 0 ? 'mt-12' : ''}`}
                 >
-                  <h3 className="pb-2.5 type-item">
+                  <h3 className="pb-2 type-item">
                     {new Date(post.startDate).getFullYear()}
                   </h3>
                 </div>
               )}
               <div
-                className={`border-neutral-200 py-[1.2rem] ${
+                className={`border-neutral-200 py-6 ${
                   !post.isYearLast ? 'border-t' : ''
                 }`}
               >
@@ -90,7 +90,7 @@ function SeminarPage() {
       <Pagination page={pageNum} totalPages={totalPages} />
 
       <LoginVisible allow="ROLE_STAFF">
-        <div className="mt-[40px] flex justify-end">
+        <div className="mt-12 flex justify-end">
           <span className="ml-4">
             <Button
               variant="neutral"

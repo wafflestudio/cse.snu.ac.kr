@@ -74,7 +74,7 @@ function CareerCompanyViewer({
 
   return (
     <>
-      <li className="grid grid-cols-[22px_auto_1fr] items-center gap-x-1 px-7 py-6 odd:bg-neutral-100 sm:flex sm:h-10 sm:gap-3 sm:p-0 sm:px-3">
+      <li className="grid grid-cols-[22px_auto_1fr] items-center gap-x-1 px-6 py-6 odd:bg-neutral-100 sm:flex sm:h-10 sm:gap-3 sm:p-0 sm:px-3">
         <p
           className={`type-ui text-neutral-500 sm:pl-2 ${TABLE_COLUMN_SIZE[0]}`}
         >
@@ -148,7 +148,7 @@ export function CareerCompanyEditor({
 
   return (
     <FormProvider {...formMethods}>
-      <li className="grid grid-cols-[22px_auto_1fr] items-center gap-x-1 px-7 py-6 odd:bg-neutral-100 sm:flex sm:h-10 sm:gap-3 sm:p-0 sm:px-3">
+      <li className="grid grid-cols-[22px_auto_1fr] items-center gap-x-1 px-6 py-6 odd:bg-neutral-100 sm:flex sm:h-10 sm:gap-3 sm:p-0 sm:px-3">
         <p
           className={`type-ui text-neutral-500 sm:pl-2 ${TABLE_COLUMN_SIZE[0]}`}
         >

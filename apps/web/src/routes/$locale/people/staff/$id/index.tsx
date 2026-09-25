@@ -54,7 +54,7 @@ function StaffDetailPage() {
       noImageIndex
     >
       <LoginVisible allow="ROLE_STAFF">
-        <div className="mb-9 text-right">
+        <div className="mb-8 text-right">
           <Button
             as="link"
             to={localizedPath(`/people/staff/${staff.id}/edit`)}
@@ -66,7 +66,7 @@ function StaffDetailPage() {
         </div>
       </LoginVisible>
 
-      <div className="relative mb-32 flex flex-col items-start sm:flex-row sm:gap-15">
+      <div className="relative flex flex-col items-start sm:flex-row sm:gap-16">
         <PeopleProfileImage imageURL={staff.imageURL} />
         <div className="mt-6 sm:mt-0">
           <PeopleContactList title={t('연락처')} items={contactItems} />

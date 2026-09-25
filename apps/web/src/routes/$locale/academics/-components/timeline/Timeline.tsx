@@ -43,7 +43,7 @@ function TimeSpot({
 }: TimeSpotProps) {
   return (
     <label
-      className={`group relative mb-7 mr-11 flex h-[38px] items-center ${
+      className={`group relative mb-8 mr-11 flex h-[38px] items-center ${
         isSelected ? 'cursor-default' : 'cursor-pointer'
       }`}
     >

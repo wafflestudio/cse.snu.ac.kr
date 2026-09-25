@@ -27,7 +27,7 @@ export default function CareerStat({ stat }: { stat: YearStat[] }) {
   if (!yearStat) return <p>선택된 연도의 자료가 없습니다.</p>;
 
   return (
-    <div className="mt-7 flex flex-col gap-3">
+    <div className="mt-12 flex flex-col gap-2">
       <div className="flex justify-between sm:w-[432px]">
         <div className="flex items-center gap-2">
           <h3 className="type-item">{t('졸업생 진로 현황')}</h3>

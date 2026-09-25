@@ -48,7 +48,7 @@ export default function ResearchCenterEditor({
   return (
     <FormProvider {...formMethods}>
       <Form>
-        <Fieldset title="웹사이트 주소" spacing="8" titleSpacing="2">
+        <Fieldset title="웹사이트 주소">
           <Form.Text name="websiteURL" />
         </Fieldset>
 
@@ -69,7 +69,7 @@ export default function ResearchCenterEditor({
 const Editor = ({ language }: { language: Language }) => {
   return (
     <>
-      <Fieldset title="센터 이름" spacing="8" required>
+      <Fieldset title="센터 이름" required>
         <Form.Text
           name={`${language}.name`}
           options={{

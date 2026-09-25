@@ -49,7 +49,7 @@ function DegreeRequirementsPage() {
         </div>
       </LoginVisible>
       <Attachments files={loaderData.attachments} />
-      <div className="mb-7 mt-6 flex w-[200px] flex-col">
+      <div className="mt-6 mb-8 flex w-[200px] flex-col">
         <h3 className="mb-2 pl-3 type-item">{t('공통: 졸업사정 유의사항')}</h3>
         <Node variant="straight" />
       </div>

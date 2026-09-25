@@ -59,7 +59,7 @@ function ResearchLabDetailPage() {
       pageDescription={pageDescription}
     >
       <LoginVisible allow="ROLE_STAFF">
-        <div className="mb-9 text-right">
+        <div className="mb-8 text-right">
           <Button
             as="link"
             to={localizedPath(`/research/labs/${lab.id}/edit`)}
@@ -109,9 +109,9 @@ function LabSummary({
       colorTheme="black"
       size="large"
       shadow="light"
-      margin="sm:mt-[-64px] sm:mb-11 sm:ml-11"
+      margin="sm:mt-[-64px] sm:mb-12 sm:ml-12"
     >
-      <ul className="flex h-40 w-60 flex-col gap-1 px-6 py-5">
+      <ul className="flex h-40 w-60 flex-col gap-1 px-6 py-4">
         <li className="flex gap-1 type-meta">
           <span className="whitespace-nowrap">
             {labels.professor}:{' '}

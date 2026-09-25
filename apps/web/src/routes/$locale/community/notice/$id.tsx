@@ -58,9 +58,9 @@ function NoticeDetailPage() {
       pageTitle={pageTitle}
       pageDescription={pageDescription}
     >
-      <div className="flex flex-col gap-4 page-gutter-x py-9">
+      <div className="flex flex-col gap-4 page-gutter-x py-8">
         <h2 className="type-section">{notice.title}</h2>
-        <div className="flex gap-5 type-meta tracking-wide text-neutral-500">
+        <div className="flex gap-4 type-meta tracking-wide text-neutral-500">
           <p>
             {t('작성자')}: {notice.author}
           </p>
@@ -77,7 +77,7 @@ function NoticeDetailPage() {
         </div>
       </div>
 
-      <div className="bg-neutral-50 page-gutter-x pt-9 pb-36">
+      <div className="bg-neutral-50 page-gutter-x pt-8 pb-16 sm:pb-32">
         <Attachments files={notice.attachments ?? []} />
 
         <HTMLViewer html={notice.description} />
@@ -87,7 +87,7 @@ function NoticeDetailPage() {
         <Node variant="straight" />
 
         {notice.tags.length > 0 && (
-          <div className="mt-3 ml-6 flex flex-wrap gap-2.5">
+          <div className="mt-3 ml-6 flex flex-wrap gap-2">
             {/* 서버에서 랜덤 순서로 오는듯  */}
             {notice.tags
               .toSorted((a, b) => a.localeCompare(b))

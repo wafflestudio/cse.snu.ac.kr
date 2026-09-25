@@ -52,7 +52,7 @@ function GreetingsPage() {
             </Button>
           </div>
         </LoginVisible>
-        <div className="flex flex-col-reverse items-start gap-6 sm:flex-row sm:gap-10">
+        <div className="flex flex-col-reverse items-start gap-6 sm:flex-row sm:gap-12">
           <div className="sm:w-100 sm:grow">
             <HTMLViewer html={loaderData.description} />
           </div>

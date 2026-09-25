@@ -36,7 +36,7 @@ export default function HTMLViewer({
       {hasImage && (
         <div
           className={clsx(
-            'relative mb-7 w-full sm:float-right sm:ml-7',
+            'relative mb-8 w-full sm:float-right sm:ml-8',
             IMAGE_WIDTH_CLASS[image.width],
           )}
         >

@@ -106,7 +106,7 @@ export default function ImageModalManagement({
   return (
     <FormProvider {...methods}>
       <Form>
-        <Fieldset title="표시 종료일" spacing="6">
+        <Fieldset title="표시 종료일">
           <input
             type="datetime-local"
             {...methods.register('displayUntil')}
@@ -117,7 +117,7 @@ export default function ImageModalManagement({
           </span>
         </Fieldset>
 
-        <Fieldset title="외부 링크" spacing="6">
+        <Fieldset title="외부 링크">
           <Form.Text
             name="externalLink"
             placeholder="https:// (입력 시 '자세히 보기' 버튼이 노출됩니다)"

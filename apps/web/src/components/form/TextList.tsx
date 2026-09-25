@@ -29,7 +29,7 @@ export default function TextList({ name, placeholder }: Props) {
 
   return (
     <div>
-      <div className="mb-2.5 flex gap-3">
+      <div className="mb-3 flex gap-3">
         <Text
           key={name}
           maxWidth="w-100"
@@ -42,7 +42,7 @@ export default function TextList({ name, placeholder }: Props) {
         </Button>
       </div>
       {list?.map((_, idx) => (
-        <div className="mb-2.5 flex gap-3" key={idx}>
+        <div className="mb-3 flex gap-3" key={idx}>
           <Text
             maxWidth="w-100"
             name={`${name}.${idx}`}
@@ -67,7 +67,7 @@ function Button({
   return (
     <button
       className={clsx(
-        'h-8 rounded-sm border border-neutral-300 px-2.5 type-label text-neutral-700 hover:bg-neutral-300',
+        'h-8 rounded-sm border border-neutral-300 px-3 type-label text-neutral-700 hover:bg-neutral-300',
         bgColor,
       )}
       onClick={onClick}

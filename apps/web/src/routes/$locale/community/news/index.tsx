@@ -63,7 +63,7 @@ function NewsPage() {
       <Pagination page={pageNum} totalPages={totalPages} />
 
       <LoginVisible allow="ROLE_STAFF">
-        <div className="mt-[40px] flex justify-end">
+        <div className="mt-12 flex justify-end">
           <span className="ml-4">
             <Button
               variant="neutral"
@@ -91,12 +91,12 @@ function NewsList({ posts }: NewsListProps) {
 
   if (posts.length === 0) {
     return (
-      <p className="mx-2.5 mb-8 mt-6">{t('검색 결과가 존재하지 않습니다.')}</p>
+      <p className="mx-3 mb-8 mt-8">{t('검색 결과가 존재하지 않습니다.')}</p>
     );
   }
 
   return (
-    <div className="mb-8 mt-10 flex flex-col gap-5 sm:mx-10">
+    <div className="mb-8 mt-8 flex flex-col gap-6 sm:mx-12">
       {posts.map((post) => (
         <NewsListRow key={post.id} post={post} />
       ))}

@@ -20,7 +20,7 @@ export default function LNBSidebar() {
 
   return (
     <nav
-      className={`no-scrollbar z-50 flex flex-col items-center overflow-scroll bg-chrome-menu py-[2.88rem] transition-all duration-300 ease-in-out ${
+      className={`no-scrollbar z-50 flex flex-col items-center overflow-scroll bg-chrome-menu py-12 transition-all duration-300 ease-in-out ${
         isExpanded ? 'w-44' : 'w-25'
       }`}
       onMouseEnter={expandNavbar}
@@ -103,7 +103,7 @@ function NavList() {
   };
 
   return (
-    <ul className="mx-12 mt-12 flex flex-col gap-9 text-center">
+    <ul className="mx-12 mt-12 flex flex-col gap-8 text-center">
       {navigationTree.map((item, i) => (
         <LNBMenuItem
           key={i}

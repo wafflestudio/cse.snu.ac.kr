@@ -46,7 +46,7 @@ const ColumnIndex = ({
       className={`
         flex h-16.25 flex-col
         justify-between border-b border-r
-        border-t border-neutral-200 px-3 py-[0.62rem] 
+        border-t border-neutral-200 px-3 py-2 
         ${selected ? 'bg-neutral-200' : 'bg-neutral-100'}
         `}
     >

@@ -30,7 +30,7 @@ export default function CourseToolbar({
   };
 
   return (
-    <div className="mb-5 flex items-center justify-between sm:pl-5">
+    <div className="mb-6 flex items-center justify-between sm:pl-6">
       <ViewOptions
         selectedOption={viewOption}
         changeOption={(option) => changeOption('view', option)}
@@ -89,7 +89,7 @@ const VIEW_OPTIONS: ViewOption[] = ['카드형', '목록형'];
 
 function SortOptions({ selectedOption, changeOption }: SortOptionsProps) {
   return (
-    <div className="flex flex-wrap items-center gap-2.5">
+    <div className="flex flex-wrap items-center gap-2">
       {SORT_OPTIONS.map((option) => (
         <Tag
           key={option}

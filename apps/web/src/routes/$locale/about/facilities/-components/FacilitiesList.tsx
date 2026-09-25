@@ -18,7 +18,7 @@ export default function FacilitiesList({
   facilities: ProcessedFacility[];
 }) {
   return (
-    <div className="mt-[-20px] flex flex-col divide-y divide-neutral-200">
+    <div className="-mt-6 flex flex-col divide-y divide-neutral-200">
       {facilities.map((facility) => (
         <FacilitiesRow key={facility.id} facility={facility} />
       ))}
@@ -45,9 +45,9 @@ function FacilitiesRow({ facility }: { facility: ProcessedFacility }) {
 
   return (
     <>
-      <article className="flex flex-col-reverse items-start justify-between gap-5 py-5 sm:flex-row">
+      <article className="flex flex-col-reverse items-start justify-between gap-6 py-6 sm:flex-row">
         <div className="flex flex-col sm:w-142">
-          <h3 className="mb-3 type-item">{facility.name}</h3>
+          <h3 className="mb-2 type-item">{facility.name}</h3>
           <HTMLViewer html={facility.description} />
           <div className="flex translate-x-[-4px] items-start gap-px">
             <DistanceIcon className="shrink-0" />
@@ -56,7 +56,7 @@ function FacilitiesRow({ facility }: { facility: ProcessedFacility }) {
             </p>
           </div>
           <LoginVisible allow="ROLE_STAFF">
-            <div className="mt-5 flex gap-3">
+            <div className="mt-6 flex gap-3">
               <Button
                 variant="secondary"
                 size="md"

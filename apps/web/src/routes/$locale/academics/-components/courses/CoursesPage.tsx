@@ -102,7 +102,7 @@ export default function CoursesPage({
           </Button>
         </div>
       </LoginVisible>
-      <h4 className="mb-8 type-item sm:pl-5">{t('교과목 정보')}</h4>
+      <h4 className="mb-8 type-item sm:pl-6">{t('교과목 정보')}</h4>
       <CourseToolbar hideSortOption={shouldHideSort} />
       {isEnglish && <ClassificationDescription />}
       {effectiveViewOption === '카드형' ? (
@@ -145,7 +145,7 @@ const getSortOption = (sort: unknown): SortOption => {
 
 function ClassificationDescription() {
   return (
-    <div className="mb-3 ml-5 flex items-center gap-1.5 type-meta text-neutral-500">
+    <div className="mb-3 ml-6 flex items-center gap-1 type-meta text-neutral-500">
       <Info className="h-[22px] w-[22px]" strokeWidth={1.5} />
       <span className="pt-px">
         RM: Required course for Major&nbsp;&nbsp;/&nbsp;&nbsp;EM: Elective

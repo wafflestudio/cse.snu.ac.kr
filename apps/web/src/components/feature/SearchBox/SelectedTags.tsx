@@ -35,8 +35,8 @@ export default function SelectedTags({ tags, disabled }: SelectedTagsProps) {
   };
 
   return (
-    <div className="flex items-start justify-between gap-3 px-2.5">
-      <div className="flex flex-wrap items-center gap-2.5">
+    <div className="flex items-start justify-between gap-3 px-3">
+      <div className="flex flex-wrap items-center gap-2">
         {(isTagExist ? tags : ['전체']).map((tag) => (
           <Tag
             key={tag}
@@ -65,7 +65,7 @@ function TagResetButton({ disabled, onClick }: TagResetButtonProps) {
     <button
       type="button"
       onClick={onClick}
-      className="flex items-center gap-0.5 text-main-orange enabled:hover:text-neutral-400"
+      className="flex items-center gap-1 text-main-orange enabled:hover:text-neutral-400"
       disabled={disabled}
     >
       <RefreshCw className="h-4 w-4 scale-x-[-1]" strokeWidth={1.5} />

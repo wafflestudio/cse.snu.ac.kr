@@ -58,7 +58,7 @@ function CourseRow({ courses, selectedOption }: CourseRowProps) {
         className="no-scrollbar overflow-x-auto overflow-y-hidden py-3"
         ref={carouselRef}
       >
-        <div className="flex gap-5">
+        <div className="flex gap-6">
           {courses.map((course) => (
             <CourseCard
               course={course}

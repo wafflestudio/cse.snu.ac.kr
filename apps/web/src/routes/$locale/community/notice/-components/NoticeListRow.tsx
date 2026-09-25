@@ -33,7 +33,7 @@ export default function NoticeListRow({
 
   return (
     <li
-      className={`flex flex-col gap-2.5 px-7 py-6 type-ui sm:h-11 sm:flex-row sm:items-center sm:gap-0 sm:px-0 sm:py-2.5 ${
+      className={`flex flex-col gap-3 px-6 py-6 type-ui sm:h-11 sm:flex-row sm:items-center sm:gap-0 sm:px-0 sm:py-2 ${
         post.isPinned && 'font-bold'
       } ${!isEditMode && (post.isPrivate ? 'bg-neutral-200' : 'odd:bg-neutral-50')} ${
         isSelected && 'bg-neutral-100'
@@ -50,7 +50,7 @@ export default function NoticeListRow({
       <span
         className={`${NOTICE_ROW_CELL_WIDTH.pin} ${
           !(post.isPrivate || post.isPinned) && 'hidden'
-        } shrink-0 justify-center sm:flex sm:px-3.25`}
+        } shrink-0 justify-center sm:flex sm:px-3`}
       >
         {post.isPrivate ? <LockIcon /> : post.isPinned && <PinIcon />}
       </span>
@@ -74,7 +74,7 @@ export default function NoticeListRow({
         {/* 조회 때마다 늘어 정규화가 안 된다 — E2E 가 마스킹하는 지점. */}
         <span
           data-testid="view-count"
-          className={`${NOTICE_ROW_CELL_WIDTH.views} shrink-0 tracking-wide sm:pr-10`}
+          className={`${NOTICE_ROW_CELL_WIDTH.views} shrink-0 tracking-wide sm:pr-8`}
         >
           {/* 데스크톱은 열 머리글이 '조회'를 말해준다. */}
           <span className="sm:hidden">{t('조회수')} </span>
@@ -112,7 +112,7 @@ function TitleCell({
   return (
     <Wrapper
       to={detailPath}
-      className={`flex items-center gap-1.5 ${NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow sm:pl-3`}
+      className={`flex items-center gap-1 ${NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow sm:pl-3`}
     >
       <span
         className={`${

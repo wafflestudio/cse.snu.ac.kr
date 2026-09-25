@@ -72,7 +72,7 @@ function Overview() {
             </Button>
           </div>
         </LoginVisible>
-        <div className="flex flex-col-reverse items-start gap-6 sm:flex-row sm:gap-10">
+        <div className="flex flex-col-reverse items-start gap-6 sm:flex-row sm:gap-12">
           <div className="sm:w-80 sm:grow">
             <HTMLViewer html={description} />
           </div>
@@ -92,8 +92,8 @@ function Overview() {
         </div>
       </ContentSection>
       <ContentSection tone="white" padding="overviewBottom">
-        <h2 className="mb-6 type-item">{t('학부 소개 책자')}</h2>
-        <div className="mb-10 flex flex-col gap-6 sm:flex-row">
+        <h2 className="mb-4 type-item">{t('학부 소개 책자')}</h2>
+        <div className="mb-12 flex flex-col gap-6 sm:flex-row">
           <Image
             src={brochure1}
             width={227}

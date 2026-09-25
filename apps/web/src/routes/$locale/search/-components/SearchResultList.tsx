@@ -93,7 +93,7 @@ export default function SearchResultList({
     <div className="flex max-w-3xl grow flex-col">
       {/* 행 사이 간격은 안쪽에서만 준다 — 센티넬이 바깥 flex 자식이면 결과가 짧을 때
           빈 div 하나가 목록 아래에 gap을 만든다. */}
-      <div className="flex flex-col gap-7">
+      <div className="flex flex-col gap-6">
         {items.map((item) => (
           <SearchResultRow key={itemKey(item)} item={item} />
         ))}

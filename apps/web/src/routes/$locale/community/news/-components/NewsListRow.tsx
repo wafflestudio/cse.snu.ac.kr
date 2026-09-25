@@ -23,9 +23,9 @@ export default function NewsListRow({ post }: NewsListRowProps) {
     : detailPathBase;
 
   return (
-    <article className="flex flex-col-reverse gap-4 border-b border-neutral-100 pb-5 sm:flex-row sm:gap-8">
+    <article className="flex flex-col-reverse gap-4 border-b border-neutral-100 pb-6 sm:flex-row sm:gap-8">
       <div className="flex flex-1 flex-col justify-between break-keep">
-        <p className="mb-2.5 mt-5 flex items-center gap-2.5 type-meta text-neutral-950 sm:hidden">
+        <p className="mb-2 flex items-center gap-2 type-meta text-neutral-950 sm:hidden">
           <time>
             {dayjs(post.date).locale(locale).format('YYYY/M/DD (ddd)')}
           </time>
@@ -37,7 +37,7 @@ export default function NewsListRow({ post }: NewsListRowProps) {
 
         <div className="flex flex-col items-start">
           <Link to={detailPath} className="hover:underline">
-            <h3 className="mb-2.5 type-item">{post.title}</h3>
+            <h3 className="mb-2 type-item">{post.title}</h3>
           </Link>
 
           <Link
@@ -48,8 +48,8 @@ export default function NewsListRow({ post }: NewsListRowProps) {
           </Link>
         </div>
 
-        <div className="flex items-center justify-between gap-2.5">
-          <div className="flex flex-wrap items-center gap-2.5">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             {(post.tags ?? []).map((tag) => (
               <Tag
                 key={tag}
@@ -58,7 +58,7 @@ export default function NewsListRow({ post }: NewsListRowProps) {
               />
             ))}
           </div>
-          <p className="hidden items-center gap-2.5 self-end whitespace-nowrap type-meta text-neutral-950 sm:flex">
+          <p className="hidden items-center gap-2 self-end whitespace-nowrap type-meta text-neutral-950 sm:flex">
             <time>
               {dayjs(post.date).locale(locale).format('YYYY/M/DD (ddd)')}
             </time>

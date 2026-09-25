@@ -90,7 +90,7 @@ function AdminPage() {
 
 function SlideDescription() {
   return (
-    <p className="mb-10 bg-neutral-100 px-6 py-5 type-body">
+    <p className="mb-8 bg-neutral-100 px-6 py-6 type-body">
       메인페이지의 슬라이드쇼에는 <strong>{`소식 > 새 소식`}</strong> 중{' '}
       <strong>{`'슬라이드쇼에 표시'`}</strong> 체크박스가 선택된 글들이
       올라갑니다. 이 목록에 20개 이상의 글이 포함되면 자동으로 최신글 20개만
@@ -105,7 +105,7 @@ function SlideDescription() {
 
 function ImportantDescription() {
   return (
-    <p className="mb-10 bg-neutral-100 px-6 py-5 type-body">
+    <p className="mb-8 bg-neutral-100 px-6 py-6 type-body">
       메인페이지의 중요 안내에는{' '}
       <strong>{`소식 > 공지사항, 새 소식, 세미나`}</strong> 중{' '}
       <strong>{`'중요 안내에 표시'`}</strong> 체크박스가 선택된 글들이
@@ -119,7 +119,7 @@ function ImportantDescription() {
 
 function ImageModalDescription() {
   return (
-    <p className="mb-10 bg-neutral-100 px-6 py-5 type-body">
+    <p className="mb-8 bg-neutral-100 px-6 py-6 type-body">
       메인페이지 진입 시 노출되는 이미지 팝업을 관리합니다. 한 번에 하나의
       팝업만 표시되며, 표시 종료일이 지난 팝업은 자동으로 숨겨집니다.
       <br />

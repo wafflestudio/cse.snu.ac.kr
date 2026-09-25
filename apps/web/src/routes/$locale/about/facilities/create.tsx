@@ -60,7 +60,7 @@ function FacilitiesCreate() {
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />
 
-          <Fieldset title="시설명" spacing="8" required>
+          <Fieldset title="시설명" required>
             {language === 'ko' && (
               <Form.Text
                 name="ko.name"
@@ -81,7 +81,7 @@ function FacilitiesCreate() {
             )}
           </Fieldset>
 
-          <Fieldset title="시설 설명" spacing="10" required>
+          <Fieldset title="시설 설명" required>
             {language === 'ko' && (
               <Form.HTML
                 name="ko.description"
@@ -106,7 +106,7 @@ function FacilitiesCreate() {
             )}
           </Fieldset>
 
-          <Fieldset title="시설 위치" spacing="8" required>
+          <Fieldset title="시설 위치" required>
             {language === 'ko' && (
               <Form.TextList
                 name="ko.locations"
@@ -121,7 +121,7 @@ function FacilitiesCreate() {
             )}
           </Fieldset>
 
-          <Fieldset title="시설 사진" spacing="12">
+          <Fieldset title="시설 사진">
             <label
               htmlFor="imageURL"
               className="mb-3 whitespace-pre-wrap type-meta tracking-wide text-neutral-500"

@@ -14,7 +14,7 @@ interface TagProps {
 }
 
 const BASE_CLASS =
-  'inline-flex h-[26px] items-center rounded-[1.875rem] border px-2.5 type-meta whitespace-nowrap transition duration-200';
+  'inline-flex h-[26px] items-center rounded-[1.875rem] border px-3 type-meta whitespace-nowrap transition duration-200';
 
 const VARIANT_CLASSES: Record<TagVariant, string> = {
   outline: 'bg-white border-main-orange text-main-orange',
@@ -45,7 +45,7 @@ export function Tag({
 
   const content = (
     <>
-      <span className={onDelete ? 'pr-1.5' : ''}>{label}</span>
+      <span className={onDelete ? 'pr-1' : ''}>{label}</span>
       {onDelete && (
         // 삭제 X — 이 한 곳뿐이라 Button kind으로 빼지 않고 직접 정의(브랜드색 아이콘 버튼).
         <button

@@ -48,7 +48,7 @@ function FacultyRecruitmentPage() {
           </Button>
         </div>
       </LoginVisible>
-      <h1 className="my-5 type-section">{data.title}</h1>
+      <h1 className="mb-4 mt-6 type-section">{data.title}</h1>
       <HTMLViewer
         html={data.description}
         image={

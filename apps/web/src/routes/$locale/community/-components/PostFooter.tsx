@@ -67,7 +67,7 @@ export default function PostFooter({
         />
       )}
 
-      <div className="mt-16 flex justify-end">
+      <div className="mt-12 flex justify-end">
         {(onDelete || editPath) && (
           <LoginVisible allow="ROLE_STAFF">
             <div className="flex items-center">

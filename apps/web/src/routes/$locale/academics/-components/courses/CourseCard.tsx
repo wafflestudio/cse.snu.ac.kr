@@ -108,7 +108,7 @@ function CourseCardFront({
   return (
     <div
       className={clsx(
-        'absolute p-4.5 bg-neutral-50 hover:bg-neutral-100 active:bg-neutral-50',
+        'absolute p-4 bg-neutral-50 hover:bg-neutral-100 active:bg-neutral-50',
         isFlipped
           ? 'transform-[rotateY(-180deg)]'
           : 'transform-[rotateY(0deg)]',
@@ -118,7 +118,7 @@ function CourseCardFront({
       ref={ref}
     >
       <div className="mb-4 flex items-center justify-between">
-        <div className="flex h-[26px] items-center whitespace-nowrap rounded-[1.875rem] border bg-white px-2.5 type-meta text-main-orange">
+        <div className="flex h-[26px] items-center whitespace-nowrap rounded-[1.875rem] border bg-white px-3 type-meta text-main-orange">
           {sortedProperties[0]}
         </div>
         <span className="ml-2 whitespace-nowrap type-meta text-neutral-500">
@@ -149,7 +149,7 @@ function CourseCardBack({
   return (
     <div
       className={clsx(
-        'py-5 px-4.5 bg-neutral-200',
+        'p-4 bg-neutral-200',
         isFlipped ? 'transform-[rotateY(0deg)]' : 'transform-[rotateY(180deg)]',
         'shadow-[2px_2px_4px_0_rgba(255,255,255,0.07)_inset,-2px_-2px_4px_0_rgba(0,0,0,0.05)_inset]',
         styles.face,

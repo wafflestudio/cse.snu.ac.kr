@@ -67,10 +67,10 @@ function SeminarDetailPage() {
       subNav={subNav}
       padding="none"
     >
-      <h2 className="page-gutter-x py-9 type-section">{seminar.title}</h2>
-      <div className="bg-neutral-50 page-gutter-x pb-36 pt-9">
+      <h2 className="page-gutter-x py-8 type-section">{seminar.title}</h2>
+      <div className="bg-neutral-50 page-gutter-x pb-16 pt-8 sm:pb-32">
         <Attachments files={seminar.attachments ?? []} />
-        <div className="mb-9 flex flex-col-reverse justify-between gap-5 type-ui sm:flex-row">
+        <div className="mb-8 flex flex-col-reverse justify-between gap-6 type-ui sm:flex-row">
           <div className="flex flex-col gap-3">
             <div>
               {t('이름')}:{' '}
@@ -87,7 +87,7 @@ function SeminarDetailPage() {
                 {seminar.affiliation}
               </LinkOrText>
             </div>
-            <div className="mt-10">
+            <div className="mt-8">
               {t('주최')}: {seminar.host}
             </div>
             <div>
@@ -102,23 +102,23 @@ function SeminarDetailPage() {
             <Image
               alt="대표 이미지"
               src={seminar.imageURL}
-              // 데스크톱 sm:w-60(240px), 모바일은 좌우 mx-7 을 뺀 폭
-              sizes="(min-width: 1024px) 240px, calc(100vw - 3.5rem)"
-              className="object-contain mx-7 aspect-square sm:h-60 sm:w-60"
+              // 데스크톱 sm:w-60(240px), 모바일은 좌우 mx-8 을 뺀 폭
+              sizes="(min-width: 1024px) 240px, calc(100vw - 4rem)"
+              className="object-contain mx-8 aspect-square sm:h-60 sm:w-60"
             />
           )}
         </div>
 
         {seminar.description && (
           <>
-            <div className="mt-10 type-item">{t('요약')}</div>
+            <div className="mt-12 type-item">{t('요약')}</div>
             <HTMLViewer html={seminar.description} />
           </>
         )}
 
         {seminar.introduction && (
           <>
-            <div className="mt-10 type-item">{t('연사 소개')}</div>
+            <div className="mt-12 type-item">{t('연사 소개')}</div>
             <HTMLViewer html={seminar.introduction} />
           </>
         )}

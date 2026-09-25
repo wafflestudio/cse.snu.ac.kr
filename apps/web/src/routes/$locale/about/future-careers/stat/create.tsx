@@ -88,7 +88,7 @@ function CareerStatCreatePage() {
     <PageLayout title="졸업생 진로 현황 추가" subNav={subNav}>
       <FormProvider {...formMethods}>
         <Form>
-          <Fieldset title="연도" spacing="6" required>
+          <Fieldset title="연도" required>
             <Form.Text name="year" maxWidth="w-[55px]" />
           </Fieldset>
 
@@ -131,7 +131,7 @@ function TableBody() {
       {DEGREE_LIST.map((degree) => (
         <div
           key={degree}
-          className="flex flex-1 items-center justify-center py-1.5 type-ui"
+          className="flex flex-1 items-center justify-center py-2 type-ui"
         >
           <Form.Text
             name={`statList.${idx}.${degree}`}

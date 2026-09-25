@@ -78,11 +78,9 @@ function NoticePage() {
       <SearchBox tags={NOTICE_TAGS} disabled={isEditMode} />
 
       {data.searchList.length === 0 ? (
-        <p className="mx-2.5 mb-8 mt-6">
-          {t('검색 결과가 존재하지 않습니다.')}
-        </p>
+        <p className="mx-3 mb-8 mt-8">{t('검색 결과가 존재하지 않습니다.')}</p>
       ) : (
-        <div className="mb-10 mt-9 border-y border-neutral-200 sm:mx-2.5">
+        <div className="mb-8 mt-8 border-y border-neutral-200 sm:mx-3">
           <h5 className="hidden h-11 items-center border-b border-neutral-200 pl-12.5 type-label text-neutral-950 sm:flex">
             <span
               className={`${NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow whitespace-nowrap tracking-wide sm:pl-3`}
@@ -95,7 +93,7 @@ function NoticePage() {
               {t('날짜')}
             </span>
             <span
-              className={`${NOTICE_ROW_CELL_WIDTH.views} shrink-0 whitespace-nowrap tracking-wide sm:pr-10`}
+              className={`${NOTICE_ROW_CELL_WIDTH.views} shrink-0 whitespace-nowrap tracking-wide sm:pr-8`}
             >
               {t('조회수')}
             </span>

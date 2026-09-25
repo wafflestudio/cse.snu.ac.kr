@@ -80,7 +80,7 @@ export default function NoticeEditor({
   return (
     <FormProvider {...formMethods}>
       <Form>
-        <Fieldset title="제목" spacing="8" titleSpacing="2" required>
+        <Fieldset title="제목" required>
           <Form.Text
             name="title"
             placeholder="제목을 입력하세요."
@@ -89,7 +89,7 @@ export default function NoticeEditor({
             }}
           />
         </Fieldset>
-        <Fieldset title="메인-중요 안내용 제목" spacing="8" titleSpacing="2">
+        <Fieldset title="메인-중요 안내용 제목">
           <Form.Text
             name="titleForMain"
             placeholder="미입력시 제목과 동일하게 표시됩니다."
@@ -106,12 +106,12 @@ export default function NoticeEditor({
         <Fieldset.File>
           <Form.File name="attachments" />
         </Fieldset.File>
-        <Fieldset title="태그" spacing="8" titleSpacing="3">
+        <Fieldset title="태그">
           <div className="flex grow flex-col gap-3">
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
               <button
                 type="button"
-                className="h-8 shrink-0 rounded-sm border border-neutral-300 px-[.62rem] type-label hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-40"
+                className="h-8 shrink-0 rounded-sm border border-neutral-300 px-3 type-label hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-40"
                 onClick={suggestTags}
                 disabled={isSuggesting}
               >
@@ -127,14 +127,14 @@ export default function NoticeEditor({
                 </p>
               )}
             </div>
-            <div className="flex flex-wrap gap-x-6 gap-y-2.5">
+            <div className="flex flex-wrap gap-x-6 gap-y-2">
               {NOTICE_TAGS.map((tag) => (
                 <Form.Checkbox key={tag} value={tag} name="tags" />
               ))}
             </div>
           </div>
         </Fieldset>
-        <Fieldset title="게시 설정" spacing="6" titleSpacing="3">
+        <Fieldset title="게시 설정">
           <div className="flex flex-col gap-2">
             <Form.Checkbox
               label="비공개 글"
