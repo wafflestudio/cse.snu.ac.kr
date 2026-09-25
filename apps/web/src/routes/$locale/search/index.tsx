@@ -30,7 +30,7 @@ function SearchPage() {
 
       {!tooShort && keyword && result && result.total > 0 && (
         <>
-          <p className="mb-8 ml-3 type-meta text-neutral-500">
+          <p className="mb-6 border-b border-neutral-200 pb-4 type-meta text-neutral-500">
             {locale === 'en'
               ? `${result.total} results`
               : `${result.total}개의 검색결과`}
