@@ -40,12 +40,11 @@ export default function MobileNavList() {
 
       <div className="mb-8 flex flex-col items-center type-ui text-neutral-500">
         <Button
-          variant="quiet"
-          size="sm"
+          variant="textInverse"
           onClick={() => setSearch(true)}
           ariaLabel="검색"
         >
-          <Search className="size-5 text-neutral-200" />
+          <Search className="size-5" />
         </Button>
         <AuthButton />
         <LangButton />
@@ -72,13 +71,8 @@ function SearchPage({ onClose }: { onClose: () => void }) {
   return (
     <div className="absolute bottom-0 left-0 right-0 top-0 z-50 bg-neutral-850">
       <div className="absolute left-1/2 bottom-4 -translate-x-1/2">
-        <Button
-          variant="quiet"
-          size="sm"
-          onClick={onClose}
-          ariaLabel="검색 닫기"
-        >
-          <X className="size-5 text-white" />
+        <Button variant="textInverse" onClick={onClose} ariaLabel="검색 닫기">
+          <X className="size-5" />
         </Button>
       </div>
       <div className="mx-8 mt-8 flex items-center border-b border-neutral-400">
@@ -91,13 +85,8 @@ function SearchPage({ onClose }: { onClose: () => void }) {
           // biome-ignore lint/a11y/noAutofocus: 넣을거임
           autoFocus
         />
-        <Button
-          variant="quiet"
-          size="sm"
-          onClick={search}
-          ariaLabel="검색 실행"
-        >
-          <Search className="size-5 text-neutral-200" />
+        <Button variant="textInverse" onClick={search} ariaLabel="검색 실행">
+          <Search className="size-5" />
         </Button>
       </div>
     </div>
@@ -114,7 +103,7 @@ function AuthButton() {
 
   return (
     <div className="mt-6">
-      <Button variant="quiet" size="sm" onClick={isLoggedIn ? logout : login}>
+      <Button variant="textInverse" onClick={isLoggedIn ? logout : login}>
         {isLoggedIn ? 'LOGOUT' : 'LOGIN'}
       </Button>
     </div>
@@ -127,7 +116,7 @@ function LangButton() {
 
   return (
     <div className="mt-3">
-      <Button variant="quiet" size="sm" onClick={changeLanguage}>
+      <Button variant="textInverse" onClick={changeLanguage}>
         {locale === 'ko' ? 'ENG' : '한국어'}
       </Button>
     </div>

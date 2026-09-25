@@ -46,7 +46,7 @@ export default function AlertDialog({
             <AlertDialogPrimitive.Action asChild>
               <Button
                 ref={confirmButtonRef}
-                variant="neutral"
+                variant="primary"
                 onClick={onConfirm}
               >
                 {confirmText}

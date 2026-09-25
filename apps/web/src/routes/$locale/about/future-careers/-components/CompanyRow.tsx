@@ -95,17 +95,16 @@ function CareerCompanyViewer({
         </p>
         <LoginVisible allow="ROLE_STAFF">
           <div
-            className={`hidden shrink-0 gap-2 sm:flex ${TABLE_COLUMN_SIZE[4]}`}
+            className={`hidden shrink-0 justify-end gap-3 sm:flex ${TABLE_COLUMN_SIZE[4]}`}
           >
-            <Button variant="secondary" size="md" onClick={toggleEdit}>
-              편집
-            </Button>
             <Button
               variant="secondary"
-              size="md"
               onClick={() => setShowDeleteDialog(true)}
             >
               삭제
+            </Button>
+            <Button variant="secondary" onClick={toggleEdit}>
+              편집
             </Button>
           </div>
         </LoginVisible>
@@ -144,7 +143,10 @@ export function CareerCompanyEditor({
       year: company?.year ?? undefined,
     },
   });
-  const { handleSubmit } = formMethods;
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+  } = formMethods;
 
   return (
     <FormProvider {...formMethods}>
@@ -170,15 +172,16 @@ export function CareerCompanyEditor({
         </div>
         <LoginVisible allow="ROLE_STAFF">
           <div
-            className={`hidden shrink-0 gap-2 sm:flex ${TABLE_COLUMN_SIZE[4]}`}
+            className={`hidden shrink-0 justify-end gap-3 sm:flex ${TABLE_COLUMN_SIZE[4]}`}
           >
-            <Button variant="secondary" size="md" onClick={onCancel}>
+            <Button variant="secondary" onClick={onCancel}>
               취소
             </Button>
             <Button
-              variant="neutral"
-              size="md"
+              variant="primary"
               onClick={handleSubmit(onSubmit)}
+              pending={isSubmitting}
+              pendingLabel="저장 중…"
             >
               저장
             </Button>

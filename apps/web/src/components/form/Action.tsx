@@ -22,28 +22,15 @@ export default function Action({
   } = useFormContext();
   const [showCancelDialog, setShowCancelDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const label = submitLabel ?? '저장하기';
 
   return (
     <>
-      <div className="relative mb-6 flex items-center justify-end gap-3">
-        <ErrorMessages />
-        <Button
-          variant="secondary"
-          disabled={isSubmitting}
-          onClick={(e: MouseEvent<HTMLButtonElement>) => {
-            e.preventDefault();
-            if (isDirty) {
-              setShowCancelDialog(true);
-            } else {
-              onCancel();
-            }
-          }}
-        >
-          취소
-        </Button>
+      {/* [삭제] ……… [오류] [취소] [저장] — 삭제는 저장과 멀리 왼쪽 끝에 둔다. */}
+      <div className="mb-6 flex items-center gap-3">
         {onDelete && (
           <Button
-            variant="neutral"
+            variant="secondary"
             disabled={isSubmitting}
             onClick={(e: MouseEvent<HTMLButtonElement>) => {
               e.preventDefault();
@@ -53,14 +40,32 @@ export default function Action({
             삭제
           </Button>
         )}
-        <Button
-          type="submit"
-          variant="neutral"
-          disabled={isSubmitting}
-          onClick={onSubmit}
-        >
-          {submitLabel ?? '저장하기'}
-        </Button>
+        <div className="ml-auto flex items-center justify-end gap-3">
+          <ErrorMessages />
+          <Button
+            variant="secondary"
+            disabled={isSubmitting}
+            onClick={(e: MouseEvent<HTMLButtonElement>) => {
+              e.preventDefault();
+              if (isDirty) {
+                setShowCancelDialog(true);
+              } else {
+                onCancel();
+              }
+            }}
+          >
+            취소
+          </Button>
+          <Button
+            type="submit"
+            variant="primary"
+            pending={isSubmitting}
+            pendingLabel={pendingLabelOf(label)}
+            onClick={onSubmit}
+          >
+            {label}
+          </Button>
+        </div>
       </div>
 
       <AlertDialog
@@ -87,6 +92,14 @@ export default function Action({
     </>
   );
 }
+
+const PENDING_LABELS: Record<string, string> = {
+  저장하기: '저장 중…',
+  게시하기: '게시 중…',
+  등록하기: '등록 중…',
+};
+
+const pendingLabelOf = (label: string) => PENDING_LABELS[label] ?? '처리 중…';
 
 const ErrorMessages = () => {
   const {

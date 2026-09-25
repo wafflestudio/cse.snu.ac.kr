@@ -3,6 +3,7 @@ import { FormProvider, useForm, useWatch } from 'react-hook-form';
 
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
+import Button from '@/components/ui/Button';
 import { toastError } from '@/components/ui/sonner';
 import type { TagSuggestion } from '@/types/api';
 import type { EditorFile } from '@/types/form';
@@ -109,14 +110,14 @@ export default function NoticeEditor({
         <Fieldset title="태그">
           <div className="flex grow flex-col gap-3">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-              <button
-                type="button"
-                className="h-8 shrink-0 rounded-xs border border-neutral-300 px-3 type-label hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-40"
+              <Button
+                variant="secondary"
                 onClick={suggestTags}
-                disabled={isSuggesting}
+                pending={isSuggesting}
+                pendingLabel="제안받는 중…"
               >
-                {isSuggesting ? '제안받는 중…' : '태그 제안받기'}
-              </button>
+                태그 제안받기
+              </Button>
               {suggestion && (
                 <p className="type-meta tracking-wide text-neutral-700">
                   {suggestion.length

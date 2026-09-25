@@ -28,7 +28,7 @@ export default function CareerStat({ stat }: { stat: YearStat[] }) {
 
   return (
     <div className="mt-12 flex flex-col gap-2">
-      <div className="flex justify-between sm:w-[432px]">
+      <div className="flex flex-wrap items-center justify-between gap-3 sm:w-[432px]">
         <div className="flex items-center gap-2">
           <h3 className="type-item">{t('졸업생 진로 현황')}</h3>
           <Dropdown
@@ -39,15 +39,7 @@ export default function CareerStat({ stat }: { stat: YearStat[] }) {
           />
         </div>
         <LoginVisible allow="ROLE_STAFF">
-          <div className="flex gap-3">
-            <Button
-              as="link"
-              to={localizedPath('/about/future-careers/stat/create')}
-              variant="primary"
-              size="md"
-            >
-              연도 추가
-            </Button>
+          <div className="ml-auto flex gap-3">
             <Button
               as="link"
               to={localizedPath(`/about/future-careers/stat/edit?year=${year}`)}
@@ -55,6 +47,14 @@ export default function CareerStat({ stat }: { stat: YearStat[] }) {
               size="md"
             >
               편집
+            </Button>
+            <Button
+              as="link"
+              to={localizedPath('/about/future-careers/stat/create')}
+              variant="primary"
+              size="md"
+            >
+              연도 추가
             </Button>
           </div>
         </LoginVisible>

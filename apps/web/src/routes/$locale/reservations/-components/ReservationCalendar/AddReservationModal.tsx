@@ -23,6 +23,7 @@ export default function AddReservationModal({
     '시설 예약': 'Reservation',
     예약하기: 'Reserve',
     취소: 'Cancel',
+    '예약 중…': 'Reserving…',
     '개인정보 수집 및 이용동의': 'Privacy Agreement',
     보러가기: 'View',
   });
@@ -188,7 +189,7 @@ export default function AddReservationModal({
             </div>
           </fieldset>
 
-          <div className="flex justify-end gap-2">
+          <div className="flex justify-end gap-3">
             <Button
               variant="secondary"
               size="md"
@@ -200,7 +201,9 @@ export default function AddReservationModal({
               variant="primary"
               size="md"
               type="submit"
-              disabled={!isValid || isSubmitting}
+              disabled={!isValid}
+              pending={isSubmitting}
+              pendingLabel={t('예약 중…')}
             >
               {t('예약하기')}
             </Button>

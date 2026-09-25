@@ -1,5 +1,5 @@
-import { Link, useLocation, useRouter } from '@tanstack/react-router';
-import { ChevronDown, ChevronUp, Plus } from 'lucide-react';
+import { useLocation, useRouter } from '@tanstack/react-router';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useReducer, useState } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import AlertDialog from '@/components/ui/AlertDialog';
@@ -63,13 +63,11 @@ export default function TimelineViewer<T extends ProcessedTimelineContent>({
   return (
     <>
       <LoginVisible allow="ROLE_STAFF">
-        <Link
-          to={createPath}
-          className="mb-8 ml-1 flex h-[30px] w-fit items-center rounded-full border border-main-orange pl-1 pr-2 type-label text-main-orange duration-200 hover:bg-main-orange hover:text-white"
-        >
-          <Plus />
-          <span>{t('연도 추가')}</span>
-        </Link>
+        <div className="mb-8 flex justify-end">
+          <Button as="link" to={createPath} variant="primary">
+            {t('연도 추가')}
+          </Button>
+        </div>
       </LoginVisible>
       <Timeline
         times={timeLineYears}

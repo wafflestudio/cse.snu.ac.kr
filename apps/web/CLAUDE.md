@@ -36,7 +36,7 @@ TanStack Start 빌드는 `dist/server/server.js` 를 **Web fetch 핸들러**로 
 - **토큰:** `src/app.css` 의 `@theme`. 가로 페이지 거터는 `.page-gutter-x` 단일 출처. 토큰화·스케일화는 픽셀 동일할 때만 자율, 값이 바뀌는 정규화는 디자인 결정 → 합의.
 - **`ui/*` 와 `form/*` 는 독립 구현.** 동명 컴포넌트가 어댑터 관계가 아니다. 의도된 분리 — 통합 금지.
 - **DS 에 우겨넣지 않는다.** 일관성이 깨지는 사용처는 컴포넌트 API 확장이 아니라 앱 코드를 고친다.
-- **단일 선택은 네이티브 radiogroup**(`fieldset`+`radio` pill) — 그룹 시맨틱·화살표 키 이동을 브라우저가 준다. Button `variant` 는 상태 없는 5개(primary/neutral/secondary/quiet/nav), 아이콘은 children 에 직접.
+- **단일 선택은 네이티브 radiogroup**(`fieldset`+`radio` pill) — 그룹 시맨틱·화살표 키 이동을 브라우저가 준다. Button `variant` 는 행동의 종류로 고르는 4개(primary/secondary/text/textInverse — 주황 채움 없음), 아이콘은 children 에 직접. Button 에 `className` 을 덧붙이는 통로는 없다 — 모양이 안 맞으면 앱 코드를 고친다.
 - **a11y:** form Radio/Checkbox 네이티브, Dialog/AlertDialog/Select/ImageModal 은 Radix. icon-only Button 은 `ariaLabel` 필수.
 - Storybook 없음. 픽셀 회귀는 E2E 소유.
 - **합의 대기(자율 실행 금지):** `#202020`(공지 필터 pill 비선택 배경) 신규 색 토큰 · 패딩 임의값과 `.62`/`.625` 근접 중복 정규화.

@@ -128,11 +128,11 @@ export default function CourseEditor({
           options={{ required: { value: true, message: 'course description' } }}
         />
       </div>
-      <div className="flex justify-end gap-2">
+      <div className="flex justify-end gap-3">
         <Button variant="secondary" onClick={toggleEditMode}>
           {t('취소')}
         </Button>
-        <Button variant="neutral" onClick={handleSubmit(onSubmit)}>
+        <Button variant="primary" onClick={handleSubmit(onSubmit)}>
           {t('확인')}
         </Button>
       </div>

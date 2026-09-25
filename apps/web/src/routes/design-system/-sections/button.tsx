@@ -1,40 +1,5 @@
 import type { ReactNode } from 'react';
-
-// 제안 단계: 새 variant 가 아직 Button 에 없어 같은 값을 클래스로 그린다. 승인되면 Button 으로 옮긴다.
-const BASE =
-  'inline-flex items-center justify-center gap-2 rounded-xs type-label transition duration-200';
-const SIZE = { md: 'h-8.5 px-4', sm: 'h-6 px-3' };
-const V = {
-  primary:
-    'bg-neutral-700 text-white hover:bg-neutral-600 active:bg-neutral-500',
-  secondary:
-    'border border-neutral-200 bg-neutral-100 text-neutral-600 hover:bg-neutral-200 active:bg-neutral-300',
-  text: 'text-neutral-600 hover:text-main-orange active:text-main-orange-dark',
-  textInverse: 'text-white hover:text-main-orange active:text-main-orange-dark',
-};
-
-function B({
-  v,
-  size = 'md',
-  children,
-  disabled,
-}: {
-  v: keyof typeof V;
-  size?: 'md' | 'sm';
-  children: ReactNode;
-  disabled?: boolean;
-}) {
-  const pad = v === 'text' || v === 'textInverse' ? '' : SIZE[size];
-  return (
-    <button
-      type="button"
-      disabled={disabled}
-      className={`${BASE} ${pad} ${V[v]} disabled:cursor-not-allowed disabled:opacity-40`}
-    >
-      {children}
-    </button>
-  );
-}
+import Button from '@/components/ui/Button';
 
 function Sub({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -45,7 +10,7 @@ function Sub({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
-const ROLES: [string, keyof typeof V, string, string][] = [
+const ROLES: [string, 'primary' | 'secondary' | 'text', string, string][] = [
   [
     '주요',
     'primary',
@@ -69,10 +34,6 @@ const ROLES: [string, keyof typeof V, string, string][] = [
 export function ButtonSection() {
   return (
     <div className="space-y-12 type-body">
-      <div className="border-l-4 border-main-orange bg-neutral-50 px-4 py-3 type-meta">
-        <p className="type-label">제안(미적용)</p>
-      </div>
-
       <Sub title="역할">
         <p>
           행동은 회색이다(1-2 강조 규칙). 주황 채움 버튼은 쓰지 않는다. 어떤
@@ -89,7 +50,7 @@ export function ButtonSection() {
             >
               <p className="type-label">{name}</p>
               <div>
-                <B v={v}>{label}</B>
+                <Button variant={v}>{label}</Button>
               </div>
               <p className="type-meta text-neutral-500">{use}</p>
             </div>
@@ -97,7 +58,7 @@ export function ButtonSection() {
           <div className="grid items-center gap-2 py-4 sm:grid-cols-[120px_120px_1fr] sm:gap-6">
             <p className="type-label">텍스트(어두운 면)</p>
             <div className="bg-neutral-900 px-3 py-2">
-              <B v="textInverse">로그인</B>
+              <Button variant="textInverse">로그인</Button>
             </div>
             <p className="type-meta text-neutral-500">
               헤더·모바일 메뉴의 글자 버튼
@@ -112,33 +73,39 @@ export function ButtonSection() {
 
       <Sub title="상태·크기">
         <div className="flex flex-wrap items-center gap-3">
-          <B v="primary">기본</B>
+          <Button variant="primary">기본</Button>
           <span className="type-meta text-neutral-500">
             → 호버 600, 누름 500
           </span>
-          <B v="primary" disabled>
+          <Button variant="primary" disabled>
             비활성
-          </B>
-          <B v="primary" disabled>
-            저장 중…
-          </B>
-          <B v="secondary" size="sm">
+          </Button>
+          <Button variant="primary" pending pendingLabel="저장 중…">
+            저장
+          </Button>
+          <Button variant="secondary" size="sm">
             작게
-          </B>
+          </Button>
         </div>
         <ul className="list-disc space-y-1 pl-5">
           <li>
             호버·누름은 버튼마다 중간 회색 쪽으로 한 단계씩 간다: 주요
             700→600→500(밝아짐), 보조 100→200→300(진해짐). 짙은 버튼이 더
-            진해지면 변화가 보이지 않는다. 누름 상태는 지금 하나도 없다.
+            진해지면 변화가 보이지 않는다.
           </li>
           <li>
             처리 중에는 버튼 글자를 "저장 중… / 게시 중… / 삭제 중…"으로 바꾸고
-            누를 수 없게 한다. 지금은 흐려지기만 하거나 아무 표시가 없다.
+            누를 수 없게 한다(<code>pending</code>·<code>pendingLabel</code>).
+            평소엔 원래 폭이고, 처리 중 글자가 더 길면 그때만 늘어난다.
+          </li>
+          <li>크기는 보통(34px)과 작게(24px, 표·목록 안의 일괄 버튼) 둘.</li>
+          <li>
+            버튼 글자는 줄바꿈하지 않고, 버튼은 줄어들지 않는다. 자리가 모자라면
+            버튼 줄이 통째로 다음 줄로 내려간다(오른쪽 정렬 유지).
           </li>
           <li>
-            크기는 보통(34px)과 작게(24px, 표·목록 안의 일괄 버튼) 둘. 쓰이지
-            않는 xs·lg는 없앤다.
+            아이콘만 든 채운 버튼은 <code>iconOnly</code>로 높이와 같은 폭의
+            정사각형이 된다. <code>ariaLabel</code>이 필수다.
           </li>
         </ul>
       </Sub>
@@ -158,22 +125,16 @@ export function ButtonSection() {
         </ul>
       </Sub>
 
-      <Sub title="함께 정리">
+      <Sub title="버튼이 아닌 것">
         <ul className="list-disc space-y-1 pl-5">
           <li>
-            버튼을 직접 만든 곳을 Button으로: 목록 입력의 추가·삭제, 태그
-            제안받기, 예약 달력 이전·다음·오늘, 학사 연혁 연도 추가, 페이지
-            제목의 현재 경로 버튼.
+            누르는 모양은 Button으로만 만든다. 클래스로 버튼을 직접 그리지 않고,
+            Button에 <code>className</code>을 덧붙이지 않는다.
           </li>
           <li>
-            교수 정렬 알약과 필터 알약은 선택 컨트롤이라 2-3, 이미지 팝업 버튼은
-            2-4, 날짜·파일 선택은 입력이라 2-2에서 본다.
+            교수 정렬·필터 알약은 선택 컨트롤(2-3), 이미지 팝업 버튼은
+            모달(2-4), 날짜·파일 선택은 입력(2-2)이다.
           </li>
-          <li>
-            헤더 검색에 임시로 붙인 <code>className</code> 덮어쓰기를 없애고
-            텍스트 버튼으로 바꾼다.
-          </li>
-          <li>오류 화면의 "메인으로 이동"(주황·큰 크기)은 주요·보통으로.</li>
         </ul>
       </Sub>
     </div>

@@ -1,6 +1,7 @@
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { Search } from 'lucide-react';
 import { type ChangeEvent, type FormEvent, useEffect, useState } from 'react';
+import Button from '@/components/ui/Button';
 import { useLanguage } from '@/hooks/useLanguage';
 
 export default function SeminarSearchBar() {
@@ -36,7 +37,7 @@ export default function SeminarSearchBar() {
       <label htmlFor="seminar-search" className="type-label">
         {t('검색')}
       </label>
-      <div className="flex h-7.5 w-60 items-center rounded-xs bg-neutral-100 pr-3">
+      <div className="flex h-7.5 w-60 items-center rounded-xs bg-neutral-100 pr-2.5">
         <input
           type="text"
           id="seminar-search"
@@ -44,14 +45,10 @@ export default function SeminarSearchBar() {
           value={text}
           onChange={handleChange}
         />
-        <button
-          type="submit"
-          // 아이콘 20px, 클릭 영역 24px — 음수 마진으로 배치는 그대로.
-          className="-m-0.5 p-0.5 text-neutral-950 hover:text-neutral-500"
-          aria-label={t('검색')}
-        >
-          <Search className="size-5" />
-        </button>
+        {/* 아이콘 20px + 둘레 2px 로 클릭 영역 24px. */}
+        <Button type="submit" variant="text" ariaLabel={t('검색')}>
+          <Search className="box-content size-5 p-0.5" />
+        </Button>
       </div>
     </form>
   );

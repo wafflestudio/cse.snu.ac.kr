@@ -7,15 +7,14 @@ import type {
 } from 'react';
 import { forwardRef } from 'react';
 
-// variant 기반 API. (과거 variant×tone 곱집합 — 무효 조합 다수 — 대신 실사용 5개만 노출.)
-//   primary   = 강조 CTA(추가/재시도)            ← 오렌지 solid
-//   neutral   = 폼·다이얼로그 커밋(저장/삭제/확인) ← 다크 solid
-//   secondary = 보조(취소/필터/페이지네이션)       ← 아웃라인
-//   quiet     = 저강조 텍스트(밝은 표면)           ← 텍스트
-//   nav       = 다크 헤더 유틸 버튼(흰 글자)        ← 텍스트(흰색)
+// 역할은 행동의 종류로 정한다(디자인 시스템 2-1). 주황 채움 버튼은 없다.
+//   primary     = 주요(추가·새 글·저장·게시·등록·예약, 확인창의 실행)  ← 짙은 회색 채움
+//   secondary   = 보조(편집·취소·목록·해제, 폼·상세의 삭제)          ← 연한 회색 채움
+//   text        = 밝은 면의 글자·아이콘 버튼                         ← 글자
+//   textInverse = 어두운 면(헤더·모바일 메뉴)의 글자·아이콘 버튼       ← 흰 글자
 // (단일 선택 토글은 Button variant이 아니라 네이티브 radiogroup으로 — faculty 정렬·공지 필터.)
-type ButtonVariant = 'primary' | 'neutral' | 'secondary' | 'quiet' | 'nav';
-type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
+type ButtonVariant = 'primary' | 'secondary' | 'text' | 'textInverse';
+type ButtonSize = 'md' | 'sm';
 
 type BaseProps = {
   variant: ButtonVariant;
@@ -23,8 +22,8 @@ type BaseProps = {
   ariaLabel?: string;
   // 아이콘은 children에 직접 넣는다(shadcn식). base의 gap-2가 아이콘·텍스트 간격을 처리.
   children?: ReactNode;
-  // 자리 맞춤(클릭 영역 padding 등)용. variant 색을 덮으려면 important(`!`)가 필요하다 — 병합기 없음.
-  className?: string;
+  // 아이콘만 든 채운 버튼 — 높이와 같은 폭의 정사각형으로 둔다(ariaLabel 필수).
+  iconOnly?: boolean;
 };
 
 type ButtonAsButton = BaseProps & {
@@ -32,6 +31,9 @@ type ButtonAsButton = BaseProps & {
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   onClick?: ButtonHTMLAttributes<HTMLButtonElement>['onClick'];
   disabled?: boolean;
+  // 처리 중: 누를 수 없게 하고 글자를 pendingLabel 로 바꾼다.
+  pending?: boolean;
+  pendingLabel?: string;
 };
 
 type ButtonAsLink = BaseProps & {
@@ -48,58 +50,39 @@ type ButtonAsAnchor = BaseProps & {
 
 type ButtonProps = ButtonAsButton | ButtonAsLink | ButtonAsAnchor;
 
+// 높이는 줄높이가 아니라 h-* 로 정한다(글자 줄높이는 1.2).
 const SIZE_CLASSES: Record<ButtonSize, string> = {
-  xs: 'type-label px-0 py-0',
-  // 높이는 줄높이가 아니라 h-* 로 정한다(글자 줄높이는 1.2).
-  sm: 'type-label h-6 px-3',
-  md: 'type-label h-8.5 px-4',
-  lg: 'type-label h-9.5 px-4',
+  md: 'h-8.5 px-4',
+  sm: 'h-6 px-3',
 };
 
-const TEXT_SIZE_CLASSES: Record<ButtonSize, string> = {
-  xs: 'type-ui tracking-[.02em]',
-  sm: 'type-ui',
-  md: 'type-ui',
-  lg: 'type-ui',
+const ICON_ONLY_SIZE_CLASSES: Record<ButtonSize, string> = {
+  md: 'size-8.5',
+  sm: 'size-6',
 };
 
-// variant → 시각 클래스(기존 variant/tone 조합과 바이트 동일).
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
-  primary: 'rounded-xs bg-main-orange text-white',
-  neutral: 'rounded-xs bg-neutral-700 text-white hover:bg-neutral-500',
+  primary:
+    'rounded-xs bg-neutral-700 text-white hover:bg-neutral-600 active:bg-neutral-500',
   secondary:
-    'rounded-xs border border-neutral-200 bg-neutral-100 text-neutral-600 hover:bg-neutral-200',
-  quiet: 'text-neutral-500 hover:text-white',
-  nav: 'text-white hover:text-neutral-200',
+    'rounded-xs border border-neutral-200 bg-neutral-100 text-neutral-600 hover:bg-neutral-200 active:bg-neutral-300',
+  text: 'text-neutral-600 hover:text-main-orange active:text-main-orange-dark',
+  textInverse: 'text-white hover:text-main-orange active:text-main-orange-dark',
 };
 
-// 텍스트형 variant는 padding 없는 TEXT_SIZE_CLASSES를 쓴다.
-const TEXT_VARIANTS = new Set<ButtonVariant>(['quiet', 'nav']);
-
-function getButtonClass({
-  variant,
-  size,
-}: {
-  variant: ButtonVariant;
-  size: ButtonSize;
-}) {
-  const base =
-    'inline-flex items-center justify-center gap-2 transition duration-200';
-  const sizeClass = TEXT_VARIANTS.has(variant)
-    ? TEXT_SIZE_CLASSES[size]
-    : SIZE_CLASSES[size];
-  return clsx(base, sizeClass, VARIANT_CLASSES[variant]);
-}
+// 글자형 variant는 패딩이 없다(크기는 글자·아이콘이 정한다).
+const TEXT_VARIANTS = new Set<ButtonVariant>(['text', 'textInverse']);
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-  const { variant, size = 'md', ariaLabel, children } = props;
+  const { variant, size = 'md', ariaLabel, children, iconOnly } = props;
 
   const className = clsx(
-    getButtonClass({ variant, size }),
-    props.as === 'button' || props.as === undefined
-      ? 'disabled:cursor-not-allowed disabled:opacity-40'
-      : '',
-    props.className,
+    'inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap type-label transition duration-200',
+    !TEXT_VARIANTS.has(variant) &&
+      (iconOnly ? ICON_ONLY_SIZE_CLASSES : SIZE_CLASSES)[size],
+    VARIANT_CLASSES[variant],
+    (props.as === 'button' || props.as === undefined) &&
+      'disabled:cursor-not-allowed disabled:opacity-40',
   );
 
   if (props.as === 'link') {
@@ -124,16 +107,31 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     );
   }
 
+  const { pending = false, pendingLabel } = props;
+
   return (
     <button
       type={props.type ?? 'button'}
       onClick={props.onClick}
-      disabled={props.disabled}
+      disabled={props.disabled || pending}
+      aria-busy={pending || undefined}
       className={className}
       aria-label={ariaLabel}
       ref={ref}
     >
-      {children}
+      {pending && pendingLabel !== undefined ? (
+        // 처리 중에만 원래 글자를 숨겨 겹쳐 둔다 — 평소엔 원래 폭, 처리 중 글자가 길면 그때만 늘어난다.
+        <span className="grid">
+          <span className="invisible col-start-1 row-start-1 inline-flex items-center justify-center gap-2">
+            {children}
+          </span>
+          <span className="col-start-1 row-start-1 inline-flex items-center justify-center">
+            {pendingLabel}
+          </span>
+        </span>
+      ) : (
+        children
+      )}
     </button>
   );
 });

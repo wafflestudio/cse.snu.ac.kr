@@ -26,7 +26,7 @@ export default function ErrorState({
           </div>
           <p className="type-section text-white">{message}</p>
         </div>
-        <Button variant="primary" size="lg" onClick={action.onClick}>
+        <Button variant="primary" onClick={action.onClick}>
           {action.label}
         </Button>
       </div>

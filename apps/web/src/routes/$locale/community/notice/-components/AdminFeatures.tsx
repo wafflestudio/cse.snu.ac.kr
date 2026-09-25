@@ -84,26 +84,26 @@ export default function AdminFeatures({
             </Button>
           </div>
         )}
-        <div className="ml-auto flex items-center">
-          <Button variant="primary" size="md" onClick={toggleEditMode}>
+        <div className="ml-auto flex items-center gap-3">
+          <Button
+            variant={isEditMode ? 'primary' : 'secondary'}
+            onClick={toggleEditMode}
+          >
             {isEditMode ? '완료' : '편집'}
           </Button>
-          <span className="ml-4">
-            {isEditMode ? (
-              <Button variant="neutral" size="md" disabled>
-                새 게시글
-              </Button>
-            ) : (
-              <Button
-                variant="neutral"
-                size="md"
-                as="link"
-                to={localizedPath('/community/notice/create')}
-              >
-                새 게시글
-              </Button>
-            )}
-          </span>
+          {isEditMode ? (
+            <Button variant="primary" disabled>
+              새 게시글
+            </Button>
+          ) : (
+            <Button
+              variant="primary"
+              as="link"
+              to={localizedPath('/community/notice/create')}
+            >
+              새 게시글
+            </Button>
+          )}
         </div>
       </div>
 

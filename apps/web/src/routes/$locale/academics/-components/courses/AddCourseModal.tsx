@@ -156,11 +156,11 @@ export default function AddCourseModal({
               }}
             />
           </Fieldset>
-          <div className="mt-2 flex justify-end gap-2">
+          <div className="mt-2 flex justify-end gap-3">
             <Button variant="secondary" onClick={onClose}>
               {t('취소')}
             </Button>
-            <Button variant="secondary" onClick={handleSubmit(onSubmit)}>
+            <Button variant="primary" onClick={handleSubmit(onSubmit)}>
               {t('추가하기')}
             </Button>
           </div>

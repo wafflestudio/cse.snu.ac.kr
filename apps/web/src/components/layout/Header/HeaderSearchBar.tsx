@@ -47,15 +47,9 @@ export default function HeaderSearchBar() {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      {/* 밝은 바 위라 quiet 의 호버(흰색)가 흐려진다 → 이 버튼만 neutral-700. px-0.5 는 클릭 영역 24px. */}
-      <Button
-        type="submit"
-        variant="quiet"
-        size="sm"
-        ariaLabel={t('통합검색')}
-        className="px-0.5 hover:text-neutral-700!"
-      >
-        <Search className="size-5" />
+      {/* 아이콘 20px + 둘레 2px 로 클릭 영역 24px. */}
+      <Button type="submit" variant="text" ariaLabel={t('통합검색')}>
+        <Search className="box-content size-5 p-0.5" />
       </Button>
     </form>
   );

@@ -1,4 +1,5 @@
 import { Search } from 'lucide-react';
+import Button from '@/components/ui/Button';
 import { useLanguage } from '@/hooks/useLanguage';
 
 interface KeywordInputProps {
@@ -20,7 +21,7 @@ export default function Input({
       >
         {t('검색')}
       </label>
-      <div className="relative flex h-7.5 w-54 items-center justify-between rounded-xs bg-white pr-3">
+      <div className="relative flex h-7.5 w-54 items-center justify-between rounded-xs bg-white pr-2.5">
         <input
           type="text"
           id="search"
@@ -29,14 +30,10 @@ export default function Input({
           defaultValue={defaultValue}
           disabled={disabled}
         />
-        <button
-          type="submit"
-          // 아이콘은 20px 인데 터치 타깃 최소가 24px 다. 음수 마진으로 레이아웃은 그대로 두고 클릭 영역만 넓힌다.
-          className="-m-0.5 p-0.5 text-neutral-950 hover:text-neutral-500"
-          aria-label={t('검색')}
-        >
-          <Search className="size-5" />
-        </button>
+        {/* 아이콘 20px + 둘레 2px 로 클릭 영역 24px. */}
+        <Button type="submit" variant="text" ariaLabel={t('검색')}>
+          <Search className="box-content size-5 p-0.5" />
+        </Button>
       </div>
     </div>
   );

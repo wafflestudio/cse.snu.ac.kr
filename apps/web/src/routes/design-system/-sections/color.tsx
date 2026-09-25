@@ -252,20 +252,16 @@ export function ColorSection() {
           <div className="space-y-3">
             <p className="font-medium">행동</p>
             <div className="flex flex-wrap gap-3">
-              <Button variant="neutral">추가</Button>
+              <Button variant="primary">추가</Button>
               <Button variant="secondary">취소</Button>
             </div>
             <ul className="list-disc pl-5 text-sm text-neutral-700">
               <li>
-                주요 행동(추가·저장·게시·예약): neutral-700, 호버 neutral-500
+                주요 행동(추가·저장·게시·예약): neutral-700, 호버 600, 누름 500
               </li>
               <li>
                 보조 행동(취소·편집·삭제·목록): neutral-100 면. 글자는 500 →
                 600으로 (100 면 위 500은 대비 4.35로 기준 4.5에 못 미침)
-              </li>
-              <li>
-                어느 버튼이 주요인지 정리하는 일(주황 추가 버튼 등)은 2-1
-                버튼에서 한다.
               </li>
             </ul>
           </div>

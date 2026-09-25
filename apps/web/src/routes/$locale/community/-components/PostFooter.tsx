@@ -67,32 +67,27 @@ export default function PostFooter({
         />
       )}
 
-      <div className="mt-12 flex justify-end">
+      <div className="mt-12 flex justify-end gap-3">
         {(onDelete || editPath) && (
           <LoginVisible allow="ROLE_STAFF">
-            <div className="flex items-center">
+            <div className="flex items-center gap-3">
               {onDelete && (
-                <span className="mr-3">
-                  <Button
-                    variant="secondary"
-                    size="md"
-                    onClick={() => setShowDeleteDialog(true)}
-                  >
-                    삭제
-                  </Button>
-                </span>
+                <Button
+                  variant="secondary"
+                  onClick={() => setShowDeleteDialog(true)}
+                >
+                  삭제
+                </Button>
               )}
               {editPath && (
-                <span className="mr-3">
-                  <Button as="link" to={editHref} variant="secondary" size="md">
-                    편집
-                  </Button>
-                </span>
+                <Button as="link" to={editHref} variant="secondary">
+                  편집
+                </Button>
               )}
             </div>
           </LoginVisible>
         )}
-        <Button as="link" to={listHref} variant="neutral" size="md">
+        <Button as="link" to={listHref} variant="secondary">
           {t('목록')}
         </Button>
       </div>

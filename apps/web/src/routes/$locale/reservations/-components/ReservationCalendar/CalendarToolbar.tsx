@@ -4,13 +4,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react';
-import {
-  type ButtonHTMLAttributes,
-  type DetailedHTMLProps,
-  useReducer,
-  useRef,
-  useState,
-} from 'react';
+import { useReducer, useRef, useState } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import Button from '@/components/ui/Button';
 import Calendar from '@/components/ui/Calendar';
@@ -30,21 +24,20 @@ export default function CalendarToolbar({ roomId }: { roomId: number }) {
   const [showAddModal, setShowAddModal] = useState(false);
 
   return (
-    <div className="mb-6 flex h-7.5 items-stretch justify-between">
-      <div className="flex items-stretch gap-2">
+    // 모바일은 날짜 조작과 예약하기를 두 줄로 — [오늘]이 나타났다 사라져도 예약하기가 움직이지 않게.
+    <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex items-center gap-2">
         <SelectDayButton date={selectedDate} />
         <ChangeDateButton direction="prev" />
         <ChangeDateButton direction="next" />
         {todayButtonVisible && <TodayButton />}
       </div>
       <LoginVisible allow={['ROLE_STAFF', 'ROLE_RESERVE', 'ROLE_LABMASTER']}>
-        <Button
-          variant="primary"
-          size="md"
-          onClick={() => setShowAddModal(true)}
-        >
-          예약하기
-        </Button>
+        <div className="flex justify-end">
+          <Button variant="primary" onClick={() => setShowAddModal(true)}>
+            예약하기
+          </Button>
+        </div>
       </LoginVisible>
       <AddReservationModal
         roomId={roomId}
@@ -68,10 +61,7 @@ function SelectDayButton({ date }: { date: dayjs.Dayjs }) {
 
   return (
     <div>
-      <SquareButton
-        className="flex h-full w-24 items-center justify-center gap-1 px-2"
-        onClick={toggleCalendar}
-      >
+      <Button variant="secondary" onClick={toggleCalendar}>
         {isDateToday ? (
           '날짜 선택'
         ) : (
@@ -80,7 +70,7 @@ function SelectDayButton({ date }: { date: dayjs.Dayjs }) {
             {date.format('YY.MM.DD.')}
           </>
         )}
-      </SquareButton>
+      </Button>
       {showCalendar && (
         <div className="relative" ref={calendarRef}>
           <div className="absolute top-2 z-10">
@@ -111,17 +101,18 @@ function ChangeDateButton({ direction }: { direction: 'prev' | 'next' }) {
   };
 
   return (
-    <SquareButton
-      className="w-7.5"
+    <Button
+      variant="secondary"
+      iconOnly
       onClick={handleClick}
-      aria-label={direction === 'prev' ? '이전 날짜' : '다음 날짜'}
+      ariaLabel={direction === 'prev' ? '이전 날짜' : '다음 날짜'}
     >
       {direction === 'prev' ? (
         <ChevronLeft className="size-5" />
       ) : (
         <ChevronRight className="size-5" />
       )}
-    </SquareButton>
+    </Button>
   );
 }
 
@@ -130,26 +121,8 @@ function TodayButton() {
   const handleClick = () => setSelectedDate(kstDayjs());
 
   return (
-    <SquareButton className="w-10.75" onClick={handleClick}>
+    <Button variant="secondary" onClick={handleClick}>
       오늘
-    </SquareButton>
-  );
-}
-
-function SquareButton({
-  className,
-  children,
-  ...props
-}: DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->) {
-  return (
-    <button
-      className={`rounded-xs border border-neutral-200 bg-white type-meta text-neutral-700 enabled:hover:bg-neutral-100 disabled:text-neutral-300 ${className ?? ''}`}
-      {...props}
-    >
-      {children}
-    </button>
+    </Button>
   );
 }

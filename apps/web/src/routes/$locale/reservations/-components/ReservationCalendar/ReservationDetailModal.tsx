@@ -166,7 +166,7 @@ export default function ReservationDetailModal({
           <LoginVisible
             allow={['ROLE_STAFF', 'ROLE_RESERVE', 'ROLE_LABMASTER']}
           >
-            <div className="flex justify-end gap-2">
+            <div className="flex justify-end gap-3">
               <Button
                 variant="secondary"
                 size="sm"
