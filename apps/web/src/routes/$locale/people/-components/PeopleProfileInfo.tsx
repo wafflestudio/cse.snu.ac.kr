@@ -49,7 +49,7 @@ function ProfileInfoRow({ icon, label, href }: PeopleProfileInfoItem) {
         <a
           target={href.startsWith('http') ? '_blank' : undefined}
           href={href}
-          className="text-link hover:underline"
+          className="text-link underline underline-offset-2"
           rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
         >
           {label}

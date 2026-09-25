@@ -43,7 +43,7 @@ export default function Pagination({
 
   return (
     <div className={clsx('flex justify-center', disabled && 'opacity-30')}>
-      <ul className="mx-auto flex h-6 gap-x-2 tracking-wide text-neutral-800">
+      <ul className="mx-auto flex h-6 gap-x-2 tracking-wide text-neutral-950">
         <li className="flex">
           <PaginationArrow
             icon={ChevronsLeft}
@@ -110,7 +110,7 @@ function PaginationArrow({
   ariaLabel,
 }: PaginationArrowProps) {
   return disabled ? (
-    <Icon className="pointer-events-none h-6 w-6 cursor-default text-neutral-400" />
+    <Icon className="pointer-events-none h-6 w-6 cursor-default text-neutral-300" />
   ) : (
     <button
       type="button"

@@ -66,7 +66,7 @@ function LabNameCell({
       className={`${LAB_ROW_ITEM_WIDTH.name} order-first col-span-1 row-span-1 text-base font-semibold sm:whitespace-normal sm:text-sm sm:font-normal`}
     >
       <Link
-        className="text-neutral-900 hover:text-main-orange"
+        className="text-neutral-950 hover:text-main-orange"
         to={localizedPath(`/research/labs/${id}`)}
       >
         {name}
@@ -86,7 +86,7 @@ function LabProfessorsCell({
 }) {
   return (
     <span
-      className={`${LAB_ROW_ITEM_WIDTH.professor} col-span-3 text-md text-neutral-800 sm:text-sm sm:text-neutral-900`}
+      className={`${LAB_ROW_ITEM_WIDTH.professor} col-span-3 text-md text-neutral-950 sm:text-sm sm:text-neutral-950`}
     >
       <span className="sm:hidden">{labelProfessor}: </span>
       {professors.map((info, index) => (
@@ -129,7 +129,7 @@ function LabMaterialsCell({
           rel="noopener noreferrer"
         >
           <FileText
-            className="h-5 w-5 text-neutral-400 hover:text-neutral-800"
+            className="h-5 w-5 text-neutral-400 hover:text-neutral-950"
             strokeWidth={1.5}
           />
         </a>

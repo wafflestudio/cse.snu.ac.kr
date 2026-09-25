@@ -38,7 +38,7 @@ export default function SubNavbar({ title, titlePath, items }: SubNavConfig) {
         <div className="pl-1.5 pt-2.75">
           <Link
             to={localizedPath(titlePath)}
-            className="text-neutral-800 hover:text-main-orange"
+            className="text-neutral-950 hover:text-main-orange"
           >
             <h3 className="inline whitespace-nowrap text-base font-semibold">
               {title}

@@ -36,7 +36,7 @@ export default function AlertDialog({
           <VisuallyHidden.Root>
             <AlertDialogPrimitive.Title>{title}</AlertDialogPrimitive.Title>
           </VisuallyHidden.Root>
-          <AlertDialogPrimitive.Description className="mb-6 mt-1 text-neutral-800">
+          <AlertDialogPrimitive.Description className="mb-6 mt-1 text-neutral-950">
             {description}
           </AlertDialogPrimitive.Description>
           <div className="flex justify-end gap-3">

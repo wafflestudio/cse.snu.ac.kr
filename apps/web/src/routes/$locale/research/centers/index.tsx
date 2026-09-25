@@ -139,7 +139,7 @@ function ResearchCentersPage() {
 function ResearchCenterTitle({ name, link }: { name: string; link: string }) {
   return (
     <div className="mb-5 sm:w-fit" key={name}>
-      <h4 className="px-2.5 text-base font-bold leading-loose text-neutral-800 sm:text-[24px]">
+      <h4 className="px-2.5 text-base font-bold leading-loose text-neutral-950 sm:text-[24px]">
         <a
           href={link}
           target="_blank"

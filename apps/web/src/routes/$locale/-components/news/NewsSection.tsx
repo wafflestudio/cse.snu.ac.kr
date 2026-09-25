@@ -15,7 +15,7 @@ export default function NewsSection({ mainNews }: { mainNews: MainNews[] }) {
           {t('새 소식')}
         </h3>
         <Link
-          className="hidden items-center gap-1 text-base font-normal text-[#E65615] sm:flex"
+          className="hidden items-center gap-1 text-base font-normal text-main-orange-dark sm:flex"
           to={localizedPath('/community/news')}
         >
           {t('더보기')} <SmallRightArrowIcon />

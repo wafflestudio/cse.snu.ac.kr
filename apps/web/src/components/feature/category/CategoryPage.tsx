@@ -52,7 +52,7 @@ export default function CategoryPage({
         {description && (
           <Description
             className="mb-6 mt-8 hidden sm:block"
-            contentClassName="max-w-160 !text-[#f5f5f5]"
+            contentClassName="max-w-160 !text-neutral-100"
           >
             {description}
           </Description>
@@ -61,7 +61,7 @@ export default function CategoryPage({
       <CategoryGrid currentPage={currentPage} theme="dark" />
       {description && (
         <div className="px-5 pb-14 pt-7 sm:hidden">
-          <Description contentClassName="!text-[#a3a3a3] text-[13px] font-normal">
+          <Description contentClassName="!text-neutral-400 text-[13px] font-normal">
             {description}
           </Description>
         </div>

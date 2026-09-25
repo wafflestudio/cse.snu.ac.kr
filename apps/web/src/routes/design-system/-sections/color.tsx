@@ -3,10 +3,6 @@ import Button from '@/components/ui/Button';
 import Node from '@/components/ui/Nodes';
 import { Tag } from '@/components/ui/Tag';
 
-// 제안 단계라 새 크롬 색은 아직 토큰이 없어 여기서만 값을 적는다. 승인되면 app.css 로 옮긴다.
-const CHROME_BAR = '#2d2d30';
-const CHROME_MENU = '#323235';
-
 type Swatch = { name: string; role: string; className?: string; hex?: string };
 
 const LIGHT: Swatch[] = [
@@ -39,8 +35,12 @@ const DARK: Swatch[] = [
 ];
 
 const CHROME: Swatch[] = [
-  { name: 'chrome-bar', role: '모바일 상단 바', hex: CHROME_BAR },
-  { name: 'chrome-menu', role: '왼쪽 내비·모바일 메뉴', hex: CHROME_MENU },
+  { name: 'chrome-bar', role: '모바일 상단 바', className: 'bg-chrome-bar' },
+  {
+    name: 'chrome-menu',
+    role: '왼쪽 내비·모바일 메뉴',
+    className: 'bg-chrome-menu',
+  },
 ];
 
 type Merge = { from: string; where: string; to: string; toHex: string };
@@ -154,40 +154,9 @@ function Sub({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
-function Decision({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div className="border-2 border-main-orange p-5">
-      <p className="mb-4 font-bold">{title}</p>
-      {children}
-    </div>
-  );
-}
-
-function TextSample({ primary }: { primary: string }) {
-  return (
-    <div className="space-y-1">
-      <p className={`text-lg font-bold ${primary}`}>
-        2026학년도 후기 입학 설명회
-      </p>
-      <p className={`text-md leading-7 ${primary}`}>
-        설명회는 301동 118호에서 열립니다. 사전 신청은 필요하지 않습니다.
-      </p>
-      <p className="text-sm text-neutral-500">2026/09/25 · 행정실</p>
-    </div>
-  );
-}
-
 export function ColorSection() {
   return (
     <div className="space-y-12 text-md leading-7">
-      <div className="border-l-4 border-main-orange bg-neutral-50 px-4 py-3 text-sm">
-        <p className="font-medium">제안(미적용). 결정할 것 2개</p>
-        <ol className="mt-1 list-decimal pl-5">
-          <li>주요 글자색: 800과 950 중 하나로</li>
-          <li>정보 링크: 지금 색(호버 때만 밑줄) / 더 짙은 색 + 항상 밑줄</li>
-        </ol>
-      </div>
-
       <Sub title="면">
         <p>
           밝은 면 4단계, 어두운 면 3단계, 내비게이션 틀 2색. 위로 올라오는
@@ -204,7 +173,7 @@ export function ColorSection() {
         </div>
       </Sub>
 
-      <Sub title="합치는 값">
+      <Sub title="팔레트 밖 값">
         <p>
           눈으로 거의 구별되지 않는 값들을 가까운 단계로 합친다. 합치면 팔레트
           밖 값이 앱에서 사라진다.
@@ -212,9 +181,9 @@ export function ColorSection() {
         <table className="w-full max-w-3xl text-left text-sm">
           <thead>
             <tr className="border-b border-neutral-200">
-              <th className="py-2 font-medium">지금</th>
+              <th className="py-2 font-medium">쓰지 않는 값</th>
               <th className="py-2 font-medium">쓰는 곳</th>
-              <th className="py-2 font-medium">합칠 단계</th>
+              <th className="py-2 font-medium">대신 쓸 단계</th>
             </tr>
           </thead>
           <tbody>
@@ -268,28 +237,10 @@ export function ColorSection() {
         </table>
         <p>
           어두운 면에서는 주요 white, 보조 neutral-400. 작은 보조 글자가
-          neutral-100·200 면 위에 오면 neutral-600.
+          neutral-100·200 면 위에 오면 neutral-600. 밝은 면에 neutral-400 글자는
+          쓰지 않는다(흰 바탕 대비 2.52). 읽어야 하는 정보면 500, 비활성이면
+          300.
         </p>
-        <Decision title="결정 1 — 주요 글자색">
-          <p className="mb-4">
-            지금 페이지 기본 글자는 950인데 컴포넌트 31곳이 800을 쓰고 900도 4곳
-            있다. 하나로 맞춘다.
-          </p>
-          <div className="grid gap-8 sm:grid-cols-2">
-            <div>
-              <p className="mb-2 text-sm text-neutral-500">
-                A. neutral-950 #0a0a0a (추천 — 페이지 기본과 같음)
-              </p>
-              <TextSample primary="text-neutral-950" />
-            </div>
-            <div>
-              <p className="mb-2 text-sm text-neutral-500">
-                B. neutral-800 #262626 (컴포넌트에 더 많음, 조금 부드러움)
-              </p>
-              <TextSample primary="text-neutral-800" />
-            </div>
-          </div>
-        </Decision>
       </Sub>
 
       <Sub title="강조">
@@ -367,37 +318,20 @@ export function ColorSection() {
             </ul>
           </div>
         </div>
-        <Decision title="결정 2 — 정보 링크(연락처·이메일·홈페이지 주소 등 본문 속 링크)">
-          <div className="grid gap-8 sm:grid-cols-2">
-            <div>
-              <p className="mb-2 text-sm text-neutral-500">
-                A. 지금: #3c7be4, 호버 때만 밑줄. 흰 바탕 대비 4.08(기준 4.5
-                미만)
-              </p>
-              <p>
-                이메일{' '}
-                <a href="#color" className="text-link hover:underline">
-                  cse@snu.ac.kr
-                </a>
-              </p>
-            </div>
-            <div>
-              <p className="mb-2 text-sm text-neutral-500">
-                B. #2867cf, 항상 밑줄. 대비 5.34 (추천 — Codex 때 고르신 안)
-              </p>
-              <p>
-                이메일{' '}
-                <a
-                  href="#color"
-                  className="underline underline-offset-2"
-                  style={{ color: '#2867cf' }}
-                >
-                  cse@snu.ac.kr
-                </a>
-              </p>
-            </div>
-          </div>
-        </Decision>
+        <div className="space-y-2">
+          <p className="font-medium">정보 링크</p>
+          <p>
+            연락처·이메일·홈페이지 주소처럼 본문 속 링크는{' '}
+            <code>text-link</code>(#2867cf)에 밑줄을 항상 긋는다(
+            <code>underline underline-offset-2</code>). 흰 바탕 대비 5.34.
+          </p>
+          <p>
+            이메일{' '}
+            <a href="#color" className="text-link underline underline-offset-2">
+              cse@snu.ac.kr
+            </a>
+          </p>
+        </div>
       </Sub>
 
       <Sub title="선·오류">

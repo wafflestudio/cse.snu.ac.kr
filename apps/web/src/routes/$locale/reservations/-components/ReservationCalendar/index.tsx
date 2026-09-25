@@ -23,7 +23,7 @@ export default function ReservationCalendar({
 
   return (
     <div className="max-w-fit">
-      <h3 className="mb-7 text-2xl font-bold text-neutral-800">{title}</h3>
+      <h3 className="mb-7 text-2xl font-bold text-neutral-950">{title}</h3>
       <ReserveTermBanner reserveTerms={reserveTerms} roomId={roomId} />
       <CalendarToolbar roomId={roomId} />
       <CalendarContent reservations={reservations} startDate={startDate} />

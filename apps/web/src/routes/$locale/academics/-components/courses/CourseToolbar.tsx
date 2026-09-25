@@ -55,11 +55,11 @@ function ViewOptions({ selectedOption, changeOption }: ViewOptionsProps) {
 
   // 카드형은 데스크톱 전용이라 토글도 데스크톱만 보인다.
   return (
-    <div className="hidden gap-3 text-md text-neutral-400 sm:flex">
+    <div className="hidden gap-3 text-md text-neutral-500 sm:flex">
       <button
         type="button"
         className={
-          selectedOption === '목록형' ? 'text-neutral-800' : 'cursor-pointer'
+          selectedOption === '목록형' ? 'text-neutral-950' : 'cursor-pointer'
         }
         onClick={() => changeOption('목록형')}
       >
@@ -69,7 +69,7 @@ function ViewOptions({ selectedOption, changeOption }: ViewOptionsProps) {
       <button
         type="button"
         className={
-          selectedOption === '카드형' ? 'text-neutral-800' : 'cursor-pointer'
+          selectedOption === '카드형' ? 'text-neutral-950' : 'cursor-pointer'
         }
         onClick={() => changeOption('카드형')}
       >

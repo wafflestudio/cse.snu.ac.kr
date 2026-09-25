@@ -76,7 +76,7 @@ function CareerCompanyViewer({
     <>
       <li className="grid grid-cols-[22px_auto_1fr] items-center gap-x-1 px-7 py-6 odd:bg-neutral-100 sm:flex sm:h-10 sm:gap-3 sm:p-0 sm:px-3">
         <p
-          className={`text-sm text-neutral-400 sm:pl-2 ${TABLE_COLUMN_SIZE[0]}`}
+          className={`text-sm text-neutral-500 sm:pl-2 ${TABLE_COLUMN_SIZE[0]}`}
         >
           {index}
         </p>
@@ -86,7 +86,7 @@ function CareerCompanyViewer({
           {name}
         </p>
         <a
-          className={`order-last col-span-2 col-start-2 w-fit text-xs text-link hover:underline sm:order-0 sm:mt-0 sm:pl-2
+          className={`order-last col-span-2 col-start-2 w-fit text-xs text-link underline underline-offset-2 sm:order-0 sm:mt-0 sm:pl-2
             ${url && 'mt-1'} ${TABLE_COLUMN_SIZE[2]}`}
           href={url ?? undefined}
           target="_blank"
@@ -94,7 +94,7 @@ function CareerCompanyViewer({
         >
           {url}
         </a>
-        <p className={`pl-2 text-sm text-neutral-400 ${TABLE_COLUMN_SIZE[3]}`}>
+        <p className={`pl-2 text-sm text-neutral-500 ${TABLE_COLUMN_SIZE[3]}`}>
           {year}
         </p>
         <LoginVisible allow="ROLE_STAFF">
@@ -154,7 +154,7 @@ export function CareerCompanyEditor({
     <FormProvider {...formMethods}>
       <li className="grid grid-cols-[22px_auto_1fr] items-center gap-x-1 px-7 py-6 odd:bg-neutral-100 sm:flex sm:h-10 sm:gap-3 sm:p-0 sm:px-3">
         <p
-          className={`text-sm text-neutral-400 sm:pl-2 ${TABLE_COLUMN_SIZE[0]}`}
+          className={`text-sm text-neutral-500 sm:pl-2 ${TABLE_COLUMN_SIZE[0]}`}
         >
           {index}
         </p>

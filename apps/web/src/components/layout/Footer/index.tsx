@@ -36,8 +36,8 @@ export default function Footer() {
     : 'light';
 
   const topBg =
-    mode === 'light' ? 'bg-neutral-50' : 'bg-[#262728] sm:bg-neutral-900';
-  const bottomBg = mode === 'light' ? 'bg-neutral-100' : 'bg-[rgb(30,30,30)]';
+    mode === 'light' ? 'bg-neutral-50' : 'bg-neutral-800 sm:bg-neutral-900';
+  const bottomBg = mode === 'light' ? 'bg-neutral-100' : 'bg-neutral-850';
   const borderTop =
     mode === 'light' ? 'border-neutral-100' : 'border-neutral-800';
 
@@ -144,7 +144,7 @@ function FooterBottomLeft() {
         contentClassName="w-[92vw] max-w-3xl p-0"
       >
         <div className="relative flex flex-col gap-5 overflow-y-auto overflow-x-hidden px-8 pb-12 pt-12 sm:px-12 sm:pb-16 sm:pt-14">
-          <h1 className="text-3xl font-semibold text-neutral-900 sm:text-4xl">
+          <h1 className="text-3xl font-semibold text-neutral-950 sm:text-4xl">
             Team <span className="text-main-orange">CSEREAL</span>
             <br />
             <span className="text-sm leading-6 text-neutral-500 sm:text-base">

@@ -103,7 +103,7 @@ export default function SearchResultList({
 
       {status === 'loading' && (
         <output
-          className="flex justify-center py-2 text-neutral-400"
+          className="flex justify-center py-2 text-neutral-500"
           aria-label={t('검색 결과를 불러오는 중')}
         >
           <LoaderCircle size={20} className="animate-spin" />

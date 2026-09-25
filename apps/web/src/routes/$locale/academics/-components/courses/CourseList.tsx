@@ -76,23 +76,23 @@ const Row = ({
         </button>
       </span>
       <span
-        className={`${COURSE_ROW_ITEM_WIDTH.classification} order-3 whitespace-nowrap pr-1 text-neutral-400 sm:order-2 sm:pr-0`}
+        className={`${COURSE_ROW_ITEM_WIDTH.classification} order-3 whitespace-nowrap pr-1 text-neutral-500 sm:order-2 sm:pr-0`}
       >
         {course[locale].classification}
       </span>
       <span
-        className={`${COURSE_ROW_ITEM_WIDTH.code} order-2 col-span-3 text-neutral-500 sm:order-3 sm:text-neutral-400`}
+        className={`${COURSE_ROW_ITEM_WIDTH.code} order-2 col-span-3 text-neutral-500 sm:order-3`}
       >
         {course.code}
       </span>
       <span
-        className={`${COURSE_ROW_ITEM_WIDTH.credit} order-5 text-neutral-400 sm:order-4 sm:pl-2`}
+        className={`${COURSE_ROW_ITEM_WIDTH.credit} order-5 text-neutral-500 sm:order-4 sm:pl-2`}
       >
         {course.credit}
         <span className="sm:hidden">{t('학점')}</span>
       </span>
       <span
-        className={`${COURSE_ROW_ITEM_WIDTH.grade} order-4 whitespace-nowrap pr-1 text-neutral-400 sm:order-5 sm:pr-0`}
+        className={`${COURSE_ROW_ITEM_WIDTH.grade} order-4 whitespace-nowrap pr-1 text-neutral-500 sm:order-5 sm:pr-0`}
       >
         {t(GRADE[course.grade])}
       </span>

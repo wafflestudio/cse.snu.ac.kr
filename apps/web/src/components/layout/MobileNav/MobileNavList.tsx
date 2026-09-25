@@ -23,7 +23,7 @@ export default function MobileNavList() {
   };
 
   return (
-    <nav className="flex min-w-[100px] grow-[6.25] basis-0 flex-col justify-between bg-[#323235] pt-10">
+    <nav className="flex min-w-[100px] grow-[6.25] basis-0 flex-col justify-between bg-chrome-menu pt-10">
       <ul className="flex flex-col gap-9 text-center">
         {navigationTree.map((item, i) => (
           <li
@@ -71,7 +71,7 @@ function SearchPage({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 top-0 z-50 bg-[#1F2021]">
+    <div className="absolute bottom-0 left-0 right-0 top-0 z-50 bg-neutral-850">
       <div className="absolute left-1/2 bottom-4 -translate-x-1/2">
         <Button
           variant="quiet"

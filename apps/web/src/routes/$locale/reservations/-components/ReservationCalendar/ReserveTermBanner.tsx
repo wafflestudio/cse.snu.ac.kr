@@ -44,7 +44,7 @@ export default function ReserveTermBanner({
     : null;
 
   return (
-    <div className="mb-4 flex flex-col gap-1 text-sm text-neutral-400">
+    <div className="mb-4 flex flex-col gap-1 text-sm text-neutral-500">
       <div className="flex items-center gap-1">
         <AlertCircle className="h-4 w-4 shrink-0" />
         <p className="font-normal">

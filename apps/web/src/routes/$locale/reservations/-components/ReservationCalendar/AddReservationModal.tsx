@@ -158,7 +158,7 @@ export default function AddReservationModal({
               />
             </Fieldset>
 
-            <div className="items-center flex gap-1 text-neutral-400">
+            <div className="items-center flex gap-1 text-neutral-500">
               <AlertCircle className="h-4 w-4" />
               <p className="font-normal">
                 예약 시간 20분 후까지 사용하지 않을 시 예약이 취소됩니다.
@@ -179,7 +179,7 @@ export default function AddReservationModal({
               </div>
 
               <Link
-                className="text-neutral-400"
+                className="text-neutral-500"
                 to={localizedPath('/reservations/privacy-policy')}
                 target="_blank"
                 rel="noopener noreferrer"

@@ -31,7 +31,7 @@ const ImportantBanner = ({ important }: { important: MainImportant }) => {
       <h3 className="line-clamp-1 text-lg font-semibold text-neutral-950">
         {important.title}
       </h3>
-      <p className="mr-[24px] line-clamp-1 text-sm font-normal text-neutral-800">
+      <p className="mr-[24px] line-clamp-1 text-sm font-normal text-neutral-950">
         {important.description}
       </p>
       <ImportantSectionArrow />
@@ -53,7 +53,7 @@ const CharityBanner = () => (
     <h3 className="relative z-10 line-clamp-1 text-lg font-semibold text-neutral-950">
       SNU Computing Commons 건축기금 모금
     </h3>
-    <p className="relative z-10 line-clamp-1 text-sm font-normal text-neutral-800">
+    <p className="relative z-10 line-clamp-1 text-sm font-normal text-neutral-950">
       서울대학교 발전재단 X 컴퓨터공학부
     </p>
     <ImportantSectionArrow />

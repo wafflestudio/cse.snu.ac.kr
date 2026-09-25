@@ -1,19 +1,19 @@
 /* Color themes - Rectangle */
 .themeOrange {
-  background-color: #ff6914;
-  border: 1px solid #ff6914;
+  background-color: var(--color-main-orange);
+  border: 1px solid var(--color-main-orange);
   border-radius: 0.125rem;
 }
 
 .themeLightGray {
-  background-color: #fafafa;
-  border: 1px solid #f5f5f5;
+  background-color: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-100);
   border-radius: 0.125rem;
 }
 
 .themeBlack {
-  background-color: #fafafa;
-  border: 1px solid #f5f5f5;
+  background-color: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-100);
   border-radius: 0.125rem;
 }
 
@@ -29,19 +29,21 @@
 
 /* Triangle colors */
 .triangleWhite {
-  border-color: #ffffff #ffffff transparent #ffffff;
+  border-color: var(--color-white) var(--color-white) transparent
+    var(--color-white);
 }
 
 .triangleOrange {
-  border-color: transparent transparent #ffffff #ffffff;
+  border-color: transparent transparent var(--color-white) var(--color-white);
 }
 
 .triangleLightGray {
-  border-color: transparent transparent #ffffff #ffffff;
+  border-color: transparent transparent var(--color-white) var(--color-white);
 }
 
 .triangleBlack {
-  border-color: transparent transparent #e5e5e5 #e5e5e5;
+  border-color: transparent transparent var(--color-neutral-200)
+    var(--color-neutral-200);
 }
 
 /* Triangle sizes */
@@ -66,14 +68,12 @@
 
 /* Animation */
 .animated {
-  --white: #ffffff;
-  --neutral-100: #f5f5f5;
   transition: 0.3s;
 }
 
 .folding:hover {
   /* biome-ignore lint/complexity/noImportantStyles: TODO */
-  background-color: var(--neutral-100) !important;
+  background-color: var(--color-neutral-100) !important;
 }
 
 .folding::before,
@@ -92,13 +92,17 @@
 .folding::before {
   background: linear-gradient(
     -135deg,
-    var(--white) 50%,
-    var(--neutral-100) 50%
+    var(--color-white) 50%,
+    var(--color-neutral-100) 50%
   );
 }
 
 .folding::after {
-  background: linear-gradient(-135deg, transparent 50%, var(--neutral-100) 50%);
+  background: linear-gradient(
+    -135deg,
+    transparent 50%,
+    var(--color-neutral-100) 50%
+  );
   filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.2));
 }
 
@@ -124,13 +128,17 @@
 .unfolding::before {
   background: linear-gradient(
     -135deg,
-    var(--white) 50%,
-    var(--neutral-100) 50%
+    var(--color-white) 50%,
+    var(--color-neutral-100) 50%
   );
 }
 
 .unfolding::after {
-  background: linear-gradient(-135deg, transparent 50%, var(--neutral-100) 50%);
+  background: linear-gradient(
+    -135deg,
+    transparent 50%,
+    var(--color-neutral-100) 50%
+  );
   filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.3));
 }
 
