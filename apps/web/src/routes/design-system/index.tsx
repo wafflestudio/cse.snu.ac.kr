@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import PageLayout from '@/components/layout/PageLayout';
 import { ColorSection } from './-sections/color';
 import { LayoutSection } from './-sections/layout';
+import { ShapeSection } from './-sections/shape';
 import { SpacingSection } from './-sections/spacing';
 import { TypeSection } from './-sections/type';
 
@@ -20,7 +21,7 @@ const GROUPS: Group[] = [
       { id: 'color', title: '색', content: <ColorSection /> },
       { id: 'type', title: '글자', content: <TypeSection /> },
       { id: 'spacing', title: '간격', content: <SpacingSection /> },
-      { id: 'shape', title: '모서리·그림자·선' },
+      { id: 'shape', title: '모서리·그림자·선', content: <ShapeSection /> },
       { id: 'icon', title: '아이콘' },
       { id: 'graphic', title: '그래픽' },
     ],
