@@ -73,7 +73,7 @@ function OverviewEdit() {
   );
 
   return (
-    <PageLayout title="학부 소개 편집" titleSize="xl" padding="default">
+    <PageLayout title="학부 소개 편집" padding="default">
       <FormProvider {...methods}>
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />
@@ -101,7 +101,7 @@ function OverviewEdit() {
           <Fieldset.Image>
             <label
               htmlFor="image"
-              className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500"
+              className="mb-3 whitespace-pre-wrap type-meta tracking-wide text-neutral-500"
             >
               글 우측 상단에 들어가는 이미지입니다.
             </label>

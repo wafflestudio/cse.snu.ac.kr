@@ -71,7 +71,7 @@ function SelectFileButton({
   multiple: boolean;
 }) {
   return (
-    <label className="mr-3 flex h-8 cursor-pointer items-center self-start rounded-sm border border-neutral-300 px-[.62rem] text-xs hover:bg-neutral-100">
+    <label className="mr-3 flex h-8 cursor-pointer items-center self-start rounded-sm border border-neutral-300 px-[.62rem] type-label hover:bg-neutral-100">
       파일 선택
       <input
         type="file"
@@ -91,7 +91,7 @@ interface FileRowProps {
 function FilePickerRow({ file, deleteFile }: FileRowProps) {
   return (
     <li className="flex h-7.5 w-130 items-center border-b border-dashed border-neutral-200 px-3 last:border-none">
-      <p className="mr-4 text-sm">{file.file.name}</p>
+      <p className="mr-4 type-ui">{file.file.name}</p>
       <button type="button" className="ml-auto" onClick={deleteFile}>
         <ClearIcon />
       </button>

@@ -140,7 +140,6 @@ export default function AdmissionsPageContent({
   return (
     <PageLayout
       title={title}
-      titleSize="xl"
       subNav={subNav}
       padding={layout === 'extraBottom' ? 'noBottom' : 'default'}
       pageTitle={meta?.title}

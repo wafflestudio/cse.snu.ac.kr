@@ -30,7 +30,6 @@ function ReservationPrivacyPolicyPage() {
   return (
     <PageLayout
       title={t('개인정보처리방침')}
-      titleSize="xl"
       titleMargin="mb-9"
       pageTitle={meta.title}
       pageDescription={meta.description}

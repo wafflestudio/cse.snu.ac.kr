@@ -28,9 +28,9 @@ export default function MobileNavList() {
         {navigationTree.map((item, i) => (
           <li
             key={i}
-            className={`text-sm font-medium ${
+            className={`type-ui ${
               shouldHighlight(item) ? 'text-white' : 'text-neutral-500'
-            } cursor-pointer whitespace-nowrap leading-5`}
+            } cursor-pointer whitespace-nowrap`}
             onClick={() => hoverNavItem(item)}
             onKeyDown={(e) => e.key === 'Enter' && hoverNavItem(item)}
           >
@@ -39,7 +39,7 @@ export default function MobileNavList() {
         ))}
       </ul>
 
-      <div className="mb-[40px] flex flex-col items-center text-sm font-medium text-neutral-500">
+      <div className="mb-[40px] flex flex-col items-center type-ui text-neutral-500">
         <Button
           variant="quiet"
           size="sm"
@@ -87,7 +87,7 @@ function SearchPage({ onClose }: { onClose: () => void }) {
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && search()}
-          className="h-8 w-full bg-transparent text-md text-white outline-none placeholder:text-neutral-500"
+          className="h-8 w-full bg-transparent type-ui text-white outline-none placeholder:text-neutral-500"
           placeholder="검색어를 입력해주세요"
           // biome-ignore lint/a11y/noAutofocus: 넣을거임
           autoFocus

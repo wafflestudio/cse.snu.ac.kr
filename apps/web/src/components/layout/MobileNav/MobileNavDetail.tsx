@@ -81,15 +81,13 @@ function MobileNavMenuItem({
     ) : (
       <>
         {translated.slice(0, idx)}
-        <span className="text-xs font-medium leading-5">
-          {translated.slice(idx)}
-        </span>
+        <span className="type-caption">{translated.slice(idx)}</span>
       </>
     );
 
   // depth에 따른 스타일
   const containerClassName = depth === 1 ? 'mb-[1.75rem]' : 'mb-[1.5rem]';
-  const textSize = depth === 1 ? 'text-md' : 'text-sm';
+  const textSize = depth === 1 ? 'type-label' : 'type-ui';
 
   if (to) {
     return (
@@ -97,7 +95,7 @@ function MobileNavMenuItem({
         <Link
           to={to}
           onClick={onClick}
-          className={`block font-medium leading-5 ${textSize} ${
+          className={`block ${textSize} ${
             highlight ? 'text-main-orange' : 'text-white hover:text-main-orange'
           }`}
         >
@@ -110,9 +108,7 @@ function MobileNavMenuItem({
   // path가 없으면 카테고리 헤더
   return (
     <div className={containerClassName}>
-      <p className={`block font-medium leading-5 text-white ${textSize}`}>
-        {label}
-      </p>
+      <p className={`block text-white ${textSize}`}>{label}</p>
     </div>
   );
 }

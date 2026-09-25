@@ -16,7 +16,7 @@ export default function ConferenceListTable({
 
   return (
     <div className="overflow-x-scroll">
-      <div className="mt-8 flex w-180 flex-col text-sm">
+      <div className="mt-8 flex w-180 flex-col type-ui">
         <div className="flex h-10 w-full flex-row border-y border-y-neutral-200">
           <div className="flex w-12 items-center justify-center px-3">
             {t('연번')}
@@ -46,7 +46,7 @@ function ConferenceRow({
   index: number;
 }) {
   return (
-    <div className="flex w-full flex-row items-center wrap-break-word text-sm leading-[18px] even:bg-neutral-100">
+    <div className="flex w-full flex-row items-center wrap-break-word type-ui even:bg-neutral-100">
       <div className="flex w-12 items-center justify-center px-3 py-2.5">
         {index}
       </div>

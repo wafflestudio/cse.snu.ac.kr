@@ -43,7 +43,7 @@ function ResearchLabCreate() {
   };
 
   return (
-    <PageLayout title="연구실 추가" titleSize="xl" padding="default">
+    <PageLayout title="연구실 추가" padding="default">
       <ResearchLabEditor
         professors={professors}
         groups={groups}

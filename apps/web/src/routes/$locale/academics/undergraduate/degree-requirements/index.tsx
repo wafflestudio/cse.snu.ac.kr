@@ -37,7 +37,6 @@ function DegreeRequirementsPage() {
   return (
     <PageLayout
       title={title}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}
@@ -51,9 +50,7 @@ function DegreeRequirementsPage() {
       </LoginVisible>
       <Attachments files={loaderData.attachments} />
       <div className="mb-7 mt-6 flex w-[200px] flex-col">
-        <h3 className="mb-2 pl-3 text-lg font-bold">
-          {t('공통: 졸업사정 유의사항')}
-        </h3>
+        <h3 className="mb-2 pl-3 type-item">{t('공통: 졸업사정 유의사항')}</h3>
         <Node variant="straight" />
       </div>
       <HTMLViewer html={loaderData.description} />

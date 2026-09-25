@@ -45,7 +45,7 @@ export default function CareerCompanies({
   return (
     <div className="mt-11 sm:max-w-fit">
       <div className="mb-3 flex items-center justify-between gap-2">
-        <h3 className="text-base font-bold">{t('졸업생 창업 기업')}</h3>
+        <h3 className="type-item">{t('졸업생 창업 기업')}</h3>
         {/* UI가 과하게 깨지는 관계로 모바일 버전에서는 편집 X */}
         <div className="hidden sm:block">
           <LoginVisible allow="ROLE_STAFF">
@@ -60,7 +60,7 @@ export default function CareerCompanies({
           </LoginVisible>
         </div>
       </div>
-      <div className="border-y border-neutral-200 text-sm font-normal">
+      <div className="border-y border-neutral-200 type-ui">
         <CompanyTableHeader />
         {showCreateForm && (
           <CareerCompanyEditor
@@ -91,7 +91,7 @@ function CompanyTableHeader() {
   });
 
   return (
-    <div className="hidden h-10 items-center gap-3 whitespace-nowrap border-b border-neutral-200 sm:flex sm:px-3">
+    <div className="hidden h-10 items-center gap-3 whitespace-nowrap type-label border-b border-neutral-200 sm:flex sm:px-3">
       <p className={TABLE_COLUMN_SIZE[0]}>{t('연번')}</p>
       <p className={`${TABLE_COLUMN_SIZE[1]} pl-2`}>{t('창업 기업명')}</p>
       <p className={`${TABLE_COLUMN_SIZE[2]} pl-2`}>{t('홈페이지')}</p>

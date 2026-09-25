@@ -93,7 +93,7 @@ const RowIndex = () => (
         key={hour + meridiem}
         className="flex h-12 items-center justify-center border-b border-r border-neutral-200 bg-neutral-100 px-4"
       >
-        <time className="text-xs font-medium text-neutral-950">
+        <time className="type-caption text-neutral-950">
           {hour}
           <span className="hidden sm:inline">{meridiem}</span>
         </time>

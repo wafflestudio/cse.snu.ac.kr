@@ -36,15 +36,13 @@ export default function LNBMenuItem({
     ) : (
       <>
         {translated.slice(0, idx)}
-        <span className="text-xs font-medium leading-5">
-          {translated.slice(idx)}
-        </span>
+        <span className="type-caption">{translated.slice(idx)}</span>
       </>
     );
 
   if (variant === 'sidebar') {
     const color = highlight ? 'text-white' : 'text-neutral-500';
-    const className = `text-[0.9375rem] font-medium ${color} cursor-pointer whitespace-nowrap leading-4.5`;
+    const className = `type-ui ${color} cursor-pointer whitespace-nowrap`;
 
     return (
       <li
@@ -78,7 +76,7 @@ export default function LNBMenuItem({
         <Link
           to={to}
           onClick={onClick}
-          className="mr-4 h-4.25 shrink-0 font-medium text-main-orange text-md"
+          className="mr-4 h-4.25 shrink-0 type-ui text-main-orange"
           role="menuitem"
           aria-current="page"
         >
@@ -94,7 +92,7 @@ export default function LNBMenuItem({
       <Link
         to={to}
         onClick={onClick}
-        className="mb-6 block h-4.25 font-medium leading-5 text-white hover:text-main-orange text-md"
+        className="mb-6 block h-4.25 type-ui text-white hover:text-main-orange"
         role="menuitem"
       >
         {label}
@@ -103,10 +101,7 @@ export default function LNBMenuItem({
   }
 
   return (
-    <p
-      className="mb-6 block h-4.25 font-medium leading-5 text-white text-md"
-      aria-disabled="true"
-    >
+    <p className="mb-6 block h-4.25 type-ui text-white" aria-disabled="true">
       {label}
     </p>
   );

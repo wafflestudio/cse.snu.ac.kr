@@ -16,7 +16,7 @@ export default function Input({
     <div className="flex items-center">
       <label
         htmlFor="search"
-        className="mr-7 whitespace-nowrap text-md font-bold tracking-wide"
+        className="mr-7 whitespace-nowrap type-label tracking-wide"
       >
         {t('검색')}
       </label>
@@ -25,7 +25,7 @@ export default function Input({
           type="text"
           id="search"
           name="keyword"
-          className="autofill-bg-white w-full rounded-sm bg-transparent px-2 text-sm tracking-wide outline-none"
+          className="autofill-bg-white w-full rounded-sm bg-transparent px-2 type-ui tracking-wide outline-none"
           defaultValue={defaultValue}
           disabled={disabled}
         />

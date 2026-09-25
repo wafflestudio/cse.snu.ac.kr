@@ -29,7 +29,7 @@ interface SelectionItemProps {
 
 function SelectionItem({ name, isSelected, href }: SelectionItemProps) {
   const itemCommonStyle =
-    'flex items-center justify-center w-full h-10 py-3 text-center text-[11px] sm:text-sm lg:text-md tracking-wide';
+    'flex items-center justify-center w-full h-10 py-3 text-center type-label tracking-wide';
 
   return (
     <li>
@@ -40,9 +40,7 @@ function SelectionItem({ name, isSelected, href }: SelectionItemProps) {
           shadow="medium"
           width="w-full"
         >
-          <span className={`${itemCommonStyle} font-medium text-neutral-50`}>
-            {name}
-          </span>
+          <span className={`${itemCommonStyle} text-neutral-50`}>{name}</span>
         </CornerFoldedRectangle>
       ) : (
         <CornerFoldedRectangle

@@ -24,7 +24,7 @@ export default function ErrorState({
           <div className="mb-6 text-[120px] font-bold leading-none text-main-orange sm:text-[160px]">
             {title}
           </div>
-          <p className="text-xl text-white sm:text-2xl">{message}</p>
+          <p className="type-section text-white">{message}</p>
         </div>
         <Button variant="primary" size="lg" onClick={action.onClick}>
           {action.label}

@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import PageLayout from '@/components/layout/PageLayout';
 import { ColorSection } from './-sections/color';
 import { LayoutSection } from './-sections/layout';
+import { TypeSection } from './-sections/type';
 
 // 디자인 규칙의 정본. 영역은 SECTIONS 순서대로 이 한 페이지에 쌓는다.
 // 규칙은 이 페이지의 값과 실제 컴포넌트로 보여주고, 토큰 사본이나 손으로 그린 모형을 만들지 않는다.
@@ -16,7 +17,7 @@ const GROUPS: Group[] = [
     sections: [
       { id: 'layout', title: '레이아웃·반응형', content: <LayoutSection /> },
       { id: 'color', title: '색', content: <ColorSection /> },
-      { id: 'type', title: '글자' },
+      { id: 'type', title: '글자', content: <TypeSection /> },
       { id: 'spacing', title: '간격' },
       { id: 'shape', title: '모서리·그림자·선' },
       { id: 'icon', title: '아이콘' },
@@ -54,7 +55,6 @@ function DesignSystemPage() {
   return (
     <PageLayout
       title="디자인 시스템"
-      titleSize="xl"
       breadcrumb={[]}
       pageTitle="디자인 시스템"
       pageDescription="서울대학교 컴퓨터공학부 웹사이트의 디자인 규칙"

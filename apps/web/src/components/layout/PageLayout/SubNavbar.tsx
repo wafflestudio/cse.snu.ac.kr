@@ -40,9 +40,7 @@ export default function SubNavbar({ title, titlePath, items }: SubNavConfig) {
             to={localizedPath(titlePath)}
             className="text-neutral-950 hover:text-main-orange"
           >
-            <h3 className="inline whitespace-nowrap text-base font-semibold">
-              {title}
-            </h3>
+            <h3 className="inline whitespace-nowrap type-item">{title}</h3>
           </Link>
           <ul className="mt-4">
             {items.map((item, index) => (
@@ -68,7 +66,7 @@ function SubNavItem({ item }: { item: SubNavConfigItem }) {
   return (
     <li
       className={clsx(
-        'mb-3.5 w-fit text-sm',
+        'mb-3.5 w-fit type-ui',
         marginLeft,
         isCurrent
           ? 'font-bold tracking-wider text-main-orange'
@@ -98,7 +96,7 @@ function NavLabel({ text }: { text: string }) {
   return (
     <>
       {text.slice(0, idx)}
-      <span className="text-xs font-medium leading-5">{text.slice(idx)}</span>
+      <span className="type-caption">{text.slice(idx)}</span>
     </>
   );
 }

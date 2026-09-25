@@ -25,12 +25,8 @@ export default function LinkRow({ to, title, subtitle }: LinkRowProps) {
           'group-hover:text-main-orange',
         )}
       >
-        <p className="text-base font-medium sm:text-lg sm:font-semibold">
-          {title}
-        </p>
-        {subtitle && (
-          <p className="text-xs font-medium sm:font-semibold">{subtitle}</p>
-        )}
+        <p className="type-item">{title}</p>
+        {subtitle && <p className="type-caption">{subtitle}</p>}
       </div>
       <ArrowRight
         className={clsx(

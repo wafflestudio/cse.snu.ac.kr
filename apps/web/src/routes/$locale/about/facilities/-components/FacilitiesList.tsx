@@ -47,13 +47,11 @@ function FacilitiesRow({ facility }: { facility: ProcessedFacility }) {
     <>
       <article className="flex flex-col-reverse items-start justify-between gap-5 py-5 sm:flex-row">
         <div className="flex flex-col sm:w-142">
-          <h3 className="mb-3 text-base font-bold leading-5">
-            {facility.name}
-          </h3>
+          <h3 className="mb-3 type-item">{facility.name}</h3>
           <HTMLViewer html={facility.description} />
           <div className="flex translate-x-[-4px] items-start gap-px">
             <DistanceIcon className="shrink-0" />
-            <p className="pt-0.5 text-md text-neutral-500">
+            <p className="pt-0.5 type-ui text-neutral-500">
               {facility.locations.join(', ')}
             </p>
           </div>

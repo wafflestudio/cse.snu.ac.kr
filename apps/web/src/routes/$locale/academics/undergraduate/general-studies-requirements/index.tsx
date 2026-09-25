@@ -39,14 +39,11 @@ function GeneralStudiesRequirementsPage() {
   return (
     <PageLayout
       title={t('필수 교양 과목')}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}
     >
-      <p className="mb-10 bg-neutral-100 px-6 py-5 text-md leading-loose">
-        {t(OVERVIEW)}
-      </p>
+      <p className="mb-10 bg-neutral-100 px-6 py-5 type-body">{t(OVERVIEW)}</p>
       <TimelineViewer
         contents={loaderData}
         title={{ text: t('영역별 교양과목 학점 배분 구조표'), unit: t('학번') }}

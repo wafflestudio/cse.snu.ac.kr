@@ -74,7 +74,7 @@ export default function Dropdown({
         }}
         disabled={isDisabled}
       >
-        <p className="text-md font-normal">
+        <p className="type-ui">
           {contents.find((x) => x.value === value)?.label}
         </p>
         {expanded ? (
@@ -129,7 +129,7 @@ function DropdownListWithScroll({
           role="option"
           aria-selected={selectedIndex === index}
           className={clsx(
-            'h-7 shrink-0 pl-[.62rem] text-left text-nowrap text-sm font-normal hover:bg-neutral-200 focus:border focus:border-neutral-400 ',
+            'h-7 shrink-0 pl-[.62rem] text-left text-nowrap type-ui hover:bg-neutral-200 focus:border focus:border-neutral-400 ',
             selectedIndex === index && 'text-main-orange',
           )}
           onClick={(e) => {

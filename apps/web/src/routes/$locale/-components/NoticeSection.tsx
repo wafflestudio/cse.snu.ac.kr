@@ -22,7 +22,7 @@ const NOTICE_TAGS = [
 
 const noticeTagPillClass = (selected: boolean) =>
   clsx(
-    'inline-flex cursor-pointer select-none items-center justify-center rounded-[1.875rem] border border-solid border-main-orange-dark px-3 py-[0.37rem] text-md font-medium transition duration-200',
+    'inline-flex cursor-pointer select-none items-center justify-center rounded-[1.875rem] border border-solid border-main-orange-dark px-3 py-[0.37rem] type-label transition duration-200',
     'has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-main-orange-dark',
     selected
       ? 'bg-main-orange-dark text-neutral-850'
@@ -49,9 +49,7 @@ export default function NoticeSection({
         />
       </div>
       <div className="flex flex-col px-7 pb-6.5 pt-12 sm:absolute sm:bottom-12 sm:right-12 sm:w-132 sm:p-0">
-        <h3 className="text-[1.75rem] font-semibold text-white">
-          {t('공지사항')}
-        </h3>
+        <h3 className="type-headline text-white">{t('공지사항')}</h3>
         <div className="mt-6 flex items-center justify-between sm:mt-9">
           <fieldset
             aria-label={t('공지사항')}
@@ -73,7 +71,7 @@ export default function NoticeSection({
           </fieldset>
           {!isMobile && (
             <Link
-              className="flex text-base font-normal text-main-orange-dark"
+              className="flex type-ui text-main-orange-dark"
               to={localizedPath('/community/notice')}
             >
               <PlusIcon /> {t('더보기')}
@@ -85,7 +83,7 @@ export default function NoticeSection({
           {allMainNotice[tag].map((notice) => (
             <Link
               key={notice.id}
-              className="line-clamp-1 flex justify-between gap-2 text-md font-normal text-white sm:text-base"
+              className="line-clamp-1 flex justify-between gap-2 type-ui text-white"
               to={localizedPath(`/community/notice/${notice.id}`)}
             >
               <h3 className="truncate sm:w-108">{notice.title}</h3>
@@ -101,7 +99,7 @@ export default function NoticeSection({
         </div>
         {isMobile && (
           <Link
-            className="ml-auto mt-6 flex text-base font-normal text-main-orange-dark"
+            className="ml-auto mt-6 flex type-ui text-main-orange-dark"
             to={localizedPath('/community/notice')}
           >
             <PlusIcon /> {t('더보기')}

@@ -39,7 +39,7 @@ function PeopleCard({
   content,
 }: PeopleCardProps) {
   return (
-    <article className="group flex w-fit flex-row gap-5 text-md sm:w-36 sm:flex-col sm:gap-3">
+    <article className="group flex w-fit flex-row gap-5 type-ui sm:w-36 sm:flex-col sm:gap-3">
       <Link
         to={href}
         className="relative h-48 w-36 shrink-0 cursor-pointer overflow-hidden drop-shadow-[0px_0px_4px_rgba(0,0,0,0.15)]"
@@ -66,7 +66,7 @@ function PeopleCard({
             titleNewline ? 'flex-col' : ''
           }`}
         >
-          <span className="text-[18px] font-bold">{name}</span>
+          <span className="type-item">{name}</span>
           <AcademicRankText academicRank={subtitle} />
           <HoverAnimationUnderline />
         </Link>

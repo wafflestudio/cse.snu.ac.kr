@@ -69,7 +69,7 @@ function TagResetButton({ disabled, onClick }: TagResetButtonProps) {
       disabled={disabled}
     >
       <RefreshCw className="h-4 w-4 scale-x-[-1]" strokeWidth={1.5} />
-      <span className="whitespace-nowrap text-md">{t('태그 초기화')}</span>
+      <span className="whitespace-nowrap type-label">{t('태그 초기화')}</span>
     </button>
   );
 }

@@ -47,17 +47,17 @@ type ButtonAsAnchor = BaseProps & {
 type ButtonProps = ButtonAsButton | ButtonAsLink | ButtonAsAnchor;
 
 const SIZE_CLASSES: Record<ButtonSize, string> = {
-  xs: 'text-xs sm:text-md px-0 py-0',
-  sm: 'text-sm px-2.5 py-1',
-  md: 'text-md px-[.875rem] py-[.3125rem] leading-6',
-  lg: 'text-lg px-4 py-2',
+  xs: 'type-label px-0 py-0',
+  sm: 'type-label px-2.5 py-1',
+  md: 'type-label px-[.875rem] py-[.3125rem]',
+  lg: 'type-label px-4 py-2',
 };
 
 const TEXT_SIZE_CLASSES: Record<ButtonSize, string> = {
-  xs: 'text-xs sm:text-md font-normal tracking-[.02em]',
-  sm: 'text-sm font-normal',
-  md: 'text-md font-normal',
-  lg: 'text-lg font-normal',
+  xs: 'type-ui tracking-[.02em]',
+  sm: 'type-ui',
+  md: 'type-ui',
+  lg: 'type-ui',
 };
 
 // variant → 시각 클래스(기존 variant/tone 조합과 바이트 동일).
@@ -81,7 +81,7 @@ function getButtonClass({
   size: ButtonSize;
 }) {
   const base =
-    'inline-flex items-center justify-center gap-2 font-medium transition duration-200';
+    'inline-flex items-center justify-center gap-2 transition duration-200';
   const sizeClass = TEXT_VARIANTS.has(variant)
     ? TEXT_SIZE_CLASSES[size]
     : SIZE_CLASSES[size];

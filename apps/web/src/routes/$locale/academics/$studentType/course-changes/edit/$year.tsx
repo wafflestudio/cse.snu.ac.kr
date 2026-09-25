@@ -56,7 +56,7 @@ function CourseChangesEditPage() {
   };
 
   return (
-    <PageLayout title={title} titleSize="xl">
+    <PageLayout title={title}>
       <TimelineEditor
         cancelPath={`/academics/${studentType}/course-changes`}
         onSubmit={onSubmit}

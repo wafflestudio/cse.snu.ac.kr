@@ -14,12 +14,12 @@ function SearchPage() {
   const { t, locale } = useLanguage();
 
   return (
-    <PageLayout title={t('통합 검색')} titleSize="xl" titleMargin="mb-11">
+    <PageLayout title={t('통합 검색')} titleMargin="mb-11">
       <SearchBox tags={[...SEARCH_TAGS]} formOnly />
 
       {tooShort && (
         <div className="flex flex-col items-center">
-          <p className="text-base font-medium text-neutral-300">
+          <p className="type-body text-neutral-300">
             {t('검색어를 두글자 이상 입력해주세요')}
           </p>
           <MagnificentGlass />
@@ -30,7 +30,7 @@ function SearchPage() {
 
       {!tooShort && keyword && result && result.total > 0 && (
         <>
-          <p className="mb-11 ml-3 text-md text-neutral-500 sm:mb-14">
+          <p className="mb-11 ml-3 type-meta text-neutral-500 sm:mb-14">
             {locale === 'en'
               ? `${result.total} results`
               : `${result.total}개의 검색결과`}

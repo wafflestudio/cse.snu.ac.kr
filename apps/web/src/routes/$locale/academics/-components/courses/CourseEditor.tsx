@@ -71,7 +71,7 @@ export default function CourseEditor({
         />
         <button
           type="button"
-          className="h-8 w-[120px] cursor-default rounded-sm border border-neutral-300 pl-2 text-left text-sm leading-[31px] text-neutral-500"
+          className="h-8 w-[120px] cursor-default rounded-sm border border-neutral-300 pl-2 text-left type-ui text-neutral-500"
           onClick={() => toast.error(t('교과목 코드는 수정할 수 없습니다'))}
         >
           {defaultValues.code}
@@ -113,7 +113,7 @@ export default function CourseEditor({
       />
       <div>
         <div className="mb-4 flex items-center gap-2.5">
-          <span className="text-md text-neutral-500">{t('영문')}</span>
+          <span className="type-label text-neutral-500">{t('영문')}</span>
           <Form.Text
             name="en.name"
             maxWidth="w-[308px]"

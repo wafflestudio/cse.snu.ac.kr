@@ -46,7 +46,7 @@ export default function AdminTable({
   return (
     <div className="mx-2.5 mb-8">
       {/* Header */}
-      <div className="flex items-center border-b border-neutral-300 bg-neutral-50 py-3 text-md font-medium tracking-wide text-neutral-700">
+      <div className="flex items-center border-b border-neutral-300 bg-neutral-50 py-3 type-label tracking-wide text-neutral-700">
         <div
           className={clsx(
             COLUMN_WIDTHS.checkbox,
@@ -112,7 +112,7 @@ export default function AdminTable({
             <li
               key={key}
               className={clsx(
-                'flex items-center py-3 text-md tracking-wide',
+                'flex items-center py-3 type-ui tracking-wide',
                 isSelected && 'bg-neutral-100',
               )}
             >
@@ -161,7 +161,7 @@ export default function AdminTable({
                       ? `/community/news/${post.id}`
                       : `${CATEGORY_PATHS[(post as ImportantPreview).category]}/${post.id}`,
                   )}
-                  className="block overflow-hidden text-ellipsis whitespace-nowrap font-medium hover:underline"
+                  className="block overflow-hidden text-ellipsis whitespace-nowrap hover:underline"
                 >
                   {post.title}
                 </Link>
@@ -186,7 +186,7 @@ export default function AdminTable({
               >
                 <Link
                   to={editPath}
-                  className="font-medium text-main-orange hover:underline"
+                  className="type-label text-main-orange hover:underline"
                 >
                   편집
                 </Link>

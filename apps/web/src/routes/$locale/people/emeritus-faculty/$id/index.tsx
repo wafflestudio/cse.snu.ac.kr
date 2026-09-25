@@ -62,7 +62,6 @@ function EmeritusFacultyDetailPage() {
     <PageLayout
       title={faculty.name}
       subtitle={faculty.academicRank}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={pageTitle}
       pageDescription={pageDescription}
@@ -89,9 +88,7 @@ function EmeritusFacultyDetailPage() {
             header={t('연구 분야')}
             items={faculty.researchAreas}
           />
-          <div className="mb-7 text-sm font-medium text-neutral-700">
-            {careerTimeStr}
-          </div>
+          <div className="mb-7 type-meta text-neutral-700">{careerTimeStr}</div>
         </div>
       </div>
     </PageLayout>

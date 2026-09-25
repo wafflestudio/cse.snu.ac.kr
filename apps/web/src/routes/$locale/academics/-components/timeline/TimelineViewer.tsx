@@ -65,10 +65,10 @@ export default function TimelineViewer<T extends ProcessedTimelineContent>({
       <LoginVisible allow="ROLE_STAFF">
         <Link
           to={createPath}
-          className="mb-7 ml-0.5 flex h-[30px] w-fit items-center rounded-2xl border border-main-orange pl-0.5 pr-2 pt-px text-md text-main-orange duration-200 hover:bg-main-orange hover:text-white"
+          className="mb-7 ml-0.5 flex h-[30px] w-fit items-center rounded-2xl border border-main-orange pl-0.5 pr-2 pt-px type-label text-main-orange duration-200 hover:bg-main-orange hover:text-white"
         >
           <Plus className="h-[22px] w-[22px]" strokeWidth={1.5} />
-          <span className="font-semibold">{t('연도 추가')}</span>
+          <span>{t('연도 추가')}</span>
         </Link>
       </LoginVisible>
       <Timeline
@@ -166,7 +166,7 @@ function ContentViewer({
 }) {
   return (
     <div className="mb-5">
-      <div className="mb-4 font-semibold">{title}</div>
+      <div className="mb-4 type-item">{title}</div>
       <Attachments files={attachments} />
       <div className="rounded-sm bg-neutral-50 p-5">
         <HTMLViewer html={description} />
@@ -205,7 +205,7 @@ function TogglableContentViewer({
         ) : (
           <ChevronDown className="h-6 w-6" strokeWidth={1.5} />
         )}
-        <span className="font-semibold">{title}</span>
+        <span className="type-item">{title}</span>
       </button>
       {isExpanded && (
         <>

@@ -66,7 +66,7 @@ function EmeritusFacultyEdit() {
   };
 
   return (
-    <PageLayout title="역대 교수진 편집" titleSize="xl" padding="default">
+    <PageLayout title="역대 교수진 편집" padding="default">
       <FacultyEditor
         defaultValues={faculty}
         labs={labs}

@@ -110,9 +110,9 @@ export default function ImageModalManagement({
           <input
             type="datetime-local"
             {...methods.register('displayUntil')}
-            className="h-8 w-fit rounded-xs border border-neutral-300 bg-white px-2 text-sm outline-none"
+            className="h-8 w-fit rounded-xs border border-neutral-300 bg-white px-2 type-ui outline-none"
           />
-          <span className="mt-1 text-xs text-neutral-500">
+          <span className="mt-1 type-caption text-neutral-500">
             비워두면 종료일 없이 계속 표시됩니다.
           </span>
         </Fieldset>

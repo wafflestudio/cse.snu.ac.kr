@@ -44,17 +44,17 @@ export default function ReserveTermBanner({
     : null;
 
   return (
-    <div className="mb-4 flex flex-col gap-1 text-sm text-neutral-500">
+    <div className="mb-4 flex flex-col gap-1 type-meta text-neutral-500">
       <div className="flex items-center gap-1">
         <AlertCircle className="h-4 w-4 shrink-0" />
-        <p className="font-normal">
+        <p>
           {t(
             '세미나실 예약은 정기예약과 상시예약으로 운영됩니다. 정기예약 기간에는 랩대표만 예약할 수 있으며, 그 외 기간에는 누구나 예약 가능합니다. 다음 예약 기간은 등록 후 이곳에 공지됩니다.',
           )}
         </p>
       </div>
       {activeTerm && (
-        <p className="ml-5 font-normal text-main-orange">
+        <p className="ml-5 text-main-orange">
           {t('현재 정기예약 신청 기간입니다.')} ({t('신청 마감')}:{' '}
           {dayjs(activeTerm.applyEndTime).format('M/D HH:mm')}, {t('예약 대상')}
           : {dayjs(activeTerm.termStartTime).format('M/D')}~
@@ -62,7 +62,7 @@ export default function ReserveTermBanner({
         </p>
       )}
       {upcomingTerm && (
-        <p className="ml-5 font-normal">
+        <p className="ml-5">
           {t('다음 정기예약 신청')}:{' '}
           {dayjs(upcomingTerm.applyStartTime).format('M/D HH:mm')} {t('시작')} (
           {t('예약 대상')}: {dayjs(upcomingTerm.termStartTime).format('M/D')}~

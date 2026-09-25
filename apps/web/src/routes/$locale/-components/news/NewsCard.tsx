@@ -25,13 +25,13 @@ export default function NewsCard({ news }: { news: MainNews }) {
       </div>
 
       <div className="px-[0.87rem] pt-[0.88rem]">
-        <h3 className="line-clamp-2 text-[0.9375rem] font-semibold text-neutral-950">
+        <h3 className="line-clamp-2 type-item text-neutral-950">
           {news.title}
         </h3>
-        <time className="mt-3 block text-sm font-normal text-neutral-500">
+        <time className="mt-3 block type-meta text-neutral-500">
           {dayjs(news.createdAt).format('YYYY/M/DD')}
         </time>
-        <p className="mt-3 line-clamp-4 text-sm font-normal leading-[150%] text-neutral-500">
+        <p className="mt-3 line-clamp-4 type-meta text-neutral-500">
           {news.description}
         </p>
       </div>

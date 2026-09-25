@@ -61,7 +61,7 @@ function ImageCell({ imageURL }: { imageURL: string | null }) {
 
 function TitleCell({ title }: { title: string }) {
   return (
-    <h3 className="mb-1 grow font-bold group-hover:underline sm:mb-5">
+    <h3 className="mb-1 grow type-item group-hover:underline sm:mb-5">
       {title}
     </h3>
   );
@@ -117,15 +117,11 @@ function IconWrapper({ IconComponent }: { IconComponent: ElementType }) {
 }
 
 function Text({ text }: { text: string }) {
-  return (
-    <span className="pt-0 text-md font-normal text-neutral-500">{text}</span>
-  );
+  return <span className="pt-0 type-meta text-neutral-500">{text}</span>;
 }
 
 function VerticalDivider() {
   return (
-    <span className="w-4 text-center text-md font-normal text-neutral-500 sm:w-5">
-      |
-    </span>
+    <span className="w-4 text-center type-meta text-neutral-500 sm:w-5">|</span>
   );
 }

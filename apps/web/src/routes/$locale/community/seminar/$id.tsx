@@ -62,18 +62,15 @@ function SeminarDetailPage() {
   return (
     <PageLayout
       title={t('세미나')}
-      titleSize="xl"
       pageTitle={pageTitle}
       pageDescription={pageDescription}
       subNav={subNav}
       padding="none"
     >
-      <h2 className="page-gutter-x py-9 text-[1.25rem] font-semibold leading-[1.4]">
-        {seminar.title}
-      </h2>
+      <h2 className="page-gutter-x py-9 type-section">{seminar.title}</h2>
       <div className="bg-neutral-50 page-gutter-x pb-36 pt-9">
         <Attachments files={seminar.attachments ?? []} />
-        <div className="mb-9 flex flex-col-reverse justify-between gap-5 text-md sm:flex-row">
+        <div className="mb-9 flex flex-col-reverse justify-between gap-5 type-ui sm:flex-row">
           <div className="flex flex-col gap-3">
             <div>
               {t('이름')}:{' '}
@@ -114,14 +111,14 @@ function SeminarDetailPage() {
 
         {seminar.description && (
           <>
-            <div className="mt-10 font-bold">{t('요약')}</div>
+            <div className="mt-10 type-item">{t('요약')}</div>
             <HTMLViewer html={seminar.description} />
           </>
         )}
 
         {seminar.introduction && (
           <>
-            <div className="mt-10 font-bold">{t('연사 소개')}</div>
+            <div className="mt-10 type-item">{t('연사 소개')}</div>
             <HTMLViewer html={seminar.introduction} />
           </>
         )}

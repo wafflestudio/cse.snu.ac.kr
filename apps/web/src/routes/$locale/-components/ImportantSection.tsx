@@ -28,10 +28,10 @@ const ImportantBanner = ({ important }: { important: MainImportant }) => {
       to={localizedPath(`/community/${important.category}/${important.id}`)}
       className="relative flex h-[7.5rem] flex-col gap-[0.62rem] bg-main-orange-dark px-[1.75rem] pt-[1.63rem]"
     >
-      <h3 className="line-clamp-1 text-lg font-semibold text-neutral-950">
+      <h3 className="line-clamp-1 type-item text-neutral-950">
         {important.title}
       </h3>
-      <p className="mr-[24px] line-clamp-1 text-sm font-normal text-neutral-950">
+      <p className="mr-[24px] line-clamp-1 type-meta text-neutral-950">
         {important.description}
       </p>
       <ImportantSectionArrow />
@@ -50,10 +50,10 @@ const CharityBanner = () => (
       sizes="(min-width: 1024px) 50vw, 100vw"
       className="absolute inset-0 h-full w-full object-cover"
     />
-    <h3 className="relative z-10 line-clamp-1 text-lg font-semibold text-neutral-950">
+    <h3 className="relative z-10 line-clamp-1 type-item text-neutral-950">
       SNU Computing Commons 건축기금 모금
     </h3>
-    <p className="relative z-10 line-clamp-1 text-sm font-normal text-neutral-950">
+    <p className="relative z-10 line-clamp-1 type-meta text-neutral-950">
       서울대학교 발전재단 X 컴퓨터공학부
     </p>
     <ImportantSectionArrow />

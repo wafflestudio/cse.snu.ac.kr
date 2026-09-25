@@ -48,7 +48,7 @@ export default function Section({
     >
       <div
         className={clsx(
-          'text-md font-semibold tracking-wide',
+          'type-item tracking-wide',
           TITLE_SPACING_MAP[titleSpacing],
         )}
       >

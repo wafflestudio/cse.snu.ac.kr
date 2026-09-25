@@ -84,7 +84,7 @@ function FacilitiesEdit() {
   };
 
   return (
-    <PageLayout title="시설 안내 편집" titleSize="xl" padding="default">
+    <PageLayout title="시설 안내 편집" padding="default">
       <FormProvider {...methods}>
         <Form>
           {/* Facility 선택 */}
@@ -92,7 +92,7 @@ function FacilitiesEdit() {
             <div className="mb-8">
               <label
                 htmlFor="facility-select"
-                className="mb-2 block text-sm font-medium"
+                className="mb-2 block type-label"
               >
                 편집할 시설 선택
               </label>
@@ -180,7 +180,7 @@ function FacilitiesEdit() {
           </Fieldset>
 
           <Fieldset title="시설 사진" spacing="12">
-            <p className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500">
+            <p className="mb-3 whitespace-pre-wrap type-meta tracking-wide text-neutral-500">
               시설 대표 이미지입니다.
             </p>
             <Form.Image name="imageURL" />

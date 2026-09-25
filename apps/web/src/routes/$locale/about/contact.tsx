@@ -39,7 +39,6 @@ function ContactPage() {
   return (
     <PageLayout
       title={t('연락처')}
-      titleSize="xl"
       subNav={subNav}
       padding="none"
       pageTitle={meta.title}

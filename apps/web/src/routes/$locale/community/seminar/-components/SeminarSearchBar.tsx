@@ -33,14 +33,14 @@ export default function SeminarSearchBar() {
 
   return (
     <form className="flex w-fit items-center gap-5" onSubmit={handleSubmit}>
-      <label htmlFor="seminar-search" className="font-bold">
+      <label htmlFor="seminar-search" className="type-label">
         {t('검색')}
       </label>
       <div className="flex h-7.5 w-60 items-center rounded-sm bg-neutral-100 pr-3">
         <input
           type="text"
           id="seminar-search"
-          className="autofill-bg-neutral-100 w-full rounded-sm bg-transparent px-2 text-sm tracking-wide outline-none"
+          className="autofill-bg-neutral-100 w-full rounded-sm bg-transparent px-2 type-ui tracking-wide outline-none"
           value={text}
           onChange={handleChange}
         />

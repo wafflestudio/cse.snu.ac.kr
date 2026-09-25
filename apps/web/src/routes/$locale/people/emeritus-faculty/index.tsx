@@ -39,7 +39,6 @@ function EmeritusFacultyPage() {
   return (
     <PageLayout
       title={t('역대 교수진')}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}

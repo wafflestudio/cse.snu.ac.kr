@@ -54,7 +54,6 @@ function ResearchLabDetailPage() {
   return (
     <PageLayout
       title={lab.name}
-      titleSize="lg"
       subNav={subNav}
       pageTitle={pageTitle}
       pageDescription={pageDescription}
@@ -113,7 +112,7 @@ function LabSummary({
       margin="sm:mt-[-64px] sm:mb-11 sm:ml-11"
     >
       <ul className="flex h-40 w-60 flex-col gap-1 px-6 py-5">
-        <li className="flex gap-1 text-sm">
+        <li className="flex gap-1 type-meta">
           <span className="whitespace-nowrap">
             {labels.professor}:{' '}
             {lab.professors.map((info, index) => (
@@ -129,11 +128,11 @@ function LabSummary({
             ))}
           </span>
         </li>
-        <li className="flex gap-1 text-sm">
+        <li className="flex gap-1 type-meta">
           <span className="whitespace-nowrap">{labels.lab}: </span>
           <span>{lab.location ?? '-'}</span>
         </li>
-        <li className="flex grow gap-1 text-sm">
+        <li className="flex grow gap-1 type-meta">
           <span className="whitespace-nowrap">
             {labels.tel}: {lab.tel ?? '-'}
           </span>
@@ -142,7 +141,7 @@ function LabSummary({
           <li>
             <a
               href={lab.websiteURL}
-              className="mt-auto w-fit text-sm underline hover:text-main-orange"
+              className="mt-auto w-fit type-meta underline hover:text-main-orange"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -180,7 +179,7 @@ function StreamLink({
     <div className="relative w-fit">
       <Link
         to={affiliatedGroupPath}
-        className={`absolute ${width} peer flex h-10 items-center justify-center pr-1 text-center text-sm duration-300 hover:text-white`}
+        className={`absolute ${width} peer flex h-10 items-center justify-center pr-1 text-center type-meta duration-300 hover:text-white`}
       >
         <span className="tracking-[-0.019em]">
           {groupName} {label}

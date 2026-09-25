@@ -45,7 +45,7 @@ export default function Checkbox({
         );
       })()}
       <span
-        className={`text-md tracking-wide text-neutral-600 ${
+        className={`type-ui tracking-wide text-neutral-600 ${
           !disabled && 'group-active:text-main-orange'
         }`}
       >

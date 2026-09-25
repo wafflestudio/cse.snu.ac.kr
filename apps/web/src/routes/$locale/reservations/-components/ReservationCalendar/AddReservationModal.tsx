@@ -48,15 +48,15 @@ export default function AddReservationModal({
       open={open}
       onOpenChange={onOpenChange}
       title="시설 예약"
-      contentClassName="border-b border-t-[3px] border-main-orange bg-neutral-100 px-7 pb-6 pt-7 text-md text-neutral-700"
+      contentClassName="border-b border-t-[3px] border-main-orange bg-neutral-100 px-7 pb-6 pt-7 type-ui text-neutral-700"
     >
       <FormProvider {...methods}>
         <form onSubmit={onSubmit}>
-          <h2 className="mb-7 text-xl font-bold">{t('시설 예약')}</h2>
+          <h2 className="mb-7 type-section">{t('시설 예약')}</h2>
 
           <div className="mb-6 flex flex-col items-start gap-3">
             <fieldset className="flex items-center gap-2">
-              <label htmlFor="date" className="font-normal">
+              <label htmlFor="date" className="type-label">
                 예약 날짜:
               </label>
               <Form.Date
@@ -64,14 +64,14 @@ export default function AddReservationModal({
                 hideTime
                 disablePast
                 onSelect={updateDate}
-                buttonClassName="h-7 border-neutral-200 text-sm font-normal"
+                buttonClassName="h-7 border-neutral-200"
                 calendarClassName="absolute top-2 z-10"
               />
             </fieldset>
 
             <div className="flex flex-wrap gap-3">
               <fieldset className="flex items-center gap-2">
-                <label htmlFor="startTime" className="font-normal">
+                <label htmlFor="startTime" className="type-label">
                   시작 시간:
                 </label>
                 <Form.Dropdown
@@ -83,7 +83,7 @@ export default function AddReservationModal({
                 />
               </fieldset>
               <fieldset className="flex items-center gap-2">
-                <label htmlFor="endTime" className="font-normal">
+                <label htmlFor="endTime" className="type-label">
                   종료 시간:
                 </label>
                 <Form.Dropdown
@@ -97,7 +97,7 @@ export default function AddReservationModal({
             </div>
 
             <fieldset className="flex items-center gap-2">
-              <label htmlFor="recurringWeeks" className="font-normal">
+              <label htmlFor="recurringWeeks" className="type-label">
                 매주 반복:
               </label>
               <Form.Dropdown
@@ -160,13 +160,13 @@ export default function AddReservationModal({
 
             <div className="items-center flex gap-1 text-neutral-500">
               <AlertCircle className="h-4 w-4" />
-              <p className="font-normal">
+              <p className="type-meta">
                 예약 시간 20분 후까지 사용하지 않을 시 예약이 취소됩니다.
               </p>
             </div>
           </div>
 
-          <fieldset className="mb-6 flex flex-col font-normal">
+          <fieldset className="mb-6 flex flex-col">
             <div className="flex flex-wrap items-center gap-4">
               <div className="flex items-center">
                 <Form.Checkbox
@@ -225,8 +225,8 @@ function Fieldset({
   children: ReactNode;
 }) {
   return (
-    <fieldset className={`${fullWidth ? '' : 'w-88'} font-normal`}>
-      <legend className="mb-1">
+    <fieldset className={`${fullWidth ? '' : 'w-88'}`}>
+      <legend className="mb-1 type-label">
         {title}
         {required && <span className="text-main-orange">*</span>}
       </legend>

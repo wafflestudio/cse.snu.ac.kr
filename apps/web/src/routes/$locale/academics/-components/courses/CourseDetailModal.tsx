@@ -89,7 +89,7 @@ function CourseViewer({
         credit={`${course.credit}${t('학점')}`}
         grade={t(GRADE[course.grade])}
       />
-      <p className="text-md leading-loose">{course[language].description}</p>
+      <p className="type-body">{course[language].description}</p>
 
       <LoginVisible allow="ROLE_STAFF">
         <div className="flex justify-end gap-3">
@@ -131,8 +131,8 @@ function CourseHeader({
   return (
     <h4 className="flex flex-wrap items-center gap-2">
       <BookmarkIcon className="h-[24px] w-[24px]" />
-      <span className="font-bold">{name}</span>
-      <div className="flex items-center divide-x divide-neutral-200 pt-1 text-sm text-neutral-600 [&_span]:px-2">
+      <span className="type-section">{name}</span>
+      <div className="flex items-center divide-x divide-neutral-200 pt-1 type-meta text-neutral-600 [&_span]:px-2">
         <span>{code}</span>
         <span>{classification}</span>
         <span>{credit}</span>

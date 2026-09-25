@@ -76,17 +76,13 @@ function CareerCompanyViewer({
     <>
       <li className="grid grid-cols-[22px_auto_1fr] items-center gap-x-1 px-7 py-6 odd:bg-neutral-100 sm:flex sm:h-10 sm:gap-3 sm:p-0 sm:px-3">
         <p
-          className={`text-sm text-neutral-500 sm:pl-2 ${TABLE_COLUMN_SIZE[0]}`}
+          className={`type-ui text-neutral-500 sm:pl-2 ${TABLE_COLUMN_SIZE[0]}`}
         >
           {index}
         </p>
-        <p
-          className={`text-md font-medium sm:pl-2 sm:text-sm sm:font-normal ${TABLE_COLUMN_SIZE[1]}`}
-        >
-          {name}
-        </p>
+        <p className={`type-ui sm:pl-2 ${TABLE_COLUMN_SIZE[1]}`}>{name}</p>
         <a
-          className={`order-last col-span-2 col-start-2 w-fit text-xs text-link underline underline-offset-2 sm:order-0 sm:mt-0 sm:pl-2
+          className={`order-last col-span-2 col-start-2 w-fit type-caption text-link underline underline-offset-2 sm:order-0 sm:mt-0 sm:pl-2
             ${url && 'mt-1'} ${TABLE_COLUMN_SIZE[2]}`}
           href={url ?? undefined}
           target="_blank"
@@ -94,7 +90,7 @@ function CareerCompanyViewer({
         >
           {url}
         </a>
-        <p className={`pl-2 text-sm text-neutral-500 ${TABLE_COLUMN_SIZE[3]}`}>
+        <p className={`pl-2 type-ui text-neutral-500 ${TABLE_COLUMN_SIZE[3]}`}>
           {year}
         </p>
         <LoginVisible allow="ROLE_STAFF">
@@ -154,23 +150,17 @@ export function CareerCompanyEditor({
     <FormProvider {...formMethods}>
       <li className="grid grid-cols-[22px_auto_1fr] items-center gap-x-1 px-7 py-6 odd:bg-neutral-100 sm:flex sm:h-10 sm:gap-3 sm:p-0 sm:px-3">
         <p
-          className={`text-sm text-neutral-500 sm:pl-2 ${TABLE_COLUMN_SIZE[0]}`}
+          className={`type-ui text-neutral-500 sm:pl-2 ${TABLE_COLUMN_SIZE[0]}`}
         >
           {index}
         </p>
-        <div
-          className={`text-md font-medium sm:text-sm sm:font-normal ${TABLE_COLUMN_SIZE[1]}`}
-        >
+        <div className={`type-ui ${TABLE_COLUMN_SIZE[1]}`}>
           <Form.Text name="name" maxWidth="w-full" />
         </div>
-        <div
-          className={`text-md font-medium sm:text-sm sm:font-normal ${TABLE_COLUMN_SIZE[2]}`}
-        >
+        <div className={`type-ui ${TABLE_COLUMN_SIZE[2]}`}>
           <Form.Text name="url" maxWidth="w-full" />
         </div>
-        <div
-          className={`text-md font-medium sm:text-sm sm:font-normal ${TABLE_COLUMN_SIZE[3]}`}
-        >
+        <div className={`type-ui ${TABLE_COLUMN_SIZE[3]}`}>
           <Form.Text
             name="year"
             maxWidth="w-full"

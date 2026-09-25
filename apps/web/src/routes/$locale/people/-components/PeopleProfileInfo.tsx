@@ -29,7 +29,7 @@ export default function PeopleProfileInfo({
     <div className="relative mb-8 sm:float-right">
       <ProfileImage imageURL={imageURL} />
 
-      <div className="mt-5 flex flex-col gap-[9px] bg-white text-sm font-medium text-neutral-600">
+      <div className="mt-5 flex flex-col gap-[9px] bg-white type-meta text-neutral-600">
         {items.map((item, idx) => (
           <ProfileInfoRow key={`${item.icon}-${idx}`} {...item} />
         ))}

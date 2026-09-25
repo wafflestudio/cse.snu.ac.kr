@@ -157,7 +157,7 @@ function PaginationNumber({
       onClick={onClick}
       aria-current={isSelected ? 'page' : undefined}
     >
-      <span className={clsx('text-md', isSelected && 'font-bold underline')}>
+      <span className={clsx('type-ui', isSelected && 'font-bold underline')}>
         {num}
       </span>
     </button>

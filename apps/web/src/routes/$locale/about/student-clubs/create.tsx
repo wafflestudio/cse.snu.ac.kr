@@ -55,7 +55,7 @@ function StudentClubsCreate() {
   });
 
   return (
-    <PageLayout title="동아리 추가" titleSize="xl" padding="default">
+    <PageLayout title="동아리 추가" padding="default">
       <FormProvider {...methods}>
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />
@@ -103,7 +103,7 @@ function StudentClubsCreate() {
           <Fieldset.Image>
             <label
               htmlFor="image"
-              className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500"
+              className="mb-3 whitespace-pre-wrap type-meta tracking-wide text-neutral-500"
             >
               글 우측 상단에 들어가는 이미지입니다.
             </label>

@@ -30,7 +30,7 @@ export default function CareerStat({ stat }: { stat: YearStat[] }) {
     <div className="mt-7 flex flex-col gap-3">
       <div className="flex justify-between sm:w-[432px]">
         <div className="flex items-center gap-2">
-          <h3 className="text-base font-bold">{t('졸업생 진로 현황')}</h3>
+          <h3 className="type-item">{t('졸업생 진로 현황')}</h3>
           <Dropdown
             contents={stat.map((x) => x.year.toString())}
             selectedIndex={idx}
@@ -60,7 +60,7 @@ export default function CareerStat({ stat }: { stat: YearStat[] }) {
         </LoginVisible>
       </div>
 
-      <div className="border-y border-neutral-300 text-xs font-normal sm:w-[432px]">
+      <div className="border-y border-neutral-300 type-ui sm:w-[432px]">
         <TableHeader />
         {CAREER_STAT_ROWS.map((company, index) => (
           <TableRow
@@ -84,7 +84,7 @@ function TableHeader() {
       <div className="w-25" />
       {CAREER_STAT_COLS.map((colName) => (
         <div key={colName} className="flex flex-1 items-center justify-center">
-          <p className="text-sm">{colName}</p>
+          <p className="type-label">{colName}</p>
         </div>
       ))}
     </div>
@@ -94,13 +94,13 @@ function TableHeader() {
 function TableRow({ rowName, values }: { rowName: string; values: number[] }) {
   return (
     <div className="flex h-8 flex-1 flex-row border-b border-neutral-200 last:border-0">
-      <div className="flex w-25 items-center justify-center bg-neutral-100 text-sm">
+      <div className="flex w-25 items-center justify-center bg-neutral-100 type-ui">
         {rowName}
       </div>
       {values.map((value, index) => (
         <div
           key={index}
-          className="flex flex-1 items-center justify-center text-md"
+          className="flex flex-1 items-center justify-center type-ui"
         >
           {value}
         </div>

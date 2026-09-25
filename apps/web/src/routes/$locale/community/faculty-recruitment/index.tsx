@@ -32,7 +32,6 @@ function FacultyRecruitmentPage() {
   return (
     <PageLayout
       title={t('신임교수초빙')}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}
@@ -49,7 +48,7 @@ function FacultyRecruitmentPage() {
           </Button>
         </div>
       </LoginVisible>
-      <h1 className="my-5 text-3xl font-bold">{data.title}</h1>
+      <h1 className="my-5 type-section">{data.title}</h1>
       <HTMLViewer
         html={data.description}
         image={

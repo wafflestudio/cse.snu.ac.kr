@@ -52,7 +52,7 @@ export default function CategoryPage({
         {description && (
           <Description
             className="mb-6 mt-8 hidden sm:block"
-            contentClassName="max-w-160 !text-neutral-100"
+            contentClassName="max-w-160 !text-neutral-100 type-body"
           >
             {description}
           </Description>
@@ -61,7 +61,7 @@ export default function CategoryPage({
       <CategoryGrid currentPage={currentPage} theme="dark" />
       {description && (
         <div className="px-5 pb-14 pt-7 sm:hidden">
-          <Description contentClassName="!text-neutral-400 text-[13px] font-normal">
+          <Description contentClassName="!text-neutral-400 type-meta">
             {description}
           </Description>
         </div>
@@ -84,10 +84,7 @@ function Description({
   return (
     <div className={clsx('flow-root', className)}>
       <div
-        className={clsx(
-          'whitespace-pre-wrap text-sm leading-7',
-          contentClassName,
-        )}
+        className={clsx('whitespace-pre-wrap', contentClassName ?? 'type-body')}
       >
         {children}
       </div>

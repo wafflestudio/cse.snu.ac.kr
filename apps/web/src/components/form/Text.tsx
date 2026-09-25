@@ -29,7 +29,7 @@ export default function Text({
         maxWidth,
         'autofill-bg-white h-8 rounded-xs border border-neutral-300',
         bgColor,
-        'pl-2 text-sm outline-none placeholder:text-neutral-300 disabled:text-neutral-300',
+        'pl-2 type-ui outline-none placeholder:text-neutral-300 disabled:text-neutral-300',
         textCenter && 'pr-2 text-center',
         className,
       )}

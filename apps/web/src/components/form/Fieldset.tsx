@@ -54,7 +54,7 @@ function Fieldset({
     >
       <legend
         className={clsx(
-          'text-md font-medium tracking-wide',
+          'type-label tracking-wide',
           TITLE_SPACING_MAP[titleSpacing],
         )}
       >

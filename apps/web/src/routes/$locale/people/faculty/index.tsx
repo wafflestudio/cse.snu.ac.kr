@@ -24,7 +24,7 @@ const SORT_OPTIONS = [
 
 const sortPillClass = (selected: boolean) =>
   clsx(
-    'inline-flex cursor-pointer select-none items-center justify-center gap-2 rounded-[.0625rem] px-[.875rem] py-[.3125rem] text-md font-medium leading-6 transition duration-200',
+    'inline-flex cursor-pointer select-none items-center justify-center gap-2 rounded-[.0625rem] px-[.875rem] py-[.3125rem] type-label transition duration-200',
     'has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-neutral-700',
     selected
       ? 'bg-neutral-700 text-white hover:bg-neutral-500'
@@ -99,7 +99,6 @@ function FacultyPage() {
   return (
     <PageLayout
       title={t('교수진')}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}
@@ -135,7 +134,7 @@ function FacultyPage() {
       <PeopleGrid items={normal} />
       {visiting.length > 0 && (
         <>
-          <h3 className="mb-4 mt-12 text-[20px] font-bold">{t('객원교수')}</h3>
+          <h3 className="mb-4 mt-12 type-section">{t('객원교수')}</h3>
           <PeopleGrid items={visiting} />
         </>
       )}

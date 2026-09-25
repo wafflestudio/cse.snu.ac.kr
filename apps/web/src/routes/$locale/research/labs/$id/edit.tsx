@@ -79,7 +79,7 @@ function ResearchLabEdit() {
   };
 
   return (
-    <PageLayout title="연구실 편집" titleSize="xl" padding="default">
+    <PageLayout title="연구실 편집" padding="default">
       <ResearchLabEditor
         groups={groups}
         professors={professors}

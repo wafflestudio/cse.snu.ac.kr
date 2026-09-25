@@ -7,9 +7,7 @@ export default function LinkSection() {
   return (
     <div className="mx-6 mb-28 mt-[60px] flex flex-col gap-16 sm:mx-[7.81rem] sm:mb-48 sm:mt-[90px] sm:flex-row sm:gap-32">
       <div className="flex flex-1 flex-col gap-[1.37rem] sm:gap-9">
-        <h3 className="text-md font-medium text-neutral-400 sm:text-[1.3125rem]">
-          {t('바로가기')}
-        </h3>
+        <h3 className="type-headline text-neutral-400">{t('바로가기')}</h3>
         <div className="flex flex-col gap-5">
           <LinkRow
             to={localizedPath('/research/top-conference-list')}
@@ -29,9 +27,7 @@ export default function LinkSection() {
       </div>
 
       <div className="flex flex-1 flex-col gap-[1.37rem] sm:gap-9">
-        <h3 className="text-md font-medium text-neutral-400 sm:text-[1.3125rem]">
-          {t('학부')}
-        </h3>
+        <h3 className="type-headline text-neutral-400">{t('학부')}</h3>
         <div className="flex flex-col gap-5">
           <LinkRow
             to={localizedPath(

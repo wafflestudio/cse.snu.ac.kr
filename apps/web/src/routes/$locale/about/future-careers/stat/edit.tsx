@@ -81,7 +81,6 @@ function CareerStatEditPage() {
   return (
     <PageLayout
       title={`${loaderData.year}년 졸업생 진로 현황 편집`}
-      titleSize="xl"
       subNav={subNav}
     >
       <FormProvider {...formMethods}>
@@ -90,7 +89,7 @@ function CareerStatEditPage() {
             <Form.Text name="year" maxWidth="w-[55px]" />
           </Fieldset>
 
-          <div className="border-y border-neutral-300 text-xs font-normal sm:w-[432px]">
+          <div className="border-y border-neutral-300 type-ui sm:w-[432px]">
             <TableHeader />
             <TableBody />
           </div>
@@ -107,7 +106,7 @@ function TableHeader() {
       <div className="w-25" />
       {DEGREE_LIST.map((degree) => (
         <div key={degree} className="flex flex-1 items-center justify-center">
-          <p className="text-sm">{DEGREE_MAP[degree]}</p>
+          <p className="type-label">{DEGREE_MAP[degree]}</p>
         </div>
       ))}
     </div>
@@ -123,13 +122,13 @@ function TableBody() {
       key={idx}
       className="flex flex-1 flex-row border-b border-neutral-200 last:border-0"
     >
-      <div className="flex w-25 items-center justify-center bg-neutral-100 text-sm">
+      <div className="flex w-25 items-center justify-center bg-neutral-100 type-ui">
         {COMPANY_MAP[stat.career]}
       </div>
       {DEGREE_LIST.map((degree) => (
         <div
           key={degree}
-          className="flex flex-1 items-center justify-center py-1.5 text-md"
+          className="flex flex-1 items-center justify-center py-1.5 type-ui"
         >
           <Form.Text
             name={`statList.${idx}.${degree}`}

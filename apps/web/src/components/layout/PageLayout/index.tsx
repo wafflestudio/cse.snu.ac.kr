@@ -16,7 +16,6 @@ interface PageLayoutProps {
   title?: string;
   subtitle?: string;
   breadcrumb?: BreadcrumbItem[];
-  titleSize: 'xl' | 'lg';
   titleMargin?: string;
   padding?: 'default' | 'none' | 'noTop' | 'noBottom';
   subNav?: SubNavConfig;
@@ -38,7 +37,6 @@ export default function PageLayout({
   title,
   subtitle,
   breadcrumb,
-  titleSize,
   titleMargin = 'mb-6 sm:mb-11',
   padding = 'default',
   subNav,
@@ -91,7 +89,6 @@ export default function PageLayout({
             title={title}
             subtitle={subtitle}
             breadcrumb={finalBreadcrumb}
-            titleSize={titleSize}
             margin={titleMargin}
           />
         )}

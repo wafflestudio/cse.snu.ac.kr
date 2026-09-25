@@ -37,7 +37,6 @@ function FutureCareersPage() {
   return (
     <PageLayout
       title={t('졸업생 진로')}
-      titleSize="xl"
       subNav={subNav}
       padding="none"
       pageTitle={meta.title}

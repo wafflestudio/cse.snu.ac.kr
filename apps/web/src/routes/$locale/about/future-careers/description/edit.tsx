@@ -52,7 +52,7 @@ function CareerDescriptionEdit() {
   });
 
   return (
-    <PageLayout title="졸업생 진로 본문 편집" titleSize="xl" padding="default">
+    <PageLayout title="졸업생 진로 본문 편집" padding="default">
       <FormProvider {...methods}>
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />

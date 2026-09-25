@@ -43,7 +43,7 @@ function GeneralStudiesCreatePage() {
   };
 
   return (
-    <PageLayout title={title} titleSize="xl" subNav={subNav}>
+    <PageLayout title={title} subNav={subNav}>
       <TimelineEditor
         onSubmit={onSubmit}
         cancelPath="/academics/undergraduate/general-studies-requirements"

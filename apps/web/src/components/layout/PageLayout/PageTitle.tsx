@@ -14,7 +14,6 @@ interface PageTitleProps {
   title?: string;
   subtitle?: string;
   breadcrumb?: BreadcrumbItem[];
-  titleSize: 'xl' | 'lg';
   margin: string;
 }
 
@@ -22,12 +21,8 @@ export default function PageTitle({
   title,
   subtitle,
   breadcrumb,
-  titleSize,
   margin,
 }: PageTitleProps) {
-  const titleStyle =
-    titleSize === 'xl' ? 'text-2xl font-bold' : 'text-lg font-medium';
-
   return (
     <div className="px-5 pt-[54px] sm:px-25">
       <div
@@ -44,17 +39,21 @@ export default function PageTitle({
             {subtitle ? (
               <span className="flex items-end">
                 <span
-                  className={`${titleStyle} break-keep text-[24px] tracking-wide text-white sm:text-[32px]`}
+                  className={
+                    'type-page-title break-keep tracking-wide text-white'
+                  }
                 >
                   {title}
                 </span>
-                <span className="ml-2 text-md font-normal leading-7 text-neutral-500 tracking-wider">
+                <span className="ml-2 type-body text-neutral-500 tracking-wider">
                   {subtitle}
                 </span>
               </span>
             ) : (
               <span
-                className={`${titleStyle} break-keep text-[24px] tracking-wide text-white sm:text-[32px]`}
+                className={
+                  'type-page-title break-keep tracking-wide text-white'
+                }
               >
                 {title}
               </span>
@@ -87,7 +86,7 @@ function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
               />
             </li>
             {i !== items.length - 1 && (
-              <li className="text-xs">
+              <li className="type-caption">
                 <ChevronRight className="h-[12px] w-[12px]" strokeWidth={1.5} />
               </li>
             )}
@@ -108,7 +107,7 @@ function LocationText({ path, name, isCurrent }: LocationTextProps) {
   const { localizedPath } = useLanguage();
   const _navigate = useNavigate();
   const router = useRouter();
-  const textStyle = 'text-xs sm:text-md font-normal tracking-[.02em]';
+  const textStyle = 'type-caption tracking-[.02em]';
 
   if (isCurrent) {
     // 브레드크럼 현재 항목: 형제 Link/span과 색을 맞춰야 해 색을 상속받는다(text-inherit).

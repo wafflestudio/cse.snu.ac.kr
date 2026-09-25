@@ -34,7 +34,6 @@ function GreetingsPage() {
   return (
     <PageLayout
       title={t('학부장 인사말')}
-      titleSize="xl"
       subNav={subNav}
       padding="none"
       pageTitle={meta.title}

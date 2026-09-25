@@ -55,7 +55,7 @@ function FacilitiesCreate() {
   });
 
   return (
-    <PageLayout title="시설 추가" titleSize="xl" padding="default">
+    <PageLayout title="시설 추가" padding="default">
       <FormProvider {...methods}>
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />
@@ -124,7 +124,7 @@ function FacilitiesCreate() {
           <Fieldset title="시설 사진" spacing="12">
             <label
               htmlFor="imageURL"
-              className="mb-3 whitespace-pre-wrap text-sm font-normal tracking-wide text-neutral-500"
+              className="mb-3 whitespace-pre-wrap type-meta tracking-wide text-neutral-500"
             >
               시설 대표 이미지입니다.
             </label>

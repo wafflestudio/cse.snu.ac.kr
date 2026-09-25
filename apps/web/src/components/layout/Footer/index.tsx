@@ -78,12 +78,12 @@ function LinkGroup({
   return (
     <section className={width}>
       <h3
-        className={`${titleColor} mb-[.625rem] text-sm font-medium tracking-[0.025rem] sm:text-[0.9375rem]`}
+        className={`${titleColor} mb-[.625rem] type-label tracking-[0.025rem]`}
       >
         {groupName}
       </h3>
 
-      <ul className={`${itemColor} flex flex-col gap-2.5 text-sm font-normal`}>
+      <ul className={`${itemColor} flex flex-col gap-2.5 type-ui`}>
         {links.map((link, i) => (
           <li key={i}>
             <Link to={link.href} className="whitespace-nowrap">
@@ -101,7 +101,7 @@ function FooterBottomLeft() {
   const [cserealOpen, setCserealOpen] = useState(false);
 
   return (
-    <div className="text-xs text-neutral-500 sm:text-sm">
+    <div className="type-meta text-neutral-500">
       <div className="mb-1 flex gap-[1ch] [&>a]:font-bold ">
         <a
           href="https://www.snu.ac.kr/personal_information"
@@ -124,11 +124,11 @@ function FooterBottomLeft() {
         )}
       </address>
 
-      <p className="leading-4.5">
+      <p>
         Powered by{' '}
         <button
           type="button"
-          className="cursor-pointer font-semibold text-inherit hover:underline"
+          className="cursor-pointer font-bold text-inherit hover:underline"
           onClick={() => setCserealOpen(true)}
         >
           CSEREAL
@@ -144,10 +144,10 @@ function FooterBottomLeft() {
         contentClassName="w-[92vw] max-w-3xl p-0"
       >
         <div className="relative flex flex-col gap-5 overflow-y-auto overflow-x-hidden px-8 pb-12 pt-12 sm:px-12 sm:pb-16 sm:pt-14">
-          <h1 className="text-3xl font-semibold text-neutral-950 sm:text-4xl">
+          <h1 className="type-section text-neutral-950">
             Team <span className="text-main-orange">CSEREAL</span>
             <br />
-            <span className="text-sm leading-6 text-neutral-500 sm:text-base">
+            <span className="type-meta text-neutral-500">
               컴퓨터공학부 디자인 · 개발 팀입니다.
             </span>
           </h1>
@@ -171,12 +171,12 @@ function CserealMembers() {
 function CserealPart({ part, members }: { part: string; members: string[] }) {
   return (
     <div className="rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-5">
-      <h4 className="text-sm font-semibold text-main-orange">{part}</h4>
+      <h4 className="type-item text-main-orange">{part}</h4>
       <div className="mt-4 flex flex-wrap gap-2">
         {members.map((member) => (
           <span
             key={member}
-            className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-medium text-neutral-600"
+            className="rounded-full border border-neutral-200 bg-white px-3 py-1 type-caption text-neutral-600"
           >
             {member}
           </span>

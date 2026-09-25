@@ -39,7 +39,7 @@ function StaffCreate() {
   };
 
   return (
-    <PageLayout title="행정직원 추가" titleSize="xl" padding="default">
+    <PageLayout title="행정직원 추가" padding="default">
       <StaffEditor
         onCancel={() => navigate({ to: localizedPath('/people/staff') })}
         onSubmit={onSubmit}

@@ -53,14 +53,13 @@ function DirectionsPage() {
   return (
     <PageLayout
       title={t('찾아오는 길')}
-      titleSize="xl"
       subNav={subNav}
       padding="noTop"
       pageTitle={meta.title}
       pageDescription={meta.description}
     >
       <div className="mb-12 pt-7 sm:pt-11">
-        <p className="mb-8 text-md leading-[200%]">
+        <p className="mb-8 type-body">
           {t('컴퓨터공학부는 서울대학교 관악 301동(신공학관1)에 있습니다.')}
           <br />
           {t('주소')}:{' '}
@@ -86,9 +85,7 @@ function DirectionsPage() {
       {selectedDirection && (
         <div>
           <div className="mb-7 justify-between sm:flex">
-            <h4 className="text-base font-semibold sm:text-2xl">
-              {selectedDirection[locale]?.name}
-            </h4>
+            <h4 className="type-section">{selectedDirection[locale]?.name}</h4>
             <LoginVisible allow="ROLE_STAFF">
               <Button
                 as="link"

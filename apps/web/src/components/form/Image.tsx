@@ -23,7 +23,7 @@ export default function ImagePicker({ name, options }: Props) {
 
   return (
     <>
-      <label className="mb-3 flex h-7.5 w-fit cursor-pointer items-center self-start rounded-sm border border-neutral-300 px-[.62rem] text-xs hover:bg-neutral-100">
+      <label className="mb-3 flex h-7.5 w-fit cursor-pointer items-center self-start rounded-sm border border-neutral-300 px-[.62rem] type-label hover:bg-neutral-100">
         {`이미지 ${file ? '변경' : '업로드'}`}
         <input
           type="file"
@@ -73,7 +73,7 @@ const SelectedImageViewer = ({
         />
         <button
           type="button"
-          className="text-xs underline"
+          className="type-caption underline"
           onClick={removeFile}
         >
           삭제
@@ -99,10 +99,10 @@ const SelectedImageViewer = ({
         height={imageHeight}
       />
       <div className="flex flex-col items-start justify-between">
-        <p className="text-xs">{`${file.file.name}(${fileSizeRounded}KB)`}</p>
+        <p className="type-caption">{`${file.file.name}(${fileSizeRounded}KB)`}</p>
         <button
           type="button"
-          className="text-xs underline"
+          className="type-caption underline"
           onClick={handleDeleteBlob}
         >
           삭제

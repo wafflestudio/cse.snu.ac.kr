@@ -73,7 +73,7 @@ export default function AddCourseModal({
       contentClassName="min-w-125 max-w-3xl"
     >
       <FormProvider {...formMethods}>
-        <h4 className="mb-4 text-xl font-bold text-neutral-700">
+        <h4 className="mb-4 type-section text-neutral-700">
           {t('교과목 추가')}
         </h4>
         <div className="flex flex-col gap-4">
@@ -142,7 +142,7 @@ export default function AddCourseModal({
               width="w-[90px]"
             />
           </div>
-          <div className="mb-10 mt-1.5 text-xs text-main-orange">
+          <div className="mb-10 mt-1.5 type-caption text-main-orange">
             {t('* 교과목 번호는 추후 수정할 수 없습니다.')}
           </div>
           <Fieldset

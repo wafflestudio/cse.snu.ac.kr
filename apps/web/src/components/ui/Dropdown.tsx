@@ -134,9 +134,7 @@ export default function Dropdown({
         onKeyDown={handleTriggerKeyDown}
         className={`flex select-none items-center gap-4 rounded-xs border bg-white py-[.3125rem] pl-[.625rem] pr-[.3125rem] ${borderStyle} ${height ?? ''}`}
       >
-        <span className="text-md font-normal">
-          {contents[selectedIndex] ?? ''}
-        </span>
+        <span className="type-ui">{contents[selectedIndex] ?? ''}</span>
         <ChevronDown className="h-4 w-4 shrink-0" />
       </button>
 
@@ -164,7 +162,7 @@ export default function Dropdown({
               aria-selected={index === selectedIndex}
               onClick={() => select(index)}
               onMouseEnter={() => setActiveIndex(index)}
-              className={`flex h-7 w-full cursor-pointer items-center pl-[.62rem] text-left text-sm font-normal ${
+              className={`flex h-7 w-full cursor-pointer items-center pl-[.62rem] text-left type-ui ${
                 index === activeIndex ? 'bg-neutral-200' : ''
               } ${index === selectedIndex ? 'text-main-orange' : ''}`}
             >

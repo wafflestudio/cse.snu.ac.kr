@@ -111,7 +111,7 @@ export default function SearchResultList({
       )}
 
       {status === 'error' && (
-        <p className="py-2 text-center text-md text-neutral-500">
+        <p className="py-2 text-center type-meta text-neutral-500">
           {t('검색 결과를 더 불러오지 못했습니다.')}
         </p>
       )}

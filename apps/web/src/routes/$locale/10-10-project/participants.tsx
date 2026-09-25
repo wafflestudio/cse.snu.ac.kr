@@ -42,7 +42,6 @@ function TenTenParticipantsPage() {
   return (
     <PageLayout
       title={t('Participants(Professors)')}
-      titleSize="xl"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}

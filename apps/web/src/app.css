@@ -110,6 +110,58 @@
   }
 }
 
+/* 글자 역할. 크기·굵기·줄높이를 한 벌로 묶는다 — 화면에서는 역할 하나를 고르고 크기·굵기·줄높이를
+   따로 쓰지 않는다. 색은 따로 붙인다. 줄높이는 모두 4의 배수. 규칙과 근거는 /design-system#type. */
+@utility type-page-title {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  @variant sm {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+@utility type-headline {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+@utility type-section {
+  font-size: 1.25rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+@utility type-item {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+}
+@utility type-body {
+  font-size: 0.875rem;
+  line-height: 1.75rem;
+  font-weight: 400;
+}
+@utility type-ui {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+}
+@utility type-label {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+}
+@utility type-meta {
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+}
+@utility type-caption {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 400;
+}
+
 /* 표준 페이지 본문 가로 거터 — 단일 출처.
    데스크톱 좌우 100px(px-25), 서브내비가 보이는 1280px 부터 오른쪽 360px(pr-90). 모바일 20px(px-5).
    페이지·섹션은 가로 거터를 인라인 재선언하지 말고 이 클래스를 쓴다(세로 패딩만 각자). */

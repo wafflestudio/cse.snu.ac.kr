@@ -155,11 +155,11 @@ const SharedEditor = ({
 
       <Fieldset title="소개 자료" spacing="8">
         <div className="mb-2.5 flex w-180 items-center">
-          <span className="w-14 text-sm text-neutral-500">| 문서</span>
+          <span className="w-14 type-label text-neutral-500">| 문서</span>
           <Form.File name="pdf" multiple={false} />
         </div>
         <div className="flex w-180 items-center">
-          <span className="w-14 text-sm text-neutral-500">| 유튜브</span>
+          <span className="w-14 type-label text-neutral-500">| 유튜브</span>
           <Form.Text
             name="youtube"
             maxWidth="w-166"

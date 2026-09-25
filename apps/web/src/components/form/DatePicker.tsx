@@ -63,7 +63,7 @@ export default function DatePicker({
         <button
           type="button"
           className={clsx(
-            'flex h-7.5 items-center gap-2 rounded-sm border border-neutral-300 bg-white px-2.5 text-sm hover:bg-neutral-50',
+            'flex h-7.5 items-center gap-2 rounded-sm border border-neutral-300 bg-white px-2.5 type-ui hover:bg-neutral-50',
             buttonClassName,
           )}
           onClick={toggleCalendar}
@@ -95,7 +95,7 @@ export default function DatePicker({
           type="time"
           value={formatTime(date)}
           onChange={handleTimeChange}
-          className="h-7.5 rounded-sm border border-neutral-300 px-2.5 text-sm outline-none"
+          className="h-7.5 rounded-sm border border-neutral-300 px-2.5 type-ui outline-none"
         />
       )}
     </div>

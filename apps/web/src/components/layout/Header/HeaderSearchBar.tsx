@@ -43,7 +43,7 @@ export default function HeaderSearchBar() {
         aria-label={t('통합검색')}
         type="text"
         id="search"
-        className="autofill-bg-neutral-200 h-auto w-full border-0 bg-transparent px-2 text-xs shadow-none outline-none"
+        className="autofill-bg-neutral-200 h-auto w-full border-0 bg-transparent px-2 type-ui shadow-none outline-none"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />

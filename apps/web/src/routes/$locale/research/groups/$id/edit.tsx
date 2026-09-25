@@ -58,7 +58,7 @@ function ResearchGroupEdit() {
   };
 
   return (
-    <PageLayout title="연구 스트림 편집" titleSize="xl" padding="default">
+    <PageLayout title="연구 스트림 편집" padding="default">
       <ResearchGroupEditor
         defaultValues={defaultValues}
         onCancel={onCancel}
