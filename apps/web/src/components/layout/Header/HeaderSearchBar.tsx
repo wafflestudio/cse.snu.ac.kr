@@ -1,7 +1,6 @@
 import { useLocation, useNavigate, useSearch } from '@tanstack/react-router';
-import { Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import Button from '@/components/ui/Button';
+import SearchInput from '@/components/ui/SearchInput';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const translations = {
@@ -33,24 +32,17 @@ export default function HeaderSearchBar() {
 
   return (
     <form
-      className="flex h-7.5 w-54 justify-center rounded-xs bg-neutral-200 pr-0.5 outline-none"
       onSubmit={(e) => {
         e.preventDefault();
         submitSearch();
       }}
     >
-      <input
-        aria-label={t('통합검색')}
-        type="text"
-        id="search"
-        className="autofill-bg-neutral-200 h-auto w-full border-0 bg-transparent px-2 type-ui shadow-none outline-none"
+      <SearchInput
+        tone="dark"
+        ariaLabel={t('통합검색')}
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      {/* 아이콘 20px + 둘레 2px 로 클릭 영역 24px. */}
-      <Button type="submit" variant="text" ariaLabel={t('통합검색')}>
-        <Search className="box-content size-5 p-0.5" />
-      </Button>
     </form>
   );
 }

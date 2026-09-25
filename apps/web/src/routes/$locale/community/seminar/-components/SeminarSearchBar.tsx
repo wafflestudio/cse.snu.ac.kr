@@ -1,11 +1,10 @@
 import { useNavigate, useSearch } from '@tanstack/react-router';
-import { Search } from 'lucide-react';
 import { type ChangeEvent, type FormEvent, useEffect, useState } from 'react';
-import Button from '@/components/ui/Button';
+import SearchInput from '@/components/ui/SearchInput';
 import { useLanguage } from '@/hooks/useLanguage';
 
 export default function SeminarSearchBar() {
-  const { t } = useLanguage({ 검색: 'Search' });
+  const { t } = useLanguage({ 검색: 'Search', 검색어: 'Keyword' });
   const navigate = useNavigate();
   const search = useSearch({ strict: false });
   const keyword = search.keyword ?? '';
@@ -32,24 +31,15 @@ export default function SeminarSearchBar() {
     });
   };
 
+  // 태그 없는 검색이라 이름 없이 칸만 두고 자리표시로 알린다.
   return (
-    <form className="flex w-fit items-center gap-4" onSubmit={handleSubmit}>
-      <label htmlFor="seminar-search" className="type-label">
-        {t('검색')}
-      </label>
-      <div className="flex h-7.5 w-60 items-center rounded-xs bg-neutral-100 pr-2.5">
-        <input
-          type="text"
-          id="seminar-search"
-          className="autofill-bg-neutral-100 w-full rounded-xs bg-transparent px-2 type-ui tracking-wide outline-none"
-          value={text}
-          onChange={handleChange}
-        />
-        {/* 아이콘 20px + 둘레 2px 로 클릭 영역 24px. */}
-        <Button type="submit" variant="text" ariaLabel={t('검색')}>
-          <Search className="box-content size-5 p-0.5" />
-        </Button>
-      </div>
+    <form className="w-full" onSubmit={handleSubmit}>
+      <SearchInput
+        ariaLabel={t('검색')}
+        placeholder={t('검색어')}
+        value={text}
+        onChange={handleChange}
+      />
     </form>
   );
 }

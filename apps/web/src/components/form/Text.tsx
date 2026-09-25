@@ -33,7 +33,7 @@ export default function Text({
       <input
         type="text"
         className={clsx(
-          'autofill-bg-white w-full',
+          'w-full',
           FIELD_CLASS,
           fieldBorder(error !== undefined),
         )}

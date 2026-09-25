@@ -8,6 +8,7 @@ import { FormSection } from './-sections/form';
 import { GraphicSection } from './-sections/graphic';
 import { IconSection } from './-sections/icon';
 import { LayoutSection } from './-sections/layout';
+import { SearchSection } from './-sections/search';
 import { SelectionSection } from './-sections/selection';
 import { ShapeSection } from './-sections/shape';
 import { SpacingSection } from './-sections/spacing';
@@ -39,7 +40,7 @@ const GROUPS: Group[] = [
       { id: 'form', title: '입력·폼', content: <FormSection /> },
       { id: 'selection', title: '선택·태그', content: <SelectionSection /> },
       { id: 'dialog', title: '모달', content: <DialogSection /> },
-      { id: 'search', title: '검색 입력' },
+      { id: 'search', title: '검색 입력', content: <SearchSection /> },
       { id: 'toast', title: '토스트' },
       { id: 'editor', title: '에디터' },
     ],
