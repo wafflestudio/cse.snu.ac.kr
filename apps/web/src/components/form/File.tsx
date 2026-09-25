@@ -1,8 +1,8 @@
+import { CircleX } from 'lucide-react';
 import type { ChangeEventHandler, MouseEventHandler } from 'react';
 import type { FieldValues, RegisterOptions } from 'react-hook-form';
 import { useController, useFormContext } from 'react-hook-form';
 import type { EditorFile, LocalFile } from '@/types/form';
-import ClearIcon from './assets/clear_icon.svg?react';
 
 interface FilePickerProps {
   name: string;
@@ -92,8 +92,13 @@ function FilePickerRow({ file, deleteFile }: FileRowProps) {
   return (
     <li className="flex h-7.5 w-130 items-center border-b border-dashed border-neutral-200 px-3 last:border-none">
       <p className="mr-4 type-ui">{file.file.name}</p>
-      <button type="button" className="ml-auto" onClick={deleteFile}>
-        <ClearIcon />
+      <button
+        type="button"
+        // 아이콘 20px, 클릭 영역 24px — 음수 마진으로 배치는 그대로.
+        className="-m-0.5 ml-auto p-0.5 text-neutral-500 hover:text-neutral-700"
+        onClick={deleteFile}
+      >
+        <CircleX className="size-5" />
       </button>
     </li>
   );

@@ -23,6 +23,8 @@ type BaseProps = {
   ariaLabel?: string;
   // 아이콘은 children에 직접 넣는다(shadcn식). base의 gap-2가 아이콘·텍스트 간격을 처리.
   children?: ReactNode;
+  // 자리 맞춤(클릭 영역 padding 등)용. variant 색을 덮으려면 important(`!`)가 필요하다 — 병합기 없음.
+  className?: string;
 };
 
 type ButtonAsButton = BaseProps & {
@@ -97,6 +99,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     props.as === 'button' || props.as === undefined
       ? 'disabled:cursor-not-allowed disabled:opacity-40'
       : '',
+    props.className,
   );
 
   if (props.as === 'link') {

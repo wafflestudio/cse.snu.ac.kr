@@ -145,9 +145,10 @@ const getSortOption = (sort: unknown): SortOption => {
 
 function ClassificationDescription() {
   return (
-    <div className="mb-3 ml-6 flex items-center gap-1 type-meta text-neutral-500">
-      <Info className="h-[22px] w-[22px]" strokeWidth={1.5} />
-      <span className="pt-px">
+    // 좁은 폭에서 글이 여러 줄이 된다 — 아이콘 높이(1.2em)가 줄높이(1.2)와 같아 items-start 면 첫 줄 가운데에 선다.
+    <div className="mb-3 ml-6 flex items-start gap-1 type-meta text-neutral-500">
+      <Info className="shrink-0" />
+      <span>
         RM: Required course for Major&nbsp;&nbsp;/&nbsp;&nbsp;EM: Elective
         course for Major&nbsp;&nbsp;/&nbsp;&nbsp;LE: Liberal Education course
       </span>

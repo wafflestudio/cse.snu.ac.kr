@@ -86,8 +86,8 @@ function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
               />
             </li>
             {i !== items.length - 1 && (
-              <li className="type-meta">
-                <ChevronRight className="h-[12px] w-[12px]" strokeWidth={1.5} />
+              <li className="flex type-meta">
+                <ChevronRight />
               </li>
             )}
           </Fragment>

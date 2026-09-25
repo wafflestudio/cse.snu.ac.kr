@@ -46,10 +46,11 @@ export default function SeminarSearchBar() {
         />
         <button
           type="submit"
-          className="text-neutral-950 hover:text-neutral-500"
+          // 아이콘 20px, 클릭 영역 24px — 음수 마진으로 배치는 그대로.
+          className="-m-0.5 p-0.5 text-neutral-950 hover:text-neutral-500"
           aria-label={t('검색')}
         >
-          <Search className="h-5 w-5" strokeWidth={1.5} />
+          <Search className="size-5" />
         </button>
       </div>
     </form>

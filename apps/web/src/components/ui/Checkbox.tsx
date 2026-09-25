@@ -28,7 +28,7 @@ export default function Checkbox({
   return (
     <label
       htmlFor={inputId}
-      className={`group flex h-5 w-fit items-center gap-1 whitespace-nowrap ${
+      className={`group flex h-5 w-fit items-center gap-1 whitespace-nowrap type-ui ${
         disabled ? 'cursor-not-allowed opacity-40' : 'cursor-pointer'
       } ${className ?? ''}`}
     >
@@ -36,16 +36,15 @@ export default function Checkbox({
         const Icon = checked ? SquareCheck : Square;
         return (
           <Icon
-            className={`h-[18px] w-[18px] text-neutral-400 ${
+            className={`text-neutral-400 ${
               !disabled &&
               'group-hover:text-neutral-600 group-active:text-main-orange'
             } ${checked && 'text-neutral-600'}`}
-            strokeWidth={1.5}
           />
         );
       })()}
       <span
-        className={`type-ui tracking-wide text-neutral-600 ${
+        className={`tracking-wide text-neutral-600 ${
           !disabled && 'group-active:text-main-orange'
         }`}
       >

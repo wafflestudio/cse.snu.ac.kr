@@ -1,12 +1,10 @@
 import { Link, useSearch } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
+import { Lock, Paperclip, Pin } from 'lucide-react';
 import Checkbox from '@/components/ui/Checkbox';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { NoticePreview } from '@/types/api';
-import ClipIcon from '../assets/clip.svg?react';
-import LockIcon from '../assets/lock.svg?react';
-import PinIcon from '../assets/pin.svg?react';
 
 interface NoticeListRowProps {
   post: NoticePreview;
@@ -52,7 +50,13 @@ export default function NoticeListRow({
           !(post.isPrivate || post.isPinned) && 'hidden'
         } shrink-0 justify-center sm:flex sm:px-3`}
       >
-        {post.isPrivate ? <LockIcon /> : post.isPinned && <PinIcon />}
+        {post.isPrivate ? (
+          <Lock className="text-neutral-500" />
+        ) : (
+          post.isPinned && (
+            <Pin className="text-main-orange" fill="currentColor" />
+          )
+        )}
       </span>
 
       <TitleCell
@@ -112,7 +116,7 @@ function TitleCell({
   return (
     <Wrapper
       to={detailPath}
-      className={`flex items-center gap-1 ${NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow sm:pl-3`}
+      className={`flex items-center gap-1 ${NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow type-item sm:type-ui sm:pl-3`}
     >
       <span
         className={`${
@@ -121,7 +125,7 @@ function TitleCell({
       >
         {title}
       </span>
-      {hasAttachment && <ClipIcon className="shrink-0" />}
+      {hasAttachment && <Paperclip className="shrink-0 text-neutral-500" />}
     </Wrapper>
   );
 }

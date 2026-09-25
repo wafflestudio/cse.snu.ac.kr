@@ -60,12 +60,9 @@ export default function AdminFeatures({
       <div className="mx-3 mt-12 flex">
         {isEditMode && (
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1">
-              <SquareCheck
-                className="h-[18px] w-[18px] text-neutral-500"
-                strokeWidth={1.5}
-              />
-              <span className="type-meta tracking-wide text-neutral-500">
+            <div className="flex items-center gap-1 type-meta text-neutral-500">
+              <SquareCheck />
+              <span className="tracking-wide">
                 {selectedIds.size}개 게시물 선택
               </span>
             </div>

@@ -128,10 +128,7 @@ function LabMaterialsCell({
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FileText
-            className="h-5 w-5 text-neutral-400 hover:text-neutral-950"
-            strokeWidth={1.5}
-          />
+          <FileText className="size-5 text-neutral-500 hover:text-neutral-950" />
         </a>
       )}
       {youtube && (
@@ -142,7 +139,7 @@ function LabMaterialsCell({
           target="_blank"
           rel="noopener noreferrer"
         >
-          <YoutubeIcon className="fill-neutral-400 hover:fill-neutral-800" />
+          <YoutubeIcon className="fill-neutral-500 hover:fill-neutral-950" />
         </a>
       )}
     </span>

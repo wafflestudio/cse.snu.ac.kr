@@ -61,7 +61,7 @@ export default function Dropdown({
         aria-expanded={expanded}
         aria-controls={listboxId}
         className={clsx(
-          'flex w-full items-center border bg-white py-1 pl-3 pr-1',
+          'flex w-full items-center border bg-white py-1 pl-3 pr-1 type-ui',
           expanded ? 'rounded-t-sm' : 'rounded-xs',
           borderStyle,
           width ? `${width} justify-between` : 'gap-4',
@@ -74,14 +74,8 @@ export default function Dropdown({
         }}
         disabled={isDisabled}
       >
-        <p className="type-ui">
-          {contents.find((x) => x.value === value)?.label}
-        </p>
-        {expanded ? (
-          <ChevronUp className="h-4 w-4" />
-        ) : (
-          <ChevronDown className="h-4 w-4" />
-        )}
+        <p>{contents.find((x) => x.value === value)?.label}</p>
+        {expanded ? <ChevronUp /> : <ChevronDown />}
       </button>
       <div className="relative z-10">
         <DropdownListWithScroll

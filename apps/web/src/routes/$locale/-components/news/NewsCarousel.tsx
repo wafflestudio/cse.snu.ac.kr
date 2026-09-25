@@ -1,10 +1,9 @@
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
+import { Pause, Play } from 'lucide-react';
 import type { ButtonHTMLAttributes } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import type { MainNews } from '@/types/api';
-import PauseIcon from './assets/pause.svg?react';
-import PlayIcon from './assets/play.svg?react';
 import { AUTO_SCROLL_MS, CARD_GAP_TAILWIND } from './constants';
 import NewsCard from './NewsCard';
 
@@ -125,8 +124,13 @@ const PageIndicator = ({
         type="button"
         onClick={toggleScroll}
         aria-label={isScroll ? '자동 스크롤 중지' : '자동 스크롤 시작'}
+        className="p-0.5 text-neutral-300"
       >
-        {isScroll ? <PauseIcon /> : <PlayIcon />}
+        {isScroll ? (
+          <Pause className="size-5" fill="currentColor" />
+        ) : (
+          <Play className="size-5" fill="currentColor" />
+        )}
       </button>
     </div>
   );

@@ -29,8 +29,8 @@ export default function Dialog({
           <VisuallyHidden.Root>
             <DialogPrimitive.Title>{title}</DialogPrimitive.Title>
           </VisuallyHidden.Root>
-          <DialogPrimitive.Close className="absolute right-4 top-4 text-neutral-500 hover:text-neutral-700">
-            <X className="h-6 w-6" />
+          <DialogPrimitive.Close className="absolute right-3.5 top-3.5 p-0.5 text-neutral-500 hover:text-neutral-700">
+            <X className="size-5" />
           </DialogPrimitive.Close>
           {children}
         </DialogPrimitive.Content>

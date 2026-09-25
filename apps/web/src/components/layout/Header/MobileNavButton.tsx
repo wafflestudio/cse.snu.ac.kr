@@ -1,8 +1,7 @@
-import { X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { navigationTree } from '@/constants/navigation';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useStore } from '@/store';
-import MenuSVG from './assets/menu.svg?react';
 
 export default function MobileNavButton() {
   const navbarState = useStore((s) => s.navbarState);
@@ -29,10 +28,10 @@ export default function MobileNavButton() {
     <button
       type="button"
       onClick={toggleNav}
-      className="flex items-center justify-center sm:hidden"
+      className="-m-0.5 flex items-center justify-center p-0.5 text-white sm:hidden"
       aria-label={isOpen ? '메뉴 닫기' : '메뉴 열기'}
     >
-      {isOpen ? <X className="h-5 w-5 text-white" /> : <MenuSVG />}
+      {isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
     </button>
   );
 }

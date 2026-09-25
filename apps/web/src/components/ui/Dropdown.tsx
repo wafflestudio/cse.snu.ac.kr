@@ -135,7 +135,7 @@ export default function Dropdown({
         className={`flex select-none items-center gap-4 rounded-xs border bg-white py-1 pl-3 pr-1 ${borderStyle} ${height ?? ''}`}
       >
         <span className="type-ui">{contents[selectedIndex] ?? ''}</span>
-        <ChevronDown className="h-4 w-4 shrink-0" />
+        <ChevronDown className="shrink-0" />
       </button>
 
       {open && (

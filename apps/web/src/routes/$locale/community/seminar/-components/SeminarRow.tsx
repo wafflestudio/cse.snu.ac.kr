@@ -1,13 +1,11 @@
 import { Link, useSearch } from '@tanstack/react-router';
 import dayjs, { type Dayjs } from 'dayjs';
+import { Calendar, MapPin, User } from 'lucide-react';
 import type { ElementType, ReactNode } from 'react';
 import 'dayjs/locale/ko';
 import Image from '@/components/ui/Image';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { SeminarPreview } from '@/types/api';
-import CalendarIcon from '../assets/calendar.svg?react';
-import DistanceIcon from '../assets/distance.svg?react';
-import PersonIcon from '../assets/person.svg?react';
 
 interface SeminarRowProps {
   seminar: SeminarPreview;
@@ -77,7 +75,7 @@ function HostInformationCell({
   return (
     <div className="flex flex-wrap gap-x-1">
       <IconTextWrapper>
-        <IconWrapper IconComponent={PersonIcon} />
+        <IconWrapper IconComponent={User} />
         <Text text={host} />
       </IconTextWrapper>
       <VerticalDivider />
@@ -96,12 +94,12 @@ function DateAndLocationCell({
   return (
     <div className="flex flex-wrap gap-1">
       <IconTextWrapper>
-        <IconWrapper IconComponent={CalendarIcon} />
+        <IconWrapper IconComponent={Calendar} />
         <Text text={date.format('YYYY/M/DD (ddd) A hh:mm')} />
       </IconTextWrapper>
       <VerticalDivider />
       <IconTextWrapper>
-        <IconWrapper IconComponent={DistanceIcon} />
+        <IconWrapper IconComponent={MapPin} />
         <Text text={location} />
       </IconTextWrapper>
     </div>
@@ -109,15 +107,20 @@ function DateAndLocationCell({
 }
 
 function IconTextWrapper({ children }: { children: ReactNode }) {
-  return <div className="flex items-start gap-1">{children}</div>;
+  // 글이 여러 줄이 될 수 있다 — 아이콘 높이(1.2em)가 줄높이(1.2)와 같아 items-start 면 첫 줄 가운데에 선다.
+  return (
+    <div className="flex items-start gap-1 type-meta text-neutral-500">
+      {children}
+    </div>
+  );
 }
 
 function IconWrapper({ IconComponent }: { IconComponent: ElementType }) {
-  return <IconComponent className="shrink-0 -translate-y-0.5" />;
+  return <IconComponent className="shrink-0" />;
 }
 
 function Text({ text }: { text: string }) {
-  return <span className="pt-0 type-meta text-neutral-500">{text}</span>;
+  return <span className="type-meta text-neutral-500">{text}</span>;
 }
 
 function VerticalDivider() {

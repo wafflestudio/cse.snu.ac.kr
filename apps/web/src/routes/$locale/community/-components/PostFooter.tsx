@@ -54,7 +54,7 @@ export default function PostFooter({
           href={localizedPath(`${listPath}/${nextPost.id}`)}
           label={t('다음글')}
           title={nextPost.title}
-          icon={<ChevronUp className="h-5 w-5" strokeWidth={1.5} />}
+          icon={<ChevronUp />}
         />
       )}
 
@@ -63,7 +63,7 @@ export default function PostFooter({
           href={localizedPath(`${listPath}/${prevPost.id}`)}
           label={t('이전글')}
           title={prevPost.title}
-          icon={<ChevronDown className="h-5 w-5" strokeWidth={1.5} />}
+          icon={<ChevronDown />}
         />
       )}
 
@@ -127,7 +127,7 @@ const PostNavLink = ({
   icon: ReactNode;
 }) => (
   <Link to={href} className="group mb-1 flex w-fit items-center">
-    <span className="text-main-orange">{icon}</span>
+    <span className="type-label text-main-orange">{icon}</span>
     <p className="mr-3 shrink-0 type-label text-main-orange">{label}</p>
     <p className="line-clamp-1 type-ui group-hover:underline">{title}</p>
   </Link>

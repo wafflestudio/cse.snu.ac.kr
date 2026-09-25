@@ -40,7 +40,7 @@ export default function Checkbox({
     <label
       htmlFor={value}
       className={clsx(
-        'group flex h-5 w-fit items-center gap-1 whitespace-nowrap',
+        'group flex h-5 w-fit items-center gap-1 whitespace-nowrap type-ui',
         {
           'cursor-pointer': !disabled,
         },
@@ -48,16 +48,15 @@ export default function Checkbox({
     >
       <Icon
         className={clsx(
-          'h-[18px] w-[18px] text-neutral-400',
+          'text-neutral-400',
           !disabled &&
             'group-hover:text-neutral-600 group-active:text-main-orange',
           tags && 'text-neutral-600',
         )}
-        strokeWidth={1.5}
       />
       <span
         className={clsx(
-          'type-ui tracking-wide text-neutral-600',
+          'tracking-wide text-neutral-600',
           !disabled && 'group-active:text-main-orange',
         )}
       >

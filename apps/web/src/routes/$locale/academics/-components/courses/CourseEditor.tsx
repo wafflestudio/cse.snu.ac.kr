@@ -1,4 +1,5 @@
 import { useRouter } from '@tanstack/react-router';
+import { Bookmark } from 'lucide-react';
 import { FormProvider, useForm } from 'react-hook-form';
 import Form from '@/components/form/Form';
 import Button from '@/components/ui/Button';
@@ -11,7 +12,6 @@ import {
 } from '@/routes/$locale/academics/-constants';
 import type { Course } from '@/types/api';
 import { api } from '@/utils/api';
-import BookmarkIcon from './assets/bookmark_icon.svg?react';
 
 const CREDIT = [1, 2, 3, 4];
 
@@ -61,8 +61,9 @@ export default function CourseEditor({
 
   return (
     <FormProvider {...formMethods}>
-      <h4 className="flex flex-wrap items-center gap-2">
-        <BookmarkIcon />
+      {/* type-section 은 아이콘 크기(옆 교과목명과 같은 섹션 제목 역할)를 정한다 — 입력칸들은 제 글자 역할을 따로 갖는다. */}
+      <h4 className="flex flex-wrap items-center gap-2 type-section">
+        <Bookmark className="text-main-orange" fill="currentColor" />
         <Form.Text
           name="ko.name"
           maxWidth="w-[180px]"

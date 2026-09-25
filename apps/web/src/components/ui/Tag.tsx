@@ -45,7 +45,7 @@ export function Tag({
 
   const content = (
     <>
-      <span className={onDelete ? 'pr-1' : ''}>{label}</span>
+      <span>{label}</span>
       {onDelete && (
         // 삭제 X — 이 한 곳뿐이라 Button kind으로 빼지 않고 직접 정의(브랜드색 아이콘 버튼).
         <button
@@ -56,9 +56,9 @@ export function Tag({
             onDelete();
           }}
           aria-label={`${label} 삭제`}
-          className="inline-flex items-center justify-center text-main-orange transition duration-200 hover:text-main-orange/80 disabled:cursor-not-allowed disabled:opacity-40"
+          className="-mr-1 inline-flex size-6 items-center justify-center text-main-orange transition duration-200 hover:text-main-orange/80 disabled:cursor-not-allowed disabled:opacity-40"
         >
-          <X className="h-[13px] w-[13px]" />
+          <X />
         </button>
       )}
     </>

@@ -110,15 +110,15 @@ function PaginationArrow({
   ariaLabel,
 }: PaginationArrowProps) {
   return disabled ? (
-    <Icon className="pointer-events-none h-6 w-6 cursor-default text-neutral-300" />
+    <Icon className="pointer-events-none m-0.5 size-5 cursor-default text-neutral-300" />
   ) : (
     <button
       type="button"
       onClick={onClick}
-      className="cursor-pointer hover:text-main-orange"
+      className="cursor-pointer p-0.5 hover:text-main-orange"
       aria-label={ariaLabel}
     >
-      <Icon className="h-6 w-6" />
+      <Icon className="size-5" />
     </button>
   );
 }

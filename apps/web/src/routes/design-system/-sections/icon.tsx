@@ -2,6 +2,8 @@ import {
   ArrowRight,
   Bookmark,
   Calendar,
+  ChevronDown,
+  ChevronRight,
   CircleX,
   Link,
   Lock,
@@ -9,99 +11,32 @@ import {
   Menu,
   Paperclip,
   Paperclip as PaperclipIcon,
-  Pause,
   Pin,
-  Play,
   Plus,
   Search,
   User,
+  X,
 } from 'lucide-react';
-import type { ComponentType, ReactNode, SVGProps } from 'react';
-import ClearIcon from '@/components/form/assets/clear_icon.svg?react';
-import MenuSvg from '@/components/layout/Header/assets/menu.svg?react';
-import MobileSearch from '@/components/layout/MobileNav/assets/search.svg?react';
-import SmallRightArrow from '@/components/ui/assets/small_right_arrow.svg?react';
-import PauseSvg from '@/routes/$locale/-components/news/assets/pause.svg?react';
-import PlaySvg from '@/routes/$locale/-components/news/assets/play.svg?react';
-import BookmarkSvg from '@/routes/$locale/academics/-components/courses/assets/bookmark_icon.svg?react';
-import ImportantArrow from '@/routes/$locale/assets/important_arrow.svg?react';
-import PlusSvg from '@/routes/$locale/assets/plus.svg?react';
-import ClipSvg from '@/routes/$locale/community/notice/assets/clip.svg?react';
-import LockSvg from '@/routes/$locale/community/notice/assets/lock.svg?react';
-import PinSvg from '@/routes/$locale/community/notice/assets/pin.svg?react';
-import CalendarSvg from '@/routes/$locale/community/seminar/assets/calendar.svg?react';
-import DistanceSvg from '@/routes/$locale/community/seminar/assets/distance.svg?react';
-import PersonSvg from '@/routes/$locale/community/seminar/assets/person.svg?react';
-import LinkSvg from '@/routes/$locale/research/centers/assets/link_icon.svg?react';
+import type { ReactNode } from 'react';
 
-type Svg = ComponentType<SVGProps<SVGSVGElement>>;
-
-// 직접 만든 SVG → 바꿀 lucide 아이콘. 어두운 바탕에서 쓰는 것은 dark 로 그린다.
-const REPLACEMENTS: {
-  what: string;
-  where: string;
-  from: Svg;
-  to: Svg;
-  dark?: boolean;
-  fill?: boolean;
-}[] = [
-  {
-    what: '검색',
-    where: '모바일 메뉴',
-    from: MobileSearch,
-    to: Search,
-    dark: true,
-  },
-  {
-    what: '메뉴',
-    where: '모바일 상단 바',
-    from: MenuSvg,
-    to: Menu,
-    dark: true,
-  },
-  { what: '지우기', where: '편집 폼 파일 목록', from: ClearIcon, to: CircleX },
-  { what: '첨부', where: '공지 목록', from: ClipSvg, to: Paperclip },
-  { what: '잠금', where: '공지 목록(비공개)', from: LockSvg, to: Lock },
-  { what: '고정', where: '공지 목록(고정)', from: PinSvg, to: Pin, fill: true },
-  { what: '날짜', where: '세미나 목록', from: CalendarSvg, to: Calendar },
-  { what: '사람', where: '세미나 목록', from: PersonSvg, to: User },
-  { what: '위치', where: '세미나 목록·시설', from: DistanceSvg, to: MapPin },
-  { what: '더보기', where: '메인 공지', from: PlusSvg, to: Plus },
-  {
-    what: '더보기',
-    where: '메인 새 소식',
-    from: SmallRightArrow,
-    to: ArrowRight,
-  },
-  {
-    what: '바로가기',
-    where: '메인 중요 안내 카드',
-    from: ImportantArrow,
-    to: ArrowRight,
-  },
-  { what: '외부 링크', where: '연구 센터', from: LinkSvg, to: Link },
-  {
-    what: '북마크',
-    where: '교과목 상세',
-    from: BookmarkSvg,
-    to: Bookmark,
-    fill: true,
-  },
-  {
-    what: '재생',
-    where: '메인 뉴스 캐러셀',
-    from: PlaySvg,
-    to: Play,
-    fill: true,
-  },
-  {
-    what: '정지',
-    where: '메인 뉴스 캐러셀',
-    from: PauseSvg,
-    to: Pause,
-    fill: true,
-  },
-];
+const USED = [
+  ['검색', Search],
+  ['닫기', X],
+  ['지우기', CircleX],
+  ['메뉴', Menu],
+  ['첨부', Paperclip],
+  ['잠금', Lock],
+  ['고정', Pin],
+  ['날짜', Calendar],
+  ['사람', User],
+  ['위치', MapPin],
+  ['외부 링크', Link],
+  ['더보기·이동', ArrowRight],
+  ['추가', Plus],
+  ['펼치기', ChevronDown],
+  ['경로 구분·넘기기', ChevronRight],
+  ['북마크', Bookmark],
+] as const;
 
 const ROLES = [
   { cls: 'type-meta', label: '보조 13px', text: '2026/09/25 · 첨부 2개' },
@@ -176,14 +111,6 @@ function Sub({ title, children }: { title: string; children: ReactNode }) {
 export function IconSection() {
   return (
     <div className="space-y-12 type-body">
-      <div className="border-l-4 border-main-orange bg-neutral-50 px-4 py-3 type-meta">
-        <p className="type-label">제안(미적용)</p>
-        <p>
-          아래 "직접 만든 SVG → lucide" 표에서 그림이 바뀌는 16개를 봐 주세요.
-          그림 모양이 바뀌는 것은 이것뿐이고, 나머지는 크기·선 굵기·색 정리다.
-        </p>
-      </div>
-
       <Sub title="한 벌">
         <p>
           아이콘은 lucide 한 벌만 쓴다. 직접 그린 SVG는 쓰지 않는다. 예외:
@@ -237,75 +164,22 @@ export function IconSection() {
         </ul>
       </Sub>
 
-      <Sub title="직접 만든 SVG → lucide">
-        <table className="w-full max-w-3xl text-left">
-          <thead>
-            <tr className="border-b border-neutral-200">
-              <th className="py-2 type-label">뜻</th>
-              <th className="py-2 type-label">쓰는 곳</th>
-              <th className="py-2 type-label">지금</th>
-              <th className="py-2 type-label">lucide</th>
-            </tr>
-          </thead>
-          <tbody>
-            {REPLACEMENTS.map((r) => {
-              const From = r.from;
-              const To = r.to;
-              const cell = r.dark
-                ? 'bg-neutral-900 text-white'
-                : 'text-neutral-700';
-              return (
-                <tr
-                  key={r.what + r.where}
-                  className="border-b border-neutral-100"
-                >
-                  <td className="py-2 pr-4 type-ui">{r.what}</td>
-                  <td className="py-2 pr-4 type-meta text-neutral-500">
-                    {r.where}
-                  </td>
-                  <td className="py-2 pr-4">
-                    <span
-                      className={`inline-flex size-10 items-center justify-center ${cell}`}
-                    >
-                      <From className="size-6" />
-                    </span>
-                  </td>
-                  <td className="py-2">
-                    <span
-                      className={`inline-flex size-10 items-center justify-center ${cell}`}
-                    >
-                      <To
-                        className="size-6"
-                        fill={r.fill ? 'currentColor' : 'none'}
-                      />
-                    </span>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+      <Sub title="자주 쓰는 아이콘">
+        <p>같은 뜻에는 같은 그림을 쓴다.</p>
+        <div className="grid max-w-3xl grid-cols-2 gap-x-8 gap-y-2 sm:grid-cols-4">
+          {USED.map(([name, Icon]) => (
+            <span
+              key={name}
+              className="flex items-center gap-2 type-ui text-neutral-700"
+            >
+              <Icon /> {name}
+            </span>
+          ))}
+        </div>
         <p className="type-meta text-neutral-500">
-          고정·북마크·재생·정지는 지금처럼 채운 모양으로 둔다. 쓰이지 않는 사본
-          SVG 3개와 보이지 않는 메인 아래 화살표는 지운다.
+          채운 모양은 고정(Pin)·북마크·재생·정지만(
+          <code>fill="currentColor"</code>).
         </p>
-      </Sub>
-
-      <Sub title="함께 고치는 것">
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            헤더 검색 버튼: 밝은 바(#e5e5e5) 위에서 호버하면 흰색으로 흐려진다 →
-            호버 neutral-700.
-          </li>
-          <li>
-            연구실 자료 아이콘(PDF·유튜브): 기본 neutral-400(흐림) → 500, 호버
-            950·800 → 950 하나로.
-          </li>
-          <li>
-            이미지 팝업의 체크박스: 다른 곳에서 가져온 그림 → 사이트의
-            체크박스와 같은 lucide 그림.
-          </li>
-        </ul>
       </Sub>
     </div>
   );

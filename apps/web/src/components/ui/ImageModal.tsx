@@ -1,58 +1,8 @@
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
+import { Square, SquareCheck } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
-
-// Material Icons 체크박스 SVG
-const CheckboxUnchecked = ({ className }: { className?: string }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
-    viewBox="0 0 20 20"
-    className={className}
-    aria-hidden="true"
-  >
-    <mask
-      id="mask0_10305_21737"
-      maskUnits="userSpaceOnUse"
-      x="0"
-      y="0"
-      width="20"
-      height="20"
-    >
-      <rect width="20" height="20" fill="#D9D9D9" />
-    </mask>
-    <g mask="url(#mask0_10305_21737)">
-      <path d="M4.42443 17.0827C4.00345 17.0827 3.64714 16.9368 3.35547 16.6452C3.0638 16.3535 2.91797 15.9972 2.91797 15.5762V4.42247C2.91797 4.0015 3.0638 3.64518 3.35547 3.35352C3.64714 3.06185 4.00345 2.91602 4.42443 2.91602H15.5782C15.9992 2.91602 16.3555 3.06185 16.6471 3.35352C16.9388 3.64518 17.0846 4.0015 17.0846 4.42247V15.5762C17.0846 15.9972 16.9388 16.3535 16.6471 16.6452C16.3555 16.9368 15.9992 17.0827 15.5782 17.0827H4.42443ZM4.42443 15.8327H15.5782C15.6423 15.8327 15.7011 15.8059 15.7544 15.7525C15.8079 15.6991 15.8346 15.6404 15.8346 15.5762V4.42247C15.8346 4.35831 15.8079 4.29956 15.7544 4.24622C15.7011 4.19275 15.6423 4.16602 15.5782 4.16602H4.42443C4.36026 4.16602 4.30151 4.19275 4.24818 4.24622C4.19471 4.29956 4.16797 4.35831 4.16797 4.42247V15.5762C4.16797 15.6404 4.19471 15.6991 4.24818 15.7525C4.30151 15.8059 4.36026 15.8327 4.42443 15.8327Z" />
-    </g>
-  </svg>
-);
-
-const CheckboxChecked = ({ className }: { className?: string }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
-    viewBox="0 0 20 20"
-    className={className}
-    aria-hidden="true"
-  >
-    <mask
-      id="mask0_10305_21810"
-      maskUnits="userSpaceOnUse"
-      x="0"
-      y="0"
-      width="20"
-      height="20"
-    >
-      <rect width="20" height="20" fill="#D9D9D9" />
-    </mask>
-    <g mask="url(#mask0_10305_21810)">
-      <path d="M8.83464 11.4546L6.8988 9.51852C6.78339 9.40324 6.63832 9.34421 6.46359 9.34143C6.28901 9.33879 6.1413 9.39782 6.02047 9.51852C5.89977 9.63935 5.83943 9.78574 5.83943 9.95768C5.83943 10.1296 5.89977 10.276 6.02047 10.3968L8.30734 12.6837C8.45804 12.8343 8.6338 12.9096 8.83464 12.9096C9.03547 12.9096 9.21123 12.8343 9.36193 12.6837L13.9982 8.04747C14.1135 7.93206 14.1725 7.78699 14.1753 7.61227C14.1779 7.43768 14.1189 7.28997 13.9982 7.16914C13.8773 7.04845 13.731 6.9881 13.559 6.9881C13.3871 6.9881 13.2407 7.04845 13.1198 7.16914L8.83464 11.4546ZM4.42443 17.0827C4.00345 17.0827 3.64714 16.9368 3.35547 16.6452C3.0638 16.3535 2.91797 15.9972 2.91797 15.5762V4.42247C2.91797 4.0015 3.0638 3.64518 3.35547 3.35352C3.64714 3.06185 4.00345 2.91602 4.42443 2.91602H15.5782C15.9992 2.91602 16.3555 3.06185 16.6471 3.35352C16.9388 3.64518 17.0846 4.0015 17.0846 4.42247V15.5762C17.0846 15.9972 16.9388 16.3535 16.6471 16.6452C16.3555 16.9368 15.9992 17.0827 15.5782 17.0827H4.42443ZM4.42443 15.8327H15.5782C15.6423 15.8327 15.7011 15.8059 15.7544 15.7525C15.8079 15.6991 15.8346 15.6404 15.8346 15.5762V4.42247C15.8346 4.35831 15.8079 4.29956 15.7544 4.24622C15.7011 4.19275 15.6423 4.16602 15.5782 4.16602H4.42443C4.36026 4.16602 4.30151 4.19275 4.24818 4.24622C4.19471 4.29956 4.16797 4.35831 4.16797 4.42247V15.5762C4.16797 15.6404 4.19471 15.6991 4.24818 15.7525C4.30151 15.8059 4.36026 15.8327 4.42443 15.8327Z" />
-    </g>
-  </svg>
-);
 
 interface ImageModalProps {
   /** localStorage 키 구분용 식별자 */
@@ -150,13 +100,13 @@ export default function ImageModal({
           </div>
 
           {/* 다시 보지 않기 체크박스 */}
-          <label className="group absolute -bottom-8 left-0 flex items-center gap-1 cursor-pointer">
+          <label className="group absolute -bottom-8 left-0 flex items-center gap-1 cursor-pointer type-label">
             {hideModal ? (
-              <CheckboxChecked className="fill-white group-hover:fill-neutral-400 group-active:fill-main-orange transition-colors" />
+              <SquareCheck className="text-white group-hover:text-neutral-400 group-active:text-main-orange transition-colors" />
             ) : (
-              <CheckboxUnchecked className="fill-white group-hover:fill-neutral-400 group-active:fill-main-orange transition-colors" />
+              <Square className="text-white group-hover:text-neutral-400 group-active:text-main-orange transition-colors" />
             )}
-            <span className="type-label text-white group-hover:text-neutral-400 group-active:text-main-orange transition-colors">
+            <span className="text-white group-hover:text-neutral-400 group-active:text-main-orange transition-colors">
               {t('다시 보지 않기')}
             </span>
             <input

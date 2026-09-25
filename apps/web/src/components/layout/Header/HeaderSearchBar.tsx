@@ -33,7 +33,7 @@ export default function HeaderSearchBar() {
 
   return (
     <form
-      className="flex h-7.5 w-54 justify-center rounded-xs bg-neutral-200 pr-1 outline-none"
+      className="flex h-7.5 w-54 justify-center rounded-xs bg-neutral-200 pr-0.5 outline-none"
       onSubmit={(e) => {
         e.preventDefault();
         submitSearch();
@@ -47,8 +47,15 @@ export default function HeaderSearchBar() {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <Button type="submit" variant="quiet" size="sm" ariaLabel={t('통합검색')}>
-        <Search className="h-5 w-5" strokeWidth={1.5} />
+      {/* 밝은 바 위라 quiet 의 호버(흰색)가 흐려진다 → 이 버튼만 neutral-700. px-0.5 는 클릭 영역 24px. */}
+      <Button
+        type="submit"
+        variant="quiet"
+        size="sm"
+        ariaLabel={t('통합검색')}
+        className="px-0.5 hover:text-neutral-700!"
+      >
+        <Search className="size-5" />
       </Button>
     </form>
   );

@@ -1,4 +1,5 @@
 import { useRouter } from '@tanstack/react-router';
+import { MapPin } from 'lucide-react';
 import { useState } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import AlertDialog from '@/components/ui/AlertDialog';
@@ -10,7 +11,6 @@ import { useLanguage } from '@/hooks/useLanguage';
 import type { Facility, FacilityWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 import type { ViewerHtml } from '@/utils/csp';
-import DistanceIcon from '../assets/distance.svg?react';
 
 export default function FacilitiesList({
   facilities,
@@ -49,11 +49,10 @@ function FacilitiesRow({ facility }: { facility: ProcessedFacility }) {
         <div className="flex flex-col sm:w-142">
           <h3 className="mb-2 type-item">{facility.name}</h3>
           <HTMLViewer html={facility.description} />
-          <div className="flex translate-x-[-4px] items-start gap-px">
-            <DistanceIcon className="shrink-0" />
-            <p className="pt-0.5 type-ui text-neutral-500">
-              {facility.locations.join(', ')}
-            </p>
+          {/* 글이 여러 줄이 될 수 있다 — 아이콘 높이(1.2em)가 줄높이(1.2)와 같아 items-start 면 첫 줄 가운데에 선다. */}
+          <div className="flex items-start gap-1 type-ui text-neutral-500">
+            <MapPin className="shrink-0" />
+            <p>{facility.locations.join(', ')}</p>
           </div>
           <LoginVisible allow="ROLE_STAFF">
             <div className="mt-6 flex gap-3">
