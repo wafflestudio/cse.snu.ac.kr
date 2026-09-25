@@ -20,12 +20,12 @@ export default function Input({
       >
         {t('검색')}
       </label>
-      <div className="relative flex h-7.5 w-54 items-center justify-between rounded-sm bg-white pr-3">
+      <div className="relative flex h-7.5 w-54 items-center justify-between rounded-xs bg-white pr-3">
         <input
           type="text"
           id="search"
           name="keyword"
-          className="autofill-bg-white w-full rounded-sm bg-transparent px-2 type-ui tracking-wide outline-none"
+          className="autofill-bg-white w-full rounded-xs bg-transparent px-2 type-ui tracking-wide outline-none"
           defaultValue={defaultValue}
           disabled={disabled}
         />

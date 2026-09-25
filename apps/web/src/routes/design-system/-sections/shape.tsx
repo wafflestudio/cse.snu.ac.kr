@@ -29,26 +29,9 @@ function Sample({
   );
 }
 
-function Decision({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div className="space-y-4 border-2 border-main-orange p-5">
-      <p className="type-label">{title}</p>
-      {children}
-    </div>
-  );
-}
-
 export function ShapeSection() {
   return (
     <div className="space-y-12 type-body">
-      <div className="border-l-4 border-main-orange bg-neutral-50 px-4 py-3 type-meta">
-        <p className="type-label">제안(미적용). 결정할 것 2개</p>
-        <ol className="mt-1 list-decimal pl-5">
-          <li>컨트롤 모서리를 2px과 4px 중 하나로</li>
-          <li>인물 사진 그림자를 둘지</li>
-        </ol>
-      </div>
-
       <Sub title="모서리">
         <p>
           이 사이트는 각진 선과 면이 기본이다. 모서리는 세 가지만 쓴다: 없음,
@@ -61,12 +44,12 @@ export function ShapeSection() {
             className="border border-neutral-300"
           />
           <Sample
-            label="컨트롤 (결정 1)"
+            label="컨트롤 2px (rounded-xs)"
             note="버튼·입력·드롭다운·검색창·파일 선택"
             className="rounded-xs border border-neutral-300"
           />
           <Sample
-            label="알약·원"
+            label="알약·원 (rounded-full)"
             note="태그·필터 알약·단일 선택 알약·원 그래픽"
             className="rounded-full border border-neutral-300"
           />
@@ -76,45 +59,6 @@ export function ShapeSection() {
           6·8·12·16px 각 한 곳씩 · 알약 30px 3곳 · 원.
         </p>
       </Sub>
-
-      <Decision title="결정 1 — 컨트롤 모서리">
-        <div className="flex flex-wrap gap-10">
-          {[
-            [
-              'A. 2px (추천)',
-              'rounded-xs',
-              '버튼 1→2, 입력 2 그대로, 드롭다운 등 4→2. 사이트의 각진 인상에 맞다.',
-            ],
-            [
-              'B. 4px',
-              'rounded-sm',
-              '버튼 1→4, 입력 2→4, 드롭다운 등 4 그대로. 조금 부드럽다.',
-            ],
-          ].map(([label, cls, note]) => (
-            <div key={label} className="flex w-72 flex-col gap-3">
-              <p className="type-label">{label}</p>
-              <div className="flex items-center gap-3">
-                <span
-                  className={`inline-flex h-8.5 items-center bg-neutral-700 px-4 type-label text-white ${cls}`}
-                >
-                  저장
-                </span>
-                <span
-                  className={`inline-flex h-8.5 items-center border border-neutral-200 bg-neutral-100 px-4 type-label text-neutral-600 ${cls}`}
-                >
-                  취소
-                </span>
-              </div>
-              <div
-                className={`h-8 border border-neutral-300 bg-white px-3 type-ui leading-8 text-neutral-500 ${cls}`}
-              >
-                제목을 입력해 주세요
-              </div>
-              <p className="type-meta text-neutral-500">{note}</p>
-            </div>
-          ))}
-        </div>
-      </Decision>
 
       <Sub title="그림자">
         <p>
@@ -128,10 +72,9 @@ export function ShapeSection() {
             className="border border-neutral-200"
           />
           <Sample
-            label="떠 있는 층"
+            label="떠 있는 층 (shadow-overlay)"
             note="모달·드롭다운·날짜 선택"
-            className=""
-            style={{ boxShadow: '0 4px 20px 0 rgba(0,0,0,.15)' }}
+            className="shadow-overlay"
           />
         </div>
         <p className="type-meta text-neutral-500">
@@ -140,23 +83,6 @@ export function ShapeSection() {
           3-6·3-7에서 본다.
         </p>
       </Sub>
-
-      <Decision title="결정 2 — 인물 사진 그림자">
-        <p>
-          교수진·교직원 사진에만 옅은 그림자(drop-shadow)가 있다. 규칙대로면
-          없앤다.
-        </p>
-        <div className="flex gap-10">
-          <div className="flex flex-col items-center gap-2">
-            <div className="h-28 w-24 bg-neutral-200 drop-shadow-[0_0_4px_rgba(0,0,0,.15)]" />
-            <p className="type-meta">A. 지금(그림자)</p>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <div className="h-28 w-24 bg-neutral-200" />
-            <p className="type-meta">B. 없앰 (추천 — 다른 사진·카드와 같게)</p>
-          </div>
-        </div>
-      </Decision>
 
       <Sub title="선">
         <ul className="list-disc space-y-1 pl-5">

@@ -71,7 +71,7 @@ export default function CourseEditor({
         />
         <button
           type="button"
-          className="h-8 w-[120px] cursor-default rounded-sm border border-neutral-300 pl-2 text-left type-ui text-neutral-500"
+          className="h-8 w-[120px] cursor-default rounded-xs border border-neutral-300 pl-2 text-left type-ui text-neutral-500"
           onClick={() => toast.error(t('교과목 코드는 수정할 수 없습니다'))}
         >
           {defaultValues.code}

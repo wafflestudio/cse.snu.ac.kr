@@ -61,6 +61,9 @@
   --color-chrome-bar: #2d2d30;
   --color-chrome-menu: #323235;
 
+  /* 그림자는 화면 위에 떠 있는 것(모달·드롭다운·날짜 선택)에만, 이 하나. */
+  --shadow-overlay: 0 4px 20px 0 rgb(0 0 0 / 0.15);
+
   --text-xs: 0.75rem; /* 12px */
   --text-sm: 0.8125rem; /* 13px */
   --text-md: 0.875rem; /* 14px */

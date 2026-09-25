@@ -65,7 +65,7 @@ export default function TimelineViewer<T extends ProcessedTimelineContent>({
       <LoginVisible allow="ROLE_STAFF">
         <Link
           to={createPath}
-          className="mb-8 ml-1 flex h-[30px] w-fit items-center rounded-2xl border border-main-orange pl-1 pr-2 pt-px type-label text-main-orange duration-200 hover:bg-main-orange hover:text-white"
+          className="mb-8 ml-1 flex h-[30px] w-fit items-center rounded-full border border-main-orange pl-1 pr-2 pt-px type-label text-main-orange duration-200 hover:bg-main-orange hover:text-white"
         >
           <Plus className="h-[22px] w-[22px]" strokeWidth={1.5} />
           <span>{t('연도 추가')}</span>
@@ -168,7 +168,7 @@ function ContentViewer({
     <div className="mb-6">
       <div className="mb-4 type-item">{title}</div>
       <Attachments files={attachments} />
-      <div className="rounded-sm bg-neutral-50 p-4">
+      <div className="bg-neutral-50 p-4">
         <HTMLViewer html={description} />
       </div>
       <ActionButtons year={year} pathname={pathname} />
@@ -210,7 +210,7 @@ function TogglableContentViewer({
       {isExpanded && (
         <>
           <Attachments files={attachments} />
-          <div className="rounded-sm bg-neutral-50 p-4">
+          <div className="bg-neutral-50 p-4">
             <HTMLViewer html={description} />
           </div>
           <ActionButtons year={year} pathname={pathname} />

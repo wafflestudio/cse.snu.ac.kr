@@ -48,7 +48,7 @@ export default function AddReservationModal({
       open={open}
       onOpenChange={onOpenChange}
       title="시설 예약"
-      contentClassName="border-b border-t-[3px] border-main-orange bg-neutral-100 px-8 pb-6 pt-8 type-ui text-neutral-700"
+      contentClassName="border-b border-t-3 border-main-orange bg-neutral-100 px-8 pb-6 pt-8 type-ui text-neutral-700"
     >
       <FormProvider {...methods}>
         <form onSubmit={onSubmit}>

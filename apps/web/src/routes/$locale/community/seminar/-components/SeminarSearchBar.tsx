@@ -36,11 +36,11 @@ export default function SeminarSearchBar() {
       <label htmlFor="seminar-search" className="type-label">
         {t('검색')}
       </label>
-      <div className="flex h-7.5 w-60 items-center rounded-sm bg-neutral-100 pr-3">
+      <div className="flex h-7.5 w-60 items-center rounded-xs bg-neutral-100 pr-3">
         <input
           type="text"
           id="seminar-search"
-          className="autofill-bg-neutral-100 w-full rounded-sm bg-transparent px-2 type-ui tracking-wide outline-none"
+          className="autofill-bg-neutral-100 w-full rounded-xs bg-transparent px-2 type-ui tracking-wide outline-none"
           value={text}
           onChange={handleChange}
         />

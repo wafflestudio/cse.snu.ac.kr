@@ -40,7 +40,7 @@ export default function SearchBox({
     <div className={clsx('mb-12 w-full', disabled && 'opacity-30')}>
       <form
         className={clsx(
-          'flex flex-col gap-6 rounded-sm bg-neutral-50 p-6',
+          'flex flex-col gap-6 bg-neutral-50 p-6',
           !formOnly && 'mb-8',
         )}
         onSubmit={(e) => {

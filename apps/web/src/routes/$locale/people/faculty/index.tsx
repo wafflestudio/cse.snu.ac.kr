@@ -24,7 +24,7 @@ const SORT_OPTIONS = [
 
 const sortPillClass = (selected: boolean) =>
   clsx(
-    'inline-flex cursor-pointer select-none items-center justify-center gap-2 rounded-[.0625rem] h-8.5 px-4 type-label transition duration-200',
+    'inline-flex cursor-pointer select-none items-center justify-center gap-2 rounded-xs h-8.5 px-4 type-label transition duration-200',
     'has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-neutral-700',
     selected
       ? 'bg-neutral-700 text-white hover:bg-neutral-500'

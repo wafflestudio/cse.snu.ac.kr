@@ -63,10 +63,10 @@ const TEXT_SIZE_CLASSES: Record<ButtonSize, string> = {
 
 // variant → 시각 클래스(기존 variant/tone 조합과 바이트 동일).
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
-  primary: 'rounded-[.0625rem] bg-main-orange text-white',
-  neutral: 'rounded-[.0625rem] bg-neutral-700 text-white hover:bg-neutral-500',
+  primary: 'rounded-xs bg-main-orange text-white',
+  neutral: 'rounded-xs bg-neutral-700 text-white hover:bg-neutral-500',
   secondary:
-    'rounded-[.0625rem] border border-neutral-200 bg-neutral-100 text-neutral-600 hover:bg-neutral-200',
+    'rounded-xs border border-neutral-200 bg-neutral-100 text-neutral-600 hover:bg-neutral-200',
   quiet: 'text-neutral-500 hover:text-white',
   nav: 'text-white hover:text-neutral-200',
 };

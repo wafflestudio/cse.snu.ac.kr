@@ -42,7 +42,7 @@ function PeopleCard({
     <article className="group flex w-fit flex-row gap-6 type-ui sm:w-36 sm:flex-col sm:gap-3">
       <Link
         to={href}
-        className="relative h-48 w-36 shrink-0 cursor-pointer overflow-hidden drop-shadow-[0px_0px_4px_rgba(0,0,0,0.15)]"
+        className="relative h-48 w-36 shrink-0 cursor-pointer overflow-hidden"
         aria-label={`${name} 교수 상세 페이지로 이동`}
       >
         {imageURL ? (
