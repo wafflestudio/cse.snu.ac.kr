@@ -81,7 +81,7 @@ function MobileNavMenuItem({
     ) : (
       <>
         {translated.slice(0, idx)}
-        <span className="type-caption">{translated.slice(idx)}</span>
+        <span className="type-meta">{translated.slice(idx)}</span>
       </>
     );
 

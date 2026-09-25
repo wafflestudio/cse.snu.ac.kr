@@ -176,7 +176,7 @@ function CserealPart({ part, members }: { part: string; members: string[] }) {
         {members.map((member) => (
           <span
             key={member}
-            className="rounded-full border border-neutral-200 bg-white px-3 py-1 type-caption text-neutral-600"
+            className="rounded-full border border-neutral-200 bg-white px-3 py-1 type-meta text-neutral-600"
           >
             {member}
           </span>

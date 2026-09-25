@@ -86,7 +86,7 @@ function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
               />
             </li>
             {i !== items.length - 1 && (
-              <li className="type-caption">
+              <li className="type-meta">
                 <ChevronRight className="h-[12px] w-[12px]" strokeWidth={1.5} />
               </li>
             )}
@@ -107,7 +107,7 @@ function LocationText({ path, name, isCurrent }: LocationTextProps) {
   const { localizedPath } = useLanguage();
   const _navigate = useNavigate();
   const router = useRouter();
-  const textStyle = 'type-caption tracking-[.02em]';
+  const textStyle = 'type-meta tracking-[.02em]';
 
   if (isCurrent) {
     // 브레드크럼 현재 항목: 형제 Link/span과 색을 맞춰야 해 색을 상속받는다(text-inherit).

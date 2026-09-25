@@ -26,7 +26,7 @@ export default function LinkRow({ to, title, subtitle }: LinkRowProps) {
         )}
       >
         <p className="type-item">{title}</p>
-        {subtitle && <p className="type-caption">{subtitle}</p>}
+        {subtitle && <p className="type-meta">{subtitle}</p>}
       </div>
       <ArrowRight
         className={clsx(

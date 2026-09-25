@@ -72,16 +72,8 @@ const LEVELS: Level[] = [
     cls: 'type-meta',
     spec: '13 · 400',
     sample: '2026/09/25 · 행정실 · 조회수 1,024',
-    use: '날짜·작성자·조회수, 도움말, 짧은 설명',
+    use: '날짜·작성자·조회수, 도움말, 짧은 설명, breadcrumb, 뱃지, 달력 칸 같은 가장 작은 글자',
     preview: 'type-meta text-neutral-500',
-  },
-  {
-    role: '캡션',
-    cls: 'type-caption',
-    spec: '12 · 400',
-    sample: '필수 입력 항목입니다',
-    use: '아주 작은 표시, breadcrumb(모바일)',
-    preview: 'type-caption text-neutral-500',
   },
 ];
 
@@ -132,7 +124,8 @@ export function TypeSection() {
           역할마다 크기·굵기·줄높이를 한 벌로 묶은 클래스(<code>type-*</code>)가
           있다. 화면을 만들 때는 역할을 고르고 그 클래스 하나만 쓴다.
           크기·굵기·줄높이 클래스를 따로 쓰지 않는다. 색은 따로 붙인다. 크기는
-          12·13·14·16·20·24·32 일곱 가지, 굵기는 400·500·700 세 가지다.
+          13·14·16·20·24·32 여섯 가지, 굵기는 400·500·700 세 가지다. 12px 이하는
+          쓰지 않는다(한글이 너무 작다).
         </p>
         <div className="divide-y divide-neutral-200 border-y border-neutral-200">
           {LEVELS.map((l) => (
@@ -165,7 +158,7 @@ export function TypeSection() {
             14px에 28px. 이 사이트의 기존 값이다.
           </li>
           <li>
-            나머지 역할(제목·UI 글자·라벨·보조·캡션)은 줄높이 1.2다. 사이트
+            나머지 역할(제목·UI 글자·라벨·보조)은 줄높이 1.2다. 사이트
             기본값이고, 한 줄짜리 컴포넌트 글자가 위아래로 부풀지 않는다.
           </li>
           <li>

@@ -82,7 +82,7 @@ function CareerCompanyViewer({
         </p>
         <p className={`type-ui sm:pl-2 ${TABLE_COLUMN_SIZE[1]}`}>{name}</p>
         <a
-          className={`order-last col-span-2 col-start-2 w-fit type-caption text-link underline underline-offset-2 sm:order-0 sm:mt-0 sm:pl-2
+          className={`order-last col-span-2 col-start-2 w-fit type-meta text-link underline underline-offset-2 sm:order-0 sm:mt-0 sm:pl-2
             ${url && 'mt-1'} ${TABLE_COLUMN_SIZE[2]}`}
           href={url ?? undefined}
           target="_blank"

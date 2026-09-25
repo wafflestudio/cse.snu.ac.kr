@@ -142,7 +142,7 @@ export default function AddCourseModal({
               width="w-[90px]"
             />
           </div>
-          <div className="mb-10 mt-1.5 type-caption text-main-orange">
+          <div className="mb-10 mt-1.5 type-meta text-main-orange">
             {t('* 교과목 번호는 추후 수정할 수 없습니다.')}
           </div>
           <Fieldset

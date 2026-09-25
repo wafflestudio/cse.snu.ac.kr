@@ -73,7 +73,7 @@ const SelectedImageViewer = ({
         />
         <button
           type="button"
-          className="type-caption underline"
+          className="type-meta underline"
           onClick={removeFile}
         >
           삭제
@@ -99,10 +99,10 @@ const SelectedImageViewer = ({
         height={imageHeight}
       />
       <div className="flex flex-col items-start justify-between">
-        <p className="type-caption">{`${file.file.name}(${fileSizeRounded}KB)`}</p>
+        <p className="type-meta">{`${file.file.name}(${fileSizeRounded}KB)`}</p>
         <button
           type="button"
-          className="type-caption underline"
+          className="type-meta underline"
           onClick={handleDeleteBlob}
         >
           삭제

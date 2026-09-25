@@ -96,7 +96,7 @@ function NavLabel({ text }: { text: string }) {
   return (
     <>
       {text.slice(0, idx)}
-      <span className="type-caption">{text.slice(idx)}</span>
+      <span className="type-meta">{text.slice(idx)}</span>
     </>
   );
 }

@@ -157,12 +157,6 @@
   line-height: 1.2;
   font-weight: 400;
 }
-@utility type-caption {
-  font-size: 0.75rem;
-  line-height: 1.2;
-  font-weight: 400;
-}
-
 /* 표준 페이지 본문 가로 거터 — 단일 출처.
    데스크톱 좌우 100px(px-25), 서브내비가 보이는 1280px 부터 오른쪽 360px(pr-90). 모바일 20px(px-5).
    페이지·섹션은 가로 거터를 인라인 재선언하지 말고 이 클래스를 쓴다(세로 패딩만 각자). */
