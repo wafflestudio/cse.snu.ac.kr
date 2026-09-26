@@ -4,35 +4,14 @@ import Node from '@/components/ui/Nodes';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { SubNavConfig, SubNavConfigItem } from '@/hooks/useSubNav';
 
-// TODO: 더 나은 방법
-const heightMap = [
-  'h-[33px]',
-  'h-[66px]',
-  'h-[99px]',
-  'h-[132px]',
-  'h-[165px]',
-  'h-[198px]',
-  'h-[231px]',
-  'h-[264px]',
-  'h-[297px]',
-  'h-[330px]',
-  'h-[363px]',
-  'h-[396px]',
-  'h-[429px]',
-  'h-[462px]',
-];
-
 export default function SubNavbar({ title, titlePath, items }: SubNavConfig) {
   const { localizedPath } = useLanguage();
 
   return (
     <div className="absolute right-[80px] top-0 hidden h-full xl:block">
       <div
-        className={clsx(
-          'sticky top-[52px] col-start-2 row-span-full mb-8 mt-13 flex',
-          // 예약 페이지는 20개
-          items.length === 20 ? 'h-[692px]' : heightMap[items.length],
-        )}
+        // 세로 곡선은 목록 높이에 맞춰 늘어난다(항목 수별 높이 표 없음).
+        className="sticky top-[52px] col-start-2 row-span-full mb-8 mt-13 flex"
       >
         <Node variant="curvedVertical" />
         <div className="pl-1.5 pt-2.75">

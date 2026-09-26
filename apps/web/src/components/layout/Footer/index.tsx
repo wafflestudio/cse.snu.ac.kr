@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import {
-  getLinkGroups,
+  LINK_GROUPS,
   type LinkGroupProps,
 } from '@/components/layout/Footer/linkGroups';
 import Dialog from '@/components/ui/Dialog';
@@ -19,7 +19,7 @@ const CSEREAL_MEMBERS = [
 ];
 
 export default function Footer() {
-  const { locale, pathWithoutLocale } = useLanguage(footerTranslations);
+  const { pathWithoutLocale } = useLanguage(footerTranslations);
 
   // Main page or navigationTree의 top-level 페이지들은 dark mode
   const mode = [
@@ -44,9 +44,10 @@ export default function Footer() {
   return (
     <footer className={`border-t-2 ${borderTop}`}>
       <div
-        className={`${topBg} flex flex-wrap gap-y-8 px-5 py-8 sm:px-15 sm:py-12`}
+        // 열은 글 길이만큼, 사이는 간격으로(모바일 24·데스크톱 48). 열 폭을 적지 않는다.
+        className={`${topBg} flex flex-wrap gap-x-6 gap-y-8 px-5 py-8 sm:gap-x-12 sm:px-15 sm:py-12`}
       >
-        {getLinkGroups(locale).map((group) => (
+        {LINK_GROUPS.map((group) => (
           <LinkGroup key={group.groupName} {...group} mode={mode} />
         ))}
       </div>
@@ -60,12 +61,7 @@ export default function Footer() {
   );
 }
 
-function LinkGroup({
-  groupName,
-  links,
-  width,
-  mode = 'light',
-}: LinkGroupProps) {
+function LinkGroup({ groupName, links, mode = 'light' }: LinkGroupProps) {
   const { t } = useLanguage(footerTranslations);
 
   const titleColor =
@@ -76,7 +72,7 @@ function LinkGroup({
       : 'text-neutral-300 sm:text-neutral-500';
 
   return (
-    <section className={width}>
+    <section>
       <h3 className={`${titleColor} mb-2 type-label tracking-[0.025rem]`}>
         {groupName}
       </h3>
@@ -84,9 +80,8 @@ function LinkGroup({
       <ul className={`${itemColor} flex flex-col gap-3 type-ui`}>
         {links.map((link, i) => (
           <li key={i}>
-            <Link to={link.href} className="whitespace-nowrap">
-              {t(link.title)}
-            </Link>
+            {/* 자리가 모자랄 때만 열 안에서 줄을 바꾼다. */}
+            <Link to={link.href}>{t(link.title)}</Link>
           </li>
         ))}
       </ul>
@@ -138,49 +133,26 @@ function FooterBottomLeft() {
       <Dialog
         open={cserealOpen}
         onOpenChange={setCserealOpen}
-        title="CSEREAL 팀 소개"
-        hideTitle
-        size="lg"
+        title="Team CSEREAL"
       >
-        <div className="flex flex-col gap-6">
-          <h1 className="type-section text-neutral-950">
-            Team <span className="text-main-orange">CSEREAL</span>
-            <br />
-            <span className="type-meta text-neutral-500">
-              컴퓨터공학부 디자인 · 개발 팀입니다.
-            </span>
-          </h1>
-          <CserealMembers />
-        </div>
+        <p className="mb-6 type-body text-neutral-600">
+          컴퓨터공학부 홈페이지를 만든 디자인·개발 팀입니다.
+        </p>
+        {/* 이름 목록이라 태그 모양 없이 글로 잇는다(/design-system#navigation). */}
+        <dl className="divide-y divide-neutral-200 border-y border-neutral-200">
+          {CSEREAL_MEMBERS.map(({ part, members }) => (
+            <div
+              key={part}
+              className="grid grid-cols-[120px_1fr] items-baseline gap-4 py-4"
+            >
+              <dt className="type-label">{part}</dt>
+              <dd className="type-ui text-neutral-700">
+                {members.join(' · ')}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </Dialog>
-    </div>
-  );
-}
-
-function CserealMembers() {
-  return (
-    <div className="grid gap-6 sm:grid-cols-3">
-      {CSEREAL_MEMBERS.map((info) => (
-        <CserealPart part={info.part} members={info.members} key={info.part} />
-      ))}
-    </div>
-  );
-}
-
-function CserealPart({ part, members }: { part: string; members: string[] }) {
-  return (
-    <div className="border border-neutral-200 bg-neutral-50 p-4">
-      <h4 className="type-item text-main-orange">{part}</h4>
-      <div className="mt-4 flex flex-wrap gap-2">
-        {members.map((member) => (
-          <span
-            key={member}
-            className="rounded-full border border-neutral-200 bg-white px-3 py-1 type-meta text-neutral-600"
-          >
-            {member}
-          </span>
-        ))}
-      </div>
     </div>
   );
 }

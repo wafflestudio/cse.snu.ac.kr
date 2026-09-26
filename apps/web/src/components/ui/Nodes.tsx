@@ -27,14 +27,17 @@ export default function Node({
           <Circle tone="neutral" />
           <Straight direction="row" tone="neutral" />
         </div>
-        <Diagonal width="w-[90px]" tone="neutral" />
+        {/* 모바일은 짧게 — 경로 마지막 항목 뒤에 붙을 자리를 남긴다. */}
+        <Diagonal width="w-12 sm:w-[90px]" tone="neutral" />
       </div>
     );
   }
 
   if (variant === 'curvedVertical') {
     return (
-      <div className={`flex flex-col ${grow ? 'grow' : ''} h-full w-[25px]`}>
+      <div
+        className={`flex flex-col ${grow ? 'grow' : ''} self-stretch w-[25px]`}
+      >
         <StraightBlock direction="col" tone={color} />
         <Diagonal
           width="w-[25px]"

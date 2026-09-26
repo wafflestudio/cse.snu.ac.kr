@@ -5,7 +5,6 @@ import {
   useRouter,
 } from '@tanstack/react-router';
 import { ChevronRight } from 'lucide-react';
-import { Fragment } from 'react';
 import Node from '@/components/ui/Nodes';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { BreadcrumbItem } from './index';
@@ -26,11 +25,8 @@ export default function PageTitle({
       <div
         className={`col-start-1 row-start-1 w-fit min-w-62.5 max-w-207.5 mb-6 sm:mb-12`}
       >
-        <div className="mb-2 flex items-center justify-center gap-2">
-          {breadcrumb && breadcrumb.length > 0 && (
-            <Breadcrumb items={breadcrumb} />
-          )}
-          <Node variant="curvedHorizontalGray" />
+        <div className="mb-2">
+          <Breadcrumb items={breadcrumb ?? []} />
         </div>
         {title && (
           <h3 className="mr-25">
@@ -67,30 +63,32 @@ function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
   const { pathname } = useLocation();
   const { localizedPath } = useLanguage();
 
+  // 항목 안에서는 줄을 바꾸지 않고 항목 단위로 넘어간다(왼쪽 정렬). 화살표는 뒤 항목에 붙는다.
+  // 곡선 그래픽은 마지막 항목 뒤에서 남은 자리를 채우고, 자리가 없으면 함께 다음 줄로 간다.
   return (
-    <ol className="flex items-center gap-1 text-neutral-300">
+    <ol className="flex flex-wrap items-center gap-x-1 gap-y-1 text-neutral-300">
       {items.map((item, i) => {
         const isCurrent = item.path
           ? pathname === localizedPath(item.path)
           : false;
 
         return (
-          <Fragment key={`${item.name}-${i}`}>
-            <li className="flex">
-              <LocationText
-                path={item.path}
-                name={item.name}
-                isCurrent={isCurrent}
-              />
-            </li>
-            {i !== items.length - 1 && (
-              <li className="flex type-meta">
-                <ChevronRight />
-              </li>
-            )}
-          </Fragment>
+          <li
+            key={`${item.name}-${i}`}
+            className="flex items-center gap-1 whitespace-nowrap"
+          >
+            {i > 0 && <ChevronRight className="type-meta" />}
+            <LocationText
+              path={item.path}
+              name={item.name}
+              isCurrent={isCurrent}
+            />
+          </li>
         );
       })}
+      <li aria-hidden className="ml-1 flex min-w-14 grow">
+        <Node variant="curvedHorizontalGray" />
+      </li>
     </ol>
   );
 }

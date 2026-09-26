@@ -1,5 +1,4 @@
 import type commonTranslations from '@/translations.json';
-import type { Locale } from '@/types/i18n';
 import type footerOnlyTranslations from './translations.json';
 
 type FooterTranslations = typeof commonTranslations &
@@ -11,7 +10,6 @@ type Links = { href: string; title: TranslationKeys }[];
 export type LinkGroupProps = {
   groupName: string;
   links: Links;
-  width: string;
   mode?: 'light' | 'dark';
 };
 
@@ -42,26 +40,21 @@ const moreLinks = [
   { title: '해동학술정보실', href: 'http://haedong.snu.ac.kr/' },
 ] satisfies Links;
 
-export const getLinkGroups = (locale: Locale) =>
-  [
-    {
-      groupName: 'About',
-      links: aboutLinks,
-      width: locale === 'ko' ? 'w-[7.5rem]' : 'w-[10rem]',
-    },
-    {
-      groupName: 'Resources',
-      links: resourcesLinks,
-      width: 'w-[8.25rem]',
-    },
-    {
-      groupName: 'Research',
-      links: researchLinks,
-      width: 'w-[9rem]',
-    },
-    {
-      groupName: 'More',
-      links: moreLinks,
-      width: 'w-[8rem]',
-    },
-  ] satisfies LinkGroupProps[];
+export const LINK_GROUPS = [
+  {
+    groupName: 'About',
+    links: aboutLinks,
+  },
+  {
+    groupName: 'Resources',
+    links: resourcesLinks,
+  },
+  {
+    groupName: 'Research',
+    links: researchLinks,
+  },
+  {
+    groupName: 'More',
+    links: moreLinks,
+  },
+] satisfies LinkGroupProps[];

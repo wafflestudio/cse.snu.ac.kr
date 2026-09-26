@@ -24,7 +24,7 @@ const DARK: Swatch[] = [
   },
   {
     name: 'neutral-850',
-    role: '판(카테고리 머리·메인 공지·내비 펼침 패널·푸터 아랫단)',
+    role: '판(카테고리 머리·메인 공지·왼쪽 내비·모바일 메뉴·푸터 아랫단)',
     className: 'bg-neutral-850',
   },
   {
@@ -38,7 +38,7 @@ const CHROME: Swatch[] = [
   { name: 'chrome-bar', role: '모바일 상단 바', className: 'bg-chrome-bar' },
   {
     name: 'chrome-menu',
-    role: '왼쪽 내비·모바일 메뉴',
+    role: '내비 펼침 패널·모바일 메뉴 펼침(내비 위로 올라온 면이라 더 밝다)',
     className: 'bg-chrome-menu',
   },
 ];
