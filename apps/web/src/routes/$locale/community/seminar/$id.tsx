@@ -5,14 +5,13 @@ import { pageNumParam } from '@/utils/searchSchema';
 import 'dayjs/locale/ko';
 import type { ReactNode } from 'react';
 import PageLayout from '@/components/layout/PageLayout';
-import Attachments from '@/components/ui/Attachments';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import Image from '@/components/ui/Image';
-import Node from '@/components/ui/Nodes';
 import { toast, toastError } from '@/components/ui/sonner';
 import { useCountView } from '@/hooks/useCountView';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
+import PostDetail from '@/routes/$locale/community/-components/PostDetail';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { Seminar } from '@/types/api';
@@ -24,12 +23,8 @@ function SeminarDetailPage() {
   const { t, locale, localizedPath } = useLanguage({
     세미나: 'Seminars',
     소식: 'Community',
-    이름: 'Name',
-    소속: 'Affiliation',
+    연사: 'Speaker',
     주최: 'Host',
-    날짜: 'Date',
-    위치: 'Location',
-    직함: 'Title',
     요약: 'Summary',
     '연사 소개': 'Speaker Introduction',
   });
@@ -67,73 +62,64 @@ function SeminarDetailPage() {
       subNav={subNav}
       bands
     >
-      <h2 className="page-gutter-x py-8 type-section">{seminar.title}</h2>
-      <div className="bg-neutral-50 page-gutter-x pb-16 pt-8 sm:pb-32">
-        <Attachments files={seminar.attachments ?? []} />
-        <div className="mb-8 flex flex-col-reverse justify-between gap-6 type-ui sm:flex-row">
-          <div className="flex flex-col gap-3">
-            <div>
-              {t('이름')}:{' '}
-              <LinkOrText href={seminar.speakerURL}>{seminar.name}</LinkOrText>
-            </div>
-            {seminar.speakerTitle && (
-              <p>
-                {t('직함')}: {seminar.speakerTitle}
-              </p>
-            )}
-            <div>
-              {t('소속')}:{' '}
-              <LinkOrText href={seminar.affiliationURL}>
-                {seminar.affiliation}
-              </LinkOrText>
-            </div>
-            <div className="mt-8">
-              {t('주최')}: {seminar.host}
-            </div>
-            <div>
-              {t('날짜')}:{' '}
-              {formatStartEndDate(seminar.startDate, seminar.endDate, locale)}
-            </div>
-            <div>
-              {t('위치')}: {seminar.location}
-            </div>
-          </div>
+      <PostDetail
+        title={seminar.title}
+        // 언제·어디서·누가 여는지는 제목 바로 아래 정보 줄로.
+        meta={[
+          formatStartEndDate(seminar.startDate, seminar.endDate, locale),
+          seminar.location,
+          `${t('주최')} ${seminar.host}`,
+        ]}
+        attachments={seminar.attachments ?? []}
+        footer={
+          <PostFooter
+            post={seminar}
+            listPath="/community/seminar"
+            editPath={`/community/seminar/edit/${seminar.id}`}
+            onDelete={handleDelete}
+          />
+        }
+      >
+        {/* 대표 이미지는 오른쪽에 띄우고 글이 감싸 흐른다(모바일은 위) — 새 소식 본문 이미지와 같다.
+            이미지 아래부터는 글이 다시 읽기 폭(640)까지 넓어진다. */}
+        <div className="flow-root">
           {seminar.imageURL && (
-            <Image
-              alt="대표 이미지"
-              src={seminar.imageURL}
-              // 데스크톱 sm:w-60(240px), 모바일은 좌우 mx-8 을 뺀 폭
-              sizes="(min-width: 1024px) 240px, calc(100vw - 4rem)"
-              className="object-contain mx-8 aspect-square sm:h-60 sm:w-60"
-            />
+            <div className="relative mb-8 w-full sm:float-right sm:ml-8 sm:w-60">
+              <Image
+                alt="대표 이미지"
+                src={seminar.imageURL}
+                sizes="(min-width: 1024px) 240px, 100vw"
+                className="aspect-square w-full object-contain"
+              />
+            </div>
+          )}
+
+          {/* 연사도 요약·연사 소개와 같은 소제목 + 본문 짜임. */}
+          <div className="mb-2 type-item">{t('연사')}</div>
+          <p className="type-body">
+            <LinkOrText href={seminar.speakerURL}>{seminar.name}</LinkOrText>
+            {seminar.speakerTitle && ` · ${seminar.speakerTitle}`}
+            {' · '}
+            <LinkOrText href={seminar.affiliationURL}>
+              {seminar.affiliation}
+            </LinkOrText>
+          </p>
+
+          {seminar.description && (
+            <>
+              <div className="mt-12 mb-2 type-item">{t('요약')}</div>
+              <HTMLViewer html={seminar.description} />
+            </>
+          )}
+
+          {seminar.introduction && (
+            <>
+              <div className="mt-12 mb-2 type-item">{t('연사 소개')}</div>
+              <HTMLViewer html={seminar.introduction} />
+            </>
           )}
         </div>
-
-        {seminar.description && (
-          <>
-            <div className="mt-12 type-item">{t('요약')}</div>
-            <HTMLViewer html={seminar.description} />
-          </>
-        )}
-
-        {seminar.introduction && (
-          <>
-            <div className="mt-12 type-item">{t('연사 소개')}</div>
-            <HTMLViewer html={seminar.introduction} />
-          </>
-        )}
-
-        <div className="h-10" />
-
-        <Node variant="straight" />
-
-        <PostFooter
-          post={seminar}
-          listPath="/community/seminar"
-          editPath={`/community/seminar/edit/${seminar.id}`}
-          onDelete={handleDelete}
-        />
-      </div>
+      </PostDetail>
     </PageLayout>
   );
 }

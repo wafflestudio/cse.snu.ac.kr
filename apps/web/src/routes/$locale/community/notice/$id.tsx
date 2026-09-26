@@ -5,14 +5,12 @@ import { pageNumParam } from '@/utils/searchSchema';
 import 'dayjs/locale/ko';
 import { useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
-import Attachments from '@/components/ui/Attachments';
 import HTMLViewer from '@/components/ui/HTMLViewer';
-import Node from '@/components/ui/Nodes';
 import { toast, toastError } from '@/components/ui/sonner';
-import { Tag } from '@/components/ui/Tag';
 import { useCountView } from '@/hooks/useCountView';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
+import PostDetail from '@/routes/$locale/community/-components/PostDetail';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { Notice } from '@/types/api';
@@ -21,11 +19,7 @@ import { stripHtml, truncateDescription } from '@/utils/string';
 function NoticeDetailPage() {
   const notice = Route.useLoaderData();
 
-  const { t, locale, localizedPath } = useLanguage({
-    작성자: 'Author',
-    '작성 날짜': 'Date',
-    조회수: 'Views',
-  });
+  const { t, locale, localizedPath } = useLanguage({ 조회: 'Views' });
   const subNav = useCommunitySubNav();
   const navigate = useNavigate();
   useCountView('notice', notice.id);
@@ -58,56 +52,37 @@ function NoticeDetailPage() {
       pageTitle={pageTitle}
       pageDescription={pageDescription}
     >
-      <div className="flex flex-col gap-4 page-gutter-x py-8">
-        <h2 className="type-section">{notice.title}</h2>
-        <div className="flex gap-4 type-meta tracking-wide text-neutral-500">
-          <p>
-            {t('작성자')}: {notice.author}
-          </p>
-          <p>
-            {t('작성 날짜')}:{' '}
-            {dayjs(notice.createdAt)
-              .locale(locale)
-              .format('YYYY/M/DD (ddd) A hh:mm')}
-          </p>
-          {/* 조회 때마다 늘어 정규화가 안 된다 — E2E 가 마스킹하는 지점. */}
-          <p data-testid="view-count">
-            {t('조회수')} {notice.viewCount.toLocaleString()}
-          </p>
-        </div>
-      </div>
-
-      <div className="bg-neutral-50 page-gutter-x pt-8 pb-16 sm:pb-32">
-        <Attachments files={notice.attachments ?? []} />
-
+      <PostDetail
+        title={notice.title}
+        meta={[
+          notice.author,
+          dayjs(notice.createdAt)
+            .locale(locale)
+            .format('YYYY/M/DD (ddd) A hh:mm'),
+          // 조회 때마다 늘어 정규화가 안 된다 — E2E 가 마스킹하는 지점.
+          <span key="views" data-testid="view-count">
+            {t('조회')} {notice.viewCount.toLocaleString()}
+          </span>,
+        ]}
+        attachments={notice.attachments ?? []}
+        // 서버에서 랜덤 순서로 오는 듯해 정렬한다.
+        tags={notice.tags
+          .toSorted((a, b) => a.localeCompare(b))
+          .map((tag) => ({
+            label: tag,
+            href: localizedPath(`/community/notice?tag=${tag}`),
+          }))}
+        footer={
+          <PostFooter
+            post={notice}
+            listPath="/community/notice"
+            editPath={`/community/notice/edit/${notice.id}`}
+            onDelete={handleDelete}
+          />
+        }
+      >
         <HTMLViewer html={notice.description} />
-
-        <div className="h-10" />
-
-        <Node variant="straight" />
-
-        {notice.tags.length > 0 && (
-          <div className="mt-3 ml-6 flex flex-wrap gap-2">
-            {/* 서버에서 랜덤 순서로 오는듯  */}
-            {notice.tags
-              .toSorted((a, b) => a.localeCompare(b))
-              .map((tag: string) => (
-                <Tag
-                  key={tag}
-                  label={tag}
-                  href={localizedPath(`/community/notice?tag=${tag}`)}
-                />
-              ))}
-          </div>
-        )}
-
-        <PostFooter
-          post={notice}
-          listPath="/community/notice"
-          editPath={`/community/notice/edit/${notice.id}`}
-          onDelete={handleDelete}
-        />
-      </div>
+      </PostDetail>
     </PageLayout>
   );
 }

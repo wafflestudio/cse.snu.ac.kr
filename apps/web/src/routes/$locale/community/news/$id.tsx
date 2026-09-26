@@ -1,14 +1,12 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import PageLayout from '@/components/layout/PageLayout';
-import Attachments from '@/components/ui/Attachments';
 import HTMLViewer from '@/components/ui/HTMLViewer';
-import Node from '@/components/ui/Nodes';
 import { toast, toastError } from '@/components/ui/sonner';
-import { Tag } from '@/components/ui/Tag';
 import { useCountView } from '@/hooks/useCountView';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
+import PostDetail from '@/routes/$locale/community/-components/PostDetail';
 import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { News } from '@/types/api';
@@ -19,7 +17,7 @@ import { stripHtml, truncateDescription } from '@/utils/string';
 function NewsDetailPage() {
   const news = Route.useLoaderData();
 
-  const { t, locale, localizedPath } = useLanguage({ 조회수: 'Views' });
+  const { t, locale, localizedPath } = useLanguage({ 조회: 'Views' });
   const subNav = useCommunitySubNav();
   const navigate = useNavigate();
   useCountView('news', news.id);
@@ -52,22 +50,34 @@ function NewsDetailPage() {
       pageTitle={pageTitle}
       pageDescription={pageDescription}
     >
-      <div className="flex flex-col gap-4 page-gutter-x py-8">
-        <h2 className="type-section">{news.title}</h2>
-        <div className="flex gap-4 type-meta tracking-wide text-neutral-500">
-          <time>
+      <PostDetail
+        title={news.title}
+        meta={[
+          <time key="date">
             {dayjs(news.date).locale(locale).format('YYYY/M/DD (ddd)')}
-          </time>
-          {/* 조회 때마다 늘어 정규화가 안 된다 — E2E 가 마스킹하는 지점. */}
-          <p data-testid="view-count">
-            {t('조회수')} {news.viewCount.toLocaleString()}
-          </p>
-        </div>
-      </div>
-
-      <div className="bg-neutral-50 page-gutter-x pt-8 pb-16 sm:pb-32">
-        <Attachments files={news.attachments ?? []} />
-
+          </time>,
+          // 조회 때마다 늘어 정규화가 안 된다 — E2E 가 마스킹하는 지점.
+          <span key="views" data-testid="view-count">
+            {t('조회')} {news.viewCount.toLocaleString()}
+          </span>,
+        ]}
+        attachments={news.attachments ?? []}
+        // 서버에서 랜덤 순서로 오는 듯해 정렬한다.
+        tags={news.tags
+          .toSorted((a, b) => a.localeCompare(b))
+          .map((tag) => ({
+            label: tag,
+            href: localizedPath(`/community/news?tag=${tag}`),
+          }))}
+        footer={
+          <PostFooter
+            post={news}
+            listPath="/community/news"
+            editPath={`/community/news/edit/${news.id}`}
+            onDelete={handleDelete}
+          />
+        }
+      >
         <HTMLViewer
           html={news.description}
           image={
@@ -78,33 +88,7 @@ function NewsDetailPage() {
             }
           }
         />
-
-        <div className="h-10" />
-
-        <Node variant="straight" />
-
-        {news.tags.length > 0 && (
-          <div className="mt-3 ml-6 flex flex-wrap gap-2">
-            {/* 서버에서 랜덤 순서로 오는듯  */}
-            {news.tags
-              .toSorted((a, b) => a.localeCompare(b))
-              .map((tag: string) => (
-                <Tag
-                  key={tag}
-                  label={tag}
-                  href={localizedPath(`/community/news?tag=${tag}`)}
-                />
-              ))}
-          </div>
-        )}
-
-        <PostFooter
-          post={news}
-          listPath="/community/news"
-          editPath={`/community/news/edit/${news.id}`}
-          onDelete={handleDelete}
-        />
-      </div>
+      </PostDetail>
     </PageLayout>
   );
 }

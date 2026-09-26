@@ -31,8 +31,10 @@ export default function HTMLViewer({
   const hasImage = isNotFalsy(image);
   const hasComponent = isNotFalsy(component);
 
+  // 자기 이미지를 띄울 때만 flow-root 로 감싼다 — 그렇지 않으면 바깥에 띄운 이미지(세미나 대표 이미지)를
+  // 본문 글이 감싸 흐르지 못하고 이미지 옆 좁은 칸에 갇힌다.
   return (
-    <div className="flow-root">
+    <div className={clsx((hasImage || hasComponent) && 'flow-root')}>
       {hasImage && (
         <div
           className={clsx(

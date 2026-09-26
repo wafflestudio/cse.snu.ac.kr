@@ -49,23 +49,26 @@ export default function PostFooter({
 
   return (
     <div className="mt-12 flex flex-col">
-      {nextPost && (
-        <PostNavLink
-          href={localizedPath(`${listPath}/${nextPost.id}`)}
-          label={t('다음글')}
-          title={nextPost.title}
-          icon={<ChevronUp />}
-        />
-      )}
+      {/* 다음글·이전글 사이 8(/design-system#post). */}
+      <div className="flex flex-col gap-2">
+        {nextPost && (
+          <PostNavLink
+            href={localizedPath(`${listPath}/${nextPost.id}`)}
+            label={t('다음글')}
+            title={nextPost.title}
+            icon={<ChevronUp />}
+          />
+        )}
 
-      {prevPost && (
-        <PostNavLink
-          href={localizedPath(`${listPath}/${prevPost.id}`)}
-          label={t('이전글')}
-          title={prevPost.title}
-          icon={<ChevronDown />}
-        />
-      )}
+        {prevPost && (
+          <PostNavLink
+            href={localizedPath(`${listPath}/${prevPost.id}`)}
+            label={t('이전글')}
+            title={prevPost.title}
+            icon={<ChevronDown />}
+          />
+        )}
+      </div>
 
       <div className="mt-12 flex justify-end gap-3">
         {(onDelete || editPath) && (
@@ -121,7 +124,7 @@ const PostNavLink = ({
   title: string;
   icon: ReactNode;
 }) => (
-  <Link to={href} className="group mb-1 flex w-fit items-center">
+  <Link to={href} className="group flex w-fit items-center">
     <span className="type-label text-main-orange">{icon}</span>
     <p className="mr-3 shrink-0 type-label text-main-orange">{label}</p>
     <p className="line-clamp-1 type-ui group-hover:underline">{title}</p>
