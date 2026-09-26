@@ -11,7 +11,7 @@ export default function ImportantSection({
   importantList: MainImportant[];
 }) {
   return (
-    <div className="mt-10 grid grid-cols-1 gap-8 sm:mx-[7.5rem] sm:mt-[4.0625rem] sm:grid-cols-2 sm:gap-7">
+    <div className="mt-12 grid grid-cols-1 gap-8 sm:mx-32 sm:mt-16 sm:grid-cols-2 sm:gap-8">
       {importantList.map((important) => (
         <ImportantBanner key={important.id} important={important} />
       ))}
@@ -26,12 +26,12 @@ const ImportantBanner = ({ important }: { important: MainImportant }) => {
   return (
     <Link
       to={localizedPath(`/community/${important.category}/${important.id}`)}
-      className="relative flex min-h-30 flex-col gap-[0.62rem] pb-11 bg-main-orange-dark px-[1.75rem] pt-[1.63rem]"
+      className="relative flex min-h-30 flex-col gap-2 pb-12 bg-main-orange-dark px-6 pt-6"
     >
       <h3 className="line-clamp-2 text-balance type-section text-neutral-950 sm:line-clamp-1">
         {important.title}
       </h3>
-      <p className="mr-[24px] line-clamp-1 type-meta text-neutral-950">
+      <p className="mr-6 line-clamp-1 type-meta text-neutral-950">
         {important.description}
       </p>
       <ImportantSectionArrow />
@@ -42,7 +42,7 @@ const ImportantBanner = ({ important }: { important: MainImportant }) => {
 const CharityBanner = () => (
   <a
     href="https://computingcommons.snu.ac.kr/"
-    className="relative flex min-h-30 flex-col gap-[0.62rem] pb-11 px-[1.75rem] pt-[1.63rem]"
+    className="relative flex min-h-30 flex-col gap-2 pb-12 px-6 pt-6"
   >
     <Image
       src={charityImg}
@@ -61,5 +61,5 @@ const CharityBanner = () => (
 );
 
 const ImportantSectionArrow = () => (
-  <ArrowRight className="absolute bottom-[0.87rem] right-[0.87rem] size-7 text-neutral-950" />
+  <ArrowRight className="absolute bottom-4 right-4 size-7 text-neutral-950" />
 );

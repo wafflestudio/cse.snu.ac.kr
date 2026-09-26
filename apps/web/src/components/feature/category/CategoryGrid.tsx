@@ -8,18 +8,15 @@ import { useLanguage } from '@/hooks/useLanguage';
 
 interface CategoryGridProps {
   currentPage: NavItem | null;
-  theme: 'light' | 'dark';
 }
 
+// 카드 사이 모바일 24·데스크톱 32(/design-system#main).
 const ROOT_GRID_CLASS =
-  'mb-5 grid grid-cols-[repeat(2,1fr)] gap-9 sm:mb-10 sm:grid-cols-[repeat(auto-fill,300px)] sm:gap-9';
+  'mb-6 grid grid-cols-[repeat(2,1fr)] gap-6 sm:mb-8 sm:grid-cols-[repeat(auto-fill,300px)] sm:gap-8';
 const LEAF_GRID_CLASS =
-  'grid grid-cols-[repeat(2,1fr)] gap-5 sm:mb-10 sm:grid-cols-[repeat(auto-fill,300px)] sm:gap-10';
+  'grid grid-cols-[repeat(2,1fr)] gap-6 sm:mb-8 sm:grid-cols-[repeat(auto-fill,300px)] sm:gap-8';
 
-export default function CategoryGrid({
-  currentPage,
-  theme,
-}: CategoryGridProps) {
+export default function CategoryGrid({ currentPage }: CategoryGridProps) {
   const [selectedCategory, setSelectedCategory] = useState<NavItem | null>(
     null,
   );
@@ -27,7 +24,6 @@ export default function CategoryGrid({
   const { localizedPath, tUnsafe } = useLanguage(navbarTranslations);
 
   const children = currentPage?.children ?? [];
-  const isLight = theme === 'light';
 
   if (children.length === 0) return null;
 
@@ -40,26 +36,14 @@ export default function CategoryGrid({
   };
 
   return (
-    <div
-      className={clsx(
-        isLight ? 'bg-white' : 'bg-neutral-900',
-        'px-5 py-7 sm:px-25 sm:pb-45 sm:pt-20',
-      )}
-    >
+    <div className="bg-neutral-900 px-5 pt-8 pb-16 sm:px-25 sm:pt-16 sm:pb-32">
       <div className={ROOT_GRID_CLASS}>
         {children.map((subpage) => {
-          const { bgColor, hoverColor, borderColor } = getRootItemStyles(
-            selectedCategory?.key === subpage.key,
-            isLight,
-          );
-
           return (
             <CategoryItem
               key={subpage.path ?? subpage.key}
               title={tUnsafe(subpage.key)}
-              bgColor={bgColor}
-              hoverColor={hoverColor}
-              borderColor={borderColor}
+              tone={selectedCategory?.key === subpage.key ? 'selected' : 'root'}
               hasArrow={Boolean(subpage.path)}
               onClick={() => handleItemClick(subpage)}
             />
@@ -73,8 +57,7 @@ export default function CategoryGrid({
             <CategoryItem
               key={subpage.path ?? subpage.key}
               title={tUnsafe(subpage.key)}
-              bgColor="bg-neutral-400"
-              hoverColor="bg-neutral-500"
+              tone="leaf"
               hasArrow
               onClick={() =>
                 subpage.path && navigate({ to: localizedPath(subpage.path) })
@@ -87,50 +70,22 @@ export default function CategoryGrid({
   );
 }
 
-function getRootItemStyles(isSelected: boolean, isLight: boolean) {
-  if (isSelected) {
-    return {
-      bgColor: 'bg-main-orange-dark',
-      hoverColor: 'bg-main-orange-dark',
-      borderColor: undefined,
-    };
-  }
-
-  if (isLight) {
-    return {
-      bgColor: 'bg-neutral-50',
-      hoverColor: 'bg-neutral-200',
-      borderColor: 'border-neutral-200',
-    };
-  }
-
-  return {
-    bgColor: 'bg-neutral-100',
-    hoverColor: 'bg-main-orange-dark',
-    borderColor: undefined,
-  };
-}
+// 호버는 바탕이 한 단계 진해지고 화살표가 민다. 선택(하위를 펼친 카드)은 짙은 주황 + 흰 글자 —
+// 호버와 선택이 같은 색이면 무엇을 골랐는지 구분되지 않는다(/design-system#main).
+const TONE_CLASS = {
+  root: 'bg-neutral-100 text-neutral-950 hover:bg-neutral-200',
+  selected: 'bg-main-orange-dark text-white',
+  leaf: 'bg-neutral-400 text-neutral-950 hover:bg-neutral-500',
+} as const;
 
 interface CategoryItemProps {
   title: string;
   hasArrow: boolean;
-  bgColor: string;
-  hoverColor?: string;
-  borderColor?: string;
+  tone: keyof typeof TONE_CLASS;
   onClick: () => void;
 }
 
-function CategoryItem({
-  title,
-  hasArrow,
-  bgColor,
-  hoverColor,
-  borderColor,
-  onClick,
-}: CategoryItemProps) {
-  const hoverBgColor = hoverColor
-    ? `hover:${hoverColor}`
-    : 'hover:bg-main-orange-dark';
+function CategoryItem({ title, hasArrow, tone, onClick }: CategoryItemProps) {
   const englishLabel =
     navbarTranslations[title as keyof typeof navbarTranslations] ?? '';
 
@@ -138,22 +93,18 @@ function CategoryItem({
     <button
       type="button"
       className={clsx(
-        'group flex h-[96px] cursor-pointer flex-col justify-between px-[14px] py-[13px] duration-300 sm:h-[160px] sm:px-7 sm:py-6',
-        bgColor,
-        hoverBgColor,
-        borderColor && `border ${borderColor}`,
+        'group flex h-24 cursor-pointer flex-col justify-between p-4 duration-300 sm:h-40 sm:p-6',
+        TONE_CLASS[tone],
       )}
       onClick={onClick}
     >
       <div>
-        <h3 className="mb-2.5 type-item text-neutral-950 sm:mb-2.5 text-start">
-          {title}
-        </h3>
-        <p className="type-body text-neutral-950 text-start">{englishLabel}</p>
+        <h3 className="mb-2 type-item text-start">{title}</h3>
+        <p className="type-body text-start">{englishLabel}</p>
       </div>
       {hasArrow && (
         <div className="text-end">
-          <ArrowRight className="size-[18px] text-neutral-950 duration-300 group-hover:translate-x-[10px] sm:size-8" />
+          <ArrowRight className="size-5 duration-300 group-hover:translate-x-2.5 sm:size-8" />
         </div>
       )}
     </button>

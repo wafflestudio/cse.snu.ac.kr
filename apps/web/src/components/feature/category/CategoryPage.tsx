@@ -42,13 +42,11 @@ export default function CategoryPage({
   return (
     <div className="bg-neutral-850">
       <Header />
-      <div className="max-w-7xl px-5 py-8 sm:px-25 sm:pb-18 sm:pt-12">
-        <div className="mb-2 text-sm font-normal text-neutral-500 sm:text-[20px]">
+      <div className="max-w-7xl px-5 py-8 sm:px-25 sm:pt-12 sm:pb-16">
+        <div className="mb-2 type-ui text-neutral-500 sm:type-section sm:font-normal">
           {subtitle}
         </div>
-        <div className="text-[32px] font-semibold tracking-wide text-white sm:text-[64px]">
-          {resolvedTitle}
-        </div>
+        <div className="type-display text-white">{resolvedTitle}</div>
         {description && (
           <Description
             className="mb-6 mt-8 hidden sm:block"
@@ -58,9 +56,9 @@ export default function CategoryPage({
           </Description>
         )}
       </div>
-      <CategoryGrid currentPage={currentPage} theme="dark" />
+      <CategoryGrid currentPage={currentPage} />
       {description && (
-        <div className="px-5 pb-14 pt-7 sm:hidden">
+        <div className="px-5 pt-8 pb-16 sm:hidden">
           <Description contentClassName="!text-neutral-400 type-body">
             {description}
           </Description>

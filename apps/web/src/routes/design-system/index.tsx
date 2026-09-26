@@ -10,6 +10,7 @@ import { GraphicSection } from './-sections/graphic';
 import { IconSection } from './-sections/icon';
 import { LayoutSection } from './-sections/layout';
 import { ListSection } from './-sections/list';
+import { MainSection } from './-sections/main';
 import { NavigationSection } from './-sections/navigation';
 import { PageSection } from './-sections/page';
 import { PostSection } from './-sections/post';
@@ -64,7 +65,7 @@ const GROUPS: Group[] = [
       { id: 'list', title: '목록·상태 화면', content: <ListSection /> },
       { id: 'post', title: '게시물 상세', content: <PostSection /> },
       { id: 'reading', title: '읽는 본문·이미지', content: <ReadingSection /> },
-      { id: 'main', title: '메인·카테고리' },
+      { id: 'main', title: '메인·카테고리', content: <MainSection /> },
       { id: 'unique', title: '고유 화면' },
       { id: 'writing', title: '문구' },
     ],

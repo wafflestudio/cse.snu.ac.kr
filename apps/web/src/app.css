@@ -104,6 +104,17 @@
 /* 글자 역할. 크기·굵기·줄높이를 한 벌로 묶는다 — 화면에서는 역할 하나를 고르고 크기·굵기·줄높이를
    따로 쓰지 않는다. 색은 따로 붙인다. 줄간격은 여러 줄로 읽는 본문(type-body, 28px)에만 주고,
    제목·UI·라벨처럼 컴포넌트 안의 글자는 사이트 기본값 1.2 를 쓴다. 규칙과 근거는 /design-system#type. */
+/* 카테고리 머리의 큰 제목 — 글자 단계 밖의 표시 크기(모바일 32·데스크톱 64). 그 자리 전용. */
+@utility type-display {
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 700;
+  @variant sm {
+    font-size: 4rem;
+    line-height: 1.2;
+  }
+}
+
 @utility type-page-title {
   font-size: 1.5rem;
   line-height: 1.2;

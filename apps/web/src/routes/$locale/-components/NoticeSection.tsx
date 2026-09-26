@@ -1,7 +1,7 @@
 import 'dayjs/locale/ko';
 import { Link } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import { Plus } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import Image from '@/components/ui/Image';
 import PillGroup from '@/components/ui/PillGroup';
@@ -29,7 +29,7 @@ export default function NoticeSection({
   const { t, localizedPath, locale } = useLanguage();
 
   return (
-    <div className="relative mt-16 bg-neutral-850 sm:mx-31 sm:mt-22 sm:h-112">
+    <div className="relative mt-16 bg-neutral-850 sm:mx-32 sm:mt-16 sm:h-112">
       <div className="absolute left-0 top-0 hidden aspect-827/295 w-[77%] sm:block">
         <Image
           src={noticeGraphicImg}
@@ -38,9 +38,9 @@ export default function NoticeSection({
           className="absolute inset-0 h-full w-full"
         />
       </div>
-      <div className="flex flex-col px-7 pb-6.5 pt-12 sm:absolute sm:bottom-12 sm:right-12 sm:w-132 sm:p-0">
+      <div className="flex flex-col px-6 pb-6 pt-12 sm:absolute sm:bottom-12 sm:right-12 sm:w-132 sm:p-0">
         <h3 className="type-headline text-white">{t('공지사항')}</h3>
-        <div className="mt-6 flex items-center justify-between sm:mt-9">
+        <div className="mt-6 flex items-center justify-between sm:mt-8">
           <PillGroup
             ariaLabel={t('공지사항')}
             tone="dark"
@@ -53,10 +53,10 @@ export default function NoticeSection({
           />
           {!isMobile && (
             <Link
-              className="flex items-center type-ui text-main-orange-dark"
+              className="flex items-center gap-1 type-ui text-main-orange-dark"
               to={localizedPath('/community/notice')}
             >
-              <Plus /> {t('더보기')}
+              {t('더보기')} <ArrowRight />
             </Link>
           )}
         </div>
@@ -81,10 +81,10 @@ export default function NoticeSection({
         </div>
         {isMobile && (
           <Link
-            className="ml-auto mt-6 flex items-center type-ui text-main-orange-dark"
+            className="ml-auto mt-6 flex items-center gap-1 type-ui text-main-orange-dark"
             to={localizedPath('/community/notice')}
           >
-            <Plus /> {t('더보기')}
+            {t('더보기')} <ArrowRight />
           </Link>
         )}
       </div>
