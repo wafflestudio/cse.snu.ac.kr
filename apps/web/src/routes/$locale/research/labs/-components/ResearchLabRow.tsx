@@ -1,7 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { FileText } from 'lucide-react';
 import { Fragment } from 'react';
-import { LAB_ROW_ITEM_WIDTH } from '@/routes/$locale/research/labs';
 import type { SimpleResearchLab } from '@/types/api';
 import YoutubeIcon from '../assets/youtube_icon.svg?react';
 
@@ -20,7 +19,7 @@ export default function ResearchLabListRow({
   const hasIntro = Boolean(pdf || youtube);
 
   return (
-    <li className="grid-rows-auto grid grid-cols-[auto_1fr] items-end gap-2 bg-white px-6 py-6 type-ui tracking-[0.02em] odd:bg-neutral-50 sm:flex sm:h-11 sm:flex-nowrap sm:items-center sm:px-2 sm:py-0 sm:odd:bg-white">
+    <li className="grid-rows-auto grid grid-cols-[auto_1fr] items-end gap-2 bg-white px-6 py-6 type-ui tracking-[0.02em] odd:bg-neutral-50 sm:col-span-full sm:h-11 sm:grid-cols-subgrid sm:items-center sm:px-2 sm:py-0">
       <LabNameCell id={id} name={name} localizedPath={localizedPath} />
       <LabProfessorsCell
         professors={professors}
@@ -28,17 +27,15 @@ export default function ResearchLabListRow({
         labelProfessor={labelProfessor}
       />
       <span
-        className={`${LAB_ROW_ITEM_WIDTH.location} ${hasLocation ? '' : 'hidden sm:inline'} col-span-3 text-neutral-500`}
+        className={`${hasLocation ? '' : 'hidden sm:inline'} col-span-3 text-neutral-500 sm:col-span-1`}
       >
         {location}
       </span>
-      <span
-        className={`${LAB_ROW_ITEM_WIDTH.tel} ${hasTel ? '' : 'hidden sm:inline'} text-neutral-500`}
-      >
+      <span className={`${hasTel ? '' : 'hidden sm:inline'} text-neutral-500`}>
         {tel}
       </span>
       <span
-        className={`${LAB_ROW_ITEM_WIDTH.acronym} -order-2 col-span-2 row-span-1 text-main-orange sm:order-0 sm:text-neutral-500`}
+        className={`-order-2 col-span-2 row-span-1 text-main-orange sm:order-0 sm:col-span-1 sm:text-neutral-500`}
       >
         {acronym}
       </span>
@@ -63,7 +60,7 @@ function LabNameCell({
 }) {
   return (
     <span
-      className={`${LAB_ROW_ITEM_WIDTH.name} order-first col-span-1 row-span-1 type-item sm:type-ui sm:whitespace-normal`}
+      className={`order-first col-span-1 row-span-1 type-item sm:type-ui sm:whitespace-normal`}
     >
       <Link
         className="text-neutral-950 hover:text-main-orange"
@@ -85,9 +82,7 @@ function LabProfessorsCell({
   labelProfessor: string;
 }) {
   return (
-    <span
-      className={`${LAB_ROW_ITEM_WIDTH.professor} col-span-3 type-ui text-neutral-950 sm:text-neutral-950`}
-    >
+    <span className={`col-span-3 type-ui text-neutral-950 sm:col-span-1`}>
       <span className="sm:hidden">{labelProfessor}: </span>
       {professors.map((info, index) => (
         <Fragment key={info.id}>
@@ -117,7 +112,7 @@ function LabMaterialsCell({
 }) {
   return (
     <span
-      className={`${LAB_ROW_ITEM_WIDTH.introMaterial} ${hasIntro ? '' : 'hidden sm:inline'} col-span-3 flex items-center gap-3`}
+      className={`${hasIntro ? '' : 'hidden sm:inline'} col-span-3 flex items-center gap-3 sm:col-span-1`}
     >
       {pdf && (
         <a

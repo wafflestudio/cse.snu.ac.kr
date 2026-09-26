@@ -16,22 +16,26 @@ export default function NotFound() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { localizedPath, t } = useLanguage({
-    '존재하지 않는 경로입니다': 'Page not found',
+    '페이지를 찾을 수 없습니다': 'Page not found',
     '메인으로 이동': 'Go to home',
   });
 
   return (
     <>
-      <title>{t('존재하지 않는 경로입니다')}</title>
+      <title>{t('페이지를 찾을 수 없습니다')}</title>
       <meta name="robots" content="noindex" />
       <Header />
       <ErrorState
-        title="404"
-        message={`${t('존재하지 않는 경로입니다')}: ${pathname}`}
-        action={{
-          label: t('메인으로 이동'),
-          onClick: () => navigate({ to: localizedPath('/') }),
-        }}
+        code="404"
+        title={t('페이지를 찾을 수 없습니다')}
+        detail={pathname}
+        actions={[
+          {
+            label: t('메인으로 이동'),
+            variant: 'primary',
+            onClick: () => navigate({ to: localizedPath('/') }),
+          },
+        ]}
       />
     </>
   );

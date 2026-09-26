@@ -32,7 +32,7 @@ const translations = {
   이메일: 'Email',
   핸드폰: 'Phone',
   회: 'times',
-  불러오는중: 'Loading...',
+  '불러오는 중…': 'Loading…',
   예약상세: 'Reservation Detail',
   삭제: 'Delete',
   '해당 예약만 삭제': 'Delete this reservation',
@@ -107,7 +107,7 @@ export default function ReservationDetailModal({
         <div>
           <div className="mb-4 flex items-center justify-between">
             <h2 className="type-section text-neutral-950">
-              {reservation?.title ?? t('불러오는중')}
+              {reservation?.title ?? t('불러오는 중…')}
             </h2>
           </div>
 

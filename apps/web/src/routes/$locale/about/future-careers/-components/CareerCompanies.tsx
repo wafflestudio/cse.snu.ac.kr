@@ -11,14 +11,6 @@ import {
 import type { Company } from '@/types/api';
 import { api } from '@/utils/api';
 
-export const TABLE_COLUMN_SIZE = [
-  'sm:w-[3rem]',
-  'sm:w-50',
-  'sm:w-80',
-  'sm:w-20',
-  'sm:w-32',
-];
-
 export default function CareerCompanies({
   companies,
 }: {
@@ -60,7 +52,8 @@ export default function CareerCompanies({
           </LoginVisible>
         </div>
       </div>
-      <div className="border-y border-neutral-200 type-ui">
+      {/* 칸 틀은 목록에 한 번만 — 머리 행·행·편집 행이 같이 쓴다(subgrid). */}
+      <div className="border-y border-neutral-200 type-ui sm:grid sm:grid-cols-[auto_auto_auto_auto_auto] sm:gap-x-3">
         <CompanyTableHeader />
         {showCreateForm && (
           <CareerCompanyEditor
@@ -68,7 +61,7 @@ export default function CareerCompanies({
             onSubmit={onCreate}
           />
         )}
-        <ol>
+        <ol className="sm:col-span-full sm:grid sm:grid-cols-subgrid">
           {companies.map((company, index) => (
             <CompanyTableRow
               key={company.id}
@@ -91,14 +84,14 @@ function CompanyTableHeader() {
   });
 
   return (
-    <div className="hidden h-10 items-center gap-3 whitespace-nowrap type-label border-b border-neutral-200 sm:flex sm:px-3">
-      <p className={TABLE_COLUMN_SIZE[0]}>{t('연번')}</p>
-      <p className={`${TABLE_COLUMN_SIZE[1]} pl-2`}>{t('창업 기업명')}</p>
-      <p className={`${TABLE_COLUMN_SIZE[2]} pl-2`}>{t('홈페이지')}</p>
-      <p className={`${TABLE_COLUMN_SIZE[3]} pl-2`}>{t('창업연도')}</p>
+    <div className="hidden h-11 items-center whitespace-nowrap border-b border-neutral-200 type-label text-neutral-950 sm:col-span-full sm:grid sm:grid-cols-subgrid sm:px-3">
+      <p className="pl-2">{t('연번')}</p>
+      <p className="pl-2">{t('창업 기업명')}</p>
+      <p className="pl-2">{t('홈페이지')}</p>
+      <p className="pl-2">{t('창업연도')}</p>
       {/* 표 본문과 UI 정렬을 맞추기 위함 */}
       <LoginVisible allow="ROLE_STAFF">
-        <p className={`hidden shrink-0 sm:block ${TABLE_COLUMN_SIZE[4]}`} />
+        <p />
       </LoginVisible>
     </div>
   );

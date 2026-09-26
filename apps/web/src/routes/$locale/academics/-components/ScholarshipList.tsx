@@ -1,4 +1,4 @@
-import { Link } from '@tanstack/react-router';
+import DotLinkList from '@/components/ui/DotLinkList';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { StudentType } from '@/types/api';
 
@@ -22,23 +22,17 @@ export default function ScholarshipList({
       <h3 className="border-b border-b-neutral-200 pb-4 type-section">
         {t('장학금 종류')}
       </h3>
-      <ul className="mt-4">
-        {scholarships.map((item) => (
-          <li key={item.id} className="w-fit py-2">
-            <Link
-              to={localizedPath(
-                `/academics/${studentType}/scholarship/${item.id}`,
-              )}
-              className="group flex items-center gap-2 px-3"
-            >
-              <div className="h-2.5 w-2.5 shrink-0 rounded-full border border-main-orange duration-300 group-hover:bg-main-orange" />
-              <span className="type-ui duration-300 group-hover:text-main-orange">
-                {item.name}
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <div className="mt-4">
+        <DotLinkList
+          items={scholarships.map((item) => ({
+            key: item.id,
+            to: localizedPath(
+              `/academics/${studentType}/scholarship/${item.id}`,
+            ),
+            label: item.name,
+          }))}
+        />
+      </div>
     </div>
   );
 }

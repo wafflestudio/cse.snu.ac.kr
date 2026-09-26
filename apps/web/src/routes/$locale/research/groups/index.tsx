@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useRouter } from '@tanstack/react-router';
+import { createFileRoute, useRouter } from '@tanstack/react-router';
 import { useState } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import SelectionList from '@/components/feature/selection/SelectionList';
@@ -7,6 +7,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import PageBand from '@/components/layout/PageLayout/PageBand';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
+import DotLinkList from '@/components/ui/DotLinkList';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import Image from '@/components/ui/Image';
 import { toast, toastError } from '@/components/ui/sonner';
@@ -126,24 +127,16 @@ function ResearchGroupsPage() {
               </div>
             )}
             <div className="mt-12 sm:mx-0">
-              <h3 className="mb-2 whitespace-nowrap type-item sm:pl-3">
+              <h3 className="mb-2 whitespace-nowrap px-3 type-item">
                 {t('연구실')}
               </h3>
-              <ul>
-                {item.labs.map((lab) => (
-                  <li key={lab.id} className="mb-1 w-fit whitespace-nowrap">
-                    <Link
-                      to={localizedPath(`/research/labs/`)}
-                      className="group flex h-7 items-center gap-2 sm:px-3"
-                    >
-                      <span className="h-2.5 w-2.5 rounded-full border border-main-orange duration-300 group-hover:bg-main-orange" />
-                      <span className="type-ui duration-300 group-hover:text-main-orange">
-                        {lab.name}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <DotLinkList
+                items={item.labs.map((lab) => ({
+                  key: lab.id,
+                  to: localizedPath('/research/labs/'),
+                  label: lab.name,
+                }))}
+              />
             </div>
           </div>
         </PageBand>

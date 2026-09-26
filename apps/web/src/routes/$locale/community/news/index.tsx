@@ -3,6 +3,7 @@ import LoginVisible from '@/components/feature/auth/LoginVisible';
 import SearchBox from '@/components/feature/SearchBox';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
+import EmptyState from '@/components/ui/EmptyState';
 import Pagination from '@/components/ui/Pagination';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
@@ -91,7 +92,9 @@ function NewsList({ posts }: NewsListProps) {
 
   if (posts.length === 0) {
     return (
-      <p className="mx-3 mb-8 mt-8">{t('검색 결과가 존재하지 않습니다.')}</p>
+      <div className="mt-8 mb-8">
+        <EmptyState>{t('검색 결과가 존재하지 않습니다.')}</EmptyState>
+      </div>
     );
   }
 

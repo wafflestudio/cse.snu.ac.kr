@@ -1,8 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router';
+import clsx from 'clsx';
 import { useState } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import SearchBox from '@/components/feature/SearchBox';
 import PageLayout from '@/components/layout/PageLayout';
+import EmptyState from '@/components/ui/EmptyState';
 import Pagination from '@/components/ui/Pagination';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSetToggle } from '@/hooks/useSetToggle';
@@ -15,9 +17,7 @@ import {
   stringParam,
 } from '@/utils/searchSchema';
 import AdminFeatures from './-components/AdminFeatures';
-import NoticeListRow, {
-  NOTICE_ROW_CELL_WIDTH,
-} from './-components/NoticeListRow';
+import NoticeListRow from './-components/NoticeListRow';
 import { NOTICE_TAGS } from './-constants';
 
 const POST_LIMIT = 20;
@@ -78,30 +78,31 @@ function NoticePage() {
       <SearchBox tags={NOTICE_TAGS} disabled={isEditMode} />
 
       {data.searchList.length === 0 ? (
-        <p className="mx-3 mb-8 mt-8">{t('검색 결과가 존재하지 않습니다.')}</p>
+        <div className="mt-8 mb-8">
+          <EmptyState>{t('검색 결과가 존재하지 않습니다.')}</EmptyState>
+        </div>
       ) : (
-        <div className="mb-8 mt-8 border-y border-neutral-200 sm:mx-3">
-          <h5 className="hidden h-11 items-center border-b border-neutral-200 pl-12.5 type-label text-neutral-950 sm:flex">
-            <span
-              className={`${NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow whitespace-nowrap tracking-wide sm:pl-3`}
-            >
-              {t('제목')}
-            </span>
-            <span
-              className={`${NOTICE_ROW_CELL_WIDTH.date} shrink-0 whitespace-nowrap tracking-wide sm:pl-8 sm:pr-6`}
-            >
-              {t('날짜')}
-            </span>
-            <span
-              className={`${NOTICE_ROW_CELL_WIDTH.views} shrink-0 whitespace-nowrap tracking-wide sm:pr-8`}
-            >
-              {t('조회수')}
-            </span>
+        // 칸 틀은 목록에 한 번만 적고 머리 행·행이 같이 쓴다(subgrid) — 칸 폭을 적지 않는다.
+        <div
+          className={clsx(
+            'mb-8 mt-8 border-y border-neutral-200 sm:mx-3 sm:grid',
+            isEditMode
+              ? 'sm:grid-cols-[auto_auto_minmax(0,1fr)_auto_auto]'
+              : 'sm:grid-cols-[auto_minmax(0,1fr)_auto_auto]',
+          )}
+        >
+          <h5 className="hidden h-11 items-center whitespace-nowrap border-b border-neutral-200 type-label text-neutral-950 sm:col-span-full sm:grid sm:grid-cols-subgrid">
+            {isEditMode && <span />}
+            <span />
+            <span className="pl-3">{t('제목')}</span>
+            <span className="pl-8 pr-6">{t('날짜')}</span>
+            <span className="pr-8">{t('조회수')}</span>
           </h5>
           <ul
-            className={`${
-              isEditMode && 'divide-y divide-dashed divide-neutral-200'
-            }`}
+            className={clsx(
+              'sm:col-span-full sm:grid sm:grid-cols-subgrid',
+              isEditMode && 'divide-y divide-dashed divide-neutral-200',
+            )}
           >
             {data.searchList.map((post) => (
               <NoticeListRow

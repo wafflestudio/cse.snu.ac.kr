@@ -1,34 +1,53 @@
-import type { ReactNode } from 'react';
 import Button from './Button';
 
+// 오류 화면(/design-system#list): 다른 페이지와 같은 틀 — 어두운 제목 영역(상태 코드·제목) + 흰 본문.
 interface ErrorAction {
   label: string;
   onClick: () => void;
+  variant: 'primary' | 'secondary';
 }
 
 interface ErrorStateProps {
+  code: string;
   title: string;
-  message: ReactNode;
-  action: ErrorAction;
+  message?: string; // 제목과 겹치면 쓰지 않는다
+  detail?: string; // 요청 주소·상태 문구(13px)
+  actions: ErrorAction[];
 }
 
 export default function ErrorState({
+  code,
   title,
   message,
-  action,
+  detail,
+  actions,
 }: ErrorStateProps) {
   return (
-    <div className="flex grow flex-col items-center justify-center bg-neutral-900 px-6 py-16 sm:py-32">
-      <div className="text-center">
-        <div className="mb-8">
-          <div className="mb-6 text-[120px] font-bold leading-none text-main-orange sm:text-[160px]">
+    <div className="flex grow flex-col bg-neutral-900">
+      <div className="px-5 pt-12 sm:px-25">
+        <div className="mb-6 sm:mb-12">
+          <p className="mb-2 type-meta text-neutral-300">{code}</p>
+          <h1 className="type-page-title break-keep wrap-anywhere text-white">
             {title}
-          </div>
-          <p className="type-section text-white">{message}</p>
+          </h1>
         </div>
-        <Button variant="primary" onClick={action.onClick}>
-          {action.label}
-        </Button>
+      </div>
+      <div className="grow bg-white page-gutter-x pt-8 pb-16 sm:pt-12 sm:pb-32">
+        {message && <p className="type-body">{message}</p>}
+        {detail && (
+          <p className="type-meta break-all text-neutral-500">{detail}</p>
+        )}
+        <div className="mt-6 flex gap-3">
+          {actions.map((action) => (
+            <Button
+              key={action.label}
+              variant={action.variant}
+              onClick={action.onClick}
+            >
+              {action.label}
+            </Button>
+          ))}
+        </div>
       </div>
     </div>
   );

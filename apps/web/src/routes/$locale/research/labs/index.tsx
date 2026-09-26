@@ -57,21 +57,18 @@ function ResearchLabsPage() {
         </div>
       </LoginVisible>
 
-      <div className="sm:border-y sm:border-neutral-200">
-        <h4 className="hidden h-10 items-center gap-2 whitespace-nowrap bg-neutral-100 px-2 type-label tracking-[0.02em] sm:flex">
-          <span className={LAB_ROW_ITEM_WIDTH.name}>{t('연구실')}</span>
-          <span className={LAB_ROW_ITEM_WIDTH.professor}>{t('지도교수')}</span>
-          <span className={LAB_ROW_ITEM_WIDTH.location}>
-            {t('연구실 위치')}
-          </span>
-          <span className={LAB_ROW_ITEM_WIDTH.tel}>{t('전화')}</span>
-          <span className={LAB_ROW_ITEM_WIDTH.acronym}>{t('약자')}</span>
-          <span className={LAB_ROW_ITEM_WIDTH.introMaterial}>
-            {t('소개 자료')}
-          </span>
+      {/* 칸 틀은 목록에 한 번만 — 머리 행·행이 같이 쓴다(subgrid). 연구실 이름 칸만 남는 자리. */}
+      <div className="sm:grid sm:grid-cols-[minmax(0,1fr)_auto_auto_auto_auto_auto] sm:gap-x-6 sm:border-y sm:border-neutral-200">
+        <h4 className="hidden h-11 items-center whitespace-nowrap border-b border-neutral-200 px-2 type-label text-neutral-950 sm:col-span-full sm:grid sm:grid-cols-subgrid">
+          <span>{t('연구실')}</span>
+          <span>{t('지도교수')}</span>
+          <span>{t('연구실 위치')}</span>
+          <span>{t('전화')}</span>
+          <span>{t('약자')}</span>
+          <span>{t('소개 자료')}</span>
         </h4>
 
-        <ul className="sm:divide-y sm:divide-dashed sm:divide-neutral-200">
+        <ul className="sm:col-span-full sm:grid sm:grid-cols-subgrid">
           {labs.map((lab) => (
             <ResearchLabListRow
               key={lab.id}
@@ -85,15 +82,6 @@ function ResearchLabsPage() {
     </PageLayout>
   );
 }
-
-export const LAB_ROW_ITEM_WIDTH = {
-  name: 'sm:w-[14.5rem]',
-  professor: 'sm:w-[6.875rem]',
-  location: 'sm:w-50',
-  tel: 'sm:w-[7.5rem]',
-  acronym: 'sm:w-20',
-  introMaterial: 'sm:w-[5.625rem]',
-} as const;
 
 export const Route = createFileRoute('/$locale/research/labs/')({
   loader: async ({ params }) => {

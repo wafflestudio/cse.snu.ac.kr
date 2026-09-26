@@ -2,6 +2,7 @@ import { useState } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import Button from '@/components/ui/Button';
 import Dropdown from '@/components/ui/Dropdown';
+import EmptyState from '@/components/ui/EmptyState';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { YearStat } from '@/types/api';
 
@@ -24,7 +25,7 @@ export default function CareerStat({ stat }: { stat: YearStat[] }) {
   const year = stat[idx].year;
   const yearStat = stat.find((x) => x.year === year);
 
-  if (!yearStat) return <p>선택된 연도의 자료가 없습니다.</p>;
+  if (!yearStat) return <EmptyState>선택된 연도의 자료가 없습니다.</EmptyState>;
 
   return (
     <div className="mt-12 flex flex-col gap-2">
@@ -59,7 +60,8 @@ export default function CareerStat({ stat }: { stat: YearStat[] }) {
         </LoginVisible>
       </div>
 
-      <div className="border-y border-neutral-300 type-ui sm:w-[432px]">
+      {/* 교차표: 목록 표와 같은 모양(/design-system#list), 행 제목 칸만 14/500. 칸 틀은 한 번만(subgrid). */}
+      <div className="grid grid-cols-[auto_1fr_1fr_1fr] border-y border-neutral-200 type-ui sm:w-[432px]">
         <TableHeader />
         {CAREER_STAT_ROWS.map((company, index) => (
           <TableRow
@@ -79,12 +81,12 @@ export default function CareerStat({ stat }: { stat: YearStat[] }) {
 
 function TableHeader() {
   return (
-    <div className="flex h-8 flex-1 border-b border-neutral-300 bg-neutral-100">
-      <div className="w-25" />
+    <div className="col-span-full grid h-11 grid-cols-subgrid items-center border-b border-neutral-200 type-label text-neutral-950">
+      <div />
       {CAREER_STAT_COLS.map((colName) => (
-        <div key={colName} className="flex flex-1 items-center justify-center">
-          <p className="type-label">{colName}</p>
-        </div>
+        <p key={colName} className="text-center">
+          {colName}
+        </p>
       ))}
     </div>
   );
@@ -92,17 +94,12 @@ function TableHeader() {
 
 function TableRow({ rowName, values }: { rowName: string; values: number[] }) {
   return (
-    <div className="flex h-8 flex-1 flex-row border-b border-neutral-200 last:border-0">
-      <div className="flex w-25 items-center justify-center bg-neutral-100 type-ui">
-        {rowName}
-      </div>
+    <div className="col-span-full grid h-11 grid-cols-subgrid items-center odd:bg-neutral-50">
+      <p className="px-4 type-label text-neutral-950">{rowName}</p>
       {values.map((value, index) => (
-        <div
-          key={index}
-          className="flex flex-1 items-center justify-center type-ui"
-        >
+        <p key={index} className="text-center">
           {value}
-        </div>
+        </p>
       ))}
     </div>
   );

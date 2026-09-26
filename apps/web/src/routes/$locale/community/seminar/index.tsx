@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
+import EmptyState from '@/components/ui/EmptyState';
 import Pagination from '@/components/ui/Pagination';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
@@ -60,9 +61,7 @@ function SeminarPage() {
 
       <div className="mb-8 mt-12 flex flex-col border-b border-neutral-200">
         {data.results.length === 0 ? (
-          <p className="py-8 text-center text-neutral-500">
-            {t('검색 결과가 존재하지 않습니다.')}
-          </p>
+          <EmptyState>{t('검색 결과가 존재하지 않습니다.')}</EmptyState>
         ) : (
           data.results.map((post, index) => (
             <Fragment key={post.id}>

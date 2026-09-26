@@ -41,6 +41,9 @@ export default function Pagination({
     });
   };
 
+  // 쪽이 하나뿐이면 그리지 않는다(/design-system#list).
+  if (safeTotalPages <= 1) return null;
+
   return (
     <div className={clsx('flex justify-center', disabled && 'opacity-30')}>
       <ul className="mx-auto flex h-6 gap-x-2 tracking-wide text-neutral-950">

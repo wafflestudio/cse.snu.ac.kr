@@ -16,15 +16,14 @@ export default function ConferenceListTable({
 
   return (
     <div className="overflow-x-scroll">
-      <div className="mt-8 flex w-180 flex-col type-ui">
-        <div className="flex h-10 w-full flex-row border-y border-y-neutral-200">
-          <div className="flex w-12 items-center justify-center px-3">
+      {/* 칸 틀은 표에 한 번만 — 머리 행·행이 같이 쓴다(subgrid). */}
+      <div className="mt-8 grid w-180 grid-cols-[auto_auto_minmax(0,1fr)] border-y border-neutral-200 type-ui">
+        <div className="col-span-full grid h-11 grid-cols-subgrid whitespace-nowrap border-b border-neutral-200 type-label text-neutral-950">
+          <div className="flex items-center justify-center px-3">
             {t('연번')}
           </div>
-          <div className="flex w-28 items-center px-3">{t('약칭')}</div>
-          <div className="flex w-135 items-center px-3">
-            {t('학술대회 명칭')}
-          </div>
+          <div className="flex items-center px-3">{t('약칭')}</div>
+          <div className="flex items-center px-3">{t('학술대회 명칭')}</div>
         </div>
         {conferenceList.map((conference, index) => (
           <ConferenceRow
@@ -46,14 +45,12 @@ function ConferenceRow({
   index: number;
 }) {
   return (
-    <div className="flex w-full flex-row items-center wrap-break-word type-ui even:bg-neutral-100">
-      <div className="flex w-12 items-center justify-center px-3 py-3">
-        {index}
-      </div>
-      <div className="flex w-28 items-center px-3 py-3">
+    <div className="col-span-full grid min-h-11 grid-cols-subgrid items-center wrap-break-word type-ui even:bg-neutral-50">
+      <div className="flex items-center justify-center px-3 py-3">{index}</div>
+      <div className="flex items-center px-3 py-3">
         {conference.abbreviation}
       </div>
-      <div className="flex w-135 items-center px-3 py-3">{conference.name}</div>
+      <div className="flex items-center px-3 py-3">{conference.name}</div>
     </div>
   );
 }

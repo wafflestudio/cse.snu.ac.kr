@@ -13,9 +13,10 @@ export default function CourseList({
   onSelectCourse,
 }: CourseListProps) {
   return (
-    <div className="border-b border-neutral-200 sm:ml-6">
+    // 칸 틀은 목록에 한 번만 — 머리 행·행이 같이 쓴다(subgrid). 교과목명 칸만 남는 자리.
+    <div className="border-y border-neutral-200 sm:ml-6 sm:grid sm:grid-cols-[minmax(0,1fr)_auto_auto_auto_auto] sm:gap-x-6">
       <Header />
-      <ul className="sm:divide-y sm:divide-dashed sm:divide-neutral-200">
+      <ul className="sm:col-span-full sm:grid sm:grid-cols-subgrid">
         {courses.map((course) => (
           <Row
             key={course.code}
@@ -28,26 +29,16 @@ export default function CourseList({
   );
 }
 
-const COURSE_ROW_ITEM_WIDTH = {
-  name: 'sm:w-64',
-  classification: 'sm:w-[10rem]',
-  code: 'sm:w-52',
-  credit: 'sm:w-[6rem]',
-  grade: 'sm:w-[5.25rem]',
-} as const;
-
 const Header = () => {
   const { t } = useLanguage(translations);
 
   return (
-    <h5 className="hidden h-11 items-center whitespace-nowrap border-y border-neutral-100 bg-neutral-100 px-4 type-label sm:flex">
-      <span className={COURSE_ROW_ITEM_WIDTH.name}>{t('교과목명')}</span>
-      <span className={COURSE_ROW_ITEM_WIDTH.classification}>
-        {t('교과목 구분')}
-      </span>
-      <span className={COURSE_ROW_ITEM_WIDTH.code}>{t('교과목 번호')}</span>
-      <span className={COURSE_ROW_ITEM_WIDTH.credit}>{t('학점')}</span>
-      <span className={COURSE_ROW_ITEM_WIDTH.grade}>{t('학년')}</span>
+    <h5 className="hidden h-11 items-center whitespace-nowrap border-b border-neutral-200 px-4 type-label text-neutral-950 sm:col-span-full sm:grid sm:grid-cols-subgrid">
+      <span>{t('교과목명')}</span>
+      <span>{t('교과목 구분')}</span>
+      <span>{t('교과목 번호')}</span>
+      <span>{t('학점')}</span>
+      <span>{t('학년')}</span>
     </h5>
   );
 };
@@ -63,9 +54,9 @@ const Row = ({
   const { t } = useLanguage(translations);
 
   return (
-    <li className="grid grid-cols-[auto_auto_1fr] grid-rows-3 gap-x-1 gap-y-2 px-6 py-6 type-ui odd:bg-neutral-50 sm:flex sm:h-11 sm:items-center sm:gap-0 sm:px-4 sm:py-0 sm:odd:bg-white">
+    <li className="grid grid-cols-[auto_auto_1fr] grid-rows-3 gap-x-1 gap-y-2 px-6 py-6 type-ui odd:bg-neutral-50 sm:col-span-full sm:h-11 sm:grid-cols-subgrid sm:grid-rows-1 sm:items-center sm:gap-y-0 sm:px-4 sm:py-0">
       <span
-        className={`${COURSE_ROW_ITEM_WIDTH.name} order-1 col-span-3 pr-2 type-item sm:type-ui`}
+        className={`order-1 col-span-3 pr-2 type-item sm:col-span-1 sm:type-ui`}
       >
         <button
           className="text-left"
@@ -76,23 +67,21 @@ const Row = ({
         </button>
       </span>
       <span
-        className={`${COURSE_ROW_ITEM_WIDTH.classification} order-3 whitespace-nowrap pr-1 text-neutral-500 sm:order-2 sm:pr-0`}
+        className={`order-3 whitespace-nowrap pr-1 text-neutral-500 sm:order-2 sm:pr-0`}
       >
         {course[locale].classification}
       </span>
       <span
-        className={`${COURSE_ROW_ITEM_WIDTH.code} order-2 col-span-3 text-neutral-500 sm:order-3`}
+        className={`order-2 col-span-3 text-neutral-500 sm:order-3 sm:col-span-1`}
       >
         {course.code}
       </span>
-      <span
-        className={`${COURSE_ROW_ITEM_WIDTH.credit} order-5 text-neutral-500 sm:order-4 sm:pl-2`}
-      >
+      <span className={`order-5 text-neutral-500 sm:order-4 sm:pl-2`}>
         {course.credit}
         <span className="sm:hidden">{t('학점')}</span>
       </span>
       <span
-        className={`${COURSE_ROW_ITEM_WIDTH.grade} order-4 whitespace-nowrap pr-1 text-neutral-500 sm:order-5 sm:pr-0`}
+        className={`order-4 whitespace-nowrap pr-1 text-neutral-500 sm:order-5 sm:pr-0`}
       >
         {t(GRADE[course.grade])}
       </span>

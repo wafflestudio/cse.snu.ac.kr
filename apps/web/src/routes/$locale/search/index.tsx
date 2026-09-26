@@ -1,13 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router';
 import SearchBox from '@/components/feature/SearchBox';
 import PageLayout from '@/components/layout/PageLayout';
+import EmptyState from '@/components/ui/EmptyState';
 import { useLanguage } from '@/hooks/useLanguage';
 import { stringArrayParam, stringParam } from '@/utils/searchSchema';
 import { fetchSearchPage } from './-api';
 import SearchResultList from './-components/SearchResultList';
 import NoSearchResult from './-components/ui/NoSearchResult';
 import { SEARCH_TAGS } from './-searchTypes';
-import MagnificentGlass from './assets/magnificent_glass.svg?react';
 
 function SearchPage() {
   const { keyword, tag, result, tooShort } = Route.useLoaderData();
@@ -18,12 +18,7 @@ function SearchPage() {
       <SearchBox tags={[...SEARCH_TAGS]} formOnly />
 
       {tooShort && (
-        <div className="flex flex-col items-center">
-          <p className="type-body text-neutral-300">
-            {t('검색어를 두글자 이상 입력해주세요')}
-          </p>
-          <MagnificentGlass />
-        </div>
+        <EmptyState>{t('검색어를 두글자 이상 입력해주세요')}</EmptyState>
       )}
 
       {!tooShort && keyword && result?.total === 0 && <NoSearchResult />}

@@ -6,7 +6,6 @@ import Form from '@/components/form/Form';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import { toast, toastError } from '@/components/ui/sonner';
-import { TABLE_COLUMN_SIZE } from '@/routes/$locale/about/future-careers/-components/CareerCompanies';
 import type { Company } from '@/types/api';
 import { api } from '@/utils/api';
 
@@ -74,29 +73,21 @@ function CareerCompanyViewer({
 
   return (
     <>
-      <li className="grid grid-cols-[22px_auto_1fr] items-center gap-x-1 px-6 py-6 odd:bg-neutral-100 sm:flex sm:h-10 sm:gap-3 sm:p-0 sm:px-3">
-        <p
-          className={`type-ui text-neutral-500 sm:pl-2 ${TABLE_COLUMN_SIZE[0]}`}
-        >
-          {index}
-        </p>
-        <p className={`type-ui sm:pl-2 ${TABLE_COLUMN_SIZE[1]}`}>{name}</p>
+      <li className="grid grid-cols-[22px_auto_1fr] items-center gap-x-1 px-6 py-6 odd:bg-neutral-50 sm:col-span-full sm:grid-cols-subgrid sm:h-11 sm:p-0 sm:px-3">
+        <p className={`type-ui text-neutral-500 sm:pl-2`}>{index}</p>
+        <p className={`type-ui sm:pl-2`}>{name}</p>
         <a
-          className={`order-last col-span-2 col-start-2 w-fit type-meta text-link underline underline-offset-2 sm:order-0 sm:mt-0 sm:pl-2
-            ${url && 'mt-1'} ${TABLE_COLUMN_SIZE[2]}`}
+          className={`order-last col-span-2 col-start-2 w-fit type-meta sm:col-span-1 sm:col-start-auto text-link underline underline-offset-2 sm:order-0 sm:mt-0 sm:pl-2
+            ${url && 'mt-1'}`}
           href={url ?? undefined}
           target="_blank"
           rel="noopener noreferrer"
         >
           {url}
         </a>
-        <p className={`pl-2 type-ui text-neutral-500 ${TABLE_COLUMN_SIZE[3]}`}>
-          {year}
-        </p>
+        <p className={`pl-2 type-ui text-neutral-500`}>{year}</p>
         <LoginVisible allow="ROLE_STAFF">
-          <div
-            className={`hidden shrink-0 justify-end gap-3 sm:flex ${TABLE_COLUMN_SIZE[4]}`}
-          >
+          <div className={`hidden shrink-0 justify-end gap-3 sm:flex`}>
             <Button
               variant="secondary"
               onClick={() => setShowDeleteDialog(true)}
@@ -150,19 +141,15 @@ export function CareerCompanyEditor({
 
   return (
     <FormProvider {...formMethods}>
-      <li className="grid grid-cols-[22px_auto_1fr] items-center gap-x-1 px-6 py-6 odd:bg-neutral-100 sm:flex sm:h-10 sm:gap-3 sm:p-0 sm:px-3">
-        <p
-          className={`type-ui text-neutral-500 sm:pl-2 ${TABLE_COLUMN_SIZE[0]}`}
-        >
-          {index}
-        </p>
-        <div className={`type-ui ${TABLE_COLUMN_SIZE[1]}`}>
+      <li className="grid grid-cols-[22px_auto_1fr] items-center gap-x-1 px-6 py-6 odd:bg-neutral-50 sm:col-span-full sm:grid-cols-subgrid sm:h-11 sm:p-0 sm:px-3">
+        <p className={`type-ui text-neutral-500 sm:pl-2`}>{index}</p>
+        <div className={`type-ui`}>
           <Form.Text name="name" />
         </div>
-        <div className={`type-ui ${TABLE_COLUMN_SIZE[2]}`}>
+        <div className={`type-ui`}>
           <Form.Text name="url" />
         </div>
-        <div className={`type-ui ${TABLE_COLUMN_SIZE[3]}`}>
+        <div className={`type-ui`}>
           <Form.Text
             name="year"
             type="number"
@@ -170,9 +157,7 @@ export function CareerCompanyEditor({
           />
         </div>
         <LoginVisible allow="ROLE_STAFF">
-          <div
-            className={`hidden shrink-0 justify-end gap-3 sm:flex ${TABLE_COLUMN_SIZE[4]}`}
-          >
+          <div className={`hidden shrink-0 justify-end gap-3 sm:flex`}>
             <Button variant="secondary" onClick={onCancel}>
               취소
             </Button>
