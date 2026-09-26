@@ -74,10 +74,7 @@ function More() {
 export function MainSection() {
   return (
     <>
-      <Lead>
-        메인과 카테고리 페이지는 이 사이트에만 있는 화면이다. 기반·컴포넌트
-        규칙을 그대로 따르고, 여기 적은 규칙만 더한다.
-      </Lead>
+      <Lead>메인과 카테고리 페이지는 이 사이트에만 있는 화면이다.</Lead>
 
       <DocSection title="카테고리 머리">
         <Example
@@ -149,7 +146,6 @@ export function MainSection() {
       <DocSection title="메인 — 간격">
         <RuleList
           items={[
-            '섹션 사이·띠 안 여백·카드 사이처럼 화면 짜임을 만드는 값은 간격 단계의 값만 쓴다.',
             '히어로 문구·원과 막대 그래픽·공지 판 뒤 그래픽의 크기와 자리는 그래픽이라 자기 값을 쓴다.',
           ]}
         />

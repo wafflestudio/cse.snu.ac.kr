@@ -82,8 +82,7 @@ export function SelectionSection() {
       <Lead>
         여럿 중 하나를 고르는 컨트롤은 하는 일로 모양을 고른다 — 목록을 거르거나
         정렬하면 알약, 같은 자리의 보기를 바꾸면 글자 토글. 둘 다 네이티브
-        radiogroup이다. 태그는 고르는 것이 아니라 글의 분류를 보여 주는 것이고,
-        한 벌만 쓴다.
+        radiogroup이다. 태그는 고르는 것이 아니라 글의 분류를 보여 주는 것이다.
       </Lead>
 
       <DocSection title="예시">
@@ -127,10 +126,7 @@ export function SelectionSection() {
           ]}
         />
         <RuleList
-          items={[
-            '어두운 알약은 메인 공지 패널 밖에서 쓰지 않는다.',
-            '태그 모양을 직접 그리지 않고 Tag를 쓴다.',
-          ]}
+          items={['어두운 알약은 메인 공지 패널 밖에서 쓰지 않는다.']}
         />
       </DocSection>
 

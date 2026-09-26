@@ -145,7 +145,6 @@ export function UniqueSection() {
     <>
       <Lead>
         인물 상세·교과목 카드·예약 달력처럼 이 사이트에만 있는 화면이다.
-        기반·컴포넌트 규칙을 그대로 따르고, 여기 적은 규칙만 더한다.
       </Lead>
 
       <DocSection title="인물 상세">
@@ -202,9 +201,7 @@ export function UniqueSection() {
           </div>
         </Example>
         <RuleList
-          items={[
-            '회색 띠 위 카드는 그림자 없이 흰 바탕으로 띠와 구분한다. 그림자는 떠 있는 층(모달·드롭다운)에만 쓴다.',
-          ]}
+          items={['회색 띠 위 카드는 그림자 없이 흰 바탕으로 띠와 구분한다.']}
         />
       </DocSection>
 

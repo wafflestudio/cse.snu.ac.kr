@@ -30,8 +30,7 @@ export function ButtonSection() {
     <>
       <Lead>
         버튼은 누르면 이 화면에서 무언가를 하는 것이다. 모양은 행동의 종류로
-        고르고, 강조는 주황이 아니라 회색의 짙기로 한다. 누르는 모양은 모두{' '}
-        <code>Button</code> 하나로 만든다.
+        고르고, 강조는 주황이 아니라 회색의 짙기로 한다.
       </Lead>
 
       <DocSection title="예시">
@@ -78,7 +77,6 @@ export function ButtonSection() {
           items={[
             '표·목록 안의 일괄 버튼만 작게 쓴다.',
             '처리 중 문구는 누른 동사 + " 중…" — 저장 중…, 게시 중…, 삭제 중….',
-            '아이콘만 든 버튼에는 읽어 줄 이름을 붙인다.',
           ]}
         />
       </DocSection>

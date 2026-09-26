@@ -42,7 +42,6 @@ export function ReadingSection() {
       <DocSection title="규칙">
         <RuleList
           items={[
-            '작성자 글은 HTMLViewer로만 보인다. 화면에서 본문 글자·간격을 따로 입히지 않는다.',
             '작성자가 직접 고른 글자 크기·색·표 서식은 건드리지 않는다.',
             '본문 옆 대표 이미지는 뷰어에 넘긴다(폭 200·240·320) — 오른쪽에 띄우고 글이 감싸 흐른다. 모바일은 위.',
           ]}

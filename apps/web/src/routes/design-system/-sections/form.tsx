@@ -88,9 +88,7 @@ export function FormSection() {
     <>
       <Lead>
         입력 칸은 값을 적거나 고르는 곳이다. 칸의 모양은 부품이 정하고, 쓰는
-        사람은 칸의 종류와 폭, 필드를 한 줄에 둘지만 정한다. 보이는 입력 부품은{' '}
-        <code>ui/</code>에 한 벌이고 <code>form/</code>은 그것을 폼 값에 잇기만
-        한다.
+        사람은 칸의 종류와 폭, 필드를 한 줄에 둘지만 정한다.
       </Lead>
 
       <DocSection title="예시">
@@ -233,11 +231,7 @@ export function FormSection() {
           </SampleForm>
         </Example>
         <RuleList
-          items={[
-            '필드는 Fieldset으로 감싸 이름을 달고, 꼭 적어야 하면 필수로 표시한다.',
-            '줄 전체 폭을 고정하지 않는다 — 모바일에서 넘친다.',
-            '폼 버튼 줄은 Form.Action으로 둔다(버튼 순서는 버튼 페이지).',
-          ]}
+          items={['줄 전체 폭을 고정하지 않는다 — 모바일에서 넘친다.']}
         />
       </DocSection>
 
