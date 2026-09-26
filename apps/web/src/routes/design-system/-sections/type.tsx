@@ -172,6 +172,23 @@ export function TypeSection() {
         </ul>
       </Sub>
 
+      <Sub title="줄바꿈 — 어절 단위">
+        <ul className="list-disc space-y-1 pl-5">
+          <li>
+            사이트 전체(에디터 본문 포함)가 어절 단위로 줄을 바꾼다(
+            <code>word-break: keep-all</code>, <code>app.css</code>의 body).
+            한국어가 "있습니/다"처럼 글자 중간에서 끊기지 않는다. 요소마다{' '}
+            <code>break-keep</code>을 붙이지 않는다.
+          </li>
+          <li>
+            한 어절이 줄보다 길 때(URL·메일)만 끊는다(
+            <code>overflow-wrap: break-word</code>). 좁은 칸에서 긴 URL이 넘치면
+            그 요소에만 <code>wrap-anywhere</code>. 영어 단어까지 자르는{' '}
+            <code>break-all</code>은 쓰지 않는다.
+          </li>
+        </ul>
+      </Sub>
+
       <Sub title="정리 전: 섹션 제목 7가지">
         <p>
           본문 안 섹션 제목이 지금 7가지 조합이다. 모두 섹션 제목(20 · 700)

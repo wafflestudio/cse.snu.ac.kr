@@ -101,7 +101,7 @@ const SharedEditor = ({
 }) => {
   return (
     <>
-      <div className="flex w-120 gap-6">
+      <Form.Row>
         <Fieldset title="지도교수">
           <Form.Dropdown
             name="professorId"
@@ -117,8 +117,8 @@ const SharedEditor = ({
         <Fieldset title="연구실 약자">
           <Form.Text name="acronym" size="md" />
         </Fieldset>
-      </div>
-      <div className="flex w-180 gap-6">
+      </Form.Row>
+      <Form.Row>
         <Fieldset title="전화">
           <Form.Text name="tel" size="md" placeholder="예: (02) 880-7302" />
         </Fieldset>
@@ -129,7 +129,7 @@ const SharedEditor = ({
             placeholder="예: https://www.example.com"
           />
         </Fieldset>
-      </div>
+      </Form.Row>
 
       <Fieldset title="연구·교육 스트림" required>
         <Form.Dropdown
@@ -151,11 +151,11 @@ const SharedEditor = ({
       </Fieldset>
 
       <Fieldset title="소개 자료">
-        <div className="mb-3 flex w-180 items-center">
+        <div className="mb-3 flex max-w-120 items-center">
           <span className="w-14 type-label text-neutral-500">| 문서</span>
           <Form.File name="pdf" multiple={false} />
         </div>
-        <div className="flex w-180 items-center">
+        <div className="flex max-w-120 items-center">
           <span className="w-14 type-label text-neutral-500">| 유튜브</span>
           <Form.Text
             name="youtube"

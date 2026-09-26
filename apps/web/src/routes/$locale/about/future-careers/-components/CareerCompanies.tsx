@@ -53,7 +53,7 @@ export default function CareerCompanies({
         </div>
       </div>
       {/* 칸 틀은 목록에 한 번만 — 머리 행·행·편집 행이 같이 쓴다(subgrid). */}
-      <div className="border-y border-neutral-200 type-ui sm:grid sm:grid-cols-[auto_auto_auto_auto_auto] sm:gap-x-3">
+      <div className="border-y border-neutral-200 type-ui sm:grid sm:grid-cols-[auto_auto_auto_auto_auto] sm:gap-x-6">
         <CompanyTableHeader />
         {showCreateForm && (
           <CareerCompanyEditor

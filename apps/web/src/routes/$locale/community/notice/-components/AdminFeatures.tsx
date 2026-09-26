@@ -57,7 +57,7 @@ export default function AdminFeatures({
 
   return (
     <>
-      <div className="mx-3 mt-12 flex">
+      <div className="mt-12 flex">
         {isEditMode && (
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1 type-meta text-neutral-500">

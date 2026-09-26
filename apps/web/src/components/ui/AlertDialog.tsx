@@ -40,8 +40,8 @@ export default function AlertDialog({
           <VisuallyHidden.Root>
             <AlertDialogPrimitive.Title>{title}</AlertDialogPrimitive.Title>
           </VisuallyHidden.Root>
-          {/* 둘째 문장(되돌릴 수 없습니다 등)은 \n 으로 줄을 나눈다. 한국어가 글자 중간에서 끊기지 않게 단어 단위로. */}
-          <AlertDialogPrimitive.Description className="whitespace-pre-line break-keep type-body text-neutral-950">
+          {/* 둘째 문장(되돌릴 수 없습니다 등)은 \n 으로 줄을 나눈다. */}
+          <AlertDialogPrimitive.Description className="whitespace-pre-line type-body text-neutral-950">
             {description}
           </AlertDialogPrimitive.Description>
           {/* 확인창에는 닫기 X 가 없다 — 취소가 닫기. 실행 버튼은 하는 일을 적는다(삭제·나가기). */}

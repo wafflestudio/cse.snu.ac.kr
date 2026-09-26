@@ -14,6 +14,8 @@
   line-height: 2;
   background-color: transparent;
   padding: 0;
+  /* 패키지 원본이 word-break: normal 로 되돌린다 — 사이트 기본(어절 단위, app.css)으로 다시. */
+  word-break: keep-all;
 }
 .sun-editor-editable * {
   line-height: 2;

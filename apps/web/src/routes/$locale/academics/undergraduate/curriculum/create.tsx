@@ -2,7 +2,6 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import TimelineEditor, {
   type TimelineFormData,
 } from '@/routes/$locale/academics/-components/timeline/TimelineEditor';
@@ -13,7 +12,6 @@ function CurriculumCreatePage() {
   const { localizedPath, t } = useLanguage({
     '전공 이수 표준 형태 추가': 'Add Curriculum',
   });
-  const subNav = useAcademicsSubNav();
   const navigate = useNavigate();
 
   const title = t('전공 이수 표준 형태 추가');
@@ -38,7 +36,7 @@ function CurriculumCreatePage() {
   };
 
   return (
-    <PageLayout title={title} subNav={subNav}>
+    <PageLayout title={title}>
       <TimelineEditor
         onSubmit={onSubmit}
         cancelPath="/academics/undergraduate/curriculum"

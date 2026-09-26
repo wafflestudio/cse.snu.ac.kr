@@ -10,11 +10,12 @@ interface CategoryGridProps {
   currentPage: NavItem | null;
 }
 
-// 카드 사이 모바일 24·데스크톱 32(/design-system#main).
+// 카드 사이 모바일 24·데스크톱 32(/design-system#main). 펼친 하위 카드는 위 카드와 같은 간격을 두고
+// 이어진다 — 아래 여백은 띠(pb 64/128)만 준다(격자에 mb 를 더하면 띠 아래가 규칙보다 커진다).
 const ROOT_GRID_CLASS =
-  'mb-6 grid grid-cols-[repeat(2,1fr)] gap-6 sm:mb-8 sm:grid-cols-[repeat(auto-fill,300px)] sm:gap-8';
+  'grid grid-cols-[repeat(2,1fr)] gap-6 sm:grid-cols-[repeat(auto-fill,300px)] sm:gap-8';
 const LEAF_GRID_CLASS =
-  'grid grid-cols-[repeat(2,1fr)] gap-6 sm:mb-8 sm:grid-cols-[repeat(auto-fill,300px)] sm:gap-8';
+  'mt-6 grid grid-cols-[repeat(2,1fr)] gap-6 sm:mt-8 sm:grid-cols-[repeat(auto-fill,300px)] sm:gap-8';
 
 export default function CategoryGrid({ currentPage }: CategoryGridProps) {
   const [selectedCategory, setSelectedCategory] = useState<NavItem | null>(

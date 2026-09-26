@@ -7,6 +7,7 @@ import Dropdown from './Dropdown';
 import FilePicker from './File';
 import ImagePicker from './Image';
 import Radio from './Radio';
+import Row from './Row';
 import Section from './Section';
 import Text from './Text';
 import TextArea from './TextArea';
@@ -26,6 +27,7 @@ export default Object.assign(Form, {
   Radio,
   Dropdown,
   Section,
+  Row,
   TextArea,
   HTML: HTMLEditor,
   Date: DatePicker,

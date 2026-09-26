@@ -27,15 +27,13 @@ export default function ErrorState({
       <div className="px-5 pt-12 sm:px-25">
         <div className="mb-6 sm:mb-12">
           <p className="mb-2 type-meta text-neutral-300">{code}</p>
-          <h1 className="type-page-title break-keep wrap-anywhere text-white">
-            {title}
-          </h1>
+          <h1 className="type-page-title wrap-anywhere text-white">{title}</h1>
         </div>
       </div>
       <div className="grow bg-white page-gutter-x pt-8 pb-16 sm:pt-12 sm:pb-32">
         {message && <p className="type-body">{message}</p>}
         {detail && (
-          <p className="type-meta break-all text-neutral-500">{detail}</p>
+          <p className="type-meta wrap-anywhere text-neutral-500">{detail}</p>
         )}
         <div className="mt-6 flex gap-3">
           {actions.map((action) => (

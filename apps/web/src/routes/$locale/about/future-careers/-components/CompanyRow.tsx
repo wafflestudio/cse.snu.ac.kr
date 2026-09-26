@@ -73,7 +73,7 @@ function CareerCompanyViewer({
 
   return (
     <>
-      <li className="grid grid-cols-[22px_auto_1fr] items-center gap-x-1 px-6 py-6 odd:bg-neutral-50 sm:col-span-full sm:grid-cols-subgrid sm:h-11 sm:p-0 sm:px-3">
+      <li className="grid grid-cols-[22px_auto_1fr] items-center gap-x-1 px-6 py-6 odd:bg-neutral-50 sm:col-span-full sm:grid-cols-subgrid sm:gap-x-6 sm:h-11 sm:p-0 sm:px-3">
         <p className={`type-ui text-neutral-500 sm:pl-2`}>{index}</p>
         <p className={`type-ui sm:pl-2`}>{name}</p>
         <a
@@ -141,7 +141,7 @@ export function CareerCompanyEditor({
 
   return (
     <FormProvider {...formMethods}>
-      <li className="grid grid-cols-[22px_auto_1fr] items-center gap-x-1 px-6 py-6 odd:bg-neutral-50 sm:col-span-full sm:grid-cols-subgrid sm:h-11 sm:p-0 sm:px-3">
+      <li className="grid grid-cols-[22px_auto_1fr] items-center gap-x-1 px-6 py-6 odd:bg-neutral-50 sm:col-span-full sm:grid-cols-subgrid sm:gap-x-6 sm:h-11 sm:p-0 sm:px-3">
         <p className={`type-ui text-neutral-500 sm:pl-2`}>{index}</p>
         <div className={`type-ui`}>
           <Form.Text name="name" />

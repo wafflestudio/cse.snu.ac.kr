@@ -5,7 +5,6 @@ import Form from '@/components/form/Form';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import type { DegreeRequirements } from '@/types/api';
 import type { EditorFile } from '@/types/form';
 import { api } from '@/utils/api';
@@ -33,7 +32,6 @@ function DegreeRequirementsEditPage() {
   const { handleSubmit } = formMethods;
 
   const navigate = useNavigate();
-  const subNav = useAcademicsSubNav();
   const title = t('졸업 규정');
   const onCancel = () =>
     navigate({
@@ -62,7 +60,7 @@ function DegreeRequirementsEditPage() {
   };
 
   return (
-    <PageLayout title={title} subNav={subNav}>
+    <PageLayout title={title}>
       <FormProvider {...formMethods}>
         <Form>
           <Fieldset.HTML>

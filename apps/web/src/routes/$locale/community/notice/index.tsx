@@ -85,7 +85,7 @@ function NoticePage() {
         // 칸 틀은 목록에 한 번만 적고 머리 행·행이 같이 쓴다(subgrid) — 칸 폭을 적지 않는다.
         <div
           className={clsx(
-            'mb-8 mt-8 border-y border-neutral-200 sm:mx-3 sm:grid',
+            'mb-8 mt-8 border-y border-neutral-200 sm:grid',
             isEditMode
               ? 'sm:grid-cols-[auto_auto_minmax(0,1fr)_auto_auto]'
               : 'sm:grid-cols-[auto_minmax(0,1fr)_auto_auto]',

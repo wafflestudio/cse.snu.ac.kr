@@ -13,10 +13,10 @@ function Sub({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
-// 사진 틀은 폭 200·4:5 고정. 사진은 틀에 맞춰 채우고, 없으면 같은 틀에 로고.
+// 사진 틀은 폭 200·3:4 고정. 사진은 틀에 맞춰 채우고, 없으면 같은 틀에 로고.
 function Photo({ empty = false }: { empty?: boolean }) {
   return (
-    <div className="flex aspect-4/5 w-50 items-center justify-center bg-neutral-100">
+    <div className="flex aspect-3/4 w-50 items-center justify-center bg-neutral-100">
       {empty ? (
         <span className="snu-logo block size-15 bg-neutral-200" />
       ) : (
@@ -127,11 +127,11 @@ export function UniqueSection() {
         </div>
         <ul className="list-disc space-y-1 pl-5">
           <li>
-            사진 틀은 폭 200·4:5로 고정한다(운영 사진이 대략 4:5 — 166×206,
-            220×270). 사진은 틀을 채우도록 자르고(object-cover), 없으면 같은
-            틀의 회색 칸 가운데 로고. 사진 유무·원본 비율과 관계없이 모든 사람의
-            사진 칸이 같은 크기다(지금은 없을 때 로고 칸이 60×60이거나 연락처
-            폭으로 늘어난다).
+            사진 틀은 3:4로 고정한다 — 상세 폭 200, 목록 카드 144. 운영 사진은
+            교수 3:4가 가장 많고(49장 중 15, 폭÷높이 중앙값 0.75)
+            2:3·4:5·정사각형이 섞여 있다. 사진은 틀을 채우도록
+            자르고(object-cover), 없으면 같은 틀의 회색 칸 가운데 로고. 사진
+            유무·원본 비율과 관계없이 사진 칸은 모두 같은 크기다.
           </li>
           <li>
             교수·역대 교수·행정직원 상세가 같은 짜임을 쓴다: 왼쪽에 사진과 그

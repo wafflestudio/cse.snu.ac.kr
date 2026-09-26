@@ -2,7 +2,6 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import TimelineEditor, {
   type TimelineFormData,
 } from '@/routes/$locale/academics/-components/timeline/TimelineEditor';
@@ -13,7 +12,6 @@ function GeneralStudiesCreatePage() {
   const { localizedPath, t } = useLanguage({
     '필수 교양 과목 추가': 'Add General Studies',
   });
-  const subNav = useAcademicsSubNav();
   const navigate = useNavigate();
 
   const title = t('필수 교양 과목 추가');
@@ -43,7 +41,7 @@ function GeneralStudiesCreatePage() {
   };
 
   return (
-    <PageLayout title={title} subNav={subNav}>
+    <PageLayout title={title}>
       <TimelineEditor
         onSubmit={onSubmit}
         cancelPath="/academics/undergraduate/general-studies-requirements"

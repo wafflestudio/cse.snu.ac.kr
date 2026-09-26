@@ -14,7 +14,7 @@ export default function CourseList({
 }: CourseListProps) {
   return (
     // 칸 틀은 목록에 한 번만 — 머리 행·행이 같이 쓴다(subgrid). 교과목명 칸만 남는 자리.
-    <div className="border-y border-neutral-200 sm:ml-6 sm:grid sm:grid-cols-[minmax(0,1fr)_auto_auto_auto_auto] sm:gap-x-6">
+    <div className="border-y border-neutral-200 sm:grid sm:grid-cols-[minmax(0,1fr)_auto_auto_auto_auto] sm:gap-x-6">
       <Header />
       <ul className="sm:col-span-full sm:grid sm:grid-cols-subgrid">
         {courses.map((course) => (
@@ -54,7 +54,7 @@ const Row = ({
   const { t } = useLanguage(translations);
 
   return (
-    <li className="grid grid-cols-[auto_auto_1fr] grid-rows-3 gap-x-1 gap-y-2 px-6 py-6 type-ui odd:bg-neutral-50 sm:col-span-full sm:h-11 sm:grid-cols-subgrid sm:grid-rows-1 sm:items-center sm:gap-y-0 sm:px-4 sm:py-0">
+    <li className="grid grid-cols-[auto_auto_1fr] grid-rows-3 gap-x-1 gap-y-2 px-6 py-6 type-ui odd:bg-neutral-50 sm:col-span-full sm:h-11 sm:grid-cols-subgrid sm:grid-rows-1 sm:items-center sm:gap-x-6 sm:gap-y-0 sm:px-4 sm:py-0">
       <span
         className={`order-1 col-span-3 pr-2 type-item sm:col-span-1 sm:type-ui`}
       >
@@ -76,7 +76,7 @@ const Row = ({
       >
         {course.code}
       </span>
-      <span className={`order-5 text-neutral-500 sm:order-4 sm:pl-2`}>
+      <span className={`order-5 text-neutral-500 sm:order-4`}>
         {course.credit}
         <span className="sm:hidden">{t('학점')}</span>
       </span>

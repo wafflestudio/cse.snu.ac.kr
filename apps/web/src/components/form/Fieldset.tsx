@@ -23,7 +23,8 @@ function Fieldset({
   return (
     <fieldset
       className={clsx(
-        'flex flex-col',
+        // fieldset 은 브라우저 기본이 min-inline-size: min-content 라 긴 파일 이름 한 줄만큼 넓어진다.
+        'flex min-w-0 flex-col',
         'mb-6',
         grow && 'flex-1',
         hidden && 'hidden',

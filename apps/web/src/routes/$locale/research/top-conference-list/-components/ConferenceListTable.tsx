@@ -15,24 +15,20 @@ export default function ConferenceListTable({
   });
 
   return (
-    <div className="overflow-x-scroll">
-      {/* 칸 틀은 표에 한 번만 — 머리 행·행이 같이 쓴다(subgrid). */}
-      <div className="mt-8 grid w-180 grid-cols-[auto_auto_minmax(0,1fr)] border-y border-neutral-200 type-ui">
-        <div className="col-span-full grid h-11 grid-cols-subgrid whitespace-nowrap border-b border-neutral-200 type-label text-neutral-950">
-          <div className="flex items-center justify-center px-3">
-            {t('연번')}
-          </div>
-          <div className="flex items-center px-3">{t('약칭')}</div>
-          <div className="flex items-center px-3">{t('학술대회 명칭')}</div>
-        </div>
-        {conferenceList.map((conference, index) => (
-          <ConferenceRow
-            conference={conference}
-            index={index + 1}
-            key={conference.id}
-          />
-        ))}
+    // 칸 틀은 표에 한 번만 — 머리 행·행이 같이 쓴다(subgrid). 본문 폭을 다 쓰고, 좁으면 명칭 칸만 줄을 바꾼다.
+    <div className="mt-8 grid grid-cols-[auto_auto_minmax(0,1fr)] border-y border-neutral-200 type-ui">
+      <div className="col-span-full grid h-11 grid-cols-subgrid whitespace-nowrap border-b border-neutral-200 type-label text-neutral-950">
+        <div className="flex items-center justify-center px-3">{t('연번')}</div>
+        <div className="flex items-center px-3">{t('약칭')}</div>
+        <div className="flex items-center px-3">{t('학술대회 명칭')}</div>
       </div>
+      {conferenceList.map((conference, index) => (
+        <ConferenceRow
+          conference={conference}
+          index={index + 1}
+          key={conference.id}
+        />
+      ))}
     </div>
   );
 }

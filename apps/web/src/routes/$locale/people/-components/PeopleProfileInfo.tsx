@@ -46,7 +46,7 @@ function ProfileInfoRow({ icon, label, href }: PeopleProfileInfoItem) {
 
   return (
     // 주소 등은 여러 줄이 된다 — 아이콘 높이(1.2em)가 줄높이와 같아 items-start 면 첫 줄 가운데에 선다.
-    <div className="flex items-start gap-1 break-all">
+    <div className="flex items-start gap-1 wrap-anywhere">
       {Icon && <Icon className="shrink-0" />}
       {href ? (
         <a

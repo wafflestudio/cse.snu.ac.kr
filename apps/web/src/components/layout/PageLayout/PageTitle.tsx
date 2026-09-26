@@ -34,7 +34,7 @@ export default function PageTitle({
               <span className="flex items-end">
                 <span
                   className={
-                    'type-page-title break-keep wrap-anywhere tracking-wide text-white'
+                    'type-page-title wrap-anywhere tracking-wide text-white'
                   }
                 >
                   {title}
@@ -46,7 +46,7 @@ export default function PageTitle({
             ) : (
               <span
                 className={
-                  'type-page-title break-keep wrap-anywhere tracking-wide text-white'
+                  'type-page-title wrap-anywhere tracking-wide text-white'
                 }
               >
                 {title}

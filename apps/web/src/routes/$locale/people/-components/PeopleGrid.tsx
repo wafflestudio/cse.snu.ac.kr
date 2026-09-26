@@ -45,24 +45,22 @@ function PeopleCard({
         className="relative h-48 w-36 shrink-0 cursor-pointer overflow-hidden"
         aria-label={`${name} 교수 상세 페이지로 이동`}
       >
-        {imageURL ? (
-          <Image
-            src={imageURL}
-            alt={`${name} 프로필`}
-            className="h-[192px] w-[144px] object-cover"
-            width={144}
-            sizes="144px"
-            height={192}
-            loading="lazy"
-          />
-        ) : (
-          <div className="h-[192px] w-[144px] bg-neutral-200" />
-        )}
+        {/* 사진 틀 3:4 — 사진이 없으면 같은 틀에 로고(Image 가 그린다, /design-system#unique). */}
+        <Image
+          src={imageURL}
+          alt={`${name} 프로필`}
+          className="h-48 w-36 object-cover"
+          width={144}
+          sizes="144px"
+          height={192}
+          loading="lazy"
+        />
       </Link>
-      <div className="flex flex-col items-start break-keep">
+      <div className="flex flex-col items-start">
         <Link
           to={href}
-          className={`relative flex w-full cursor-pointer flex-row flex-wrap gap-2 pb-2 ${
+          // 밑줄은 이름·직함 글자 폭만큼(모바일). 데스크톱은 카드 폭 144.
+          className={`relative flex w-fit cursor-pointer flex-row flex-wrap gap-2 pb-2 sm:w-full ${
             titleNewline ? 'flex-col' : ''
           }`}
         >
@@ -71,7 +69,7 @@ function PeopleCard({
           <HoverAnimationUnderline />
         </Link>
 
-        <div className="mt-3 flex flex-col items-start gap-2 break-keep">
+        <div className="mt-3 flex flex-col items-start gap-2">
           {content.map(({ text, href }, idx) =>
             href ? (
               <Link

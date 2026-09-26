@@ -49,7 +49,7 @@ export default function SlideManagement({
 
   return (
     <div>
-      <span className="mb-4 ml-6 block type-meta tracking-wide text-neutral-500">
+      <span className="mb-4 block type-meta tracking-wide text-neutral-500">
         총 {total}개의 게시물
       </span>
 
@@ -62,7 +62,7 @@ export default function SlideManagement({
 
       <Pagination page={pageNum} totalPages={totalPages} />
 
-      <div className="ml-6 mt-12 flex items-center gap-4">
+      <div className="mt-12 flex items-center gap-4">
         <div className="flex items-center gap-1 type-meta text-neutral-500">
           <SquareCheck />
           <span className="tracking-wide">

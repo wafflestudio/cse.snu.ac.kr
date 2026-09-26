@@ -102,7 +102,7 @@ export default function CoursesPage({
           </Button>
         </div>
       </LoginVisible>
-      <h4 className="mb-8 type-item sm:pl-6">{t('교과목 정보')}</h4>
+      <h4 className="mb-8 type-item">{t('교과목 정보')}</h4>
       <CourseToolbar hideSortOption={shouldHideSort} />
       {isEnglish && <ClassificationDescription />}
       {effectiveViewOption === '카드형' ? (
@@ -146,7 +146,7 @@ const getSortOption = (sort: unknown): SortOption => {
 function ClassificationDescription() {
   return (
     // 좁은 폭에서 글이 여러 줄이 된다 — 아이콘 높이(1.2em)가 줄높이(1.2)와 같아 items-start 면 첫 줄 가운데에 선다.
-    <div className="mb-3 ml-6 flex items-start gap-1 type-meta text-neutral-500">
+    <div className="mb-3 flex items-start gap-1 type-meta text-neutral-500">
       <Info className="shrink-0" />
       <span>
         RM: Required course for Major&nbsp;&nbsp;/&nbsp;&nbsp;EM: Elective

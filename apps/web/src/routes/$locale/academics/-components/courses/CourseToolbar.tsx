@@ -31,7 +31,7 @@ export default function CourseToolbar({
   };
 
   return (
-    <div className="mb-6 flex items-center justify-between sm:pl-6">
+    <div className="mb-6 flex items-center justify-between">
       <ViewOptions
         selectedOption={viewOption}
         changeOption={(option) => changeOption('view', option)}

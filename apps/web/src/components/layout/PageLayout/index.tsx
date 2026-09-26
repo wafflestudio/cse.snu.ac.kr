@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import { SITE_NAME } from '@/constants/site';
 import { useBreadcrumb } from '@/hooks/useBreadcrumb';
 import { useLanguage } from '@/hooks/useLanguage';
@@ -81,7 +81,18 @@ export default function PageLayout({
             breadcrumb={finalBreadcrumb}
           />
         )}
-        <div className={`relative grow bg-white ${paddingClass}`}>
+        <div
+          className={`relative grow bg-white ${paddingClass} xl:min-h-(--subnav-min-h)`}
+          // 서브내비는 absolute 라 본문 높이에 들어가지 않는다 — 본문이 짧으면 푸터를 덮으므로
+          // 서브내비 높이(위 52 + 제목 46 + 항목당 30.8) + 아래 128 만큼은 본문을 늘린다.
+          style={
+            subNav
+              ? ({
+                  '--subnav-min-h': `calc(14.25rem + ${subNav.items.length} * 1.925rem)`,
+                } as CSSProperties)
+              : undefined
+          }
+        >
           {children}
           {subNav && <SubNavbar {...subNav} />}
         </div>

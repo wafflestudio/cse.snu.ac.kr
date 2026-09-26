@@ -17,7 +17,7 @@ export default function PeopleDetailLayout({
   return (
     <div className="flex flex-col gap-8 sm:flex-row sm:gap-16">
       <PeopleProfileInfo imageURL={imageURL} items={contacts} />
-      <div className="flex min-w-0 flex-col break-all">{children}</div>
+      <div className="flex min-w-0 flex-col">{children}</div>
     </div>
   );
 }

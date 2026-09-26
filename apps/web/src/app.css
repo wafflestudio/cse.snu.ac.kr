@@ -31,6 +31,12 @@
     -webkit-font-smoothing: antialiased;
     /* 피그마와 줄높이가 다른 문제 조정 */
     line-height: 1.2;
+    /* 한국어는 어절 단위로 줄을 바꾼다(글자 중간에서 끊지 않는다). 한 어절이 줄보다 길면(URL 등)
+       그때만 끊는다. anywhere 가 아니라 break-word 인 이유: anywhere 는 최소 폭(min-content)까지
+       줄여 표 칸·flex 항목이 글자 폭으로 쪼그라든다. 좁은 자리에서 긴 URL 이 넘치면 그 요소에만
+       wrap-anywhere 를 붙인다(/design-system#type). */
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 }
 

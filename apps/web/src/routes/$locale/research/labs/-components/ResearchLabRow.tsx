@@ -19,7 +19,7 @@ export default function ResearchLabListRow({
   const hasIntro = Boolean(pdf || youtube);
 
   return (
-    <li className="grid-rows-auto grid grid-cols-[auto_1fr] items-end gap-2 bg-white px-6 py-6 type-ui tracking-[0.02em] odd:bg-neutral-50 sm:col-span-full sm:h-11 sm:grid-cols-subgrid sm:items-center sm:px-2 sm:py-0">
+    <li className="grid-rows-auto grid grid-cols-[auto_1fr] items-end gap-2 bg-white sm:gap-x-6 sm:gap-y-0 px-6 py-6 type-ui tracking-[0.02em] odd:bg-neutral-50 sm:col-span-full sm:h-11 sm:grid-cols-subgrid sm:items-center sm:px-2 sm:py-0">
       <LabNameCell id={id} name={name} localizedPath={localizedPath} />
       <LabProfessorsCell
         professors={professors}

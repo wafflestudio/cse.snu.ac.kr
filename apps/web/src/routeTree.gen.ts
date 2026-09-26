@@ -47,6 +47,7 @@ import { Route as LocaleCommunitySeminarIndexRouteImport } from './routes/$local
 import { Route as LocaleCommunityNoticeIndexRouteImport } from './routes/$locale/community/notice/index'
 import { Route as LocaleCommunityNewsIndexRouteImport } from './routes/$locale/community/news/index'
 import { Route as LocaleCommunityFacultyRecruitmentIndexRouteImport } from './routes/$locale/community/faculty-recruitment/index'
+import { Route as LocaleAcademicsStudentTypeIndexRouteImport } from './routes/$locale/academics/$studentType/index'
 import { Route as LocaleAboutStudentClubsIndexRouteImport } from './routes/$locale/about/student-clubs/index'
 import { Route as LocaleAboutOverviewIndexRouteImport } from './routes/$locale/about/overview/index'
 import { Route as LocaleAboutFutureCareersIndexRouteImport } from './routes/$locale/about/future-careers/index'
@@ -314,6 +315,12 @@ const LocaleCommunityFacultyRecruitmentIndexRoute =
     id: '/community/faculty-recruitment/',
     path: '/community/faculty-recruitment/',
     getParentRoute: () => LocaleRouteRoute,
+  } as any)
+const LocaleAcademicsStudentTypeIndexRoute =
+  LocaleAcademicsStudentTypeIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => LocaleAcademicsStudentTypeRoute,
   } as any)
 const LocaleAboutStudentClubsIndexRoute =
   LocaleAboutStudentClubsIndexRouteImport.update({
@@ -741,6 +748,7 @@ export interface FileRoutesByFullPath {
   '/$locale/about/future-careers/': typeof LocaleAboutFutureCareersIndexRoute
   '/$locale/about/overview/': typeof LocaleAboutOverviewIndexRoute
   '/$locale/about/student-clubs/': typeof LocaleAboutStudentClubsIndexRoute
+  '/$locale/academics/$studentType/': typeof LocaleAcademicsStudentTypeIndexRoute
   '/$locale/community/faculty-recruitment/': typeof LocaleCommunityFacultyRecruitmentIndexRoute
   '/$locale/community/news/': typeof LocaleCommunityNewsIndexRoute
   '/$locale/community/notice/': typeof LocaleCommunityNoticeIndexRoute
@@ -805,7 +813,6 @@ export interface FileRoutesByTo {
   '/$locale/about/contact': typeof LocaleAboutContactRoute
   '/$locale/about/greetings': typeof LocaleAboutGreetingsRoute
   '/$locale/about/history': typeof LocaleAboutHistoryRoute
-  '/$locale/academics/$studentType': typeof LocaleAcademicsStudentTypeRouteWithChildren
   '/$locale/reservations/introduction': typeof LocaleReservationsIntroductionRoute
   '/$locale/reservations/privacy-policy': typeof LocaleReservationsPrivacyPolicyRoute
   '/$locale/10-10-project': typeof Locale1010ProjectIndexRoute
@@ -842,6 +849,7 @@ export interface FileRoutesByTo {
   '/$locale/about/future-careers': typeof LocaleAboutFutureCareersIndexRoute
   '/$locale/about/overview': typeof LocaleAboutOverviewIndexRoute
   '/$locale/about/student-clubs': typeof LocaleAboutStudentClubsIndexRoute
+  '/$locale/academics/$studentType': typeof LocaleAcademicsStudentTypeIndexRoute
   '/$locale/community/faculty-recruitment': typeof LocaleCommunityFacultyRecruitmentIndexRoute
   '/$locale/community/news': typeof LocaleCommunityNewsIndexRoute
   '/$locale/community/notice': typeof LocaleCommunityNoticeIndexRoute
@@ -945,6 +953,7 @@ export interface FileRoutesById {
   '/$locale/about/future-careers/': typeof LocaleAboutFutureCareersIndexRoute
   '/$locale/about/overview/': typeof LocaleAboutOverviewIndexRoute
   '/$locale/about/student-clubs/': typeof LocaleAboutStudentClubsIndexRoute
+  '/$locale/academics/$studentType/': typeof LocaleAcademicsStudentTypeIndexRoute
   '/$locale/community/faculty-recruitment/': typeof LocaleCommunityFacultyRecruitmentIndexRoute
   '/$locale/community/news/': typeof LocaleCommunityNewsIndexRoute
   '/$locale/community/notice/': typeof LocaleCommunityNoticeIndexRoute
@@ -1049,6 +1058,7 @@ export interface FileRouteTypes {
     | '/$locale/about/future-careers/'
     | '/$locale/about/overview/'
     | '/$locale/about/student-clubs/'
+    | '/$locale/academics/$studentType/'
     | '/$locale/community/faculty-recruitment/'
     | '/$locale/community/news/'
     | '/$locale/community/notice/'
@@ -1113,7 +1123,6 @@ export interface FileRouteTypes {
     | '/$locale/about/contact'
     | '/$locale/about/greetings'
     | '/$locale/about/history'
-    | '/$locale/academics/$studentType'
     | '/$locale/reservations/introduction'
     | '/$locale/reservations/privacy-policy'
     | '/$locale/10-10-project'
@@ -1150,6 +1159,7 @@ export interface FileRouteTypes {
     | '/$locale/about/future-careers'
     | '/$locale/about/overview'
     | '/$locale/about/student-clubs'
+    | '/$locale/academics/$studentType'
     | '/$locale/community/faculty-recruitment'
     | '/$locale/community/news'
     | '/$locale/community/notice'
@@ -1252,6 +1262,7 @@ export interface FileRouteTypes {
     | '/$locale/about/future-careers/'
     | '/$locale/about/overview/'
     | '/$locale/about/student-clubs/'
+    | '/$locale/academics/$studentType/'
     | '/$locale/community/faculty-recruitment/'
     | '/$locale/community/news/'
     | '/$locale/community/notice/'
@@ -1580,6 +1591,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/$locale/community/faculty-recruitment/'
       preLoaderRoute: typeof LocaleCommunityFacultyRecruitmentIndexRouteImport
       parentRoute: typeof LocaleRouteRoute
+    }
+    '/$locale/academics/$studentType/': {
+      id: '/$locale/academics/$studentType/'
+      path: '/'
+      fullPath: '/$locale/academics/$studentType/'
+      preLoaderRoute: typeof LocaleAcademicsStudentTypeIndexRouteImport
+      parentRoute: typeof LocaleAcademicsStudentTypeRoute
     }
     '/$locale/about/student-clubs/': {
       id: '/$locale/about/student-clubs/'
@@ -2020,6 +2038,7 @@ declare module '@tanstack/react-router' {
 
 interface LocaleAcademicsStudentTypeRouteChildren {
   LocaleAcademicsStudentTypeCoursesRoute: typeof LocaleAcademicsStudentTypeCoursesRoute
+  LocaleAcademicsStudentTypeIndexRoute: typeof LocaleAcademicsStudentTypeIndexRoute
   LocaleAcademicsStudentTypeCourseChangesCreateRoute: typeof LocaleAcademicsStudentTypeCourseChangesCreateRoute
   LocaleAcademicsStudentTypeGuideEditRoute: typeof LocaleAcademicsStudentTypeGuideEditRoute
   LocaleAcademicsStudentTypeScholarshipCreateRoute: typeof LocaleAcademicsStudentTypeScholarshipCreateRoute
@@ -2036,6 +2055,7 @@ const LocaleAcademicsStudentTypeRouteChildren: LocaleAcademicsStudentTypeRouteCh
   {
     LocaleAcademicsStudentTypeCoursesRoute:
       LocaleAcademicsStudentTypeCoursesRoute,
+    LocaleAcademicsStudentTypeIndexRoute: LocaleAcademicsStudentTypeIndexRoute,
     LocaleAcademicsStudentTypeCourseChangesCreateRoute:
       LocaleAcademicsStudentTypeCourseChangesCreateRoute,
     LocaleAcademicsStudentTypeGuideEditRoute:

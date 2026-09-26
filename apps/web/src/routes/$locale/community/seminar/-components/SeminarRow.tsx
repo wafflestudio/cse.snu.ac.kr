@@ -25,7 +25,7 @@ export default function SeminarRow({
     <Link to={detailPath} className="group">
       <article className="flex flex-col gap-4 sm:flex-row sm:gap-4">
         <ImageCell imageURL={imageURL} />
-        <div className="flex flex-col items-start gap-1 break-all sm:gap-0">
+        <div className="flex flex-col items-start gap-1 sm:gap-0">
           <TitleCell title={title} />
           <div className="flex flex-col gap-1">
             <HostInformationCell host={name} company={affiliation} />

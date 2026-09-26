@@ -5,7 +5,6 @@ import Form from '@/components/form/Form';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import type { ScholarshipList } from '@/types/api';
 import { api } from '@/utils/api';
 
@@ -30,7 +29,6 @@ function ScholarshipEditPage() {
   const { handleSubmit } = formMethods;
 
   const navigate = useNavigate();
-  const subNav = useAcademicsSubNav();
   const title = t('장학 제도');
   const _studentLabel = studentType === 'graduate' ? t('대학원') : t('학부');
   const onCancel = () =>
@@ -50,7 +48,7 @@ function ScholarshipEditPage() {
   };
 
   return (
-    <PageLayout title={title} subNav={subNav}>
+    <PageLayout title={title}>
       <FormProvider {...formMethods}>
         <Form>
           <Fieldset.HTML>

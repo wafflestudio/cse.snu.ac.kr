@@ -115,7 +115,7 @@ export default function SeminarEditor({
         <div className="mb-12">
           <legend className="mb-4 type-item tracking-wide">연사 정보</legend>
           <div className="flex flex-col">
-            <div className="flex gap-6">
+            <Form.Row size="full">
               <Fieldset title="이름" required>
                 <Form.Text
                   name="name"
@@ -127,11 +127,11 @@ export default function SeminarEditor({
               <Fieldset title="이름 링크(url)">
                 <Form.Text name="speakerURL" />
               </Fieldset>
-            </div>
+            </Form.Row>
             <Fieldset title="직함">
               <Form.Text name="speakerTitle" />
             </Fieldset>
-            <div className="flex gap-6">
+            <Form.Row size="full">
               <Fieldset title="소속" required>
                 <Form.Text
                   name="affiliation"
@@ -143,7 +143,7 @@ export default function SeminarEditor({
               <Fieldset title="소속 링크(url)">
                 <Form.Text name="affiliationURL" />
               </Fieldset>
-            </div>
+            </Form.Row>
           </div>
         </div>
 

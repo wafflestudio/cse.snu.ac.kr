@@ -10,7 +10,6 @@ import Form from '@/components/form/Form';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useAboutSubNav } from '@/hooks/useSubNav';
 import type { FutureCareersResponse } from '@/types/api';
 import { api } from '@/utils/api';
 import { stringParam } from '@/utils/searchSchema';
@@ -55,7 +54,6 @@ function CareerStatEditPage() {
   const { localizedPath } = useLanguage({
     '졸업생 진로': 'Future Careers',
   });
-  const subNav = useAboutSubNav();
   const navigate = useNavigate();
 
   const formMethods = useForm<CareerStat>({ defaultValues: loaderData });
@@ -79,10 +77,7 @@ function CareerStatEditPage() {
   };
 
   return (
-    <PageLayout
-      title={`${loaderData.year}년 졸업생 진로 현황 편집`}
-      subNav={subNav}
-    >
+    <PageLayout title={`${loaderData.year}년 졸업생 진로 현황 편집`}>
       <FormProvider {...formMethods}>
         <Form>
           <Fieldset title="연도" required>

@@ -39,7 +39,7 @@ export default function AdminTable({
     // 칸 틀은 표에 한 번만 — 머리 행·행이 같이 쓴다(subgrid). 제목 칸만 남는 자리.
     <div
       className={clsx(
-        'mx-3 mb-8 grid border-y border-neutral-200',
+        'mb-8 grid border-y border-neutral-200',
         type === 'important'
           ? 'grid-cols-[auto_auto_auto_minmax(0,1fr)_auto_auto]'
           : 'grid-cols-[auto_auto_minmax(0,1fr)_auto_auto]',

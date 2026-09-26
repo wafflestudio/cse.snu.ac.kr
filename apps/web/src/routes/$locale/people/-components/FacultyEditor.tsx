@@ -143,14 +143,14 @@ const SharedEditor = ({ labs }: { labs: SimpleResearchLab[] }) => {
     <>
       {/* 재직 기간 (역대 교수진만 활성화) */}
       <Form.Section title="재직 기간" hidden={status === 'ACTIVE'}>
-        <div className="flex w-100">
+        <Form.Row>
           <Fieldset title="시작 날짜">
             <Form.Date name="startDate" hideTime />
           </Fieldset>
           <Fieldset title="종료 날짜">
             <Form.Date name="endDate" hideTime />
           </Fieldset>
-        </div>
+        </Form.Row>
       </Form.Section>
 
       <Fieldset title="사진">
@@ -175,14 +175,14 @@ const SharedEditor = ({ labs }: { labs: SimpleResearchLab[] }) => {
       </Fieldset>
 
       <Form.Section title="연락처 정보">
-        <div className="flex w-2xl">
+        <Form.Row>
           <Fieldset title="전화번호">
             <Form.Text name="phone" size="md" placeholder="예: (02) 880-7302" />
           </Fieldset>
           <Fieldset title="팩스">
             <Form.Text name="fax" size="md" />
           </Fieldset>
-        </div>
+        </Form.Row>
 
         <Fieldset title="이메일">
           <Form.Text name="email" size="lg" />
