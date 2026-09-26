@@ -113,7 +113,8 @@ function CourseCardFront({
         isFlipped
           ? 'transform-[rotateY(-180deg)]'
           : 'transform-[rotateY(0deg)]',
-        'shadow-[2px_2px_4px_0_rgba(255,255,255,0.05)_inset,-2px_-2px_6px_0_rgba(0,0,0,0.05)_inset]',
+        // 카드는 그림자 대신 선(/design-system#unique).
+        'border border-neutral-200',
         styles.face,
       )}
       ref={ref}
@@ -150,7 +151,7 @@ function CourseCardBack({
       className={clsx(
         'p-4 bg-neutral-200',
         isFlipped ? 'transform-[rotateY(0deg)]' : 'transform-[rotateY(180deg)]',
-        'shadow-[2px_2px_4px_0_rgba(255,255,255,0.07)_inset,-2px_-2px_4px_0_rgba(0,0,0,0.05)_inset]',
+        'border border-neutral-200',
         styles.face,
       )}
       ref={ref}

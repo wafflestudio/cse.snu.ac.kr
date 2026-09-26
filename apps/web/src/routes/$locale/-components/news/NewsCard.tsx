@@ -11,7 +11,8 @@ export default function NewsCard({ news }: { news: MainNews }) {
   return (
     <Link
       to={localizedPath(`/community/news/${news.id}`)}
-      className={`flex h-76 shrink-0 flex-col bg-neutral-50 shadow-[0_0_31.9px_0_rgba(0,0,0,0.07)] ${CARD_WIDTH_TAILWIND}`}
+      // 회색 띠 위 흰 카드 — 그림자는 떠 있는 층에만(/design-system#unique).
+      className={`flex h-76 shrink-0 flex-col bg-white ${CARD_WIDTH_TAILWIND}`}
     >
       <div className="relative h-25 w-full">
         <Image

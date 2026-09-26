@@ -13,8 +13,9 @@ export default function ProfileImage({
       src={imageURL}
       width={200}
       sizes="200px"
-      height={264}
-      className="object-contain"
+      height={250}
+      // 사진 틀은 200·4:5 고정 — 사진은 채워 자르고, 없으면 같은 틀에 로고(/design-system#unique).
+      className="aspect-4/5 w-50 shrink-0 object-cover"
       loading="lazy"
     />
   );

@@ -4,9 +4,9 @@ import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/hooks/useLanguage';
 import { usePeopleSubNav } from '@/hooks/useSubNav';
+import PeopleDetailLayout from '@/routes/$locale/people/-components/PeopleDetailLayout';
 import PeopleInfoList from '@/routes/$locale/people/-components/PeopleInfoList';
 import PeopleLabNode from '@/routes/$locale/people/-components/PeopleLabNode';
-import PeopleProfileInfo from '@/routes/$locale/people/-components/PeopleProfileInfo';
 import type { ProfessorWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 
@@ -65,10 +65,9 @@ function FacultyDetailPage() {
         </div>
       </LoginVisible>
 
-      <div className="relative sm:flow-root">
-        <PeopleProfileInfo imageURL={faculty.imageURL} items={contactItems} />
+      <PeopleDetailLayout imageURL={faculty.imageURL} contacts={contactItems}>
         <PeopleLabNode faculty={faculty} />
-        <div className="mt-8 break-all">
+        <div className="mt-8">
           <PeopleInfoList header={t('학력')} items={faculty.educations} />
           <PeopleInfoList
             header={t('연구 분야')}
@@ -76,7 +75,7 @@ function FacultyDetailPage() {
           />
           <PeopleInfoList header={t('경력')} items={faculty.careers} />
         </div>
-      </div>
+      </PeopleDetailLayout>
     </PageLayout>
   );
 }

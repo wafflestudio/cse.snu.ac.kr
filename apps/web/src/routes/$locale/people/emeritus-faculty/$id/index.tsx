@@ -4,9 +4,8 @@ import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/hooks/useLanguage';
 import { usePeopleSubNav } from '@/hooks/useSubNav';
-import PeopleContactList from '@/routes/$locale/people/-components/PeopleContactList';
+import PeopleDetailLayout from '@/routes/$locale/people/-components/PeopleDetailLayout';
 import PeopleInfoList from '@/routes/$locale/people/-components/PeopleInfoList';
-import PeopleProfileImage from '@/routes/$locale/people/-components/PeopleProfileImage';
 import type { ProfessorWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 
@@ -37,26 +36,20 @@ function EmeritusFacultyDetailPage() {
       ? `${faculty.name}, ${faculty.academicRank}${researchAreasText ? ` - Research Areas: ${researchAreasText}` : ''}`
       : `${faculty.name} ${faculty.academicRank}${researchAreasText ? ` - 연구 분야: ${researchAreasText}` : ''}`;
 
-  const contactItems = [];
-
-  if (faculty.office)
-    contactItems.push({ label: t('교수실'), value: faculty.office });
-
-  if (faculty.email)
-    contactItems.push({
-      label: t('이메일'),
-      value: faculty.email,
-      href: `mailto:${faculty.email}`,
-    });
-
-  if (faculty.website)
-    contactItems.push({
-      label: t('웹사이트'),
-      value: faculty.website,
-      href: faculty.website,
-    });
-
-  const careerTimeStr = `${t('재직 기간')}: ${faculty.startDate} - ${faculty.endDate}`;
+  const contactItems = [
+    { icon: 'distance', label: faculty.office },
+    {
+      icon: 'mail',
+      label: faculty.email,
+      href: faculty.email ? `mailto:${faculty.email}` : undefined,
+    },
+    { icon: 'captive_portal', label: faculty.website, href: faculty.website },
+  ];
+  // 재직 기간은 양 끝이 다 있을 때만(없으면 "null - null" 이 보였다).
+  const careerPeriod =
+    faculty.startDate && faculty.endDate
+      ? [`${faculty.startDate} - ${faculty.endDate}`]
+      : [];
 
   return (
     <PageLayout
@@ -79,18 +72,11 @@ function EmeritusFacultyDetailPage() {
         </div>
       </LoginVisible>
 
-      <div className="relative flex flex-col items-start sm:flex-row sm:gap-16">
-        <PeopleProfileImage imageURL={faculty.imageURL} />
-        <div className="mt-6 sm:mt-0">
-          <PeopleContactList title={t('연락처')} items={contactItems} />
-          <PeopleInfoList header={t('학력')} items={faculty.educations} />
-          <PeopleInfoList
-            header={t('연구 분야')}
-            items={faculty.researchAreas}
-          />
-          <div className="type-meta text-neutral-700">{careerTimeStr}</div>
-        </div>
-      </div>
+      <PeopleDetailLayout imageURL={faculty.imageURL} contacts={contactItems}>
+        <PeopleInfoList header={t('학력')} items={faculty.educations} />
+        <PeopleInfoList header={t('연구 분야')} items={faculty.researchAreas} />
+        <PeopleInfoList header={t('재직 기간')} items={careerPeriod} />
+      </PeopleDetailLayout>
     </PageLayout>
   );
 }

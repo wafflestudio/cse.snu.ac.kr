@@ -4,9 +4,8 @@ import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/hooks/useLanguage';
 import { usePeopleSubNav } from '@/hooks/useSubNav';
-import PeopleContactList from '@/routes/$locale/people/-components/PeopleContactList';
+import PeopleDetailLayout from '@/routes/$locale/people/-components/PeopleDetailLayout';
 import PeopleInfoList from '@/routes/$locale/people/-components/PeopleInfoList';
-import PeopleProfileImage from '@/routes/$locale/people/-components/PeopleProfileImage';
 import type { StaffWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 
@@ -35,12 +34,12 @@ function StaffDetailPage() {
       : `${staff.name} ${staff.role} - 서울대학교 컴퓨터공학부`;
 
   const contactItems = [
-    { label: t('위치'), value: staff.office },
-    { label: t('전화'), value: staff.phone },
+    { icon: 'distance', label: staff.office },
+    { icon: 'phone_in_talk', label: staff.phone },
     {
-      label: t('이메일'),
-      value: staff.email,
-      href: `mailto:${staff.email}`,
+      icon: 'mail',
+      label: staff.email,
+      href: staff.email ? `mailto:${staff.email}` : undefined,
     },
   ];
 
@@ -66,13 +65,9 @@ function StaffDetailPage() {
         </div>
       </LoginVisible>
 
-      <div className="relative flex flex-col items-start sm:flex-row sm:gap-16">
-        <PeopleProfileImage imageURL={staff.imageURL} />
-        <div className="mt-6 sm:mt-0">
-          <PeopleContactList title={t('연락처')} items={contactItems} />
-          <PeopleInfoList header={t('주요 업무')} items={staff.tasks} />
-        </div>
-      </div>
+      <PeopleDetailLayout imageURL={staff.imageURL} contacts={contactItems}>
+        <PeopleInfoList header={t('주요 업무')} items={staff.tasks} />
+      </PeopleDetailLayout>
     </PageLayout>
   );
 }

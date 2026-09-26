@@ -2,7 +2,7 @@ import type { LucideIcon } from 'lucide-react';
 import { Globe, Mail, MapPin, PhoneCall, Printer } from 'lucide-react';
 import ProfileImage from '@/routes/$locale/people/-components/PeopleProfileImage';
 
-interface PeopleProfileInfoItem {
+export interface PeopleProfileInfoItem {
   icon: string;
   label?: string | null;
   href?: string | null;
@@ -26,20 +26,22 @@ export default function PeopleProfileInfo({
   items,
 }: PeopleProfileInfoProps) {
   return (
-    <div className="relative mb-8 sm:float-right">
+    // 인물 상세의 왼쪽: 사진과 그 아래 아이콘 연락처(/design-system#unique). 비어 있는 항목은 그리지 않는다.
+    <div className="flex shrink-0 flex-col">
       <ProfileImage imageURL={imageURL} />
 
-      <div className="mt-4 flex flex-col gap-2 bg-white type-meta text-neutral-600">
-        {items.map((item, idx) => (
-          <ProfileInfoRow key={`${item.icon}-${idx}`} {...item} />
-        ))}
+      <div className="mt-4 flex flex-col gap-4 type-meta text-neutral-600">
+        {items
+          .filter((item) => item.label)
+          .map((item, idx) => (
+            <ProfileInfoRow key={`${item.icon}-${idx}`} {...item} />
+          ))}
       </div>
     </div>
   );
 }
 
 function ProfileInfoRow({ icon, label, href }: PeopleProfileInfoItem) {
-  const hasLabel = typeof label === 'string' && label.length > 0;
   const Icon = ICONS[icon];
 
   return (
@@ -56,7 +58,7 @@ function ProfileInfoRow({ icon, label, href }: PeopleProfileInfoItem) {
           {label}
         </a>
       ) : (
-        <p>{hasLabel ? label : '-'}</p>
+        <p>{label}</p>
       )}
     </div>
   );
