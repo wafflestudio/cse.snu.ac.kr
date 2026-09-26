@@ -4,6 +4,7 @@ import { ButtonSection } from './-sections/button';
 import { ColorSection } from './-sections/color';
 import { DialogSection } from './-sections/dialog';
 import { EditorSection } from './-sections/editor';
+import { FocusSection } from './-sections/focus';
 import { FormSection } from './-sections/form';
 import { GraphicSection } from './-sections/graphic';
 import { IconSection } from './-sections/icon';
@@ -40,6 +41,7 @@ export const GROUPS: Group[] = [
       { id: 'spacing', title: '간격', content: <SpacingSection /> },
       { id: 'shape', title: '모서리·그림자·선', content: <ShapeSection /> },
       { id: 'icon', title: '아이콘', content: <IconSection /> },
+      { id: 'focus', title: '초점·키보드', content: <FocusSection /> },
       { id: 'graphic', title: '그래픽', content: <GraphicSection /> },
     ],
   },

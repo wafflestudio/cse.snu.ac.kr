@@ -36,7 +36,9 @@ export default function SearchInput({
       <div
         className={clsx(
           'flex h-8.5 items-center rounded-xs pr-2',
-          light ? 'border border-neutral-300 bg-white' : 'bg-neutral-100',
+          light
+            ? 'field-focus-within border border-neutral-300 bg-white'
+            : 'field-ring-within bg-neutral-100',
         )}
       >
         <input

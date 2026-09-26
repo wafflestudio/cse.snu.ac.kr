@@ -9,7 +9,7 @@ export default function NewsSection({ mainNews }: { mainNews: MainNews[] }) {
   const { t, localizedPath } = useLanguage();
 
   return (
-    <div className="relative flex flex-col gap-6 overflow-hidden bg-neutral-100 pb-12 pl-5 pt-8 sm:flex-row sm:gap-16 sm:pt-16 sm:pb-12 sm:pl-16 sm:pr-32">
+    <div className="surface-light relative flex flex-col gap-6 overflow-hidden bg-neutral-100 pb-12 pl-5 pt-8 sm:flex-row sm:gap-16 sm:pt-16 sm:pb-12 sm:pl-16 sm:pr-32">
       <div className="flex shrink-0 flex-col gap-2">
         <h3 className="type-headline text-neutral-950">{t('새 소식')}</h3>
         <Link

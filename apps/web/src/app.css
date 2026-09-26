@@ -20,6 +20,13 @@
 @custom-variant dark (&:is(.dark *));
 
 @layer base {
+  /* 초점 표시 한 벌(/design-system/focus): 키보드로 옮겼을 때만 2px 실선을 2px 띄워 그린다.
+     색은 --focus-ring 을 물려받는다 — 어두운 면 틀에 surface-dark, 그 안의 밝은 면에 surface-light. */
+  :focus-visible {
+    outline: 2px solid var(--focus-ring, var(--color-neutral-700));
+    outline-offset: 2px;
+  }
+
   html,
   body {
     @apply h-full;
@@ -168,6 +175,35 @@
 /* 표준 페이지 본문 가로 거터 — 단일 출처.
    데스크톱 좌우 100px(px-25), 서브내비가 보이는 1280px 부터 오른쪽 360px(pr-90). 모바일 20px(px-5).
    페이지·섹션은 가로 거터를 인라인 재선언하지 말고 이 클래스를 쓴다(세로 패딩만 각자). */
+/* 입력 칸의 초점 표시(/design-system/focus). field-focus 는 칸 자체, field-focus-within 은 칸을 감싼 틀
+   (검색 칸처럼 input 과 버튼을 한 틀에 담은 것). 흰 면의 칸은 테두리만 짙게 — 링을 두르면 겉보기가 크게 바뀐다.
+   어두운 면 위에 뜬 칸(헤더 검색)은 짙은 테두리가 배경에 묻혀 링을 두른다(field-ring-within). */
+@utility field-focus {
+  &:focus-visible {
+    border-color: var(--field-focus, var(--color-neutral-700));
+  }
+}
+@utility field-focus-within {
+  &:has(:focus-visible) {
+    border-color: var(--field-focus, var(--color-neutral-700));
+  }
+}
+
+/* 초점 링 색을 정하는 면 표시. 가장 가까운 조상의 값이 이긴다(변수 상속). */
+@utility field-ring-within {
+  &:has(:focus-visible) {
+    outline: 2px solid var(--focus-ring, var(--color-neutral-700));
+    outline-offset: 2px;
+  }
+}
+
+@utility surface-dark {
+  --focus-ring: var(--color-white);
+}
+@utility surface-light {
+  --focus-ring: var(--color-neutral-700);
+}
+
 @layer components {
   .page-gutter-x {
     @apply px-5 sm:px-25 xl:pr-90;

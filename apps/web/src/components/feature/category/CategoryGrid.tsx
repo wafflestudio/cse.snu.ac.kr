@@ -37,7 +37,7 @@ export default function CategoryGrid({ currentPage }: CategoryGridProps) {
   };
 
   return (
-    <div className="bg-neutral-900 px-5 pt-8 pb-16 sm:px-25 sm:pt-16 sm:pb-32">
+    <div className="surface-dark bg-neutral-900 px-5 pt-8 pb-16 sm:px-25 sm:pt-16 sm:pb-32">
       <div className={ROOT_GRID_CLASS}>
         {children.map((subpage) => {
           return (

@@ -42,7 +42,9 @@ export default function Footer() {
     mode === 'light' ? 'border-neutral-100' : 'border-neutral-800';
 
   return (
-    <footer className={`border-t-2 ${borderTop}`}>
+    <footer
+      className={`border-t-2 ${borderTop} ${mode === 'light' ? 'surface-light' : 'surface-dark'}`}
+    >
       <div
         // 열은 글 길이만큼, 사이는 간격으로(모바일 24·데스크톱 48). 열 폭을 적지 않는다.
         className={`${topBg} flex flex-wrap gap-x-6 gap-y-8 px-5 py-8 sm:gap-x-12 sm:px-15 sm:py-12`}

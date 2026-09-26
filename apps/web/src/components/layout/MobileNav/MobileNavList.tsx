@@ -75,7 +75,7 @@ function SearchPage({ onClose }: { onClose: () => void }) {
           <X className="size-5" />
         </Button>
       </div>
-      <div className="mx-8 mt-8 flex items-center border-b border-neutral-400">
+      <div className="field-focus-within mx-8 mt-8 flex items-center border-b border-neutral-400 [--field-focus:var(--color-white)]">
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}

@@ -23,7 +23,7 @@ export default function ErrorState({
   actions,
 }: ErrorStateProps) {
   return (
-    <div className="flex grow flex-col bg-neutral-900">
+    <div className="surface-dark flex grow flex-col bg-neutral-900">
       <div className="px-5 pt-12 sm:px-25">
         <div className="mb-6 sm:mb-12">
           <p className="mb-2 type-meta text-neutral-300">{code}</p>

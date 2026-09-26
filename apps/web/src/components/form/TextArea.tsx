@@ -22,7 +22,7 @@ export default function TextArea({
         {...props}
         aria-invalid={error !== undefined || undefined}
         className={clsx(
-          'block h-20 w-full resize-none rounded-xs border bg-white px-3 py-2 type-ui outline-none placeholder:text-neutral-300',
+          'block h-20 w-full resize-none rounded-xs border bg-white px-3 py-2 type-ui outline-none field-focus placeholder:text-neutral-300',
           fieldBorder(error !== undefined),
         )}
       />

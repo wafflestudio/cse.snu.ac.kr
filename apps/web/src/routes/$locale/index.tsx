@@ -38,7 +38,7 @@ function MainPage() {
       <meta property="og:title" content={meta.title} />
       <meta property="og:description" content={meta.description} />
 
-      <div className="relative w-full">
+      <div className="surface-dark relative w-full">
         <Header />
         <div className="bg-pattern absolute left-0 right-0 top-0 -z-50 hidden aspect-1336/800 sm:block" />
         <GraphicSection />

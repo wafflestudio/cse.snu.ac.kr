@@ -40,7 +40,7 @@ export default function CategoryPage({
   const resolvedTitle = currentPage ? tUnsafe(currentPage.key) : '';
 
   return (
-    <div className="bg-neutral-850">
+    <div className="surface-dark bg-neutral-850">
       <Header />
       <div className="max-w-7xl px-5 py-8 sm:px-25 sm:pt-12 sm:pb-16">
         <div className="mb-2 type-ui text-neutral-500 sm:type-section sm:font-normal">

@@ -72,7 +72,7 @@ export default function PageLayout({
       {noImageIndex && <meta name="robots" content="noimageindex" />}
 
       {/* 기존 레이아웃 */}
-      <div className="flex grow flex-col bg-neutral-900">
+      <div className="surface-dark flex grow flex-col bg-neutral-900">
         <Header />
         {(title || finalBreadcrumb.length > 0) && (
           <PageTitle
@@ -82,7 +82,7 @@ export default function PageLayout({
           />
         )}
         <div
-          className={`relative grow bg-white ${paddingClass} xl:min-h-(--subnav-min-h)`}
+          className={`surface-light relative grow bg-white ${paddingClass} xl:min-h-(--subnav-min-h)`}
           // 서브내비는 absolute 라 본문 높이에 들어가지 않는다 — 본문이 짧으면 푸터를 덮으므로
           // 서브내비 높이(위 52 + 제목 46 + 항목당 30.8) + 아래 128 만큼은 본문을 늘린다.
           style={
