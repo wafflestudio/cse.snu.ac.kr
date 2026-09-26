@@ -45,12 +45,11 @@ function StudentClubsPage() {
     <PageLayout
       title={t('동아리 소개')}
       subNav={subNav}
-      padding="noTop"
       pageTitle={meta.title}
       pageDescription={meta.description}
     >
       <LoginVisible allow="ROLE_STAFF">
-        <div className="mt-12 text-right">
+        <div className="mb-8 text-right">
           <Button
             as="link"
             to={localizedPath('/about/student-clubs/create')}

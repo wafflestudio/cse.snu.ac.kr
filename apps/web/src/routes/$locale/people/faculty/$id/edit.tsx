@@ -70,7 +70,7 @@ function FacultyEdit() {
   };
 
   return (
-    <PageLayout title="교수진 편집" padding="default">
+    <PageLayout title="교수진 편집">
       <FacultyEditor
         defaultValues={faculty}
         labs={labs}

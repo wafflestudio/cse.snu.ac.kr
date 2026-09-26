@@ -55,7 +55,7 @@ function FacilitiesCreate() {
   });
 
   return (
-    <PageLayout title="시설 추가" padding="default">
+    <PageLayout title="시설 추가">
       <FormProvider {...methods}>
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />

@@ -66,7 +66,7 @@ function StudentClubsEdit() {
   });
 
   return (
-    <PageLayout title="동아리 소개 편집" padding="default">
+    <PageLayout title="동아리 소개 편집">
       <FormProvider {...methods}>
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />

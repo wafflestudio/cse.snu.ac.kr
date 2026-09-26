@@ -55,7 +55,7 @@ function NoticeCreatePage() {
   };
 
   return (
-    <PageLayout title="공지사항 작성" padding="default">
+    <PageLayout title="공지사항 작성">
       <NoticeEditor onCancel={onCancel} onSubmit={onSubmit} />
     </PageLayout>
   );

@@ -100,7 +100,7 @@ function SeminarEditPage() {
   };
 
   return (
-    <PageLayout title="세미나 편집" padding="default">
+    <PageLayout title="세미나 편집">
       <SeminarEditor
         onCancel={onCancel}
         onSubmit={onSubmit}

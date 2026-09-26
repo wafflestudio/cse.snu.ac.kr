@@ -53,34 +53,34 @@ export default function ClubDetails({ club, locale }: ClubDetailsProps) {
   return (
     <>
       <div>
-        <div className="justify-between sm:flex items-start">
-          <SelectionTitle
-            title={club[locale].name}
-            subtitle={club[oppositeLocale].name}
-            animateKey={club[locale].name}
-          />
-          <LoginVisible allow="ROLE_STAFF">
-            <div className="flex gap-3">
-              <Button
-                variant="secondary"
-                size="md"
-                onClick={() => setShowDeleteDialog(true)}
-              >
-                삭제
-              </Button>
-              <Button
-                as="link"
-                to={localizedPath(
-                  `/about/student-clubs/edit?selected=${club.id}`,
-                )}
-                variant="secondary"
-                size="md"
-              >
-                편집
-              </Button>
-            </div>
-          </LoginVisible>
-        </div>
+        <SelectionTitle
+          title={club[locale].name}
+          subtitle={club[oppositeLocale].name}
+          animateKey={club[locale].name}
+          actions={
+            <LoginVisible allow="ROLE_STAFF">
+              <div className="flex gap-3">
+                <Button
+                  variant="secondary"
+                  size="md"
+                  onClick={() => setShowDeleteDialog(true)}
+                >
+                  삭제
+                </Button>
+                <Button
+                  as="link"
+                  to={localizedPath(
+                    `/about/student-clubs/edit?selected=${club.id}`,
+                  )}
+                  variant="secondary"
+                  size="md"
+                >
+                  편집
+                </Button>
+              </div>
+            </LoginVisible>
+          }
+        />
         <HTMLViewer html={club[locale].description} image={image} />
       </div>
 

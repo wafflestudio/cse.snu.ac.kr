@@ -45,7 +45,7 @@ function ResearchCenterCreate() {
   };
 
   return (
-    <PageLayout title="연구 센터 추가" padding="default">
+    <PageLayout title="연구 센터 추가">
       <ResearchCenterEditor onCancel={onCancel} onSubmit={onSubmit} />
     </PageLayout>
   );

@@ -58,7 +58,7 @@ function SeminarCreatePage() {
   };
 
   return (
-    <PageLayout title="세미나 작성" padding="default">
+    <PageLayout title="세미나 작성">
       <SeminarEditor onCancel={onCancel} onSubmit={onSubmit} />
     </PageLayout>
   );

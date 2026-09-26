@@ -57,7 +57,7 @@ function StaffEdit() {
   };
 
   return (
-    <PageLayout title="행정직원 편집" padding="default">
+    <PageLayout title="행정직원 편집">
       <StaffEditor
         defaultValues={staff}
         onCancel={() => router.history.go(-1)}

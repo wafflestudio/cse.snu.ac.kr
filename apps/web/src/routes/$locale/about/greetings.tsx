@@ -9,7 +9,6 @@ import { useAboutSubNav } from '@/hooks/useSubNav';
 import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { AboutContent } from '@/types/api';
 import { api } from '@/utils/api';
-import ContentSection from './-components/ContentSection';
 
 const META = {
   ko: {
@@ -35,40 +34,37 @@ function GreetingsPage() {
     <PageLayout
       title={t('학부장 인사말')}
       subNav={subNav}
-      padding="none"
       pageTitle={meta.title}
       pageDescription={meta.description}
     >
-      <ContentSection tone="white" padding="subNav">
-        <LoginVisible allow="ROLE_STAFF">
-          <div className="mb-8 text-right">
-            <Button
-              as="link"
-              to={localizedPath('/about/greetings/edit')}
-              variant="secondary"
-              size="md"
-            >
-              편집
-            </Button>
-          </div>
-        </LoginVisible>
-        <div className="flex flex-col-reverse items-start gap-6 sm:flex-row sm:gap-12">
-          <div className="sm:w-100 sm:grow">
-            <HTMLViewer html={loaderData.description} />
-          </div>
-          {loaderData.imageURL && (
-            <div>
-              <Image
-                src={loaderData.imageURL}
-                alt="학부장"
-                width={212}
-                sizes="212px"
-                height={280}
-              />
-            </div>
-          )}
+      <LoginVisible allow="ROLE_STAFF">
+        <div className="mb-8 text-right">
+          <Button
+            as="link"
+            to={localizedPath('/about/greetings/edit')}
+            variant="secondary"
+            size="md"
+          >
+            편집
+          </Button>
         </div>
-      </ContentSection>
+      </LoginVisible>
+      <div className="flex flex-col-reverse items-start gap-6 sm:flex-row sm:gap-12">
+        <div className="sm:w-100 sm:grow">
+          <HTMLViewer html={loaderData.description} />
+        </div>
+        {loaderData.imageURL && (
+          <div>
+            <Image
+              src={loaderData.imageURL}
+              alt="학부장"
+              width={212}
+              sizes="212px"
+              height={280}
+            />
+          </div>
+        )}
+      </div>
     </PageLayout>
   );
 }

@@ -7,7 +7,6 @@ import { fetchAdmissions } from '../../-components/fetchAdmissions';
 
 type PageConfig = {
   apiPostType: AdmissionsPostType;
-  layout?: 'default' | 'extraBottom';
 };
 
 // URL 세그먼트(mainType/postType) → 백엔드 postType 매핑. URL의 postType과 API 값이 다른 곳이 있다(exchange).
@@ -26,8 +25,8 @@ const ADMISSIONS_PAGES: Record<
   international: {
     undergraduate: { apiPostType: 'undergraduate' },
     graduate: { apiPostType: 'graduate' },
-    exchange: { apiPostType: 'exchange-visiting', layout: 'extraBottom' },
-    scholarships: { apiPostType: 'scholarships', layout: 'extraBottom' },
+    exchange: { apiPostType: 'exchange-visiting' },
+    scholarships: { apiPostType: 'scholarships' },
   },
 };
 
@@ -43,14 +42,13 @@ const pageConfig = (
     : undefined;
 
 function AdmissionsPage() {
-  const { description, layout } = Route.useLoaderData();
+  const { description } = Route.useLoaderData();
   const params = Route.useParams();
 
   const { mainType, postType } = params;
   return (
     <AdmissionsPageContent
       description={description}
-      layout={layout}
       mainType={mainType}
       postType={postType}
     />
@@ -83,7 +81,6 @@ export const Route = createFileRoute(
       description: await prepareHtmlForViewer({
         data: data[locale].description,
       }),
-      layout: config.layout,
     };
   },
   component: AdmissionsPage,

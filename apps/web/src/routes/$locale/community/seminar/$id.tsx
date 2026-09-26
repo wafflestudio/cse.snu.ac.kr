@@ -65,7 +65,7 @@ function SeminarDetailPage() {
       pageTitle={pageTitle}
       pageDescription={pageDescription}
       subNav={subNav}
-      padding="none"
+      bands
     >
       <h2 className="page-gutter-x py-8 type-section">{seminar.title}</h2>
       <div className="bg-neutral-50 page-gutter-x pb-16 pt-8 sm:pb-32">

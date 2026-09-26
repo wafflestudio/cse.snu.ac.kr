@@ -48,7 +48,7 @@ function NewsDetailPage() {
     <PageLayout
       title={t('새 소식')}
       subNav={subNav}
-      padding="none"
+      bands
       pageTitle={pageTitle}
       pageDescription={pageDescription}
     >

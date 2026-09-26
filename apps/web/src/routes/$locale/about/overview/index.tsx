@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
+import PageBand from '@/components/layout/PageLayout/PageBand';
 import Attachments from '@/components/ui/Attachments';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
@@ -10,7 +11,6 @@ import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import commonTranslations from '@/translations.json';
 import type { AboutContent } from '@/types/api';
 import { api } from '@/utils/api';
-import ContentSection from '../-components/ContentSection';
 import brochure1 from '../assets/brochure1.avif';
 import brochure2 from '../assets/brochure2.avif';
 
@@ -41,7 +41,7 @@ function Overview() {
   return (
     <PageLayout
       title={t('학부 소개')}
-      padding="none"
+      bands
       pageTitle={meta.title}
       pageDescription={meta.description}
       subNav={{
@@ -59,7 +59,7 @@ function Overview() {
         ],
       }}
     >
-      <ContentSection tone="neutral" padding="overviewTop">
+      <PageBand tone="gray">
         <LoginVisible allow="ROLE_STAFF">
           <div className="mb-8 text-right">
             <Button
@@ -90,8 +90,8 @@ function Overview() {
             </div>
           )}
         </div>
-      </ContentSection>
-      <ContentSection tone="white" padding="overviewBottom">
+      </PageBand>
+      <PageBand>
         <h2 className="mb-4 type-item">{t('학부 소개 책자')}</h2>
         <div className="mb-12 flex flex-col gap-6 sm:flex-row">
           <Image
@@ -110,7 +110,7 @@ function Overview() {
           />
         </div>
         <Attachments files={attachments ?? []} />
-      </ContentSection>
+      </PageBand>
     </PageLayout>
   );
 }

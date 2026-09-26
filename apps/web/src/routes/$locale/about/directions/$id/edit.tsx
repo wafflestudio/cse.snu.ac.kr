@@ -54,10 +54,7 @@ function DirectionsEdit() {
   });
 
   return (
-    <PageLayout
-      title={`찾아오는 길(${direction.ko?.name}) 편집`}
-      padding="default"
-    >
+    <PageLayout title={`찾아오는 길(${direction.ko?.name}) 편집`}>
       <FormProvider {...methods}>
         <Form>
           <LanguagePicker onChange={setLanguage} selected={language} />

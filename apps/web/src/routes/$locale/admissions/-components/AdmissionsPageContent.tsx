@@ -9,7 +9,6 @@ import type { ViewerHtml } from '@/utils/csp';
 
 interface AdmissionsPageContentProps {
   description: ViewerHtml;
-  layout?: 'default' | 'extraBottom';
   mainType?: string;
   postType?: string;
 }
@@ -118,7 +117,6 @@ const META: Record<
 
 export default function AdmissionsPageContent({
   description,
-  layout = 'default',
   mainType,
   postType,
 }: AdmissionsPageContentProps) {
@@ -126,7 +124,6 @@ export default function AdmissionsPageContent({
   const { activeItem } = useNavItem();
   const subNav = useAdmissionsSubNav();
   const title = activeItem ? tUnsafe(activeItem.key) : t('입학');
-  const wrapperClass = layout === 'extraBottom' ? 'pb-16 sm:pb-32' : '';
 
   // activeItem.path가 있으면 자동으로 editPath 생성
   const editPath = activeItem?.path ? `${activeItem.path}/edit` : null;
@@ -141,7 +138,6 @@ export default function AdmissionsPageContent({
     <PageLayout
       title={title}
       subNav={subNav}
-      padding={layout === 'extraBottom' ? 'noBottom' : 'default'}
       pageTitle={meta?.title}
       pageDescription={meta?.description}
     >
@@ -159,7 +155,7 @@ export default function AdmissionsPageContent({
           </div>
         </LoginVisible>
       )}
-      <div className={wrapperClass}>
+      <div>
         <HTMLViewer html={description} />
       </div>
     </PageLayout>

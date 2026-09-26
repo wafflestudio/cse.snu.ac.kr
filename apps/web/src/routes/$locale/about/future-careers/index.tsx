@@ -8,7 +8,6 @@ import { useAboutSubNav } from '@/hooks/useSubNav';
 import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { FutureCareersResponse } from '@/types/api';
 import { api } from '@/utils/api';
-import ContentSection from '../-components/ContentSection';
 import CareerCompanies from './-components/CareerCompanies';
 import CareerStat from './-components/CareerStat';
 
@@ -38,27 +37,24 @@ function FutureCareersPage() {
     <PageLayout
       title={t('졸업생 진로')}
       subNav={subNav}
-      padding="none"
       pageTitle={meta.title}
       pageDescription={meta.description}
     >
-      <ContentSection tone="white" padding="subNav">
-        <LoginVisible allow="ROLE_STAFF">
-          <div className="mb-8 text-right">
-            <Button
-              as="link"
-              to={localizedPath('/about/future-careers/description/edit')}
-              variant="secondary"
-              size="md"
-            >
-              편집
-            </Button>
-          </div>
-        </LoginVisible>
-        <HTMLViewer html={data.description} />
-        <CareerStat stat={data.stat} />
-        <CareerCompanies companies={data.companies} />
-      </ContentSection>
+      <LoginVisible allow="ROLE_STAFF">
+        <div className="mb-8 text-right">
+          <Button
+            as="link"
+            to={localizedPath('/about/future-careers/description/edit')}
+            variant="secondary"
+            size="md"
+          >
+            편집
+          </Button>
+        </div>
+      </LoginVisible>
+      <HTMLViewer html={data.description} />
+      <CareerStat stat={data.stat} />
+      <CareerCompanies companies={data.companies} />
     </PageLayout>
   );
 }

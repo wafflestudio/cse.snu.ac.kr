@@ -7,7 +7,6 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useAboutSubNav } from '@/hooks/useSubNav';
 import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import { api } from '@/utils/api';
-import ContentSection from './-components/ContentSection';
 
 import './assets/contactfix.css';
 
@@ -40,34 +39,31 @@ function ContactPage() {
     <PageLayout
       title={t('연락처')}
       subNav={subNav}
-      padding="none"
       pageTitle={meta.title}
       pageDescription={meta.description}
     >
-      <ContentSection tone="white" padding="subNav">
-        <LoginVisible allow="ROLE_STAFF">
-          <div className="mb-8 text-right">
-            <Button
-              as="link"
-              to={localizedPath('/about/contact/edit')}
-              variant="secondary"
-              size="md"
-            >
-              편집
-            </Button>
-          </div>
-        </LoginVisible>
-        <HTMLViewer
-          html={description}
-          image={
-            imageURL && {
-              src: imageURL,
-              width: 240,
-              height: 360,
-            }
+      <LoginVisible allow="ROLE_STAFF">
+        <div className="mb-8 text-right">
+          <Button
+            as="link"
+            to={localizedPath('/about/contact/edit')}
+            variant="secondary"
+            size="md"
+          >
+            편집
+          </Button>
+        </div>
+      </LoginVisible>
+      <HTMLViewer
+        html={description}
+        image={
+          imageURL && {
+            src: imageURL,
+            width: 240,
+            height: 360,
           }
-        />
-      </ContentSection>
+        }
+      />
     </PageLayout>
   );
 }

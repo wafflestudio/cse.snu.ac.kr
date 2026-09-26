@@ -9,6 +9,7 @@ import { FormSection } from './-sections/form';
 import { GraphicSection } from './-sections/graphic';
 import { IconSection } from './-sections/icon';
 import { LayoutSection } from './-sections/layout';
+import { PageSection } from './-sections/page';
 import { SearchSection } from './-sections/search';
 import { SelectionSection } from './-sections/selection';
 import { ShapeSection } from './-sections/shape';
@@ -50,7 +51,7 @@ const GROUPS: Group[] = [
   {
     title: '패턴',
     sections: [
-      { id: 'page', title: '페이지 틀' },
+      { id: 'page', title: '페이지 틀', content: <PageSection /> },
       { id: 'navigation', title: '내비게이션·셸' },
       { id: 'list', title: '목록·상태 화면' },
       { id: 'post', title: '게시물 상세' },

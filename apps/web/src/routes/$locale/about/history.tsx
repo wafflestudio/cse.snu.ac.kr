@@ -8,7 +8,6 @@ import { useAboutSubNav } from '@/hooks/useSubNav';
 import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { AboutContent } from '@/types/api';
 import { api } from '@/utils/api';
-import ContentSection from './-components/ContentSection';
 
 const META = {
   ko: {
@@ -34,34 +33,31 @@ function HistoryPage() {
     <PageLayout
       title={t('연혁')}
       subNav={subNav}
-      padding="none"
       pageTitle={meta.title}
       pageDescription={meta.description}
     >
-      <ContentSection tone="white" padding="subNav">
-        <LoginVisible allow="ROLE_STAFF">
-          <div className="mb-8 text-right">
-            <Button
-              as="link"
-              to={localizedPath('/about/history/edit')}
-              variant="secondary"
-              size="md"
-            >
-              편집
-            </Button>
-          </div>
-        </LoginVisible>
-        <HTMLViewer
-          html={loaderData.description}
-          image={
-            loaderData.imageURL && {
-              src: loaderData.imageURL,
-              width: 320,
-              height: 360,
-            }
+      <LoginVisible allow="ROLE_STAFF">
+        <div className="mb-8 text-right">
+          <Button
+            as="link"
+            to={localizedPath('/about/history/edit')}
+            variant="secondary"
+            size="md"
+          >
+            편집
+          </Button>
+        </div>
+      </LoginVisible>
+      <HTMLViewer
+        html={loaderData.description}
+        image={
+          loaderData.imageURL && {
+            src: loaderData.imageURL,
+            width: 320,
+            height: 360,
           }
-        />
-      </ContentSection>
+        }
+      />
     </PageLayout>
   );
 }

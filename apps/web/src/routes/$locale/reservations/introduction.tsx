@@ -50,7 +50,6 @@ function ReservationsIntroductionPage() {
   return (
     <PageLayout
       title={t('시설 예약 안내')}
-      padding="noTop"
       subNav={subNav}
       pageTitle={meta.title}
       pageDescription={meta.description}

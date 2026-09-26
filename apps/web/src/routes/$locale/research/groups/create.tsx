@@ -39,7 +39,7 @@ function ResearchGroupCreate() {
   };
 
   return (
-    <PageLayout title="연구 스트림 추가" padding="default">
+    <PageLayout title="연구 스트림 추가">
       <ResearchGroupEditor onCancel={onCancel} onSubmit={onSubmit} />
     </PageLayout>
   );

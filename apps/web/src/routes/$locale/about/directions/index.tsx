@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import SelectionList from '@/components/feature/selection/SelectionList';
+import SelectionTitle from '@/components/feature/selection/SelectionTitle';
 import footerTranslations from '@/components/layout/Footer/translations.json';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
@@ -54,11 +55,10 @@ function DirectionsPage() {
     <PageLayout
       title={t('찾아오는 길')}
       subNav={subNav}
-      padding="noTop"
       pageTitle={meta.title}
       pageDescription={meta.description}
     >
-      <div className="mb-12 pt-8 sm:pt-12">
+      <div className="mb-12">
         <p className="mb-8 type-body">
           {t('컴퓨터공학부는 서울대학교 관악 301동(신공학관1)에 있습니다.')}
           <br />
@@ -84,21 +84,23 @@ function DirectionsPage() {
 
       {selectedDirection && (
         <div>
-          <div className="mb-4 justify-between sm:flex">
-            <h4 className="type-section">{selectedDirection[locale]?.name}</h4>
-            <LoginVisible allow="ROLE_STAFF">
-              <Button
-                as="link"
-                to={localizedPath(
-                  `/about/directions/${selectedDirection.id}/edit`,
-                )}
-                variant="secondary"
-                size="md"
-              >
-                편집
-              </Button>
-            </LoginVisible>
-          </div>
+          <SelectionTitle
+            title={selectedDirection[locale]?.name ?? ''}
+            actions={
+              <LoginVisible allow="ROLE_STAFF">
+                <Button
+                  as="link"
+                  to={localizedPath(
+                    `/about/directions/${selectedDirection.id}/edit`,
+                  )}
+                  variant="secondary"
+                  size="md"
+                >
+                  편집
+                </Button>
+              </LoginVisible>
+            }
+          />
           <div className="ml-3">
             {selectedDirection[locale]?.description && (
               <HTMLViewer html={selectedDirection[locale].description} />

@@ -54,7 +54,7 @@ function NoticeDetailPage() {
     <PageLayout
       title={t('공지사항')}
       subNav={subNav}
-      padding="none"
+      bands
       pageTitle={pageTitle}
       pageDescription={pageDescription}
     >

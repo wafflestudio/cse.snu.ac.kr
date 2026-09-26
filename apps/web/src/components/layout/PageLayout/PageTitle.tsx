@@ -14,19 +14,17 @@ interface PageTitleProps {
   title?: string;
   subtitle?: string;
   breadcrumb?: BreadcrumbItem[];
-  margin: string;
 }
 
 export default function PageTitle({
   title,
   subtitle,
   breadcrumb,
-  margin,
 }: PageTitleProps) {
   return (
     <div className="px-5 pt-12 sm:px-25">
       <div
-        className={`col-start-1 row-start-1 w-fit min-w-62.5 max-w-207.5 ${margin}`}
+        className={`col-start-1 row-start-1 w-fit min-w-62.5 max-w-207.5 mb-6 sm:mb-12`}
       >
         <div className="mb-2 flex items-center justify-center gap-2">
           {breadcrumb && breadcrumb.length > 0 && (
@@ -40,7 +38,7 @@ export default function PageTitle({
               <span className="flex items-end">
                 <span
                   className={
-                    'type-page-title break-keep tracking-wide text-white'
+                    'type-page-title break-keep wrap-anywhere tracking-wide text-white'
                   }
                 >
                   {title}
@@ -52,7 +50,7 @@ export default function PageTitle({
             ) : (
               <span
                 className={
-                  'type-page-title break-keep tracking-wide text-white'
+                  'type-page-title break-keep wrap-anywhere tracking-wide text-white'
                 }
               >
                 {title}

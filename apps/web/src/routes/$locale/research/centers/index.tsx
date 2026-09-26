@@ -1,13 +1,12 @@
 import { createFileRoute, useRouter } from '@tanstack/react-router';
-import { Link as LinkIcon } from 'lucide-react';
 import { useState } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import SelectionList from '@/components/feature/selection/SelectionList';
+import SelectionTitle from '@/components/feature/selection/SelectionTitle';
 import PageLayout from '@/components/layout/PageLayout';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
-import Node from '@/components/ui/Nodes';
 import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
@@ -63,27 +62,25 @@ function ResearchCentersPage() {
     <PageLayout
       title={t('연구 센터')}
       subNav={subNav}
-      padding="none"
       pageTitle={meta.title}
       pageDescription={meta.description}
     >
-      <div className="page-gutter-x">
-        <LoginVisible allow="ROLE_STAFF">
-          <div className="mt-12 text-right">
-            <Button
-              as="link"
-              to={localizedPath('/research/centers/create')}
-              variant="primary"
-              size="md"
-            >
-              연구 센터 추가
-            </Button>
-          </div>
-        </LoginVisible>
-        <SelectionList items={selectionItems} />
-      </div>
+      <LoginVisible allow="ROLE_STAFF">
+        <div className="mb-8 text-right">
+          <Button
+            as="link"
+            to={localizedPath('/research/centers/create')}
+            variant="primary"
+            size="md"
+          >
+            연구 센터 추가
+          </Button>
+        </div>
+      </LoginVisible>
+      <SelectionList items={selectionItems} />
+
       {selectedCenter && (
-        <div className="page-gutter-x pb-16 sm:pb-32">
+        <div>
           <LoginVisible allow="ROLE_STAFF">
             <div className="mb-8 flex justify-end gap-3">
               <Button
@@ -106,9 +103,9 @@ function ResearchCentersPage() {
               </Button>
             </div>
           </LoginVisible>
-          <ResearchCenterTitle
-            name={selectedCenter.name}
-            link={selectedCenter.websiteURL ?? ''}
+          <SelectionTitle
+            title={selectedCenter.name}
+            href={selectedCenter.websiteURL || undefined}
           />
           <div className="px-3">
             <HTMLViewer
@@ -132,27 +129,6 @@ function ResearchCentersPage() {
         onConfirm={handleDelete}
       />
     </PageLayout>
-  );
-}
-
-function ResearchCenterTitle({ name, link }: { name: string; link: string }) {
-  return (
-    <div className="mb-4 sm:w-fit" key={name}>
-      <h4 className="mb-2 px-3 type-section text-neutral-950">
-        <a
-          href={link}
-          target="_blank"
-          className="group flex cursor-pointer items-center gap-1"
-          rel="noopener noreferrer"
-        >
-          <span>{name}</span>
-          <LinkIcon className="text-neutral-500 group-hover:text-main-orange" />
-        </a>
-      </h4>
-      <div className="animate-stretch">
-        <Node variant="straight" />
-      </div>
-    </div>
   );
 }
 

@@ -91,7 +91,7 @@ function NewsEditPage() {
   };
 
   return (
-    <PageLayout title="새소식 편집" padding="default">
+    <PageLayout title="새소식 편집">
       <NewsEditor
         onCancel={onCancel}
         onSubmit={onSubmit}

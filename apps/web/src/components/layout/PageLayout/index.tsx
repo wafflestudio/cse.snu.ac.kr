@@ -16,8 +16,8 @@ interface PageLayoutProps {
   title?: string;
   subtitle?: string;
   breadcrumb?: BreadcrumbItem[];
-  titleMargin?: string;
-  padding?: 'default' | 'none' | 'noTop' | 'noBottom';
+  // 띠 틀: 본문을 PageBand 로 쌓는다(/design-system#page). 없으면 기본 틀.
+  bands?: boolean;
   subNav?: SubNavConfig;
   pageTitle?: string; // <title> 및 og:title용
   pageDescription?: string; // meta description 및 og:description용
@@ -27,18 +27,13 @@ interface PageLayoutProps {
 
 /**
  * 본문 기본 스타일
- * padding-left: 100px
- * padding-right: 360px
- * padding-top: 48px(모바일 32)
- * padding-bottom: 128px(모바일 64)
- * background-color: white
+ * 기본 틀: 위 48(모바일 32)·아래 128(모바일 64), 흰 바탕. 띠 틀은 bands.
  */
 export default function PageLayout({
   title,
   subtitle,
   breadcrumb,
-  titleMargin = 'mb-6 sm:mb-12',
-  padding = 'default',
+  bands = false,
   subNav,
   pageTitle,
   pageDescription,
@@ -54,15 +49,10 @@ export default function PageLayout({
     ? `${pageTitle} ⋅ ${locale === 'en' ? SITE_NAME.en : SITE_NAME.ko}`
     : undefined;
 
-  // 가로 거터는 page-gutter-x(단일 출처), 세로 패딩만 변형별로 지정.
-  const paddingClass =
-    padding === 'none'
-      ? 'p-0'
-      : padding === 'noTop'
-        ? 'page-gutter-x pb-16 sm:pb-32'
-        : padding === 'noBottom'
-          ? 'page-gutter-x pt-8 sm:pt-12'
-          : 'page-gutter-x pt-8 pb-16 sm:pt-12 sm:pb-32';
+  // 기본 틀: 위 32/48·아래 64/128. 띠 틀은 여백을 띠(PageBand)가 준다.
+  const paddingClass = bands
+    ? ''
+    : 'page-gutter-x pt-8 pb-16 sm:pt-12 sm:pb-32';
 
   return (
     <>
@@ -89,7 +79,6 @@ export default function PageLayout({
             title={title}
             subtitle={subtitle}
             breadcrumb={finalBreadcrumb}
-            margin={titleMargin}
           />
         )}
         <div className={`relative grow bg-white ${paddingClass}`}>
