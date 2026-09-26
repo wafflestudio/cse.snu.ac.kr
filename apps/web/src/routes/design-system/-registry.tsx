@@ -87,16 +87,27 @@ export const SECTIONS = GROUPS.flatMap((group) =>
   group.sections.map((section) => ({ ...section, group: group.title })),
 );
 
-export const DS_SUBNAV: SubNavConfig = {
+// 목차는 지금 묶음만 펼친다 — 22개 절을 다 펼치면 화면 높이를 넘어 붙어 따라오는 목차가 잘린다.
+// 다른 묶음은 이름만 두고 누르면 그 묶음의 첫 절로 간다.
+export const dsSubNav = (currentId?: string): SubNavConfig => ({
   title: '디자인 시스템',
   titlePath: '/design-system',
   localized: false,
-  items: GROUPS.flatMap((group) => [
-    { name: group.title, depth: 0 as const },
-    ...group.sections.map((section) => ({
-      name: section.title,
-      path: `/design-system/${section.id}`,
-      depth: 1 as const,
-    })),
-  ]),
-};
+  items: GROUPS.flatMap((group) => {
+    const open = group.sections.some((section) => section.id === currentId);
+    return [
+      {
+        name: group.title,
+        path: open ? undefined : `/design-system/${group.sections[0].id}`,
+        depth: 0 as const,
+      },
+      ...(open
+        ? group.sections.map((section) => ({
+            name: section.title,
+            path: `/design-system/${section.id}`,
+            depth: 1 as const,
+          }))
+        : []),
+    ];
+  }),
+});

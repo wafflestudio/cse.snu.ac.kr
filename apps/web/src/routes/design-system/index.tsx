@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import PageLayout from '@/components/layout/PageLayout';
-import { DS_SUBNAV, GROUPS } from './-registry';
+import { dsSubNav, GROUPS } from './-registry';
 
 // 디자인 시스템 첫 페이지: 정체성과 묶음별 목차. 절은 각자 페이지(/design-system/<id>).
 
@@ -9,7 +9,7 @@ function DesignSystemHome() {
     <PageLayout
       title="디자인 시스템"
       breadcrumb={[]}
-      subNav={DS_SUBNAV}
+      subNav={dsSubNav()}
       pageTitle="디자인 시스템"
       pageDescription="서울대학교 컴퓨터공학부 웹사이트의 디자인 규칙"
     >

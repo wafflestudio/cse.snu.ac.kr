@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from '@tanstack/react-router';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import NotFound from '@/components/layout/NotFound';
 import PageLayout from '@/components/layout/PageLayout';
-import { DS_SUBNAV, SECTIONS } from './-registry';
+import { dsSubNav, SECTIONS } from './-registry';
 
 // 절 한 페이지. 목차는 오른쪽 서브내비(데스크톱), 아래에 이전·다음 절.
 
@@ -17,7 +17,7 @@ function DesignSystemSection() {
     <PageLayout
       title={section.title}
       breadcrumb={[{ name: '디자인 시스템' }, { name: section.group }]}
-      subNav={DS_SUBNAV}
+      subNav={dsSubNav(id)}
       pageTitle={`${section.title} · 디자인 시스템`}
     >
       {section.content}
