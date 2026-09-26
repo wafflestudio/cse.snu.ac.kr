@@ -2,8 +2,10 @@ import 'suneditor/src/assets/css/suneditor-contents.css';
 import './assets/suneditor-contents.override.css';
 
 import clsx from 'clsx';
+import { useRef } from 'react';
 import Image from '@/components/ui/Image';
 import { useNonce } from '@/hooks/useNonce';
+import { useTableScrollHint } from '@/hooks/useTableScrollHint';
 import { type Falsy, isNotFalsy } from '@/types/utils';
 import type { ViewerHtml } from '@/utils/csp';
 
@@ -25,6 +27,8 @@ export default function HTMLViewer({
   component,
 }: HTMLViewerProps) {
   const nonce = useNonce();
+  const bodyRef = useRef<HTMLDivElement>(null);
+  useTableScrollHint(bodyRef);
 
   const { html: trimmedHTML, cssRules } = html;
 
@@ -54,6 +58,7 @@ export default function HTMLViewer({
       )}
       {hasComponent && <div className="relative float-right">{component}</div>}
       <div
+        ref={bodyRef}
         className="sun-editor-editable"
         // biome-ignore lint/security/noDangerouslySetInnerHtml: HTML 콘텐츠 렌더링 필요
         dangerouslySetInnerHTML={{ __html: trimmedHTML }}

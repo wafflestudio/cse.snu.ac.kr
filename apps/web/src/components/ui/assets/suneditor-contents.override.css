@@ -36,13 +36,79 @@
   margin-top: 0.625rem;
   margin-bottom: 0.875rem;
 }
-/* 넓은 표는 본문 폭 안에서 가로 스크롤한다. */
-.sun-editor-editable table {
+/* 넓은 표는 본문 폭 안에서 가로 스크롤한다. 작성자 서식(prepareHtmlForViewer 가 옮긴
+   `.sun-editor-editable .s-…` 규칙, 우선순위 0,2,0)이 display·폭을 덮어 표가 화면을 넘기므로
+   클래스를 두 번 써 한 단계 높인다(0,2,1). */
+.sun-editor-editable.sun-editor-editable table {
   display: block;
-  overflow: scroll;
+  max-width: 100%;
+  overflow-x: auto;
   border: 0;
+}
+/* 표 가로 스크롤 막대는 늘 보이게(데스크톱·Android) — 얇은 회색. */
+.sun-editor-editable table {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-neutral-300) transparent;
+}
+.sun-editor-editable table::-webkit-scrollbar {
+  height: 6px;
+}
+.sun-editor-editable table::-webkit-scrollbar-thumb {
+  background-color: var(--color-neutral-300);
+  border-radius: 9999px;
+}
+/* 옆으로 더 있으면 오른쪽 끝을 흐리게(iPhone 은 막대가 안 보여서). useTableScrollHint 가 붙인다. */
+.sun-editor-editable table[data-more-right] {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 calc(100% - 3rem),
+    transparent
+  );
+  mask-image: linear-gradient(to right, #000 calc(100% - 3rem), transparent);
 }
 .sun-editor-editable table td > * {
   width: max-content;
   max-width: 400px;
+}
+
+/* 본문 제목·간격·링크·인용을 DS 값으로(/design-system#reading). 작성자가 고른 크기·색은 인라인이라 그대로다. */
+.sun-editor-editable :is(h1, h2) {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 2rem 0 1rem;
+}
+.sun-editor-editable h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 2rem 0 1rem;
+}
+.sun-editor-editable :is(h4, h5, h6) {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 1.5rem 0 0.75rem;
+}
+.sun-editor-editable > :first-child {
+  margin-top: 0;
+}
+.sun-editor-editable p {
+  margin: 0 0 0.75rem;
+}
+.sun-editor-editable :is(ul, ol) {
+  margin-block: 0.75rem;
+}
+.sun-editor-editable a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.sun-editor-editable a:hover {
+  color: var(--color-main-orange);
+}
+.sun-editor-editable blockquote {
+  color: var(--color-neutral-600);
+  border-left: 2px solid var(--color-neutral-300);
+  padding-left: 1rem;
 }
