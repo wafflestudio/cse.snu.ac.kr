@@ -43,7 +43,7 @@ export default function TimelineEditor({
             size="sm"
             disabled={defaultValues !== undefined}
             options={{
-              required: { value: true, message: '연도를 입력해주세요.' },
+              required: { value: true, message: '연도를 입력해 주세요.' },
               valueAsNumber: true,
             }}
           />
@@ -52,7 +52,7 @@ export default function TimelineEditor({
           <Form.HTML
             name="description"
             options={{
-              required: { value: true, message: '내용을 입력해주세요.' },
+              required: { value: true, message: '내용을 입력해 주세요.' },
             }}
           />
         </Fieldset.HTML>

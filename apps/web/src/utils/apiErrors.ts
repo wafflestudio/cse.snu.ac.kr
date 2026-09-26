@@ -71,8 +71,8 @@ const MESSAGES: Record<ErrorCode, Text> = {
   },
   'NOTICE-01': { ko: '공지사항을 찾을 수 없습니다.', en: 'Notice not found.' },
   'NOTICE-02': { ko: '없는 공지 태그입니다.', en: 'Unknown notice tag.' },
-  'NEWS-01': { ko: '새소식을 찾을 수 없습니다.', en: 'News not found.' },
-  'NEWS-02': { ko: '없는 새소식 태그입니다.', en: 'Unknown news tag.' },
+  'NEWS-01': { ko: '새 소식을 찾을 수 없습니다.', en: 'News not found.' },
+  'NEWS-02': { ko: '없는 새 소식 태그입니다.', en: 'Unknown news tag.' },
   'SEMINAR-01': { ko: '세미나를 찾을 수 없습니다.', en: 'Seminar not found.' },
   'CONFERENCE-01': {
     ko: '학회를 찾을 수 없습니다.',

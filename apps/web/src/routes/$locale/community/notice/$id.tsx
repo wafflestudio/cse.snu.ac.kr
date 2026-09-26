@@ -37,7 +37,7 @@ function NoticeDetailPage() {
   const handleDelete = async () => {
     try {
       await api.delete(`v2/notice/${notice.id}`);
-      toast.success('게시글을 삭제했습니다.');
+      toast.success('게시물을 삭제했습니다.');
       navigate({ to: localizedPath('/community/notice') });
     } catch (error) {
       toastError(error);
@@ -78,6 +78,7 @@ function NoticeDetailPage() {
             listPath="/community/notice"
             editPath={`/community/notice/edit/${notice.id}`}
             onDelete={handleDelete}
+            deleteLabel={`‘${notice.title}’ 공지사항`}
           />
         }
       >

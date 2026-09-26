@@ -149,7 +149,7 @@ export default function useReservationForm({
       }
     },
     () => {
-      toast.info('모든 필수 정보를 입력해주세요.');
+      toast.info('모든 필수 정보를 입력해 주세요.');
     },
   );
 

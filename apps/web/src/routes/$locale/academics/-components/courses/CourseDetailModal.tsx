@@ -111,7 +111,7 @@ function CourseViewer({
       <AlertDialog
         open={showDeleteDialog}
         onOpenChange={setShowDeleteDialog}
-        description={t('삭제하시겠습니까?')}
+        description={`‘${course.ko.name}’ 교과목을 삭제하시겠습니까?\n되돌릴 수 없습니다.`}
         confirmText={t('삭제')}
         onConfirm={handleDelete}
       />

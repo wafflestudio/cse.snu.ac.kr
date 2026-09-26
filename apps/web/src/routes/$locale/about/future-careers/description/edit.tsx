@@ -63,7 +63,7 @@ function CareerDescriptionEdit() {
               options={{
                 required: {
                   value: true,
-                  message: '한국어 내용을 입력해주세요.',
+                  message: '한국어 내용을 입력해 주세요.',
                 },
               }}
               isHidden={language === 'en'}
@@ -71,7 +71,10 @@ function CareerDescriptionEdit() {
             <Form.HTML
               name="en"
               options={{
-                required: { value: true, message: '영문 내용을 입력해주세요.' },
+                required: {
+                  value: true,
+                  message: '영문 내용을 입력해 주세요.',
+                },
               }}
               isHidden={language === 'ko'}
             />

@@ -77,7 +77,7 @@ function StudentClubsEdit() {
               options={{
                 required: {
                   value: true,
-                  message: '한국어 제목을 입력해주세요.',
+                  message: '한국어 제목을 입력해 주세요.',
                 },
               }}
               hidden={language === 'en'}
@@ -85,7 +85,10 @@ function StudentClubsEdit() {
             <Form.Text
               name="en.name"
               options={{
-                required: { value: true, message: '영문 제목을 입력해주세요.' },
+                required: {
+                  value: true,
+                  message: '영문 제목을 입력해 주세요.',
+                },
               }}
               hidden={language === 'ko'}
             />
@@ -97,7 +100,7 @@ function StudentClubsEdit() {
               options={{
                 required: {
                   value: true,
-                  message: '한국어 내용을 입력해주세요.',
+                  message: '한국어 내용을 입력해 주세요.',
                 },
               }}
               isHidden={language === 'en'}
@@ -105,7 +108,10 @@ function StudentClubsEdit() {
             <Form.HTML
               name="en.description"
               options={{
-                required: { value: true, message: '영문 내용을 입력해주세요.' },
+                required: {
+                  value: true,
+                  message: '영문 내용을 입력해 주세요.',
+                },
               }}
               isHidden={language === 'ko'}
             />

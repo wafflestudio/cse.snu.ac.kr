@@ -80,7 +80,7 @@ export default function ImageModalManagement({
         toast.success('이미지 팝업을 수정했습니다.');
       } else {
         if (!values.image || values.image.type !== 'LOCAL_IMAGE') {
-          toast.error('이미지를 등록해주세요.');
+          toast.error('이미지를 등록해 주세요.');
           return;
         }
         formData.append('mainImage', values.image.file);
@@ -133,7 +133,8 @@ export default function ImageModalManagement({
           onCancel={onCancel}
           onSubmit={onSubmit}
           onDelete={isEditing ? onDelete : undefined}
-          submitLabel={isEditing ? '저장하기' : '등록하기'}
+          deleteLabel="이미지 팝업"
+          submitLabel={isEditing ? '저장' : '등록'}
         />
       </Form>
     </FormProvider>

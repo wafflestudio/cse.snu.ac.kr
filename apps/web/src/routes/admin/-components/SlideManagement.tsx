@@ -82,7 +82,7 @@ export default function SlideManagement({
       <AlertDialog
         open={showDialog}
         onOpenChange={setShowDialog}
-        description="정말 선택된 슬라이드를 모두 해제하시겠습니까?"
+        description={`선택한 슬라이드 ${selectedKeys.size}개를 해제하시겠습니까?`}
         confirmText="해제"
         onConfirm={handleBatchUnslide}
       />

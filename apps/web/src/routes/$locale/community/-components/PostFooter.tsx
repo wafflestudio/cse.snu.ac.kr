@@ -5,6 +5,7 @@ import LoginVisible from '@/components/feature/auth/LoginVisible';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/hooks/useLanguage';
+import { withObjectParticle } from '@/utils/string';
 
 interface PostFooterProps {
   post: {
@@ -16,6 +17,8 @@ interface PostFooterProps {
   listPath: string;
   editPath?: string;
   onDelete?: () => Promise<void>;
+  /** 삭제 확인창의 대상 — "‘제목’ 공지사항"(/design-system#writing). */
+  deleteLabel?: string;
 }
 
 export default function PostFooter({
@@ -23,6 +26,7 @@ export default function PostFooter({
   listPath,
   editPath,
   onDelete,
+  deleteLabel = '이 게시물',
 }: PostFooterProps) {
   const { t, localizedPath } = useLanguage({
     다음글: 'Next',
@@ -98,7 +102,7 @@ export default function PostFooter({
         <AlertDialog
           open={showDeleteDialog}
           onOpenChange={setShowDeleteDialog}
-          description="선택한 게시글을 삭제하시겠습니까?"
+          description={`${withObjectParticle(deleteLabel)} 삭제하시겠습니까?\n되돌릴 수 없습니다.`}
           confirmText="삭제"
           onConfirm={async () => {
             try {

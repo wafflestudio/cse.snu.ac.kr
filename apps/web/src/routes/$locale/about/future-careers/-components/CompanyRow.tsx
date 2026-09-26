@@ -104,7 +104,7 @@ function CareerCompanyViewer({
       <AlertDialog
         open={showDeleteDialog}
         onOpenChange={setShowDeleteDialog}
-        description="삭제하시겠습니까?"
+        description={`‘${name}’ 창업 기업을 삭제하시겠습니까?\n되돌릴 수 없습니다.`}
         confirmText="삭제"
         onConfirm={handleDelete}
       />

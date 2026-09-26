@@ -14,15 +14,25 @@ import { setLocale } from '../../helpers/locale';
  * 편집 시 연도 필드는 disabled, 본문만 수정. 삭제 확인 라벨 '삭제'.
  */
 const ROUTES = [
-  { path: 'curriculum', addToast: '추가에 성공했습니다.', label: '전공이수' },
+  {
+    path: 'curriculum',
+    addToast: '전공 이수 표준 형태를 추가했습니다.',
+    editToast: '전공 이수 표준 형태를 수정했습니다.',
+    deleteToast: '2099학번 전공 이수 표준 형태를 삭제했습니다.',
+    label: '전공이수',
+  },
   {
     path: 'general-studies-requirements',
-    addToast: '추가에 성공했습니다.',
+    addToast: '필수 교양 과목을 추가했습니다.',
+    editToast: '필수 교양 과목을 수정했습니다.',
+    deleteToast: '2099학번 영역별 교양과목 학점 배분 구조표를 삭제했습니다.',
     label: '교양이수',
   },
   {
     path: 'course-changes',
-    addToast: '저장에 성공했습니다.',
+    addToast: '교과목 변경 내역을 추가했습니다.',
+    editToast: '교과목 변경 내역을 수정했습니다.',
+    deleteToast: '2099학년도 교과목 변경 내역을 삭제했습니다.',
     label: '교과변경',
   },
 ] as const;
@@ -54,13 +64,13 @@ for (const route of ROUTES) {
       await page.waitForURL(new RegExp(`${route.path}/edit/${year}`));
       await fillHTMLEditor(page, descEdited);
       await submitForm(page);
-      await expect(page.getByText('수정에 성공했습니다.')).toBeVisible();
+      await expect(page.getByText(route.editToast)).toBeVisible();
       await page.waitForURL(`**${base}`);
       await expect(page.getByText(descEdited)).toBeVisible();
 
       // 삭제 (ActionButtons 삭제 → 확인 '삭제')
       await deleteItem(page, '삭제');
-      await expect(page.getByText('삭제에 성공했습니다.')).toBeVisible();
+      await expect(page.getByText(route.deleteToast)).toBeVisible();
       await expect(page.getByText(descEdited)).toHaveCount(0);
     });
   });

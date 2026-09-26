@@ -11,6 +11,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import type { TimelineContent } from '@/types/api';
 import { api } from '@/utils/api';
 import type { ViewerHtml } from '@/utils/csp';
+import { withObjectParticle } from '@/utils/string';
 import Timeline from './Timeline';
 
 type ProcessedTimelineContent = Omit<TimelineContent, 'description'> & {
@@ -104,11 +105,19 @@ export default function TimelineViewer<T extends ProcessedTimelineContent>({
   );
 }
 
-function ActionButtons({ year, pathname }: { year: number; pathname: string }) {
+function ActionButtons({
+  year,
+  pathname,
+  label,
+}: {
+  year: number;
+  pathname: string;
+  /** 확인창·토스트에 쓰는 이름 — "2024학번 전공 이수 표준 형태". */
+  label: string;
+}) {
   const { t, pathWithoutLocale } = useLanguage({
     삭제: 'Delete',
     편집: 'Edit',
-    '삭제하시겠습니까?': 'Are you sure you want to delete?',
   });
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const router = useRouter();
@@ -118,7 +127,7 @@ function ActionButtons({ year, pathname }: { year: number; pathname: string }) {
       // 백엔드 API 경로엔 로케일 프리픽스(/ko·/en)가 없어야 한다(pathname은 링크용).
       await api.delete(`v2${pathWithoutLocale}/${year}`);
       setShowDeleteDialog(false);
-      toast.success('삭제에 성공했습니다.');
+      toast.success(`${withObjectParticle(label)} 삭제했습니다.`);
       router.invalidate();
     } catch (error) {
       toastError(error);
@@ -141,7 +150,7 @@ function ActionButtons({ year, pathname }: { year: number; pathname: string }) {
       <AlertDialog
         open={showDeleteDialog}
         onOpenChange={setShowDeleteDialog}
-        description={t('삭제하시겠습니까?')}
+        description={`${withObjectParticle(label)} 삭제하시겠습니까?\n되돌릴 수 없습니다.`}
         confirmText={t('삭제')}
         onConfirm={handleDelete}
       />
@@ -169,7 +178,7 @@ function ContentViewer({
       <div className="bg-neutral-50 p-4">
         <HTMLViewer html={description} />
       </div>
-      <ActionButtons year={year} pathname={pathname} />
+      <ActionButtons year={year} pathname={pathname} label={title} />
     </div>
   );
 }
@@ -207,7 +216,7 @@ function TogglableContentViewer({
           <div className="bg-neutral-50 p-4">
             <HTMLViewer html={description} />
           </div>
-          <ActionButtons year={year} pathname={pathname} />
+          <ActionButtons year={year} pathname={pathname} label={title} />
         </>
       )}
     </div>

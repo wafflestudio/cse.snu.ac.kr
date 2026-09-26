@@ -52,7 +52,7 @@ function StaffPage() {
             as="link"
             to={localizedPath('/people/staff/create')}
           >
-            추가하기
+            행정직원 추가
           </Button>
         </div>
       </LoginVisible>

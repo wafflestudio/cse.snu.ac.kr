@@ -128,6 +128,7 @@ export default function FacultyEditor({
           onCancel={onCancel}
           onSubmit={handleSubmit(onSubmit)}
           onDelete={onDelete}
+          deleteLabel={`‘${defaultValues?.ko?.name}’ ${FACULTY_STATUS[defaultValues?.status ?? status]}`}
         />
       </Form>
     </FormProvider>
@@ -203,7 +204,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
           name={`${language}.name`}
           size="lg"
           options={{
-            required: { value: true, message: '이름을 입력해주세요.' },
+            required: { value: true, message: '이름을 입력해 주세요.' },
           }}
         />
       </Fieldset>
@@ -214,7 +215,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
           size="lg"
           placeholder="예: 교수, 조교수, 명예교수 등"
           options={{
-            required: { value: true, message: '직함을 입력해주세요.' },
+            required: { value: true, message: '직함을 입력해 주세요.' },
           }}
         />
       </Fieldset>

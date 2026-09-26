@@ -13,7 +13,7 @@ function CourseChangesCreatePage() {
   const { t } = useLanguage({
     '학부 교과목 변경 내역 추가': 'Add Undergraduate Course Changes',
     '대학원 교과목 변경 내역 추가': 'Add Graduate Course Changes',
-    '저장에 성공했습니다.': 'Successfully saved.',
+    '교과목 변경 내역을 추가했습니다.': 'Course changes added.',
     '저장에 실패했습니다.': 'Failed to save.',
   });
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ function CourseChangesCreatePage() {
       await api.post(`v2/academics/${studentType}/course-changes`, {
         body: formData,
       });
-      toast.success(t('저장에 성공했습니다.'));
+      toast.success(t('교과목 변경 내역을 추가했습니다.'));
       navigate({ to: `/academics/${studentType}/course-changes` });
     } catch (error) {
       toastError(error);

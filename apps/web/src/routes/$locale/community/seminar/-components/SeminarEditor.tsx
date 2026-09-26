@@ -80,7 +80,7 @@ export default function SeminarEditor({
             name="title"
             placeholder="제목을 입력하세요."
             options={{
-              required: { value: true, message: '제목을 입력해주세요.' },
+              required: { value: true, message: '제목을 입력해 주세요.' },
             }}
           />
         </Fieldset>
@@ -101,7 +101,7 @@ export default function SeminarEditor({
             name="location"
             placeholder="장소를 입력하세요."
             options={{
-              required: { value: true, message: '장소를 입력해주세요.' },
+              required: { value: true, message: '장소를 입력해 주세요.' },
             }}
           />
         </Fieldset>
@@ -120,7 +120,7 @@ export default function SeminarEditor({
                 <Form.Text
                   name="name"
                   options={{
-                    required: { value: true, message: '이름을 입력해주세요.' },
+                    required: { value: true, message: '이름을 입력해 주세요.' },
                   }}
                 />
               </Fieldset>
@@ -136,7 +136,7 @@ export default function SeminarEditor({
                 <Form.Text
                   name="affiliation"
                   options={{
-                    required: { value: true, message: '소속을 입력해주세요.' },
+                    required: { value: true, message: '소속을 입력해 주세요.' },
                   }}
                 />
               </Fieldset>
@@ -177,6 +177,7 @@ export default function SeminarEditor({
           onCancel={onCancel}
           onSubmit={handleSubmit(onSubmit)}
           onDelete={onDelete}
+          deleteLabel={`‘${defaultValues?.title}’ 세미나`}
         />
       </Form>
     </FormProvider>

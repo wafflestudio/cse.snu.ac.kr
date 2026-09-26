@@ -30,7 +30,7 @@ function CurriculumCreatePage() {
       await api.post(`v2/academics/undergraduate/curriculum`, {
         body: formData,
       });
-      toast.success('추가에 성공했습니다.');
+      toast.success('전공 이수 표준 형태를 추가했습니다.');
       navigate({ to: localizedPath('/academics/undergraduate/curriculum') });
     } catch (error) {
       toastError(error);

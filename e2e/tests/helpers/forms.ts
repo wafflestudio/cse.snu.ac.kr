@@ -50,8 +50,8 @@ export async function selectDropdown(
     .click();
 }
 
-/** 저장하기 버튼 클릭 */
-export async function submitForm(page: Page, buttonName = '저장하기') {
+/** 저장 버튼 클릭 */
+export async function submitForm(page: Page, buttonName = '저장') {
   await page.getByRole('button', { name: buttonName }).click();
 }
 

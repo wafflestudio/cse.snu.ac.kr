@@ -11,7 +11,7 @@ import { setLocale } from '../../helpers/locale';
 /**
  * 새소식 CRUD: 작성→상세→편집→상세 반영→삭제→목록에서 사라짐.
  * 시기(date)는 기본값(오늘)을 그대로 두고 제출(flow는 비주얼 아님).
- * 상세 페이지 삭제 토스트는 '게시글을 삭제했습니다.'($id.tsx).
+ * 상세 페이지 삭제 토스트는 '게시물을 삭제했습니다.'($id.tsx).
  */
 test.describe('새 소식 - 작성/편집/삭제 플로우', () => {
   test('staff가 새소식을 작성→편집→삭제한다', async ({ page }) => {
@@ -23,12 +23,12 @@ test.describe('새 소식 - 작성/편집/삭제 플로우', () => {
     await loginAsStaff(page);
 
     // === 작성 ===
-    await page.getByRole('link', { name: '새 게시글' }).click();
+    await page.getByRole('link', { name: '새 게시물' }).click();
     await page.waitForURL('**/community/news/create');
     await fillTextInput(page, 'title', title);
     await fillHTMLEditor(page, '<p>자동화 본문입니다.</p>');
-    await submitForm(page, '게시하기');
-    await expect(page.getByText('새소식을 게시했습니다.')).toBeVisible();
+    await submitForm(page, '게시');
+    await expect(page.getByText('새 소식을 게시했습니다.')).toBeVisible();
     await page.waitForURL(/\/community\/news\/\d+/);
     await expect(page.getByRole('heading', { name: title })).toBeVisible();
 
@@ -36,8 +36,8 @@ test.describe('새 소식 - 작성/편집/삭제 플로우', () => {
     await page.getByRole('link', { name: '편집' }).click();
     await page.waitForURL(/\/community\/news\/edit\/\d+/);
     await fillTextInput(page, 'title', titleEdited);
-    await submitForm(page, '게시하기');
-    await expect(page.getByText('새소식을 수정했습니다.')).toBeVisible();
+    await submitForm(page, '게시');
+    await expect(page.getByText('새 소식을 수정했습니다.')).toBeVisible();
     await page.waitForURL(/\/community\/news\/\d+/);
     await expect(
       page.getByRole('heading', { name: titleEdited }),
@@ -45,7 +45,7 @@ test.describe('새 소식 - 작성/편집/삭제 플로우', () => {
 
     // === 삭제 === (상세 PostFooter 삭제 → 확인 '삭제')
     await deleteItem(page, '삭제');
-    await expect(page.getByText('게시글을 삭제했습니다.')).toBeVisible();
+    await expect(page.getByText('게시물을 삭제했습니다.')).toBeVisible();
     await page.waitForURL('**/community/news');
     await expect(page.getByRole('heading', { name: titleEdited })).toHaveCount(
       0,
@@ -67,13 +67,13 @@ test.describe('새 소식 - 게시 설정', () => {
     await page.goto('/community/news');
     await loginAsStaff(page);
 
-    await page.getByRole('link', { name: '새 게시글' }).click();
+    await page.getByRole('link', { name: '새 게시물' }).click();
     await page.waitForURL('**/community/news/create');
     await fillTextInput(page, 'title', title);
     await fillHTMLEditor(page, '<p>비공개 본문</p>');
     await page.getByText('비공개 글').click();
-    await submitForm(page, '게시하기');
-    await expect(page.getByText('새소식을 게시했습니다.')).toBeVisible();
+    await submitForm(page, '게시');
+    await expect(page.getByText('새 소식을 게시했습니다.')).toBeVisible();
     await page.waitForURL(/\/community\/news\/\d+/);
 
     // staff 목록(SSR)에는 보인다
@@ -102,7 +102,7 @@ test.describe('새 소식 - 대표 이미지', () => {
     await page.goto('/community/news');
     await loginAsStaff(page);
 
-    await page.getByRole('link', { name: '새 게시글' }).click();
+    await page.getByRole('link', { name: '새 게시물' }).click();
     await page.waitForURL('**/community/news/create');
     await fillTextInput(page, 'title', title);
     await fillHTMLEditor(page, '<p>이미지 본문</p>');
@@ -118,7 +118,7 @@ test.describe('새 소식 - 대표 이미지', () => {
         buffer: PNG_1x1,
       });
 
-    await submitForm(page, '게시하기');
+    await submitForm(page, '게시');
     // 성공은 영속 결과(상세로 이동)로 검증. ephemeral 토스트 단언 제거(부하 시 flaky).
     await page.waitForURL(/\/community\/news\/\d+/);
 

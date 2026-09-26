@@ -85,6 +85,7 @@ export default function ResearchLabEditor({
           onCancel={onCancel}
           onSubmit={handleSubmit(onSubmit)}
           onDelete={onDelete}
+          deleteLabel={`‘${defaultValues?.ko.name}’ 연구실`}
         />
       </Form>
     </FormProvider>
@@ -143,7 +144,7 @@ const SharedEditor = ({
           rules={{
             required: {
               value: true,
-              message: '연구·교육 스트림을 선택해주세요.',
+              message: '연구·교육 스트림을 선택해 주세요.',
             },
           }}
         />
@@ -174,7 +175,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
           name={`${language}.name`}
           size="lg"
           options={{
-            required: { value: true, message: '연구실명을 입력해주세요.' },
+            required: { value: true, message: '연구실명을 입력해 주세요.' },
           }}
         />
       </Fieldset>
@@ -182,7 +183,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
       <Fieldset title="연구실 위치">
         <Form.Text
           name={`${language}.location`}
-          placeholder='복수일 경우 " / "로 구분해주세요. 예: 301동 515호 / 518호 / 551-1호'
+          placeholder='복수일 경우 " / "로 구분해 주세요. 예: 301동 515호 / 518호 / 551-1호'
         />
       </Fieldset>
 
@@ -190,7 +191,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
         <Form.HTML
           name={`${language}.description`}
           options={{
-            required: { value: true, message: '연구실 설명을 입력해주세요.' },
+            required: { value: true, message: '연구실 설명을 입력해 주세요.' },
           }}
         />
       </Fieldset>

@@ -31,7 +31,7 @@ export default function AdminFeatures({
         json: { idList: Array.from(selectedIds) },
       });
 
-      toast.success('선택된 공지를 삭제했습니다.');
+      toast.success('선택한 공지를 삭제했습니다.');
       router.invalidate();
     } catch (error) {
       toastError(error);
@@ -47,7 +47,7 @@ export default function AdminFeatures({
         json: { idList: Array.from(selectedIds) },
       });
 
-      toast.success('선택된 공지를 고정 해제했습니다.');
+      toast.success('선택한 공지를 고정 해제했습니다.');
       router.invalidate();
     } catch (error) {
       toastError(error);
@@ -93,7 +93,7 @@ export default function AdminFeatures({
           </Button>
           {isEditMode ? (
             <Button variant="primary" disabled>
-              새 게시글
+              새 게시물
             </Button>
           ) : (
             <Button
@@ -101,7 +101,7 @@ export default function AdminFeatures({
               as="link"
               to={localizedPath('/community/notice/create')}
             >
-              새 게시글
+              새 게시물
             </Button>
           )}
         </div>
@@ -110,7 +110,7 @@ export default function AdminFeatures({
       <AlertDialog
         open={showDeleteDialog}
         onOpenChange={setShowDeleteDialog}
-        description="선택한 게시글을 모두 삭제하시겠습니까?"
+        description={`선택한 공지 ${selectedIds.size}개를 삭제하시겠습니까?\n되돌릴 수 없습니다.`}
         confirmText="삭제"
         onConfirm={handleBatchDelete}
       />
@@ -118,7 +118,7 @@ export default function AdminFeatures({
       <AlertDialog
         open={showUnpinDialog}
         onOpenChange={setShowUnpinDialog}
-        description="선택한 게시글을 모두 고정 해제하시겠습니까?"
+        description={`선택한 공지 ${selectedIds.size}개를 고정 해제하시겠습니까?`}
         confirmText="고정 해제"
         onConfirm={handleBatchUnpin}
       />

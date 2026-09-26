@@ -46,7 +46,7 @@ async function deleteNoticesViaApi(page: Page, ids: number[]) {
 /**
  * 공지 CRUD: 작성→상세→편집→상세 반영→삭제→목록에서 사라짐.
  * baseline을 건드리지 않도록 고유 제목(Date.now())을 쓴다.
- * 상세 페이지의 삭제 토스트는 '게시글을 삭제했습니다.'($id.tsx).
+ * 상세 페이지의 삭제 토스트는 '게시물을 삭제했습니다.'($id.tsx).
  */
 test.describe('공지사항 - 작성/편집/삭제 플로우', () => {
   test('staff가 공지를 작성→편집→삭제한다', async ({ page }) => {
@@ -58,11 +58,11 @@ test.describe('공지사항 - 작성/편집/삭제 플로우', () => {
     await loginAsStaff(page);
 
     // === 작성 ===
-    await page.getByRole('link', { name: '새 게시글' }).click();
+    await page.getByRole('link', { name: '새 게시물' }).click();
     await page.waitForURL('**/community/notice/create');
     await fillTextInput(page, 'title', title);
     await fillHTMLEditor(page, '<p>자동화 본문입니다.</p>');
-    await submitForm(page, '게시하기');
+    await submitForm(page, '게시');
     await expect(page.getByText('공지사항을 게시했습니다.')).toBeVisible();
     await page.waitForURL(/\/community\/notice\/\d+/);
     await expect(page.getByRole('heading', { name: title })).toBeVisible();
@@ -71,7 +71,7 @@ test.describe('공지사항 - 작성/편집/삭제 플로우', () => {
     await page.getByRole('link', { name: '편집' }).click();
     await page.waitForURL(/\/community\/notice\/edit\/\d+/);
     await fillTextInput(page, 'title', titleEdited);
-    await submitForm(page, '게시하기');
+    await submitForm(page, '게시');
     await expect(page.getByText('공지사항을 수정했습니다.')).toBeVisible();
     await page.waitForURL(/\/community\/notice\/\d+/);
     await expect(
@@ -80,7 +80,7 @@ test.describe('공지사항 - 작성/편집/삭제 플로우', () => {
 
     // === 삭제 === (상세 PostFooter 삭제 → 확인 '삭제')
     await deleteItem(page, '삭제');
-    await expect(page.getByText('게시글을 삭제했습니다.')).toBeVisible();
+    await expect(page.getByText('게시물을 삭제했습니다.')).toBeVisible();
     await page.waitForURL('**/community/notice');
     await expect(page.getByRole('link', { name: titleEdited })).toHaveCount(0);
   });
@@ -166,12 +166,12 @@ test.describe('공지사항 - 게시 설정', () => {
     await page.goto('/community/notice');
     await loginAsStaff(page);
 
-    await page.getByRole('link', { name: '새 게시글' }).click();
+    await page.getByRole('link', { name: '새 게시물' }).click();
     await page.waitForURL('**/community/notice/create');
     await fillTextInput(page, 'title', title);
     await fillHTMLEditor(page, '<p>비공개 본문</p>');
     await page.getByText('비공개 글').click(); // 게시 설정 체크박스
-    await submitForm(page, '게시하기');
+    await submitForm(page, '게시');
     await expect(page.getByText('공지사항을 게시했습니다.')).toBeVisible();
     await page.waitForURL(/\/community\/notice\/\d+/);
 
@@ -193,12 +193,12 @@ test.describe('공지사항 - 게시 설정', () => {
     await page.goto('/community/notice');
     await loginAsStaff(page);
 
-    await page.getByRole('link', { name: '새 게시글' }).click();
+    await page.getByRole('link', { name: '새 게시물' }).click();
     await page.waitForURL('**/community/notice/create');
     await fillTextInput(page, 'title', title);
     await fillHTMLEditor(page, '<p>고정 본문</p>');
     await page.getByText('목록 상단에 고정').click();
-    await submitForm(page, '게시하기');
+    await submitForm(page, '게시');
     await expect(page.getByText('공지사항을 게시했습니다.')).toBeVisible();
     await page.waitForURL(/\/community\/notice\/\d+/);
 
@@ -221,13 +221,13 @@ test.describe('공지사항 - 게시 설정', () => {
     await page.goto('/community/notice');
     await loginAsStaff(page);
 
-    await page.getByRole('link', { name: '새 게시글' }).click();
+    await page.getByRole('link', { name: '새 게시물' }).click();
     await page.waitForURL('**/community/notice/create');
     await fillTextInput(page, 'title', title);
     await fillTextInput(page, 'titleForMain', titleForMain);
     await fillHTMLEditor(page, '<p>중요 본문</p>');
     await page.getByText('메인-중요 안내에 표시').click(); // isImportant
-    await submitForm(page, '게시하기');
+    await submitForm(page, '게시');
     await expect(page.getByText('공지사항을 게시했습니다.')).toBeVisible();
     await page.waitForURL(/\/community\/notice\/\d+/);
 
@@ -279,12 +279,12 @@ test.describe('공지사항 - 목록 일괄 관리', () => {
     title: string,
     pinned = false,
   ) {
-    await page.getByRole('link', { name: '새 게시글' }).click();
+    await page.getByRole('link', { name: '새 게시물' }).click();
     await page.waitForURL('**/community/notice/create');
     await fillTextInput(page, 'title', title);
     await fillHTMLEditor(page, '<p>본문</p>');
     if (pinned) await page.getByText('목록 상단에 고정').click();
-    await submitForm(page, '게시하기');
+    await submitForm(page, '게시');
     await page.waitForURL(/\/community\/notice\/\d+/);
     await page.goto('/community/notice');
   }
@@ -315,7 +315,7 @@ test.describe('공지사항 - 목록 일괄 관리', () => {
       .click();
     await page.getByRole('button', { name: '일괄 삭제' }).click();
     await page.getByRole('button', { name: '삭제' }).last().click();
-    await expect(page.getByText('선택된 공지를 삭제했습니다.')).toBeVisible();
+    await expect(page.getByText('선택한 공지를 삭제했습니다.')).toBeVisible();
     await expect(page.getByText(t1)).toHaveCount(0);
     await expect(page.getByText(t2)).toHaveCount(0);
   });
@@ -347,7 +347,7 @@ test.describe('공지사항 - 목록 일괄 관리', () => {
     await page.getByRole('button', { name: '일괄 고정 해제' }).click();
     await page.getByRole('button', { name: '고정 해제' }).last().click();
     await expect(
-      page.getByText('선택된 공지를 고정 해제했습니다.'),
+      page.getByText('선택한 공지를 고정 해제했습니다.'),
     ).toBeVisible();
 
     // 고정 해제됨: 여전히 고정인 baseline '장학금 신청 공지'보다 아래로 내려감
@@ -372,7 +372,7 @@ test.describe('공지사항 - 첨부파일', () => {
     await page.goto('/community/notice');
     await loginAsStaff(page);
 
-    await page.getByRole('link', { name: '새 게시글' }).click();
+    await page.getByRole('link', { name: '새 게시물' }).click();
     await page.waitForURL('**/community/notice/create');
     await fillTextInput(page, 'title', title);
     await fillHTMLEditor(page, '<p>첨부 본문</p>');
@@ -390,7 +390,7 @@ test.describe('공지사항 - 첨부파일', () => {
     // 폼에 선택된 파일명 표시 확인
     await expect(page.getByText(fileName)).toBeVisible();
 
-    await submitForm(page, '게시하기');
+    await submitForm(page, '게시');
     await expect(page.getByText('공지사항을 게시했습니다.')).toBeVisible();
     await page.waitForURL(/\/community\/notice\/\d+/);
 
@@ -408,12 +408,12 @@ test.describe('공지사항 - 태그', () => {
     await page.goto('/community/notice');
     await loginAsStaff(page);
 
-    await page.getByRole('link', { name: '새 게시글' }).click();
+    await page.getByRole('link', { name: '새 게시물' }).click();
     await page.waitForURL('**/community/notice/create');
     await fillTextInput(page, 'title', title);
     await fillHTMLEditor(page, '<p>태그 본문</p>');
     await page.getByText('장학', { exact: true }).click(); // 태그 체크박스
-    await submitForm(page, '게시하기');
+    await submitForm(page, '게시');
     await expect(page.getByText('공지사항을 게시했습니다.')).toBeVisible();
     await page.waitForURL(/\/community\/notice\/\d+/);
 

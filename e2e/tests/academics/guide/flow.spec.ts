@@ -21,7 +21,7 @@ test.describe('학사 안내(guide) - 편집 플로우', () => {
     await fillHTMLEditor(page, text);
     await submitForm(page);
 
-    await expect(page.getByText('수정에 성공했습니다.')).toBeVisible();
+    await expect(page.getByText('학부 안내를 수정했습니다.')).toBeVisible();
     await page.waitForURL('**/academics/undergraduate/guide');
     await expect(page.getByText(text)).toBeVisible();
   });

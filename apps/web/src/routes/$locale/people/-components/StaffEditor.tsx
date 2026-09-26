@@ -82,7 +82,7 @@ export default function StaffEditor({
               size="md"
               placeholder="예: (02) 880-7302"
               options={{
-                required: { value: true, message: '전화번호를 입력해주세요.' },
+                required: { value: true, message: '전화번호를 입력해 주세요.' },
               }}
             />
           </Fieldset>
@@ -91,7 +91,7 @@ export default function StaffEditor({
               name="email"
               size="lg"
               options={{
-                required: { value: true, message: '이메일을 입력해주세요.' },
+                required: { value: true, message: '이메일을 입력해 주세요.' },
               }}
             />
           </Fieldset>
@@ -104,6 +104,7 @@ export default function StaffEditor({
           onCancel={onCancel}
           onSubmit={handleSubmit(onSubmit)}
           onDelete={onDelete}
+          deleteLabel={`‘${defaultValues?.ko?.name}’ 행정직원`}
         />
       </Form>
     </FormProvider>
@@ -118,7 +119,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
           name={`${language}.name`}
           size="lg"
           options={{
-            required: { value: true, message: '이름을 입력해주세요.' },
+            required: { value: true, message: '이름을 입력해 주세요.' },
           }}
         />
       </Fieldset>
@@ -128,7 +129,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
           size="md"
           placeholder="예: 301동 316호"
           options={{
-            required: { value: true, message: '위치를 입력해주세요.' },
+            required: { value: true, message: '위치를 입력해 주세요.' },
           }}
         />
       </Fieldset>
@@ -138,7 +139,7 @@ const TranslationEditor = ({ language }: { language: Language }) => {
           size="lg"
           placeholder="예: 교원인사, 일반서무 등"
           options={{
-            required: { value: true, message: '업무 요약을 입력해주세요.' },
+            required: { value: true, message: '업무 요약을 입력해 주세요.' },
           }}
         />
       </Fieldset>

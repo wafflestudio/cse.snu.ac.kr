@@ -21,8 +21,8 @@ function GuideEditPage() {
 
   const { studentType } = params;
   const { t } = useLanguage({
-    '수정에 성공했습니다.': 'Successfully updated.',
-    '수정에 실패했습니다.': 'Failed to update.',
+    '대학원 안내를 수정했습니다.': 'Graduate guide updated.',
+    '학부 안내를 수정했습니다.': 'Undergraduate guide updated.',
     '대학원 안내 수정': 'Edit Graduate Guide',
     '학부 안내 수정': 'Edit Undergraduate Guide',
   });
@@ -57,7 +57,11 @@ function GuideEditPage() {
       await api.put(`v2/academics/${studentType}/guide`, { body: formData });
 
       navigate({ to: `/academics/${studentType}/guide` });
-      toast.success(t('수정에 성공했습니다.'));
+      toast.success(
+        isGraduate
+          ? t('대학원 안내를 수정했습니다.')
+          : t('학부 안내를 수정했습니다.'),
+      );
     } catch (error) {
       toastError(error);
     }

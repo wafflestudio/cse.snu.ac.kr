@@ -21,7 +21,7 @@ export default function AddReservationModal({
 }: AddReservationModalProps) {
   const { t, localizedPath } = useLanguage({
     '시설 예약': 'Reservation',
-    예약하기: 'Reserve',
+    예약: 'Reserve',
     취소: 'Cancel',
     '예약 중…': 'Reserving…',
     '개인정보 수집 및 이용동의': 'Privacy Agreement',
@@ -179,7 +179,7 @@ export default function AddReservationModal({
               pending={isSubmitting}
               pendingLabel={t('예약 중…')}
             >
-              {t('예약하기')}
+              {t('예약')}
             </Button>
           </div>
         </form>

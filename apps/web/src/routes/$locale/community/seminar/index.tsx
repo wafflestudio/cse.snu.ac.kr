@@ -97,7 +97,7 @@ function SeminarPage() {
               as="link"
               to={localizedPath('/community/seminar/create')}
             >
-              새 게시글
+              새 게시물
             </Button>
           </span>
         </div>

@@ -83,7 +83,7 @@ export default function ImportantManagement({
       <AlertDialog
         open={showDialog}
         onOpenChange={setShowDialog}
-        description="정말 선택된 중요 안내를 모두 해제하시겠습니까?"
+        description={`선택한 중요 안내 ${selectedKeys.size}개를 해제하시겠습니까?`}
         confirmText="해제"
         onConfirm={handleBatchUnimportant}
       />

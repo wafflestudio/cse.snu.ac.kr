@@ -72,7 +72,7 @@ function NewsEditPage() {
     try {
       await api.patch(`v2/news/${id}`, { body: formData });
 
-      toast.success('새소식을 수정했습니다.');
+      toast.success('새 소식을 수정했습니다.');
       navigate({ to: `/community/news/${id}` });
     } catch (error) {
       toastError(error);
@@ -83,7 +83,7 @@ function NewsEditPage() {
     try {
       await api.delete(`v2/news/${id}`);
 
-      toast.success('새소식을 삭제했습니다.');
+      toast.success('새 소식을 삭제했습니다.');
       navigate({ to: localizedPath('/community/news') });
     } catch (error) {
       toastError(error);
@@ -91,7 +91,7 @@ function NewsEditPage() {
   };
 
   return (
-    <PageLayout title="새소식 편집">
+    <PageLayout title="새 소식 편집">
       <NewsEditor
         onCancel={onCancel}
         onSubmit={onSubmit}

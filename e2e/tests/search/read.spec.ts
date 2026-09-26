@@ -20,7 +20,7 @@ test.describe('통합 검색 - 읽기', () => {
     await setLocale(page, 'ko');
     await page.goto('/search?keyword=a');
     await expect(
-      page.getByText('검색어를 두글자 이상 입력해주세요'),
+      page.getByText('검색어를 두 글자 이상 입력해 주세요.'),
     ).toBeVisible();
   });
 

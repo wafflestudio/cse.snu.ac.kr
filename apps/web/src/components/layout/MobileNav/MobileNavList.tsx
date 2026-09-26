@@ -81,7 +81,7 @@ function SearchPage({ onClose }: { onClose: () => void }) {
           onChange={(e) => setText(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && search()}
           className="h-8 w-full bg-transparent type-ui text-white outline-none placeholder:text-neutral-500"
-          placeholder="검색어를 입력해주세요"
+          placeholder="검색어를 입력해 주세요"
           // biome-ignore lint/a11y/noAutofocus: 넣을거임
           autoFocus
         />

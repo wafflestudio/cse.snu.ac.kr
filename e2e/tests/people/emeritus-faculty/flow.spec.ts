@@ -24,7 +24,7 @@ test.describe('명예교수 - 추가/편집/삭제 플로우', () => {
     await loginAsStaff(page);
 
     // === 추가 === (FacultyEditor, status=INACTIVE)
-    await page.getByRole('link', { name: '추가하기' }).click();
+    await page.getByRole('link', { name: '역대 교수 추가' }).click();
     await page.waitForURL(/\/people\/faculty\/create/);
     await fillTextInput(page, 'ko.name', koName);
     await fillTextInput(page, 'ko.academicRank', '명예교수');

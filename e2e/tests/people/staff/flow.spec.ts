@@ -24,7 +24,7 @@ test.describe('행정직원 - 추가/편집/삭제 플로우', () => {
     await loginAsStaff(page);
 
     // === 추가 ===
-    await page.getByRole('link', { name: '추가하기' }).click();
+    await page.getByRole('link', { name: '행정직원 추가' }).click();
     await page.waitForURL('**/people/staff/create');
 
     // 전화·이메일은 사람에게 하나뿐이라 언어 탭 밖에 있다.

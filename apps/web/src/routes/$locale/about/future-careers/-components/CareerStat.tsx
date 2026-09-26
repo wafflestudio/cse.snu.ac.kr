@@ -25,7 +25,7 @@ export default function CareerStat({ stat }: { stat: YearStat[] }) {
   const year = stat[idx].year;
   const yearStat = stat.find((x) => x.year === year);
 
-  if (!yearStat) return <EmptyState>선택된 연도의 자료가 없습니다.</EmptyState>;
+  if (!yearStat) return <EmptyState>선택한 연도의 자료가 없습니다.</EmptyState>;
 
   return (
     <div className="mt-12 flex flex-col gap-2">

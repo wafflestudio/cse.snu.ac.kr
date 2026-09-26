@@ -80,7 +80,7 @@ function FacilitiesRow({ facility }: { facility: ProcessedFacility }) {
       <AlertDialog
         open={showDeleteDialog}
         onOpenChange={setShowDeleteDialog}
-        description="시설을 삭제하시겠습니까?"
+        description={`‘${facility.name}’ 시설을 삭제하시겠습니까?\n되돌릴 수 없습니다.`}
         confirmText="삭제"
         onConfirm={handleDelete}
       />

@@ -60,6 +60,7 @@ export default function ResearchCenterEditor({
           onCancel={onCancel}
           onSubmit={handleSubmit(onSubmit)}
           onDelete={onDelete}
+          deleteLabel={`‘${defaultValues?.ko.name}’ 연구 센터`}
         />
       </Form>
     </FormProvider>
@@ -73,7 +74,7 @@ const Editor = ({ language }: { language: Language }) => {
         <Form.Text
           name={`${language}.name`}
           options={{
-            required: { value: true, message: '이름을 입력해주세요.' },
+            required: { value: true, message: '이름을 입력해 주세요.' },
           }}
         />
       </Fieldset>
@@ -82,7 +83,7 @@ const Editor = ({ language }: { language: Language }) => {
         <Form.HTML
           name={`${language}.description`}
           options={{
-            required: { value: true, message: '내용을 입력해주세요.' },
+            required: { value: true, message: '내용을 입력해 주세요.' },
           }}
         />
       </Fieldset.HTML>

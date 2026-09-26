@@ -45,7 +45,7 @@ function GeneralStudiesEditPage() {
         { body: formData },
       );
 
-      toast.success('수정에 성공했습니다.');
+      toast.success('필수 교양 과목을 수정했습니다.');
       navigate({
         to: localizedPath(
           '/academics/undergraduate/general-studies-requirements',

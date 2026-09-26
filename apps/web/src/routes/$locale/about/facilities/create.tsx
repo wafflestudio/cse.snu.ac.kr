@@ -66,7 +66,7 @@ function FacilitiesCreate() {
                 name="ko.name"
                 size="lg"
                 options={{
-                  required: { value: true, message: '시설명을 입력해주세요.' },
+                  required: { value: true, message: '시설명을 입력해 주세요.' },
                 }}
               />
             )}
@@ -75,7 +75,7 @@ function FacilitiesCreate() {
                 name="en.name"
                 size="lg"
                 options={{
-                  required: { value: true, message: '시설명을 입력해주세요.' },
+                  required: { value: true, message: '시설명을 입력해 주세요.' },
                 }}
               />
             )}
@@ -88,7 +88,7 @@ function FacilitiesCreate() {
                 options={{
                   required: {
                     value: true,
-                    message: '시설 설명을 입력해주세요.',
+                    message: '시설 설명을 입력해 주세요.',
                   },
                 }}
               />
@@ -99,7 +99,7 @@ function FacilitiesCreate() {
                 options={{
                   required: {
                     value: true,
-                    message: '시설 설명을 입력해주세요.',
+                    message: '시설 설명을 입력해 주세요.',
                   },
                 }}
               />

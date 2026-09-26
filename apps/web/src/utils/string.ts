@@ -33,3 +33,10 @@ export function truncateDescription(text: string, maxLength = 160): string {
   if (text.length <= maxLength) return text;
   return `${text.slice(0, maxLength - 3)}...`;
 }
+
+/** 목적격 조사를 붙인다 — 받침이 있으면 '을', 없으면 '를'. 한글이 아닌 끝 글자는 '를'. */
+export function withObjectParticle(word: string): string {
+  const code = word.charCodeAt(word.length - 1) - 0xac00;
+  const hasFinal = code >= 0 && code <= 11171 && code % 28 !== 0;
+  return `${word}${hasFinal ? '을' : '를'}`;
+}

@@ -73,7 +73,7 @@ const SelectedImageViewer = ({
       <div className="flex w-fit items-start gap-3 self-start rounded-xs border border-neutral-200 bg-neutral-50 p-2">
         <Image
           src={file.url}
-          alt="선택된 이미지"
+          alt="선택한 이미지"
           width={100}
           height={100}
           sizes="100px"
@@ -96,7 +96,7 @@ const SelectedImageViewer = ({
     <div className="flex items-start gap-3 self-start rounded-xs border border-neutral-200 bg-neutral-50 p-2">
       <Image
         src={imageURL}
-        alt="선택된 이미지"
+        alt="선택한 이미지"
         width={IMAGE_WIDTH}
         sizes={`${IMAGE_WIDTH}px`}
         height={imageHeight}

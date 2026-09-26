@@ -28,7 +28,7 @@ test.describe('교과목 - 추가/편집/삭제 플로우', () => {
     await fillTextInput(page, 'code', code);
     await fillTextInput(page, 'en.name', enName);
     await fillTextArea(page, 'en.description', 'English course description');
-    await page.getByRole('button', { name: '추가하기' }).click();
+    await page.getByRole('button', { name: '추가' }).click();
     await expect(page.getByText('새 교과목을 추가했습니다.')).toBeVisible();
 
     // 목록에 실제로 나타남(행 버튼 = 교과목명)
@@ -45,7 +45,7 @@ test.describe('교과목 - 추가/편집/삭제 플로우', () => {
     await page.getByRole('button', { name: koName }).click();
     await page.getByRole('button', { name: '편집' }).click();
     await fillTextInput(page, 'ko.name', koNameEdited);
-    await page.getByRole('button', { name: '확인' }).click();
+    await page.getByRole('button', { name: '저장' }).click();
     await expect(page.getByText('교과목을 수정했습니다.')).toBeVisible();
     // 모달 뷰어에 수정된 이름 반영
     await expect(

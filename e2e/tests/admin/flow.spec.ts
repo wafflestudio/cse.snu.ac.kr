@@ -43,13 +43,13 @@ test.describe('관리자 기능 - 종단 검증', () => {
     await loginAsStaff(page);
 
     // 슬라이드 표시 새소식 작성
-    await page.getByRole('link', { name: '새 게시글' }).click();
+    await page.getByRole('link', { name: '새 게시물' }).click();
     await page.waitForURL('**/community/news/create');
     await fillTextInput(page, 'title', title);
     await fillHTMLEditor(page, '<p>슬라이드 본문</p>');
     await page.getByText('메인-슬라이드쇼에 표시').click();
-    await submitForm(page, '게시하기');
-    await expect(page.getByText('새소식을 게시했습니다.')).toBeVisible();
+    await submitForm(page, '게시');
+    await expect(page.getByText('새 소식을 게시했습니다.')).toBeVisible();
     await page.waitForURL(/\/community\/news\/\d+/);
 
     // /admin 슬라이드 목록에 노출
@@ -72,12 +72,12 @@ test.describe('관리자 기능 - 종단 검증', () => {
     await loginAsStaff(page);
 
     // 중요 표시 공지 작성
-    await page.getByRole('link', { name: '새 게시글' }).click();
+    await page.getByRole('link', { name: '새 게시물' }).click();
     await page.waitForURL('**/community/notice/create');
     await fillTextInput(page, 'title', title);
     await fillHTMLEditor(page, '<p>중요 본문</p>');
     await page.getByText('메인-중요 안내에 표시').click();
-    await submitForm(page, '게시하기');
+    await submitForm(page, '게시');
     await expect(page.getByText('공지사항을 게시했습니다.')).toBeVisible();
     await page.waitForURL(/\/community\/notice\/\d+/);
 
@@ -107,20 +107,20 @@ test.describe('관리자 기능 - 종단 검증', () => {
     });
     await fillTextInput(page, 'externalLink', 'https://popup.example.com');
     await page.locator('input[name="displayUntil"]').fill('2099-12-31T23:59');
-    await page.getByRole('button', { name: '등록하기' }).click();
+    await page.getByRole('button', { name: '등록' }).click();
     await expect(page.getByText('이미지 팝업을 등록했습니다.')).toBeVisible();
     // 표시 종료일이 저장·재로딩되어 폼에 반영(프론트 displayUntil 와이어링 round-trip)
     await expect(page.locator('input[name="displayUntil"]')).toHaveValue(
       /2099-12-31/,
     );
 
-    // 수정 (등록 후 편집 모드: 저장하기/삭제 노출)
+    // 수정 (등록 후 편집 모드: 저장/삭제 노출)
     await fillTextInput(
       page,
       'externalLink',
       'https://popup-edited.example.com',
     );
-    await page.getByRole('button', { name: '저장하기' }).click();
+    await page.getByRole('button', { name: '저장' }).click();
     await expect(page.getByText('이미지 팝업을 수정했습니다.')).toBeVisible();
 
     // 삭제 (Form.Action 삭제 → 확인). 이미지 뷰어의 '삭제'와 구분되도록 last.

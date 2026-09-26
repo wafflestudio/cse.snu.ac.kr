@@ -22,6 +22,7 @@ import { SpacingSection } from './-sections/spacing';
 import { ToastSection } from './-sections/toast';
 import { TypeSection } from './-sections/type';
 import { UniqueSection } from './-sections/unique';
+import { WritingSection } from './-sections/writing';
 
 // 디자인 규칙의 정본. 영역은 SECTIONS 순서대로 이 한 페이지에 쌓는다.
 // 규칙은 이 페이지의 값과 실제 컴포넌트로 보여주고, 토큰 사본이나 손으로 그린 모형을 만들지 않는다.
@@ -68,7 +69,7 @@ const GROUPS: Group[] = [
       { id: 'reading', title: '읽는 본문·이미지', content: <ReadingSection /> },
       { id: 'main', title: '메인·카테고리', content: <MainSection /> },
       { id: 'unique', title: '고유 화면', content: <UniqueSection /> },
-      { id: 'writing', title: '문구' },
+      { id: 'writing', title: '문구', content: <WritingSection /> },
     ],
   },
 ];

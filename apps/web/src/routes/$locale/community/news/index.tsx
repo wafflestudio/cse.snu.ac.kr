@@ -72,7 +72,7 @@ function NewsPage() {
               as="link"
               to={localizedPath('/community/news/create')}
             >
-              새 게시글
+              새 게시물
             </Button>
           </span>
         </div>

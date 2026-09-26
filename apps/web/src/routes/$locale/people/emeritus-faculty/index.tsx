@@ -51,7 +51,7 @@ function EmeritusFacultyPage() {
             as="link"
             to={localizedPath('/people/faculty/create?status=INACTIVE')}
           >
-            추가하기
+            역대 교수 추가
           </Button>
         </div>
       </LoginVisible>

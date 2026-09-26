@@ -22,7 +22,7 @@ async function reserve(page: Page, title: string, recurringWeeks = 1) {
   const mo = t.getMonth() + 1;
   const date = `${y}-${String(mo).padStart(2, '0')}-15`;
 
-  await page.getByRole('button', { name: '예약하기' }).click();
+  await page.getByRole('button', { name: '예약', exact: true }).click();
   const dialog = page.getByRole('dialog');
   const dateFs = dialog.locator('fieldset').filter({ hasText: '예약 날짜' });
 
@@ -54,7 +54,7 @@ async function reserve(page: Page, title: string, recurringWeeks = 1) {
   await fillTextArea(page, 'purpose', '세미나 진행');
   await dialog.getByText('개인정보 수집 및 이용동의').click();
 
-  const submit = dialog.getByRole('button', { name: '예약하기' });
+  const submit = dialog.getByRole('button', { name: '예약', exact: true });
   await expect(submit).toBeEnabled();
   await submit.click();
   // 성공 시 모달이 닫힘(onSuccess). ephemeral 토스트 대신 모달 닫힘으로 완료를 대기한다.
@@ -79,14 +79,14 @@ test.describe('시설 예약 - 예약 플로우', () => {
       page.getByText(title).filter({ visible: true }).first(),
     ).toBeVisible();
 
-    // === 취소 === (예약 블록 → 상세 모달 → 해당 예약만 삭제 → 확인 '삭제')
+    // === 취소 === (예약 블록 → 상세 모달 → 이 예약만 취소 → 확인 '예약 취소')
     await page.getByText(title).filter({ visible: true }).first().click();
     await deleteItem(
       page,
-      '삭제',
-      page.getByRole('button', { name: '해당 예약만 삭제' }),
+      '예약 취소',
+      page.getByRole('button', { name: '이 예약만 취소' }),
     );
-    await expect(page.getByText('예약을 삭제했습니다.')).toBeVisible();
+    await expect(page.getByText('예약을 취소했습니다.')).toBeVisible();
     await expect(page.getByText(title)).toHaveCount(0);
   });
 
@@ -122,10 +122,12 @@ test.describe('시설 예약 - 예약 플로우', () => {
     await expect(detail.getByText('2회', { exact: true })).toBeVisible();
     await deleteItem(
       page,
-      '삭제',
-      detail.getByRole('button', { name: '반복 예약 전체 삭제' }),
+      '예약 취소',
+      detail.getByRole('button', { name: '반복 예약 전체 취소' }),
     );
-    await expect(page.getByText('예약을 삭제했습니다.')).toBeVisible();
+    await expect(
+      page.getByText('반복 예약 전체를 취소했습니다.'),
+    ).toBeVisible();
 
     // 전체 삭제 → 양 주차 모두 사라짐
     await expect(page.getByText(title)).toHaveCount(0);

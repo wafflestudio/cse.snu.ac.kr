@@ -24,7 +24,7 @@ export default function CalendarToolbar({ roomId }: { roomId: number }) {
   const [showAddModal, setShowAddModal] = useState(false);
 
   return (
-    // 모바일은 날짜 조작과 예약하기를 두 줄로 — [오늘]이 나타났다 사라져도 예약하기가 움직이지 않게.
+    // 모바일은 날짜 조작과 [예약]을 두 줄로 — [오늘]이 나타났다 사라져도 [예약]이 움직이지 않게.
     <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-2">
         <SelectDayButton date={selectedDate} />
@@ -35,7 +35,7 @@ export default function CalendarToolbar({ roomId }: { roomId: number }) {
       <LoginVisible allow={['ROLE_STAFF', 'ROLE_RESERVE', 'ROLE_LABMASTER']}>
         <div className="flex justify-end">
           <Button variant="primary" onClick={() => setShowAddModal(true)}>
-            예약하기
+            예약
           </Button>
         </div>
       </LoginVisible>

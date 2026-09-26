@@ -43,7 +43,7 @@ function CurriculumEditPage() {
         { body: formData },
       );
 
-      toast.success('수정에 성공했습니다.');
+      toast.success('전공 이수 표준 형태를 수정했습니다.');
       navigate({ to: localizedPath('/academics/undergraduate/curriculum') });
     } catch (error) {
       toastError(error);

@@ -34,11 +34,15 @@ const translations = {
   회: 'times',
   '불러오는 중…': 'Loading…',
   예약상세: 'Reservation Detail',
-  삭제: 'Delete',
-  '해당 예약만 삭제': 'Delete this reservation',
-  '반복 예약 전체 삭제': 'Delete all recurring reservations',
-  '해당 예약을 삭제하시겠습니까?': 'Delete this reservation?',
-  '반복 예약을 모두 삭제하시겠습니까?': 'Delete all recurring reservations?',
+  '예약 취소': 'Cancel reservation',
+  '이 예약만 취소': 'Cancel this reservation',
+  '반복 예약 전체 취소': 'Cancel all recurring reservations',
+  '이 예약을 취소하시겠습니까?\n되돌릴 수 없습니다.':
+    'Cancel this reservation?\nThis cannot be undone.',
+  '반복 예약 전체를 취소하시겠습니까?\n되돌릴 수 없습니다.':
+    'Cancel all recurring reservations?\nThis cannot be undone.',
+  '예약을 취소했습니다.': 'Reservation canceled.',
+  '반복 예약 전체를 취소했습니다.': 'All recurring reservations canceled.',
 };
 
 export default function ReservationDetailModal({
@@ -72,7 +76,7 @@ export default function ReservationDetailModal({
 
     try {
       await deleteReservation(reservation.id);
-      toast.success('예약을 삭제했습니다.');
+      toast.success(t('예약을 취소했습니다.'));
       setShowDeleteDialog(false);
       onOpenChange(false);
       router.invalidate();
@@ -86,7 +90,7 @@ export default function ReservationDetailModal({
 
     try {
       await deleteRecurringReservation(reservation.recurrenceId);
-      toast.success('예약을 삭제했습니다.');
+      toast.success(t('반복 예약 전체를 취소했습니다.'));
       setShowDeleteRecurringDialog(false);
       onOpenChange(false);
       router.invalidate();
@@ -178,14 +182,14 @@ export default function ReservationDetailModal({
                 size="sm"
                 onClick={() => setShowDeleteRecurringDialog(true)}
               >
-                {t('반복 예약 전체 삭제')}
+                {t('반복 예약 전체 취소')}
               </Button>
               <Button
                 variant="secondary"
                 size="sm"
                 onClick={() => setShowDeleteDialog(true)}
               >
-                {t('해당 예약만 삭제')}
+                {t('이 예약만 취소')}
               </Button>
             </div>
           </LoginVisible>
@@ -194,15 +198,17 @@ export default function ReservationDetailModal({
       <AlertDialog
         open={showDeleteDialog}
         onOpenChange={setShowDeleteDialog}
-        description={t('해당 예약을 삭제하시겠습니까?')}
-        confirmText={t('삭제')}
+        description={t('이 예약을 취소하시겠습니까?\n되돌릴 수 없습니다.')}
+        confirmText={t('예약 취소')}
         onConfirm={handleDelete}
       />
       <AlertDialog
         open={showDeleteRecurringDialog}
         onOpenChange={setShowDeleteRecurringDialog}
-        description={t('반복 예약을 모두 삭제하시겠습니까?')}
-        confirmText={t('삭제')}
+        description={t(
+          '반복 예약 전체를 취소하시겠습니까?\n되돌릴 수 없습니다.',
+        )}
+        confirmText={t('예약 취소')}
         onConfirm={handleDeleteRecurring}
       />
     </>

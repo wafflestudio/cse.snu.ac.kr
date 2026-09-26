@@ -32,7 +32,13 @@ export default function AddCourseModal({
     '(영문) Course Name': 'Course Name',
     '(영문) Course Description': 'Course Description',
     취소: 'Cancel',
-    추가하기: 'Add',
+    추가: 'Add',
+    '교과목명을 입력해 주세요.': 'Enter the course name.',
+    '교과목 설명을 입력해 주세요.': 'Enter the course description.',
+    '교과목 번호를 입력해 주세요.': 'Enter the course number.',
+    '영문 교과목명을 입력해 주세요.': 'Enter the English course name.',
+    '영문 교과목 설명을 입력해 주세요.':
+      'Enter the English course description.',
     '새 교과목을 추가했습니다.': 'Course added successfully.',
     '교과목을 추가하지 못했습니다.': 'Failed to add course.',
   });
@@ -73,14 +79,24 @@ export default function AddCourseModal({
             <Form.Text
               name="ko.name"
               size="lg"
-              options={{ required: { value: true, message: t('교과목명') } }}
+              options={{
+                required: {
+                  value: true,
+                  message: t('교과목명을 입력해 주세요.'),
+                },
+              }}
             />
           </Fieldset>
           <Fieldset title={t('교과목 설명')} required>
             <Form.TextArea
               name="ko.description"
               placeholder={t('교과목 설명')}
-              options={{ required: { value: true, message: t('교과목 설명') } }}
+              options={{
+                required: {
+                  value: true,
+                  message: t('교과목 설명을 입력해 주세요.'),
+                },
+              }}
             />
           </Fieldset>
           <div className="flex justify-between">
@@ -89,7 +105,10 @@ export default function AddCourseModal({
                 name="code"
                 size="md"
                 options={{
-                  required: { value: true, message: t('교과목 번호') },
+                  required: {
+                    value: true,
+                    message: t('교과목 번호를 입력해 주세요.'),
+                  },
                 }}
               />
             </Fieldset>
@@ -130,7 +149,10 @@ export default function AddCourseModal({
               name="en.name"
               size="lg"
               options={{
-                required: { value: true, message: t('(영문) Course Name') },
+                required: {
+                  value: true,
+                  message: t('영문 교과목명을 입력해 주세요.'),
+                },
               }}
             />
           </Fieldset>
@@ -141,7 +163,7 @@ export default function AddCourseModal({
               options={{
                 required: {
                   value: true,
-                  message: t('(영문) Course Description'),
+                  message: t('영문 교과목 설명을 입력해 주세요.'),
                 },
               }}
             />
@@ -151,7 +173,7 @@ export default function AddCourseModal({
               {t('취소')}
             </Button>
             <Button variant="primary" onClick={handleSubmit(onSubmit)}>
-              {t('추가하기')}
+              {t('추가')}
             </Button>
           </div>
         </div>

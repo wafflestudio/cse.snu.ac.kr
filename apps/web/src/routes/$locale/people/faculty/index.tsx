@@ -110,7 +110,7 @@ function FacultyPage() {
             as="link"
             to={localizedPath('/people/faculty/create')}
           >
-            추가하기
+            교수 추가
           </Button>
         </LoginVisible>
       </div>

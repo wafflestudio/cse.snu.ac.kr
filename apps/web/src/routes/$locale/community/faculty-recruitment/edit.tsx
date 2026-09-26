@@ -66,7 +66,7 @@ function FacultyRecruitmentEditPage() {
             <Form.Text
               name="title"
               options={{
-                required: { value: true, message: '제목을 입력해주세요.' },
+                required: { value: true, message: '제목을 입력해 주세요.' },
               }}
             />
           </Fieldset.Title>
@@ -74,7 +74,7 @@ function FacultyRecruitmentEditPage() {
             <Form.HTML
               name="description"
               options={{
-                required: { value: true, message: '내용을 입력해주세요.' },
+                required: { value: true, message: '내용을 입력해 주세요.' },
               }}
             />
           </Fieldset.HTML>

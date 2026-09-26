@@ -47,7 +47,7 @@ function SeminarDetailPage() {
   const handleDelete = async () => {
     try {
       await api.delete(`v2/seminar/${seminar.id}`);
-      toast.success('게시글을 삭제했습니다.');
+      toast.success('게시물을 삭제했습니다.');
       navigate({ to: localizedPath('/community/seminar') });
     } catch (error) {
       toastError(error);
@@ -77,6 +77,7 @@ function SeminarDetailPage() {
             listPath="/community/seminar"
             editPath={`/community/seminar/edit/${seminar.id}`}
             onDelete={handleDelete}
+            deleteLabel={`‘${seminar.title}’ 세미나`}
           />
         }
       >

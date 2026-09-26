@@ -3,12 +3,15 @@ import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
+import { withObjectParticle } from '@/utils/string';
 
 interface Props {
   onCancel: () => void;
   onDelete?: () => Promise<void>;
   onSubmit: () => Promise<void>;
   submitLabel?: string;
+  /** 삭제 확인창에 쓰는 대상 — "‘제목’ 공지사항"처럼 이름 + 종류(/design-system#writing). */
+  deleteLabel?: string;
 }
 
 export default function Action({
@@ -16,13 +19,14 @@ export default function Action({
   onDelete,
   onSubmit,
   submitLabel,
+  deleteLabel = '이 게시물',
 }: Props) {
   const {
     formState: { isSubmitting, isDirty },
   } = useFormContext();
   const [showCancelDialog, setShowCancelDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-  const label = submitLabel ?? '저장하기';
+  const label = submitLabel ?? '저장';
 
   return (
     <>
@@ -72,7 +76,7 @@ export default function Action({
       <AlertDialog
         open={showCancelDialog}
         onOpenChange={setShowCancelDialog}
-        description="편집중인 내용이 사라집니다."
+        description="저장하지 않은 내용이 사라집니다."
         confirmText="나가기"
         onConfirm={() => {
           onCancel();
@@ -84,7 +88,7 @@ export default function Action({
         <AlertDialog
           open={showDeleteDialog}
           onOpenChange={setShowDeleteDialog}
-          description="게시물을 삭제하시겠습니까?"
+          description={`${withObjectParticle(deleteLabel)} 삭제하시겠습니까?\n되돌릴 수 없습니다.`}
           confirmText="삭제"
           onConfirm={async () => {
             await onDelete();
@@ -97,9 +101,9 @@ export default function Action({
 }
 
 const PENDING_LABELS: Record<string, string> = {
-  저장하기: '저장 중…',
-  게시하기: '게시 중…',
-  등록하기: '등록 중…',
+  저장: '저장 중…',
+  게시: '게시 중…',
+  등록: '등록 중…',
 };
 
 const pendingLabelOf = (label: string) => PENDING_LABELS[label] ?? '처리 중…';

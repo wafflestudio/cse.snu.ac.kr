@@ -63,7 +63,7 @@ export default function NewsEditor({
             name="title"
             placeholder="제목을 입력하세요."
             options={{
-              required: { value: true, message: '제목을 입력해주세요.' },
+              required: { value: true, message: '제목을 입력해 주세요.' },
             }}
           />
         </Fieldset>
@@ -80,7 +80,7 @@ export default function NewsEditor({
           <Form.HTML
             name="description"
             options={{
-              required: { value: true, message: '내용을 입력해주세요.' },
+              required: { value: true, message: '내용을 입력해 주세요.' },
             }}
           />
         </Fieldset.HTML>
@@ -166,8 +166,9 @@ export default function NewsEditor({
         <Form.Action
           onCancel={onCancel}
           onSubmit={handleSubmit(onSubmit)}
-          submitLabel="게시하기"
+          submitLabel="게시"
           onDelete={onDelete}
+          deleteLabel={`‘${defaultValues?.title}’ 새 소식`}
         />
       </Form>
     </FormProvider>

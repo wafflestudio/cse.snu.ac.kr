@@ -27,11 +27,13 @@ export default function CourseEditor({
   const { t } = useLanguage({
     '교과목을 수정했습니다.': 'Course updated successfully.',
     '교과목을 수정하지 못했습니다.': 'Failed to update course.',
-    '교과목 코드는 수정할 수 없습니다': 'Course code cannot be modified',
+    '교과목 코드는 수정할 수 없습니다.': 'Course code cannot be changed.',
     교과목명: 'Course Name',
     '교과목 설명': 'Course Description',
     취소: 'Cancel',
-    확인: 'Confirm',
+    저장: 'Save',
+    '교과목명을 입력해 주세요.': 'Enter the course name.',
+    '교과목 설명을 입력해 주세요.': 'Enter the course description.',
     영문: 'English',
   });
   const router = useRouter();
@@ -68,12 +70,14 @@ export default function CourseEditor({
           name="ko.name"
           size="md"
           placeholder={t('교과목명')}
-          options={{ required: { value: true, message: t('교과목명') } }}
+          options={{
+            required: { value: true, message: t('교과목명을 입력해 주세요.') },
+          }}
         />
         <button
           type="button"
           className="h-8 w-[120px] cursor-default rounded-xs border border-neutral-300 pl-2 text-left type-ui text-neutral-500"
-          onClick={() => toast.error(t('교과목 코드는 수정할 수 없습니다'))}
+          onClick={() => toast.error(t('교과목 코드는 수정할 수 없습니다.'))}
         >
           {defaultValues.code}
         </button>
@@ -102,7 +106,9 @@ export default function CourseEditor({
       <Form.TextArea
         name="ko.description"
         placeholder={t('교과목 설명')}
-        options={{ required: { value: true, message: t('교과목 설명') } }}
+        options={{
+          required: { value: true, message: t('교과목 설명을 입력해 주세요.') },
+        }}
       />
       <div>
         <div className="mb-4 flex items-center gap-2">
@@ -111,13 +117,23 @@ export default function CourseEditor({
             name="en.name"
             size="md"
             placeholder="course name"
-            options={{ required: { value: true, message: 'course name' } }}
+            options={{
+              required: {
+                value: true,
+                message: '영문 교과목명을 입력해 주세요.',
+              },
+            }}
           />
         </div>
         <Form.TextArea
           name="en.description"
           placeholder="course description"
-          options={{ required: { value: true, message: 'course description' } }}
+          options={{
+            required: {
+              value: true,
+              message: '영문 교과목 설명을 입력해 주세요.',
+            },
+          }}
         />
       </div>
       <div className="flex justify-end gap-3">
@@ -125,7 +141,7 @@ export default function CourseEditor({
           {t('취소')}
         </Button>
         <Button variant="primary" onClick={handleSubmit(onSubmit)}>
-          {t('확인')}
+          {t('저장')}
         </Button>
       </div>
     </FormProvider>

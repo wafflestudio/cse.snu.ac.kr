@@ -17,8 +17,7 @@ function CourseChangesEditPage() {
   const { t } = useLanguage({
     '학부 교과목 변경 내역 편집': 'Edit Undergraduate Course Changes',
     '대학원 교과목 변경 내역 편집': 'Edit Graduate Course Changes',
-    '수정에 성공했습니다.': 'Successfully updated.',
-    '수정에 실패했습니다.': 'Failed to update.',
+    '교과목 변경 내역을 수정했습니다.': 'Course changes updated.',
   });
   const navigate = useNavigate();
 
@@ -48,7 +47,7 @@ function CourseChangesEditPage() {
       await api.put(`v2/academics/${studentType}/course-changes/${year}`, {
         body: formData,
       });
-      toast.success(t('수정에 성공했습니다.'));
+      toast.success(t('교과목 변경 내역을 수정했습니다.'));
       navigate({ to: `/academics/${studentType}/course-changes` });
     } catch (error) {
       toastError(error);

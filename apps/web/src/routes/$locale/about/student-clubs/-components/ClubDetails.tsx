@@ -87,7 +87,7 @@ export default function ClubDetails({ club, locale }: ClubDetailsProps) {
       <AlertDialog
         open={showDeleteDialog}
         onOpenChange={setShowDeleteDialog}
-        description="동아리를 삭제하시겠습니까?"
+        description={`‘${club.ko.name}’ 동아리를 삭제하시겠습니까?\n되돌릴 수 없습니다.`}
         confirmText="삭제"
         onConfirm={handleDelete}
       />

@@ -64,7 +64,7 @@ function Editor({ language }: { language: Locale }) {
         <Form.Text
           name={`${language}Name`}
           options={{
-            required: { value: true, message: '장학금 이름을 입력해주세요.' },
+            required: { value: true, message: '장학금 이름을 입력해 주세요.' },
           }}
         />
       </Fieldset.Title>
@@ -72,7 +72,7 @@ function Editor({ language }: { language: Locale }) {
         <Form.HTML
           name={`${language}Description`}
           options={{
-            required: { value: true, message: '장학금 설명을 입력해주세요.' },
+            required: { value: true, message: '장학금 설명을 입력해 주세요.' },
           }}
         />
       </Fieldset.HTML>

@@ -77,7 +77,7 @@ function ScholarshipDetailPage() {
       <AlertDialog
         open={showDeleteDialog}
         onOpenChange={setShowDeleteDialog}
-        description="장학금을 삭제하시겠습니까?"
+        description={`‘${name}’ 장학금을 삭제하시겠습니까?\n되돌릴 수 없습니다.`}
         confirmText="삭제"
         onConfirm={handleDelete}
       />

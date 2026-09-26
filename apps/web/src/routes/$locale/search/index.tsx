@@ -18,7 +18,7 @@ function SearchPage() {
       <SearchBox tags={[...SEARCH_TAGS]} formOnly />
 
       {tooShort && (
-        <EmptyState>{t('검색어를 두글자 이상 입력해주세요')}</EmptyState>
+        <EmptyState>{t('검색어를 두 글자 이상 입력해 주세요.')}</EmptyState>
       )}
 
       {!tooShort && keyword && result?.total === 0 && <NoSearchResult />}
