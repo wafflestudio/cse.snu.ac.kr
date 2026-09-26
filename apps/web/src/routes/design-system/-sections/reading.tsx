@@ -1,16 +1,14 @@
-import type { ReactNode } from 'react';
 import HTMLViewer from '@/components/ui/HTMLViewer';
+import {
+  DocSection,
+  DoDont,
+  Example,
+  Lead,
+  Related,
+  RuleList,
+} from '../-components/doc';
 
-// 견본 글을 실제 본문 뷰어로 그린다. 값은 components/ui/assets/suneditor-contents.override.css.
-
-function Sub({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div className="space-y-4">
-      <h3 className="type-item">{title}</h3>
-      {children}
-    </div>
-  );
-}
+// 견본 글을 실제 본문 뷰어로 그린다. 제목·문단·인용·표의 값은 components/ui/assets/suneditor-contents.override.css 가 정한다.
 
 const SAMPLE = {
   html: `<h2>2026학년도 전기 대학원 입학 안내</h2>
@@ -26,37 +24,75 @@ const SAMPLE = {
 
 export function ReadingSection() {
   return (
-    <div className="space-y-12 type-body">
-      <Sub title="본문 — 제목·링크·인용·간격">
-        <div className="max-w-2xl border border-neutral-200 bg-neutral-50 p-6">
-          <HTMLViewer html={SAMPLE} />
-        </div>
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            문단·목록·제목·인용은 읽기 폭 640에서 멈추고, 표·이미지는 본문 폭을
-            그대로 쓴다.
-          </li>
-          <li>
-            본문 제목은 글자 단계를 따른다: h1·h2 20/700, h3 16/700, h4~h6
-            14/700, 줄높이 1.4, 위 32·아래 16(h4 이하는 위 24·아래 12). 본문 맨
-            앞 요소는 위 여백이 없다.
-          </li>
-          <li>링크는 사이트 링크 색(#2867cf) + 밑줄, 호버 주황(글자 절).</li>
-          <li>
-            인용은 글자 neutral-600 + 왼쪽 2px neutral-300 선, 선 안쪽 16.
-          </li>
-          <li>문단 사이 12, 목록 위아래 12.</li>
-          <li>
-            넓은 표는 본문 폭에서 멈추고 표 안에서 가로로 스크롤한다(작성자가
-            고정 폭을 넣어도). 스크롤 막대는 얇은 회색으로 늘 보이고, 옆으로 더
-            있으면 오른쪽 끝을 흐리게 한다 — iPhone 은 막대를 늘 숨겨서.
-          </li>
-          <li>
-            작성자가 직접 고른 글자 크기·색·표 서식은 건드리지 않는다. 서체는
-            Pretendard다.
-          </li>
-        </ul>
-      </Sub>
-    </div>
+    <>
+      <Lead>
+        작성자가 에디터로 쓴 글은 <code>HTMLViewer</code> 하나로 보인다. 제목·
+        문단·인용·표의 모양은 뷰어가 정하고, 에디터도 같은 값을 써서 쓰는 화면과
+        보는 화면이 같다.
+      </Lead>
+
+      <DocSection title="짜임">
+        <Example caption="문단·목록·제목·인용은 읽기 폭 640에서 멈추고, 표·이미지는 본문 폭을 쓴다. 넓은 표는 표 안에서 가로로 스크롤한다.">
+          <div className="w-full max-w-2xl bg-neutral-50 p-6">
+            <HTMLViewer html={SAMPLE} />
+          </div>
+        </Example>
+      </DocSection>
+
+      <DocSection title="규칙">
+        <RuleList
+          items={[
+            '작성자 글은 HTMLViewer로만 보인다. 화면에서 본문 글자·간격을 따로 입히지 않는다.',
+            '작성자가 직접 고른 글자 크기·색·표 서식은 건드리지 않는다.',
+            '본문 옆 대표 이미지는 뷰어에 넘긴다(폭 200·240·320) — 오른쪽에 띄우고 글이 감싸 흐른다. 모바일은 위.',
+          ]}
+        />
+      </DocSection>
+
+      <DocSection title="이렇게 · 이렇게 하지 않는다">
+        <DoDont
+          good={{
+            example: (
+              <p className="type-body">
+                자세한 일정은{' '}
+                <a
+                  href="#reading"
+                  className="text-link underline underline-offset-2 hover:text-main-orange"
+                >
+                  입학 본부 공지
+                </a>
+                를 확인해 주세요.
+              </p>
+            ),
+            caption:
+              '본문 밖에서 링크를 짜도 본문 링크와 같다 — 링크 색 + 밑줄, 호버 주황.',
+          }}
+          bad={{
+            example: (
+              <p className="type-body">
+                자세한 일정은{' '}
+                <a href="#reading" className="font-bold text-main-orange">
+                  입학 본부 공지
+                </a>
+                를 확인해 주세요.
+              </p>
+            ),
+            caption:
+              '주황 굵은 글자로 링크를 만든다 — 주황은 현재 위치·강조의 색이다.',
+          }}
+        />
+      </DocSection>
+
+      <DocSection title="관련">
+        <Related
+          links={[
+            ['type', '글자'],
+            ['editor', '에디터'],
+            ['post', '게시물 상세'],
+            ['color', '색'],
+          ]}
+        />
+      </DocSection>
+    </>
   );
 }

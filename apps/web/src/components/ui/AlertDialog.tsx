@@ -10,7 +10,8 @@ interface AlertDialogProps {
   onOpenChange: (open: boolean) => void;
   title?: string;
   description: string;
-  confirmText?: string;
+  /** 실행 버튼 — 하는 일을 적는다(삭제·나가기). "확인"으로 대신하지 않도록 기본값을 두지 않는다. */
+  confirmText: string;
   onConfirm: () => void;
 }
 
@@ -19,7 +20,7 @@ export default function AlertDialog({
   onOpenChange,
   title = '확인',
   description,
-  confirmText = '확인',
+  confirmText,
   onConfirm,
 }: AlertDialogProps) {
   const confirmButtonRef = useRef<HTMLButtonElement>(null);

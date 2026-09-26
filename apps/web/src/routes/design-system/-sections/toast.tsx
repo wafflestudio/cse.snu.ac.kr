@@ -1,21 +1,41 @@
-import type { ReactNode } from 'react';
 import Button from '@/components/ui/Button';
-import { toast } from '@/components/ui/sonner';
+import { TOAST_ICONS, toast } from '@/components/ui/sonner';
+import {
+  DocSection,
+  Example,
+  Lead,
+  Related,
+  RuleList,
+  VariantTable,
+} from '../-components/doc';
 
-function Sub({ title, children }: { title: string; children: ReactNode }) {
+// 토스트 페이지. 실제 toast 를 띄운다 — 판·글자·아이콘·자리는 부품이 정하므로 적지 않는다.
+
+function Kind({
+  icon,
+  label,
+}: {
+  icon: keyof typeof TOAST_ICONS;
+  label: string;
+}) {
   return (
-    <div className="space-y-4">
-      <h3 className="type-item">{title}</h3>
-      {children}
-    </div>
+    <span className="flex items-center gap-2 type-label [&_svg]:size-5">
+      {TOAST_ICONS[icon]}
+      {label}
+    </span>
   );
 }
 
 export function ToastSection() {
   return (
-    <div className="space-y-12 type-body">
-      <Sub title="띄워 보기">
-        <div className="flex flex-wrap gap-3">
+    <>
+      <Lead>
+        토스트는 한 일의 결과를 잠깐 알린다. 모양과 자리는 부품이 정하고, 쓰는
+        사람은 종류와 문구만 정한다. 상태는 아이콘이 알리고 판 색은 하나다.
+      </Lead>
+
+      <DocSection title="예시">
+        <Example caption="눌러서 띄워 본다.">
           <Button
             variant="secondary"
             onClick={() => toast.success('게시물을 저장했습니다.')}
@@ -38,36 +58,46 @@ export function ToastSection() {
           >
             안내
           </Button>
-        </div>
-        <p className="type-meta text-neutral-500">
-          화면 아래 오른쪽(모바일은 아래)에 뜬다.
-        </p>
-      </Sub>
+        </Example>
+      </DocSection>
 
-      <Sub title="모양">
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            판: 흰 바탕, 테두리 neutral-200, 그림자 overlay(떠 있는 층 한 값),
-            모서리 없음, 안 여백 16.
-          </li>
-          <li>글자: 문장 14/500 neutral-950, 설명 13 neutral-600(위 4).</li>
-          <li>
-            아이콘: lucide — 성공 <code>CircleCheck</code> 검정, 실패{' '}
-            <code>CircleAlert</code> red-600(오류 색), 안내 <code>Info</code>{' '}
-            회색(<code>TOAST_ICONS</code>). 상태는 아이콘이 알리고 판 색은
-            하나다.
-          </li>
-          <li>
-            Sonner는 strict CSP 때문에 소스를 <code>ui/sonner/</code>에 복사해
-            쓴다(스타일을 실행 중에 주입하지 않고 CSS 파일로 불러온다). 모양은
-            그 복사본의 <code>styles.css</code>에서 고친다.
-          </li>
-          <li>
-            API 실패는 <code>toast.error</code> 대신 <code>toastError</code>
-            (문구를 오류 사전이 정한다). 성공 문구는 문구 절을 따른다.
-          </li>
-        </ul>
-      </Sub>
-    </div>
+      <DocSection title="종류">
+        <VariantTable
+          rows={[
+            {
+              name: '성공',
+              sample: <Kind icon="success" label="저장했습니다" />,
+              use: '끝낸 일을 알린다 — 저장·삭제·게시.',
+            },
+            {
+              name: '실패',
+              sample: <Kind icon="error" label="저장하지 못했습니다" />,
+              use: 'API 실패는 toastError로 띄운다 — 문구를 오류 사전이 정한다.',
+            },
+            {
+              name: '안내',
+              sample: <Kind icon="info" label="로그인이 필요합니다" />,
+              use: '해야 할 일을 알린다.',
+            },
+          ]}
+        />
+        <RuleList
+          items={[
+            '성공·안내 문구는 문구 페이지를 따른다.',
+            '모양은 ui/sonner/ 복사본의 styles.css에서 고친다 — strict CSP 때문에 소스를 복사해 쓴다.',
+          ]}
+        />
+      </DocSection>
+
+      <DocSection title="관련">
+        <Related
+          links={[
+            ['writing', '문구'],
+            ['form', '입력·폼'],
+            ['dialog', '모달'],
+          ]}
+        />
+      </DocSection>
+    </>
   );
 }

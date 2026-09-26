@@ -1,4 +1,12 @@
 import { useState } from 'react';
+import {
+  DocSection,
+  DoDont,
+  Lead,
+  Related,
+  RuleList,
+  SpecTable,
+} from '../-components/doc';
 
 // 레이아웃 도식의 축척. 실제 px 에 곱해 그린다.
 const SCALE = 0.3;
@@ -34,7 +42,9 @@ function LayoutDiagram({ width, label }: Frame) {
 
   return (
     <figure>
-      <figcaption className="mb-2 text-sm text-neutral-500">{label}</figcaption>
+      <figcaption className="mb-2 type-meta text-neutral-500">
+        {label}
+      </figcaption>
       <div
         className="flex overflow-hidden border border-neutral-300"
         style={{ width: px(width), height: px(560) }}
@@ -108,10 +118,7 @@ function WidthChart() {
 
   return (
     <figure className="max-w-3xl">
-      <figcaption className="text-md font-medium">
-        화면 폭에 따른 본문 영역과 읽기 폭
-      </figcaption>
-      <div className="mt-2 mb-2 flex gap-6 text-sm text-neutral-700">
+      <div className="mb-2 flex gap-6 type-meta text-neutral-700">
         {series.map((s) => (
           <span key={s.name} className="flex items-center gap-2">
             <svg width="20" height="4" aria-hidden="true">
@@ -218,6 +225,10 @@ function WidthChart() {
           </g>
         )}
       </svg>
+      <figcaption className="mt-2 type-meta text-neutral-500">
+        화면 폭에 따른 본문 영역과 읽기 폭. 1280에서 영역이 979→720으로 줄어드는
+        것은 서브내비 자리(360)가 한꺼번에 생기기 때문이다.
+      </figcaption>
     </figure>
   );
 }
@@ -227,117 +238,120 @@ const SAMPLE_TEXT =
 
 function ReadingSample() {
   return (
-    <div>
-      <p className="font-medium">읽기 폭 견본(본문 14px, 줄높이 28px)</p>
-      <p className="mt-1 mb-1 text-sm text-neutral-500">
-        {READING}px · 한 줄 약 62자
-      </p>
+    <figure>
       <p
-        className="border-l-2 border-neutral-200 pl-3 text-md leading-7"
+        className="border-l-2 border-neutral-200 pl-3 type-body"
         style={{ maxWidth: READING }}
       >
         {SAMPLE_TEXT}
       </p>
-    </div>
+      <figcaption className="mt-2 type-meta text-neutral-500">
+        읽기 폭 {READING}px — 본문 14px에서 한 줄 약 62자.
+      </figcaption>
+    </figure>
   );
 }
 
-function LayoutReasons() {
+// 이렇게·하지 않는다 도식: 넓은 영역 안의 문단(회색 줄)과 표(칸).
+function Lines({ full }: { full?: boolean }) {
   return (
-    <div>
-      <p className="font-medium">근거</p>
-      <ul className="mt-2 list-disc space-y-1 pl-5">
-        <li>
-          <b>읽기 폭 640</b> — 본문 14px에서 한 줄 약 62자(공백 포함, 실측)다.
-          많이 읽히는 한국어 글 사이트가 58~69자에 모여 있다(브런치 59, 토스
-          기술 블로그 58, 위키백과 63, KRDS 문서 65~69).
-        </li>
-        <li>
-          표·카드·달력처럼 넓을수록 좋은 것은 읽기 폭을 받지 않고 영역 전체를
-          쓴다. 그래서 본문 영역에는 모바일·데스크톱 모두 상한을 두지 않는다.
-          메인·카테고리처럼 배경 띠가 있는 화면도 끝까지 찬다.
-        </li>
-        <li>
-          <b>1024</b> — 데스크톱 틀(왼쪽 내비 100 + 여백 100·100)을 써도 영역이
-          724px로 읽기 폭보다 넓다. 태블릿 가로(1024~1180)와 작은 노트북 창이
-          여기부터 데스크톱을 쓴다.
-        </li>
-        <li>
-          <b>1280</b> — 서브내비 자리 360을 넣어도 영역이 720px 남는다. 1200이면
-          640px로 표·카드가 읽기 폭까지 좁아진다. 1280에서 영역이 979→720px로
-          줄어드는 것은 서브내비 자리가 한꺼번에 생기기 때문이다.
-        </li>
-      </ul>
+    <div className="w-full space-y-1.5 border border-neutral-200 bg-neutral-50 p-2">
+      <div className="space-y-1.5" style={{ width: full ? '100%' : '58%' }}>
+        {[100, 100, 100, 70].map((w, i) => (
+          <div
+            key={i}
+            className="h-1.5 bg-neutral-300"
+            style={{ width: `${w}%` }}
+          />
+        ))}
+      </div>
+      <div className="grid grid-cols-4 gap-px bg-neutral-200 pt-px">
+        {Array.from({ length: 8 }, (_, i) => (
+          <div key={i} className="h-3 bg-white" />
+        ))}
+      </div>
     </div>
   );
 }
 
 export function LayoutSection() {
   return (
-    <div className="space-y-8 text-md leading-7">
-      <p className="text-sm text-neutral-500">
-        도식은 실제 폭의 30%다. 옅은 상자가 본문 영역, 짙은 상자가 읽기 폭, 주황
-        선이 서브내비다.
-      </p>
-      <div className="flex flex-wrap items-start gap-8">
-        {FRAMES.map((frame) => (
-          <LayoutDiagram key={frame.width} {...frame} />
-        ))}
-      </div>
-      <table className="w-full max-w-3xl border-t border-neutral-200 text-left">
-        <thead>
-          <tr className="border-b border-neutral-200">
-            <th className="py-2 font-medium">화면 폭</th>
-            <th className="py-2 font-medium">배치</th>
-            <th className="py-2 font-medium">본문 영역</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="border-b border-neutral-200">
-            <td className="py-2">1024px 미만</td>
-            <td className="py-2">모바일. 상단 바와 모바일 메뉴, 한 열</td>
-            <td className="py-2">좌우 여백 20px, 상한 없음</td>
-          </tr>
-          <tr className="border-b border-neutral-200">
-            <td className="py-2">1024px 이상</td>
-            <td className="py-2">데스크톱. 왼쪽 내비</td>
-            <td className="py-2">좌우 여백 100px, 상한 없음</td>
-          </tr>
-          <tr className="border-b border-neutral-200">
-            <td className="py-2">1280px 이상</td>
-            <td className="py-2">오른쪽에 서브내비가 나타난다</td>
-            <td className="py-2">왼쪽 100px, 오른쪽 360px(서브내비 자리)</td>
-          </tr>
-        </tbody>
-      </table>
-      <WidthChart />
-      <ReadingSample />
-      <LayoutReasons />
-      <div>
-        <p className="font-medium">쓰는 법</p>
-        <ul className="mt-2 list-disc space-y-1 pl-5">
-          <li>
-            긴 문단은 <code>max-w-160</code>(640px)으로 감싼다. HTML 본문(
-            <code>HTMLViewer</code>)은 문단·목록·제목이 자동으로 640px에서
-            멈춘다. 표·카드 격자·달력·폼은 영역 전체를 쓴다.
-          </li>
-          <li>
-            데스크톱 스타일은 <code>sm:</code>(1024px)로 쓴다. <code>xl:</code>
-            (1280px)은 서브내비와 그 자리에만 쓴다. <code>md:</code>·
-            <code>lg:</code>와 임의 브레이크포인트는 쓰지 않는다. 예외: 메인
-            뉴스 캐러셀의 카드 수.
-          </li>
-          <li>
-            본문 가로 여백은 <code>page-gutter-x</code>. 본문 밖 띠(제목
-            영역·헤더·푸터)도 모바일에서는 <code>px-5</code>(20px).
-          </li>
-          <li>
-            JS로 분기해야 하면 <code>useIsMobile()</code>(1024px 미만). 보이기만
-            다른 분기는 CSS로 한다.
-          </li>
-          <li>공개 화면은 320px부터, 행정실 편집·관리는 1200px부터 맞춘다.</li>
-        </ul>
-      </div>
-    </div>
+    <>
+      <Lead>
+        화면은 1024px을 경계로 모바일과 데스크톱 두 틀을 쓰고, 1280px부터
+        오른쪽에 서브내비가 붙는다. 본문 영역에는 상한이 없다 — 표·카드는 영역을
+        다 쓰고, 긴 문단만 읽기 폭 640px에서 멈춘다.
+      </Lead>
+
+      <DocSection title="값">
+        <SpecTable
+          head={['화면 폭(px)', '본문 여백', '배치']}
+          rows={[
+            ['1024 미만', '좌우 20', '모바일 — 상단 바·모바일 메뉴, 한 열'],
+            ['1024 이상', '좌우 100', '데스크톱 — 왼쪽 내비'],
+            [
+              '1280 이상',
+              '왼 100 · 오른 360',
+              '오른쪽에 서브내비(오른쪽 360이 그 자리)',
+            ],
+            ['읽기 폭', '640', '긴 문단·HTML 본문의 한 줄 상한'],
+          ]}
+        />
+        <figure>
+          <div className="overflow-x-auto">
+            <div className="flex w-max flex-wrap items-start gap-8 sm:w-auto">
+              {FRAMES.map((frame) => (
+                <LayoutDiagram key={frame.width} {...frame} />
+              ))}
+            </div>
+          </div>
+          <figcaption className="mt-2 type-meta text-neutral-500">
+            실제 폭의 30%. 옅은 상자가 본문 영역, 짙은 상자가 읽기 폭, 주황 선이
+            서브내비다.
+          </figcaption>
+        </figure>
+        <WidthChart />
+        <ReadingSample />
+      </DocSection>
+
+      <DocSection title="쓰는 법">
+        <RuleList
+          items={[
+            '긴 문단은 읽기 폭(max-w-160, 640px)으로 감싼다. HTML 본문은 문단·목록·제목이 스스로 640px에서 멈춘다.',
+            '표·카드 격자·달력·폼은 읽기 폭을 받지 않고 영역 전체를 쓴다. 배경 띠가 있는 메인·카테고리도 끝까지 찬다.',
+            '데스크톱 모양은 sm:(1024px)로 쓴다. xl:(1280px)은 서브내비와 그 자리에만 쓴다.',
+            'md:·lg:와 임의 브레이크포인트는 쓰지 않는다. 예외는 메인 뉴스 캐러셀의 카드 수 하나다.',
+            '본문 가로 여백은 page-gutter-x 하나로 준다. 본문 밖 띠(제목 영역·헤더·푸터)도 모바일에서는 20px이다.',
+            'JS로 갈라야 할 때만 useIsMobile()(1024px 미만)을 쓴다. 보이기만 다른 분기는 CSS로 한다.',
+            '공개 화면은 320px부터, 행정실 편집·관리 화면은 1200px부터 맞춘다.',
+          ]}
+        />
+      </DocSection>
+
+      <DocSection title="이렇게 · 이렇게 하지 않는다">
+        <DoDont
+          good={{
+            example: <Lines />,
+            caption: '문단은 640px에서 멈추고, 표는 영역을 다 쓴다.',
+          }}
+          bad={{
+            example: <Lines full />,
+            caption:
+              '문단을 영역 끝까지 늘린다 — 한 줄이 너무 길어 읽기 어렵다.',
+          }}
+        />
+      </DocSection>
+
+      <DocSection title="관련">
+        <Related
+          links={[
+            ['page', '페이지 틀'],
+            ['navigation', '내비게이션·셸'],
+            ['spacing', '간격'],
+            ['reading', '읽는 본문·이미지'],
+          ]}
+        />
+      </DocSection>
+    </>
   );
 }

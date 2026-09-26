@@ -2,19 +2,19 @@ import clsx from 'clsx';
 import { Square, X } from 'lucide-react';
 import type { ReactNode } from 'react';
 import Button from '@/components/ui/Button';
+import {
+  DocSection,
+  DoDont,
+  Example,
+  Lead,
+  Related,
+  RuleList,
+  VariantTable,
+} from '../-components/doc';
 
-// 판은 화면 위에 뜨는 것이라 여기서는 같은 값을 div 로 그린다. 실제 값은 ui/dialogStyle.ts.
+// 모달 페이지. 판은 화면 위에 뜨는 것이라 여기서는 같은 모양을 div 로 그린다.
+// 판의 값(테두리·그림자·여백·가림막)은 ui/dialogStyle.ts 가 정하므로 적지 않는다.
 
-function Sub({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div className="space-y-4">
-      <h3 className="type-item">{title}</h3>
-      {children}
-    </div>
-  );
-}
-
-// 어두운 바탕 위에 판 하나
 function Stage({
   children,
   className,
@@ -24,7 +24,10 @@ function Stage({
 }) {
   return (
     <div
-      className={clsx('flex justify-center bg-neutral-900/60 p-6', className)}
+      className={clsx(
+        'flex w-full justify-center bg-neutral-900/60 p-4 sm:p-6',
+        className,
+      )}
     >
       {children}
     </div>
@@ -45,7 +48,7 @@ function Panel({
   return (
     <div
       className={clsx(
-        'relative border-t-3 border-main-orange bg-white p-6 shadow-overlay sm:p-8',
+        'relative w-full border-t-3 border-main-orange bg-white p-6 shadow-overlay sm:p-8',
         width,
       )}
     >
@@ -78,10 +81,22 @@ function Actions({ ok }: { ok: string }) {
   );
 }
 
+// 크기 견본 — 폭 비율만 보여 주는 작은 판(400 : 560 : 768).
+function Mini({ width }: { width: string }) {
+  return (
+    <span
+      className={clsx(
+        'block h-10 border-t-3 border-main-orange bg-white shadow-overlay',
+        width,
+      )}
+    />
+  );
+}
+
 const IMG_BTN =
   'flex h-11.5 flex-1 items-center justify-center type-label transition-colors';
 
-// 이미지 팝업 견본 — 값은 ui/ImageModal.tsx 와 같다.
+// 이미지 팝업 견본 — 모양은 ui/ImageModal.tsx 와 같다.
 function ImageSample() {
   return (
     <Stage className="pb-12">
@@ -91,25 +106,15 @@ function ImageSample() {
             포스터 이미지
           </div>
           <div className="flex">
-            <span
-              className={clsx(
-                IMG_BTN,
-                'bg-neutral-100 text-neutral-600 hover:bg-neutral-200',
-              )}
-            >
+            <span className={clsx(IMG_BTN, 'bg-neutral-100 text-neutral-600')}>
               닫기
             </span>
-            <span
-              className={clsx(
-                IMG_BTN,
-                'bg-neutral-700 text-white hover:bg-neutral-600 active:bg-neutral-500',
-              )}
-            >
+            <span className={clsx(IMG_BTN, 'bg-neutral-700 text-white')}>
               자세히 보기
             </span>
           </div>
         </div>
-        <span className="absolute -bottom-8 left-0 flex cursor-pointer items-center gap-1 type-label text-white transition-colors hover:text-main-orange active:text-main-orange-dark">
+        <span className="absolute -bottom-8 left-0 flex items-center gap-1 type-label text-white">
           <Square /> 다시 보지 않기
         </span>
       </div>
@@ -119,103 +124,132 @@ function ImageSample() {
 
 export function DialogSection() {
   return (
-    <div className="space-y-12 type-body">
-      <Sub title="판 — 한 벌">
-        <Stage>
-          <Panel title="교과목 추가" width="w-full max-w-[560px]">
-            <Field label="교과목명" />
-            <Field label="(영문) Course Name" />
-            <Actions ok="추가하기" />
-          </Panel>
-        </Stage>
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            판은 흰 바탕, 위 주황 3px, 그림자 overlay, 모서리 없음. 값은{' '}
-            <code>ui/dialogStyle.ts</code> 한 곳이다.
-          </li>
-          <li>
-            뒤 가림막은 검정 50% + 흐림 2px 하나(확인창·이미지 팝업도 같다).
-          </li>
-          <li>
-            안 여백 모바일 24·데스크톱 32. 닫기 X는 오른쪽 위 16에 20px 텍스트
-            버튼(호버 주황).
-          </li>
-        </ul>
-      </Sub>
+    <>
+      <Lead>
+        모달은 지금 화면 위에 판을 띄워 짧은 일을 끝내게 한다. 판의 모양은
+        부품(Dialog·확인창·이미지 팝업)이 정하고, 쓰는 사람은 크기와 제목,
+        확인창의 실행 버튼 이름만 정한다.
+      </Lead>
 
-      <Sub title="제목 — 판이 그린다">
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            제목은 <code>Dialog title</code>로 넘기면 판이 20/700
-            neutral-950으로 그리고 아래 24를 둔다. 모달 안에서 제목을 따로
-            그리지 않는다.
-          </li>
-          <li>
-            내용이 자기 제목을 가진 판(교과목·예약 상세, 팀 소개)은{' '}
-            <code>hideTitle</code>로 화면 읽기용 제목만 둔다. 확인창도 제목이
-            화면에 없다.
-          </li>
-        </ul>
-      </Sub>
+      <DocSection title="예시">
+        <Example caption="판은 화면 위에 뜨므로 여기서는 같은 모양을 그려 보인다.">
+          <Stage>
+            <Panel title="교과목 추가" width="max-w-[560px]">
+              <Field label="교과목명" />
+              <Field label="(영문) Course Name" />
+              <Actions ok="추가" />
+            </Panel>
+          </Stage>
+        </Example>
+      </DocSection>
 
-      <Sub title="크기 — 세 가지">
-        <div className="grid gap-6 sm:grid-cols-3">
-          {[
-            ['확인', '400', '확인창'],
-            ['폼', '560', '교과목 추가·시설 예약'],
-            ['넓게', '768', '교과목 상세·예약 상세·팀 소개'],
-          ].map(([name, px, use]) => (
-            <div key={name} className="space-y-1">
-              <p className="type-label">
-                {name} {px}px
+      <DocSection title="종류">
+        <VariantTable
+          rows={[
+            {
+              name: '확인창',
+              sample: <Mini width="w-[83px]" />,
+              use: '삭제·나가기처럼 되돌리기 어려운 일을 확인한다. 크기는 하나.',
+            },
+            {
+              name: '폼(기본)',
+              sample: <Mini width="w-[117px]" />,
+              use: '짧은 입력 — 교과목 추가, 시설 예약.',
+            },
+            {
+              name: '넓게',
+              sample: <Mini width="w-[160px]" />,
+              use: '긴 내용 — 교과목 상세, 예약 상세, 팀 소개.',
+            },
+            {
+              name: '이미지 팝업',
+              sample: <Mini width="w-[60px]" />,
+              use: '메인의 포스터 공지. 모양은 부품이 정한다.',
+            },
+          ]}
+        />
+        <RuleList
+          items={[
+            '폭은 내용으로 골라 size로만 정한다. 판 폭을 따로 적지 않는다.',
+            '제목은 title로 넘기면 판이 그린다. 모달 안에서 제목을 따로 그리지 않는다.',
+            '내용이 자기 제목을 가진 판(교과목·예약 상세, 팀 소개)은 hideTitle로 화면 읽기용 제목만 둔다.',
+          ]}
+        />
+      </DocSection>
+
+      <DocSection title="확인창">
+        <Example caption="실행 버튼은 하는 일을 적는다 — 삭제·해제·나가기. 버튼 순서는 버튼 페이지, 문장은 문구 페이지를 따른다.">
+          <Stage>
+            <Panel width="max-w-[400px]" close={false}>
+              <p>
+                게시물을 삭제하시겠습니까?
+                <br />
+                되돌릴 수 없습니다.
               </p>
-              <p className="type-meta text-neutral-500">{use}</p>
-            </div>
-          ))}
-        </div>
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            모바일에서는 화면 폭에서 좌우 16씩 뺀 폭, 높이는 최대 90%이고 넘치면
-            판 안에서 스크롤한다.
-          </li>
-          <li>
-            폭은 <code>size</code>로만 고른다(확인창은 늘 400). 판 폭을 따로
-            적지 않는다.
-          </li>
-        </ul>
-      </Sub>
+              <Actions ok="삭제" />
+            </Panel>
+          </Stage>
+        </Example>
+      </DocSection>
 
-      <Sub title="버튼 줄">
-        <Stage>
-          <Panel width="w-full max-w-[400px]" close={false}>
-            <p>게시물을 삭제하시겠습니까?</p>
-            <Actions ok="삭제" />
-          </Panel>
-        </Stage>
-        <ul className="list-disc space-y-1 pl-5">
-          <li>버튼 줄 규칙(버튼 절)을 따르고, 내용과 사이는 위 32다.</li>
-          <li>확인창에는 닫기 X가 없다 — 취소가 닫기다.</li>
-          <li>확인창의 실행 버튼은 하는 일을 적는다(삭제·해제·나가기).</li>
-        </ul>
-      </Sub>
-
-      <Sub title="이미지 팝업">
-        <div className="w-fit">
+      <DocSection title="이미지 팝업">
+        <Example caption="메인의 포스터 공지. 포스터 색이 매번 달라 버튼은 회색이고, 다시 보지 않기는 판 밖에 둔다.">
           <ImageSample />
-        </div>
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            "자세히 보기"는 주요 버튼 색(neutral-700)이다. 포스터 색이 매번 달라
-            주황은 이미지와 부딪히고, 시선은 포스터가 끈다.
-          </li>
-          <li>
-            "다시 보지 않기"는 판 밖 가림막 위에 흰 글자로 둔다. 호버는 어두운
-            면 글자 버튼(<code>textInverse</code>)처럼 주황, 누름 짙은 주황.
-            켜지면 네모+체크.
-          </li>
-          <li>닫기는 보조 버튼 색(neutral-100, 호버 200).</li>
-        </ul>
-      </Sub>
-    </div>
+        </Example>
+      </DocSection>
+
+      <DocSection title="이렇게 · 이렇게 하지 않는다">
+        <DoDont
+          good={{
+            example: (
+              <Panel title="교과목 추가" width="max-w-[260px]">
+                <Field label="교과목명" />
+              </Panel>
+            ),
+            caption: '제목은 판이 그린다.',
+          }}
+          bad={{
+            example: (
+              <Panel title="교과목 추가" width="max-w-[260px]">
+                <p className="mb-4 type-item">교과목 추가</p>
+                <Field label="교과목명" />
+              </Panel>
+            ),
+            caption: '모달 안에서 제목을 또 그린다 — 제목이 두 번 나온다.',
+          }}
+        />
+        <DoDont
+          good={{
+            example: (
+              <>
+                <Button variant="secondary">취소</Button>
+                <Button variant="primary">삭제</Button>
+              </>
+            ),
+            caption: '확인창의 실행 버튼은 하는 일을 적는다.',
+          }}
+          bad={{
+            example: (
+              <>
+                <Button variant="secondary">취소</Button>
+                <Button variant="primary">확인</Button>
+              </>
+            ),
+            caption: '"확인"으로 둔다 — 무엇이 일어나는지 모른다.',
+          }}
+        />
+      </DocSection>
+
+      <DocSection title="관련">
+        <Related
+          links={[
+            ['button', '버튼'],
+            ['form', '입력·폼'],
+            ['writing', '문구'],
+            ['shape', '모서리·그림자·선'],
+          ]}
+        />
+      </DocSection>
+    </>
   );
 }

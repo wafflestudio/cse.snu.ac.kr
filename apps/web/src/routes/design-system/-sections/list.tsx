@@ -1,170 +1,175 @@
 import clsx from 'clsx';
+import { Search } from 'lucide-react';
 import type { ReactNode } from 'react';
 import EmptyState from '@/components/ui/EmptyState';
 import ErrorState from '@/components/ui/ErrorState';
+import {
+  DocSection,
+  DoDont,
+  Example,
+  Lead,
+  Related,
+  RuleList,
+} from '../-components/doc';
 
-// 목록 조각. 빈 상태·오류는 실제 부품, 머리 행은 같은 값의 div(열 폭은 목록마다 다르다).
+// 목록 조각. 빈 상태·오류는 실제 부품, 표는 같은 값의 div(표는 화면마다 손으로 짠다).
+// EmptyState·ErrorState·Pagination·DotLinkList 가 정하는 값은 적지 않는다.
 
-function Sub({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div className="space-y-4">
-      <h3 className="type-item">{title}</h3>
-      {children}
-    </div>
-  );
-}
-
-// 표 한 모양: 목록 위아래 선, 흰 머리 행 + 아래 선, 행 44, 옅은 줄무늬.
 const SAMPLE_ROWS = [
   ['2026학년도 전기 대학원 입학 안내', '2026/09/27'],
   ['세미나실 예약 기간 변경', '2026/09/26'],
   ['학부 장학금 신청 안내', '2026/09/25'],
-  ['연구실 안전 교육', '2026/09/24'],
 ];
 
-function SampleTable() {
+function SampleTable({ indent = false }: { indent?: boolean }) {
   return (
-    <div className="border-y border-neutral-200">
-      <div className="flex h-11 items-center border-b border-neutral-200 px-3 type-label text-neutral-950">
-        <span className="flex-1">제목</span>
-        <span className="w-28">날짜</span>
+    <div
+      className={clsx(
+        'min-w-0 flex-1 border-y border-neutral-200',
+        indent && 'mx-6',
+      )}
+    >
+      <div className="flex h-11 items-center gap-x-6 border-b border-neutral-200 px-3 type-label text-neutral-950">
+        <span className="min-w-0 flex-1">제목</span>
+        <span className="w-24">날짜</span>
       </div>
       {SAMPLE_ROWS.map(([title, date], i) => (
         <div
           key={title}
           className={clsx(
-            'flex h-11 items-center px-3 type-ui',
+            'flex h-11 items-center gap-x-6 px-3 type-ui',
             i % 2 === 0 && 'bg-neutral-50',
           )}
         >
-          <span className="flex-1">{title}</span>
-          <span className="w-28 text-neutral-500">{date}</span>
+          <span className="min-w-0 flex-1 truncate">{title}</span>
+          <span className="w-24 text-neutral-500">{date}</span>
         </div>
       ))}
     </div>
   );
 }
 
+// 본문 왼쪽 끝을 보여 주는 틀.
+function Edge({ children }: { children: ReactNode }) {
+  return (
+    // w-0 min-w-full: 줄지 않는 제목 글자 폭이 카드를 밀어 넓히지 않게.
+    <div className="flex w-0 min-w-full overflow-hidden border-l-2 border-main-orange/60">
+      {children}
+    </div>
+  );
+}
+
 export function ListSection() {
   return (
-    <div className="space-y-12 type-body">
-      <Sub title="표 — 한 모양">
-        <div className="max-w-xl">
-          <SampleTable />
-        </div>
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            표형 목록(공지·연구실·학회·창업 기업·교과목·관리자)은 모두 이
-            모양이다: 목록 위아래 neutral-200 선, 머리 행은 흰 바탕에 아래 선
-            하나(14/500 neutral-950), 행 높이 44 — 머리 행도 행과 같은 44.
-          </li>
-          <li>
-            행 사이에는 선을 긋지 않고 첫 행부터 한 줄 걸러 neutral-50을 칠한다.
-            고른 행은 neutral-100, 비공개 글은 neutral-200.
-          </li>
-          <li>
-            칸 폭을 적지 않는다. 칸 틀(<code>grid-template-columns</code>)을
-            목록에 한 번만 적고 머리 행·행이 <code>subgrid</code>로 같이 쓴다 —
-            칸은 내용만큼(<code>auto</code>), 제목처럼 긴 칸 하나만 남는 자리(
-            <code>minmax(0,1fr)</code>). 글자·번역·데이터가 바뀌어도 머리 행과
-            행이 어긋나지 않는다.
-          </li>
-          <li>모바일에서는 칸 틀을 풀고 행이 카드처럼 쌓인다(머리 행 숨김).</li>
-          <li>
-            표는 본문 폭을 다 쓰고 본문 왼쪽 끝에서 시작한다 — 표에{' '}
-            <code>mx-3</code>·<code>ml-6</code> 같은 들여쓰기를 두지 않는다. 표
-            위아래 줄(총 개수·일괄 버튼·정렬)도 같은 끝에 맞춘다.
-          </li>
-          <li>
-            칸 사이는 표에 한 번 준다 — 표의 <code>gap-x-6</code>(24), 또는
-            칸마다 같은 안 여백(<code>px-3</code>) 중 하나. 행이 모바일 카드용{' '}
-            <code>gap</code>을 따로 가지면 subgrid 간격을 덮으므로 데스크톱에서
-            표와 같은 값(<code>sm:gap-x-6</code>)으로 되돌린다 — 안 그러면 머리
-            행과 칸이 어긋난다.
-          </li>
-        </ul>
-      </Sub>
+    <>
+      <Lead>
+        목록은 표·점 링크 목록 둘이고, 비었거나 불러오는 중이거나 실패했을 때도
+        목록 자리에 같은 모양을 둔다. 표는 화면마다 짜지만 모양은 하나다.
+      </Lead>
 
-      <Sub title="빈 상태·불러오는 중 — 같은 자리, 같은 모양">
-        <div className="grid gap-6 sm:grid-cols-2">
-          <EmptyState>검색 결과가 존재하지 않습니다.</EmptyState>
-          <EmptyState>검색어를 두글자 이상 입력해주세요</EmptyState>
-        </div>
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            목록이 비면 목록 자리에 <code>EmptyState</code> 한 줄: 14
-            neutral-500 가운데, 위아래 64, 목록처럼 위아래 선. 문장은 짧게 한
-            줄이다 — 길게 풀어 쓰면 장황해 보인다.
-          </li>
-          <li>
-            검색 결과 없음·검색어가 짧음·연도 자료 없음이 모두 이 모양이다.
-            그림을 넣지 않는다.
-          </li>
-          <li>
-            불러오는 중 문구는 "불러오는 중…"으로 적는다. 검색 결과를 더 불러올
-            때는 목록 아래 도는 아이콘 하나.
-          </li>
-        </ul>
-      </Sub>
+      <DocSection title="짜임">
+        <Example caption="표: 위아래 선, 흰 머리 행 + 아래 선, 행 44(머리 행도 44), 한 줄 걸러 옅은 줄무늬.">
+          <div className="w-full max-w-xl">
+            <SampleTable />
+          </div>
+        </Example>
+        <Example caption="빈 상태: 목록 자리에 EmptyState 한 줄.">
+          <div className="w-full">
+            <EmptyState>검색 결과가 존재하지 않습니다.</EmptyState>
+          </div>
+        </Example>
+        <Example caption="오류 화면: 다른 페이지와 같은 기본 틀 — 상태 코드·제목, 이유 한 줄·요청 주소·주요 버튼.">
+          <div className="flex w-full border border-neutral-200">
+            <ErrorState
+              code="404"
+              title="페이지를 찾을 수 없습니다"
+              detail="/ko/없는페이지"
+              actions={[
+                {
+                  label: '메인으로 이동',
+                  variant: 'primary',
+                  onClick: () => {},
+                },
+              ]}
+            />
+          </div>
+        </Example>
+      </DocSection>
 
-      <Sub title="페이지 넘김">
-        <ul className="list-disc space-y-1 pl-5">
-          <li>쪽이 하나뿐이면 페이지 넘김을 그리지 않는다.</li>
-          <li>
-            고른 쪽은 주황 굵게 + 밑줄. 편집 중에는 페이지 넘김 전체를
-            비활성으로 흐리게 둔다.
-          </li>
-        </ul>
-      </Sub>
+      <DocSection title="규칙">
+        <RuleList
+          items={[
+            '표형 목록(공지·연구실·학회·창업 기업·교과목·관리자)은 모두 위 표 모양이다. 행 사이에 선을 긋지 않는다.',
+            '줄무늬는 첫 행부터 neutral-50. 고른 행은 neutral-100, 비공개 글은 neutral-200.',
+            '칸 폭을 적지 않는다. 칸 틀은 표에 한 번 적고 머리 행·행이 subgrid로 같이 쓴다 — 칸은 내용만큼, 제목처럼 긴 칸 하나만 남는 자리.',
+            '칸 사이는 표에 한 번 준다 — 표의 간격 24, 또는 칸마다 같은 안 여백 12 중 하나.',
+            '행이 모바일 카드용 간격을 따로 가지면 데스크톱에서 표와 같은 값으로 되돌린다 — 안 그러면 머리 행과 칸이 어긋난다.',
+            '모바일에서는 칸 틀을 풀고 행이 카드처럼 쌓인다(머리 행 숨김).',
+            '주황 원 + 링크 목록(연구 스트림의 연구실, 장학 목록)은 DotLinkList 하나로 쓴다.',
+            '편집 중에는 페이지 넘김을 비활성으로 둔다.',
+            '빈 상태는 검색 결과 없음·검색어가 짧음·연도 자료 없음 모두 EmptyState 한 줄이다. 그림을 넣지 않는다.',
+            '불러오는 중 문구는 "불러오는 중…". 검색 결과를 더 불러올 때는 목록 아래 도는 아이콘 하나.',
+            '404: "페이지를 찾을 수 없습니다" / 요청 주소 / [메인으로 이동]. 제목과 같은 말을 본문에 되풀이하지 않는다.',
+            '500: "문제가 생겼습니다" / "잠시 후 다시 시도해 주세요." / [다시 시도](보조) [메인으로 이동](주요).',
+          ]}
+        />
+      </DocSection>
 
-      <Sub title="점 링크 목록">
-        <div className="space-y-2">
-          {['컴퓨터 구조 연구실', '지능형 데이터 시스템 연구실'].map((x) => (
-            <p key={x} className="flex items-center gap-2 type-ui">
-              <span className="size-2.5 rounded-full border border-main-orange" />
-              {x}
-            </p>
-          ))}
-        </div>
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            주황 원 + 링크 목록은 <code>DotLinkList</code> 하나(연구 스트림의
-            연구실, 장학 목록). 항목 높이 약 34, 좌우 12.
-          </li>
-        </ul>
-      </Sub>
+      <DocSection title="이렇게 · 이렇게 하지 않는다">
+        <DoDont
+          good={{
+            example: (
+              <Edge>
+                <SampleTable />
+              </Edge>
+            ),
+            caption:
+              '표는 본문 폭을 다 쓰고 본문 왼쪽 끝에서 시작한다. 표 위아래 줄(총 개수·일괄 버튼·정렬)도 같은 끝에 맞춘다.',
+          }}
+          bad={{
+            example: (
+              <Edge>
+                <SampleTable indent />
+              </Edge>
+            ),
+            caption:
+              '표를 좌우로 들여 쓴다 — 본문의 다른 덩어리와 끝이 어긋난다.',
+          }}
+        />
+        <DoDont
+          good={{
+            example: (
+              <div className="w-full">
+                <EmptyState>검색 결과가 존재하지 않습니다.</EmptyState>
+              </div>
+            ),
+            caption: '짧은 한 줄.',
+          }}
+          bad={{
+            example: (
+              <div className="flex w-full flex-col items-center gap-2 border-y border-neutral-200 py-8 text-center type-body text-neutral-500">
+                <Search className="size-8" />
+                <p>
+                  입력하신 검색어와 일치하는 결과를 찾지 못했습니다. 다른
+                  검색어로 다시 검색해 보시기 바랍니다.
+                </p>
+              </div>
+            ),
+            caption: '그림을 넣고 길게 풀어 쓴다 — 장황해 보인다.',
+          }}
+        />
+      </DocSection>
 
-      <Sub title="오류 화면 — 다른 페이지와 같은 틀">
-        <div className="flex max-w-xl border border-neutral-200">
-          <ErrorState
-            code="404"
-            title="페이지를 찾을 수 없습니다"
-            detail="/ko/없는페이지"
-            actions={[
-              {
-                label: '메인으로 이동',
-                variant: 'primary',
-                onClick: () => {},
-              },
-            ]}
-          />
-        </div>
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            오류 화면도 다른 페이지와 같은 틀(페이지 틀 절의 기본 틀)이다.
-            어두운 제목 영역에 상태 코드(경로 자리, 13px)와 제목(페이지 제목
-            단계), 흰 본문에 이유 한 줄·요청 주소·주요 버튼.
-          </li>
-          <li>
-            404: "페이지를 찾을 수 없습니다" / 요청 주소 / [메인으로 이동].
-            제목과 같은 말을 본문에 되풀이하지 않는다.
-          </li>
-          <li>
-            500: "문제가 생겼습니다" / "잠시 후 다시 시도해 주세요." / [다시
-            시도](보조) [메인으로 이동](주요).
-          </li>
-        </ul>
-      </Sub>
-    </div>
+      <DocSection title="관련">
+        <Related
+          links={[
+            ['page', '페이지 틀'],
+            ['search', '검색 입력'],
+            ['button', '버튼'],
+            ['writing', '문구'],
+          ]}
+        />
+      </DocSection>
+    </>
   );
 }

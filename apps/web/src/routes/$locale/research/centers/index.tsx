@@ -81,31 +81,33 @@ function ResearchCentersPage() {
 
       {selectedCenter && (
         <div>
-          <LoginVisible allow="ROLE_STAFF">
-            <div className="mb-8 flex justify-end gap-3">
-              <Button
-                as="button"
-                onClick={() => setShowDeleteDialog(true)}
-                variant="secondary"
-                size="md"
-              >
-                삭제
-              </Button>
-              <Button
-                as="link"
-                to={localizedPath(
-                  `/research/centers/${selectedCenter.id}/edit`,
-                )}
-                variant="secondary"
-                size="md"
-              >
-                편집
-              </Button>
-            </div>
-          </LoginVisible>
           <SelectionTitle
             title={selectedCenter.name}
             href={selectedCenter.websiteURL || undefined}
+            actions={
+              <LoginVisible allow="ROLE_STAFF">
+                <div className="flex gap-3">
+                  <Button
+                    as="button"
+                    onClick={() => setShowDeleteDialog(true)}
+                    variant="secondary"
+                    size="md"
+                  >
+                    삭제
+                  </Button>
+                  <Button
+                    as="link"
+                    to={localizedPath(
+                      `/research/centers/${selectedCenter.id}/edit`,
+                    )}
+                    variant="secondary"
+                    size="md"
+                  >
+                    편집
+                  </Button>
+                </div>
+              </LoginVisible>
+            }
           />
           <div className="px-3">
             <HTMLViewer

@@ -91,27 +91,31 @@ function ResearchGroupsPage() {
       {item && (
         <PageBand tone="gray">
           <div className="flex flex-col">
-            <LoginVisible allow="ROLE_STAFF">
-              <div className="mb-8 flex justify-end gap-3">
-                <Button
-                  as="button"
-                  onClick={() => setShowDeleteDialog(true)}
-                  variant="secondary"
-                  size="md"
-                >
-                  삭제
-                </Button>
-                <Button
-                  as="link"
-                  to={localizedPath(`/research/groups/${item.id}/edit`)}
-                  variant="secondary"
-                  size="md"
-                >
-                  편집
-                </Button>
-              </div>
-            </LoginVisible>
-            <SelectionTitle title={`${item.name} ${t('스트림')}`} />
+            <SelectionTitle
+              title={`${item.name} ${t('스트림')}`}
+              actions={
+                <LoginVisible allow="ROLE_STAFF">
+                  <div className="flex gap-3">
+                    <Button
+                      as="button"
+                      onClick={() => setShowDeleteDialog(true)}
+                      variant="secondary"
+                      size="md"
+                    >
+                      삭제
+                    </Button>
+                    <Button
+                      as="link"
+                      to={localizedPath(`/research/groups/${item.id}/edit`)}
+                      variant="secondary"
+                      size="md"
+                    >
+                      편집
+                    </Button>
+                  </div>
+                </LoginVisible>
+              }
+            />
             <div className="max-w-3xl bg-white p-4 sm:p-8">
               <HTMLViewer html={item.description} />
             </div>

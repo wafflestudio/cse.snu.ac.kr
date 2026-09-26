@@ -1,98 +1,110 @@
 import { Search } from 'lucide-react';
 import type { ReactNode } from 'react';
 import SearchInput from '@/components/ui/SearchInput';
+import {
+  DocSection,
+  DoDont,
+  Example,
+  Lead,
+  Related,
+  RuleList,
+} from '../-components/doc';
 
-function Sub({ title, children }: { title: string; children: ReactNode }) {
+// 검색 입력 페이지. 실제 SearchInput 을 그린다 — 칸의 높이·테두리·폭은 부품이 정하므로 적지 않는다.
+
+// 견본은 제출하지 않는다.
+function SampleForm({ children }: { children: ReactNode }) {
   return (
-    <div className="space-y-4">
-      <h3 className="type-item">{title}</h3>
+    <form className="w-full max-w-80" onSubmit={(e) => e.preventDefault()}>
       {children}
+    </form>
+  );
+}
+
+// 모바일 메뉴의 밑줄 검색 칸 견본.
+function UnderlineSearch() {
+  return (
+    <div className="flex w-56 items-center border-b border-neutral-400">
+      <span className="h-8 flex-1 type-ui leading-8 text-neutral-500">
+        검색어를 입력해 주세요
+      </span>
+      <Search className="size-5 text-white" />
     </div>
   );
 }
 
-// 견본은 제출하지 않는다.
-function SampleForm({ children }: { children: ReactNode }) {
-  return <form onSubmit={(e) => e.preventDefault()}>{children}</form>;
-}
-
 export function SearchSection() {
   return (
-    <div className="space-y-12 type-body">
-      <Sub title="검색 칸 — 한 부품">
-        <div className="grid gap-6 sm:grid-cols-3">
-          <div className="space-y-2">
-            <div className="bg-neutral-50 p-4">
-              <SampleForm>
-                <SearchInput label="검색" ariaLabel="검색" />
-              </SampleForm>
-            </div>
-            <p className="type-meta text-neutral-500">
-              검색 상자(공지 등) — 이름은 칸 위
-            </p>
-          </div>
-          <div className="space-y-2">
-            <SampleForm>
-              <SearchInput ariaLabel="검색" placeholder="검색어" />
-            </SampleForm>
-            <p className="type-meta text-neutral-500">
-              세미나 — 이름 없이 자리표시
-            </p>
-          </div>
-          <div className="space-y-2">
-            <div className="bg-chrome-bar p-4">
-              <SampleForm>
-                <SearchInput tone="dark" ariaLabel="통합검색" />
-              </SampleForm>
-            </div>
-            <p className="type-meta text-neutral-500">헤더(어두운 면)</p>
-          </div>
-        </div>
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            검색 칸은 <code>ui/SearchInput</code> 하나로 그린다. 검색 실행(주소
-            바꾸기)은 감싸는 form이 맡고, 부품은 모양·돋보기 버튼·고유 id만
-            맡는다. id를 직접 적지 않는다(한 화면에 헤더와 검색 상자가 같이
-            있다).
-          </li>
-          <li>
-            밝은 면은 입력 칸 한 벌(입력·폼 절): 34px, 테두리 300, 흰 바탕, 폭
-            320. 돋보기는 칸 안 오른쪽의 글자 버튼(20px, 호버 주황).
-          </li>
-          <li>
-            이름이 필요하면 칸 위 8에 둔다(폼 필드명과 같다). 태그 없이 검색만
-            있는 곳은 이름 없이 자리표시로 알린다.
-          </li>
-          <li>
-            헤더는 어두운 막대라 테두리 없는 채움 칸(<code>tone="dark"</code>,
-            neutral-100, 폭 216)이다.
-          </li>
-        </ul>
-      </Sub>
+    <>
+      <Lead>
+        검색 칸은 <code>SearchInput</code> 하나로 그린다. 검색 실행(주소
+        바꾸기)은 감싸는 form이 맡는다. 쓰는 사람은 놓일 면(밝음·어두움)과 칸
+        위에 이름을 둘지만 정한다.
+      </Lead>
 
-      <Sub title="모바일 메뉴의 검색">
-        <div className="w-80 bg-neutral-850 p-6">
-          <div className="flex items-center border-b border-neutral-400">
-            <span className="h-8 flex-1 type-ui leading-8 text-neutral-500">
-              검색어를 입력해주세요
-            </span>
-            <Search className="size-5 text-white" />
-          </div>
-        </div>
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            전체 화면을 덮는 어두운 검색이라 밑줄 칸이다. 헤더의 채움 칸을 쓰지
-            않는다 — 모바일 메뉴의 모양과 맞지 않는다.
-          </li>
-        </ul>
-      </Sub>
+      <DocSection title="예시">
+        <Example caption="검색 상자(공지 등) — 이름을 칸 위에 둔다.">
+          <SampleForm>
+            <SearchInput label="검색" ariaLabel="검색" />
+          </SampleForm>
+        </Example>
+        <Example caption="세미나 — 태그 없이 검색만 있는 곳은 이름 없이 자리표시로 알린다.">
+          <SampleForm>
+            <SearchInput ariaLabel="검색" placeholder="검색어" />
+          </SampleForm>
+        </Example>
+        <Example
+          tone="dark"
+          caption="헤더 — 어두운 막대 위라 어두운 면 칸을 쓴다."
+        >
+          <SampleForm>
+            <SearchInput tone="dark" ariaLabel="통합검색" />
+          </SampleForm>
+        </Example>
+      </DocSection>
 
-      <Sub title="검색 상자의 태그">
-        <p>
-          검색 상자 안의 태그 고르기는 체크박스(입력·폼 절), 고른 태그 줄은
-          태그(선택·태그 절) 그대로다.
-        </p>
-      </Sub>
-    </div>
+      <DocSection title="검색 상자 안">
+        <RuleList
+          items={[
+            '태그 고르기는 체크박스(입력·폼), 고른 태그 줄은 지우기가 붙은 태그(선택·태그)를 그대로 쓴다.',
+          ]}
+        />
+      </DocSection>
+
+      <DocSection title="이렇게 · 이렇게 하지 않는다">
+        <DoDont
+          good={{
+            example: (
+              <div className="bg-neutral-850 p-4">
+                <UnderlineSearch />
+              </div>
+            ),
+            caption:
+              '모바일 메뉴의 검색은 전체 화면을 덮는 어두운 면이라 밑줄 칸.',
+          }}
+          bad={{
+            example: (
+              <div className="bg-neutral-850 p-4">
+                <SampleForm>
+                  <SearchInput tone="dark" ariaLabel="검색" />
+                </SampleForm>
+              </div>
+            ),
+            caption:
+              '모바일 메뉴에 헤더의 채움 칸을 쓴다 — 메뉴의 모양과 맞지 않는다.',
+          }}
+        />
+      </DocSection>
+
+      <DocSection title="관련">
+        <Related
+          links={[
+            ['form', '입력·폼'],
+            ['selection', '선택·태그'],
+            ['navigation', '내비게이션·셸'],
+          ]}
+        />
+      </DocSection>
+    </>
   );
 }

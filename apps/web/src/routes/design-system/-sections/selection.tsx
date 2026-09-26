@@ -1,17 +1,18 @@
-import type { ReactNode } from 'react';
 import { useState } from 'react';
 import PillGroup from '@/components/ui/PillGroup';
 import { Tag } from '@/components/ui/Tag';
 import TextToggle from '@/components/ui/TextToggle';
+import {
+  DocSection,
+  DoDont,
+  Example,
+  Lead,
+  Related,
+  RuleList,
+  VariantTable,
+} from '../-components/doc';
 
-function Sub({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div className="space-y-4">
-      <h3 className="type-item">{title}</h3>
-      {children}
-    </div>
-  );
-}
+// 선택·태그 페이지. 실제 PillGroup·TextToggle·Tag 를 그린다 — 색·높이·호버는 부품이 정하므로 적지 않는다.
 
 const SORT = [
   { value: 'name', label: '가나다순' },
@@ -20,152 +21,168 @@ const SORT = [
 const NOTICE = [
   { value: 'all', label: '전체' },
   { value: 'scholarship', label: '장학' },
-  { value: 'undergraduate', label: '학부' },
 ] as const;
 const VIEW = [
   { value: 'list', label: '목록형' },
   { value: 'card', label: '카드형' },
 ] as const;
 
-function Samples() {
-  const [sort, setSort] = useState<(typeof SORT)[number]['value']>('name');
-  const [notice, setNotice] = useState<(typeof NOTICE)[number]['value']>('all');
-  const [view, setView] = useState<(typeof VIEW)[number]['value']>('list');
-  return {
-    light: (
-      <PillGroup
-        ariaLabel="정렬"
-        options={SORT}
-        value={sort}
-        onChange={setSort}
-      />
-    ),
-    dark: (
-      <div className="w-fit bg-neutral-850 p-4">
-        <PillGroup
-          ariaLabel="공지 분류"
-          tone="dark"
-          options={NOTICE}
-          value={notice}
-          onChange={setNotice}
-        />
-      </div>
-    ),
-    toggle: (
-      <TextToggle
-        ariaLabel="보기 방식"
-        options={VIEW}
-        value={view}
-        onChange={setView}
-      />
-    ),
-  };
-}
-
-function PillSamples() {
-  const s = Samples();
+function Pills() {
+  const [value, setValue] = useState<(typeof SORT)[number]['value']>('name');
   return (
-    <div className="flex flex-wrap items-center gap-8">
-      {s.light}
-      {s.dark}
-    </div>
+    <PillGroup
+      ariaLabel="정렬"
+      options={SORT}
+      value={value}
+      onChange={setValue}
+    />
   );
 }
 
-function ToggleSample() {
-  return Samples().toggle;
+function DarkPills() {
+  const [value, setValue] = useState<(typeof NOTICE)[number]['value']>('all');
+  return (
+    <PillGroup
+      ariaLabel="공지 분류"
+      tone="dark"
+      options={NOTICE}
+      value={value}
+      onChange={setValue}
+    />
+  );
+}
+
+function Toggle() {
+  const [value, setValue] = useState<(typeof VIEW)[number]['value']>('list');
+  return (
+    <TextToggle
+      ariaLabel="보기 방식"
+      options={VIEW}
+      value={value}
+      onChange={setValue}
+    />
+  );
+}
+
+function ViewPills() {
+  const [value, setValue] = useState<(typeof VIEW)[number]['value']>('list');
+  return (
+    <PillGroup
+      ariaLabel="보기 방식"
+      options={VIEW}
+      value={value}
+      onChange={setValue}
+    />
+  );
 }
 
 export function SelectionSection() {
   return (
-    <div className="space-y-12 type-body">
-      <Sub title="단일 선택 — 하는 일로 두 종류">
-        <p>
-          여럿 중 하나를 고르는 컨트롤은 하는 일로 모양을 고른다. 둘 다 네이티브
-          radiogroup이라 화살표 키로 옮겨 다닌다.
-        </p>
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            <b>알약</b>(<code>PillGroup</code>) — 목록을 거르거나 정렬한다(교수
-            정렬·교과목 정렬·메인 공지 분류).
-          </li>
-          <li>
-            <b>글자 토글</b>(<code>TextToggle</code>) — 같은 자리의 보기를
-            바꾼다(교과목 목록형/카드형, 편집 화면의 한글/English). 보조
-            기능이라 조용하게.
-          </li>
-        </ul>
-      </Sub>
+    <>
+      <Lead>
+        여럿 중 하나를 고르는 컨트롤은 하는 일로 모양을 고른다 — 목록을 거르거나
+        정렬하면 알약, 같은 자리의 보기를 바꾸면 글자 토글. 둘 다 네이티브
+        radiogroup이다. 태그는 고르는 것이 아니라 글의 분류를 보여 주는 것이고,
+        한 벌만 쓴다.
+      </Lead>
 
-      <Sub title="알약 — 거르기·정렬">
-        <PillSamples />
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            높이 30, 좌우 12, 14/500, 모서리 알약, 알약 사이 12. 버튼(34)보다 한
-            단계 가벼워 "실행"이 아니라 "고르기"로 읽힌다. 줄이 모자라면 다음
-            줄로 넘어간다.
-          </li>
-          <li>
-            밝은 면: 고른 것 neutral-700 채움·흰 글자, 나머지 흰 바탕·테두리
-            300·글자 600, 호버 neutral-100. 체크박스처럼 입력 값이라 회색이다.
-          </li>
-          <li>
-            어두운 면(<code>tone="dark"</code>)은 메인 공지 패널 전용이다. 메인
-            그래픽과 한 몸이라 주황(짙은 주황 테두리, 고른 것 채움)을 쓴다.
-          </li>
-        </ul>
-      </Sub>
-
-      <Sub title="글자 토글 — 보기 바꾸기">
-        <ToggleSample />
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            고른 것 neutral-950, 나머지 neutral-500이고 호버하면 주황(버튼 절의
-            글자 버튼 규칙). 사이는 1px 세로선 neutral-300.
-          </li>
-        </ul>
-      </Sub>
-
-      <Sub title="단일 선택이 아닌 것">
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            학사 연혁의 연도 원은 연혁 그래픽이다(고유 화면 절). 연구 그룹·시설
-            등의 접힌 모서리 선택 탭(<code>SelectionList</code>)의 모양은 그래픽
-            절에서 정한다.
-          </li>
-          <li>
-            선택 탭은 모바일 두 칸, 데스크톱은 칸 최소 236의 격자(
-            <code>auto-fill</code>)다. 탭이 하나여도 한 칸 폭 — 본문 전체 막대로
-            늘어나지 않는다.
-          </li>
-        </ul>
-      </Sub>
-
-      <Sub title="태그 — 한 벌">
-        <div className="flex flex-wrap items-center gap-2">
+      <DocSection title="예시">
+        <Example>
+          <Pills />
+          <Toggle />
           <Tag label="장학" href="/design-system/selection" />
-          <Tag label="학부" />
           <Tag label="대학원" onDelete={() => {}} />
-        </div>
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            태그는 글의 분류를 보여 준다: 주황 테두리 알약, 13px, 높이 24.
-            누르면 그 분류의 목록으로 가고, 호버하면 주황 채움.
-          </li>
-          <li>
-            검색 영역에서 고른 태그는 같은 태그에 X 지우기를 붙인다. X는 호버
-            짙은 주황.
-          </li>
-          <li>
-            태그를 선택 컨트롤로 쓰지 않는다 — 고르기는 알약. 태그 모양을 직접
-            그리지 않고 <code>Tag</code>를 쓴다.
-          </li>
-          <li>
-            푸터 제작진 이름표는 분류가 아니라 이름 목록이라 태그가 아니다
-            (내비게이션·셸 절).
-          </li>
-        </ul>
-      </Sub>
-    </div>
+        </Example>
+      </DocSection>
+
+      <DocSection title="종류">
+        <VariantTable
+          rows={[
+            {
+              name: '알약',
+              sample: <Pills />,
+              use: '목록을 거르거나 정렬한다 — 교수 정렬, 교과목 정렬.',
+            },
+            {
+              name: '알약(어두운 면)',
+              sample: <DarkPills />,
+              use: '메인 공지 패널 전용. 메인 그래픽과 한 몸이라 주황이다.',
+              dark: true,
+            },
+            {
+              name: '글자 토글',
+              sample: <Toggle />,
+              use: '같은 자리의 보기를 바꾼다 — 교과목 목록형/카드형, 편집 화면의 한글/English.',
+            },
+            {
+              name: '태그',
+              sample: <Tag label="장학" href="/design-system/selection" />,
+              use: '글의 분류. 누르면 그 분류의 목록으로 간다.',
+            },
+            {
+              name: '태그(지우기)',
+              sample: <Tag label="학부" onDelete={() => {}} />,
+              use: '검색 영역에서 고른 태그.',
+            },
+          ]}
+        />
+        <RuleList
+          items={[
+            '어두운 알약은 메인 공지 패널 밖에서 쓰지 않는다.',
+            '태그 모양을 직접 그리지 않고 Tag를 쓴다.',
+          ]}
+        />
+      </DocSection>
+
+      <DocSection title="이 모양이 아닌 것">
+        <RuleList
+          items={[
+            '학사 연혁의 연도 원 → 연혁 그래픽(고유 화면).',
+            '연구 그룹·시설 등의 접힌 모서리 선택 탭 → 그래픽.',
+            '푸터 제작진 이름표 → 분류가 아니라 이름 목록이라 태그가 아니다(내비게이션·셸).',
+            '폼 안에서 값을 고른다 → 체크박스·라디오(입력·폼).',
+          ]}
+        />
+      </DocSection>
+
+      <DocSection title="이렇게 · 이렇게 하지 않는다">
+        <DoDont
+          good={{
+            example: <Pills />,
+            caption: '목록을 거르고 정렬하는 것은 알약.',
+          }}
+          bad={{
+            example: (
+              <>
+                <Tag label="가나다순" onClick={() => {}} />
+                <Tag label="소속순" onClick={() => {}} />
+              </>
+            ),
+            caption: '태그를 선택 컨트롤로 쓴다 — 태그는 글의 분류다.',
+          }}
+        />
+        <DoDont
+          good={{
+            example: <Toggle />,
+            caption: '보기 바꾸기는 보조 기능이라 조용한 글자 토글.',
+          }}
+          bad={{
+            example: <ViewPills />,
+            caption: '보기 바꾸기에 알약을 쓴다 — 목록을 거르는 것처럼 읽힌다.',
+          }}
+        />
+      </DocSection>
+
+      <DocSection title="관련">
+        <Related
+          links={[
+            ['form', '입력·폼'],
+            ['button', '버튼'],
+            ['search', '검색 입력'],
+            ['graphic', '그래픽'],
+          ]}
+        />
+      </DocSection>
+    </>
   );
 }

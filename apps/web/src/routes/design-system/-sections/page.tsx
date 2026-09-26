@@ -1,17 +1,18 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
+import Button from '@/components/ui/Button';
 import Node from '@/components/ui/Nodes';
+import {
+  DocSection,
+  DoDont,
+  Example,
+  Lead,
+  Related,
+  RuleList,
+} from '../-components/doc';
 
-// 페이지 틀은 화면 전체라 여기서는 div 도식으로 그린다. 실제는 PageLayout·PageBand·SelectionTitle.
-
-function Sub({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div className="space-y-4">
-      <h3 className="type-item">{title}</h3>
-      {children}
-    </div>
-  );
-}
+// 페이지 틀은 화면 전체라 div 도식으로 그린다. 실제는 PageLayout·PageBand·SelectionTitle.
+// 틀이 정하는 여백은 도식이 보여 주고 값은 소스에 있다 — 짜는 사람이 고르는 것만 적는다.
 
 // 도식: 높이는 실제 여백을 1/2로 줄여 그린다.
 function Gap({ label, h }: { label: string; h: string }) {
@@ -55,104 +56,120 @@ function Band({
   );
 }
 
-function Frame({ children }: { children: ReactNode }) {
+function Frame({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className="w-full max-w-sm border border-neutral-300">{children}</div>
+    <div className="w-full max-w-sm space-y-2">
+      <p className="type-label">{label}</p>
+      <div className="border border-neutral-300">{children}</div>
+    </div>
+  );
+}
+
+// 선택형 상세 제목 도식 — 실제 SelectionTitle 과 같은 값.
+function SelTitle({ actions }: { actions?: boolean }) {
+  return (
+    <div className="flex w-full flex-wrap items-start justify-between gap-3">
+      <div className="w-fit">
+        <p className="px-3 type-section">시스템 스트림</p>
+        <Node variant="straight" />
+      </div>
+      {actions && (
+        <div className="ml-auto flex gap-3">
+          <Button variant="secondary">삭제</Button>
+          <Button variant="secondary">편집</Button>
+        </div>
+      )}
+    </div>
   );
 }
 
 export function PageSection() {
   return (
-    <div className="space-y-12 type-body">
-      <Sub title="틀 — 두 가지">
+    <>
+      <Lead>
+        화면은 <code>PageLayout</code> 하나로 짓는다. 여백은 틀이 준다 — 짜는
+        사람은 틀(기본·띠)과 띠의 색, 관리 버튼의 자리만 고른다.
+      </Lead>
+
+      <DocSection title="짜임">
         <div className="flex flex-wrap gap-8">
-          <div className="space-y-2">
-            <p className="type-label">기본</p>
-            <Frame>
-              <Title />
-              <Band tone="white" top="위 32 / 48" bottom="아래 64 / 128">
-                본문 한 덩어리
-              </Band>
-            </Frame>
-          </div>
-          <div className="space-y-2">
-            <p className="type-label">띠</p>
-            <Frame>
-              <Title />
-              <Band tone="white" top="위 32 / 48" bottom="아래 48">
-                띠 1(선택 탭 등)
-              </Band>
-              <Band tone="gray" top="위 32 / 48" bottom="아래 64 / 128">
-                띠 2(마지막 띠)
-              </Band>
-            </Frame>
-          </div>
+          <Frame label="기본">
+            <Title />
+            <Band tone="white" top="위 32 / 48" bottom="아래 64 / 128">
+              본문 한 덩어리
+            </Band>
+          </Frame>
+          <Frame label="띠">
+            <Title />
+            <Band tone="white" top="위 32 / 48" bottom="아래 48">
+              띠 1(선택 탭 등)
+            </Band>
+            <Band tone="gray" top="위 32 / 48" bottom="아래 64 / 128">
+              띠 2(마지막 띠)
+            </Band>
+          </Frame>
         </div>
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            <b>기본</b>: 본문이 한 덩어리인 화면. 위 32/48(모바일/데스크톱),
-            아래 64/128(페이지 끝, 간격 절).
-          </li>
-          <li>
-            <b>띠</b>: 본문을 흰·neutral-100 띠로 나누는 화면(학부 소개·진로·
-            연구 스트림·연구 센터·연락처·연혁). 띠마다 위 32/48·아래 48, 마지막
-            띠만 아래 64/128. <code>PageLayout bands</code> 안에{' '}
-            <code>PageBand tone</code>을 쌓는다.
-          </li>
-          <li>
-            <code>PageLayout</code>에 여백을 바꾸는 속성은 없다. 띠 틀은{' '}
-            <code>bands</code> 하나다.
-          </li>
-        </ul>
-      </Sub>
+        <p className="type-meta text-neutral-500">
+          여백은 모바일 / 데스크톱. 도식의 높이는 실제의 1/2이다.
+        </p>
+        <Example caption="선택 탭 아래 고른 항목의 제목(SelectionTitle).">
+          <div className="w-fit">
+            <p className="flex items-baseline gap-2 px-3 type-section">
+              시스템 스트림
+              <span className="type-meta">부제</span>
+            </p>
+            <Node variant="straight" />
+          </div>
+        </Example>
+      </DocSection>
 
-      <Sub title="선택 탭으로 시작하는 화면">
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            선택 탭(<code>SelectionList</code>)은 위 여백을 갖지 않는다 — 탭으로
-            시작하는 화면도 위 여백은 틀이 준다. 관리 버튼이 탭 위에 있으면 버튼
-            아래 32.
-          </li>
-        </ul>
-      </Sub>
+      <DocSection title="규칙">
+        <RuleList
+          items={[
+            '본문이 한 덩어리면 기본 틀, 흰·회색(neutral-100) 띠로 나누면 띠 틀 — PageLayout bands 안에 PageBand를 쌓는다.',
+            '띠 틀은 학부 소개·진로·연구 스트림·연구 센터·연락처·연혁에 쓴다.',
+            '화면에서 여백을 더하지 않는다. PageLayout에는 여백을 바꾸는 속성이 없다.',
+            '선택 탭(SelectionList)으로 시작하는 화면도 위 여백은 틀이 준다. 탭 위에 관리 버튼이 있으면 버튼 아래 32.',
+            '선택 탭 아래 고른 항목의 제목은 SelectionTitle 하나로 쓴다. 부제·외부 링크 아이콘은 넣을 때만.',
+            '게시물 상세(공지·새 소식·세미나)의 틀은 게시물 상세 절에 있다.',
+          ]}
+        />
+      </DocSection>
 
-      <Sub title="페이지 제목">
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            제목 영역 안 제목 글자 아래는 모바일 24·데스크톱 48 하나다. 화면마다
-            바꾸지 않고, 바꾸는 속성도 두지 않는다.
-          </li>
-          <li>
-            긴 제목은 줄을 바꾼다(<code>overflow-wrap: anywhere</code>) — 한
-            단어로 이어진 영어 제목("Participants(Professors)")도 390에서 넘치지
-            않는다.
-          </li>
-        </ul>
-      </Sub>
+      <DocSection title="이렇게 · 이렇게 하지 않는다">
+        <DoDont
+          good={{
+            example: <SelTitle actions />,
+            caption:
+              '관리 버튼(편집·삭제)은 SelectionTitle의 actions로 넘긴다 — 제목 옆에 서고, 자리가 모자라면 다음 줄 오른쪽으로 내려간다.',
+          }}
+          bad={{
+            example: (
+              <div className="w-full space-y-8">
+                <div className="flex justify-end gap-3">
+                  <Button variant="secondary">삭제</Button>
+                  <Button variant="secondary">편집</Button>
+                </div>
+                <SelTitle />
+              </div>
+            ),
+            caption:
+              '제목 위에 버튼 줄을 따로 둔다 — 버튼이 무엇을 고치는지 떨어져 보인다.',
+          }}
+        />
+      </DocSection>
 
-      <Sub title="선택형 상세 제목 — 한 부품">
-        <div className="w-fit">
-          <h4 className="flex items-baseline gap-2 px-3 type-section">
-            시스템 스트림
-            <span className="type-meta">부제</span>
-          </h4>
-          <Node variant="straight" />
-        </div>
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            선택 탭 아래 고른 항목의 제목은 <code>SelectionTitle</code> 하나로:
-            20/700 + 아래 주황 직선(그래픽 절). 부제·외부 링크 아이콘은 선택으로
-            넣는다.
-          </li>
-          <li>
-            관리 버튼(편집·삭제)은 <code>actions</code>로 넘긴다. 제목 옆에
-            서고, 자리가 모자라면 다음 줄 오른쪽으로 내려간다.
-          </li>
-          <li>
-            게시물 상세(공지·새 소식·세미나)의 틀은 게시물 상세 절에 있다.
-          </li>
-        </ul>
-      </Sub>
-    </div>
+      <DocSection title="관련">
+        <Related
+          links={[
+            ['layout', '레이아웃·반응형'],
+            ['spacing', '간격'],
+            ['navigation', '내비게이션·셸'],
+            ['post', '게시물 상세'],
+            ['selection', '선택·태그'],
+          ]}
+        />
+      </DocSection>
+    </>
   );
 }

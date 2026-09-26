@@ -17,6 +17,16 @@ import {
   X,
 } from 'lucide-react';
 import type { ReactNode } from 'react';
+import {
+  DocSection,
+  DoDont,
+  Example,
+  Lead,
+  Related,
+  RuleList,
+} from '../-components/doc';
+
+// 아이콘 페이지 — 크기·선 굵기는 app.css 의 svg.lucide 공통 규칙이 정한다.
 
 const USED = [
   ['검색', Search],
@@ -44,12 +54,23 @@ const ROLES = [
   { cls: 'type-section', label: '섹션 제목 20px', text: '연구 분야' },
 ];
 
-// 역할별 글자 옆 아이콘. 크기·선 굵기는 app.css 공통 규칙이 정하므로 적지 않는다.
+function Sub({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="space-y-4">
+      <h3 className="type-item">{title}</h3>
+      {children}
+    </div>
+  );
+}
+
 function IconScale() {
   return (
     <div className="space-y-3">
       {ROLES.map((r) => (
-        <div key={r.cls} className="flex items-center gap-4">
+        <div
+          key={r.cls}
+          className="flex flex-wrap items-center gap-x-4 gap-y-1"
+        >
           <span className="w-28 shrink-0 type-meta text-neutral-500">
             {r.label}
           </span>
@@ -66,90 +87,81 @@ function IconScale() {
   );
 }
 
-function Sub({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div className="space-y-4">
-      <h3 className="type-item">{title}</h3>
-      {children}
-    </div>
-  );
-}
-
 export function IconSection() {
   return (
-    <div className="space-y-12 type-body">
-      <Sub title="한 벌">
-        <p>
-          아이콘은 lucide 한 벌만 쓴다. 직접 그린 SVG는 쓰지 않는다. 예외:
-          유튜브처럼 브랜드 로고(lucide에 없음), 로고·메인 그래픽·오각형 같은
-          그래픽.
-        </p>
-      </Sub>
+    <>
+      <Lead>
+        아이콘은 lucide 한 벌만 쓴다. 크기와 선 굵기는 옆 글자에 맞춰 저절로
+        정해지니 고르는 것은 그림뿐이다 — 같은 뜻에는 같은 그림을 쓴다.
+      </Lead>
 
-      <Sub title="크기·선 굵기 — 옆 글자에 맞춰 자동">
-        <IconScale />
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            아이콘 틀은 옆 글자의 1.2배(<code>1.2em</code>)다. lucide 그림은
-            틀의 약 83%(24칸 중 20칸)라, 1.2배면 그림 높이가 옆 글자와 같아진다.
-            13px 글자 옆 약 16, 16px 옆 약 19, 20px 옆 24.
-          </li>
-          <li>
-            선은 24칸 기준 1.5로 크기에 비례한다 — 13px 글자 옆 약 1px, 20px 옆
-            1.5px로 옆 글자 획과 비슷한 무게가 된다. 둘 다 <code>app.css</code>
-            의 공통 규칙이 정하므로 아이콘에 크기·선 굵기를 적지 않는다.
-          </li>
-          <li>
-            예외: 옆에 글자가 없는 아이콘만 있는 버튼(닫기·메뉴·검색 실행)은{' '}
-            <code>size-5</code>(20px). 그래픽처럼 쓰는 큰 화살표(교과목 카드
-            넘기기 등)는{' '}
-            <a href="#main" className="underline underline-offset-2">
-              메인·카테고리
-            </a>
-            ,{' '}
-            <a href="#unique" className="underline underline-offset-2">
-              고유 화면
-            </a>{' '}
-            절에서 정한다.
-          </li>
-        </ul>
-      </Sub>
+      <DocSection title="값">
+        <Sub title="크기·선 굵기">
+          <Example caption="틀은 옆 글자의 1.2배라 그림 높이가 글자와 같아지고, 선은 크기에 비례해 글자 획과 비슷한 무게가 된다(13px 옆 약 16, 20px 옆 24).">
+            <IconScale />
+          </Example>
+        </Sub>
+        <Sub title="자주 쓰는 아이콘">
+          <div className="grid max-w-3xl grid-cols-2 gap-x-8 gap-y-2 sm:grid-cols-4">
+            {USED.map(([name, Icon]) => (
+              <span
+                key={name}
+                className="flex items-center gap-2 type-ui text-neutral-700"
+              >
+                <Icon /> {name}
+              </span>
+            ))}
+          </div>
+        </Sub>
+      </DocSection>
 
-      <Sub title="색·정렬">
-        <ul className="list-disc space-y-1 pl-5">
-          <li>
-            색은 글자색을 따른다(<code>currentColor</code>). 아이콘 파일에 색을
-            박지 않는다.
-          </li>
-          <li>
-            아이콘과 글자는 <code>flex items-center</code>로 세로 가운데를
-            맞춘다. 위치 보정(<code>translate</code>, <code>pt-px</code>,{' '}
-            <code>mt-0.5</code>)을 넣지 않는다.
-          </li>
-          <li>
-            아이콘만 있는 버튼은 클릭 영역을 24×24 이상으로 둔다(그림 크기는
-            그대로).
-          </li>
-        </ul>
-      </Sub>
+      <DocSection title="쓰는 법">
+        <RuleList
+          items={[
+            '같은 뜻에는 위 표의 같은 그림을 쓴다.',
+            '직접 그린 SVG를 쓰지 않는다. 예외는 lucide에 없는 브랜드 로고(유튜브 등)와 로고·메인 그래픽·오각형 같은 그래픽이다.',
+            '아이콘에 크기·선 굵기를 적지 않는다. 예외: 옆에 글자가 없는 아이콘만 있는 버튼(닫기·메뉴·검색 실행)은 20px(size-5).',
+            '그래픽처럼 쓰는 큰 화살표(교과목 카드 넘기기 등)는 메인·카테고리, 고유 화면이 정한다.',
+            '색은 글자색을 따른다. 아이콘에 색을 박지 않는다.',
+            '아이콘과 글자는 세로 가운데로 맞춘다. translate·pt-px·mt-0.5 같은 위치 보정을 넣지 않는다.',
+            '아이콘만 있는 버튼은 클릭 영역을 24×24 이상으로 두고(그림 크기는 그대로) 읽어 줄 이름을 붙인다.',
+            '채운 모양은 고정·북마크·재생·정지만 쓴다.',
+          ]}
+        />
+      </DocSection>
 
-      <Sub title="자주 쓰는 아이콘">
-        <p>같은 뜻에는 같은 그림을 쓴다.</p>
-        <div className="grid max-w-3xl grid-cols-2 gap-x-8 gap-y-2 sm:grid-cols-4">
-          {USED.map(([name, Icon]) => (
-            <span
-              key={name}
-              className="flex items-center gap-2 type-ui text-neutral-700"
-            >
-              <Icon /> {name}
-            </span>
-          ))}
-        </div>
-        <p className="type-meta text-neutral-500">
-          채운 모양은 고정(Pin)·북마크·재생·정지만(
-          <code>fill="currentColor"</code>).
-        </p>
-      </Sub>
-    </div>
+      <DocSection title="이렇게 · 이렇게 하지 않는다">
+        <DoDont
+          good={{
+            example: (
+              <span className="flex items-center gap-1 type-meta text-neutral-500">
+                <Calendar />
+                2026/09/25
+              </span>
+            ),
+            caption: '크기를 적지 않으면 옆 글자에 맞는다.',
+          }}
+          bad={{
+            example: (
+              <span className="flex items-center gap-1 type-meta text-neutral-500">
+                <Calendar className="size-6" />
+                2026/09/25
+              </span>
+            ),
+            caption: '크기를 따로 적는다 — 옆 글자보다 커져 튄다.',
+          }}
+        />
+      </DocSection>
+
+      <DocSection title="관련">
+        <Related
+          links={[
+            ['button', '버튼'],
+            ['type', '글자'],
+            ['graphic', '그래픽'],
+          ]}
+        />
+      </DocSection>
+    </>
   );
 }

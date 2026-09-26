@@ -100,13 +100,8 @@ export default function Action({
   );
 }
 
-const PENDING_LABELS: Record<string, string> = {
-  저장: '저장 중…',
-  게시: '게시 중…',
-  등록: '등록 중…',
-};
-
-const pendingLabelOf = (label: string) => PENDING_LABELS[label] ?? '처리 중…';
+// 처리 중 문구는 누른 동사 + " 중…"(/design-system/button).
+const pendingLabelOf = (label: string) => `${label} 중…`;
 
 const ErrorMessages = () => {
   const {
