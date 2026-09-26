@@ -1,10 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
+import SelectionTitle from '@/components/feature/selection/SelectionTitle';
 import PageLayout from '@/components/layout/PageLayout';
 import Attachments from '@/components/ui/Attachments';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
-import Node from '@/components/ui/Nodes';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAcademicsSubNav } from '@/hooks/useSubNav';
 import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
@@ -49,9 +49,9 @@ function DegreeRequirementsPage() {
         </div>
       </LoginVisible>
       <Attachments files={loaderData.attachments} />
-      <div className="mt-6 mb-8 flex w-[200px] flex-col">
-        <h3 className="mb-2 pl-3 type-item">{t('공통: 졸업사정 유의사항')}</h3>
-        <Node variant="straight" />
+      {/* 본문 앞 소제목 — 선택 탭 아래 제목과 같은 한 부품(글자 폭만큼의 주황 직선). */}
+      <div className="mt-6 mb-4">
+        <SelectionTitle title={t('공통: 졸업사정 유의사항')} />
       </div>
       <HTMLViewer html={loaderData.description} />
     </PageLayout>

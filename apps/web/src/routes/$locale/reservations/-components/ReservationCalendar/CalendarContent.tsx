@@ -78,7 +78,7 @@ const Columns = ({
     ),
   );
 
-// 오전/오후 표기는 데스크톱만 — 모바일은 숫자만 보여 칼럼이 좁다.
+// 오전/오후는 모바일에도 쓴다 — 숫자만이면 8·9가 두 번 나와 오전인지 오후인지 모른다.
 const ROWS = [
   ...[8, 9, 10, 11].map((hour) => [String(hour), 'AM'] as const),
   ['12', 'PM'] as const,
@@ -91,11 +91,11 @@ const RowIndex = () => (
     {ROWS.map(([hour, meridiem]) => (
       <div
         key={hour + meridiem}
-        className="flex h-12 items-center justify-center border-b border-r border-neutral-200 bg-neutral-100 px-4"
+        className="flex h-12 items-center justify-center border-b border-r border-neutral-200 bg-neutral-100 px-2 sm:px-4"
       >
         <time className="type-meta text-neutral-950">
           {hour}
-          <span className="hidden sm:inline">{meridiem}</span>
+          {meridiem}
         </time>
       </div>
     ))}

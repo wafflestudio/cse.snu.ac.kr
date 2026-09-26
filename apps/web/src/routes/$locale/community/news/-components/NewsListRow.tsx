@@ -81,7 +81,10 @@ export default function NewsListRow({ post }: NewsListRowProps) {
           />
         </Link>
       ) : (
-        <div className="hidden sm:block sm:h-37.5 sm:w-50 sm:bg-neutral-100" />
+        // 사진이 없으면 같은 자리에 로고(세미나 목록과 같다). 모바일은 자리를 비우지 않는다.
+        <div className="hidden sm:block sm:h-37.5 sm:w-50">
+          <Image src={null} alt="" sizes="200px" className="h-full w-full" />
+        </div>
       )}
     </article>
   );

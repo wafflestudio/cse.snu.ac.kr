@@ -583,7 +583,9 @@
 **순서 변경:** 검수·문서 다듬기 → 4-2 → 4-3 → 4-1 E2E → 4-4. 검수에서 화면이 바뀌므로 E2E 는 맨 뒤 한 번.
 **검수:** 49개 화면 × 390·1440 + 로그인 폼 5개를 찍어 에이전트 넷이 나눠 봄 → `.ds-review/4-0-검수/findings.html`.
 **A~F 고침:** 전역 어절 줄바꿈(body·에디터 `keep-all`, `break-all` 제거), 서브내비 왼쪽 끝 고정 + 본문 최소 높이(푸터 침범), 편집 화면 서브내비 제거, 표 subgrid 간격·들여쓰기 통일(연구실·교과목·창업 기업·공지·관리자·학회), `Form.Row`(한 줄 두 칸, 모바일 세로), fieldset `min-w-0`, `/academics/$studentType` → 안내로 301(9-04 레이아웃 라우트 신설 뒤 빈 화면), 카테고리 띠 아래 여백, 인물 사진 3:4(목록·상세, 없으면 로고 — 운영 사진 중앙값 0.75), 목록 이름 밑줄은 글자 폭. 전후 `compare.html`.
-**남음:** G(영어 화면)·H(한 화면씩) 고를 것, 관리자 표 모바일 카드형(보류), DS 문서 다듬기.
+**G·H 고침:** 영어 메인 슬로건(데스크톱 "At SNU Computer Science and Engineering, / creativity and knowledge / converge to lead / the future of computing.", 모바일은 첫 줄 없이 대문자 시작)·바로가기 영어 제목, 푸터 Undergraduate/Graduate Guide·주소-로고 48, 새 소식 목록 들여쓰기·로고 자리, 검색 결과 폭, 예약 달력 칸 폭 나눔·모바일 AM/PM, 필수 교양 상자 통일, 졸업 규정 소제목 = SelectionTitle, 연구실 스트림 글자 링크(펜타곤 svg 삭제)·모바일 요약 카드 전폭, 선택 탭 auto-fill(하나여도 한 칸), 펼침 카드 ⌄/⌃, 카테고리 모바일 두 칸 같은 폭·괄호 앞 줄바꿈. 전후 `gh-compare.html`.
+**그대로:** 고정 공지 모바일 주황 제목, 관리자 표 모바일 카드형, 찾아오는 길 탭 아래 12 들여쓰기(SelectionTitle px-3 규칙).
+**다음:** DS 문서 다듬기.
 
 ### ⬜ 4-1 기준 이미지
 

@@ -52,7 +52,7 @@ export default function Footer() {
         ))}
       </div>
       <div
-        className={`${bottomBg} flex flex-col justify-between px-5 py-8 sm:flex-row sm:items-center sm:px-15 sm:py-8`}
+        className={`${bottomBg} flex flex-col justify-between px-5 py-8 sm:flex-row sm:items-center sm:gap-12 sm:px-15 sm:py-8`}
       >
         <FooterBottomLeft />
         <FooterBottomRight />

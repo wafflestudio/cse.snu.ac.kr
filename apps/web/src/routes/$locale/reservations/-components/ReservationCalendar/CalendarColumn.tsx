@@ -18,7 +18,8 @@ export default function CalendarColumn({
   onSelectReservation: (reservationId: number) => void;
 }) {
   return (
-    <div className="flex w-25 flex-col items-stretch">
+    // 날짜 칸은 폭을 나눠 쓴다 — 100 고정이면 데스크톱 7칸이 본문 폭(880)을 못 채워 오른쪽이 빈다.
+    <div className="flex min-w-0 flex-1 flex-col items-stretch">
       <ColumnIndex selected={selected} date={date} />
       <div className="relative">
         <ColumnBackground selected={selected} />

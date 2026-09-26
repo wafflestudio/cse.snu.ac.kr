@@ -2,7 +2,10 @@ import { useLanguage } from '@/hooks/useLanguage';
 import LinkRow from './LinkRow';
 
 export default function LinkSection() {
-  const { t, localizedPath } = useLanguage();
+  const { t, localizedPath, locale } = useLanguage();
+  // 한국어 제목 옆에 영어 부제를 두는 줄 — 영어 화면에서는 영어 하나만.
+  const row = (ko: string, en: string) =>
+    locale === 'en' ? { title: en } : { title: ko, subtitle: en };
 
   return (
     <div className="mx-6 mb-16 mt-16 flex flex-col gap-16 sm:mx-32 sm:mb-32 sm:mt-16 sm:flex-row sm:gap-32">
@@ -15,13 +18,11 @@ export default function LinkSection() {
           />
           <LinkRow
             to={localizedPath('/community/faculty-recruitment')}
-            title="신임교수초빙"
-            subtitle="Faculty Recruitment"
+            {...row('신임교수초빙', 'Faculty Recruitment')}
           />
           <LinkRow
             to={localizedPath('/people/faculty')}
-            title="구성원"
-            subtitle="Faculty"
+            {...row('구성원', 'Faculty')}
           />
         </div>
       </div>
@@ -33,13 +34,11 @@ export default function LinkSection() {
             to={localizedPath(
               '/academics/undergraduate/general-studies-requirements',
             )}
-            title="필수 교양 과목"
-            subtitle="General Studies Requirements"
+            {...row('필수 교양 과목', 'General Studies Requirements')}
           />
           <LinkRow
             to={localizedPath('/academics/undergraduate/degree-requirements')}
-            title="졸업 규정"
-            subtitle="Degree Requirements"
+            {...row('졸업 규정', 'Degree Requirements')}
           />
         </div>
       </div>

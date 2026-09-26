@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
+import { ArrowRight } from 'lucide-react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
@@ -12,8 +13,6 @@ import type { ResearchLabDetail, ResearchLabWithLanguage } from '@/types/api';
 import { api } from '@/utils/api';
 import { stringParam } from '@/utils/searchSchema';
 import { stripHtml, truncateDescription } from '@/utils/string';
-import PentagonLong from '../assets/pentagon_long.svg?react';
-import PentagonShort from '../assets/pentagon_short.svg?react';
 
 function ResearchLabDetailPage() {
   const lab = Route.useLoaderData();
@@ -79,9 +78,8 @@ function ResearchLabDetailPage() {
         />
       )}
       <div className={lab.groupName ? 'mt-6' : ''}>
-        <div className="mx-2 mb-6 flex justify-end sm:hidden sm:mb-0">
-          {researchLabInfo}
-        </div>
+        {/* 모바일은 요약 카드가 본문 폭을 다 쓴다(데스크톱은 본문 오른쪽에 띄운 240). */}
+        <div className="mb-6 sm:hidden">{researchLabInfo}</div>
         <HTMLViewer
           html={lab.description}
           component={
@@ -110,8 +108,9 @@ function LabSummary({
       size="large"
       shadow="light"
       margin="sm:mt-[-64px] sm:mb-12 sm:ml-12"
+      width="w-full sm:w-fit"
     >
-      <ul className="flex h-40 w-60 flex-col gap-1 px-6 py-4">
+      <ul className="flex h-40 w-full flex-col sm:w-60 gap-1 px-6 py-4">
         <li className="flex gap-1 type-meta">
           <span className="whitespace-nowrap">
             {labels.professor}:{' '}
@@ -159,6 +158,7 @@ type ProcessedLab = Omit<ResearchLabDetail, 'description'> & {
   description: import('@/utils/csp').ViewerHtml;
 };
 
+// 이 연구실이 속한 스트림으로 가는 글자 링크 — 메인 "더보기 →"와 같은 모양(/design-system#main).
 function StreamLink({
   groupName,
   localizedPath,
@@ -168,31 +168,13 @@ function StreamLink({
   localizedPath: (path: string) => string;
   label: string;
 }) {
-  const LENGTH_BOUNDARY = 10;
-  const width =
-    groupName.length < LENGTH_BOUNDARY ? 'w-[10.875rem]' : 'w-[16.4375rem]';
-  const affiliatedGroupPath = localizedPath(
-    createSelectionUrl('/research/groups', groupName),
-  );
-
   return (
-    <div className="relative w-fit">
-      <Link
-        to={affiliatedGroupPath}
-        className={`absolute ${width} peer flex h-10 items-center justify-center pr-1 text-center type-meta duration-300 hover:text-white`}
-      >
-        <span className="tracking-[-0.019em]">
-          {groupName} {label}
-        </span>
-      </Link>
-      <div className="text-white peer-hover:text-main-orange">
-        {groupName.length < LENGTH_BOUNDARY ? (
-          <PentagonShort className="duration-300" />
-        ) : (
-          <PentagonLong className="duration-300" />
-        )}
-      </div>
-    </div>
+    <Link
+      to={localizedPath(createSelectionUrl('/research/groups', groupName))}
+      className="flex w-fit items-center gap-1 type-ui text-main-orange-dark hover:underline"
+    >
+      {groupName} {label} <ArrowRight />
+    </Link>
   );
 }
 

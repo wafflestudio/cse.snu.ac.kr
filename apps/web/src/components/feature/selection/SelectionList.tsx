@@ -8,7 +8,9 @@ interface SelectionListProps {
 
 export default function SelectionList({ items }: SelectionListProps) {
   return (
-    <ul className="mb-6 grid grid-cols-2 gap-3 sm:mb-8 lg:grid-cols-[repeat(auto-fit,minmax(236px,auto))]">
+    // auto-fill 이라 빈 칸 자리도 남는다 — 탭이 하나여도 한 칸 폭(데스크톱 본문 880 에서 약 285)이지
+    // 본문 전체 막대로 늘어나지 않는다(auto-fit 은 남은 폭을 탭 하나에 몰아 준다).
+    <ul className="mb-6 grid grid-cols-2 gap-3 sm:mb-8 sm:grid-cols-[repeat(auto-fill,minmax(236px,1fr))]">
       {items.map((item) => (
         <SelectionItem
           key={item.id}

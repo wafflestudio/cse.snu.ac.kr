@@ -43,7 +43,8 @@ function GeneralStudiesRequirementsPage() {
       pageTitle={meta.title}
       pageDescription={meta.description}
     >
-      <p className="mb-12 bg-neutral-100 px-6 py-4 type-body">{t(OVERVIEW)}</p>
+      {/* 아래 연도 본문 상자와 같은 회색 상자(neutral-50, 안 여백 16). */}
+      <p className="mb-12 bg-neutral-50 p-4 type-body">{t(OVERVIEW)}</p>
       <TimelineViewer
         contents={loaderData}
         title={{ text: t('영역별 교양과목 학점 배분 구조표'), unit: t('학번') }}

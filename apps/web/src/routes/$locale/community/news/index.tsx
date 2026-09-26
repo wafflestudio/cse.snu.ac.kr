@@ -99,7 +99,7 @@ function NewsList({ posts }: NewsListProps) {
   }
 
   return (
-    <div className="mb-8 mt-8 flex flex-col gap-6 sm:mx-12">
+    <div className="mb-8 mt-8 flex flex-col gap-6">
       {posts.map((post) => (
         <NewsListRow key={post.id} post={post} />
       ))}
