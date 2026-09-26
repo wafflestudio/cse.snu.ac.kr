@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { Square, SquareCheck } from 'lucide-react';
 import { useId } from 'react';
 
-// 켜짐 neutral-700(주요 버튼 면)·꺼짐 neutral-500, 호버하면 꺼진 아이콘 600(/design-system#form).
+// 켜짐 neutral-700(주요 버튼 면)·꺼짐 neutral-500, 호버하면 꺼진 아이콘 600(/design-system/form).
 interface CheckboxProps {
   label?: string;
   name?: string;

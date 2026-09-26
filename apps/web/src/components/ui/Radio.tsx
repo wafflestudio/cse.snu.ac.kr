@@ -2,7 +2,7 @@ import { Circle } from 'lucide-react';
 import type { InputHTMLAttributes } from 'react';
 import { forwardRef, useId } from 'react';
 
-// 테두리 원 + 켜지면 가운데에 원 지름 절반의 채운 점(/design-system#form).
+// 테두리 원 + 켜지면 가운데에 원 지름 절반의 채운 점(/design-system/form).
 // lucide 원은 틀의 20/24라, 틀 1.2em 의 절반(0.6em)이면 점 지름이 바깥 원의 50%.
 interface RadioProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'className'> {

@@ -1,6 +1,6 @@
 import Button from './Button';
 
-// 오류 화면(/design-system#list): 다른 페이지와 같은 틀 — 어두운 제목 영역(상태 코드·제목) + 흰 본문.
+// 오류 화면(/design-system/list): 다른 페이지와 같은 틀 — 어두운 제목 영역(상태 코드·제목) + 흰 본문.
 interface ErrorAction {
   label: string;
   onClick: () => void;

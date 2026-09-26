@@ -4,7 +4,7 @@
   height: 100%;
 }
 
-/* 겉모양을 입력 칸 한 벌에 맞춘다(/design-system#editor): 테두리 300·모서리 2px·사이트 서체. */
+/* 겉모양을 입력 칸 한 벌에 맞춘다(/design-system/editor): 테두리 300·모서리 2px·사이트 서체. */
 .sun-editor {
   border-color: var(--color-neutral-300);
   border-radius: 0.125rem;

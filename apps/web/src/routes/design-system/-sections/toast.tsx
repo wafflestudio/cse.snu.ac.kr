@@ -52,10 +52,10 @@ export function ToastSection() {
           </li>
           <li>글자: 문장 14/500 neutral-950, 설명 13 neutral-600(위 4).</li>
           <li>
-            아이콘: lucide(1-6 한 벌) — 성공 <code>CircleCheck</code> 검정, 실패{' '}
-            <code>CircleAlert</code> red-600(1-2 오류 색), 안내{' '}
-            <code>Info</code> 회색(<code>TOAST_ICONS</code>). 상태는 아이콘이
-            알리고 판 색은 하나다.
+            아이콘: lucide — 성공 <code>CircleCheck</code> 검정, 실패{' '}
+            <code>CircleAlert</code> red-600(오류 색), 안내 <code>Info</code>{' '}
+            회색(<code>TOAST_ICONS</code>). 상태는 아이콘이 알리고 판 색은
+            하나다.
           </li>
           <li>
             Sonner는 strict CSP 때문에 소스를 <code>ui/sonner/</code>에 복사해
@@ -64,7 +64,7 @@ export function ToastSection() {
           </li>
           <li>
             API 실패는 <code>toast.error</code> 대신 <code>toastError</code>
-            (문구를 오류 사전이 정한다). 성공 문구 규칙은 3-8 문구.
+            (문구를 오류 사전이 정한다). 성공 문구는 문구 절을 따른다.
           </li>
         </ul>
       </Sub>

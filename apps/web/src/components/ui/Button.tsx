@@ -7,7 +7,7 @@ import type {
 } from 'react';
 import { forwardRef } from 'react';
 
-// 역할은 행동의 종류로 정한다(디자인 시스템 2-1). 주황 채움 버튼은 없다.
+// 역할은 행동의 종류로 정한다(/design-system/button). 주황 채움 버튼은 없다.
 //   primary     = 주요(추가·새 글·저장·게시·등록·예약, 확인창의 실행)  ← 짙은 회색 채움
 //   secondary   = 보조(편집·취소·목록·해제, 폼·상세의 삭제)          ← 연한 회색 채움
 //   text        = 밝은 면의 글자·아이콘 버튼                         ← 글자

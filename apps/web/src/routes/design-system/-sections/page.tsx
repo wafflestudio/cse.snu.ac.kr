@@ -91,7 +91,7 @@ export function PageSection() {
         <ul className="list-disc space-y-1 pl-5">
           <li>
             <b>기본</b>: 본문이 한 덩어리인 화면. 위 32/48(모바일/데스크톱),
-            아래 64/128(1-4 페이지 끝).
+            아래 64/128(페이지 끝, 간격 절).
           </li>
           <li>
             <b>띠</b>: 본문을 흰·neutral-100 띠로 나누는 화면(학부 소개·진로·
@@ -120,7 +120,7 @@ export function PageSection() {
         <ul className="list-disc space-y-1 pl-5">
           <li>
             제목 영역 안 제목 글자 아래는 모바일 24·데스크톱 48 하나다. 화면마다
-            바꾸지 않는다(<code>titleMargin</code> 없음).
+            바꾸지 않고, 바꾸는 속성도 두지 않는다.
           </li>
           <li>
             긴 제목은 줄을 바꾼다(<code>overflow-wrap: anywhere</code>) — 한
@@ -132,28 +132,25 @@ export function PageSection() {
 
       <Sub title="선택형 상세 제목 — 한 부품">
         <div className="w-fit">
-          <h4 className="flex items-center gap-2 px-3 type-section">
+          <h4 className="flex items-baseline gap-2 px-3 type-section">
             시스템 스트림
-            <span className="type-meta text-neutral-500">부제</span>
+            <span className="type-meta">부제</span>
           </h4>
           <Node variant="straight" />
         </div>
         <ul className="list-disc space-y-1 pl-5">
           <li>
             선택 탭 아래 고른 항목의 제목은 <code>SelectionTitle</code> 하나로:
-            20/700 + 아래 주황 직선(1-7). 부제, 외부 링크 아이콘, 오른쪽 관리
-            버튼(편집·삭제)은 선택으로 넣는다.
+            20/700 + 아래 주황 직선(그래픽 절). 부제·외부 링크 아이콘은 선택으로
+            넣는다.
           </li>
           <li>
             관리 버튼(편집·삭제)은 <code>actions</code>로 넘긴다. 제목 옆에
             서고, 자리가 모자라면 다음 줄 오른쪽으로 내려간다.
           </li>
-        </ul>
-      </Sub>
-
-      <Sub title="다른 단원으로">
-        <ul className="list-disc space-y-1 pl-5">
-          <li>게시물 상세(공지·새 소식·세미나)의 틀은 3-4 게시물 상세.</li>
+          <li>
+            게시물 상세(공지·새 소식·세미나)의 틀은 게시물 상세 절에 있다.
+          </li>
         </ul>
       </Sub>
     </div>

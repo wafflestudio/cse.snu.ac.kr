@@ -73,7 +73,7 @@
   max-width: 400px;
 }
 
-/* 본문 제목·간격·링크·인용을 DS 값으로(/design-system#reading). 작성자가 고른 크기·색은 인라인이라 그대로다. */
+/* 본문 제목·간격·링크·인용을 DS 값으로(/design-system/reading). 작성자가 고른 크기·색은 인라인이라 그대로다. */
 .sun-editor-editable :is(h1, h2) {
   font-size: 1.25rem;
   font-weight: 700;

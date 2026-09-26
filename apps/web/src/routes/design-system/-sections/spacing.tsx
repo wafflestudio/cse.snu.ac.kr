@@ -58,60 +58,22 @@ const STEPS = [
   },
 ];
 
-type Change = { what: string; before: string; after: string };
-
-const CHANGES: Change[] = [
+// 자주 만나는 자리의 정해진 값.
+const RULES: { what: string; value: string }[] = [
   {
     what: '피드형 목록 항목 사이(새 소식·세미나·검색)',
-    before: '20+20(구분선) · 19 · 28',
-    after: '24 (구분선이면 위아래 24)',
+    value: '24 (구분선이면 선 위아래 24)',
   },
-  {
-    what: '표형 목록 행 높이(공지·연구실·교과목)',
-    before: '44 · 56 · 44',
-    after: '44 (h-11)',
-  },
-  {
-    what: '목록 블록 위아래',
-    before: '위 36·40 / 아래 32·40',
-    after: '위 32 / 아래 32',
-  },
+  { what: '표형 목록 행 높이(공지·연구실·교과목)', value: '44 (h-11)' },
+  { what: '목록 블록 위아래', value: '32' },
   {
     what: '검색·필터와 목록 사이',
-    before: '32~40',
-    after: '48 (섹션 사이 — 검색 영역과 결과 목록은 다른 구역)',
+    value: '48 (섹션 사이 — 검색 영역과 결과 목록은 다른 구역)',
   },
-
-  {
-    what: '목록 아래 버튼 줄',
-    before: '40 · 48 · 64',
-    after: '48',
-  },
-  {
-    what: '폼 필드 사이',
-    before: '8가지(10~48)',
-    after: '필드 사이 24, 묶음 사이 48',
-  },
-  {
-    what: '폼 필드명 아래',
-    before: '4 · 8 · 12',
-    after: '8',
-  },
-  {
-    what: '섹션 제목 아래',
-    before: '줄높이로 만든 여백(약 8~14) · 16 · 24',
-    after: '16',
-  },
-  {
-    what: '페이지 아래 여백(데스크톱)',
-    before: '100 · 126 · 144 · 150 · 180 · 220',
-    after: '128 하나',
-  },
-  {
-    what: '10px(2.5)·20px(5)·28px(7)·36px(9)·44px(11) 같은 단계 밖 값',
-    before: '약 300곳',
-    after: '가까운 단계로(±2~4px)',
-  },
+  { what: '목록 아래 버튼 줄', value: '48' },
+  { what: '폼 필드 사이 / 폼 묶음 사이', value: '24 / 48' },
+  { what: '폼 필드명 아래', value: '8' },
+  { what: '섹션 제목 아래', value: '16' },
 ];
 
 function Sub({ title, children }: { title: string; children: ReactNode }) {
@@ -199,19 +161,12 @@ function FormDiagram() {
 export function SpacingSection() {
   return (
     <div className="space-y-12 type-body">
-      <div className="border-l-4 border-main-orange bg-neutral-50 px-4 py-3 type-meta">
-        <p className="type-label">제안(미적용)</p>
-        <p>
-          주황 띠가 여백이고 왼쪽 숫자가 px이다. 여백은 줄높이가 아니라
-          margin·gap·padding으로 준다(1-3에서 줄높이로 만들던 여백이 사라진 곳도
-          이 규칙으로 되살린다).
-        </p>
-      </div>
-
       <Sub title="단계">
         <p>
           4px 단위 아홉 단계다. 가까울수록 작게, 멀수록 크게 — 관계가 가까운
-          것끼리 붙여 묶음이 보이게 한다.
+          것끼리 붙여 묶음이 보이게 한다. 이 밖의 값(10·20·28·36px 등)은 쓰지
+          않고 가까운 단계를 쓴다. 여백은 줄높이가 아니라 margin·gap·padding으로
+          준다.
         </p>
         <div className="space-y-2">
           {STEPS.map((s) => (
@@ -232,6 +187,9 @@ export function SpacingSection() {
       </Sub>
 
       <Sub title="읽는 화면의 리듬">
+        <p className="type-meta text-neutral-500">
+          주황 띠가 여백이고 왼쪽 숫자가 px이다.
+        </p>
         <RhythmDiagram />
       </Sub>
 
@@ -241,39 +199,32 @@ export function SpacingSection() {
 
       <Sub title="페이지 위아래">
         <ul className="list-disc space-y-1 pl-5">
-          <li>제목 영역 아래 본문 시작: 모바일 28 → 32, 데스크톱 44 → 48.</li>
-          <li>
-            본문 끝: 모바일 64, 데스크톱 128. 지금 제각각인
-            값(100·126·144·150·180·220)을 모두 128로 모은다.
-          </li>
+          <li>제목 영역 아래 본문 시작: 모바일 32, 데스크톱 48.</li>
+          <li>본문 끝: 모바일 64, 데스크톱 128.</li>
         </ul>
       </Sub>
 
-      <Sub title="정리되는 것">
+      <Sub title="자리별 값">
         <table className="w-full max-w-3xl text-left">
-          <thead>
-            <tr className="border-b border-neutral-200">
-              <th className="py-2 type-label">대상</th>
-              <th className="py-2 type-label">지금</th>
-              <th className="py-2 type-label">제안</th>
-            </tr>
-          </thead>
           <tbody>
-            {CHANGES.map((c) => (
-              <tr key={c.what} className="border-b border-neutral-100">
-                <td className="py-2 pr-4 type-ui">{c.what}</td>
-                <td className="py-2 pr-4 type-meta text-neutral-500">
-                  {c.before}
-                </td>
-                <td className="py-2 type-ui">{c.after}</td>
+            {RULES.map((r) => (
+              <tr key={r.what} className="border-b border-neutral-100">
+                <td className="py-2 pr-4 type-ui">{r.what}</td>
+                <td className="py-2 type-ui">{r.value}</td>
               </tr>
             ))}
           </tbody>
         </table>
         <p className="type-meta text-neutral-500">
           메인·카테고리 같은 그래픽 화면의 고유 배치(메인 띠 안쪽 여백 등)는
-          3-6에서 따로 본다. 그래픽 접합 보정값(원과 선의 위치)은 간격이 아니라
-          그대로 둔다.
+          <a
+            href="/design-system/main"
+            className="underline underline-offset-2"
+          >
+            메인·카테고리 절
+          </a>
+          이 정한다. 그래픽 접합 보정값(원과 선의 위치)은 간격 단계에 맞추지
+          않는다.
         </p>
       </Sub>
     </div>

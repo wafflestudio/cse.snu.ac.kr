@@ -40,11 +40,11 @@ function LayoutDiagram({ width, label }: Frame) {
         style={{ width: px(width), height: px(560) }}
       >
         {isDesktop && (
-          <div className="shrink-0 bg-[#323235]" style={{ width: px(nav) }} />
+          <div className="shrink-0 bg-neutral-850" style={{ width: px(nav) }} />
         )}
         <div className="flex grow flex-col">
           <div
-            className={isDesktop ? 'bg-neutral-900' : 'bg-[#2D2D30]'}
+            className={isDesktop ? 'bg-neutral-900' : 'bg-chrome-bar'}
             style={{ height: px(isDesktop ? 120 : 68) }}
           />
           <div className="bg-neutral-900" style={{ height: px(110) }} />
@@ -132,7 +132,7 @@ function WidthChart() {
         viewBox={`0 0 ${CHART.w} ${CHART.h}`}
         className="w-full"
         role="img"
-        aria-label="1024px 미만은 영역과 읽기 폭이 같고 720px에서 멈춘다. 데스크톱의 영역은 1024px에서 724px, 1279px에서 979px, 1280px에서 720px, 이후 계속 늘어난다. 읽기 폭은 어디서나 720px을 넘지 않는다."
+        aria-label="본문 영역은 모바일에서 화면 폭보다 40px 좁고, 데스크톱은 1024px에서 724px, 1279px에서 979px, 1280px에서 720px이며 이후 계속 늘어난다. 읽기 폭은 영역을 따르다 640px에서 멈춘다."
         onMouseMove={(e) => {
           const box = e.currentTarget.getBoundingClientRect();
           const x = ((e.clientX - box.left) / box.width) * CHART.w;
@@ -225,24 +225,19 @@ function WidthChart() {
 const SAMPLE_TEXT =
   '컴퓨터공학부는 1975년 전자계산기공학과로 출발하여 지금까지 우리나라 컴퓨터 분야의 발전을 이끌어 왔습니다. 학부 과정에서는 컴퓨터 과학과 공학의 기초 이론부터 시스템, 인공지능, 응용에 이르는 폭넓은 교육을 제공하며, 대학원 과정에서는 세계적 수준의 연구를 수행하고 있습니다.';
 
-function ReadingSamples() {
+function ReadingSample() {
   return (
-    <div className="space-y-6">
+    <div>
       <p className="font-medium">읽기 폭 견본(본문 14px, 줄높이 28px)</p>
-      {[READING, 720, 880].map((w) => (
-        <div key={w}>
-          <p className="mb-1 text-sm text-neutral-500">
-            {w}px · 한 줄 약 {w === 640 ? 62 : w === READING ? 70 : 85}자
-            {w === READING ? ' — 제안' : ''}
-          </p>
-          <p
-            className="border-l-2 border-neutral-200 pl-3 text-md leading-7"
-            style={{ maxWidth: w }}
-          >
-            {SAMPLE_TEXT}
-          </p>
-        </div>
-      ))}
+      <p className="mt-1 mb-1 text-sm text-neutral-500">
+        {READING}px · 한 줄 약 62자
+      </p>
+      <p
+        className="border-l-2 border-neutral-200 pl-3 text-md leading-7"
+        style={{ maxWidth: READING }}
+      >
+        {SAMPLE_TEXT}
+      </p>
     </div>
   );
 }
@@ -255,8 +250,7 @@ function LayoutReasons() {
         <li>
           <b>읽기 폭 640</b> — 본문 14px에서 한 줄 약 62자(공백 포함, 실측)다.
           많이 읽히는 한국어 글 사이트가 58~69자에 모여 있다(브런치 59, 토스
-          기술 블로그 58, 위키백과 63, KRDS 문서 65~69). 이전 이 사이트는
-          880px에 약 89자였다.
+          기술 블로그 58, 위키백과 63, KRDS 문서 65~69).
         </li>
         <li>
           표·카드·달력처럼 넓을수록 좋은 것은 읽기 폭을 받지 않고 영역 전체를
@@ -317,7 +311,7 @@ export function LayoutSection() {
         </tbody>
       </table>
       <WidthChart />
-      <ReadingSamples />
+      <ReadingSample />
       <LayoutReasons />
       <div>
         <p className="font-medium">쓰는 법</p>

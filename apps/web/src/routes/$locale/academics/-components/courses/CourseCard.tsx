@@ -113,7 +113,7 @@ function CourseCardFront({
         isFlipped
           ? 'transform-[rotateY(-180deg)]'
           : 'transform-[rotateY(0deg)]',
-        // 카드는 그림자 대신 선(/design-system#unique).
+        // 카드는 그림자 대신 선(/design-system/unique).
         'border border-neutral-200',
         styles.face,
       )}

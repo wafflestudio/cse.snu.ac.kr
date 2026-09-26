@@ -54,10 +54,6 @@ export function ShapeSection() {
             className="rounded-full border border-neutral-300"
           />
         </div>
-        <p className="type-meta text-neutral-500">
-          정리 전: 1px(버튼) · 2px(입력) · 4px(드롭다운·파일·검색창 등 19곳) ·
-          6·8·12·16px 각 한 곳씩 · 알약 30px 3곳 · 원.
-        </p>
       </Sub>
 
       <Sub title="그림자">
@@ -78,29 +74,57 @@ export function ShapeSection() {
           />
         </div>
         <p className="type-meta text-neutral-500">
-          정리 전: 떠 있는 층에 shadow-lg·임의값 두 가지가 섞여 있다. 메인 뉴스
-          카드 그림자와 교과목 카드 뒤집기 그림자는 그 화면 고유의 표현이라
-          3-6·3-7에서 본다.
+          메인 뉴스 카드와 교과목 카드 뒤집기의 그림자는 그 화면 고유의 표현이라{' '}
+          <a
+            href="/design-system/main"
+            className="underline underline-offset-2"
+          >
+            메인·카테고리
+          </a>
+          ,{' '}
+          <a
+            href="/design-system/unique"
+            className="underline underline-offset-2"
+          >
+            고유 화면
+          </a>{' '}
+          절에서 정한다.
         </p>
       </Sub>
 
       <Sub title="선">
         <ul className="list-disc space-y-1 pl-5">
           <li>
-            <b>1px</b> — 기본. 목록·카드 구분선(neutral-200), 입력
-            테두리(neutral-300).
+            <b>1px</b> — 기본. 목록·카드 구분선, 입력 테두리(색은{' '}
+            <a
+              href="/design-system/color"
+              className="underline underline-offset-2"
+            >
+              색 절
+            </a>
+            ).
           </li>
           <li>
             <b>2px</b> — 강조. 선택된 탭 밑줄, 목록을 크게 나누는 제목 밑줄.
           </li>
           <li>
             3px·5px 같은 굵은 선(모달 위 주황 선, 메인 링크 행 왼쪽 바)은
-            컴포넌트 고유 표현이라 2-4 모달·3-6 메인에서 정한다.
-          </li>
-          <li>
-            같은 값을 다르게 적은 것(<code>border-t-3</code>·
-            <code>border-t-[3px]</code>)과 오기(
-            <code>-top-[48%]</code> 중복, <code>sm: hrink-0</code>)는 고친다.
+            컴포넌트 고유 표현이라{' '}
+            <a
+              href="/design-system/dialog"
+              className="underline underline-offset-2"
+            >
+              모달
+            </a>
+            ,{' '}
+            <a
+              href="/design-system/main"
+              className="underline underline-offset-2"
+            >
+              메인·카테고리
+            </a>{' '}
+            절에서 정한다. 같은 값은 한 가지로 적는다(
+            <code>border-t-3</code>, <code>border-t-[3px]</code> 아님).
           </li>
         </ul>
       </Sub>

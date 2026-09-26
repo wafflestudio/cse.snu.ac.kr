@@ -16,7 +16,7 @@ interface PageLayoutProps {
   title?: string;
   subtitle?: string;
   breadcrumb?: BreadcrumbItem[];
-  // 띠 틀: 본문을 PageBand 로 쌓는다(/design-system#page). 없으면 기본 틀.
+  // 띠 틀: 본문을 PageBand 로 쌓는다(/design-system/page). 없으면 기본 틀.
   bands?: boolean;
   subNav?: SubNavConfig;
   pageTitle?: string; // <title> 및 og:title용

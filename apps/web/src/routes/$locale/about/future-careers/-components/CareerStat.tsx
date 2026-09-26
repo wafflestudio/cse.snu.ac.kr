@@ -60,7 +60,7 @@ export default function CareerStat({ stat }: { stat: YearStat[] }) {
         </LoginVisible>
       </div>
 
-      {/* 교차표: 목록 표와 같은 모양(/design-system#list), 행 제목 칸만 14/500. 칸 틀은 한 번만(subgrid). */}
+      {/* 교차표: 목록 표와 같은 모양(/design-system/list), 행 제목 칸만 14/500. 칸 틀은 한 번만(subgrid). */}
       <div className="grid grid-cols-[auto_1fr_1fr_1fr] border-y border-neutral-200 type-ui sm:w-[432px]">
         <TableHeader />
         {CAREER_STAT_ROWS.map((company, index) => (

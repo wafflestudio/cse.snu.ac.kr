@@ -11,7 +11,7 @@ export default function NewsCard({ news }: { news: MainNews }) {
   return (
     <Link
       to={localizedPath(`/community/news/${news.id}`)}
-      // 회색 띠 위 흰 카드 — 그림자는 떠 있는 층에만(/design-system#unique).
+      // 회색 띠 위 흰 카드 — 그림자는 떠 있는 층에만(/design-system/unique).
       className={`flex h-76 shrink-0 flex-col bg-white ${CARD_WIDTH_TAILWIND}`}
     >
       <div className="relative h-25 w-full">

@@ -3,7 +3,7 @@ import Button from '@/components/ui/Button';
 import Node from '@/components/ui/Nodes';
 import { Tag } from '@/components/ui/Tag';
 
-type Swatch = { name: string; role: string; className?: string; hex?: string };
+type Swatch = { name: string; role: string; className: string };
 
 const LIGHT: Swatch[] = [
   { name: 'white', role: '바탕', className: 'bg-white' },
@@ -43,82 +43,10 @@ const CHROME: Swatch[] = [
   },
 ];
 
-type Merge = { from: string; where: string; to: string; toHex: string };
-
-const MERGES: Merge[] = [
-  {
-    from: '#1f2021',
-    where: '내비 펼침 패널·모바일 메뉴 상세',
-    to: 'neutral-850',
-    toHex: '#1e1e1e',
-  },
-  {
-    from: '#202020',
-    where: '메인 공지 필터 알약',
-    to: 'neutral-850',
-    toHex: '#1e1e1e',
-  },
-  {
-    from: '#212121',
-    where: '메인 공지 판',
-    to: 'neutral-850',
-    toHex: '#1e1e1e',
-  },
-  {
-    from: 'rgb(30,30,30)',
-    where: '푸터 아랫단(값이 같음)',
-    to: 'neutral-850',
-    toHex: '#1e1e1e',
-  },
-  {
-    from: '#262728',
-    where: '모바일 푸터 윗단',
-    to: 'neutral-800',
-    toHex: '#262626',
-  },
-  {
-    from: '#e65615',
-    where: '뉴스 더보기·캐러셀 점',
-    to: 'main-orange-dark',
-    toHex: '#e65817',
-  },
-  {
-    from: '#ff7b34',
-    where: '이미지 팝업 버튼 호버',
-    to: 'main-orange-dark',
-    toHex: '#e65817',
-  },
-  {
-    from: '#f55a00',
-    where: '이미지 팝업 버튼 눌림',
-    to: 'main-orange-dark',
-    toHex: '#e65817',
-  },
-  {
-    from: '#3c7de4',
-    where: '예약 안내 링크(오타)',
-    to: 'link',
-    toHex: '#2867cf',
-  },
-  {
-    from: '#f8f8f8',
-    where: 'neutral-75, 학사 타임라인만',
-    to: 'neutral-50',
-    toHex: '#fafafa',
-  },
-  {
-    from: '#a3a3a3·#f5f5f5',
-    where: '카테고리 소개문(토큰을 hex로 적음)',
-    to: 'neutral-400·100',
-    toHex: '#a3a3a3',
-  },
-];
-
-function Chip({ className, hex }: { className?: string; hex?: string }) {
+function Chip({ className }: { className: string }) {
   return (
     <span
-      className={`inline-block size-6 shrink-0 rounded-xs border border-neutral-200 ${className ?? ''}`}
-      style={hex ? { backgroundColor: hex } : undefined}
+      className={`inline-block size-6 shrink-0 rounded-xs border border-neutral-200 ${className}`}
     />
   );
 }
@@ -128,7 +56,7 @@ function SwatchList({ items, dark }: { items: Swatch[]; dark?: boolean }) {
     <ul className={dark ? 'bg-neutral-900 p-3' : 'p-3'}>
       {items.map((s) => (
         <li key={s.name} className="flex items-center gap-3 py-1.5">
-          <Chip className={s.className} hex={s.hex} />
+          <Chip className={s.className} />
           <span
             className={`text-md font-medium ${dark ? 'text-white' : 'text-neutral-950'}`}
           >
@@ -175,46 +103,11 @@ export function ColorSection() {
 
       <Sub title="팔레트 밖 값">
         <p>
-          눈으로 거의 구별되지 않는 값들을 가까운 단계로 합친다. 합치면 팔레트
-          밖 값이 앱에서 사라진다.
+          위 면·글자·강조 단계와 <code>app.css</code> <code>@theme</code>의
+          토큰만 쓴다. 눈으로 거의 구별되지 않는 새 hex(<code>#1f2021</code>{' '}
+          같은 값)를 만들지 않고 가까운 단계를 쓴다. 토큰을 hex로 다시 적지도
+          않는다.
         </p>
-        <table className="w-full max-w-3xl text-left text-sm">
-          <thead>
-            <tr className="border-b border-neutral-200">
-              <th className="py-2 font-medium">쓰지 않는 값</th>
-              <th className="py-2 font-medium">쓰는 곳</th>
-              <th className="py-2 font-medium">대신 쓸 단계</th>
-            </tr>
-          </thead>
-          <tbody>
-            {MERGES.map((m) => (
-              <tr
-                key={m.from + m.where}
-                className="border-b border-neutral-100"
-              >
-                <td className="py-1.5">
-                  <span className="flex items-center gap-2">
-                    <Chip
-                      hex={
-                        m.from.startsWith('#')
-                          ? m.from.split('·')[0]
-                          : '#1e1e1e'
-                      }
-                    />
-                    {m.from}
-                  </span>
-                </td>
-                <td className="py-1.5 text-neutral-500">{m.where}</td>
-                <td className="py-1.5">
-                  <span className="flex items-center gap-2">
-                    <Chip hex={m.toHex} />
-                    {m.to}
-                  </span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
       </Sub>
 
       <Sub title="글자">
@@ -260,8 +153,8 @@ export function ColorSection() {
                 주요 행동(추가·저장·게시·예약): neutral-700, 호버 600, 누름 500
               </li>
               <li>
-                보조 행동(취소·편집·삭제·목록): neutral-100 면. 글자는 500 →
-                600으로 (100 면 위 500은 대비 4.35로 기준 4.5에 못 미침)
+                보조 행동(취소·편집·삭제·목록): neutral-100 면에 neutral-600
+                글자(100 면 위 500은 대비 4.35로 기준 4.5에 못 미친다)
               </li>
             </ul>
           </div>

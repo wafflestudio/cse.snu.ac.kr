@@ -10,7 +10,7 @@ interface Props {
   onDelete?: () => Promise<void>;
   onSubmit: () => Promise<void>;
   submitLabel?: string;
-  /** 삭제 확인창에 쓰는 대상 — "‘제목’ 공지사항"처럼 이름 + 종류(/design-system#writing). */
+  /** 삭제 확인창에 쓰는 대상 — "‘제목’ 공지사항"처럼 이름 + 종류(/design-system/writing). */
   deleteLabel?: string;
 }
 

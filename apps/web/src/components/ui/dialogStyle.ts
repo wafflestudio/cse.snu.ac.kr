@@ -1,4 +1,4 @@
-// 대화상자 판 한 벌(/design-system#dialog) — Dialog·AlertDialog·ImageModal 이 함께 쓴다.
+// 대화상자 판 한 벌(/design-system/dialog) — Dialog·AlertDialog·ImageModal 이 함께 쓴다.
 
 // 뒤 가림막: 검정 50% + 흐림 2px.
 export const OVERLAY_CLASS =

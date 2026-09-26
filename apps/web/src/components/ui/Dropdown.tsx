@@ -8,7 +8,7 @@ import { FIELD_CLASS, fieldBorder } from './field';
 // 주입하는데, 값이 매번 달라 strict CSP의 style-src를 nonce·해시로 못 잡는다(=`unsafe-inline`
 // 강요). 그래서 직접 구현: 리스트박스를 트리거 바로 아래 `absolute`로 깔아 인라인 스타일 0.
 // 키보드 내비·타입어헤드·ARIA combobox/listbox로 접근성은 유지한다.
-// 모양은 입력 칸 한 벌(/design-system#form): 칸 폭은 가장 긴 항목, 목록은 칸 아래 4px 에 뜬 층.
+// 모양은 입력 칸 한 벌(/design-system/form): 칸 폭은 가장 긴 항목, 목록은 칸 아래 4px 에 뜬 층.
 interface DropdownProps {
   contents: string[];
   selectedIndex: number;

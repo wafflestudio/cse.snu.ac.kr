@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
-import Button from '@/components/ui/Button';
 import EmptyState from '@/components/ui/EmptyState';
 import ErrorState from '@/components/ui/ErrorState';
 
@@ -15,7 +14,7 @@ function Sub({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
-// 표 한 모양(공지사항 모양): 목록 위아래 선, 흰 머리 행 + 아래 선, 행 44, 옅은 줄무늬.
+// 표 한 모양: 목록 위아래 선, 흰 머리 행 + 아래 선, 행 44, 옅은 줄무늬.
 const SAMPLE_ROWS = [
   ['2026학년도 전기 대학원 입학 안내', '2026/09/27'],
   ['세미나실 예약 기간 변경', '2026/09/26'],
@@ -23,41 +22,25 @@ const SAMPLE_ROWS = [
   ['연구실 안전 교육', '2026/09/24'],
 ];
 
-type TableStyle = {
-  name: string;
-  wrap: string;
-  header: string;
-  row: (i: number) => string;
-  rows?: string;
-};
-
-const TABLE: TableStyle = {
-  name: '표',
-  wrap: 'border-y border-neutral-200',
-  header: 'h-11 border-b border-neutral-200 type-label text-neutral-950',
-  row: (i) => clsx('h-11', i % 2 === 0 && 'bg-neutral-50'),
-};
-
-function SampleTable({ style }: { style: TableStyle }) {
+function SampleTable() {
   return (
-    <div className="space-y-2">
-      <div className={style.wrap}>
-        <div className={clsx('flex items-center px-3', style.header)}>
-          <span className="flex-1">제목</span>
-          <span className="w-28">날짜</span>
-        </div>
-        <div className={style.rows}>
-          {SAMPLE_ROWS.map(([title, date], i) => (
-            <div
-              key={title}
-              className={clsx('flex items-center px-3 type-ui', style.row(i))}
-            >
-              <span className="flex-1">{title}</span>
-              <span className="w-28 text-neutral-500">{date}</span>
-            </div>
-          ))}
-        </div>
+    <div className="border-y border-neutral-200">
+      <div className="flex h-11 items-center border-b border-neutral-200 px-3 type-label text-neutral-950">
+        <span className="flex-1">제목</span>
+        <span className="w-28">날짜</span>
       </div>
+      {SAMPLE_ROWS.map(([title, date], i) => (
+        <div
+          key={title}
+          className={clsx(
+            'flex h-11 items-center px-3 type-ui',
+            i % 2 === 0 && 'bg-neutral-50',
+          )}
+        >
+          <span className="flex-1">{title}</span>
+          <span className="w-28 text-neutral-500">{date}</span>
+        </div>
+      ))}
     </div>
   );
 }
@@ -67,7 +50,7 @@ export function ListSection() {
     <div className="space-y-12 type-body">
       <Sub title="표 — 한 모양">
         <div className="max-w-xl">
-          <SampleTable style={TABLE} />
+          <SampleTable />
         </div>
         <ul className="list-disc space-y-1 pl-5">
           <li>
@@ -78,10 +61,6 @@ export function ListSection() {
           <li>
             행 사이에는 선을 긋지 않고 첫 행부터 한 줄 걸러 neutral-50을 칠한다.
             고른 행은 neutral-100, 비공개 글은 neutral-200.
-          </li>
-          <li>
-            여섯 목록에서 공지사항 모양을 골랐다(머리 행만 맞췄을 때 행 높이·
-            줄무늬·점선이 목록마다 달라 표 전체가 맞지 않았다).
           </li>
           <li>
             칸 폭을 적지 않는다. 칸 틀(<code>grid-template-columns</code>)을
@@ -97,8 +76,11 @@ export function ListSection() {
             위아래 줄(총 개수·일괄 버튼·정렬)도 같은 끝에 맞춘다.
           </li>
           <li>
-            칸 간격은 표에 한 번(데스크톱 24)만 적는다. 행에 <code>gap</code>을
-            다시 적으면 subgrid 간격을 덮어 머리 행과 칸이 어긋난다.
+            칸 사이는 표에 한 번 준다 — 표의 <code>gap-x-6</code>(24), 또는
+            칸마다 같은 안 여백(<code>px-3</code>) 중 하나. 행이 모바일 카드용{' '}
+            <code>gap</code>을 따로 가지면 subgrid 간격을 덮으므로 데스크톱에서
+            표와 같은 값(<code>sm:gap-x-6</code>)으로 되돌린다 — 안 그러면 머리
+            행과 칸이 어긋난다.
           </li>
         </ul>
       </Sub>
@@ -112,7 +94,7 @@ export function ListSection() {
           <li>
             목록이 비면 목록 자리에 <code>EmptyState</code> 한 줄: 14
             neutral-500 가운데, 위아래 64, 목록처럼 위아래 선. 문장은 짧게 한
-            줄(DS-035 "문구를 늘리면 장황해 보인다").
+            줄이다 — 길게 풀어 쓰면 장황해 보인다.
           </li>
           <li>
             검색 결과 없음·검색어가 짧음·연도 자료 없음이 모두 이 모양이다.
@@ -128,7 +110,10 @@ export function ListSection() {
       <Sub title="페이지 넘김">
         <ul className="list-disc space-y-1 pl-5">
           <li>쪽이 하나뿐이면 페이지 넘김을 그리지 않는다.</li>
-          <li>나머지(고른 쪽 주황 굵게+밑줄, 편집 중 비활성)는 그대로.</li>
+          <li>
+            고른 쪽은 주황 굵게 + 밑줄. 편집 중에는 페이지 넘김 전체를
+            비활성으로 흐리게 둔다.
+          </li>
         </ul>
       </Sub>
 
@@ -150,42 +135,25 @@ export function ListSection() {
       </Sub>
 
       <Sub title="오류 화면 — 다른 페이지와 같은 틀">
-        <div className="grid gap-6 lg:grid-cols-2">
-          <div className="space-y-2">
-            <p className="type-meta text-neutral-500">전</p>
-            <div className="flex h-72 flex-col items-center justify-center bg-neutral-900 text-center">
-              <p className="mb-4 text-[64px] font-bold leading-none text-main-orange">
-                404
-              </p>
-              <p className="mb-6 type-item text-white">
-                존재하지 않는 경로입니다: /ko/없는페이지
-              </p>
-              <Button variant="primary">메인으로 이동</Button>
-            </div>
-          </div>
-          <div className="space-y-2">
-            <p className="type-meta text-neutral-500">지금</p>
-            <div className="flex border border-neutral-200">
-              <ErrorState
-                code="404"
-                title="페이지를 찾을 수 없습니다"
-                detail="/ko/없는페이지"
-                actions={[
-                  {
-                    label: '메인으로 이동',
-                    variant: 'primary',
-                    onClick: () => {},
-                  },
-                ]}
-              />
-            </div>
-          </div>
+        <div className="flex max-w-xl border border-neutral-200">
+          <ErrorState
+            code="404"
+            title="페이지를 찾을 수 없습니다"
+            detail="/ko/없는페이지"
+            actions={[
+              {
+                label: '메인으로 이동',
+                variant: 'primary',
+                onClick: () => {},
+              },
+            ]}
+          />
         </div>
         <ul className="list-disc space-y-1 pl-5">
           <li>
-            오류 화면도 다른 페이지와 같은 틀(3-1 기본 틀)이다. 어두운 제목
-            영역에 상태 코드(경로 자리, 13px)와 제목(페이지 제목 단계), 흰
-            본문에 이유 한 줄·요청 주소·주요 버튼.
+            오류 화면도 다른 페이지와 같은 틀(페이지 틀 절의 기본 틀)이다.
+            어두운 제목 영역에 상태 코드(경로 자리, 13px)와 제목(페이지 제목
+            단계), 흰 본문에 이유 한 줄·요청 주소·주요 버튼.
           </li>
           <li>
             404: "페이지를 찾을 수 없습니다" / 요청 주소 / [메인으로 이동].

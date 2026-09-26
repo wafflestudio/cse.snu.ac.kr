@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
 
-// 필드 둘을 한 줄에(/design-system#form). 모바일은 세로로 쌓고, 데스크톱은 칸 사이 24.
+// 필드 둘을 한 줄에(/design-system/form). 모바일은 세로로 쌓고, 데스크톱은 칸 사이 24.
 // md: 두 칸 모두 md 폭(320)까지 — 전화·팩스처럼 짧은 값. full: 본문 폭을 반씩.
 // 줄 전체 폭을 고정하지 않는다 — 고정하면 모바일에서 넘친다.
 export default function Row({

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
 
-// 필드 사이 24(mb-6), 필드명 아래 8(mb-2). 폼 간격은 이 둘뿐이다(/design-system#spacing).
+// 필드 사이 24(mb-6), 필드명 아래 8(mb-2). 폼 간격은 이 둘뿐이다(/design-system/spacing).
 
 interface FieldsetProps {
   title: string;

@@ -10,7 +10,7 @@ interface CategoryGridProps {
   currentPage: NavItem | null;
 }
 
-// 카드 사이 모바일 24·데스크톱 32(/design-system#main). 펼친 하위 카드는 위 카드와 같은 간격을 두고
+// 카드 사이 모바일 24·데스크톱 32(/design-system/main). 펼친 하위 카드는 위 카드와 같은 간격을 두고
 // 이어진다 — 아래 여백은 띠(pb 64/128)만 준다(격자에 mb 를 더하면 띠 아래가 규칙보다 커진다).
 const ROOT_GRID_CLASS =
   'grid grid-cols-[repeat(2,minmax(0,1fr))] gap-6 sm:grid-cols-[repeat(auto-fill,300px)] sm:gap-8';
@@ -72,7 +72,7 @@ export default function CategoryGrid({ currentPage }: CategoryGridProps) {
 }
 
 // 호버는 바탕이 한 단계 진해지고 화살표가 민다. 선택(하위를 펼친 카드)은 짙은 주황 + 흰 글자 —
-// 호버와 선택이 같은 색이면 무엇을 골랐는지 구분되지 않는다(/design-system#main).
+// 호버와 선택이 같은 색이면 무엇을 골랐는지 구분되지 않는다(/design-system/main).
 const TONE_CLASS = {
   root: 'bg-neutral-100 text-neutral-950 hover:bg-neutral-200',
   selected: 'bg-main-orange-dark text-white',

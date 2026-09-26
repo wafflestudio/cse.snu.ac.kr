@@ -26,7 +26,7 @@ export default function PeopleProfileInfo({
   items,
 }: PeopleProfileInfoProps) {
   return (
-    // 인물 상세의 왼쪽: 사진과 그 아래 아이콘 연락처(/design-system#unique). 비어 있는 항목은 그리지 않는다.
+    // 인물 상세의 왼쪽: 사진과 그 아래 아이콘 연락처(/design-system/unique). 비어 있는 항목은 그리지 않는다.
     <div className="flex shrink-0 flex-col">
       <ProfileImage imageURL={imageURL} />
 

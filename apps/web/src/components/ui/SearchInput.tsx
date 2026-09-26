@@ -4,7 +4,7 @@ import type { InputHTMLAttributes } from 'react';
 import { useId } from 'react';
 import Button from './Button';
 
-// 검색 칸 한 부품(/design-system#search). 검색 실행은 감싸는 form 의 onSubmit 이 맡는다.
+// 검색 칸 한 부품(/design-system/search). 검색 실행은 감싸는 form 의 onSubmit 이 맡는다.
 //   light: 입력 칸 한 벌(34·테두리 300·흰), 폭 보통 320
 //   dark : 헤더 막대 위 테두리 없는 채움 칸(neutral-100), 폭 216
 // id 는 useId 로 — 헤더와 검색 상자가 한 화면에 있어도 겹치지 않는다.

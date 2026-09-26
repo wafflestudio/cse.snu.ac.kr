@@ -10,7 +10,6 @@ import {
   MapPin,
   Menu,
   Paperclip,
-  Paperclip as PaperclipIcon,
   Pin,
   Plus,
   Search,
@@ -45,54 +44,22 @@ const ROLES = [
   { cls: 'type-section', label: '섹션 제목 20px', text: '연구 분야' },
 ];
 
-function EmCompare() {
-  const variants = [
-    {
-      label: 'A. 글자와 같은 크기(1배), 선도 비례',
-      size: 'size-[1em]',
-      absolute: false,
-    },
-    {
-      label: 'B. 글자의 1.2배, 선도 비례 — 채택',
-      size: 'size-[1.2em]',
-      absolute: false,
-    },
-  ];
+// 역할별 글자 옆 아이콘. 크기·선 굵기는 app.css 공통 규칙이 정하므로 적지 않는다.
+function IconScale() {
   return (
-    <div className="grid gap-8 sm:grid-cols-2">
-      {variants.map((v) => (
-        <div key={v.label} className="space-y-3">
-          <p className="type-label">{v.label}</p>
-          {ROLES.map((r) => (
-            <div key={r.cls} className="flex items-center gap-4">
-              <span className="w-28 shrink-0 type-meta text-neutral-500">
-                {r.label}
-              </span>
-              <span className={`flex items-center gap-1 ${r.cls}`}>
-                <Search
-                  className={v.size}
-                  strokeWidth={1.5}
-                  absoluteStrokeWidth={v.absolute}
-                />
-                <Calendar
-                  className={v.size}
-                  strokeWidth={1.5}
-                  absoluteStrokeWidth={v.absolute}
-                />
-                <PaperclipIcon
-                  className={v.size}
-                  strokeWidth={1.5}
-                  absoluteStrokeWidth={v.absolute}
-                />
-                <span>{r.text}</span>
-                <ArrowRight
-                  className={v.size}
-                  strokeWidth={1.5}
-                  absoluteStrokeWidth={v.absolute}
-                />
-              </span>
-            </div>
-          ))}
+    <div className="space-y-3">
+      {ROLES.map((r) => (
+        <div key={r.cls} className="flex items-center gap-4">
+          <span className="w-28 shrink-0 type-meta text-neutral-500">
+            {r.label}
+          </span>
+          <span className={`flex items-center gap-1 ${r.cls}`}>
+            <Search />
+            <Calendar />
+            <Paperclip />
+            <span>{r.text}</span>
+            <ArrowRight />
+          </span>
         </div>
       ))}
     </div>
@@ -119,11 +86,8 @@ export function IconSection() {
         </p>
       </Sub>
 
-      <Sub title="크기 비교 — 글자와 같게 / 1.2배">
-        <EmCompare />
-      </Sub>
-
-      <Sub title="크기 — 옆 글자의 1.2배, 자동">
+      <Sub title="크기·선 굵기 — 옆 글자에 맞춰 자동">
+        <IconScale />
         <ul className="list-disc space-y-1 pl-5">
           <li>
             아이콘 틀은 옆 글자의 1.2배(<code>1.2em</code>)다. lucide 그림은
@@ -138,25 +102,29 @@ export function IconSection() {
           <li>
             예외: 옆에 글자가 없는 아이콘만 있는 버튼(닫기·메뉴·검색 실행)은{' '}
             <code>size-5</code>(20px). 그래픽처럼 쓰는 큰 화살표(교과목 카드
-            넘기기 등)는 3-6·3-7에서 본다.
+            넘기기 등)는{' '}
+            <a href="#main" className="underline underline-offset-2">
+              메인·카테고리
+            </a>
+            ,{' '}
+            <a href="#unique" className="underline underline-offset-2">
+              고유 화면
+            </a>{' '}
+            절에서 정한다.
           </li>
         </ul>
       </Sub>
 
-      <Sub title="선 굵기·색·정렬">
+      <Sub title="색·정렬">
         <ul className="list-disc space-y-1 pl-5">
-          <li>
-            선 굵기는 24칸 기준 1.5 하나이고 크기에 비례한다. 아이콘마다 선
-            굵기를 적지 않는다.
-          </li>
           <li>
             색은 글자색을 따른다(<code>currentColor</code>). 아이콘 파일에 색을
             박지 않는다.
           </li>
           <li>
             아이콘과 글자는 <code>flex items-center</code>로 세로 가운데를
-            맞춘다. 지금 곳곳에 있는 위치 보정(<code>translate</code>,{' '}
-            <code>pt-px</code>, <code>mt-0.5</code>)은 없앤다.
+            맞춘다. 위치 보정(<code>translate</code>, <code>pt-px</code>,{' '}
+            <code>mt-0.5</code>)을 넣지 않는다.
           </li>
           <li>
             아이콘만 있는 버튼은 클릭 영역을 24×24 이상으로 둔다(그림 크기는

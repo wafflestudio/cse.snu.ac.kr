@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { Fragment, useId } from 'react';
 
-// 글자 토글 — 같은 자리의 보기를 바꾸는 조용한 단일 선택(/design-system#selection).
-// 고른 것 neutral-950, 나머지 500·호버 주황(2-1 글자 버튼), 사이는 1px 세로선.
+// 글자 토글 — 같은 자리의 보기를 바꾸는 조용한 단일 선택(/design-system/selection).
+// 고른 것 neutral-950, 나머지 500·호버 주황(/design-system/button 글자 버튼), 사이는 1px 세로선.
 interface TextToggleProps<T extends string> {
   options: readonly { value: T; label: string }[];
   value: T;

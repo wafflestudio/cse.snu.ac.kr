@@ -92,7 +92,7 @@ export default function ImageModal({
                 <button
                   type="button"
                   onClick={handleAction}
-                  // 주요 버튼 색 — 포스터 색이 매번 달라 어떤 이미지와도 어울리는 회색(/design-system#dialog).
+                  // 주요 버튼 색 — 포스터 색이 매번 달라 어떤 이미지와도 어울리는 회색(/design-system/dialog).
                   className="flex-1 h-11.5 px-6 bg-neutral-700 text-white hover:bg-neutral-600 active:bg-neutral-500 type-label transition-colors focus:outline-none"
                 >
                   {t('자세히 보기')}

@@ -158,7 +158,7 @@ type ProcessedLab = Omit<ResearchLabDetail, 'description'> & {
   description: import('@/utils/csp').ViewerHtml;
 };
 
-// 이 연구실이 속한 스트림으로 가는 글자 링크 — 메인 "더보기 →"와 같은 모양(/design-system#main).
+// 이 연구실이 속한 스트림으로 가는 글자 링크 — 메인 "더보기 →"와 같은 모양(/design-system/main).
 function StreamLink({
   groupName,
   localizedPath,
@@ -171,7 +171,7 @@ function StreamLink({
   return (
     <Link
       to={localizedPath(createSelectionUrl('/research/groups', groupName))}
-      className="flex w-fit items-center gap-1 type-ui text-main-orange-dark hover:underline"
+      className="flex w-fit items-center gap-1 type-ui text-main-orange-dark"
     >
       {groupName} {label} <ArrowRight />
     </Link>

@@ -138,7 +138,7 @@ function FooterBottomLeft() {
         <p className="mb-6 type-body text-neutral-600">
           컴퓨터공학부 홈페이지를 만든 디자인·개발 팀입니다.
         </p>
-        {/* 이름 목록이라 태그 모양 없이 글로 잇는다(/design-system#navigation). */}
+        {/* 이름 목록이라 태그 모양 없이 글로 잇는다(/design-system/navigation). */}
         <dl className="divide-y divide-neutral-200 border-y border-neutral-200">
           {CSEREAL_MEMBERS.map(({ part, members }) => (
             <div

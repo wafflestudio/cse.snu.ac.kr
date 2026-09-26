@@ -1,4 +1,4 @@
-// 입력 칸(글자·드롭다운·날짜·시간)의 모양 한 벌(/design-system#form).
+// 입력 칸(글자·드롭다운·날짜·시간)의 모양 한 벌(/design-system/form).
 // 높이 34 = 보통 버튼, 테두리 neutral-300, 바탕 흰색, 안쪽 여백 12.
 export const FIELD_CLASS =
   'h-8.5 rounded-xs border bg-white px-3 type-ui outline-none placeholder:text-neutral-300 disabled:text-neutral-300';

@@ -17,7 +17,7 @@ interface PostFooterProps {
   listPath: string;
   editPath?: string;
   onDelete?: () => Promise<void>;
-  /** 삭제 확인창의 대상 — "‘제목’ 공지사항"(/design-system#writing). */
+  /** 삭제 확인창의 대상 — "‘제목’ 공지사항"(/design-system/writing). */
   deleteLabel?: string;
 }
 
@@ -53,7 +53,7 @@ export default function PostFooter({
 
   return (
     <div className="mt-12 flex flex-col">
-      {/* 다음글·이전글 사이 8(/design-system#post). */}
+      {/* 다음글·이전글 사이 8(/design-system/post). */}
       <div className="flex flex-col gap-2">
         {nextPost && (
           <PostNavLink

@@ -34,7 +34,7 @@
     /* 한국어는 어절 단위로 줄을 바꾼다(글자 중간에서 끊지 않는다). 한 어절이 줄보다 길면(URL 등)
        그때만 끊는다. anywhere 가 아니라 break-word 인 이유: anywhere 는 최소 폭(min-content)까지
        줄여 표 칸·flex 항목이 글자 폭으로 쪼그라든다. 좁은 자리에서 긴 URL 이 넘치면 그 요소에만
-       wrap-anywhere 를 붙인다(/design-system#type). */
+       wrap-anywhere 를 붙인다(/design-system/type). */
     word-break: keep-all;
     overflow-wrap: break-word;
   }
@@ -63,7 +63,7 @@
   --color-main-orange: #ff6914;
   --color-main-orange-dark: #e65817;
   --color-link: #2867cf;
-  /* 내비게이션 틀. neutral 단계 밖의 약간 푸른 회색 둘: 모바일 상단 바 / 왼쪽 내비·모바일 메뉴. */
+  /* 내비게이션 틀. neutral 단계 밖의 약간 푸른 회색 둘: 모바일 상단 바 / 펼침 패널(왼쪽 내비·모바일 메뉴의 하위 목록). */
   --color-chrome-bar: #2d2d30;
   --color-chrome-menu: #323235;
 
@@ -109,7 +109,7 @@
 
 /* 글자 역할. 크기·굵기·줄높이를 한 벌로 묶는다 — 화면에서는 역할 하나를 고르고 크기·굵기·줄높이를
    따로 쓰지 않는다. 색은 따로 붙인다. 줄간격은 여러 줄로 읽는 본문(type-body, 28px)에만 주고,
-   제목·UI·라벨처럼 컴포넌트 안의 글자는 사이트 기본값 1.2 를 쓴다. 규칙과 근거는 /design-system#type. */
+   제목·UI·라벨처럼 컴포넌트 안의 글자는 사이트 기본값 1.2 를 쓴다. 규칙과 근거는 /design-system/type. */
 /* 카테고리 머리의 큰 제목 — 글자 단계 밖의 표시 크기(모바일 32·데스크톱 64). 그 자리 전용. */
 @utility type-display {
   font-size: 2rem;
@@ -221,7 +221,7 @@
 
 /* 아이콘(lucide)은 옆 글자의 1.2배다 — 그림이 틀의 약 83%라 그림 높이가 글자와 같아진다.
    선은 24칸 기준 1.5 로 크기에 비례한다(13px 글자 옆 약 1px — 옆 글자 획과 비슷). base 층이라 size-* 유틸리티로 덮을 수 있다(아이콘만 있는 버튼 등).
-   규칙: /design-system#icon */
+   규칙: /design-system/icon */
 @layer base {
   svg.lucide {
     width: 1.2em;

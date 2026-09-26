@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 
-// 주황 원 + 링크 목록(/design-system#list). 호버하면 원이 차고 글자가 주황.
+// 주황 원 + 링크 목록(/design-system/list). 호버하면 원이 차고 글자가 주황.
 interface DotLinkListProps {
   items: { key: string | number; to: string; label: string }[];
 }

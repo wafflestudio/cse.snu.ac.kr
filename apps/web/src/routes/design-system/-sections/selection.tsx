@@ -120,8 +120,8 @@ export function SelectionSection() {
         <ToggleSample />
         <ul className="list-disc space-y-1 pl-5">
           <li>
-            고른 것 neutral-950, 나머지 neutral-500이고 호버하면 주황(2-1 글자
-            버튼 규칙). 사이는 1px 세로선 neutral-300.
+            고른 것 neutral-950, 나머지 neutral-500이고 호버하면 주황(버튼 절의
+            글자 버튼 규칙). 사이는 1px 세로선 neutral-300.
           </li>
         </ul>
       </Sub>
@@ -129,8 +129,9 @@ export function SelectionSection() {
       <Sub title="단일 선택이 아닌 것">
         <ul className="list-disc space-y-1 pl-5">
           <li>
-            학사 연혁의 연도 원은 연혁 그래픽이라 3-7에서 본다. 연구 그룹·시설
-            등의 접힌 모서리 선택 탭은 1-7에서 정했다.
+            학사 연혁의 연도 원은 연혁 그래픽이다(고유 화면 절). 연구 그룹·시설
+            등의 접힌 모서리 선택 탭(<code>SelectionList</code>)의 모양은 그래픽
+            절에서 정한다.
           </li>
           <li>
             선택 탭은 모바일 두 칸, 데스크톱은 칸 최소 236의 격자(
@@ -142,7 +143,7 @@ export function SelectionSection() {
 
       <Sub title="태그 — 한 벌">
         <div className="flex flex-wrap items-center gap-2">
-          <Tag label="장학" href="/design-system#selection" />
+          <Tag label="장학" href="/design-system/selection" />
           <Tag label="학부" />
           <Tag label="대학원" onDelete={() => {}} />
         </div>
@@ -160,8 +161,8 @@ export function SelectionSection() {
             그리지 않고 <code>Tag</code>를 쓴다.
           </li>
           <li>
-            푸터 제작진 이름표는 분류가 아니라 이름 목록이라 태그가 아니다 — 3-2
-            셸에서 본다.
+            푸터 제작진 이름표는 분류가 아니라 이름 목록이라 태그가 아니다
+            (내비게이션·셸 절).
           </li>
         </ul>
       </Sub>

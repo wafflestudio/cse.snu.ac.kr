@@ -10,7 +10,7 @@ import useIsMobile from '@/hooks/useResponsive';
 import type { AllMainNotice } from '@/types/api';
 import noticeGraphicImg from '../assets/noticeGraphic.avif';
 
-// 공지 분류는 넷 중 하나 — 알약 단일 선택(어두운 면이라 주황, /design-system#selection).
+// 공지 분류는 넷 중 하나 — 알약 단일 선택(어두운 면이라 주황, /design-system/selection).
 // as const로 label을 리터럴로 유지(useLanguage `t`가 등록된 키 union만 받음).
 const NOTICE_TAGS = [
   { value: 'all', label: '전체' },

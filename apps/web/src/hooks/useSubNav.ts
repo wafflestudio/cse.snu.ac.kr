@@ -4,6 +4,8 @@ export interface SubNavConfig {
   title: string;
   titlePath: string;
   items: SubNavConfigItem[];
+  /** 로케일 밖 라우트(디자인 시스템)는 false — 경로에 /ko·/en 을 붙이지 않는다. */
+  localized?: boolean;
 }
 
 export interface SubNavConfigItem {

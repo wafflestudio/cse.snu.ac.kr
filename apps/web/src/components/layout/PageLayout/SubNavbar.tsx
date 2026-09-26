@@ -4,8 +4,14 @@ import Node from '@/components/ui/Nodes';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { SubNavConfig, SubNavConfigItem } from '@/hooks/useSubNav';
 
-export default function SubNavbar({ title, titlePath, items }: SubNavConfig) {
+export default function SubNavbar({
+  title,
+  titlePath,
+  items,
+  localized = true,
+}: SubNavConfig) {
   const { localizedPath } = useLanguage();
+  const toPath = (path: string) => (localized ? localizedPath(path) : path);
 
   return (
     // 왼쪽 끝을 본문 끝(오른쪽 360 자리의 시작) + 64 에 고정한다. 오른쪽 끝에 붙이면 폭이 굵은 현재
@@ -18,14 +24,18 @@ export default function SubNavbar({ title, titlePath, items }: SubNavConfig) {
         <Node variant="curvedVertical" />
         <div className="pl-1.5 pt-2.75">
           <Link
-            to={localizedPath(titlePath)}
+            to={toPath(titlePath)}
             className="text-neutral-950 hover:text-main-orange"
           >
             <h3 className="inline whitespace-nowrap type-item">{title}</h3>
           </Link>
           <ul className="mt-4">
             {items.map((item, index) => (
-              <SubNavItem key={`${item.path}-${index}`} item={item} />
+              <SubNavItem
+                key={`${item.path}-${index}`}
+                item={item}
+                toPath={toPath}
+              />
             ))}
           </ul>
         </div>
@@ -36,10 +46,15 @@ export default function SubNavbar({ title, titlePath, items }: SubNavConfig) {
 
 const marginLeftMap = ['ml-0', 'ml-4', 'ml-8'];
 
-function SubNavItem({ item }: { item: SubNavConfigItem }) {
-  const { localizedPath } = useLanguage();
+function SubNavItem({
+  item,
+  toPath,
+}: {
+  item: SubNavConfigItem;
+  toPath: (path: string) => string;
+}) {
   const { pathname } = useLocation();
-  const localizedItemPath = item.path ? localizedPath(item.path) : undefined;
+  const localizedItemPath = item.path ? toPath(item.path) : undefined;
   const isCurrent =
     localizedItemPath !== undefined && pathname.startsWith(localizedItemPath);
   const marginLeft = marginLeftMap[item.depth || 0];

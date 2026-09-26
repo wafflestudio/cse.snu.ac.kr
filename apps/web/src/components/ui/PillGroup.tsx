@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useId } from 'react';
 
-// 알약 — 목록을 거르거나 정렬하는 단일 선택(/design-system#selection).
+// 알약 — 목록을 거르거나 정렬하는 단일 선택(/design-system/selection).
 // 네이티브 radiogroup(fieldset+radio)이라 화살표 키 이동을 브라우저가 준다.
 //   light: 고른 것 neutral-700 채움(입력 값이라 회색)
 //   dark : 어두운 메인 공지 패널 전용 — 주황(메인 그래픽과 한 몸)

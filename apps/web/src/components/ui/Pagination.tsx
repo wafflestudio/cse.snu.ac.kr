@@ -41,7 +41,7 @@ export default function Pagination({
     });
   };
 
-  // 쪽이 하나뿐이면 그리지 않는다(/design-system#list).
+  // 쪽이 하나뿐이면 그리지 않는다(/design-system/list).
   if (safeTotalPages <= 1) return null;
 
   return (

@@ -10,7 +10,7 @@ interface TagProps {
   disabled?: boolean;
 }
 
-// 태그 = 글의 분류(/design-system#selection). 주황 테두리 알약, 13px, 높이 24.
+// 태그 = 글의 분류(/design-system/selection). 주황 테두리 알약, 13px, 높이 24.
 // 누르면 그 분류의 목록으로 가고 호버하면 주황 채움. 선택 컨트롤로 쓰지 않는다(그건 PillGroup).
 const BASE_CLASS =
   'inline-flex h-6 items-center rounded-full border border-main-orange bg-white px-3 type-meta whitespace-nowrap text-main-orange transition duration-200';

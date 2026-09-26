@@ -2,7 +2,7 @@ import { type RefObject, useEffect } from 'react';
 
 /**
  * 본문 표가 옆으로 더 있으면 `data-more-right` 를 붙인다 — CSS 가 오른쪽 끝을 흐리게 한다.
- * iPhone Safari 는 스크롤 막대를 늘 숨겨서, 표가 옆으로 이어진다는 걸 이 표시로 알린다(/design-system#reading).
+ * iPhone Safari 는 스크롤 막대를 늘 숨겨서, 표가 옆으로 이어진다는 걸 이 표시로 알린다(/design-system/reading).
  */
 export function useTableScrollHint(ref: RefObject<HTMLElement | null>) {
   useEffect(() => {

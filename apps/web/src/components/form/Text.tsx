@@ -14,7 +14,7 @@ interface TextProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'className' | 'size'> {
   name: string;
   options?: RegisterOptions;
-  // 폭 네 단계(/design-system#form). 기본은 영역 전체.
+  // 폭 네 단계(/design-system/form). 기본은 영역 전체.
   size?: FieldWidth;
 }
 

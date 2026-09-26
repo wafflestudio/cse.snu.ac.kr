@@ -2,7 +2,7 @@ import { Link as LinkIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 import Node from '@/components/ui/Nodes';
 
-// 선택 탭 아래 고른 항목의 제목 한 부품(/design-system#page): 20/700 + 아래 주황 직선(1-7).
+// 선택 탭 아래 고른 항목의 제목 한 부품(/design-system/page): 20/700 + 아래 주황 직선(/design-system/graphic).
 // 부제·외부 링크·오른쪽 관리 버튼은 선택.
 interface SelectionTitleProps {
   title: string;

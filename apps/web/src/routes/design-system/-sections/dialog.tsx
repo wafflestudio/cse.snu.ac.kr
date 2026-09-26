@@ -81,49 +81,39 @@ function Actions({ ok }: { ok: string }) {
 const IMG_BTN =
   'flex h-11.5 flex-1 items-center justify-center type-label transition-colors';
 
-function ImageSample({
-  action,
-  checkboxInside,
-  label,
-}: {
-  action: string;
-  checkboxInside: boolean;
-  label: string;
-}) {
+// 이미지 팝업 견본 — 값은 ui/ImageModal.tsx 와 같다.
+function ImageSample() {
   return (
-    <div className="space-y-2">
-      <Stage className="pb-12">
-        <div className="relative w-60">
-          <div className="bg-white shadow-overlay">
-            <div className="flex aspect-[4/5] items-center justify-center bg-neutral-200 type-meta text-neutral-500">
-              포스터 이미지
-            </div>
-            {checkboxInside && (
-              <span className="flex items-center gap-1 px-3 py-2 type-ui text-neutral-600">
-                <Square className="text-neutral-500" /> 다시 보지 않기
-              </span>
-            )}
-            <div className="flex">
-              <span
-                className={clsx(
-                  IMG_BTN,
-                  'bg-neutral-100 text-neutral-600 hover:bg-neutral-200',
-                )}
-              >
-                닫기
-              </span>
-              <span className={clsx(IMG_BTN, action)}>자세히 보기</span>
-            </div>
+    <Stage className="pb-12">
+      <div className="relative w-60">
+        <div className="bg-white shadow-overlay">
+          <div className="flex aspect-[4/5] items-center justify-center bg-neutral-200 type-meta text-neutral-500">
+            포스터 이미지
           </div>
-          {!checkboxInside && (
-            <span className="absolute -bottom-8 left-0 flex cursor-pointer items-center gap-1 type-label text-white transition-colors hover:text-main-orange">
-              <Square /> 다시 보지 않기
+          <div className="flex">
+            <span
+              className={clsx(
+                IMG_BTN,
+                'bg-neutral-100 text-neutral-600 hover:bg-neutral-200',
+              )}
+            >
+              닫기
             </span>
-          )}
+            <span
+              className={clsx(
+                IMG_BTN,
+                'bg-neutral-700 text-white hover:bg-neutral-600 active:bg-neutral-500',
+              )}
+            >
+              자세히 보기
+            </span>
+          </div>
         </div>
-      </Stage>
-      <p className="type-meta text-neutral-500">{label}</p>
-    </div>
+        <span className="absolute -bottom-8 left-0 flex cursor-pointer items-center gap-1 type-label text-white transition-colors hover:text-main-orange active:text-main-orange-dark">
+          <Square /> 다시 보지 않기
+        </span>
+      </div>
+    </Stage>
   );
 }
 
@@ -171,10 +161,10 @@ export function DialogSection() {
       <Sub title="크기 — 세 가지">
         <div className="grid gap-6 sm:grid-cols-3">
           {[
-            ['확인', '400', 'max-w-[400px]', '확인창'],
-            ['폼', '560', 'max-w-[560px]', '교과목 추가·시설 예약'],
-            ['넓게', '768', 'max-w-3xl', '교과목 상세·예약 상세·팀 소개'],
-          ].map(([name, px, , use]) => (
+            ['확인', '400', '확인창'],
+            ['폼', '560', '교과목 추가·시설 예약'],
+            ['넓게', '768', '교과목 상세·예약 상세·팀 소개'],
+          ].map(([name, px, use]) => (
             <div key={name} className="space-y-1">
               <p className="type-label">
                 {name} {px}px
@@ -203,9 +193,7 @@ export function DialogSection() {
           </Panel>
         </Stage>
         <ul className="list-disc space-y-1 pl-5">
-          <li>
-            오른쪽 정렬, 사이 12, 위 32, 주요 버튼이 맨 오른쪽(2-1 버튼 줄).
-          </li>
+          <li>버튼 줄 규칙(버튼 절)을 따르고, 내용과 사이는 위 32다.</li>
           <li>확인창에는 닫기 X가 없다 — 취소가 닫기다.</li>
           <li>확인창의 실행 버튼은 하는 일을 적는다(삭제·해제·나가기).</li>
         </ul>
@@ -213,11 +201,7 @@ export function DialogSection() {
 
       <Sub title="이미지 팝업">
         <div className="w-fit">
-          <ImageSample
-            label="닫기는 보조 버튼 색, 자세히 보기는 주요 버튼 색"
-            action="bg-neutral-700 text-white hover:bg-neutral-600 active:bg-neutral-500"
-            checkboxInside={false}
-          />
+          <ImageSample />
         </div>
         <ul className="list-disc space-y-1 pl-5">
           <li>
@@ -226,8 +210,8 @@ export function DialogSection() {
           </li>
           <li>
             "다시 보지 않기"는 판 밖 가림막 위에 흰 글자로 둔다. 호버는 어두운
-            면 글자 버튼 규칙(2-1 <code>textInverse</code>)대로 주황, 누름 짙은
-            주황. 켜지면 네모+체크.
+            면 글자 버튼(<code>textInverse</code>)처럼 주황, 누름 짙은 주황.
+            켜지면 네모+체크.
           </li>
           <li>닫기는 보조 버튼 색(neutral-100, 호버 200).</li>
         </ul>

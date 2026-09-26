@@ -32,7 +32,7 @@ TanStack Start 빌드는 `dist/server/server.js` 를 **Web fetch 핸들러**로 
 
 # 디자인 시스템
 
-- **규칙의 정본은 `/design-system` 페이지(`src/routes/design-system/`)다.** 화면을 만들거나 고칠 때 먼저 읽는다. 여기 없는 값·모양을 새로 만들지 않는다.
+- **규칙의 정본은 `/design-system`(`src/routes/design-system/`)이다.** 절마다 한 페이지(`/design-system/<id>`), 목차는 `-registry.tsx` 한 곳. 화면을 만들거나 고칠 때 먼저 읽는다. 여기 없는 값·모양을 새로 만들지 않는다. 문서에 코드는 싣지 않는다 — 코드는 소스가 정본이다.
 - **토큰:** `src/app.css` 의 `@theme`. 가로 페이지 거터는 `.page-gutter-x` 단일 출처. 토큰화·스케일화는 픽셀 동일할 때만 자율, 값이 바뀌는 정규화는 디자인 결정 → 합의.
 - **보이는 부품은 `ui/*` 한 벌, `form/*` 은 그걸 react-hook-form 에 잇기만 한다**(Checkbox·Radio·Dropdown). 입력 칸 모양 값은 `ui/field.ts` 한 곳이고, 폼 부품은 자기 `name` 의 오류를 스스로 그린다. 부품에 높이·테두리·바탕 덮어쓰기 prop 을 다시 만들지 않는다 — 폭은 `size`(sm·md·lg·full)만.
 - **DS 에 우겨넣지 않는다.** 일관성이 깨지는 사용처는 컴포넌트 API 확장이 아니라 앱 코드를 고친다.

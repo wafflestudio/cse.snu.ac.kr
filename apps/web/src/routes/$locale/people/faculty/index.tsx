@@ -15,7 +15,7 @@ import PeopleGrid, {
 
 type SortType = 'name' | 'department';
 
-// 정렬은 알약 단일 선택(/design-system#selection). as const로 label을 리터럴 유지(useLanguage `t`가 등록 키만 받음).
+// 정렬은 알약 단일 선택(/design-system/selection). as const로 label을 리터럴 유지(useLanguage `t`가 등록 키만 받음).
 const SORT_OPTIONS = [
   { value: 'name', label: '가나다순' },
   { value: 'department', label: '소속순' },

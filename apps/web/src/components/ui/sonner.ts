@@ -7,7 +7,7 @@ import { toast } from './sonner/index.js';
 export { Toaster, toast } from './sonner/index.js';
 
 /**
- * 토스트 아이콘은 lucide 한 벌(/design-system#toast). 상태는 아이콘이 알리고 판 색은 하나다.
+ * 토스트 아이콘은 lucide 한 벌(/design-system/toast). 상태는 아이콘이 알리고 판 색은 하나다.
  * `<Toaster icons={TOAST_ICONS} />`
  */
 export const TOAST_ICONS = {

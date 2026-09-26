@@ -17,6 +17,7 @@ import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as DotinternalIndexRouteImport } from './routes/[.]internal/index'
 import { Route as LocaleIndexRouteImport } from './routes/$locale/index'
 import { Route as SitemapFileRouteImport } from './routes/sitemap/$file'
+import { Route as DesignSystemSectionRouteImport } from './routes/design-system/$section'
 import { Route as DotinternalEditRouteImport } from './routes/[.]internal/edit'
 import { Route as LocaleSearchIndexRouteImport } from './routes/$locale/search/index'
 import { Route as LocaleReservationsIndexRouteImport } from './routes/$locale/reservations/index'
@@ -149,6 +150,11 @@ const LocaleIndexRoute = LocaleIndexRouteImport.update({
 const SitemapFileRoute = SitemapFileRouteImport.update({
   id: '/sitemap/$file',
   path: '/sitemap/$file',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DesignSystemSectionRoute = DesignSystemSectionRouteImport.update({
+  id: '/design-system/$section',
+  path: '/design-system/$section',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DotinternalEditRoute = DotinternalEditRouteImport.update({
@@ -700,6 +706,7 @@ export interface FileRoutesByFullPath {
   '/img': typeof ImgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/.internal/edit': typeof DotinternalEditRoute
+  '/design-system/$section': typeof DesignSystemSectionRoute
   '/sitemap/$file': typeof SitemapFileRoute
   '/$locale/': typeof LocaleIndexRoute
   '/.internal/': typeof DotinternalIndexRoute
@@ -802,6 +809,7 @@ export interface FileRoutesByTo {
   '/img': typeof ImgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/.internal/edit': typeof DotinternalEditRoute
+  '/design-system/$section': typeof DesignSystemSectionRoute
   '/sitemap/$file': typeof SitemapFileRoute
   '/$locale': typeof LocaleIndexRoute
   '/.internal': typeof DotinternalIndexRoute
@@ -905,6 +913,7 @@ export interface FileRoutesById {
   '/img': typeof ImgRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/.internal/edit': typeof DotinternalEditRoute
+  '/design-system/$section': typeof DesignSystemSectionRoute
   '/sitemap/$file': typeof SitemapFileRoute
   '/$locale/': typeof LocaleIndexRoute
   '/.internal/': typeof DotinternalIndexRoute
@@ -1010,6 +1019,7 @@ export interface FileRouteTypes {
     | '/img'
     | '/sitemap.xml'
     | '/.internal/edit'
+    | '/design-system/$section'
     | '/sitemap/$file'
     | '/$locale/'
     | '/.internal/'
@@ -1112,6 +1122,7 @@ export interface FileRouteTypes {
     | '/img'
     | '/sitemap.xml'
     | '/.internal/edit'
+    | '/design-system/$section'
     | '/sitemap/$file'
     | '/$locale'
     | '/.internal'
@@ -1214,6 +1225,7 @@ export interface FileRouteTypes {
     | '/img'
     | '/sitemap.xml'
     | '/.internal/edit'
+    | '/design-system/$section'
     | '/sitemap/$file'
     | '/$locale/'
     | '/.internal/'
@@ -1318,6 +1330,7 @@ export interface RootRouteChildren {
   ImgRoute: typeof ImgRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   DotinternalEditRoute: typeof DotinternalEditRoute
+  DesignSystemSectionRoute: typeof DesignSystemSectionRoute
   SitemapFileRoute: typeof SitemapFileRoute
   DotinternalIndexRoute: typeof DotinternalIndexRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -1380,6 +1393,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap/$file'
       fullPath: '/sitemap/$file'
       preLoaderRoute: typeof SitemapFileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/design-system/$section': {
+      id: '/design-system/$section'
+      path: '/design-system/$section'
+      fullPath: '/design-system/$section'
+      preLoaderRoute: typeof DesignSystemSectionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/.internal/edit': {
@@ -2278,6 +2298,7 @@ const rootRouteChildren: RootRouteChildren = {
   ImgRoute: ImgRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   DotinternalEditRoute: DotinternalEditRoute,
+  DesignSystemSectionRoute: DesignSystemSectionRoute,
   SitemapFileRoute: SitemapFileRoute,
   DotinternalIndexRoute: DotinternalIndexRoute,
   AdminIndexRoute: AdminIndexRoute,

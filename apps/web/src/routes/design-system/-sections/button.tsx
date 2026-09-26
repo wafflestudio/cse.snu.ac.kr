@@ -36,7 +36,7 @@ export function ButtonSection() {
     <div className="space-y-12 type-body">
       <Sub title="역할">
         <p>
-          행동은 회색이다(1-2 강조 규칙). 주황 채움 버튼은 쓰지 않는다. 어떤
+          행동은 회색이다(색 절의 강조 규칙). 주황 채움 버튼은 쓰지 않는다. 어떤
           버튼을 쓸지는 행동의 종류로 정한다. 글자로 된 누를 수 있는
           것(링크·텍스트 버튼·아이콘 버튼)은 호버하면 주황, 누르면 짙은
           주황이다. 채운 버튼은 면 색이 바뀐다. 현재 위치·선택은 주황에 굵게를
@@ -65,18 +65,11 @@ export function ButtonSection() {
             </p>
           </div>
         </div>
-        <p className="type-meta text-neutral-500">
-          정리 전: "추가"가 주황 9·짙은 회색 7·연한 회색 1곳, 폼의 삭제가 저장과
-          같은 짙은 색, 목록이 짙은 색.
-        </p>
       </Sub>
 
       <Sub title="상태·크기">
         <div className="flex flex-wrap items-center gap-3">
           <Button variant="primary">기본</Button>
-          <span className="type-meta text-neutral-500">
-            → 호버 600, 누름 500
-          </span>
           <Button variant="primary" disabled>
             비활성
           </Button>
@@ -132,8 +125,8 @@ export function ButtonSection() {
             Button에 <code>className</code>을 덧붙이지 않는다.
           </li>
           <li>
-            교수 정렬·필터 알약은 선택 컨트롤(2-3), 이미지 팝업 버튼은
-            모달(2-4), 날짜·파일 선택은 입력(2-2)이다.
+            교수 정렬·필터 알약은 선택 컨트롤(선택·태그 절), 이미지 팝업 버튼은
+            모달 절, 날짜·파일 고르기는 입력·폼 절에서 정한다.
           </li>
         </ul>
       </Sub>

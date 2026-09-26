@@ -77,41 +77,11 @@ const LEVELS: Level[] = [
   },
 ];
 
-// 지금 콘텐츠 섹션 제목에 쓰이는 조합(조사 결과). 모두 섹션 제목 하나로 모은다.
-const SECTION_VARIANTS = [
-  ['16 · 700', 'text-base font-bold', '교수진 연락처(PeopleInfoList)'],
-  ['17 · 700', 'text-[17px] font-bold', '교과목(CoursesPage)'],
-  ['18 · 700', 'text-lg font-bold', '졸업 규정(degree-requirements)'],
-  ['20 · 700', 'text-[20px] font-bold', '장학·교수진·세미나 연도'],
-  [
-    '16 → 24 · 700',
-    'text-base font-bold sm:text-[24px]',
-    '선택형 상세(SelectionTitle)',
-  ],
-  ['24 · 700', 'text-2xl font-bold', '예약 달력'],
-  ['16 · 600', 'text-base font-semibold', '학부 소개·찾아오는 길'],
-];
-
 function Sub({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div className="space-y-4">
       <h3 className="text-lg font-bold">{title}</h3>
       {children}
-    </div>
-  );
-}
-
-function Pair({ before, after }: { before: ReactNode; after: ReactNode }) {
-  return (
-    <div className="grid gap-4 sm:grid-cols-2">
-      <div>
-        <p className="mb-1 text-sm text-neutral-500">정리 전</p>
-        {before}
-      </div>
-      <div>
-        <p className="mb-1 text-sm text-neutral-500">정리 후</p>
-        {after}
-      </div>
     </div>
   );
 }
@@ -146,8 +116,9 @@ export function TypeSection() {
           ))}
         </div>
         <p className="text-sm text-neutral-500">
-          예외(그래픽 역할): 카테고리 대제목 64(모바일 32), 메인 슬로건 Gowun
-          Batang, 404 숫자. 이 셋 말고는 위 단계 밖 크기를 쓰지 않는다.
+          예외(그래픽 역할): 카테고리 대제목 64(모바일 32,{' '}
+          <code>type-display</code>), 메인 슬로건 Gowun Batang, 404 숫자. 이 셋
+          말고는 위 단계 밖 크기를 쓰지 않는다.
         </p>
       </Sub>
 
@@ -155,7 +126,7 @@ export function TypeSection() {
         <ul className="list-disc space-y-1 pl-5">
           <li>
             줄간격은 여러 줄로 읽는 본문(<code>type-body</code>)에만 준다:
-            14px에 28px. 이 사이트의 기존 값이다.
+            14px에 28px.
           </li>
           <li>
             나머지 역할(제목·UI 글자·라벨·보조)은 줄높이 1.2다. 사이트
@@ -189,95 +160,26 @@ export function TypeSection() {
         </ul>
       </Sub>
 
-      <Sub title="정리 전: 섹션 제목 7가지">
-        <p>
-          본문 안 섹션 제목이 지금 7가지 조합이다. 모두 섹션 제목(20 · 700)
-          하나로 모은다.
-        </p>
-        <div className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
-          {SECTION_VARIANTS.map(([spec, cls, where]) => (
-            <div key={spec + where} className="flex items-baseline gap-3">
-              <span className={cls}>연구 분야</span>
-              <span className="text-xs text-neutral-500">
-                {spec} — {where}
-              </span>
-            </div>
-          ))}
-        </div>
-      </Sub>
-
-      <Sub title="뒤집힌 위계 바로잡기">
-        <div className="space-y-8">
-          <div className="space-y-2">
-            <p className="font-medium">교수진: 이름이 섹션 제목보다 크다</p>
-            <Pair
-              before={
-                <div>
-                  <p className="text-base font-bold">연락처</p>
-                  <p className="text-[18px] font-bold">홍길동 교수</p>
-                </div>
-              }
-              after={
-                <div>
-                  <p className="text-[20px] font-bold leading-8">연락처</p>
-                  <p className="text-base font-bold leading-6">홍길동 교수</p>
-                </div>
-              }
-            />
-          </div>
-          <div className="space-y-2">
-            <p className="font-medium">
-              게시물 상세 제목(20 · 600)이 세미나 연도 제목(20 · 700)보다 약하다
-            </p>
-            <Pair
-              before={
-                <div className="flex gap-6">
-                  <span className="text-[20px] font-semibold">
-                    2026 입학 설명회
-                  </span>
-                  <span className="text-[20px] font-bold">2026</span>
-                </div>
-              }
-              after={
-                <div className="flex gap-6">
-                  <span className="text-[20px] font-bold">
-                    2026 입학 설명회
-                  </span>
-                  <span className="text-base font-bold">2026</span>
-                </div>
-              }
-            />
-            <p className="text-sm text-neutral-500">
-              연도는 목록을 나누는 소제목이라 항목 제목(16 · 700)으로 내린다.
-            </p>
-          </div>
-          <div className="space-y-2">
-            <p className="font-medium">
-              편집 폼: 묶음 제목(14 · 600)과 필드명(14 · 500)이 거의 같고, 검색
-              라벨(14 · 700)이 더 굵다
-            </p>
-            <Pair
-              before={
-                <div className="space-y-1">
-                  <p className="text-md font-semibold">기본 정보</p>
-                  <p className="text-md font-medium">제목</p>
-                  <p className="text-md font-bold">검색어</p>
-                </div>
-              }
-              after={
-                <div className="space-y-1">
-                  <p className="text-base font-bold leading-6">기본 정보</p>
-                  <p className="text-md font-medium leading-5">제목</p>
-                  <p className="text-md font-medium leading-5">검색어</p>
-                </div>
-              }
-            />
-          </div>
-          <p className="text-sm text-neutral-500">
-            메인 링크 섹션의 제목이 항목보다 약한 문제는 3-6 메인에서 배치와
-            함께 고친다.
-          </p>
-        </div>
+      <Sub title="위계">
+        <p>안에 든 것이 그것을 묶는 제목보다 크거나 굵지 않게 역할을 고른다.</p>
+        <ul className="list-disc space-y-1 pl-5">
+          <li>
+            본문 안 섹션 제목은 어느 화면이든 <code>type-section</code>(20 ·
+            700) 하나다. 16·17·18px이나 600 굵기로 따로 만들지 않는다.
+          </li>
+          <li>
+            인물 이름은 항목 제목(<code>type-item</code>)이다. 그 이름을 담은
+            섹션 제목(연락처 등)보다 작다.
+          </li>
+          <li>
+            게시물 상세 제목은 섹션 제목(<code>type-section</code>)이다. 목록을
+            나누는 연도 같은 소제목은 항목 제목(<code>type-item</code>)이다.
+          </li>
+          <li>
+            편집 폼의 묶음 제목은 항목 제목(<code>type-item</code>), 필드명과
+            검색 라벨은 라벨(<code>type-label</code>)이다.
+          </li>
+        </ul>
       </Sub>
 
       <Sub title="목록의 행 제목">
