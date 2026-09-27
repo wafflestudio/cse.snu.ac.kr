@@ -75,7 +75,7 @@ function LinkGroup({ groupName, links, mode = 'light' }: LinkGroupProps) {
 
   return (
     <section>
-      <h3 className={`${titleColor} mb-2 type-label tracking-[0.025rem]`}>
+      <h3 className={`${titleColor} mb-4 type-label tracking-[0.025rem]`}>
         {groupName}
       </h3>
 
