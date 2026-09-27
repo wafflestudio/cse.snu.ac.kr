@@ -27,7 +27,7 @@ export default function Checkbox({
     <label
       htmlFor={id}
       className={clsx(
-        'group flex w-fit items-center gap-1 whitespace-nowrap type-ui text-neutral-600',
+        'focus-proxy group flex w-fit items-center gap-1 whitespace-nowrap type-ui text-neutral-600',
         disabled ? 'cursor-not-allowed opacity-40' : 'cursor-pointer',
       )}
     >

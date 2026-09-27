@@ -16,7 +16,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
     return (
       <label
         htmlFor={id}
-        className="group flex w-fit cursor-pointer items-center gap-1 whitespace-nowrap type-ui text-neutral-600"
+        className="focus-proxy group flex w-fit cursor-pointer items-center gap-1 whitespace-nowrap type-ui text-neutral-600"
       >
         <span className="relative inline-flex shrink-0">
           <Circle

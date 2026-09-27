@@ -14,16 +14,16 @@ interface PillGroupProps<T extends string> {
 }
 
 const PILL =
-  'inline-flex h-7.5 cursor-pointer select-none items-center whitespace-nowrap rounded-full border px-3 type-label transition duration-200 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2';
+  'inline-flex h-7.5 cursor-pointer select-none items-center whitespace-nowrap rounded-full border px-3 type-label transition duration-200 focus-proxy';
 
 const TONE = {
   light: (selected: boolean) =>
     selected
-      ? 'border-neutral-700 bg-neutral-700 text-white has-[:focus-visible]:outline-neutral-700'
-      : 'border-neutral-300 bg-white text-neutral-600 hover:bg-neutral-100 has-[:focus-visible]:outline-neutral-700',
+      ? 'border-neutral-700 bg-neutral-700 text-white'
+      : 'border-neutral-300 bg-white text-neutral-600 hover:bg-neutral-100',
   dark: (selected: boolean) =>
     clsx(
-      'border-main-orange-dark has-[:focus-visible]:outline-main-orange-dark',
+      'border-main-orange-dark',
       selected
         ? 'bg-main-orange-dark text-neutral-850'
         : 'text-main-orange-dark',

@@ -190,6 +190,14 @@
 }
 
 /* 초점 링 색을 정하는 면 표시. 가장 가까운 조상의 값이 이긴다(변수 상속). */
+/* 숨긴 입력(sr-only 체크박스·라디오)을 감싼 라벨에 초점 링을 그린다 — 초점은 숨긴 입력에 가서 그대로면 안 보인다. */
+@utility focus-proxy {
+  &:has(:focus-visible) {
+    outline: 2px solid var(--focus-ring, var(--color-neutral-700));
+    outline-offset: 2px;
+  }
+}
+
 @utility field-ring-within {
   &:has(:focus-visible) {
     outline: 2px solid var(--focus-ring, var(--color-neutral-700));

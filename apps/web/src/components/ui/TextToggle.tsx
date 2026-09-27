@@ -29,7 +29,7 @@ export default function TextToggle<T extends string>({
           )}
           <label
             className={clsx(
-              'whitespace-nowrap transition duration-200 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-neutral-700',
+              'focus-proxy whitespace-nowrap transition duration-200',
               option.value === value
                 ? 'text-neutral-950'
                 : 'cursor-pointer text-neutral-500 hover:text-main-orange',
