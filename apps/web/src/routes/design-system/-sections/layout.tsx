@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import PillGroup from '@/components/ui/PillGroup';
 import {
   DocSection,
-  DoDont,
   Lead,
   Related,
   RuleList,
@@ -171,28 +170,6 @@ function WidthExplorer() {
   );
 }
 
-// 이렇게·하지 않는다 도식: 넓은 영역 안의 문단(회색 줄)과 표(칸).
-function Lines({ full }: { full?: boolean }) {
-  return (
-    <div className="w-full space-y-1.5 border border-neutral-200 bg-neutral-50 p-2">
-      <div className="space-y-1.5" style={{ width: full ? '100%' : '58%' }}>
-        {[100, 100, 100, 70].map((w, i) => (
-          <div
-            key={i}
-            className="h-1.5 bg-neutral-300"
-            style={{ width: `${w}%` }}
-          />
-        ))}
-      </div>
-      <div className="grid grid-cols-4 gap-px bg-neutral-200 pt-px">
-        {Array.from({ length: 8 }, (_, i) => (
-          <div key={i} className="h-3 bg-white" />
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export function LayoutSection() {
   return (
     <>
@@ -212,20 +189,6 @@ export function LayoutSection() {
             'JS로 갈라야 할 때만 useIsMobile()(1024px 미만)을 쓴다. 보이기만 다른 분기는 CSS로 한다.',
             '공개 화면은 320px부터, 행정실 편집·관리 화면은 1200px부터 맞춘다.',
           ]}
-        />
-      </DocSection>
-
-      <DocSection title="이렇게 · 이렇게 하지 않는다">
-        <DoDont
-          good={{
-            example: <Lines />,
-            caption: '문단은 640px에서 멈추고, 표는 영역을 다 쓴다.',
-          }}
-          bad={{
-            example: <Lines full />,
-            caption:
-              '문단을 영역 끝까지 늘린다 — 한 줄이 너무 길어 읽기 어렵다.',
-          }}
         />
       </DocSection>
 

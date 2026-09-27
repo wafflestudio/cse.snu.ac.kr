@@ -64,10 +64,7 @@ const SURFACES: [string, string, string, string][] = [
 export function ColorSection() {
   return (
     <>
-      <Lead>
-        면과 글자는 회색 단계로 짓고, 행동은 회색의 짙기로, 현재 위치·선택 같은
-        표시는 주황으로 한다.
-      </Lead>
+      <Lead>회색은 행동, 주황은 표시다.</Lead>
 
       <DocSection title="값">
         <Sub title="면">
@@ -214,24 +211,6 @@ export function ColorSection() {
       </DocSection>
 
       <DocSection title="이렇게 · 이렇게 하지 않는다">
-        <DoDont
-          good={{
-            example: (
-              <span className="type-meta text-neutral-500">
-                2026/09/25 · 행정실
-              </span>
-            ),
-            caption: '읽어야 하는 보조 글자는 neutral-500.',
-          }}
-          bad={{
-            example: (
-              <span className="type-meta text-neutral-400">
-                2026/09/25 · 행정실
-              </span>
-            ),
-            caption: '흰 바탕에 neutral-400 — 대비가 모자라 읽기 어렵다.',
-          }}
-        />
         <DoDont
           good={{
             example: (

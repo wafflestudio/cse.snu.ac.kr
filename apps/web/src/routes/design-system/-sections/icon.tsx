@@ -90,10 +90,7 @@ function IconScale() {
 export function IconSection() {
   return (
     <>
-      <Lead>
-        아이콘은 lucide 한 벌만 쓴다. 크기와 선 굵기는 옆 글자에 맞춰 저절로
-        정해지니 고르는 것은 그림뿐이다 .
-      </Lead>
+      <Lead>아이콘은 lucide 한 벌에서 그림만 고른다.</Lead>
 
       <DocSection title="값">
         <Sub title="크기·선 굵기">

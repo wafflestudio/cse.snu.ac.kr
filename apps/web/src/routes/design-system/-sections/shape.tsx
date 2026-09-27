@@ -73,10 +73,7 @@ function Card({ bad }: { bad?: boolean }) {
 export function ShapeSection() {
   return (
     <>
-      <Lead>
-        이 사이트는 각진 선과 면이 기본이다. 모서리는 세 가지, 그림자는 한 가지,
-        선은 두 굵기만 쓴다.
-      </Lead>
+      <Lead>이 사이트는 각진 선과 면이 기본이다.</Lead>
 
       <DocSection title="값">
         <Sub title="모서리">

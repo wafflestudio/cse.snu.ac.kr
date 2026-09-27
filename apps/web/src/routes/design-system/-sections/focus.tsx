@@ -45,11 +45,7 @@ function Card({ ring, clipped }: { ring: string; clipped?: boolean }) {
 export function FocusSection() {
   return (
     <>
-      <Lead>
-        키보드로 움직이는 사람은 초점 표시로 지금 위치를 안다. 초점 표시는
-        사이트 전체가 한 모양이고, 마우스로 누를 때는 나타나지 않는다(키보드로
-        옮겼을 때만).
-      </Lead>
+      <Lead>초점 표시는 키보드로 움직이는 사람에게 지금 위치를 알린다.</Lead>
 
       <DocSection title="값">
         <Example caption="밝은 면 — 버튼·링크">
@@ -96,6 +92,7 @@ export function FocusSection() {
         <RuleList
           items={[
             '초점 모양은 전역 규칙 하나가 준다. 요소마다 링·outline-none 을 따로 적지 않는다.',
+            '초점 표시는 키보드로 옮겼을 때만 나타난다. 마우스로 누를 때는 나타나지 않는다.',
             '넘치는 부분을 자르는 틀(캐러셀·이미지 팝업 판)에 링이 잘리면, 틀 안쪽에 4px 여유를 두거나(캐러셀) 링을 안쪽으로 2px 띄워 그린다(팝업 버튼). 한 줄에 놓인 버튼은 같은 모양이다.',
             '숨긴 입력(체크박스·라디오·알약·글자 토글)은 초점이 숨긴 입력에 가므로 감싼 라벨에 링을 그린다.',
             '페이지를 열자마자 스스로 뜨는 팝업은 초점을 판에 둔다 — 누르기 전에 버튼에 링이 뜨지 않게.',
@@ -132,16 +129,6 @@ export function FocusSection() {
           bad={{
             example: <Card clipped ring={RING} />,
             caption: '밖으로 그린 링이 스크롤 영역에 잘린다.',
-          }}
-        />
-        <DoDont
-          good={{
-            example: <Field border />,
-            caption: '입력 칸도 초점이 보인다(테두리가 짙어진다).',
-          }}
-          bad={{
-            example: <Field />,
-            caption: '초점을 꺼 둔다 — 어느 칸에 있는지 모른다.',
           }}
         />
       </DocSection>

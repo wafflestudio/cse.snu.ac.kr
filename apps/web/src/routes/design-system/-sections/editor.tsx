@@ -28,10 +28,7 @@ function SampleEditor() {
 export function EditorSection() {
   return (
     <>
-      <Lead>
-        에디터는 게시물 본문을 쓰는 칸이다. 이 페이지는 겉모양만 정한다 — 툴바
-        구성·붙여넣기 정리·CSP 동작은 기능이라 여기서 바꾸지 않는다.
-      </Lead>
+      <Lead>에디터는 게시물 본문을 쓰는 칸이다.</Lead>
 
       <DocSection title="예시">
         <Example caption="편집 영역의 본문은 뷰어와 같은 CSS를 쓴다 — 편집기에서 고른 글자 크기가 뷰어에서도 같게 보인다.">
@@ -45,6 +42,7 @@ export function EditorSection() {
             '겉 테두리와 모서리는 다른 입력 칸(입력·폼)과 같게 둔다.',
             '툴바 글자(크기·문단 형식)도 사이트 서체를 쓴다.',
             '편집 영역의 본문 CSS를 뷰어와 따로 두지 않는다.',
+            '툴바 구성·붙여넣기 정리·CSP 동작은 기능이라 겉모양을 고치며 바꾸지 않는다.',
           ]}
         />
       </DocSection>

@@ -6,7 +6,6 @@ import Form from '@/components/form/Form';
 import Button from '@/components/ui/Button';
 import {
   DocSection,
-  DoDont,
   Example,
   Lead,
   Related,
@@ -86,10 +85,7 @@ const WIDTHS = [
 export function FormSection() {
   return (
     <>
-      <Lead>
-        입력 칸은 값을 적거나 고르는 곳이다. 칸의 모양은 부품이 정하고, 쓰는
-        사람은 칸의 종류와 폭, 필드를 한 줄에 둘지만 정한다.
-      </Lead>
+      <Lead>입력 칸은 값을 적거나 고르는 곳이다.</Lead>
 
       <DocSection title="예시">
         <Example>
@@ -239,31 +235,6 @@ export function FormSection() {
         <Example caption="오류 문장은 그 필드 바로 아래에 부품이 그린다. 버튼 줄 옆에는 개수만 적는다 — 긴 폼에서 위쪽 오류를 놓치지 않게. 문장은 문구 페이지를 따른다.">
           <InvalidSample />
         </Example>
-      </DocSection>
-
-      <DocSection title="이렇게 · 이렇게 하지 않는다">
-        <DoDont
-          good={{
-            example: (
-              <SampleForm>
-                <Fieldset title="연도">
-                  <Form.Text name="yearShort" size="sm" />
-                </Fieldset>
-              </SampleForm>
-            ),
-            caption: '짧은 값에는 짧은 칸.',
-          }}
-          bad={{
-            example: (
-              <SampleForm>
-                <Fieldset title="연도">
-                  <Form.Text name="yearWide" />
-                </Fieldset>
-              </SampleForm>
-            ),
-            caption: '기본 폭(꽉)을 그대로 둔다 — 빈 칸이 길게 늘어진다.',
-          }}
-        />
       </DocSection>
 
       <DocSection title="관련">

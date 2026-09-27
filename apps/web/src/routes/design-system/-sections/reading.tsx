@@ -1,7 +1,8 @@
+import clsx from 'clsx';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import {
+  DeviceToggle,
   DocSection,
-  DoDont,
   Example,
   Lead,
   Related,
@@ -22,63 +23,71 @@ const SAMPLE = {
   cssRules: '',
 };
 
+const IMAGE_TEXT = [
+  '컴퓨터공학부 대학원 전기 모집 요강을 안내합니다. 지원 자격과 제출 서류, 전형 일정을 아래에서 확인해 주세요. 원서 접수 기간이 지나면 받지 않습니다.',
+  '제출 서류는 모두 PDF로 올려 주세요. 면접 일정은 개별 연락하지 않으므로 홈페이지 공지를 꼭 확인해 주세요.',
+  '문의는 컴퓨터공학부 행정실로 해 주세요. 학부 과정 관련 문의는 학부 사무실, 장학 관련 문의는 장학 담당자에게 따로 해 주세요.',
+];
+
+// 대표 이미지 자리. 실제는 HTMLViewer 의 image — 데스크톱은 오른쪽에 띄우고(왼쪽 32) 모바일은 위에 폭 가득.
+function ImageSlot({ className }: { className: string }) {
+  return (
+    <div
+      className={clsx(
+        'mb-8 flex items-center justify-center bg-neutral-200 type-meta text-neutral-500',
+        className,
+      )}
+    >
+      대표 이미지
+    </div>
+  );
+}
+
+function ImageLayout({ mobile }: { mobile: boolean }) {
+  return (
+    <div
+      className={clsx('flow-root bg-neutral-50 p-6', !mobile && 'max-w-3xl')}
+    >
+      <ImageSlot
+        className={mobile ? 'h-40 w-full' : 'float-right ml-8 h-28 w-60'}
+      />
+      <div className="space-y-4">
+        {IMAGE_TEXT.map((text) => (
+          <p key={text} className="max-w-160 type-body">
+            {text}
+          </p>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function ReadingSection() {
   return (
     <>
       <Lead>
-        작성자가 에디터로 쓴 글은 <code>HTMLViewer</code> 하나로 보인다. 제목·
-        문단·인용·표의 모양은 뷰어가 정하고, 에디터도 같은 값을 써서 쓰는 화면과
-        보는 화면이 같다.
+        작성자가 에디터로 쓴 글은 <code>HTMLViewer</code> 하나로 보인다.
       </Lead>
 
       <DocSection title="짜임">
-        <Example caption="문단·목록·제목·인용은 읽기 폭 640에서 멈추고, 표·이미지는 본문 폭을 쓴다. 넓은 표는 표 안에서 가로로 스크롤한다.">
+        <Example caption="문단·목록·제목·인용은 읽기 폭 640에서 멈추고, 표·이미지는 본문 폭을 쓴다. 넓은 표는 표 안에서 가로로 스크롤한다. 에디터도 같은 값을 써서 쓰는 화면과 보는 화면이 같다.">
           <div className="w-full max-w-2xl bg-neutral-50 p-6">
             <HTMLViewer html={SAMPLE} />
           </div>
         </Example>
       </DocSection>
 
-      <DocSection title="규칙">
-        <RuleList
-          items={[
-            '작성자가 직접 고른 글자 크기·색·표 서식은 건드리지 않는다.',
-            '본문 옆 대표 이미지는 뷰어에 넘긴다(폭 200·240·320) — 오른쪽에 띄우고 글이 감싸 흐른다. 모바일은 위.',
-          ]}
+      <DocSection title="대표 이미지">
+        <DeviceToggle
+          caption="대표 이미지는 뷰어에 폭(200·240·320)과 함께 넘긴다. 그림은 폭 240, 왼쪽 여백 32."
+          desktop={<ImageLayout mobile={false} />}
+          mobile={<ImageLayout mobile />}
         />
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않는다">
-        <DoDont
-          good={{
-            example: (
-              <p className="type-body">
-                자세한 일정은{' '}
-                <a
-                  href="#reading"
-                  className="text-link underline underline-offset-2 hover:text-main-orange"
-                >
-                  입학 본부 공지
-                </a>
-                를 확인해 주세요.
-              </p>
-            ),
-            caption:
-              '본문 밖에서 링크를 짜도 본문 링크와 같다 — 링크 색 + 밑줄, 호버 주황.',
-          }}
-          bad={{
-            example: (
-              <p className="type-body">
-                자세한 일정은{' '}
-                <a href="#reading" className="font-bold text-main-orange">
-                  입학 본부 공지
-                </a>
-                를 확인해 주세요.
-              </p>
-            ),
-            caption:
-              '주황 굵은 글자로 링크를 만든다 — 주황은 현재 위치·강조의 색이다.',
-          }}
+      <DocSection title="규칙">
+        <RuleList
+          items={['작성자가 직접 고른 글자 크기·색·표 서식은 건드리지 않는다.']}
         />
       </DocSection>
 

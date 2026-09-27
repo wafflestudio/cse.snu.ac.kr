@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
 import {
+  DeviceToggle,
   DocSection,
   DoDont,
   Example,
@@ -63,6 +64,140 @@ function Card({
   );
 }
 
+// ── 폭 비교 그림(DeviceToggle). 실제 값: CategoryPage·CategoryGrid·GraphicSection.
+
+const DESCRIPTION =
+  '컴퓨터공학부는 컴퓨터 기술의 진화를 선도할 인재를 양성합니다.';
+
+// 카드 띠 자리 — 머리 그림에서는 카드 모양이 아니라 위치만 보인다.
+function CardBand({ mobile }: { mobile: boolean }) {
+  return (
+    <div
+      className={clsx(
+        'grid gap-3 bg-neutral-900',
+        mobile ? 'grid-cols-2 p-4' : 'grid-cols-[repeat(3,6rem)] p-6',
+      )}
+    >
+      {[0, 1, 2].map((i) => (
+        <div key={i} className="h-12 bg-neutral-100" />
+      ))}
+    </div>
+  );
+}
+
+function HeadLayout({ mobile }: { mobile: boolean }) {
+  const description = (
+    <p
+      className={clsx(
+        'max-w-160 type-body',
+        mobile ? 'px-4 pt-6 pb-8 text-neutral-400' : 'mt-6 text-neutral-100',
+      )}
+    >
+      {DESCRIPTION}
+    </p>
+  );
+  return (
+    <div className="bg-neutral-850">
+      <div className={mobile ? 'px-4 py-6' : 'px-6 pt-8 pb-8'}>
+        <p
+          className={clsx(
+            'mb-2 text-neutral-500',
+            mobile ? 'type-ui' : 'type-section font-normal',
+          )}
+        >
+          Meet CSE
+        </p>
+        <p className="type-display text-white">소개</p>
+        {!mobile && description}
+      </div>
+      <CardBand mobile={mobile} />
+      {mobile && description}
+    </div>
+  );
+}
+
+const TENTEN = ['Proposal', 'Manager', 'Participants(Professors)'];
+
+// 띄어쓰기 없는 긴 제목은 "(" 앞에서만 줄을 바꾼다.
+function breakBeforeParen(text: string) {
+  const i = text.indexOf('(');
+  if (i <= 0) return text;
+  return (
+    <>
+      {text.slice(0, i)}
+      <wbr />
+      {text.slice(i)}
+    </>
+  );
+}
+
+function CardsLayout({ mobile }: { mobile: boolean }) {
+  return (
+    <div
+      className={clsx(
+        'bg-neutral-900',
+        // 모바일 틀은 실제 폭(390)보다 좁을 수 있어 띠 여백·간격을 줄여 그린다.
+        mobile ? 'grid grid-cols-2 gap-3 p-3' : 'flex flex-wrap gap-8 p-6',
+      )}
+    >
+      {TENTEN.map((title) => (
+        <div
+          key={title}
+          className={clsx(
+            'flex flex-col justify-between bg-neutral-100 text-neutral-950',
+            mobile ? 'min-h-24 min-w-0 p-3' : 'h-40 w-75 max-w-full p-6',
+          )}
+        >
+          <p className="type-item">{breakBeforeParen(title)}</p>
+          <div className="flex justify-end">
+            <ArrowRight className={mobile ? 'size-5' : 'size-8'} />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+const SLOGAN = [
+  '서울대학교 컴퓨터공학부는',
+  '창의와 지식을 융합하여',
+  '컴퓨터 기술의',
+  '진화를 선도합니다.',
+];
+
+function SloganLayout({ mobile }: { mobile: boolean }) {
+  const lines = mobile ? SLOGAN.slice(1) : SLOGAN;
+  return (
+    <div
+      className={clsx(
+        'flex items-center bg-neutral-900 text-white',
+        mobile
+          ? 'flex-col gap-8 px-4 py-10'
+          : 'flex-wrap justify-center gap-10 p-10',
+      )}
+    >
+      <div
+        className={clsx(
+          'flex flex-col gap-3 font-[Gowun_Batang]',
+          mobile ? 'items-center text-center text-xl' : 'text-2xl',
+        )}
+      >
+        {lines.map((line) => (
+          <p key={line}>{line}</p>
+        ))}
+      </div>
+      <div
+        className={clsx(
+          'flex items-center justify-center border border-dashed border-neutral-500 type-meta text-neutral-500',
+          mobile ? 'order-first h-32 w-4/5' : 'h-40 w-48 shrink-0',
+        )}
+      >
+        그래픽
+      </div>
+    </div>
+  );
+}
+
 function More() {
   return (
     <span className="flex items-center gap-1 type-ui text-main-orange-dark">
@@ -77,22 +212,15 @@ export function MainSection() {
       <Lead>메인과 카테고리 페이지는 이 사이트에만 있는 화면이다.</Lead>
 
       <DocSection title="카테고리 머리">
-        <Example
-          tone="dark"
-          caption="영어 부제 위, 큰 제목 아래. 설명 문구는 데스크톱은 제목 아래, 모바일은 카드 띠 아래."
-        >
-          <div className="px-2 py-4">
-            <p className="mb-2 type-section font-normal text-neutral-500">
-              Meet CSE
-            </p>
-            <p className="type-display text-white">소개</p>
-          </div>
-        </Example>
+        <DeviceToggle
+          caption="영어 부제 위, 큰 제목 아래. 설명 문구의 자리가 폭마다 다르다."
+          desktop={<HeadLayout mobile={false} />}
+          mobile={<HeadLayout mobile />}
+        />
         <RuleList
           items={[
             '큰 제목 글자(type-display)는 카테고리 머리에만 쓴다.',
             '영어 부제는 큰 제목 위에 흐린 회색으로 둔다.',
-            '설명 문구는 데스크톱에서 제목 아래, 모바일에서 카드 띠 아래에 둔다.',
           ]}
         />
       </DocSection>
@@ -108,13 +236,17 @@ export function MainSection() {
           <Card title="학부" state="selected" mark="collapse" label="펼침" />
           <Card title="학사 일정" state="leaf" mark="go" label="하위 카드" />
         </Example>
+        <DeviceToggle
+          caption="데스크톱은 폭 300 카드가 줄을 채우고, 모바일은 두 칸이 폭을 똑같이 나눈다. 띄어쓰기 없는 긴 제목은 “(” 앞에서 줄을 바꾼다."
+          desktop={<CardsLayout mobile={false} />}
+          mobile={<CardsLayout mobile />}
+        />
         <RuleList
           items={[
             '오른쪽 아래 표시로 누르면 무엇이 되는지 보인다 — 페이지로 가면 →, 하위 카드를 펼치면 ⌄, 펼친 카드는 ⌃.',
             '호버는 바탕이 한 단계 진해지고 화살표가 오른쪽으로 민다. 펼친 카드는 짙은 주황에 흰 글자.',
             '펼친 하위 카드는 더 짙은 회색으로 위 카드 줄 아래에 같은 간격으로 잇는다.',
             '제목 아래에 영어 이름을 둔다.',
-            '모바일은 두 칸이 폭을 똑같이 나눈다. 띄어쓰기 없는 긴 제목은 "(" 앞에서 줄을 바꾼다.',
           ]}
         />
       </DocSection>
@@ -135,9 +267,13 @@ export function MainSection() {
       </DocSection>
 
       <DocSection title="메인 — 슬로건">
+        <DeviceToggle
+          caption="데스크톱은 네 줄, 모바일은 첫 줄을 빼고 세 줄을 가운데 정렬로 보인다."
+          desktop={<SloganLayout mobile={false} />}
+          mobile={<SloganLayout mobile />}
+        />
         <RuleList
           items={[
-            '슬로건은 네 줄이다. 데스크톱은 네 줄을 다 보이고, 모바일은 첫 줄을 빼고 세 줄만 보인다.',
             '문구를 바꿀 때는 첫 줄이 빠져도 문장이 되고, 한 줄이 모바일 폭에 들어가게 고른다(영어는 약 24자).',
           ]}
         />

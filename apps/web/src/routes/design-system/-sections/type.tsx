@@ -115,10 +115,7 @@ const WRAP_SAMPLE =
 export function TypeSection() {
   return (
     <>
-      <Lead>
-        글자는 역할을 하나 고르면 크기·굵기·줄높이가 한 벌(type-*)로 정해진다.
-        색만 따로 붙인다. 크기는 13·14·16·20·24·32, 굵기는 400·500·700뿐이다.
-      </Lead>
+      <Lead>글자는 크기가 아니라 역할을 고른다.</Lead>
 
       <DocSection title="값">
         <Scale />
@@ -127,6 +124,7 @@ export function TypeSection() {
       <DocSection title="쓰는 법">
         <RuleList
           items={[
+            '역할(type-*) 하나가 크기·굵기·줄높이를 한 벌로 정한다. 색만 따로 붙인다.',
             '단계 밖 크기는 카테고리 대제목(type-display, 64·모바일 32), 메인 슬로건(Gowun Batang), 404 숫자 셋뿐이다. 12px 이하는 쓰지 않는다.',
             '안에 든 것이 그것을 묶는 제목보다 크거나 굵지 않게 역할을 고른다.',
             '본문 안 섹션 제목은 어느 화면이든 type-section 이다.',

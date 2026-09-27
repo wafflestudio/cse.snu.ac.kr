@@ -74,8 +74,7 @@ export function NavigationSection() {
   return (
     <>
       <Lead>
-        셸(헤더·경로·왼쪽 내비·서브내비·푸터)은 <code>PageLayout</code>이
-        그린다. 화면을 짜는 사람은 서브내비를 둘지와 메뉴에 올릴 이름만 정한다.
+        헤더부터 푸터까지 셸은 <code>PageLayout</code>이 그린다.
       </Lead>
 
       <DocSection title="짜임">

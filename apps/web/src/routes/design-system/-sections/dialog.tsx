@@ -125,11 +125,7 @@ function ImageSample() {
 export function DialogSection() {
   return (
     <>
-      <Lead>
-        모달은 지금 화면 위에 판을 띄워 짧은 일을 끝내게 한다. 판의 모양은
-        부품(Dialog·확인창·이미지 팝업)이 정하고, 쓰는 사람은 크기와 제목,
-        확인창의 실행 버튼 이름만 정한다.
-      </Lead>
+      <Lead>모달은 지금 화면 위에 판을 띄워 짧은 일을 끝내게 한다.</Lead>
 
       <DocSection title="예시">
         <Example caption="판은 화면 위에 뜨므로 여기서는 같은 모양을 그려 보인다.">

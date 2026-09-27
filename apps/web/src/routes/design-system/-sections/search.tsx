@@ -36,11 +36,7 @@ function UnderlineSearch() {
 export function SearchSection() {
   return (
     <>
-      <Lead>
-        검색 칸은 <code>SearchInput</code> 하나로 그린다. 검색 실행(주소
-        바꾸기)은 감싸는 form이 맡는다. 쓰는 사람은 놓일 면(밝음·어두움)과 칸
-        위에 이름을 둘지만 정한다.
-      </Lead>
+      <Lead>검색 칸은 놓일 면에 맞는 모양 하나를 고른다.</Lead>
 
       <DocSection title="예시">
         <Example caption="검색 상자(공지 등) — 이름을 칸 위에 둔다.">
@@ -66,6 +62,7 @@ export function SearchSection() {
       <DocSection title="검색 상자 안">
         <RuleList
           items={[
+            '검색 실행(주소 바꾸기)은 칸을 감싸는 form이 맡는다.',
             '태그 고르기는 체크박스(입력·폼), 고른 태그 줄은 지우기가 붙은 태그(선택·태그)를 그대로 쓴다.',
           ]}
         />

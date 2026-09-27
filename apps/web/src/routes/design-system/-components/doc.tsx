@@ -2,11 +2,14 @@ import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { Check, X } from 'lucide-react';
 import type { ReactNode } from 'react';
+import { useState } from 'react';
+import PillGroup from '@/components/ui/PillGroup';
 
 // 디자인 시스템 문서 페이지의 틀 한 벌. 부품 페이지는 이 순서로 쓴다:
 // 한 줄 설명(Lead) → 예시(Example) → 종류(VariantTable) → 대신 쓰는 것 → 배치 → 이렇게·이렇게 하지 않는다(DoDont) → 관련(Related).
 // 쓰는 사람이 정해야 하는 것만 적는다 — 부품이 정하는 값(크기·여백·호버 색)은 예시가 보여 주고 소스가 정본이다.
 // 규칙은 그림에 붙여 쓴다. 코드는 싣지 않는다.
+// 폭에 따라 달라지는 것은 DeviceToggle 로 바꿔 보게 한다. 첫 줄 설명(Lead)은 한 문장.
 // 기반(색·글자·간격…)은 값 자체가 고르는 대상이라 값 표(SpecTable)를 쓴다: 한 줄 설명 → 값 → 쓰는 법 → 이렇게·하지 않는다 → 관련.
 // 패턴·화면은 짜임 그림 → 규칙(RuleList) → 이렇게·하지 않는다 → 관련. 짜는 사람이 고르는 간격 값은 적는다.
 
@@ -186,6 +189,43 @@ export function SpecTable({
         </div>
       ))}
     </div>
+  );
+}
+
+// 폭에 따라 모양이 다른 것은 글 대신 모바일·데스크톱을 바꿔 보게 한다. 두 모양은 쓰는 쪽이 그린다
+// (미디어 쿼리는 창 폭을 보므로 실제 부품을 좁은 상자에 넣어도 모바일 모양이 되지 않는다).
+export function DeviceToggle({
+  mobile,
+  desktop,
+  caption,
+}: {
+  mobile: ReactNode;
+  desktop: ReactNode;
+  caption?: ReactNode;
+}) {
+  const [device, setDevice] = useState<'mobile' | 'desktop'>('desktop');
+  return (
+    <figure className="space-y-3">
+      <PillGroup
+        ariaLabel="화면 폭"
+        options={[
+          { value: 'mobile', label: '모바일 390' },
+          { value: 'desktop', label: '데스크톱 1440' },
+        ]}
+        value={device}
+        onChange={setDevice}
+      />
+      <div className="border border-neutral-200 bg-white p-6">
+        <div className={device === 'mobile' ? 'w-full max-w-90' : 'w-full'}>
+          {device === 'mobile' ? mobile : desktop}
+        </div>
+      </div>
+      {caption && (
+        <figcaption className="type-meta text-neutral-500">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
   );
 }
 

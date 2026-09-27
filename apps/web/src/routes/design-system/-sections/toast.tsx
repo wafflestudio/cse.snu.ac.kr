@@ -29,10 +29,7 @@ function Kind({
 export function ToastSection() {
   return (
     <>
-      <Lead>
-        토스트는 한 일의 결과를 잠깐 알린다. 모양과 자리는 부품이 정하고, 쓰는
-        사람은 종류와 문구만 정한다. 상태는 아이콘이 알리고 판 색은 하나다.
-      </Lead>
+      <Lead>토스트는 한 일의 결과를 잠깐 알린다.</Lead>
 
       <DocSection title="예시">
         <Example caption="눌러서 띄워 본다.">
@@ -83,6 +80,7 @@ export function ToastSection() {
         />
         <RuleList
           items={[
+            '상태는 아이콘이 알린다. 판 색은 종류와 상관없이 하나다.',
             '성공·안내 문구는 문구 페이지를 따른다.',
             '모양은 ui/sonner/ 복사본의 styles.css에서 고친다 — strict CSP 때문에 소스를 복사해 쓴다.',
           ]}

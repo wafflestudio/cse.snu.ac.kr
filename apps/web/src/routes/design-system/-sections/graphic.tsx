@@ -85,10 +85,7 @@ function TwoGroups({ node }: { node?: boolean }) {
 export function GraphicSection() {
   return (
     <>
-      <Lead>
-        그래픽은 원과 선, 접힌 모서리, 메인 그래픽 세 가지다. 모두 정보 사이의
-        관계를 그리는 데 쓰고, 빈 곳을 채우는 장식으로 쓰지 않는다.
-      </Lead>
+      <Lead>그래픽은 정보 사이의 관계를 그린다.</Lead>
 
       <DocSection title="값">
         <Sub title="원과 선 — 연결과 구분">
@@ -130,6 +127,7 @@ export function GraphicSection() {
       <DocSection title="쓰는 법">
         <RuleList
           items={[
+            '그래픽은 원과 선, 접힌 모서리, 메인 그래픽 세 가지다. 빈 곳을 채우는 장식으로 쓰지 않는다.',
             '원과 선은 위 변형 중에서 고른다. 직선과 45도 사선만 쓰고 끝에 원을 둔다.',
             '선에는 클릭 동작을 주지 않는다. 이동은 선 옆의 이름(링크)이 맡는다.',
             '밝은 면에서는 주황, 어두운 제목 영역에서는 회색 선이다. 어두운 내비의 주황 선은 "현재 위치" 표시라 예외다.',

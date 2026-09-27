@@ -28,10 +28,7 @@ function Spacer() {
 export function ButtonSection() {
   return (
     <>
-      <Lead>
-        버튼은 누르면 이 화면에서 무언가를 하는 것이다. 모양은 행동의 종류로
-        고르고, 강조는 주황이 아니라 회색의 짙기로 한다.
-      </Lead>
+      <Lead>버튼은 누르면 이 화면에서 무언가를 한다.</Lead>
 
       <DocSection title="예시">
         <Example>
@@ -135,36 +132,6 @@ export function ButtonSection() {
           bad={{
             example: <OrangeFilled>저장</OrangeFilled>,
             caption: '주황으로 채운다 — 주황은 현재 위치·강조의 색이다.',
-          }}
-        />
-        <DoDont
-          good={{
-            example: (
-              <>
-                <Button variant="secondary">취소</Button>
-                <Button variant="primary">삭제</Button>
-              </>
-            ),
-            caption: '확인창의 실행 버튼은 하는 일을 적는다.',
-          }}
-          bad={{
-            example: (
-              <>
-                <Button variant="secondary">취소</Button>
-                <Button variant="primary">확인</Button>
-              </>
-            ),
-            caption: '"확인"으로 대신한다 — 무엇이 일어나는지 모른다.',
-          }}
-        />
-        <DoDont
-          good={{
-            example: <Button variant="primary">교수 추가</Button>,
-            caption: '짧은 행동명, 대상이 필요하면 앞에.',
-          }}
-          bad={{
-            example: <Button variant="primary">추가하기</Button>,
-            caption: '"-하기"를 붙인다.',
           }}
         />
       </DocSection>

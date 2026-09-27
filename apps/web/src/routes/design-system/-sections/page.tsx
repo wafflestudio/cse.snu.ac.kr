@@ -87,8 +87,7 @@ export function PageSection() {
   return (
     <>
       <Lead>
-        화면은 <code>PageLayout</code> 하나로 짓는다. 여백은 틀이 준다 — 짜는
-        사람은 틀(기본·띠)과 띠의 색, 관리 버튼의 자리만 고른다.
+        화면은 <code>PageLayout</code> 하나로 짓는다.
       </Lead>
 
       <DocSection title="짜임">

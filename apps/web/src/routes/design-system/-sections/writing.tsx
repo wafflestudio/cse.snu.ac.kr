@@ -26,10 +26,7 @@ function Pairs({ rows }: { rows: [string, string][] }) {
 export function WritingSection() {
   return (
     <>
-      <Lead>
-        문구는 차분한 존댓말(-습니다·-해 주세요)로, 무엇을 했는지·할지를 짧게
-        쓴다. 느낌표·"정말"·"성공" 같은 꾸밈을 붙이지 않는다.
-      </Lead>
+      <Lead>문구는 무엇을 했는지·할지를 차분한 존댓말로 짧게 쓴다.</Lead>
 
       <DocSection title="같은 것은 한 이름으로">
         <Pairs
@@ -88,6 +85,7 @@ export function WritingSection() {
           items={[
             '"<무엇>을(를) <동사>하시겠습니까?" — 무엇에는 이름을 넣는다. 이름이 없는 대상은 종류만.',
             '삭제는 둘째 줄에 "되돌릴 수 없습니다." 이탈은 무엇이 사라지는지 쓴다.',
+            '느낌표·"정말" 같은 꾸밈을 붙이지 않는다(토스트도 같다).',
           ]}
         />
         <Pairs

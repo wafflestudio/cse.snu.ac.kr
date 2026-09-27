@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 import {
   DocSection,
-  DoDont,
   Lead,
   Related,
   RuleList,
@@ -171,28 +170,10 @@ function FormDiagram() {
   );
 }
 
-// 이렇게·하지 않는다 도식: 제목과 두 줄, 다음 제목.
-function Grouping({ even }: { even?: boolean }) {
-  const near = even ? 'mt-4' : 'mt-2';
-  const far = even ? 'mt-4' : 'mt-8';
-  return (
-    <div className="w-40">
-      <div className="h-2.5 w-20 bg-neutral-700" />
-      <div className={`${near} h-1.5 bg-neutral-300`} />
-      <div className="mt-2 h-1.5 w-3/4 bg-neutral-300" />
-      <div className={`${far} h-2.5 w-24 bg-neutral-700`} />
-      <div className={`${near} h-1.5 bg-neutral-300`} />
-    </div>
-  );
-}
-
 export function SpacingSection() {
   return (
     <>
-      <Lead>
-        간격은 4px 단위 아홉 단계다. 관계가 가까울수록 작게, 멀수록 크게 두어
-        무엇이 한 묶음인지 보이게 한다.
-      </Lead>
+      <Lead>간격의 크기로 무엇이 한 묶음인지 보인다.</Lead>
 
       <DocSection title="값">
         <StepScale />
@@ -226,24 +207,11 @@ export function SpacingSection() {
       <DocSection title="쓰는 법">
         <RuleList
           items={[
+            '간격은 위 아홉 단계에서 고른다. 관계가 가까울수록 작게, 멀수록 크게 둔다.',
             '여백은 줄높이가 아니라 margin·gap·padding으로 준다.',
             '페이지 위아래 여백(모바일 32·64, 데스크톱 48·128)은 페이지 틀이 준다. 화면에서 다시 주지 않는다.',
             '메인·카테고리처럼 그래픽 화면의 고유 배치는 그 페이지가 정한다. 원과 선의 접합 보정값은 단계에 맞추지 않는다.',
           ]}
-        />
-      </DocSection>
-
-      <DocSection title="이렇게 · 이렇게 하지 않는다">
-        <DoDont
-          good={{
-            example: <Grouping />,
-            caption: '제목은 제 내용에 붙이고 다음 묶음과는 멀리 둔다.',
-          }}
-          bad={{
-            example: <Grouping even />,
-            caption:
-              '모든 간격을 같게 둔다 — 제목이 어느 내용의 것인지 안 보인다.',
-          }}
         />
       </DocSection>
 
