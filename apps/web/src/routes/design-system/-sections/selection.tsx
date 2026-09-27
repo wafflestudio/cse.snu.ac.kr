@@ -79,7 +79,10 @@ function ViewPills() {
 export function SelectionSection() {
   return (
     <>
-      <Lead>여럿 중 하나를 고르는 컨트롤은 하는 일로 모양을 고릅니다.</Lead>
+      <Lead>
+        여러 항목 중 하나를 선택하는 컨트롤은 용도에 따라 모양을 구분해
+        사용합니다.
+      </Lead>
 
       <DocSection title="예시">
         <Example>
@@ -96,43 +99,43 @@ export function SelectionSection() {
             {
               name: '알약',
               sample: <Pills />,
-              use: '목록을 거르거나 정렬합니다(교수 정렬, 교과목 정렬).',
+              use: '목록을 필터링하거나 정렬할 때 사용합니다(교수 정렬, 교과목 정렬).',
             },
             {
               name: '알약(어두운 면)',
               sample: <DarkPills />,
-              use: '메인 공지 패널 전용. 메인 그래픽과 한 몸이라 주황입니다.',
+              use: '메인 공지 패널 전용. 메인 그래픽과 어우러지도록 주황을 사용합니다.',
               dark: true,
             },
             {
               name: '글자 토글',
               sample: <Toggle />,
-              use: '같은 자리의 보기를 바꿉니다(교과목 목록형/카드형, 편집 화면의 한글/English).',
+              use: '같은 영역의 보기 방식을 전환합니다(교과목 목록형/카드형, 편집 화면의 한글/English).',
             },
             {
               name: '태그',
               sample: <Tag label="장학" href="/design-system/selection" />,
-              use: '글의 분류. 누르면 그 분류의 목록으로 갑니다.',
+              use: '글의 분류. 누르면 해당 분류의 목록으로 이동합니다.',
             },
             {
               name: '태그(지우기)',
               sample: <Tag label="학부" onDelete={() => {}} />,
-              use: '검색 영역에서 고른 태그.',
+              use: '검색 영역에서 선택한 태그.',
             },
           ]}
         />
         <RuleList
-          items={['어두운 알약은 메인 공지 패널 밖에서 쓰지 않습니다.']}
+          items={['어두운 알약은 메인 공지 패널 밖에서 사용하지 않습니다.']}
         />
       </DocSection>
 
-      <DocSection title="이 모양이 아닌 것">
+      <DocSection title="이 모양을 사용하지 않는 것">
         <RuleList
           items={[
             '학사 연혁의 연도 원 → 연혁 그래픽(고유 화면).',
             '연구 그룹·시설 등의 접힌 모서리 선택 탭 → 그래픽.',
             '푸터 제작진 이름표 → 분류가 아니라 이름 목록이라 태그가 아닙니다(내비게이션·셸).',
-            '폼 안에서 값을 고를 때 → 체크박스·라디오(입력·폼).',
+            '폼 안에서 값을 선택할 때 → 체크박스·라디오(입력·폼).',
           ]}
         />
       </DocSection>
@@ -141,7 +144,7 @@ export function SelectionSection() {
         <DoDont
           good={{
             example: <Pills />,
-            caption: '목록을 거르고 정렬하는 것은 알약입니다.',
+            caption: '목록 필터링과 정렬에는 알약을 사용합니다.',
           }}
           bad={{
             example: (
@@ -150,17 +153,19 @@ export function SelectionSection() {
                 <Tag label="소속순" onClick={() => {}} />
               </>
             ),
-            caption: '태그를 선택 컨트롤로 씁니다. 태그는 글의 분류입니다.',
+            caption:
+              '태그를 선택 컨트롤로 사용합니다. 태그는 글의 분류를 표시합니다.',
           }}
         />
         <DoDont
           good={{
             example: <Toggle />,
-            caption: '보기 바꾸기는 보조 기능이라 조용한 글자 토글입니다.',
+            caption:
+              '보기 전환은 보조 기능이므로 눈에 덜 띄는 글자 토글을 사용합니다.',
           }}
           bad={{
             example: <ViewPills />,
-            caption: '보기 바꾸기에 알약을 쓰면 목록을 거르는 것처럼 읽힙니다.',
+            caption: '보기 전환에 알약을 사용하면 목록 필터처럼 보입니다.',
           }}
         />
       </DocSection>

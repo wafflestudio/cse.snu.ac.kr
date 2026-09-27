@@ -8,7 +8,6 @@ import PillGroup from '@/components/ui/PillGroup';
 import {
   DocSection,
   DoDont,
-  Example,
   Lead,
   Related,
   RuleList,
@@ -257,7 +256,7 @@ function WidthExplorer() {
           className="w-full accent-neutral-700"
         />
         <PillGroup
-          ariaLabel="화면 폭 고르기"
+          ariaLabel="화면 폭 선택"
           options={PRESETS}
           value={
             (PRESETS.find((p) => Number(p.value) === width)?.value ??
@@ -303,53 +302,224 @@ function WidthExplorer() {
   );
 }
 
-// 도식: 높이는 실제 여백을 1/2로 줄여 그린다.
-function Gap({ label, h }: { label: string; h: string }) {
+// 페이지 구성 견본: 실제 크기로 그린 화면을 줄여 보인다. 여백 자리에 주황 치수를 얹는다.
+type Device = 'mobile' | 'desktop';
+const PAGE_W: Record<Device, number> = { mobile: 390, desktop: 1340 };
+
+const G: Record<Device, { x: number; top: number; bottom: number }> = {
+  mobile: { x: 20, top: 32, bottom: 64 },
+  desktop: { x: 100, top: 48, bottom: 128 },
+};
+
+// 여백 치수: 주어진 높이의 주황 띠와 값.
+function Dim({ h, label, w }: { h: number; label: string; w?: number }) {
   return (
     <div
-      className={clsx(
-        'flex items-center justify-end border-y border-dashed border-main-orange/60 pr-2 type-meta text-main-orange',
-        h,
-      )}
+      className="flex items-center justify-end border-y border-dashed border-main-orange bg-main-orange/10 pr-2 text-[20px] font-bold text-main-orange"
+      style={{ height: h, width: w }}
     >
       {label}
     </div>
   );
 }
 
-function Title() {
-  return (
-    <div className="bg-neutral-900 px-4 py-3 type-label text-white">
-      페이지 제목 영역
-    </div>
-  );
-}
-
-function Band({
-  tone,
-  top,
-  bottom,
-  children,
+function PageTitleBand({
+  crumb,
+  title,
+  d,
 }: {
-  tone: 'white' | 'gray';
-  top: string;
-  bottom: string;
-  children: ReactNode;
+  crumb: string;
+  title: string;
+  d: Device;
 }) {
   return (
-    <div className={tone === 'gray' ? 'bg-neutral-100' : 'bg-white'}>
-      <Gap label={top} h="h-6" />
-      <div className="px-4 py-3 type-meta text-neutral-600">{children}</div>
-      <Gap label={bottom} h={bottom.includes('128') ? 'h-12' : 'h-6'} />
+    <div className="bg-neutral-900 pt-10 pb-8" style={{ paddingLeft: G[d].x }}>
+      <p className="mb-2 type-meta text-neutral-300">{crumb}</p>
+      <p className="type-page-title text-white">{title}</p>
     </div>
   );
 }
 
-function Frame({ label, children }: { label: string; children: ReactNode }) {
+function FooterStrip() {
   return (
-    <div className="w-full max-w-sm space-y-2">
-      <p className="type-label">{label}</p>
-      <div className="border border-neutral-300">{children}</div>
+    <div className="flex h-24 items-center bg-neutral-50 px-10 type-meta text-neutral-500">
+      푸터
+    </div>
+  );
+}
+
+function SubNavMock({ d, items }: { d: Device; items: string[] }) {
+  if (d === 'mobile') return null;
+  return (
+    <div
+      className="absolute top-12 border-l-2 border-main-orange pl-4"
+      style={{ left: PAGE_W.desktop - 360 + 64 }}
+    >
+      {items.map((m, i) => (
+        <p
+          key={m}
+          className={clsx(
+            'mb-3 type-ui',
+            i === 0 ? 'font-bold text-main-orange' : 'text-neutral-700',
+          )}
+        >
+          {m}
+        </p>
+      ))}
+    </div>
+  );
+}
+
+function BasicPage({ d }: { d: Device }) {
+  const g = G[d];
+  const areaW = PAGE_W[d] - g.x * 2 - (d === 'desktop' ? 260 : 0);
+  return (
+    <div className="bg-white">
+      <PageTitleBand crumb="소개" title="학부장 인사말" d={d} />
+      <div className="relative">
+        <Dim h={g.top} label={`위 ${g.top}`} />
+        <div
+          className="flex gap-8"
+          style={{ paddingLeft: g.x, width: g.x + areaW }}
+        >
+          <div className="h-44 w-32 shrink-0 bg-neutral-200" />
+          <p className="type-body text-neutral-800">
+            컴퓨터공학부 홈페이지를 찾아 주셔서 감사합니다. 학부는 교육과 연구로
+            우리 사회의 내일을 준비합니다. 학생과 교수, 직원이 함께 만드는
+            학부의 소식을 이곳에서 전합니다.
+          </p>
+        </div>
+        <Dim h={g.bottom} label={`아래 ${g.bottom}`} />
+        <SubNavMock d={d} items={['학부장 인사말', '연혁', '연락처']} />
+      </div>
+      <FooterStrip />
+    </div>
+  );
+}
+
+function BandsPage({ d }: { d: Device }) {
+  const g = G[d];
+  const areaW = PAGE_W[d] - g.x * 2 - (d === 'desktop' ? 260 : 0);
+  const tabs = ['시스템', '이론', '인공지능', '응용'];
+  return (
+    <div className="bg-white">
+      <PageTitleBand crumb="연구·교육" title="연구·교육 스트림" d={d} />
+      <div className="relative">
+        <div className="bg-white">
+          <Dim h={g.top} label={`위 ${g.top}`} />
+          <div
+            className="grid grid-cols-2 gap-3 sm:grid-cols-4"
+            style={{
+              marginLeft: g.x,
+              width: areaW,
+              gridTemplateColumns:
+                d === 'desktop'
+                  ? 'repeat(4,minmax(0,1fr))'
+                  : 'repeat(2,minmax(0,1fr))',
+            }}
+          >
+            {tabs.map((t, i) => (
+              <span
+                key={t}
+                className={clsx(
+                  'flex h-10 items-center justify-center type-label',
+                  i === 0
+                    ? 'bg-main-orange text-white'
+                    : 'bg-neutral-100 text-neutral-700',
+                )}
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+          <Dim h={48} label="아래 48" w={g.x + areaW} />
+        </div>
+        <div className="bg-neutral-100">
+          <Dim h={g.top} label={`위 ${g.top}`} />
+          <div style={{ marginLeft: g.x, width: areaW }}>
+            <div className="mb-4 w-fit">
+              <p className="px-3 type-section">시스템 스트림</p>
+              <Node variant="straight" />
+            </div>
+            <div className="bg-white p-6 type-body text-neutral-800">
+              시스템 소프트웨어와 컴퓨터 구조를 연구합니다.
+            </div>
+          </div>
+          <Dim h={g.bottom} label={`아래 ${g.bottom}`} />
+        </div>
+        <SubNavMock
+          d={d}
+          items={['연구·교육 스트림', '연구 센터', '연구실 목록']}
+        />
+      </div>
+      <FooterStrip />
+    </div>
+  );
+}
+
+// 줄인 무대. 폭은 칸에 맞추고 높이는 그린 화면 높이 × 배율이다(전환이 없어 바뀌지 않는다).
+function Stage({ d, children }: { d: Device; children: ReactNode }) {
+  const [box, setBox] = useState(0);
+  const [inner, setInner] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    const inEl = innerRef.current;
+    if (!el || !inEl) return;
+    const ro = new ResizeObserver(() => {
+      setBox(el.clientWidth);
+      setInner(inEl.offsetHeight);
+    });
+    ro.observe(el);
+    ro.observe(inEl);
+    return () => ro.disconnect();
+  }, []);
+  const w = PAGE_W[d];
+  const scale = box ? Math.min(1, box / w) : 0;
+  return (
+    <div
+      ref={ref}
+      className="relative w-full overflow-hidden"
+      style={{ height: inner * scale }}
+    >
+      <div
+        ref={innerRef}
+        className="absolute top-0 left-0 origin-top-left border border-neutral-300"
+        style={{ width: w, transform: `scale(${scale})` }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function PageComposition() {
+  const pages = [
+    ['기본 틀: 본문이 한 덩어리인 화면(학부장 인사말)', BasicPage],
+    ['띠 틀: 흰 띠와 회색 띠로 나뉜 화면(연구·교육 스트림)', BandsPage],
+  ] as const;
+  return (
+    <div className="space-y-12">
+      {pages.map(([caption, Page]) => (
+        <figure key={caption} className="space-y-3">
+          <figcaption className="type-label">{caption}</figcaption>
+          <div className="grid items-start gap-6 sm:grid-cols-[minmax(0,3fr)_minmax(0,1fr)]">
+            <div className="space-y-2">
+              <Stage d="desktop">
+                <Page d="desktop" />
+              </Stage>
+              <p className="type-meta text-neutral-500">데스크톱 1440</p>
+            </div>
+            <div className="space-y-2">
+              <Stage d="mobile">
+                <Page d="mobile" />
+              </Stage>
+              <p className="type-meta text-neutral-500">모바일 390</p>
+            </div>
+          </div>
+        </figure>
+      ))}
     </div>
   );
 }
@@ -376,65 +546,40 @@ export function LayoutSection() {
   return (
     <>
       <Lead>
-        화면 폭에 따라 틀이 두 번 바뀌고, 그 안의 본문은 PageLayout 하나로
-        짓습니다.
+        화면 폭에 따라 틀이 두 번 변경되고, 그 안의 본문은 PageLayout 하나로
+        구성합니다.
       </Lead>
 
       <DocSection title="폭에 따라">
         <WidthExplorer />
       </DocSection>
 
-      <DocSection title="쓰는 법">
+      <DocSection title="사용 방법">
         <RuleList
           items={[
             '긴 문단은 읽기 폭 640px에서 멈춥니다. HTML 본문도 문단·목록·제목이 640px에서 멈춥니다.',
-            '표·카드 격자·달력·폼은 읽기 폭에서 멈추지 않고 영역 전체를 씁니다. 배경 띠가 있는 메인·카테고리도 끝까지 찹니다.',
+            '표·카드 격자·달력·폼은 읽기 폭에서 멈추지 않고 영역 전체를 사용합니다. 배경 띠가 있는 메인·카테고리도 끝까지 채웁니다.',
             '1024px부터 데스크톱 모양입니다. 1280px에서는 서브내비와 그 자리만 바뀝니다.',
             '폭에 따라 모양이 바뀌는 곳은 이 두 폭뿐입니다. 예외는 메인 뉴스 캐러셀의 카드 수 하나입니다.',
-            '공개 화면은 320px부터, 행정실 편집·관리 화면은 1200px부터 맞춥니다.',
+            '공개 화면은 320px부터, 행정실 편집·관리 화면은 1200px부터 지원합니다.',
           ]}
         />
       </DocSection>
 
-      <DocSection title="페이지 짜임">
-        <div className="flex flex-wrap gap-8">
-          <Frame label="기본">
-            <Title />
-            <Band tone="white" top="위 32 / 48" bottom="아래 64 / 128">
-              본문 한 덩어리
-            </Band>
-          </Frame>
-          <Frame label="띠">
-            <Title />
-            <Band tone="white" top="위 32 / 48" bottom="아래 48">
-              띠 1(선택 탭 등)
-            </Band>
-            <Band tone="gray" top="위 32 / 48" bottom="아래 64 / 128">
-              띠 2(마지막 띠)
-            </Band>
-          </Frame>
-        </div>
+      <DocSection title="페이지 구성">
+        <PageComposition />
         <p className="type-meta text-neutral-500">
-          여백은 모바일 / 데스크톱. 도식의 높이는 실제의 1/2입니다.
+          주황 띠가 틀이 정한 여백입니다. 오른쪽 목록은 서브내비입니다.
         </p>
-        <Example caption="선택 탭 아래 고른 항목의 제목(SelectionTitle).">
-          <div className="w-fit">
-            <p className="flex items-baseline gap-2 px-3 type-section">
-              시스템 스트림
-              <span className="type-meta">부제</span>
-            </p>
-            <Node variant="straight" />
-          </div>
-        </Example>
       </DocSection>
 
-      <DocSection title="페이지 짜임 규칙">
+      <DocSection title="페이지 구성 규칙">
         <RuleList
           items={[
             '본문이 한 덩어리면 기본 틀, 흰·회색(neutral-100) 띠(PageBand)로 나누면 띠 틀입니다.',
-            '띠 틀은 학부 소개·진로·연구 스트림·연구 센터·연락처·연혁에 씁니다.',
+            '띠 틀은 학부 소개·진로·연구 스트림·연구 센터·연락처·연혁에 사용합니다.',
             '위아래 여백은 틀이 정합니다. 화면마다 여백을 더하거나 바꾸지 않습니다.',
-            '선택 탭(SelectionList)으로 시작하는 화면도 위 여백은 틀이 줍니다. 탭 위에 관리 버튼이 있으면 버튼 아래 32입니다.',
+            '선택 탭(SelectionList)으로 시작하는 화면도 위 여백은 틀이 적용합니다. 탭 위에 관리 버튼이 있으면 버튼 아래 32입니다.',
           ]}
         />
       </DocSection>
@@ -444,7 +589,7 @@ export function LayoutSection() {
           good={{
             example: <SelTitle actions />,
             caption:
-              '관리 버튼(편집·삭제)은 제목(SelectionTitle) 옆에 섭니다. 자리가 모자라면 다음 줄 오른쪽으로 내려갑니다.',
+              '관리 버튼(편집·삭제)은 제목(SelectionTitle) 옆에 배치합니다. 공간이 부족하면 다음 줄 오른쪽으로 내려갑니다.',
           }}
           bad={{
             example: (
@@ -457,7 +602,7 @@ export function LayoutSection() {
               </div>
             ),
             caption:
-              '제목 위에 버튼 줄을 따로 두면 버튼이 무엇을 고치는지 떨어져 보입니다.',
+              '제목 위에 버튼 줄을 따로 배치하면 버튼이 수정하는 대상과 떨어져 보입니다.',
           }}
         />
       </DocSection>

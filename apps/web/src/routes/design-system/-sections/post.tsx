@@ -72,10 +72,10 @@ export function PostSection() {
   return (
     <>
       <Lead>
-        공지·새 소식·세미나 상세는 <code>PostDetail</code> 한 벌로 짓습니다.
+        공지·새 소식·세미나 상세는 <code>PostDetail</code> 하나로 구성합니다.
       </Lead>
 
-      <DocSection title="짜임">
+      <DocSection title="구성">
         <figure>
           <div className="max-w-2xl border border-neutral-300">
             <Band tone="white">
@@ -121,10 +121,10 @@ export function PostSection() {
       <DocSection title="규칙">
         <RuleList
           items={[
-            '세미나는 언제·어디서·누가 여는지를 정보 줄에 씁니다. 공지·새 소식의 "작성자 · 날짜 · 조회" 자리입니다.',
+            '세미나는 언제·어디서·누가 여는지를 정보 줄에 표시합니다. 공지·새 소식의 "작성자 · 날짜 · 조회" 자리입니다.',
             '세미나 본문의 연사·요약·연사 소개는 같은 소제목(16/700, 아래 8) + 본문이고, 묶음 사이는 48입니다.',
-            '세미나 대표 이미지는 폭 240으로 본문 오른쪽에 띄웁니다. 놓이는 모양은 읽는 본문·이미지 페이지를 따릅니다.',
-            '다음글·이전글 두 줄 사이는 8입니다. 더 붙이면 한 덩어리로 보입니다.',
+            '세미나 대표 이미지는 폭 240으로 본문 오른쪽에 배치합니다. 배치 방식은 읽는 본문·이미지 페이지를 따릅니다.',
+            '다음글·이전글 두 줄 사이는 8입니다. 간격을 더 좁히면 한 묶음으로 보입니다.',
           ]}
         />
       </DocSection>
@@ -135,13 +135,13 @@ export function PostSection() {
             example: (
               <Head meta="Mock · 2024/1/10 (수) 오전 08:59 · 조회 1,081" />
             ),
-            caption: '정보 줄은 값만 가운뎃점으로 잇습니다.',
+            caption: '정보 줄은 값만 가운뎃점으로 연결합니다.',
           }}
           bad={{
             example: (
               <Head meta="작성자: Mock · 작성 날짜: 2024/1/10 (수) 오전 08:59 · 조회수: 1,081" />
             ),
-            caption: '"작성자:"·"작성 날짜:" 같은 이름표를 붙입니다.',
+            caption: '"작성자:"·"작성 날짜:" 같은 이름표를 추가합니다.',
           }}
         />
         <DoDont

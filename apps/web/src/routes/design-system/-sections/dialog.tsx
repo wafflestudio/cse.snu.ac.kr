@@ -125,10 +125,12 @@ function ImageSample() {
 export function DialogSection() {
   return (
     <>
-      <Lead>모달은 지금 화면 위에 판을 띄워 짧은 일을 끝내게 합니다.</Lead>
+      <Lead>
+        모달은 현재 화면 위에 판을 띄워 짧은 작업을 완료할 때 사용합니다.
+      </Lead>
 
       <DocSection title="예시">
-        <Example caption="판은 화면 위에 뜨므로 여기서는 같은 모양을 그려 보입니다.">
+        <Example caption="판은 화면 위에 뜨므로 여기서는 같은 모양으로 표시합니다.">
           <Stage>
             <Panel title="교과목 추가" width="max-w-[560px]">
               <Field label="교과목명" />
@@ -145,7 +147,7 @@ export function DialogSection() {
             {
               name: '확인창',
               sample: <Mini width="w-[83px]" />,
-              use: '삭제·나가기처럼 되돌리기 어려운 일을 확인합니다. 크기는 하나입니다.',
+              use: '삭제·나가기처럼 되돌리기 어려운 작업을 확인할 때 사용합니다. 크기는 한 가지입니다.',
             },
             {
               name: '폼(기본)',
@@ -166,15 +168,15 @@ export function DialogSection() {
         />
         <RuleList
           items={[
-            '판 폭은 내용의 길이로 고릅니다.',
-            '모달 제목은 판 위쪽 한 자리에만 둡니다. 내용 안에 제목을 또 두지 않습니다.',
-            '내용이 자기 제목을 가진 판(교과목·예약 상세, 팀 소개)은 판 위쪽 제목을 보이지 않게 합니다.',
+            '판 폭은 내용의 길이에 맞춰 선택합니다.',
+            '모달 제목은 판 위쪽에만 표시합니다. 내용 안에 제목을 다시 표시하지 않습니다.',
+            '내용에 자체 제목이 있는 판(교과목·예약 상세, 팀 소개)은 판 위쪽 제목을 숨깁니다.',
           ]}
         />
       </DocSection>
 
       <DocSection title="확인창">
-        <Example caption="실행 버튼은 하는 일을 적습니다(삭제·해제·나가기). 버튼 순서는 버튼 페이지, 문장은 문구 페이지를 따릅니다.">
+        <Example caption="실행 버튼에는 수행할 작업을 표시합니다(삭제·해제·나가기). 버튼 순서는 버튼 페이지, 문장은 문구 페이지를 따릅니다.">
           <Stage>
             <Panel width="max-w-[400px]" close={false}>
               <p>
@@ -189,7 +191,7 @@ export function DialogSection() {
       </DocSection>
 
       <DocSection title="이미지 팝업">
-        <Example caption="메인의 포스터 공지. 포스터 색이 매번 달라 버튼은 회색이고, 다시 보지 않기는 판 밖에 둡니다.">
+        <Example caption="메인의 포스터 공지. 포스터 색이 매번 다르므로 버튼은 회색을 사용하고, 다시 보지 않기는 판 밖에 배치합니다.">
           <ImageSample />
         </Example>
       </DocSection>
@@ -202,7 +204,7 @@ export function DialogSection() {
                 <Field label="교과목명" />
               </Panel>
             ),
-            caption: '제목은 판 위쪽에 한 번만 둡니다.',
+            caption: '제목은 판 위쪽에 한 번만 표시합니다.',
           }}
           bad={{
             example: (
@@ -211,7 +213,7 @@ export function DialogSection() {
                 <Field label="교과목명" />
               </Panel>
             ),
-            caption: '내용 안에 제목을 또 두면 제목이 두 번 나옵니다.',
+            caption: '내용 안에 제목을 다시 표시하면 제목이 중복됩니다.',
           }}
         />
         <DoDont
@@ -222,7 +224,7 @@ export function DialogSection() {
                 <Button variant="primary">삭제</Button>
               </>
             ),
-            caption: '확인창의 실행 버튼은 하는 일을 적습니다.',
+            caption: '확인창의 실행 버튼에는 수행할 작업을 표시합니다.',
           }}
           bad={{
             example: (
@@ -231,7 +233,8 @@ export function DialogSection() {
                 <Button variant="primary">확인</Button>
               </>
             ),
-            caption: '"확인"으로 두면 무엇이 일어나는지 모릅니다.',
+            caption:
+              '"확인"으로 표시하면 어떤 작업이 수행되는지 알 수 없습니다.',
           }}
         />
       </DocSection>

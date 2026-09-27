@@ -28,7 +28,7 @@ function Spacer() {
 export function ButtonSection() {
   return (
     <>
-      <Lead>버튼은 누르면 이 화면에서 무언가를 합니다.</Lead>
+      <Lead>버튼은 현재 화면에서 작업을 수행하는 클릭 가능한 요소입니다.</Lead>
 
       <DocSection title="예시">
         <Example>
@@ -55,7 +55,7 @@ export function ButtonSection() {
             {
               name: '보조',
               sample: <Button variant="secondary">편집</Button>,
-              use: '편집·취소·목록·해제, 폼·상세의 삭제(확인창을 연다).',
+              use: '편집·취소·목록·해제, 폼·상세의 삭제(확인창을 엽니다).',
             },
             {
               name: '텍스트',
@@ -72,30 +72,30 @@ export function ButtonSection() {
         />
         <RuleList
           items={[
-            '표·목록 안의 일괄 버튼만 작게 씁니다.',
+            '작은 크기는 표·목록 안의 일괄 버튼에만 사용합니다.',
             '처리 중 문구는 누른 동사 + " 중…"입니다. 저장 중…, 게시 중…, 삭제 중….',
           ]}
         />
       </DocSection>
 
-      <DocSection title="버튼 대신 쓰는 것">
+      <DocSection title="버튼 대신 사용하는 것">
         <RuleList
           items={[
-            '여러 개 중 하나를 고를 때 → 알약·라디오(선택·태그).',
-            '보기를 바꿀 때(목록형·카드형) → 글자 토글(선택·태그).',
-            '본문 속에서 다른 페이지로 갈 때 → 글자 링크(읽는 본문).',
-            '날짜·파일을 고를 때 → 입력 칸(입력·폼).',
+            '여러 항목 중 하나를 선택할 때 → 알약·라디오(선택·태그).',
+            '보기 방식을 전환할 때(목록형·카드형) → 글자 토글(선택·태그).',
+            '본문에서 다른 페이지로 이동할 때 → 글자 링크(읽는 본문).',
+            '날짜·파일을 선택할 때 → 입력 칸(입력·폼).',
           ]}
         />
       </DocSection>
 
-      <DocSection title="여러 버튼을 둘 때">
+      <DocSection title="여러 버튼을 배치할 때">
         <RuleList
           items={[
-            '오른쪽 끝에 모으고 주요 버튼을 맨 오른쪽에 둡니다.',
-            '폼 아래의 삭제만 왼쪽 끝으로 떼어 놓습니다.',
-            '상세의 관리 버튼은 [삭제] [편집] 순서이고, 게시물은 그 뒤에 [목록]입니다.',
-            '목록의 추가·새 글 버튼은 목록 오른쪽 위에 둡니다.',
+            '버튼은 오른쪽 끝에 모으고, 주요 버튼을 맨 오른쪽에 배치합니다.',
+            '폼 아래의 삭제 버튼만 왼쪽 끝에 따로 배치합니다.',
+            '상세의 관리 버튼은 [삭제] [편집] 순서이고, 게시물은 그 뒤에 [목록]을 배치합니다.',
+            '목록의 추가·새 글 버튼은 목록 오른쪽 위에 배치합니다.',
           ]}
         />
       </DocSection>
@@ -111,7 +111,7 @@ export function ButtonSection() {
                 <Button variant="primary">저장</Button>
               </>
             ),
-            caption: '삭제는 저장과 멀리 떼어 놓습니다.',
+            caption: '삭제 버튼은 저장 버튼과 떨어뜨려 배치합니다.',
           }}
           bad={{
             example: (
@@ -121,7 +121,8 @@ export function ButtonSection() {
                 <Button variant="secondary">삭제</Button>
               </>
             ),
-            caption: '삭제를 저장 옆에 붙이면 잘못 누르기 쉽습니다.',
+            caption:
+              '삭제 버튼을 저장 버튼 옆에 배치하면 잘못 누르기 쉽습니다.',
           }}
         />
         <DoDont
@@ -131,7 +132,8 @@ export function ButtonSection() {
           }}
           bad={{
             example: <OrangeFilled>저장</OrangeFilled>,
-            caption: '주황으로 채웁니다. 주황은 현재 위치·강조의 색입니다.',
+            caption:
+              '주황으로 채웁니다. 주황은 현재 위치·강조에 사용하는 색입니다.',
           }}
         />
       </DocSection>

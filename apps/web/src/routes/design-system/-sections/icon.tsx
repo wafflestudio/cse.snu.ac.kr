@@ -90,7 +90,7 @@ function IconScale() {
 export function IconSection() {
   return (
     <>
-      <Lead>아이콘은 lucide 한 벌에서 그림만 고릅니다.</Lead>
+      <Lead>아이콘은 lucide 한 벌에서 모양만 선택합니다.</Lead>
 
       <DocSection title="값">
         <Sub title="크기·선 굵기">
@@ -98,7 +98,7 @@ export function IconSection() {
             <IconScale />
           </Example>
         </Sub>
-        <Sub title="자주 쓰는 아이콘">
+        <Sub title="자주 사용하는 아이콘">
           <div className="grid max-w-3xl grid-cols-2 gap-x-8 gap-y-2 sm:grid-cols-4">
             {USED.map(([name, Icon]) => (
               <span
@@ -112,16 +112,16 @@ export function IconSection() {
         </Sub>
       </DocSection>
 
-      <DocSection title="쓰는 법">
+      <DocSection title="사용 방법">
         <RuleList
           items={[
-            '브랜드 로고(유튜브 등), 학교 로고, 메인 그래픽처럼 lucide에 없는 것만 따로 그린 그림을 씁니다.',
+            '브랜드 로고(유튜브 등), 학교 로고, 메인 그래픽처럼 lucide에 없는 것만 별도로 제작한 그림을 사용합니다.',
             '아이콘 크기와 선 굵기는 옆 글자를 따릅니다. 예외: 옆에 글자가 없는 아이콘만 있는 버튼(닫기·메뉴·검색 실행)은 20px입니다.',
-            '그래픽처럼 쓰는 큰 화살표(교과목 카드 넘기기 등)는 메인·카테고리, 고유 화면이 정합니다.',
+            '그래픽으로 사용하는 큰 화살표(교과목 카드 넘기기 등)는 메인·카테고리, 고유 화면이 정합니다.',
             '아이콘 색은 옆 글자색과 같습니다.',
-            '아이콘과 글자는 세로 가운데로 맞춥니다. 아이콘만 위아래로 조금 옮기지 않습니다.',
-            '아이콘만 있는 버튼은 클릭 영역을 24×24 이상으로 두고(그림 크기는 그대로) 읽어 줄 이름을 붙입니다.',
-            '채운 모양은 고정·북마크·재생·정지만 씁니다.',
+            '아이콘과 글자는 세로 가운데로 정렬합니다. 아이콘만 위아래로 위치를 보정하지 않습니다.',
+            '아이콘만 있는 버튼은 클릭 영역을 24×24 이상으로 확보하고(그림 크기는 그대로) 스크린 리더가 읽을 이름을 추가합니다.',
+            '채운 모양은 고정·북마크·재생·정지에만 사용합니다.',
           ]}
         />
       </DocSection>
@@ -144,7 +144,7 @@ export function IconSection() {
                 2026/09/25
               </span>
             ),
-            caption: '아이콘만 옆 글자보다 커서 튑니다.',
+            caption: '아이콘만 옆 글자보다 커서 도드라집니다.',
           }}
         />
       </DocSection>

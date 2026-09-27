@@ -170,7 +170,7 @@ function FormDiagram() {
 export function SpacingSection() {
   return (
     <>
-      <Lead>간격의 크기로 무엇이 한 묶음인지 보입니다.</Lead>
+      <Lead>간격의 크기로 요소의 묶음을 나타냅니다.</Lead>
 
       <DocSection title="값">
         <StepScale />
@@ -178,7 +178,7 @@ export function SpacingSection() {
         <RhythmDiagram />
         <FormDiagram />
         <SpecTable
-          head={['값(px)', '단계', '자주 만나는 자리']}
+          head={['값(px)', '단계', '주요 사용처']}
           rows={[
             ['8', '붙은 요소', '폼 필드명 아래'],
             ['16', '가까운 요소', '섹션 제목 아래'],
@@ -199,10 +199,10 @@ export function SpacingSection() {
         />
       </DocSection>
 
-      <DocSection title="쓰는 법">
+      <DocSection title="사용 방법">
         <RuleList
           items={[
-            '간격은 위 아홉 단계에서 고릅니다. 관계가 가까울수록 작게, 멀수록 크게 둡니다.',
+            '간격은 위 아홉 단계에서 선택합니다. 관계가 가까울수록 작게, 멀수록 크게 적용합니다.',
             '페이지 위아래 여백은 모든 페이지가 같습니다(모바일 32·64, 데스크톱 48·128).',
             '메인·카테고리처럼 그래픽 화면의 고유 배치는 그 페이지가 정합니다. 원과 선의 접합 보정값은 단계에 맞추지 않습니다.',
           ]}

@@ -29,10 +29,10 @@ function Kind({
 export function ToastSection() {
   return (
     <>
-      <Lead>토스트는 한 일의 결과를 잠깐 알립니다.</Lead>
+      <Lead>토스트는 수행한 작업의 결과를 잠시 알릴 때 사용합니다.</Lead>
 
       <DocSection title="예시">
-        <Example caption="눌러서 띄워 봅니다.">
+        <Example caption="버튼을 누르면 토스트가 표시됩니다.">
           <Button
             variant="secondary"
             onClick={() => toast.success('게시물을 저장했습니다.')}
@@ -64,12 +64,12 @@ export function ToastSection() {
             {
               name: '성공',
               sample: <Kind icon="success" label="저장했습니다" />,
-              use: '끝낸 일(저장·삭제·게시)을 알립니다.',
+              use: '완료한 작업(저장·삭제·게시)을 알립니다.',
             },
             {
               name: '실패',
               sample: <Kind icon="error" label="저장하지 못했습니다" />,
-              use: '하려던 일이 안 됐음을 알립니다. 문구는 오류마다 정해 둔 문장을 씁니다.',
+              use: '작업이 실패했음을 알립니다. 문구는 오류마다 정해 둔 문장을 사용합니다.',
             },
             {
               name: '안내',
@@ -80,7 +80,7 @@ export function ToastSection() {
         />
         <RuleList
           items={[
-            '상태는 아이콘이 알립니다. 판 색은 종류와 상관없이 하나입니다.',
+            '상태는 아이콘으로 구분합니다. 판 색은 종류와 관계없이 동일합니다.',
             '성공·안내 문구는 문구 페이지를 따릅니다.',
           ]}
         />

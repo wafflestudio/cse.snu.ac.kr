@@ -74,10 +74,10 @@ export function NavigationSection() {
   return (
     <>
       <Lead>
-        헤더부터 푸터까지 셸은 <code>PageLayout</code>이 그립니다.
+        헤더부터 푸터까지 셸은 <code>PageLayout</code>이 구성합니다.
       </Lead>
 
-      <DocSection title="짜임">
+      <DocSection title="구성">
         <div className="flex flex-wrap gap-6">
           <Phone w={390}>
             <Crumbs items={CRUMBS_KO} />
@@ -114,10 +114,10 @@ export function NavigationSection() {
       <DocSection title="규칙">
         <RuleList
           items={[
-            '형제 페이지가 있는 읽는 화면은 본문 오른쪽에 서브내비를 둡니다.',
-            '서브내비의 자리·높이는 모든 화면에서 같습니다. 화면마다 옮기지 않습니다.',
-            '경로는 메뉴에서 그 화면이 놓인 자리를 그대로 보입니다.',
-            '왼쪽 내비·모바일 메뉴는 면 규칙의 예외입니다. 막대가 chrome-menu, 펼침 패널이 neutral-850입니다(바꿔 보니 어색했습니다).',
+            '형제 페이지가 있는 읽기 화면은 본문 오른쪽에 서브내비를 배치합니다.',
+            '서브내비의 위치·높이는 모든 화면에서 같습니다. 화면마다 옮기지 않습니다.',
+            '경로는 메뉴에서 그 화면이 있는 위치를 그대로 표시합니다.',
+            '왼쪽 내비·모바일 메뉴는 면 규칙의 예외입니다. 막대가 chrome-menu, 펼침 패널이 neutral-850입니다(변경해 보니 어색했습니다).',
           ]}
         />
       </DocSection>
@@ -126,12 +126,12 @@ export function NavigationSection() {
         <DoDont
           good={{
             example: <Screen title="공지 편집" subnav={false} />,
-            caption: '편집·작성 화면에는 서브내비를 두지 않습니다.',
+            caption: '편집·작성 화면에는 서브내비를 배치하지 않습니다.',
           }}
           bad={{
             example: <Screen title="공지 편집" subnav />,
             caption:
-              '편집 중에 형제 페이지 링크를 둡니다. 누르면 쓰던 글을 떠납니다.',
+              '편집 화면에 형제 페이지 링크를 배치합니다. 누르면 작성 중인 글을 벗어납니다.',
           }}
         />
       </DocSection>

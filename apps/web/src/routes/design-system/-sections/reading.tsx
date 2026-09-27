@@ -66,11 +66,11 @@ export function ReadingSection() {
   return (
     <>
       <Lead>
-        작성자가 에디터로 쓴 글은 <code>HTMLViewer</code> 하나로 보입니다.
+        작성자가 에디터로 작성한 글은 <code>HTMLViewer</code> 하나로 표시합니다.
       </Lead>
 
-      <DocSection title="짜임">
-        <Example caption="문단·목록·제목·인용은 읽기 폭 640에서 멈추고, 표·이미지는 본문 폭을 씁니다. 넓은 표는 표 안에서 가로로 스크롤합니다. 에디터도 같은 값을 써서 쓰는 화면과 보는 화면이 같습니다.">
+      <DocSection title="구성">
+        <Example caption="문단·목록·제목·인용은 읽기 폭 640에서 멈추고, 표·이미지는 본문 폭을 사용합니다. 넓은 표는 표 안에서 가로로 스크롤합니다. 에디터도 같은 값을 사용하므로 작성 화면과 보기 화면이 같습니다.">
           <div className="w-full max-w-2xl bg-neutral-50 p-6">
             <HTMLViewer html={SAMPLE} />
           </div>
@@ -79,7 +79,7 @@ export function ReadingSection() {
 
       <DocSection title="대표 이미지">
         <DeviceToggle
-          caption="대표 이미지는 데스크톱에서 본문 오른쪽에 띄우고 글이 그 왼쪽과 아래로 흐릅니다. 폭은 200·240·320 중 하나(그림은 240), 이미지 왼쪽 여백 32. 모바일은 본문 위에 폭 가득."
+          caption="대표 이미지는 데스크톱에서 본문 오른쪽에 배치하고 글이 그 왼쪽과 아래로 흐릅니다. 폭은 200·240·320 중 하나(그림은 240), 이미지 왼쪽 여백 32. 모바일은 본문 위에 폭 가득."
           desktop={<ImageLayout mobile={false} />}
           mobile={<ImageLayout mobile />}
         />
@@ -88,7 +88,7 @@ export function ReadingSection() {
       <DocSection title="규칙">
         <RuleList
           items={[
-            '작성자가 직접 고른 글자 크기·색·표 서식은 건드리지 않습니다.',
+            '작성자가 직접 지정한 글자 크기·색·표 서식은 변경하지 않습니다.',
           ]}
         />
       </DocSection>

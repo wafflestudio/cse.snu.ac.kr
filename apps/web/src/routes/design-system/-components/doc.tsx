@@ -163,7 +163,7 @@ function Verdict({
 
 // 값 표: 이름 · 값 · 쓰는 곳. 기반 페이지(토큰·단계)와 짜임 값에만 쓴다. 부품이 정하는 값은 적지 않는다.
 export function SpecTable({
-  head = ['이름', '값', '쓰는 곳'],
+  head = ['이름', '값', '사용처'],
   rows,
 }: {
   head?: [string, string, string];
