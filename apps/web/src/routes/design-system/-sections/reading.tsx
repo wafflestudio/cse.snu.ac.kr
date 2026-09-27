@@ -29,7 +29,7 @@ const IMAGE_TEXT = [
   '문의는 컴퓨터공학부 행정실로 해 주세요. 학부 과정 관련 문의는 학부 사무실, 장학 관련 문의는 장학 담당자에게 따로 해 주세요.',
 ];
 
-// 대표 이미지 자리. 실제는 HTMLViewer 의 image — 데스크톱은 오른쪽에 띄우고(왼쪽 32) 모바일은 위에 폭 가득.
+// 대표 이미지 자리. 실제는 HTMLViewer 의 image 다. 데스크톱은 오른쪽에 띄우고(왼쪽 32) 모바일은 위에 폭 가득.
 function ImageSlot({ className }: { className: string }) {
   return (
     <div
@@ -66,11 +66,11 @@ export function ReadingSection() {
   return (
     <>
       <Lead>
-        작성자가 에디터로 쓴 글은 <code>HTMLViewer</code> 하나로 보인다.
+        작성자가 에디터로 쓴 글은 <code>HTMLViewer</code> 하나로 보입니다.
       </Lead>
 
       <DocSection title="짜임">
-        <Example caption="문단·목록·제목·인용은 읽기 폭 640에서 멈추고, 표·이미지는 본문 폭을 쓴다. 넓은 표는 표 안에서 가로로 스크롤한다. 에디터도 같은 값을 써서 쓰는 화면과 보는 화면이 같다.">
+        <Example caption="문단·목록·제목·인용은 읽기 폭 640에서 멈추고, 표·이미지는 본문 폭을 씁니다. 넓은 표는 표 안에서 가로로 스크롤합니다. 에디터도 같은 값을 써서 쓰는 화면과 보는 화면이 같습니다.">
           <div className="w-full max-w-2xl bg-neutral-50 p-6">
             <HTMLViewer html={SAMPLE} />
           </div>
@@ -79,7 +79,7 @@ export function ReadingSection() {
 
       <DocSection title="대표 이미지">
         <DeviceToggle
-          caption="대표 이미지는 뷰어에 폭(200·240·320)과 함께 넘긴다. 그림은 폭 240, 왼쪽 여백 32."
+          caption="대표 이미지는 데스크톱에서 본문 오른쪽에 띄우고 글이 그 왼쪽과 아래로 흐릅니다. 폭은 200·240·320 중 하나(그림은 240), 이미지 왼쪽 여백 32. 모바일은 본문 위에 폭 가득."
           desktop={<ImageLayout mobile={false} />}
           mobile={<ImageLayout mobile />}
         />
@@ -87,7 +87,9 @@ export function ReadingSection() {
 
       <DocSection title="규칙">
         <RuleList
-          items={['작성자가 직접 고른 글자 크기·색·표 서식은 건드리지 않는다.']}
+          items={[
+            '작성자가 직접 고른 글자 크기·색·표 서식은 건드리지 않습니다.',
+          ]}
         />
       </DocSection>
 

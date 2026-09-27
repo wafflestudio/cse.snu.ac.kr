@@ -45,10 +45,10 @@ function Card({ ring, clipped }: { ring: string; clipped?: boolean }) {
 export function FocusSection() {
   return (
     <>
-      <Lead>초점 표시는 키보드로 움직이는 사람에게 지금 위치를 알린다.</Lead>
+      <Lead>초점 표시는 키보드로 움직이는 사람에게 지금 위치를 알립니다.</Lead>
 
       <DocSection title="값">
-        <Example caption="밝은 면 — 버튼·링크">
+        <Example caption="밝은 면의 버튼·링크">
           <span className={clsx('inline-flex', RING)}>
             <Button variant="primary">저장</Button>
           </span>
@@ -64,7 +64,7 @@ export function FocusSection() {
         </Example>
         <Example
           tone="dark"
-          caption="어두운 면(헤더·내비·제목 영역·메인 어두운 띠) — 흰 링"
+          caption="어두운 면(헤더·내비·제목 영역·메인 어두운 띠)에서는 흰 링"
         >
           <span className={clsx('inline-flex', RING_DARK)}>
             <Button variant="textInverse">로그인</Button>
@@ -77,12 +77,12 @@ export function FocusSection() {
           head={['항목', '값', '비고']}
           rows={[
             ['선', '2px 실선', ''],
-            ['간격', '2px', '요소 밖으로 띄운다'],
+            ['간격', '2px', '요소 밖으로 띄웁니다'],
             ['색(밝은 면)', 'neutral-700', ''],
             [
               '색(어두운 면)',
               '흰색',
-              '어두운 면 틀에 표시를 한 번 달면 안의 것이 모두 따른다',
+              '헤더·내비·제목 영역·메인 어두운 띠 안의 모든 것',
             ],
           ]}
         />
@@ -91,23 +91,23 @@ export function FocusSection() {
       <DocSection title="쓰는 법">
         <RuleList
           items={[
-            '초점 모양은 전역 규칙 하나가 준다. 요소마다 링·outline-none 을 따로 적지 않는다.',
-            '초점 표시는 키보드로 옮겼을 때만 나타난다. 마우스로 누를 때는 나타나지 않는다.',
-            '넘치는 부분을 자르는 틀(캐러셀·이미지 팝업 판)에 링이 잘리면, 틀 안쪽에 4px 여유를 두거나(캐러셀) 링을 안쪽으로 2px 띄워 그린다(팝업 버튼). 한 줄에 놓인 버튼은 같은 모양이다.',
-            '숨긴 입력(체크박스·라디오·알약·글자 토글)은 초점이 숨긴 입력에 가므로 감싼 라벨에 링을 그린다.',
-            '페이지를 열자마자 스스로 뜨는 팝업은 초점을 판에 둔다 — 누르기 전에 버튼에 링이 뜨지 않게.',
-            '보이지 않는 것(닫힌 메뉴·다른 폭의 벌·비활성 버튼)으로 Tab이 가지 않는다.',
+            '초점 모양은 사이트 어디서나 같습니다. 요소마다 다른 링을 두거나 링을 없애지 않습니다.',
+            '초점 표시는 키보드로 옮겼을 때만 나타납니다. 마우스로 누를 때는 나타나지 않습니다.',
+            '가장자리가 잘리는 틀(캐러셀·이미지 팝업 판)에서 링이 잘리면, 틀 안쪽에 4px 여유를 두거나(캐러셀) 링을 안쪽으로 2px 들여 그립니다(팝업 버튼). 한 줄에 놓인 버튼은 같은 모양입니다.',
+            '체크박스·라디오·알약·글자 토글은 상자와 글자를 함께 둘러 링을 그립니다.',
+            '페이지를 열자마자 스스로 뜨는 팝업은 누르기 전에 버튼에 링이 뜨지 않습니다.',
+            '보이지 않는 것(닫힌 메뉴·다른 폭의 벌·비활성 버튼)으로 Tab이 가지 않습니다.',
           ]}
         />
       </DocSection>
 
       <DocSection title="입력 칸">
-        <Example caption="흰 면의 입력 칸·드롭다운은 링 대신 테두리만 짙게(neutral-300 → 700) — 칸 둘레에 링을 두르면 겉보기가 크게 바뀐다.">
+        <Example caption="흰 면의 입력 칸·드롭다운은 링 대신 테두리만 짙게 합니다(neutral-300 → 700). 칸 둘레에 링을 두르면 겉보기가 크게 바뀝니다.">
           <Field border />
         </Example>
         <Example
           tone="dark"
-          caption="어두운 면 위에 뜬 칸(헤더 검색)은 짙은 테두리가 배경에 묻혀 흰 링을 두른다."
+          caption="어두운 면 위에 뜬 칸(헤더 검색)은 짙은 테두리가 배경에 묻혀 흰 링을 두릅니다."
         >
           <span
             className={clsx(
@@ -120,15 +120,15 @@ export function FocusSection() {
         </Example>
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않는다">
+      <DocSection title="이렇게 · 이렇게 하지 않기">
         <DoDont
           good={{
             example: <Card clipped ring={RING_INSET} />,
-            caption: '잘리는 자리에서는 링을 안쪽으로.',
+            caption: '잘리는 자리에서는 링을 안쪽으로 그립니다.',
           }}
           bad={{
             example: <Card clipped ring={RING} />,
-            caption: '밖으로 그린 링이 스크롤 영역에 잘린다.',
+            caption: '밖으로 그린 링이 스크롤 영역에 잘립니다.',
           }}
         />
       </DocSection>

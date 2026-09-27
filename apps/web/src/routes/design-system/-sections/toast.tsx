@@ -9,7 +9,7 @@ import {
   VariantTable,
 } from '../-components/doc';
 
-// 토스트 페이지. 실제 toast 를 띄운다 — 판·글자·아이콘·자리는 부품이 정하므로 적지 않는다.
+// 토스트 페이지. 실제 toast 를 띄운다. 판·글자·아이콘·자리는 부품이 정하므로 적지 않는다.
 
 function Kind({
   icon,
@@ -29,10 +29,10 @@ function Kind({
 export function ToastSection() {
   return (
     <>
-      <Lead>토스트는 한 일의 결과를 잠깐 알린다.</Lead>
+      <Lead>토스트는 한 일의 결과를 잠깐 알립니다.</Lead>
 
       <DocSection title="예시">
-        <Example caption="눌러서 띄워 본다.">
+        <Example caption="눌러서 띄워 봅니다.">
           <Button
             variant="secondary"
             onClick={() => toast.success('게시물을 저장했습니다.')}
@@ -64,25 +64,24 @@ export function ToastSection() {
             {
               name: '성공',
               sample: <Kind icon="success" label="저장했습니다" />,
-              use: '끝낸 일을 알린다 — 저장·삭제·게시.',
+              use: '끝낸 일(저장·삭제·게시)을 알립니다.',
             },
             {
               name: '실패',
               sample: <Kind icon="error" label="저장하지 못했습니다" />,
-              use: 'API 실패는 toastError로 띄운다 — 문구를 오류 사전이 정한다.',
+              use: '하려던 일이 안 됐음을 알립니다. 문구는 오류마다 정해 둔 문장을 씁니다.',
             },
             {
               name: '안내',
               sample: <Kind icon="info" label="로그인이 필요합니다" />,
-              use: '해야 할 일을 알린다.',
+              use: '해야 할 일을 알립니다.',
             },
           ]}
         />
         <RuleList
           items={[
-            '상태는 아이콘이 알린다. 판 색은 종류와 상관없이 하나다.',
-            '성공·안내 문구는 문구 페이지를 따른다.',
-            '모양은 ui/sonner/ 복사본의 styles.css에서 고친다 — strict CSP 때문에 소스를 복사해 쓴다.',
+            '상태는 아이콘이 알립니다. 판 색은 종류와 상관없이 하나입니다.',
+            '성공·안내 문구는 문구 페이지를 따릅니다.',
           ]}
         />
       </DocSection>

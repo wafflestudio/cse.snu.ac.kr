@@ -6,12 +6,12 @@ import { useState } from 'react';
 import PillGroup from '@/components/ui/PillGroup';
 
 // 디자인 시스템 문서 페이지의 틀 한 벌. 부품 페이지는 이 순서로 쓴다:
-// 한 줄 설명(Lead) → 예시(Example) → 종류(VariantTable) → 대신 쓰는 것 → 배치 → 이렇게·이렇게 하지 않는다(DoDont) → 관련(Related).
-// 쓰는 사람이 정해야 하는 것만 적는다 — 부품이 정하는 값(크기·여백·호버 색)은 예시가 보여 주고 소스가 정본이다.
+// 한 줄 설명(Lead) → 예시(Example) → 종류(VariantTable) → 대신 쓰는 것 → 배치 → 이렇게·이렇게 하지 않기(DoDont) → 관련(Related).
+// 쓰는 사람이 정해야 하는 것만 적는다. 부품이 정하는 값(크기·여백·호버 색)은 예시가 보여 주고 소스가 정본이다.
 // 규칙은 그림에 붙여 쓴다. 코드는 싣지 않는다.
 // 폭에 따라 달라지는 것은 DeviceToggle 로 바꿔 보게 한다. 첫 줄 설명(Lead)은 한 문장.
-// 기반(색·글자·간격…)은 값 자체가 고르는 대상이라 값 표(SpecTable)를 쓴다: 한 줄 설명 → 값 → 쓰는 법 → 이렇게·하지 않는다 → 관련.
-// 패턴·화면은 짜임 그림 → 규칙(RuleList) → 이렇게·하지 않는다 → 관련. 짜는 사람이 고르는 간격 값은 적는다.
+// 기반(색·글자·간격…)은 값 자체가 고르는 대상이라 값 표(SpecTable)를 쓴다: 한 줄 설명 → 값 → 쓰는 법 → 이렇게·하지 않기 → 관련.
+// 패턴·화면은 짜임 그림 → 규칙(RuleList) → 이렇게·하지 않기 → 관련. 짜는 사람이 고르는 간격 값은 적는다.
 
 export function Lead({ children }: { children: ReactNode }) {
   return (
@@ -94,7 +94,7 @@ export function VariantTable({
   );
 }
 
-// 짧은 규칙 목록 — 한 항목 한 문장.
+// 짧은 규칙 목록(한 항목 한 문장).
 export function RuleList({ items }: { items: string[] }) {
   return (
     <ul className="list-disc space-y-2 pl-5 type-ui leading-normal">
@@ -105,7 +105,7 @@ export function RuleList({ items }: { items: string[] }) {
   );
 }
 
-// 이렇게 / 이렇게 하지 않는다 — 한 쌍을 나란히. 규칙 문장은 각 카드 아래에 붙인다.
+// 이렇게 / 이렇게 하지 않기를 한 쌍으로 나란히 둔다. 규칙 문장은 각 카드 아래에 붙인다.
 export function DoDont({
   good,
   bad,
@@ -153,7 +153,7 @@ function Verdict({
           )}
         >
           {ok ? <Check /> : <X />}
-          {ok ? '이렇게' : '이렇게 하지 않는다'}
+          {ok ? '이렇게' : '이렇게 하지 않기'}
         </span>
         {caption}
       </figcaption>
@@ -161,7 +161,7 @@ function Verdict({
   );
 }
 
-// 값 표: 이름 · 값 · 쓰는 곳. 기반 페이지(토큰·단계)와 짜임 값에만 쓴다 — 부품이 정하는 값은 적지 않는다.
+// 값 표: 이름 · 값 · 쓰는 곳. 기반 페이지(토큰·단계)와 짜임 값에만 쓴다. 부품이 정하는 값은 적지 않는다.
 export function SpecTable({
   head = ['이름', '값', '쓰는 곳'],
   rows,

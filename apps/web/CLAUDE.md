@@ -32,11 +32,55 @@ TanStack Start 빌드는 `dist/server/server.js` 를 **Web fetch 핸들러**로 
 
 # 디자인 시스템
 
-- **규칙의 정본은 `/design-system`(`src/routes/design-system/`)이다.** 절마다 한 페이지(`/design-system/<id>`), 목차는 `-registry.tsx` 한 곳. 화면을 만들거나 고칠 때 먼저 읽는다. 여기 없는 값·모양을 새로 만들지 않는다. 문서에 코드는 싣지 않는다 — 코드는 소스가 정본이다.
-- **토큰:** `src/app.css` 의 `@theme`. 가로 페이지 거터는 `.page-gutter-x` 단일 출처. 토큰화·스케일화는 픽셀 동일할 때만 자율, 값이 바뀌는 정규화는 디자인 결정 → 합의.
-- **보이는 부품은 `ui/*` 한 벌, `form/*` 은 그걸 react-hook-form 에 잇기만 한다**(Checkbox·Radio·Dropdown). 입력 칸 모양 값은 `ui/field.ts` 한 곳이고, 폼 부품은 자기 `name` 의 오류를 스스로 그린다. 부품에 높이·테두리·바탕 덮어쓰기 prop 을 다시 만들지 않는다 — 폭은 `size`(sm·md·lg·full)만.
+- **보이는 규칙의 정본은 `/design-system`(`src/routes/design-system/`)이다.** 화면을 만들거나 고칠 때 먼저 읽는다. 절마다 한 페이지(`/design-system/<id>`), 목차는 `-registry.tsx` 한 곳. 문서에는 보이는 결과만 적고 코드는 싣지 않는다. 그것을 코드로 어떻게 만드는지는 아래 이 절이 정본이다.
+- **문서 페이지 틀은 `-components/doc.tsx`.** 쓰는 사람이 정해야 하는 것만 적는다(부품이 정하는 값은 예시가 보여 준다). 폭에 따라 다른 것은 글 대신 `DeviceToggle`·폭 슬라이더. 첫 줄 설명은 한 문장, 한국어 글에 줄표(—)를 쓰지 않는다.
+- **토큰:** `src/app.css` 의 `@theme`. 오류 색 red-600 만 Tailwind 기본값을 쓴다. 가로 페이지 거터는 `.page-gutter-x` 단일 출처. 토큰화·스케일화는 픽셀 동일할 때만 자율, 값이 바뀌는 정규화는 디자인 결정이라 합의한다.
 - **DS 에 우겨넣지 않는다.** 일관성이 깨지는 사용처는 컴포넌트 API 확장이 아니라 앱 코드를 고친다.
-- **단일 선택은 네이티브 radiogroup**(`fieldset`+`radio` pill) — 그룹 시맨틱·화살표 키 이동을 브라우저가 준다. Button `variant` 는 행동의 종류로 고르는 4개(primary/secondary/text/textInverse — 주황 채움 없음), 아이콘은 children 에 직접. Button 에 `className` 을 덧붙이는 통로는 없다 — 모양이 안 맞으면 앱 코드를 고친다.
-- **a11y:** Radio/Checkbox 는 숨긴 네이티브 input + lucide 표시, Dialog/AlertDialog/Select/ImageModal 은 Radix. icon-only Button 은 `ariaLabel` 필수.
 - Storybook 없음. 픽셀 회귀는 E2E 소유.
-- **합의 대기(자율 실행 금지):** `#202020`(공지 필터 pill 비선택 배경) 신규 색 토큰 · 패딩 임의값과 `.62`/`.625` 근접 중복 정규화.
+- **합의 대기(자율 실행 금지):** 패딩 임의값과 `.62`/`.625` 근접 중복 정규화(`LeftNavDetail` 의 `pt-[9.62rem]` 등).
+
+## 반응형
+
+- 데스크톱 분기는 `sm:`(1024). 서브내비와 그 자리(오른쪽 360px)만 `xl:`(1280). `md:`·`lg:`·임의 브레이크포인트 금지(예외: 메인 뉴스 캐러셀 카드 수).
+- JS 로 갈라야 할 때만 `useIsMobile()`(1024 미만). 보이기만 다른 분기는 CSS 로.
+- 읽기 폭은 `max-w-160`(640px). HTML 본문은 문단·목록·제목에 이미 걸려 있으니 다시 감싸지 않는다. 표·카드 격자·달력·폼에는 걸지 않는다.
+
+## 글자 · 간격 · 모양 · 아이콘
+
+- 글자는 `type-*` 역할 유틸리티 하나로 크기·굵기·줄높이를 정하고 색만 따로 붙인다. 단계 밖은 `type-display`(카테고리 대제목 `CategoryPage` 전용)·메인 슬로건(Gowun Batang)·404 숫자뿐. 본문 안 섹션 제목은 어느 화면이든 `type-section`.
+- 줄높이는 `type-body` 에만 있다. 여러 줄 보조 글(카드 설명·요약)만 `type-meta` 에 `leading-normal`. 버튼·컨트롤 높이는 `h-*` 로 정하고 `leading-*` 로 맞추지 않는다.
+- 어절 줄바꿈은 body 전역(`word-break: keep-all` + `overflow-wrap: break-word`)이 한다. 요소마다 `break-keep` 을 붙이지 않는다. 좁은 자리에서 긴 URL 이 넘치면 그 요소에만 `wrap-anywhere`, `break-all` 금지(전역을 `anywhere` 로 두면 min-content 가 줄어 표 칸·flex 항목이 쪼그라든다).
+- 간격은 Tailwind 단위 1·2·3·4·6·8·12·16·32 에서만 고르고 `margin`·`gap`·`padding` 으로 준다. 페이지 위아래 여백은 `PageLayout` 이 주니 화면에서 다시 주지 않는다.
+- 모서리는 컨트롤만 `rounded-xs`, 태그·알약·원은 `rounded-full`, 판·카드는 없음. 그림자는 떠 있는 층(모달·드롭다운·날짜 선택)에만 `shadow-overlay`.
+- 아이콘은 lucide. 크기(1.2em)·선 굵기는 `app.css` 의 `svg.lucide` 공통 규칙이 정하니 `size-*`·`strokeWidth`·색 클래스를 적지 않는다(예외: 아이콘만 있는 버튼은 `size-5`, 클릭 영역 24×24 이상, `ariaLabel` 필수). `items-center` 로 맞추고 `translate`·`pt-px` 같은 위치 보정을 넣지 않는다. lucide 에 없는 것(브랜드·학교 로고, 메인 그래픽)만 자체 SVG.
+- 원과 선은 `Node` 의 변형(`straight`·`straightDouble`·`curvedHorizontalGray`·`curvedHorizontalSmall`, 서브내비 전용 `curvedVertical`)에서 고른다.
+
+## 초점
+
+- 초점 링은 `app.css` 의 전역 `:focus-visible`(2px 실선, offset 2, 색 `--focus-ring`) 한 벌이다. 요소마다 `ring-*`·`outline-none` 을 적지 않는다.
+- 어두운 면 틀에 `surface-dark` 를 한 번 달면 안쪽이 흰 링을 물려받고, 그 안의 밝은 면에는 `surface-light`.
+- 입력 칸은 `field-focus`(칸 자체)·`field-focus-within`(input + 버튼을 담은 틀)으로 테두리만 짙게. 어두운 면 위의 칸(헤더 검색)은 `field-ring-within`.
+- 숨긴(sr-only) 체크박스·라디오·알약·글자 토글은 감싼 label 에 `focus-proxy`.
+- `overflow-hidden` 틀에서 링이 잘리면 틀 안쪽에 4px 여유를 두거나(캐러셀) `-outline-offset-*` 로 안쪽에 그린다(팝업 버튼). 한 줄의 버튼은 같은 방식.
+- 페이지 진입과 함께 스스로 뜨는 팝업은 초점을 판(Content)에 둔다. 닫힌 메뉴·다른 폭용 마크업·비활성 버튼은 Tab 순서에서 뺀다.
+
+## 부품
+
+- **보이는 부품은 `ui/*` 한 벌, `form/*` 은 그걸 react-hook-form 에 잇기만 한다.** 입력 칸 모양 값은 `ui/field.ts` 한 곳, 폼 부품은 자기 `name` 의 오류를 필드 아래에 스스로 그린다(버튼 줄 옆에는 개수만). 높이·테두리·바탕 덮어쓰기 prop 을 만들지 않는다.
+- 글자 칸 폭은 `size`(`sm`·`md`·`lg`·`full`, 기본 `full`). `Form.Dropdown` 에는 폭을 주지 않는다. 필드 둘을 한 줄에 둘 때만 `Form.Row`(짧은 값 기본, 긴 값 `size="full"`), 줄 전체에 고정 폭을 주지 않는다.
+- Button `variant` 는 행동의 종류로 고르는 4개(primary/secondary/text/textInverse, 주황 채움 없음), 아이콘은 children 에 직접, `className` 통로 없음. 처리 중은 `pending`·`pendingLabel`("동사 + 중…"), `Form.Action` 은 버튼 이름에서 자동으로 만든다.
+- 단일 선택은 네이티브 radiogroup(`PillGroup`·`TextToggle`, 그룹 이름은 `ariaLabel`). 어두운 알약(`tone="dark"`)은 메인 공지 패널 전용.
+- Dialog 폭은 `size`, 제목은 `title` 로 넘겨 판이 그린다(내용 안에서 다시 그리지 않는다). 자기 제목을 가진 판은 `hideTitle`. 판 값은 `ui/dialogStyle.ts`. 확인창 `AlertDialog` 의 `confirmText` 는 필수(하는 일을 적는다).
+- 검색 실행(주소의 검색 파라미터 바꾸기)은 `SearchInput` 을 감싸는 `<form>` 의 submit 이 맡는다. 헤더 칸은 `tone="dark"`.
+- API 실패 토스트는 `toastError`, 문구는 `utils/apiErrors.ts` 사전(화면에서 새로 쓰지 않는다). sonner 는 strict CSP 때문에 복사본(`ui/sonner/`), 모양은 그 `styles.css`.
+- 에디터 편집 영역은 뷰어와 같은 본문 CSS 를 쓴다. 툴바 구성·붙여넣기 정리·CSP 대응은 기능이라 겉모양을 고치며 바꾸지 않는다.
+- a11y: Dialog/AlertDialog/Select/ImageModal 은 Radix.
+
+## 페이지 · 목록 · 본문
+
+- 띠 틀은 `PageLayout` 에 `bands` 를 켜고 `PageBand` 를 쌓는다. `PageLayout` 에 여백 prop 을 만들지 않는다.
+- 서브내비는 `subNav` 로 넘긴다(편집·작성 화면에는 넘기지 않는다). 자리·높이는 `PageLayout` 이 정한다. 경로는 메뉴 정의에서 `useBreadcrumb` 가 만든다.
+- 선택형 상세의 관리 버튼(편집·삭제)은 `SelectionTitle` 의 `actions` 로 넘긴다.
+- 표: 칸 폭(`w-*`)을 적지 않는다. `grid-template-columns` 는 표에 한 번, 머리 행·행은 `col-span-full grid grid-cols-subgrid`. 칸은 `auto`, 긴 칸 하나만 `minmax(0,1fr)`(본보기 `AdminTable`·`ConferenceListTable`). 칸 사이는 표에 한 번(`gap-x-6` 또는 모든 칸 `px-3`). 행이 모바일 카드용 gap 을 가지면 `sm:` 에서 표 값으로 되돌린다.
+- 행 전체를 누르는 표는 `ui/rowLink.ts`: 행에 `ROW_LINK`, 제목 링크에 `ROW_LINK_TARGET`(링크 하나의 `::after` 를 행 크기로). 한 행에 링크가 여럿이면 쓰지 않는다.
+- 대표 이미지는 `HTMLViewer` 의 `image`(`width: 200 | 240 | 320`, 세미나 240). 예약 칸 색은 `bg-main-orange/80`.

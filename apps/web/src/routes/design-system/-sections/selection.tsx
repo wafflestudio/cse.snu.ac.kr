@@ -12,7 +12,7 @@ import {
   VariantTable,
 } from '../-components/doc';
 
-// 선택·태그 페이지. 실제 PillGroup·TextToggle·Tag 를 그린다 — 색·높이·호버는 부품이 정하므로 적지 않는다.
+// 선택·태그 페이지. 실제 PillGroup·TextToggle·Tag 를 그린다. 색·높이·호버는 부품이 정하므로 적지 않는다.
 
 const SORT = [
   { value: 'name', label: '가나다순' },
@@ -79,7 +79,7 @@ function ViewPills() {
 export function SelectionSection() {
   return (
     <>
-      <Lead>여럿 중 하나를 고르는 컨트롤은 하는 일로 모양을 고른다.</Lead>
+      <Lead>여럿 중 하나를 고르는 컨트롤은 하는 일로 모양을 고릅니다.</Lead>
 
       <DocSection title="예시">
         <Example>
@@ -96,23 +96,23 @@ export function SelectionSection() {
             {
               name: '알약',
               sample: <Pills />,
-              use: '목록을 거르거나 정렬한다 — 교수 정렬, 교과목 정렬.',
+              use: '목록을 거르거나 정렬합니다(교수 정렬, 교과목 정렬).',
             },
             {
               name: '알약(어두운 면)',
               sample: <DarkPills />,
-              use: '메인 공지 패널 전용. 메인 그래픽과 한 몸이라 주황이다.',
+              use: '메인 공지 패널 전용. 메인 그래픽과 한 몸이라 주황입니다.',
               dark: true,
             },
             {
               name: '글자 토글',
               sample: <Toggle />,
-              use: '같은 자리의 보기를 바꾼다 — 교과목 목록형/카드형, 편집 화면의 한글/English.',
+              use: '같은 자리의 보기를 바꿉니다(교과목 목록형/카드형, 편집 화면의 한글/English).',
             },
             {
               name: '태그',
               sample: <Tag label="장학" href="/design-system/selection" />,
-              use: '글의 분류. 누르면 그 분류의 목록으로 간다.',
+              use: '글의 분류. 누르면 그 분류의 목록으로 갑니다.',
             },
             {
               name: '태그(지우기)',
@@ -122,10 +122,7 @@ export function SelectionSection() {
           ]}
         />
         <RuleList
-          items={[
-            '알약과 글자 토글은 둘 다 네이티브 radiogroup이다.',
-            '어두운 알약은 메인 공지 패널 밖에서 쓰지 않는다.',
-          ]}
+          items={['어두운 알약은 메인 공지 패널 밖에서 쓰지 않습니다.']}
         />
       </DocSection>
 
@@ -134,17 +131,17 @@ export function SelectionSection() {
           items={[
             '학사 연혁의 연도 원 → 연혁 그래픽(고유 화면).',
             '연구 그룹·시설 등의 접힌 모서리 선택 탭 → 그래픽.',
-            '푸터 제작진 이름표 → 분류가 아니라 이름 목록이라 태그가 아니다(내비게이션·셸).',
-            '폼 안에서 값을 고른다 → 체크박스·라디오(입력·폼).',
+            '푸터 제작진 이름표 → 분류가 아니라 이름 목록이라 태그가 아닙니다(내비게이션·셸).',
+            '폼 안에서 값을 고를 때 → 체크박스·라디오(입력·폼).',
           ]}
         />
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않는다">
+      <DocSection title="이렇게 · 이렇게 하지 않기">
         <DoDont
           good={{
             example: <Pills />,
-            caption: '목록을 거르고 정렬하는 것은 알약.',
+            caption: '목록을 거르고 정렬하는 것은 알약입니다.',
           }}
           bad={{
             example: (
@@ -153,17 +150,17 @@ export function SelectionSection() {
                 <Tag label="소속순" onClick={() => {}} />
               </>
             ),
-            caption: '태그를 선택 컨트롤로 쓴다 — 태그는 글의 분류다.',
+            caption: '태그를 선택 컨트롤로 씁니다. 태그는 글의 분류입니다.',
           }}
         />
         <DoDont
           good={{
             example: <Toggle />,
-            caption: '보기 바꾸기는 보조 기능이라 조용한 글자 토글.',
+            caption: '보기 바꾸기는 보조 기능이라 조용한 글자 토글입니다.',
           }}
           bad={{
             example: <ViewPills />,
-            caption: '보기 바꾸기에 알약을 쓴다 — 목록을 거르는 것처럼 읽힌다.',
+            caption: '보기 바꾸기에 알약을 쓰면 목록을 거르는 것처럼 읽힙니다.',
           }}
         />
       </DocSection>

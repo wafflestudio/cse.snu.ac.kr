@@ -56,7 +56,7 @@ function DesignSystemSection() {
 }
 
 export const Route = createFileRoute('/design-system/$section')({
-  // 내용(ReactNode)은 로더 데이터로 넘기지 않는다 — SSR 이 직렬화하지 못한다. 주소만 검사한다.
+  // 내용(ReactNode)은 로더 데이터로 넘기지 않는다. SSR 이 직렬화하지 못한다. 주소만 검사한다.
   beforeLoad: ({ params }) => {
     if (!SECTIONS.some((s) => s.id === params.section)) throw notFound();
   },

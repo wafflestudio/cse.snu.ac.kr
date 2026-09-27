@@ -10,7 +10,7 @@ import {
   RuleList,
 } from '../-components/doc';
 
-// 메인·카테고리 페이지 — 화면 페이지 틀(짜임 그림 → 규칙 → 이렇게·하지 않는다 → 관련).
+// 메인·카테고리 페이지. 화면 페이지 틀(짜임 그림 → 규칙 → 이렇게·하지 않기 → 관련).
 // 그림은 같은 값의 div 다. 실제는 CategoryPage·CategoryGrid·메인 섹션(routes/$locale/-components).
 
 type CardState = 'idle' | 'hover' | 'selected' | 'leaf' | 'wrongSelected';
@@ -69,7 +69,7 @@ function Card({
 const DESCRIPTION =
   '컴퓨터공학부는 컴퓨터 기술의 진화를 선도할 인재를 양성합니다.';
 
-// 카드 띠 자리 — 머리 그림에서는 카드 모양이 아니라 위치만 보인다.
+// 카드 띠 자리. 머리 그림에서는 카드 모양이 아니라 위치만 보인다.
 function CardBand({ mobile }: { mobile: boolean }) {
   return (
     <div
@@ -209,18 +209,18 @@ function More() {
 export function MainSection() {
   return (
     <>
-      <Lead>메인과 카테고리 페이지는 이 사이트에만 있는 화면이다.</Lead>
+      <Lead>메인과 카테고리 페이지는 이 사이트에만 있는 화면입니다.</Lead>
 
       <DocSection title="카테고리 머리">
         <DeviceToggle
-          caption="영어 부제 위, 큰 제목 아래. 설명 문구의 자리가 폭마다 다르다."
+          caption="영어 부제 위, 큰 제목 아래. 설명 문구의 자리가 폭마다 다릅니다."
           desktop={<HeadLayout mobile={false} />}
           mobile={<HeadLayout mobile />}
         />
         <RuleList
           items={[
-            '큰 제목 글자(type-display)는 카테고리 머리에만 쓴다.',
-            '영어 부제는 큰 제목 위에 흐린 회색으로 둔다.',
+            '가장 큰 제목 글자는 카테고리 머리에만 씁니다.',
+            '영어 부제는 큰 제목 위에 흐린 회색으로 둡니다.',
           ]}
         />
       </DocSection>
@@ -237,21 +237,21 @@ export function MainSection() {
           <Card title="학사 일정" state="leaf" mark="go" label="하위 카드" />
         </Example>
         <DeviceToggle
-          caption="데스크톱은 폭 300 카드가 줄을 채우고, 모바일은 두 칸이 폭을 똑같이 나눈다. 띄어쓰기 없는 긴 제목은 “(” 앞에서 줄을 바꾼다."
+          caption="데스크톱은 폭 300 카드가 줄을 채우고, 모바일은 두 칸이 폭을 똑같이 나눕니다. 띄어쓰기 없는 긴 제목은 “(” 앞에서 줄을 바꿉니다."
           desktop={<CardsLayout mobile={false} />}
           mobile={<CardsLayout mobile />}
         />
         <RuleList
           items={[
-            '오른쪽 아래 표시로 누르면 무엇이 되는지 보인다 — 페이지로 가면 →, 하위 카드를 펼치면 ⌄, 펼친 카드는 ⌃.',
-            '호버는 바탕이 한 단계 진해지고 화살표가 오른쪽으로 민다. 펼친 카드는 짙은 주황에 흰 글자.',
-            '펼친 하위 카드는 더 짙은 회색으로 위 카드 줄 아래에 같은 간격으로 잇는다.',
-            '제목 아래에 영어 이름을 둔다.',
+            '오른쪽 아래 표시로 누르면 무엇이 되는지 보입니다. 페이지로 가면 →, 하위 카드를 펼치면 ⌄, 펼친 카드는 ⌃.',
+            '호버는 바탕이 한 단계 진해지고 화살표가 오른쪽으로 밉니다. 펼친 카드는 짙은 주황에 흰 글자.',
+            '펼친 하위 카드는 더 짙은 회색으로 위 카드 줄 아래에 같은 간격으로 잇습니다.',
+            '제목 아래에 영어 이름을 둡니다.',
           ]}
         />
       </DocSection>
 
-      <DocSection title="메인 — 더보기">
+      <DocSection title="메인 더보기">
         <Example caption="밝은 띠와 어두운 판에서 같은 모양.">
           <More />
           <span className="bg-neutral-850 p-3">
@@ -260,34 +260,34 @@ export function MainSection() {
         </Example>
         <RuleList
           items={[
-            '새 소식·공지의 "더보기"는 한 모양이다 — 글자 뒤 오른쪽 화살표, 짙은 주황 글자.',
-            '다른 화면에서 목록·모음으로 보내는 글자 링크도 이 모양을 쓴다(연구실 상세의 스트림 링크).',
+            '새 소식·공지의 "더보기"는 한 모양입니다. 글자 뒤 오른쪽 화살표, 짙은 주황 글자.',
+            '다른 화면에서 목록·모음으로 보내는 글자 링크도 이 모양을 씁니다(연구실 상세의 스트림 링크).',
           ]}
         />
       </DocSection>
 
-      <DocSection title="메인 — 슬로건">
+      <DocSection title="메인 슬로건">
         <DeviceToggle
-          caption="데스크톱은 네 줄, 모바일은 첫 줄을 빼고 세 줄을 가운데 정렬로 보인다."
+          caption="데스크톱은 네 줄, 모바일은 첫 줄을 빼고 세 줄을 가운데 정렬로 보입니다."
           desktop={<SloganLayout mobile={false} />}
           mobile={<SloganLayout mobile />}
         />
         <RuleList
           items={[
-            '문구를 바꿀 때는 첫 줄이 빠져도 문장이 되고, 한 줄이 모바일 폭에 들어가게 고른다(영어는 약 24자).',
+            '문구를 바꿀 때는 첫 줄이 빠져도 문장이 되고, 한 줄이 모바일 폭에 들어가게 고릅니다(영어는 약 24자).',
           ]}
         />
       </DocSection>
 
-      <DocSection title="메인 — 간격">
+      <DocSection title="메인 간격">
         <RuleList
           items={[
-            '히어로 문구·원과 막대 그래픽·공지 판 뒤 그래픽의 크기와 자리는 그래픽이라 자기 값을 쓴다.',
+            '히어로 문구·원과 막대 그래픽·공지 판 뒤 그래픽의 크기와 자리는 그래픽이라 자기 값을 씁니다.',
           ]}
         />
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않는다">
+      <DocSection title="이렇게 · 이렇게 하지 않기">
         <DoDont
           good={{
             example: (
@@ -296,7 +296,7 @@ export function MainSection() {
                 <Card title="대학원" state="hover" mark="expand" small />
               </div>
             ),
-            caption: '펼친 카드는 짙은 주황 — 호버와 한눈에 구분된다.',
+            caption: '펼친 카드는 짙은 주황이라 호버와 한눈에 구분됩니다.',
           }}
           bad={{
             example: (
@@ -311,7 +311,7 @@ export function MainSection() {
               </div>
             ),
             caption:
-              '펼친 카드를 호버와 같은 색으로 칠한다 — 무엇을 골랐는지 모른다.',
+              '펼친 카드를 호버와 같은 색으로 칠하면 무엇을 골랐는지 모릅니다.',
           }}
         />
       </DocSection>

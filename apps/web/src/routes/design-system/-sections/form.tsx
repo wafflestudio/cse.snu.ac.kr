@@ -13,7 +13,7 @@ import {
   VariantTable,
 } from '../-components/doc';
 
-// 입력·폼 페이지. 실제 form/ 부품을 그린다 — 칸의 높이·테두리·오류 색은 부품이 정하므로 적지 않는다.
+// 입력·폼 페이지. 실제 form/ 부품을 그린다. 칸의 높이·테두리·오류 색은 부품이 정하므로 적지 않는다.
 
 const SAMPLE_DAY = new Date(
   new Date().getFullYear(),
@@ -85,7 +85,7 @@ const WIDTHS = [
 export function FormSection() {
   return (
     <>
-      <Lead>입력 칸은 값을 적거나 고르는 곳이다.</Lead>
+      <Lead>입력 칸은 값을 적거나 고르는 곳입니다.</Lead>
 
       <DocSection title="예시">
         <Example>
@@ -138,7 +138,7 @@ export function FormSection() {
                     <Form.Text name="md" placeholder="이름" />
                   </div>
                 ),
-                use: '한 줄 값. 폭은 아래 네 단계에서 고른다.',
+                use: '한 줄 값. 폭은 아래 네 단계에서 고릅니다.',
               },
               {
                 name: '긴 글',
@@ -147,12 +147,12 @@ export function FormSection() {
                     <Form.TextArea name="note" rows={2} />
                   </div>
                 ),
-                use: '여러 줄의 짧은 설명. 서식이 있는 본문은 에디터.',
+                use: '여러 줄의 짧은 설명. 서식이 있는 본문은 에디터입니다.',
               },
               {
                 name: '드롭다운',
                 sample: <Form.Dropdown name="year" contents={YEARS} />,
-                use: '정해진 항목 중 하나. 칸 폭은 가장 긴 항목에 맞춰지니 따로 정하지 않는다.',
+                use: '정해진 항목 중 하나. 칸 폭은 가장 긴 항목에 맞춥니다.',
               },
               {
                 name: '날짜·시간',
@@ -162,12 +162,12 @@ export function FormSection() {
               {
                 name: '체크박스',
                 sample: <Form.Checkbox name="tags" value="학부" />,
-                use: '여러 개를 켜고 끈다(분류·태그 고르기).',
+                use: '여러 개를 켜고 끕니다(분류·태그 고르기).',
               },
               {
                 name: '라디오',
                 sample: <Form.Radio name="radio" value="ko" label="한국어" />,
-                use: '폼 안에서 값 하나를 고른다.',
+                use: '폼 안에서 값 하나를 고릅니다.',
               },
               {
                 name: '첨부',
@@ -180,7 +180,7 @@ export function FormSection() {
       </DocSection>
 
       <DocSection title="폭">
-        <Example caption="글자 칸의 폭은 들어갈 내용의 길이로 고른다. 좁은 화면에서는 모두 영역 폭을 넘지 않는다.">
+        <Example caption="글자 칸의 폭은 들어갈 내용의 길이로 고릅니다. 좁은 화면에서는 모두 영역 폭을 넘지 않습니다.">
           <SampleForm>
             <div className="space-y-4">
               {WIDTHS.map(([size, name, use]) => (
@@ -189,9 +189,7 @@ export function FormSection() {
                   className="grid items-center gap-2 sm:grid-cols-[180px_minmax(0,1fr)] sm:gap-6"
                 >
                   <div>
-                    <p className="type-label">
-                      {name} <span className="type-meta">{size}</span>
-                    </p>
+                    <p className="type-label">{name}</p>
                     <p className="type-meta text-neutral-500">{use}</p>
                   </div>
                   <Form.Text name={size} size={size} placeholder={name} />
@@ -205,16 +203,16 @@ export function FormSection() {
       <DocSection title="입력 칸 대신 쓰는 것">
         <RuleList
           items={[
-            '목록을 거르거나 정렬한다 → 알약(선택·태그).',
-            '검색어를 받는다 → 검색 칸(검색 입력).',
-            '서식이 있는 본문을 쓴다 → 에디터.',
-            '예약 화면 툴바에서 날짜를 옮긴다 → 보조 버튼. 값을 입력하는 칸이 아니다.',
+            '목록을 거르거나 정렬할 때 → 알약(선택·태그).',
+            '검색어를 받을 때 → 검색 칸(검색 입력).',
+            '서식이 있는 본문을 쓸 때 → 에디터.',
+            '예약 화면 툴바에서 날짜를 옮길 때 → 보조 버튼. 값을 입력하는 칸이 아닙니다.',
           ]}
         />
       </DocSection>
 
       <DocSection title="배치">
-        <Example caption="필드 둘을 한 줄에 놓을 때만 Form.Row를 쓴다. 전화·팩스처럼 짧은 값은 기본(두 칸 모두 보통 폭까지), 긴 값은 full(반씩). 모바일에서는 세로로 쌓인다.">
+        <Example caption="한 줄에 필드를 둘까지 나란히 놓을 수 있습니다. 전화·팩스처럼 짧은 값은 두 칸 모두 보통 폭까지, 긴 값은 줄을 반씩 나눕니다. 모바일에서는 세로로 쌓입니다.">
           <SampleForm>
             <Form.Row>
               <Fieldset title="전화">
@@ -226,13 +224,10 @@ export function FormSection() {
             </Form.Row>
           </SampleForm>
         </Example>
-        <RuleList
-          items={['줄 전체 폭을 고정하지 않는다 — 모바일에서 넘친다.']}
-        />
       </DocSection>
 
       <DocSection title="오류">
-        <Example caption="오류 문장은 그 필드 바로 아래에 부품이 그린다. 버튼 줄 옆에는 개수만 적는다 — 긴 폼에서 위쪽 오류를 놓치지 않게. 문장은 문구 페이지를 따른다.">
+        <Example caption="오류 문장은 그 필드 바로 아래에 나옵니다. 긴 폼에서 위쪽 오류를 놓치지 않게 버튼 줄 옆에는 개수만 적습니다. 문장은 문구 페이지를 따릅니다.">
           <InvalidSample />
         </Example>
       </DocSection>

@@ -73,7 +73,7 @@ function Card({ bad }: { bad?: boolean }) {
 export function ShapeSection() {
   return (
     <>
-      <Lead>이 사이트는 각진 선과 면이 기본이다.</Lead>
+      <Lead>이 사이트는 각진 선과 면이 기본입니다.</Lead>
 
       <DocSection title="값">
         <Sub title="모서리">
@@ -84,12 +84,12 @@ export function ShapeSection() {
               className="border border-neutral-300"
             />
             <Sample
-              label="2px (rounded-xs)"
-              note="컨트롤 — 버튼·입력·드롭다운·검색창·파일 선택"
+              label="2px"
+              note="컨트롤(버튼·입력·드롭다운·검색창·파일 선택)"
               className="rounded-xs border border-neutral-300"
             />
             <Sample
-              label="알약·원 (rounded-full)"
+              label="알약·원"
               note="태그·필터 알약·단일 선택 알약·원 그래픽"
               className="rounded-full border border-neutral-300"
             />
@@ -103,7 +103,7 @@ export function ShapeSection() {
               className="border border-neutral-200"
             />
             <Sample
-              label="떠 있는 층 (shadow-overlay)"
+              label="떠 있는 층"
               note="모달·드롭다운 목록·날짜 선택"
               className="shadow-overlay"
             />
@@ -112,12 +112,12 @@ export function ShapeSection() {
         <Sub title="선">
           <Example>
             <Line
-              label="1px — 기본"
+              label="1px(기본)"
               note="목록·카드 구분선, 입력 테두리"
               className="border-t border-neutral-300"
             />
             <Line
-              label="2px — 강조"
+              label="2px(강조)"
               note="목록을 크게 나누는 제목 밑줄(세미나 연도), 푸터 윗선"
               className="border-t-2 border-neutral-700"
             />
@@ -128,24 +128,24 @@ export function ShapeSection() {
       <DocSection title="쓰는 법">
         <RuleList
           items={[
-            '컨트롤이 아닌 판·카드에는 모서리를 두지 않는다.',
-            '그림자는 화면 위에 떠 있는 것에만 쓴다. 카드·목록은 면 색과 선으로 구분한다.',
-            '메인 뉴스 카드와 교과목 카드 뒤집기의 그림자는 그 화면 고유 표현이다(메인·카테고리, 고유 화면).',
-            '3px·5px 같은 굵은 선(모달 위 주황 선, 메인 링크 행 왼쪽 바)은 그 부품 고유 표현이다(모달, 메인·카테고리).',
+            '컨트롤이 아닌 판·카드에는 모서리를 두지 않습니다.',
+            '그림자는 화면 위에 떠 있는 것에만 씁니다. 카드·목록은 면 색과 선으로 구분합니다.',
+            '메인 뉴스 카드와 교과목 카드 뒤집기의 그림자는 그 화면 고유 표현입니다(메인·카테고리, 고유 화면).',
+            '3px·5px 같은 굵은 선(모달 위 주황 선, 메인 링크 행 왼쪽 바)은 그 부품 고유 표현입니다(모달, 메인·카테고리).',
           ]}
         />
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않는다">
+      <DocSection title="이렇게 · 이렇게 하지 않기">
         <DoDont
           good={{
             example: <Card />,
-            caption: '카드는 각진 모서리에 선으로 나눈다.',
+            caption: '카드는 각진 모서리에 선으로 나눕니다.',
           }}
           bad={{
             example: <Card bad />,
             caption:
-              '카드에 둥근 모서리와 그림자를 준다 — 떠 있는 층(모달·드롭다운)처럼 보인다.',
+              '카드에 둥근 모서리와 그림자를 주면 떠 있는 층(모달·드롭다운)처럼 보입니다.',
           }}
         />
       </DocSection>

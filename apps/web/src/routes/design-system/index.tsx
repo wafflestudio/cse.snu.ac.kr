@@ -42,7 +42,6 @@ function Contents() {
       {GROUPS.map((group) => (
         <section key={group.title}>
           <h2 className="type-section">{group.title}</h2>
-          <p className="mt-2 type-meta text-neutral-500">{group.description}</p>
           <ul className="mt-4 border-t border-neutral-200">
             {group.sections.map((section) => (
               <li key={section.id} className="border-b border-neutral-200">

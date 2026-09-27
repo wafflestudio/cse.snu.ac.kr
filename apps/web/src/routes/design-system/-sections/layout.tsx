@@ -19,7 +19,7 @@ type Layout = {
   left: number; // 본문 왼쪽 여백
   right: number; // 본문 오른쪽 여백(서브내비 자리 포함)
   subNav: boolean;
-  prefix: string;
+  note: string; // 이 폭에서 보이는 틀
 };
 
 // 화면 폭 → 틀. 본문 영역에는 상한이 없다.
@@ -31,7 +31,7 @@ function layoutAt(width: number): Layout {
       left: 20,
       right: 20,
       subNav: false,
-      prefix: '(없음)',
+      note: '1024 미만은 위쪽 바와 펼침 메뉴',
     };
   if (width < 1280)
     return {
@@ -40,7 +40,7 @@ function layoutAt(width: number): Layout {
       left: 100,
       right: 100,
       subNav: false,
-      prefix: 'sm:',
+      note: '1024부터 왼쪽 내비',
     };
   return {
     name: '데스크톱 + 서브내비',
@@ -48,7 +48,7 @@ function layoutAt(width: number): Layout {
     left: 100,
     right: 360,
     subNav: true,
-    prefix: 'xl:',
+    note: '1280부터 오른쪽에 서브내비',
   };
 }
 
@@ -135,7 +135,7 @@ function MiniPage({
           style={{ paddingLeft: l.left, paddingTop: desktop ? 48 : 32 }}
         >
           <div className="relative" style={{ width: area }}>
-            <Measure label={`문단 — 읽기 폭 ${reading}`} width={reading}>
+            <Measure label={`문단(읽기 폭 ${reading})`} width={reading}>
               <p className="type-body text-neutral-800">
                 컴퓨터공학부 공지사항입니다. 학사 일정과 장학, 행사 소식을
                 이곳에서 알립니다. 긴 문단은 읽기 폭에서 멈추고, 표와 카드는
@@ -143,7 +143,7 @@ function MiniPage({
               </p>
             </Measure>
             <div className="mt-8">
-              <Measure label={`표 — 본문 영역 ${area}`} width={area}>
+              <Measure label={`표(본문 영역 ${area})`} width={area}>
                 <div className="border-y border-neutral-200 type-ui">
                   {desktop && (
                     <div className="flex h-11 items-center border-b border-neutral-200 px-3 type-label">
@@ -262,7 +262,7 @@ function WidthExplorer() {
         />
       </div>
 
-      {/* 높이는 고정 — 폭을 바꿔도 아래 내용이 움직이지 않는다. 실제 크기로 그린 화면을 통째로 줄인다. */}
+      {/* 높이는 고정이다. 폭을 바꿔도 아래 내용이 움직이지 않는다. 실제 크기로 그린 화면을 통째로 줄인다. */}
       <div
         ref={ref}
         className="relative w-full overflow-hidden bg-neutral-100"
@@ -284,14 +284,14 @@ function WidthExplorer() {
       <SpecTable
         head={['항목', `${width}px`, '']}
         rows={[
-          ['배치', l.name, `클래스 접두사 ${l.prefix}`],
+          ['배치', l.name, l.note],
           [
             '본문 여백',
             l.subNav ? `왼 ${l.left} · 오른 ${l.right}` : `좌우 ${l.left}`,
             l.subNav ? '오른쪽 360 이 서브내비 자리' : '',
           ],
-          ['표·카드', `${area}`, '본문 영역 전체 — 상한 없음'],
-          ['문단', `${reading}`, '읽기 폭 640 에서 멈춘다'],
+          ['표·카드', `${area}`, '본문 영역 전체, 상한 없음'],
+          ['문단', `${reading}`, '읽기 폭 640 에서 멈춥니다'],
         ]}
       />
     </div>
@@ -301,7 +301,7 @@ function WidthExplorer() {
 export function LayoutSection() {
   return (
     <>
-      <Lead>화면 폭에 따라 틀이 두 번 바뀐다.</Lead>
+      <Lead>화면 폭에 따라 틀이 두 번 바뀝니다.</Lead>
 
       <DocSection title="폭에 따라">
         <WidthExplorer />
@@ -310,12 +310,11 @@ export function LayoutSection() {
       <DocSection title="쓰는 법">
         <RuleList
           items={[
-            '긴 문단은 읽기 폭(max-w-160, 640px)으로 감싼다. HTML 본문은 문단·목록·제목이 스스로 640px에서 멈춘다.',
-            '표·카드 격자·달력·폼은 읽기 폭을 받지 않고 영역 전체를 쓴다. 배경 띠가 있는 메인·카테고리도 끝까지 찬다.',
-            '데스크톱 모양은 sm:(1024px)로 쓴다. xl:(1280px)은 서브내비와 그 자리에만 쓴다.',
-            'md:·lg:와 임의 브레이크포인트는 쓰지 않는다. 예외는 메인 뉴스 캐러셀의 카드 수 하나다.',
-            'JS로 갈라야 할 때만 useIsMobile()(1024px 미만)을 쓴다. 보이기만 다른 분기는 CSS로 한다.',
-            '공개 화면은 320px부터, 행정실 편집·관리 화면은 1200px부터 맞춘다.',
+            '긴 문단은 읽기 폭 640px에서 멈춥니다. HTML 본문도 문단·목록·제목이 640px에서 멈춥니다.',
+            '표·카드 격자·달력·폼은 읽기 폭에서 멈추지 않고 영역 전체를 씁니다. 배경 띠가 있는 메인·카테고리도 끝까지 찹니다.',
+            '1024px부터 데스크톱 모양입니다. 1280px에서는 서브내비와 그 자리만 바뀝니다.',
+            '폭에 따라 모양이 바뀌는 곳은 이 두 폭뿐입니다. 예외는 메인 뉴스 캐러셀의 카드 수 하나입니다.',
+            '공개 화면은 320px부터, 행정실 편집·관리 화면은 1200px부터 맞춥니다.',
           ]}
         />
       </DocSection>

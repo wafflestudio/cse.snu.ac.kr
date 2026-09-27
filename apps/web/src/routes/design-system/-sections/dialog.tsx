@@ -81,7 +81,7 @@ function Actions({ ok }: { ok: string }) {
   );
 }
 
-// 크기 견본 — 폭 비율만 보여 주는 작은 판(400 : 560 : 768).
+// 크기 견본. 폭 비율만 보여 주는 작은 판(400 : 560 : 768).
 function Mini({ width }: { width: string }) {
   return (
     <span
@@ -96,7 +96,7 @@ function Mini({ width }: { width: string }) {
 const IMG_BTN =
   'flex h-11.5 flex-1 items-center justify-center type-label transition-colors';
 
-// 이미지 팝업 견본 — 모양은 ui/ImageModal.tsx 와 같다.
+// 이미지 팝업 견본. 모양은 ui/ImageModal.tsx 와 같다.
 function ImageSample() {
   return (
     <Stage className="pb-12">
@@ -125,10 +125,10 @@ function ImageSample() {
 export function DialogSection() {
   return (
     <>
-      <Lead>모달은 지금 화면 위에 판을 띄워 짧은 일을 끝내게 한다.</Lead>
+      <Lead>모달은 지금 화면 위에 판을 띄워 짧은 일을 끝내게 합니다.</Lead>
 
       <DocSection title="예시">
-        <Example caption="판은 화면 위에 뜨므로 여기서는 같은 모양을 그려 보인다.">
+        <Example caption="판은 화면 위에 뜨므로 여기서는 같은 모양을 그려 보입니다.">
           <Stage>
             <Panel title="교과목 추가" width="max-w-[560px]">
               <Field label="교과목명" />
@@ -145,36 +145,36 @@ export function DialogSection() {
             {
               name: '확인창',
               sample: <Mini width="w-[83px]" />,
-              use: '삭제·나가기처럼 되돌리기 어려운 일을 확인한다. 크기는 하나.',
+              use: '삭제·나가기처럼 되돌리기 어려운 일을 확인합니다. 크기는 하나입니다.',
             },
             {
               name: '폼(기본)',
               sample: <Mini width="w-[117px]" />,
-              use: '짧은 입력 — 교과목 추가, 시설 예약.',
+              use: '짧은 입력(교과목 추가, 시설 예약).',
             },
             {
               name: '넓게',
               sample: <Mini width="w-[160px]" />,
-              use: '긴 내용 — 교과목 상세, 예약 상세, 팀 소개.',
+              use: '긴 내용(교과목 상세, 예약 상세, 팀 소개).',
             },
             {
               name: '이미지 팝업',
               sample: <Mini width="w-[60px]" />,
-              use: '메인의 포스터 공지. 모양은 부품이 정한다.',
+              use: '메인의 포스터 공지.',
             },
           ]}
         />
         <RuleList
           items={[
-            '폭은 내용으로 골라 size로 정한다.',
-            '제목은 title로 넘기면 판이 그린다. 모달 안에서 제목을 따로 그리지 않는다.',
-            '내용이 자기 제목을 가진 판(교과목·예약 상세, 팀 소개)은 hideTitle로 화면 읽기용 제목만 둔다.',
+            '판 폭은 내용의 길이로 고릅니다.',
+            '모달 제목은 판 위쪽 한 자리에만 둡니다. 내용 안에 제목을 또 두지 않습니다.',
+            '내용이 자기 제목을 가진 판(교과목·예약 상세, 팀 소개)은 판 위쪽 제목을 보이지 않게 합니다.',
           ]}
         />
       </DocSection>
 
       <DocSection title="확인창">
-        <Example caption="실행 버튼은 하는 일을 적는다 — 삭제·해제·나가기. 버튼 순서는 버튼 페이지, 문장은 문구 페이지를 따른다.">
+        <Example caption="실행 버튼은 하는 일을 적습니다(삭제·해제·나가기). 버튼 순서는 버튼 페이지, 문장은 문구 페이지를 따릅니다.">
           <Stage>
             <Panel width="max-w-[400px]" close={false}>
               <p>
@@ -189,12 +189,12 @@ export function DialogSection() {
       </DocSection>
 
       <DocSection title="이미지 팝업">
-        <Example caption="메인의 포스터 공지. 포스터 색이 매번 달라 버튼은 회색이고, 다시 보지 않기는 판 밖에 둔다.">
+        <Example caption="메인의 포스터 공지. 포스터 색이 매번 달라 버튼은 회색이고, 다시 보지 않기는 판 밖에 둡니다.">
           <ImageSample />
         </Example>
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않는다">
+      <DocSection title="이렇게 · 이렇게 하지 않기">
         <DoDont
           good={{
             example: (
@@ -202,7 +202,7 @@ export function DialogSection() {
                 <Field label="교과목명" />
               </Panel>
             ),
-            caption: '제목은 판이 그린다.',
+            caption: '제목은 판 위쪽에 한 번만 둡니다.',
           }}
           bad={{
             example: (
@@ -211,7 +211,7 @@ export function DialogSection() {
                 <Field label="교과목명" />
               </Panel>
             ),
-            caption: '모달 안에서 제목을 또 그린다 — 제목이 두 번 나온다.',
+            caption: '내용 안에 제목을 또 두면 제목이 두 번 나옵니다.',
           }}
         />
         <DoDont
@@ -222,7 +222,7 @@ export function DialogSection() {
                 <Button variant="primary">삭제</Button>
               </>
             ),
-            caption: '확인창의 실행 버튼은 하는 일을 적는다.',
+            caption: '확인창의 실행 버튼은 하는 일을 적습니다.',
           }}
           bad={{
             example: (
@@ -231,7 +231,7 @@ export function DialogSection() {
                 <Button variant="primary">확인</Button>
               </>
             ),
-            caption: '"확인"으로 둔다 — 무엇이 일어나는지 모른다.',
+            caption: '"확인"으로 두면 무엇이 일어나는지 모릅니다.',
           }}
         />
       </DocSection>

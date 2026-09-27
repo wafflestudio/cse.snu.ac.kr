@@ -12,7 +12,7 @@ import {
 } from '../-components/doc';
 
 // 페이지 틀은 화면 전체라 div 도식으로 그린다. 실제는 PageLayout·PageBand·SelectionTitle.
-// 틀이 정하는 여백은 도식이 보여 주고 값은 소스에 있다 — 짜는 사람이 고르는 것만 적는다.
+// 틀이 정하는 여백은 도식이 보여 주고 값은 소스에 있다. 짜는 사람이 고르는 것만 적는다.
 
 // 도식: 높이는 실제 여백을 1/2로 줄여 그린다.
 function Gap({ label, h }: { label: string; h: string }) {
@@ -65,7 +65,7 @@ function Frame({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
-// 선택형 상세 제목 도식 — 실제 SelectionTitle 과 같은 값.
+// 선택형 상세 제목 도식. 실제 SelectionTitle 과 같은 값.
 function SelTitle({ actions }: { actions?: boolean }) {
   return (
     <div className="flex w-full flex-wrap items-start justify-between gap-3">
@@ -87,7 +87,7 @@ export function PageSection() {
   return (
     <>
       <Lead>
-        화면은 <code>PageLayout</code> 하나로 짓는다.
+        화면은 <code>PageLayout</code> 하나로 짓습니다.
       </Lead>
 
       <DocSection title="짜임">
@@ -109,7 +109,7 @@ export function PageSection() {
           </Frame>
         </div>
         <p className="type-meta text-neutral-500">
-          여백은 모바일 / 데스크톱. 도식의 높이는 실제의 1/2이다.
+          여백은 모바일 / 데스크톱. 도식의 높이는 실제의 1/2입니다.
         </p>
         <Example caption="선택 탭 아래 고른 항목의 제목(SelectionTitle).">
           <div className="w-fit">
@@ -125,20 +125,20 @@ export function PageSection() {
       <DocSection title="규칙">
         <RuleList
           items={[
-            '본문이 한 덩어리면 기본 틀, 흰·회색(neutral-100) 띠로 나누면 띠 틀 — PageLayout bands 안에 PageBand를 쌓는다.',
-            '띠 틀은 학부 소개·진로·연구 스트림·연구 센터·연락처·연혁에 쓴다.',
-            '화면에서 여백을 더하지 않는다. PageLayout에는 여백을 바꾸는 속성이 없다.',
-            '선택 탭(SelectionList)으로 시작하는 화면도 위 여백은 틀이 준다. 탭 위에 관리 버튼이 있으면 버튼 아래 32.',
+            '본문이 한 덩어리면 기본 틀, 흰·회색(neutral-100) 띠(PageBand)로 나누면 띠 틀입니다.',
+            '띠 틀은 학부 소개·진로·연구 스트림·연구 센터·연락처·연혁에 씁니다.',
+            '위아래 여백은 틀이 정합니다. 화면마다 여백을 더하거나 바꾸지 않습니다.',
+            '선택 탭(SelectionList)으로 시작하는 화면도 위 여백은 틀이 줍니다. 탭 위에 관리 버튼이 있으면 버튼 아래 32입니다.',
           ]}
         />
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않는다">
+      <DocSection title="이렇게 · 이렇게 하지 않기">
         <DoDont
           good={{
             example: <SelTitle actions />,
             caption:
-              '관리 버튼(편집·삭제)은 SelectionTitle의 actions로 넘긴다 — 제목 옆에 서고, 자리가 모자라면 다음 줄 오른쪽으로 내려간다.',
+              '관리 버튼(편집·삭제)은 제목(SelectionTitle) 옆에 섭니다. 자리가 모자라면 다음 줄 오른쪽으로 내려갑니다.',
           }}
           bad={{
             example: (
@@ -151,7 +151,7 @@ export function PageSection() {
               </div>
             ),
             caption:
-              '제목 위에 버튼 줄을 따로 둔다 — 버튼이 무엇을 고치는지 떨어져 보인다.',
+              '제목 위에 버튼 줄을 따로 두면 버튼이 무엇을 고치는지 떨어져 보입니다.',
           }}
         />
       </DocSection>

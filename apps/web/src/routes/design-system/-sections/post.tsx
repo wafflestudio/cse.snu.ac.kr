@@ -13,7 +13,7 @@ import {
 } from '../-components/doc';
 
 // 게시물 상세의 짜임을 도식으로 그린다. 실제는 community/-components/PostDetail·PostFooter.
-// 띠 여백·묶음 간격·첨부 상자는 PostDetail 이 정한다 — 짜는 사람이 넘기는 것만 적는다.
+// 띠 여백·묶음 간격·첨부 상자는 PostDetail 이 정한다. 짜는 사람이 넘기는 것만 적는다.
 
 function Gap({ label }: { label: string }) {
   return (
@@ -72,7 +72,7 @@ export function PostSection() {
   return (
     <>
       <Lead>
-        공지·새 소식·세미나 상세는 <code>PostDetail</code> 한 벌로 짓는다.
+        공지·새 소식·세미나 상세는 <code>PostDetail</code> 한 벌로 짓습니다.
       </Lead>
 
       <DocSection title="짜임">
@@ -113,7 +113,7 @@ export function PostSection() {
           </div>
           <figcaption className="mt-2 type-meta text-neutral-500">
             흰 머리 띠(제목·정보 줄) + 옅은 회색 본문 띠(첨부 → 본문 → 주황 선 →
-            태그 → 다음·이전 글 → 버튼 줄). 버튼 줄은 PostFooter.
+            태그 → 다음·이전 글 → 버튼 줄). 버튼 줄은 PostFooter입니다.
           </figcaption>
         </figure>
       </DocSection>
@@ -121,27 +121,27 @@ export function PostSection() {
       <DocSection title="규칙">
         <RuleList
           items={[
-            '세미나는 언제·어디서·누가 여는지를 정보 줄에 쓴다 — 공지·새 소식의 "작성자 · 날짜 · 조회" 자리다.',
-            '세미나 본문의 연사·요약·연사 소개는 같은 소제목(16/700, 아래 8) + 본문이고, 묶음 사이는 48.',
-            '세미나 대표 이미지는 뷰어에 폭 240으로 넘긴다 — 놓이는 모양은 읽는 본문·이미지 페이지.',
-            '다음글·이전글을 손으로 짜면 두 줄 사이 8 — 더 붙이면 한 덩어리로 보인다.',
+            '세미나는 언제·어디서·누가 여는지를 정보 줄에 씁니다. 공지·새 소식의 "작성자 · 날짜 · 조회" 자리입니다.',
+            '세미나 본문의 연사·요약·연사 소개는 같은 소제목(16/700, 아래 8) + 본문이고, 묶음 사이는 48입니다.',
+            '세미나 대표 이미지는 폭 240으로 본문 오른쪽에 띄웁니다. 놓이는 모양은 읽는 본문·이미지 페이지를 따릅니다.',
+            '다음글·이전글 두 줄 사이는 8입니다. 더 붙이면 한 덩어리로 보입니다.',
           ]}
         />
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않는다">
+      <DocSection title="이렇게 · 이렇게 하지 않기">
         <DoDont
           good={{
             example: (
               <Head meta="Mock · 2024/1/10 (수) 오전 08:59 · 조회 1,081" />
             ),
-            caption: '정보 줄은 값만 가운뎃점으로 잇는다.',
+            caption: '정보 줄은 값만 가운뎃점으로 잇습니다.',
           }}
           bad={{
             example: (
               <Head meta="작성자: Mock · 작성 날짜: 2024/1/10 (수) 오전 08:59 · 조회수: 1,081" />
             ),
-            caption: '"작성자:"·"작성 날짜:" 같은 이름표를 붙인다.',
+            caption: '"작성자:"·"작성 날짜:" 같은 이름표를 붙입니다.',
           }}
         />
         <DoDont
@@ -162,7 +162,7 @@ export function PostSection() {
                 <p>소속: 서울대학교</p>
               </div>
             ),
-            caption: '"이름: / 직함: / 소속:"처럼 줄마다 나눈다.',
+            caption: '"이름: / 직함: / 소속:"처럼 줄마다 나눕니다.',
           }}
         />
       </DocSection>

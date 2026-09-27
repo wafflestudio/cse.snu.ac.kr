@@ -25,15 +25,14 @@ import { UniqueSection } from './-sections/unique';
 import { WritingSection } from './-sections/writing';
 
 // 디자인 시스템 문서의 목차 한 곳. 절마다 한 페이지(/design-system/<id>)이고, 묶음은 목차에서만 나뉜다.
-// 규칙은 값과 실제 컴포넌트로 보여 주고, 코드는 싣지 않는다 — 코드는 소스가 정본이다.
+// 규칙은 값과 실제 컴포넌트로 보여 주고, 코드는 싣지 않는다. 코드는 소스가 정본이다.
 
 type Section = { id: string; title: string; content: ReactNode };
-type Group = { title: string; description: string; sections: Section[] };
+type Group = { title: string; sections: Section[] };
 
 export const GROUPS: Group[] = [
   {
     title: '기반',
-    description: '화면을 이루는 값 — 틀·색·글자·간격·모양·아이콘·그래픽.',
     sections: [
       { id: 'layout', title: '레이아웃·반응형', content: <LayoutSection /> },
       { id: 'color', title: '색', content: <ColorSection /> },
@@ -47,7 +46,6 @@ export const GROUPS: Group[] = [
   },
   {
     title: '컴포넌트',
-    description: '여러 화면이 같이 쓰는 부품 — ui/·form/ 의 한 벌.',
     sections: [
       { id: 'button', title: '버튼', content: <ButtonSection /> },
       { id: 'form', title: '입력·폼', content: <FormSection /> },
@@ -60,8 +58,6 @@ export const GROUPS: Group[] = [
   },
   {
     title: '패턴',
-    description:
-      '부품을 엮는 방식 — 페이지 틀·내비게이션·목록·게시물·본문·문구.',
     sections: [
       { id: 'page', title: '페이지 틀', content: <PageSection /> },
       {
@@ -77,7 +73,6 @@ export const GROUPS: Group[] = [
   },
   {
     title: '화면',
-    description: '이 사이트에만 있는 화면 — 메인·카테고리와 고유 화면.',
     sections: [
       { id: 'main', title: '메인·카테고리', content: <MainSection /> },
       { id: 'unique', title: '고유 화면', content: <UniqueSection /> },
@@ -89,7 +84,7 @@ export const SECTIONS = GROUPS.flatMap((group) =>
   group.sections.map((section) => ({ ...section, group: group.title })),
 );
 
-// 목차는 지금 묶음만 펼친다 — 22개 절을 다 펼치면 화면 높이를 넘어 붙어 따라오는 목차가 잘린다.
+// 목차는 지금 묶음만 펼친다. 22개 절을 다 펼치면 화면 높이를 넘어 붙어 따라오는 목차가 잘린다.
 // 다른 묶음은 이름만 두고 누르면 그 묶음의 첫 절로 간다. 들여쓰기는 사이트 서브내비와 같다(묶음 1단, 절 2단).
 export const dsSubNav = (currentId?: string): SubNavConfig => ({
   title: '디자인 시스템',

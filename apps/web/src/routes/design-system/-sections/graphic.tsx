@@ -26,20 +26,31 @@ const NODES: {
     | 'straightDouble'
     | 'curvedHorizontalGray'
     | 'curvedHorizontalSmall';
+  name: string;
   use: string;
   dark?: boolean;
 }[] = [
   {
     variant: 'straight',
+    name: '직선',
     use: '섹션 제목·게시물 본문 아래 구분, 선택형 상세 제목 아래',
   },
-  { variant: 'straightDouble', use: '검색 영역과 선택한 태그 사이' },
+  {
+    variant: 'straightDouble',
+    name: '양 끝 원 직선',
+    use: '검색 영역과 선택한 태그 사이',
+  },
   {
     variant: 'curvedHorizontalGray',
+    name: '직선 + 사선(회색)',
     use: '페이지 제목 영역의 breadcrumb 옆(어두운 면, 회색)',
     dark: true,
   },
-  { variant: 'curvedHorizontalSmall', use: '교수 → 연구실 연결' },
+  {
+    variant: 'curvedHorizontalSmall',
+    name: '짧은 사선',
+    use: '교수 → 연구실 연결',
+  },
 ];
 
 function NodeList() {
@@ -58,7 +69,7 @@ function NodeList() {
             <Node variant={n.variant} />
           </div>
           <div className="space-y-1">
-            <p className="type-label">{n.variant}</p>
+            <p className="type-label">{n.name}</p>
             <p className="type-meta text-neutral-500">{n.use}</p>
           </div>
         </div>
@@ -67,7 +78,7 @@ function NodeList() {
   );
 }
 
-// 이렇게·하지 않는다 도식: 서로 관계없는 두 묶음.
+// 이렇게·하지 않기 도식: 서로 관계없는 두 묶음.
 function TwoGroups({ node }: { node?: boolean }) {
   return (
     <div className="w-48 space-y-4">
@@ -85,14 +96,14 @@ function TwoGroups({ node }: { node?: boolean }) {
 export function GraphicSection() {
   return (
     <>
-      <Lead>그래픽은 정보 사이의 관계를 그린다.</Lead>
+      <Lead>그래픽은 정보 사이의 관계를 그립니다.</Lead>
 
       <DocSection title="값">
-        <Sub title="원과 선 — 연결과 구분">
+        <Sub title="원과 선(연결과 구분)">
           <NodeList />
         </Sub>
-        <Sub title="접힌 모서리 — 한 대상의 정보 묶음">
-          <Example caption="두 곳에만 쓴다 — 선택 탭(주황이 선택된 항목), 연구실 상세의 연락처 요약.">
+        <Sub title="접힌 모서리(한 대상의 정보 묶음)">
+          <Example caption="두 곳에만 씁니다. 선택 탭(주황이 선택된 항목)과 연구실 상세의 연락처 요약입니다.">
             <CornerFoldedRectangle
               colorTheme="orange"
               size="small"
@@ -127,28 +138,28 @@ export function GraphicSection() {
       <DocSection title="쓰는 법">
         <RuleList
           items={[
-            '그래픽은 원과 선, 접힌 모서리, 메인 그래픽 세 가지다. 빈 곳을 채우는 장식으로 쓰지 않는다.',
-            '원과 선은 위 변형 중에서 고른다. 직선과 45도 사선만 쓰고 끝에 원을 둔다.',
-            '선에는 클릭 동작을 주지 않는다. 이동은 선 옆의 이름(링크)이 맡는다.',
-            '밝은 면에서는 주황, 어두운 제목 영역에서는 회색 선이다. 어두운 내비의 주황 선은 "현재 위치" 표시라 예외다.',
-            '관계가 없는 정보 묶음은 그래픽 대신 neutral-200 구분선으로 나눈다.',
-            '서브내비의 세로 곡선(curvedVertical)은 서브내비 전용이다.',
-            '접힌 모서리 자체는 "누를 수 있음"이나 "선택됨"을 뜻하지 않는다. 선택은 주황 색이 알린다.',
-            '긴 본문이나 문서의 모든 섹션을 접힌 모서리로 감싸지 않는다.',
-            '메인 그래픽(0과 1을 나타내는 여섯 줄의 원과 막대 — ASCII로 읽으면 SNUCSE)은 메인 첫 화면에만 쓴다.',
+            '그래픽은 원과 선, 접힌 모서리, 메인 그래픽 세 가지입니다. 빈 곳을 채우는 장식으로 쓰지 않습니다.',
+            '원과 선은 위 변형 중에서 고릅니다. 직선과 45도 사선만 쓰고 끝에 원을 둡니다.',
+            '선에는 클릭 동작을 주지 않습니다. 이동은 선 옆의 이름(링크)이 맡습니다.',
+            '밝은 면에서는 주황, 어두운 제목 영역에서는 회색 선입니다. 어두운 내비의 주황 선은 "현재 위치" 표시라 예외입니다.',
+            '관계가 없는 정보 묶음은 그래픽 대신 neutral-200 구분선으로 나눕니다.',
+            '서브내비의 세로 곡선은 서브내비 전용입니다.',
+            '접힌 모서리 자체는 "누를 수 있음"이나 "선택됨"을 뜻하지 않습니다. 선택은 주황 색이 알립니다.',
+            '긴 본문이나 문서의 모든 섹션을 접힌 모서리로 감싸지 않습니다.',
+            '메인 그래픽(0과 1을 나타내는 여섯 줄의 원과 막대로, ASCII로 읽으면 SNUCSE)은 메인 첫 화면에만 씁니다.',
           ]}
         />
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않는다">
+      <DocSection title="이렇게 · 이렇게 하지 않기">
         <DoDont
           good={{
             example: <TwoGroups />,
-            caption: '관계없는 묶음은 회색 구분선으로 나눈다.',
+            caption: '관계없는 묶음은 회색 구분선으로 나눕니다.',
           }}
           bad={{
             example: <TwoGroups node />,
-            caption: '원과 선으로 나눈다 — 이어진 정보처럼 읽힌다.',
+            caption: '원과 선으로 나누면 이어진 정보처럼 읽힙니다.',
           }}
         />
       </DocSection>
