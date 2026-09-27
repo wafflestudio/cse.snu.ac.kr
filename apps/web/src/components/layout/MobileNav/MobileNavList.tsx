@@ -22,7 +22,7 @@ export default function MobileNavList() {
   };
 
   return (
-    <nav className="flex min-w-[100px] grow-[6.25] basis-0 flex-col justify-between bg-neutral-850 pt-8">
+    <nav className="flex min-w-[100px] grow-[6.25] basis-0 flex-col justify-between bg-chrome-menu pt-8">
       <ul className="flex flex-col gap-8 text-center">
         {navigationTree.map((item, i) => (
           <li

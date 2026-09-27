@@ -20,7 +20,7 @@ export default function LNBSidebar() {
 
   return (
     <nav
-      className={`no-scrollbar z-50 flex flex-col items-center overflow-scroll bg-neutral-850 py-12 transition-all duration-300 ease-in-out ${
+      className={`no-scrollbar z-50 flex flex-col items-center overflow-scroll bg-chrome-menu py-12 transition-all duration-300 ease-in-out ${
         isExpanded ? 'w-44' : 'w-25'
       }`}
       onMouseEnter={expandNavbar}

@@ -70,7 +70,7 @@
   --color-main-orange: #ff6914;
   --color-main-orange-dark: #e65817;
   --color-link: #2867cf;
-  /* 내비게이션 틀. neutral 단계 밖의 약간 푸른 회색 둘: 모바일 상단 바 / 펼침 패널(왼쪽 내비·모바일 메뉴의 하위 목록). */
+  /* 내비게이션 틀. neutral 단계 밖의 약간 푸른 회색 둘: 모바일 상단 바 / 왼쪽 내비 막대·모바일 메뉴 목록. */
   --color-chrome-bar: #2d2d30;
   --color-chrome-menu: #323235;
 

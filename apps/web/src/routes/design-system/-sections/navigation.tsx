@@ -92,20 +92,21 @@ export function NavigationSection() {
         </p>
         <figure>
           <div className="flex h-32 w-full max-w-80">
-            <div className="flex w-20 flex-col items-center gap-3 bg-neutral-850 pt-4 type-meta text-neutral-400">
+            <div className="flex w-20 flex-col items-center gap-3 bg-chrome-menu pt-4 type-meta text-neutral-400">
               <span>소개</span>
               <span className="text-white">연구</span>
               <span>입학</span>
             </div>
-            <div className="flex w-40 flex-col gap-3 bg-chrome-menu pt-4 pl-6 type-meta text-white">
+            <div className="flex w-40 flex-col gap-3 bg-neutral-850 pt-4 pl-6 type-meta text-white">
               <span>연구·교육 스트림</span>
               <span>연구 센터</span>
             </div>
             <div className="flex-1 bg-neutral-900" />
           </div>
           <figcaption className="mt-2 type-meta text-neutral-500">
-            왼쪽 내비: 사이드바 neutral-850 위에 펼쳐지는 패널은 chrome-menu —
-            위로 올라온 면이 더 밝다. 모바일 메뉴의 목록·펼침도 같다.
+            왼쪽 내비: 사이드바는 chrome-menu, 펼쳐지는 패널은 neutral-850.
+            모바일 메뉴의 목록·펼침도 같다 — 색 페이지의 면 규칙(올라온 면이 더
+            밝다)의 예외다.
           </figcaption>
         </figure>
       </DocSection>
@@ -116,7 +117,7 @@ export function NavigationSection() {
             '형제 페이지가 있는 읽는 화면은 PageLayout에 서브내비(subNav)를 넘긴다.',
             '서브내비의 자리·높이는 틀이 정한다 — 화면에서 옮기거나 본문 높이를 맞추지 않는다.',
             '경로는 메뉴(내비게이션 정의)에서 만든다. 새 화면은 메뉴에 올리면 경로가 따라온다.',
-            '어두운 면 위에 새 패널을 펼치면 바탕보다 한 단계 밝은 면(chrome-menu)을 쓴다.',
+            '왼쪽 내비·모바일 메뉴는 면 규칙의 예외다 — 막대가 chrome-menu, 펼침 패널이 neutral-850(바꿔 보니 어색했다).',
           ]}
         />
       </DocSection>

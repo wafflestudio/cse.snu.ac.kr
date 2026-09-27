@@ -90,7 +90,7 @@ export const SECTIONS = GROUPS.flatMap((group) =>
 );
 
 // 목차는 지금 묶음만 펼친다 — 22개 절을 다 펼치면 화면 높이를 넘어 붙어 따라오는 목차가 잘린다.
-// 다른 묶음은 이름만 두고 누르면 그 묶음의 첫 절로 간다.
+// 다른 묶음은 이름만 두고 누르면 그 묶음의 첫 절로 간다. 들여쓰기는 사이트 서브내비와 같다(묶음 1단, 절 2단).
 export const dsSubNav = (currentId?: string): SubNavConfig => ({
   title: '디자인 시스템',
   titlePath: '/design-system',
@@ -101,13 +101,13 @@ export const dsSubNav = (currentId?: string): SubNavConfig => ({
       {
         name: group.title,
         path: open ? undefined : `/design-system/${group.sections[0].id}`,
-        depth: 0 as const,
+        depth: 1 as const,
       },
       ...(open
         ? group.sections.map((section) => ({
             name: section.title,
             path: `/design-system/${section.id}`,
-            depth: 1 as const,
+            depth: 2 as const,
           }))
         : []),
     ];
