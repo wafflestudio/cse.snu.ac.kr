@@ -12,7 +12,6 @@ import { LayoutSection } from './-sections/layout';
 import { ListSection } from './-sections/list';
 import { MainSection } from './-sections/main';
 import { NavigationSection } from './-sections/navigation';
-import { PageSection } from './-sections/page';
 import { PostSection } from './-sections/post';
 import { ReadingSection } from './-sections/reading';
 import { SearchSection } from './-sections/search';
@@ -34,7 +33,7 @@ export const GROUPS: Group[] = [
   {
     title: '기반',
     sections: [
-      { id: 'layout', title: '레이아웃·반응형', content: <LayoutSection /> },
+      { id: 'layout', title: '레이아웃·페이지 틀', content: <LayoutSection /> },
       { id: 'color', title: '색', content: <ColorSection /> },
       { id: 'type', title: '글자', content: <TypeSection /> },
       { id: 'spacing', title: '간격', content: <SpacingSection /> },
@@ -59,7 +58,6 @@ export const GROUPS: Group[] = [
   {
     title: '패턴',
     sections: [
-      { id: 'page', title: '페이지 틀', content: <PageSection /> },
       {
         id: 'navigation',
         title: '내비게이션·셸',

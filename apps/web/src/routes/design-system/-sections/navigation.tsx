@@ -139,8 +139,7 @@ export function NavigationSection() {
       <DocSection title="관련">
         <Related
           links={[
-            ['page', '페이지 틀'],
-            ['layout', '레이아웃·반응형'],
+            ['layout', '레이아웃·페이지 틀'],
             ['color', '색'],
             ['graphic', '그래픽'],
           ]}

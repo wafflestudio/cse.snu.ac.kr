@@ -212,7 +212,7 @@ export function SpacingSection() {
       <DocSection title="관련">
         <Related
           links={[
-            ['layout', '레이아웃·반응형'],
+            ['layout', '레이아웃·페이지 틀'],
             ['type', '글자'],
             ['list', '목록·상태 화면'],
             ['form', '입력·폼'],

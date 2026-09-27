@@ -166,7 +166,6 @@ export function ListSection() {
       <DocSection title="관련">
         <Related
           links={[
-            ['page', '페이지 틀'],
             ['search', '검색 입력'],
             ['button', '버튼'],
             ['writing', '문구'],

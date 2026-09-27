@@ -170,7 +170,6 @@ export function PostSection() {
       <DocSection title="관련">
         <Related
           links={[
-            ['page', '페이지 틀'],
             ['reading', '읽는 본문·이미지'],
             ['graphic', '그래픽'],
             ['button', '버튼'],

@@ -320,7 +320,6 @@ export function MainSection() {
         <Related
           links={[
             ['unique', '고유 화면'],
-            ['page', '페이지 틀'],
             ['spacing', '간격'],
             ['graphic', '그래픽'],
           ]}
