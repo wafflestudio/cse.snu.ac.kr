@@ -9,7 +9,8 @@ import NewsCard from './NewsCard';
 
 // 뷰포트 너비 = 보이는 카드 수만큼. 1380px 초과 4장 / 1280~1380px 3장 / 1024~1279px 2장.
 // 마지막 카드 끝을 0.05rem 잘라 "다음 페이지 있음"을 암시(기존 보정값 유지).
-const VIEWPORT_WIDTH = 'w-[29.55rem] xl:w-[45.35rem] min-[1381px]:w-[61.15rem]';
+// 카드 폭 합 + 좌우 4px — 초점 링(카드 밖 4px)이 잘리지 않을 여유. 여유만큼 음수 여백으로 제자리.
+const VIEWPORT_WIDTH = 'w-[30.05rem] xl:w-[45.85rem] min-[1381px]:w-[61.65rem]';
 
 export default function NewsCarousel({ news }: { news: MainNews[] }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -78,7 +79,7 @@ export default function NewsCarousel({ news }: { news: MainNews[] }) {
     <div className="flex flex-col items-center">
       <div
         ref={emblaRef}
-        className={`mx-auto cursor-grab overflow-hidden pb-10 active:cursor-grabbing ${VIEWPORT_WIDTH}`}
+        className={`mx-auto -mt-1 cursor-grab overflow-hidden px-1 pt-1 pb-10 active:cursor-grabbing ${VIEWPORT_WIDTH}`}
       >
         <div className={`flex ${CARD_GAP_TAILWIND}`}>
           {news.map((news) => (

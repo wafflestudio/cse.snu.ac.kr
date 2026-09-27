@@ -594,7 +594,7 @@
 
 ### ✅ 4-2 접근성
 
-**결정:** 초점 표시 한 벌 — `:focus-visible` 에 2px 실선 2px 띄움, 색은 `--focus-ring`(기본 neutral-700, `surface-dark` 틀 안 흰색, 그 안 밝은 면 `surface-light`). 입력 칸·드롭다운은 링 대신 테두리만 짙게(`field-focus`/`field-focus-within`), 어두운 헤더 위 검색 칸만 흰 링(`field-ring-within`). 캐러셀 카드는 링 안쪽. 이미지 팝업 버튼 `focus:outline-none` 제거. Tab 워크(메인·소개·공지·교수진·교과목·예약·편집 폼, 390·1440)에서 숨은 요소·비활성 버튼 Tab 문제는 재현되지 않음. 전후 `.ds-review/4-2-초점/compare.html`, 문서 `/design-system/focus`.
+**결정:** 초점 표시 한 벌 — `:focus-visible` 에 2px 실선 2px 띄움, 색은 `--focus-ring`(기본 neutral-700, `surface-dark` 틀 안 흰색, 그 안 밝은 면 `surface-light`). 입력 칸·드롭다운은 링 대신 테두리만 짙게(`field-focus`/`field-focus-within`), 어두운 헤더 위 검색 칸만 흰 링(`field-ring-within`). 캐러셀 카드는 링 안쪽. 이미지 팝업 버튼 `focus:outline-none` 제거. Tab 워크(메인·소개·공지·교수진·교과목·예약·편집 폼, 390·1440)에서 숨은 요소·비활성 버튼 Tab 문제는 재현되지 않음. 전후 `.ds-review/4-2-초점/compare.html`, 문서 `/design-system/focus`. 이어서 메인 새 소식 캐러셀은 영역 안쪽 4px 여유로 바깥 링(안쪽 링은 이미지에 가렸다), 행이 한 곳으로 가는 표(공지·교과목)는 행 전체를 누르는 영역으로(`ui/rowLink.ts`, 링크는 제목 하나).
 
 
 <details><summary>이전에 본 문제</summary>

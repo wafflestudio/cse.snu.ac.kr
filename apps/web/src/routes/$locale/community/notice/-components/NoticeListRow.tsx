@@ -1,5 +1,6 @@
 import { Link, useSearch } from '@tanstack/react-router';
 import dayjs from 'dayjs';
+import { ROW_LINK, ROW_LINK_TARGET } from '@/components/ui/rowLink';
 import 'dayjs/locale/ko';
 import { Lock, Paperclip, Pin } from 'lucide-react';
 import Checkbox from '@/components/ui/Checkbox';
@@ -23,10 +24,11 @@ export default function NoticeListRow({
   const { t, locale } = useLanguage({ 조회수: 'Views' });
 
   return (
+    // 편집 중이 아니면 행 전체가 제목 링크의 누르는 영역이다(링크는 제목 하나, 영역만 넓힌다 — /design-system/list).
     <li
-      className={`flex flex-col gap-2 px-6 py-6 type-ui sm:col-span-full sm:grid sm:h-11 sm:grid-cols-subgrid sm:items-center sm:gap-0 sm:px-0 sm:py-0 ${
+      className={`${ROW_LINK} flex flex-col gap-2 px-6 py-6 type-ui sm:col-span-full sm:grid sm:h-11 sm:grid-cols-subgrid sm:items-center sm:gap-0 sm:px-0 sm:py-0 ${
         post.isPinned && 'font-bold'
-      } ${!isEditMode && (post.isPrivate ? 'bg-neutral-200' : 'odd:bg-neutral-50')} ${
+      } ${!isEditMode && (post.isPrivate ? 'bg-neutral-200' : 'odd:bg-neutral-50 hover:bg-neutral-100')} ${
         isSelected && 'bg-neutral-100'
       }`}
     >
@@ -102,12 +104,12 @@ function TitleCell({
   return (
     <Wrapper
       to={detailPath}
-      className="flex min-w-0 items-center gap-1 type-item sm:type-ui sm:pl-3"
+      className={`flex min-w-0 items-center gap-1 type-item sm:type-ui sm:pl-3 ${isEditMode ? '' : ROW_LINK_TARGET}`}
     >
       <span
         className={`${
           isPinned && 'font-bold text-main-orange sm:text-neutral-950'
-        } overflow-hidden text-ellipsis type-item tracking-wide hover:text-main-orange sm:type-ui sm:whitespace-nowrap`}
+        } overflow-hidden text-ellipsis type-item tracking-wide group-hover:text-main-orange sm:type-ui sm:whitespace-nowrap`}
       >
         {title}
       </span>

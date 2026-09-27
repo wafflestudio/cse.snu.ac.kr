@@ -1,3 +1,4 @@
+import { ROW_LINK, ROW_LINK_TARGET } from '@/components/ui/rowLink';
 import { useLanguage } from '@/hooks/useLanguage';
 import { GRADE } from '@/routes/$locale/academics/-constants';
 import type { Course } from '@/types/api';
@@ -54,12 +55,15 @@ const Row = ({
   const { t } = useLanguage(translations);
 
   return (
-    <li className="grid grid-cols-[auto_auto_1fr] grid-rows-3 gap-x-1 gap-y-2 px-6 py-6 type-ui odd:bg-neutral-50 sm:col-span-full sm:h-11 sm:grid-cols-subgrid sm:grid-rows-1 sm:items-center sm:gap-x-6 sm:gap-y-0 sm:px-4 sm:py-0">
+    // 행 전체가 교과목명 버튼의 누르는 영역이다(/design-system/list).
+    <li
+      className={`${ROW_LINK} grid grid-cols-[auto_auto_1fr] grid-rows-3 gap-x-1 gap-y-2 px-6 py-6 type-ui odd:bg-neutral-50 sm:col-span-full sm:h-11 sm:grid-cols-subgrid sm:grid-rows-1 sm:items-center sm:gap-x-6 sm:gap-y-0 sm:px-4 sm:py-0 hover:bg-neutral-100`}
+    >
       <span
         className={`order-1 col-span-3 pr-2 type-item sm:col-span-1 sm:type-ui`}
       >
         <button
-          className="text-left"
+          className={`text-left group-hover:text-main-orange ${ROW_LINK_TARGET}`}
           type="button"
           onClick={() => onSelectCourse(course)}
         >
