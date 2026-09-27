@@ -13,6 +13,70 @@ import {
 
 // 색 페이지. 값은 app.css @theme 이 정본이다. 버튼의 호버·누름 색처럼 부품이 정하는 색은 적지 않는다.
 
+// 전체 토큰. 값은 app.css @theme 과 같다(red-600 만 Tailwind 기본값).
+const TOKENS: {
+  group: string;
+  items: [chip: string, name: string, hex: string][];
+}[] = [
+  {
+    group: '회색',
+    items: [
+      ['bg-white', 'white', '#ffffff'],
+      ['bg-neutral-50', 'neutral-50', '#fafafa'],
+      ['bg-neutral-100', 'neutral-100', '#f5f5f5'],
+      ['bg-neutral-200', 'neutral-200', '#e5e5e5'],
+      ['bg-neutral-300', 'neutral-300', '#d4d4d4'],
+      ['bg-neutral-400', 'neutral-400', '#a3a3a3'],
+      ['bg-neutral-500', 'neutral-500', '#737373'],
+      ['bg-neutral-600', 'neutral-600', '#525252'],
+      ['bg-neutral-700', 'neutral-700', '#404040'],
+      ['bg-neutral-800', 'neutral-800', '#262626'],
+      ['bg-neutral-850', 'neutral-850', '#1e1e1e'],
+      ['bg-neutral-900', 'neutral-900', '#171717'],
+      ['bg-neutral-950', 'neutral-950', '#0a0a0a'],
+    ],
+  },
+  {
+    group: '내비게이션 틀',
+    items: [
+      ['bg-chrome-bar', 'chrome-bar', '#2d2d30'],
+      ['bg-chrome-menu', 'chrome-menu', '#323235'],
+    ],
+  },
+  {
+    group: '강조',
+    items: [
+      ['bg-main-orange', 'main-orange', '#ff6914'],
+      ['bg-main-orange-dark', 'main-orange-dark', '#e65817'],
+      ['bg-link', 'link', '#2867cf'],
+      ['bg-red-600', 'red-600', '#e7000b'],
+    ],
+  },
+];
+
+function TokenList() {
+  return (
+    <div className="space-y-8">
+      {TOKENS.map(({ group, items }) => (
+        <div key={group}>
+          <p className="mb-3 type-label">{group}</p>
+          <ul className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {items.map(([chip, name, hex]) => (
+              <li key={name}>
+                <span
+                  className={clsx('block h-12 border border-neutral-200', chip)}
+                />
+                <p className="mt-2 type-ui text-neutral-950">{name}</p>
+                <p className="type-meta text-neutral-500">{hex}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // 예시 아래 색 줄: 칩 · 이름 · hex · 쓰는 곳.
 function Swatches({
   items,
@@ -207,6 +271,10 @@ export function ColorSection() {
   return (
     <>
       <Lead>회색은 행동, 주황은 표시입니다.</Lead>
+
+      <DocSection title="토큰">
+        <TokenList />
+      </DocSection>
 
       <DocSection title="역할별 예시">
         <ColorExamples />
