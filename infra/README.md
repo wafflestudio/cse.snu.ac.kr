@@ -10,6 +10,7 @@ compose.caddy.yml     엣지(Caddy, ~/proxy). caddy/Caddyfile(prod)·Caddyfile.d
 compose.ops.yml       백업 컨테이너
 monitoring/           Prometheus·Grafana(prod)
 ops/host-deploy.sh    호스트에서 jar·api 이미지·web 이미지 빌드 → compose up → Caddy reload → GIT_SHA 검증. deploy.yml 이 부른다
+ops/deploy-staging.sh 로컬에서 staging 에 수동 배포(SSH → 커밋 맞추기 → host-deploy.sh). deploy.yml 의 배포 단계와 같다
 ops/db-backup.sh 등   백업
 production.env        prod 배포 대상 — 호스트·프로파일·웹 빌드 mode·Caddyfile·인증서 경로 (main push)
 staging.env           staging 배포 대상 (develop push)
