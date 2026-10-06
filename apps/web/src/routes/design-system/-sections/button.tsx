@@ -8,18 +8,14 @@ import {
   RuleList,
   VariantTable,
 } from '../-components/doc';
+import { stay } from '../-components/sample';
+import LegacyButton from '../-legacy/Button';
+import { LegacyStreamLink } from '../-legacy/StreamLink';
 
 // 버튼 페이지. 문서 틀(-components/doc.tsx)의 기준 페이지. 실제 Button 을 그린다.
 // 크기·여백·호버 색처럼 Button 이 정하는 값은 적지 않는다(예시가 보여 주고, 값은 소스에 있다).
 
-// 쓰지 않는 모양을 보여 주려고만 그리는 가짜 버튼(주황 채움). 앱에는 없다.
-function OrangeFilled({ children }: { children: string }) {
-  return (
-    <span className="inline-flex h-8.5 items-center rounded-xs bg-main-orange px-4 type-label text-white">
-      {children}
-    </span>
-  );
-}
+// Don't 는 예전 부품 사본(-legacy)으로 그린다.
 
 function Spacer() {
   return <span className="w-24 border-b border-dashed border-neutral-300" />;
@@ -116,9 +112,9 @@ export function ButtonSection() {
           bad={{
             example: (
               <>
-                <Button variant="secondary">취소</Button>
-                <Button variant="primary">삭제</Button>
-                <Button variant="primary">저장하기</Button>
+                <LegacyButton variant="secondary">취소</LegacyButton>
+                <LegacyButton variant="neutral">삭제</LegacyButton>
+                <LegacyButton variant="neutral">저장하기</LegacyButton>
               </>
             ),
             caption:
@@ -138,8 +134,8 @@ export function ButtonSection() {
           bad={{
             example: (
               <>
-                <OrangeFilled>연구실 추가</OrangeFilled>
-                <Button variant="primary">교수 추가</Button>
+                <LegacyButton variant="primary">연구실 추가</LegacyButton>
+                <LegacyButton variant="neutral">추가하기</LegacyButton>
               </>
             ),
             caption:
@@ -149,19 +145,19 @@ export function ButtonSection() {
         <DoDont
           good={{
             example: (
-              <span className="flex items-center gap-1 type-ui text-main-orange-dark">
+              <a
+                href="/research/groups"
+                onClick={stay}
+                className="flex w-fit items-center gap-1 type-ui text-main-orange-dark"
+              >
                 시스템 스트림 <ArrowRight />
-              </span>
+              </a>
             ),
             caption:
               '모음 페이지로 보내는 링크는 화살표를 붙인 글자 링크입니다.',
           }}
           bad={{
-            example: (
-              <span className="border border-main-orange px-3 py-2 type-ui text-main-orange">
-                시스템 스트림
-              </span>
-            ),
+            example: <LegacyStreamLink label="시스템 스트림" />,
             caption:
               '예전 연구실 상세의 스트림 링크는 주황 테두리 상자라 실행 버튼처럼 보였습니다.',
           }}

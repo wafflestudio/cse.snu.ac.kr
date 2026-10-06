@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 import Button from '@/components/ui/Button';
+import SearchInput from '@/components/ui/SearchInput';
+import LinkRow from '@/routes/$locale/-components/LinkRow';
 import {
   DocSection,
   DoDont,
@@ -7,8 +9,13 @@ import {
   Lead,
   RuleList,
 } from '../-components/doc';
+import { stay } from '../-components/sample';
+import { LegacyLinkRow } from '../-legacy/LinkRow';
+import { LegacyNewsCard } from '../-legacy/NewsCard';
+import { SAMPLE_NEWS, SampleNewsCard } from './shape';
 
 // 초점·키보드. 견본의 초점 모양은 정적 클래스로 흉내 낸다(실제 모양은 app.css 의 :focus-visible).
+// 견본 부품은 실제 부품이라 Tab 으로 옮겨 가면 진짜 링도 볼 수 있다.
 
 const RING = 'outline-2 outline-offset-2 outline-neutral-700';
 const RING_DARK = 'outline-2 outline-offset-2 outline-white';
@@ -29,18 +36,36 @@ function Field({ focused, border }: { focused?: boolean; border?: boolean }) {
   );
 }
 
-function Card({ ring, clipped }: { ring: string; clipped?: boolean }) {
+// 메인 새 소식 캐러셀. 지금은 NewsCarousel 처럼 틀 안쪽에 4px(px-1 pt-1)을 두고, 예전(d1baf83c)은 여유 없이 잘랐다.
+// 링 모양은 정적 클래스로 카드 둘레에 그린다.
+function Carousel({ old }: { old?: boolean }) {
   return (
     <div
       className={clsx(
-        'bg-neutral-100',
-        // 잘리는 캐러셀: 위·왼쪽에 여유가 없다.
-        clipped ? 'overflow-hidden pr-3 pb-3' : 'p-1',
+        'overflow-hidden bg-neutral-100',
+        old ? 'pr-3 pb-3' : 'px-1 pt-1 pb-3',
       )}
     >
-      <div className={clsx('flex h-24 w-36 flex-col bg-white', ring)}>
-        <div className="h-10 bg-neutral-300" />
-        <p className="p-2 type-label">새 소식 카드</p>
+      <div className={clsx('w-fit', old ? RING_BLUE : RING)}>
+        {old ? <LegacyNewsCard news={SAMPLE_NEWS} /> : <SampleNewsCard />}
+      </div>
+    </div>
+  );
+}
+
+// 메인 아래 바로가기 한 줄. 지금은 실제 LinkRow(이 페이지를 떠나지 않는다), 예전은 d1baf83c 사본.
+function Shortcut({ old }: { old?: boolean }) {
+  return (
+    <div
+      className="w-full max-w-[342px] bg-neutral-900 p-4"
+      onClickCapture={stay}
+    >
+      <div className={old ? RING_BLUE : RING_DARK}>
+        {old ? (
+          <LegacyLinkRow title="Top Conference List" />
+        ) : (
+          <LinkRow to="/design-system/focus" title="Top Conference List" />
+        )}
       </div>
     </div>
   );
@@ -62,7 +87,8 @@ export function FocusSection() {
             <Button variant="secondary">취소</Button>
           </span>
           <a
-            href="#focus"
+            href="#"
+            onClick={stay}
             className={clsx('type-ui text-link underline', RING)}
           >
             링크
@@ -72,9 +98,9 @@ export function FocusSection() {
           <span className={clsx('inline-flex', RING_DARK)}>
             <Button variant="textInverse">로그인</Button>
           </span>
-          <span className={clsx('type-ui text-white', RING_DARK)}>
-            Top Conference List
-          </span>
+          <div className={clsx('w-64', RING_DARK)} onClickCapture={stay}>
+            <LinkRow to="/design-system/focus" title="Top Conference List" />
+          </div>
         </Example>
       </DocSection>
 
@@ -86,14 +112,12 @@ export function FocusSection() {
           tone="dark"
           caption="어두운 면 위에 뜬 칸(헤더 검색)은 짙은 테두리가 배경에 묻히므로 흰 링을 표시합니다."
         >
-          <span
-            className={clsx(
-              'flex h-8.5 w-48 items-center rounded-xs bg-neutral-100 px-3 type-ui text-neutral-300',
-              RING_DARK,
-            )}
+          <form
+            className={clsx('w-fit rounded-xs', RING_DARK)}
+            onSubmit={(e) => e.preventDefault()}
           >
-            통합검색
-          </span>
+            <SearchInput tone="dark" ariaLabel="통합검색" />
+          </form>
         </Example>
       </DocSection>
 
@@ -112,35 +136,23 @@ export function FocusSection() {
       <DocSection title="Do · Don't">
         <DoDont
           good={{
-            example: <Card ring={RING} />,
+            example: <Carousel />,
             caption:
               '캐러셀 영역 안쪽에 4px 여유를 두어 바깥 링이 온전히 보입니다.',
           }}
           bad={{
-            example: <Card clipped ring={RING_BLUE} />,
+            example: <Carousel old />,
             caption:
               '예전 메인 새 소식 카드는 브라우저 기본 파란 1px 링이 캐러셀에 위·왼쪽이 잘렸습니다.',
           }}
         />
         <DoDont
           good={{
-            example: (
-              <div className="bg-neutral-900 p-4">
-                <span className={clsx('type-ui text-white', RING_DARK)}>
-                  Top Conference List
-                </span>
-              </div>
-            ),
+            example: <Shortcut />,
             caption: '어두운 면에서는 흰 2px 링이 바탕과 분명히 구분됩니다.',
           }}
           bad={{
-            example: (
-              <div className="bg-neutral-900 p-4">
-                <span className={clsx('type-ui text-white', RING_BLUE)}>
-                  Top Conference List
-                </span>
-              </div>
-            ),
+            example: <Shortcut old />,
             caption:
               '예전 메인 바로가기는 파란 1px 링이라 어두운 띠 위에서 거의 보이지 않았습니다.',
           }}

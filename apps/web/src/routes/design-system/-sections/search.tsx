@@ -1,5 +1,6 @@
 import { Search } from 'lucide-react';
 import type { ReactNode } from 'react';
+import Button from '@/components/ui/Button';
 import SearchInput from '@/components/ui/SearchInput';
 import {
   DocSection,
@@ -9,6 +10,7 @@ import {
   Lead,
   RuleList,
 } from '../-components/doc';
+import { LegacySeminarSearchBar } from '../-legacy/SeminarSearchBar';
 
 // 검색 입력 페이지. 실제 SearchInput 을 그린다. 칸의 높이·테두리·폭은 부품이 정하므로 적지 않는다.
 
@@ -21,15 +23,23 @@ function SampleForm({ children }: { children: ReactNode }) {
   );
 }
 
-// 모바일 메뉴의 밑줄 검색 칸 견본.
+// 모바일 메뉴의 밑줄 검색 칸 견본. MobileNavList 안의 칸은 라우터·전역 상태에 묶여 있어
+// 같은 클래스로 옮겨 그린다(입력·실행 버튼은 실제로 움직이고, 실행해도 이동하지 않는다).
 function UnderlineSearch() {
   return (
-    <div className="flex w-56 items-center border-b border-neutral-400">
-      <span className="h-8 flex-1 type-ui leading-8 text-neutral-500">
-        검색어를 입력해 주세요
-      </span>
-      <Search className="size-5 text-white" />
-    </div>
+    <form
+      className="field-focus-within flex w-56 items-center border-b border-neutral-400 [--field-focus:var(--color-white)]"
+      onSubmit={(e) => e.preventDefault()}
+    >
+      <input
+        className="h-8 w-full bg-transparent type-ui text-white outline-none placeholder:text-neutral-500"
+        placeholder="검색어를 입력해 주세요"
+        aria-label="검색어"
+      />
+      <Button variant="textInverse" type="submit" ariaLabel="검색 실행">
+        <Search className="size-5" />
+      </Button>
+    </form>
   );
 }
 
@@ -85,12 +95,7 @@ export function SearchSection() {
             caption: '밝은 면의 검색 칸은 다른 입력 칸과 같은 모양입니다.',
           }}
           bad={{
-            example: (
-              <div className="flex h-8.5 w-60 items-center rounded-xs bg-neutral-100 px-3 type-ui text-neutral-500">
-                <span className="flex-1">검색어</span>
-                <Search />
-              </div>
-            ),
+            example: <LegacySeminarSearchBar />,
             caption:
               '예전 세미나 검색은 회색 채움 칸이라 공지·새 소식의 흰 검색 칸과 모양이 달랐습니다.',
           }}

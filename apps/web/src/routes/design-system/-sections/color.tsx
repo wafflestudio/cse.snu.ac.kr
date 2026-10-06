@@ -1,4 +1,7 @@
 import clsx from 'clsx';
+import CourseList from '@/routes/$locale/academics/-components/courses/CourseList';
+import PeopleProfileInfo from '@/routes/$locale/people/-components/PeopleProfileInfo';
+import type { Course } from '@/types/api';
 import {
   DocSection,
   DoDont,
@@ -7,6 +10,9 @@ import {
   RuleList,
   SpecTable,
 } from '../-components/doc';
+import { stay } from '../-components/sample';
+import { LegacyCourseList } from '../-legacy/CourseList';
+import { LegacyPeopleProfileInfo } from '../-legacy/PeopleProfileInfo';
 
 // 색 페이지. 값은 app.css @theme 이 정본이다. 버튼·입력 칸처럼 부품이 정하는 색은 적지 않는다.
 // 화면 목업 대신 역할 표로 보여 준다: 새 경우는 표의 역할 하나로 풀려야 한다.
@@ -54,7 +60,12 @@ const ROLES: [role: string, chip: string, token: string, use: string][] = [
     'neutral-50',
     '표 줄무늬, 바탕과 살짝 구분할 영역',
   ],
-  ['회색 띠', 'bg-neutral-100', 'neutral-100', '내용 묶음을 띠로 나눌 때'],
+  [
+    '회색 띠',
+    'bg-neutral-100',
+    'neutral-100',
+    '성격이 다른 내용을 띠로 나눌 때',
+  ],
   [
     '어두운 면',
     'bg-neutral-900',
@@ -85,6 +96,46 @@ const PALETTE: [token: string, chip: string, hex: string][] = [
   ['link', 'bg-link', '#2867cf'],
   ['red-600', 'bg-red-600', '#e7000b'],
 ];
+
+// Do · Don't 견본 데이터. 교수 상세 연락처와 교과목 목록.
+const CONTACT = [
+  { icon: 'distance', label: '302동 314호' },
+  { icon: 'phone_in_talk', label: '02-880-0000' },
+  { icon: 'mail', label: 'prof@snu.ac.kr', href: 'mailto:prof@snu.ac.kr' },
+  {
+    icon: 'captive_portal',
+    label: 'https://example.snu.ac.kr',
+    href: 'https://example.snu.ac.kr',
+  },
+];
+
+const course = (
+  name: string,
+  classification: string,
+  code: string,
+  credit: number,
+  grade: number,
+): Course => ({
+  code,
+  credit,
+  grade,
+  studentType: 'undergraduate',
+  ko: { name, classification, description: '' },
+  en: { name, classification, description: '' },
+});
+
+const COURSES = [
+  course('컴퓨터의 개념 및 실습', '전공필수', '4190.101', 3, 1),
+  course('자료구조', '전공필수', '4190.210', 3, 2),
+];
+
+const LEGACY_COURSES = COURSES.map((c) => ({
+  name: c.ko.name,
+  classification: c.ko.classification,
+  code: c.code,
+  credit: c.credit,
+  grade: `${c.grade}학년`,
+}));
 
 function Chip({ className }: { className: string }) {
   return (
@@ -158,59 +209,45 @@ export function ColorSection() {
         <DoDont
           good={{
             example: (
-              <span className="type-ui">
-                자세한 내용은{' '}
-                <a
-                  href="#color"
-                  className="text-link underline underline-offset-2"
-                >
-                  학사 안내
-                </a>
-                를 확인해 주세요.
-              </span>
+              <div onClickCapture={stay}>
+                <PeopleProfileInfo imageURL={null} items={CONTACT} />
+              </div>
             ),
             caption: '링크 색은 흰 바탕과 대비 5.3:1입니다.',
           }}
           bad={{
             example: (
-              <span className="type-ui">
-                자세한 내용은{' '}
-                <a
-                  href="#color"
-                  className="text-[#3c7be4] underline underline-offset-2"
-                >
-                  학사 안내
-                </a>
-                를 확인해 주세요.
-              </span>
+              <LegacyPeopleProfileInfo imageURL={null} items={CONTACT} />
             ),
             caption:
-              '예전 링크 색(#3c7be4)은 흰 바탕 대비 4.1:1로 기준에 못 미쳤습니다.',
+              '예전 교수 상세의 연락처 링크 색(#3c7be4)은 흰 바탕 대비 4.1:1로 기준에 못 미쳤습니다.',
           }}
         />
         <DoDont
           good={{
             example: (
-              <div className="w-56">
-                <p className="type-ui">대학원 논문 심사 일정</p>
-                <p className="mt-1 type-meta text-neutral-500">
-                  2026/9/24 · 조회 198
-                </p>
+              // 데스크톱 표는 다섯 칸이라 견본 칸보다 넓다. 칸 안에서 가로로 밀어 본다.
+              <div className="w-full overflow-x-auto">
+                <div className="sm:min-w-[32rem]">
+                  <CourseList
+                    courses={COURSES}
+                    onSelectCourse={() => undefined}
+                  />
+                </div>
               </div>
             ),
             caption: '흰 바탕의 보조 글자는 대비 4.7:1인 neutral-500입니다.',
           }}
           bad={{
             example: (
-              <div className="w-56">
-                <p className="type-ui">대학원 논문 심사 일정</p>
-                <p className="mt-1 type-meta text-neutral-400">
-                  2026/9/24 · 조회 198
-                </p>
+              <div className="w-full overflow-x-auto">
+                <div className="sm:min-w-[32rem]">
+                  <LegacyCourseList courses={LEGACY_COURSES} />
+                </div>
               </div>
             ),
             caption:
-              '예전 목록·검색의 보조 글자는 neutral-400이라 흰 바탕 대비가 2.5:1에 그쳤습니다.',
+              '예전 교과목 목록의 구분·학점·학년은 neutral-400이라 흰 바탕 대비가 2.5:1에 그쳤습니다.',
           }}
         />
       </DocSection>

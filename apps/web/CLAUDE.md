@@ -33,6 +33,7 @@ TanStack Start 빌드는 `dist/server/server.js` 를 **Web fetch 핸들러**로 
 # 디자인 시스템
 
 - **보이는 규칙의 정본은 `/design-system`(`src/routes/design-system/`)이다.** 화면을 만들거나 고칠 때 먼저 읽는다. 절마다 한 페이지(`/design-system/<id>`), 목차는 `-registry.tsx` 한 곳. 문서에는 보이는 결과만 적고 코드는 싣지 않는다. 그것을 코드로 어떻게 만드는지는 아래 이 절이 정본이다.
+- **`design-system/-legacy/` 는 문서 전용이다.** Do·Don't 와 개선 전후의 "전"을 그리려고 base 커밋의 예전 부품을 옮겨 둔 사본이라, `src/routes/design-system/**` 밖에서는 가져오지 않는다(`biome.json` 의 `noRestrictedImports` 가 막는다). "후"·Do 는 사본이 아니라 실제 부품을 쓴다.
 - **문서 페이지 틀은 `-components/doc.tsx`.** 쓰는 사람이 정해야 하는 것만 적는다(부품이 정하는 값은 예시가 보여 준다). 폭에 따라 다른 것은 글 대신 `DeviceToggle`·폭 슬라이더. 첫 줄 설명은 한 문장, 한국어 글에 줄표(—)를 쓰지 않는다.
 - **토큰:** `src/app.css` 의 `@theme`. 오류 색 red-600 만 Tailwind 기본값을 쓴다. 가로 페이지 거터는 `.page-gutter-x` 단일 출처. 토큰화·스케일화는 픽셀 동일할 때만 자율, 값이 바뀌는 정규화는 디자인 결정이라 합의한다.
 - **DS 에 우겨넣지 않는다.** 일관성이 깨지는 사용처는 컴포넌트 API 확장이 아니라 앱 코드를 고친다.

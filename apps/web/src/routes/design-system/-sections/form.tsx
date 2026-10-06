@@ -12,6 +12,9 @@ import {
   RuleList,
   VariantTable,
 } from '../-components/doc';
+import LegacyAction from '../-legacy/Action';
+import LegacyFieldset from '../-legacy/Fieldset';
+import LegacyText from '../-legacy/Text';
 
 // 입력·폼 페이지. 실제 form/ 부품을 그린다. 칸의 높이·테두리·오류 색은 부품이 정하므로 적지 않는다.
 
@@ -73,34 +76,47 @@ function InvalidSample() {
   );
 }
 
-// Do · Don't 견본: 정적 그림. inline 이면 지금 모양(필드 아래 문장 + 개수), 아니면 예전 모양(버튼 줄 옆 목록).
-function ErrorSketch({ inline = false }: { inline?: boolean }) {
-  const field = (name: string, error: boolean) => (
-    <div>
-      <p className="mb-2 type-label">{name}</p>
-      <div
-        className={
-          error && inline
-            ? 'h-8.5 rounded-xs border border-red-600 bg-white'
-            : 'h-8.5 rounded-xs border border-neutral-300 bg-white'
-        }
-      />
-      {inline && error && (
-        <p className="mt-2 type-meta text-red-600">{name}을 입력해 주세요.</p>
-      )}
-    </div>
-  );
+// Do · Don't 견본: 처음부터 제목 오류가 난 폼. Do 는 실제 form/ 부품, Don't 는 예전 부품 사본(-legacy).
+function useTitleError(message: string) {
+  const methods = useForm({ defaultValues: { title: '', author: '' } });
+  const { setError } = methods;
+  useEffect(() => {
+    setError('title', { message });
+  }, [setError, message]);
+  return methods;
+}
+
+function ErrorDo() {
+  const methods = useTitleError('제목을 입력해 주세요.');
   return (
-    <div className="w-56 space-y-4">
-      {field('제목', true)}
-      {field('작성자', false)}
-      <div className="flex items-center justify-end gap-3">
-        <p className="type-meta text-red-600">
-          {inline ? '확인할 항목이 1개 있습니다.' : '제목을 입력해주세요.'}
-        </p>
-        <Button variant="primary">저장</Button>
+    <FormProvider {...methods}>
+      <div className="w-full">
+        <Fieldset title="제목" required>
+          <Form.Text name="title" />
+        </Fieldset>
+        <Fieldset title="작성자">
+          <Form.Text name="author" />
+        </Fieldset>
+        <Form.Action onCancel={() => {}} onSubmit={async () => {}} />
       </div>
-    </div>
+    </FormProvider>
+  );
+}
+
+function ErrorDont() {
+  const methods = useTitleError('제목을 입력해주세요.');
+  return (
+    <FormProvider {...methods}>
+      <div className="flex w-full flex-col">
+        <LegacyFieldset title="제목" required>
+          <LegacyText name="title" />
+        </LegacyFieldset>
+        <LegacyFieldset title="작성자">
+          <LegacyText name="author" />
+        </LegacyFieldset>
+        <LegacyAction />
+      </div>
+    </FormProvider>
   );
 }
 
@@ -264,11 +280,11 @@ export function FormSection() {
       <DocSection title="Do · Don't">
         <DoDont
           good={{
-            example: <ErrorSketch inline />,
+            example: <ErrorDo />,
             caption: '고칠 곳 바로 아래에 오류 문장이 있습니다.',
           }}
           bad={{
-            example: <ErrorSketch />,
+            example: <ErrorDont />,
             caption:
               '예전 폼은 오류를 버튼 줄 옆에만 모아 보여 줘, 긴 폼에서는 어느 칸을 고칠지 찾아야 했습니다.',
           }}

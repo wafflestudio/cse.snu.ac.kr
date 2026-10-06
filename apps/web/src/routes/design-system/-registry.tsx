@@ -2,7 +2,10 @@ import type { ReactNode } from 'react';
 import type { SubNavConfig } from '@/hooks/useSubNav';
 import { ButtonSection } from './-sections/button';
 import { CategorySection } from './-sections/category';
-import { ChangesSection } from './-sections/changes';
+import { ChangesCommonSection } from './-sections/changes/common';
+import { ChangesComponentsSection } from './-sections/changes/components';
+import { ChangesFoundationsSection } from './-sections/changes/foundations';
+import { ChangesPatternsSection } from './-sections/changes/patterns';
 import { ColorSection } from './-sections/color';
 import { DialogSection } from './-sections/dialog';
 import { EditorSection } from './-sections/editor';
@@ -76,9 +79,29 @@ export const GROUPS: Group[] = [
   },
   {
     // 규칙이 아니라 이번 개편의 전후 기록이라 맨 끝 묶음에 따로 둔다.
-    title: '기록',
+    title: '개선 전후',
     sections: [
-      { id: 'changes', title: 'v2 개선 모음', content: <ChangesSection /> },
+      // 기반 개선이 예전 주소(/design-system/changes)를 그대로 쓴다.
+      {
+        id: 'changes',
+        title: '기반 개선',
+        content: <ChangesFoundationsSection />,
+      },
+      {
+        id: 'changes-components',
+        title: '컴포넌트 개선',
+        content: <ChangesComponentsSection />,
+      },
+      {
+        id: 'changes-patterns',
+        title: '패턴 개선',
+        content: <ChangesPatternsSection />,
+      },
+      {
+        id: 'changes-common',
+        title: '공통 개선',
+        content: <ChangesCommonSection />,
+      },
     ],
   },
 ];

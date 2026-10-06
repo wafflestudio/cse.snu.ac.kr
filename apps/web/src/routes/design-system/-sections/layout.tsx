@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import { Menu, Search } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { useEffect, useRef, useState } from 'react';
+import SelectionList from '@/components/feature/selection/SelectionList';
+import SelectionTitle from '@/components/feature/selection/SelectionTitle';
 import Button from '@/components/ui/Button';
 import Node from '@/components/ui/Nodes';
 import PillGroup from '@/components/ui/PillGroup';
@@ -13,6 +15,8 @@ import {
   RuleList,
   SpecTable,
 } from '../-components/doc';
+import { LegacyResearchGroupHead } from '../-legacy/ResearchGroups';
+import { LegacySelectionList } from '../-legacy/SelectionList';
 
 // 읽기 폭: 문단·HTML 본문의 한 줄 상한(14px 본문 약 62자).
 const READING = 640;
@@ -524,44 +528,63 @@ function PageComposition() {
   );
 }
 
-// 선택형 상세 제목 도식. 실제 SelectionTitle 과 같은 값.
-function SelTitle({ actions }: { actions?: boolean }) {
+// Do · Don't 견본의 탭 링크는 이 문서 페이지로 간다(화면이 바뀌지 않는다).
+const HERE = '/design-system/layout';
+
+const noop = () => {};
+
+// 연구 스트림 상세의 머리: 실제 SelectionTitle 에 관리 버튼(실제 Button)을 actions 로 넘긴다. 회색 띠 위.
+function SelTitle() {
   return (
-    <div className="flex w-full flex-wrap items-start justify-between gap-3">
-      <div className="w-fit">
-        <p className="px-3 type-section">시스템 스트림</p>
-        <Node variant="straight" />
-      </div>
-      {actions && (
-        <div className="ml-auto flex gap-3">
-          <Button variant="secondary">삭제</Button>
-          <Button variant="secondary">편집</Button>
-        </div>
-      )}
+    <div className="w-full bg-neutral-100 p-6">
+      <SelectionTitle
+        title="시스템 스트림"
+        actions={
+          <div className="flex gap-3">
+            <Button variant="secondary" onClick={noop}>
+              삭제
+            </Button>
+            <Button as="link" to={HERE} variant="secondary">
+              편집
+            </Button>
+          </div>
+        }
+      />
     </div>
   );
 }
 
-// Do · Don't 견본: 제목 영역 아래 첫 요소(선택 탭)까지의 여백. 실제 px 의 절반으로 그린다.
-function TopGap({ doubled = false }: { doubled?: boolean }) {
-  const band = (label: string) => (
-    <div className="flex h-6 items-center justify-end border-y border-dashed border-main-orange bg-main-orange/10 pr-2 type-meta text-main-orange">
-      {label}
-    </div>
-  );
+// Do · Don't 견본: 제목 영역 아래 첫 요소(선택 탭)까지의 여백. 주황 띠가 틀이 주는 48, 탭은 실제 부품.
+function TopGap({ legacy = false }: { legacy?: boolean }) {
+  const items = [
+    { label: '시스템', selected: true },
+    { label: '이론', selected: false },
+  ];
   return (
-    <div className="w-56">
+    <div className="w-full">
       <div className="h-8 bg-neutral-900" />
-      {band('틀 48')}
-      {doubled && band('탭 48')}
-      <div className="grid grid-cols-2 gap-2">
-        <span className="flex h-7 items-center justify-center bg-main-orange type-meta text-white">
-          시스템
-        </span>
-        <span className="flex h-7 items-center justify-center bg-neutral-100 type-meta">
-          이론
-        </span>
+      <div className="flex h-12 items-center justify-end border-y border-dashed border-main-orange bg-main-orange/10 pr-2 type-meta text-main-orange">
+        틀 48
       </div>
+      {legacy ? (
+        // 예전 탭 목록은 자기 위 여백(28, 640 이상 44)을 더 줬다. 그 자리를 같은 높이의 점선 띠로 겹쳐 보인다.
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-x-0 top-0 flex h-7 items-center justify-end border-b border-dashed border-main-orange bg-main-orange/10 pr-2 type-meta text-main-orange min-[40rem]:h-11">
+            <span className="min-[40rem]:hidden">탭 28</span>
+            <span className="hidden min-[40rem]:inline">탭 44</span>
+          </div>
+          <LegacySelectionList items={items} href={HERE} />
+        </div>
+      ) : (
+        <SelectionList
+          items={items.map((x) => ({
+            id: x.label,
+            label: x.label,
+            href: HERE,
+            selected: x.selected,
+          }))}
+        />
+      )}
     </div>
   );
 }
@@ -599,7 +622,7 @@ export function LayoutSection() {
         </p>
         <RuleList
           items={[
-            '본문이 한 덩어리면 기본 틀, 성격이 다른 묶음이 이어지면 흰·회색 띠로 나눈 띠 틀입니다(학부 소개·연구 스트림). 띠 색이 바뀌는 곳에서 묶음이 바뀝니다.',
+            '본문이 한 덩어리면 기본 틀, 성격이 다른 내용이 이어지면 흰·회색 띠로 나눈 띠 틀입니다(학부 소개·연구 스트림). 띠 색이 바뀌는 곳에서 내용의 성격도 바뀝니다.',
             '위아래 여백은 틀이 주므로 화면에서 더하지 않습니다. 더하면 화면마다 첫 줄 위치가 달라집니다.',
             '선택 탭 위에 관리 버튼이 있으면 버튼 아래를 32로 둡니다.',
           ]}
@@ -609,20 +632,12 @@ export function LayoutSection() {
       <DocSection title="Do · Don't">
         <DoDont
           good={{
-            example: <SelTitle actions />,
+            example: <SelTitle />,
             caption:
               '관리 버튼은 고치는 대상의 제목 옆에 두고, 자리가 모자라면 다음 줄 오른쪽으로 내립니다.',
           }}
           bad={{
-            example: (
-              <div className="w-full space-y-8">
-                <div className="flex justify-end gap-3">
-                  <Button variant="secondary">삭제</Button>
-                  <Button variant="secondary">편집</Button>
-                </div>
-                <SelTitle />
-              </div>
-            ),
+            example: <LegacyResearchGroupHead title="시스템 스트림" />,
             caption:
               '예전 연구 스트림·연구 센터는 제목 위에 버튼 줄이 따로 있어, 무엇을 고치는 버튼인지 떨어져 보였습니다.',
           }}
@@ -633,7 +648,7 @@ export function LayoutSection() {
             caption: '첫 요소 위 여백은 틀이 주는 48 하나입니다.',
           }}
           bad={{
-            example: <TopGap doubled />,
+            example: <TopGap legacy />,
             caption:
               '예전 관리자·찾아오는 길은 선택 탭이 자기 위 여백을 더해 틀 여백과 겹쳤습니다.',
           }}

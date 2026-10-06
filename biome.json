@@ -34,5 +34,37 @@
       "!**/sonner/styles.css",
       "!**/assets/pretendard"
     ]
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["**", "!apps/web/src/routes/design-system/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": ["**/-legacy", "**/-legacy/**"],
+                    "message": "-legacy 는 디자인 시스템 문서(src/routes/design-system) 전용 예전 부품 사본입니다. 앱에서 가져오지 않습니다."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": ["apps/web/src/routes/design-system/**"],
+      "linter": {
+        "rules": {
+          "a11y": {
+            "useValidAnchor": "off"
+          }
+        }
+      }
+    }
+  ]
 }

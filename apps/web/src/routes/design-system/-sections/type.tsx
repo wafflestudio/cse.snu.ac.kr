@@ -1,4 +1,5 @@
-import { ArrowRight } from 'lucide-react';
+import { Tag } from '@/components/ui/Tag';
+import LinkRow from '@/routes/$locale/-components/LinkRow';
 import {
   DocSection,
   DoDont,
@@ -6,6 +7,10 @@ import {
   Lead,
   RuleList,
 } from '../-components/doc';
+import { stay } from '../-components/sample';
+import { LegacyLinkRow } from '../-legacy/LinkRow';
+import { LegacyLinkSectionColumn } from '../-legacy/LinkSection';
+import { LegacyNewsListRow } from '../-legacy/NewsListRow';
 
 // 글자 페이지. 크기·굵기·줄높이는 app.css 의 type-* 가 정본이다.
 
@@ -48,7 +53,7 @@ const LEVELS: Level[] = [
     cls: 'type-item',
     spec: '16 · 700',
     sample: '2026학년도 후기 대학원 입학 설명회',
-    use: '피드형 목록·카드·인물 이름·목록을 나누는 소제목·폼 묶음 제목',
+    use: '피드형 목록·카드·인물 이름·목록을 나누는 소제목·폼 그룹 제목',
     preview: 'type-item',
   },
   {
@@ -108,58 +113,26 @@ function Scale() {
   );
 }
 
-// Do · Don't 견본: 모바일 메인 화면 아래 바로가기 묶음(LinkSection, LinkRow).
-// 예전 값(d1baf83c): 묶음 제목 14·500 회색, 링크 16·500 흰색, 영어 부제 12·500, 화살표 30·선 1.5.
+// Do · Don't 견본: 모바일 메인 화면 아래 바로가기 한 열(LinkSection, LinkRow).
+// 지금은 실제 LinkRow 를, 예전은 d1baf83c 사본(-legacy)을 그린다. 링크는 이 페이지를 떠나지 않는다.
 const SHORTCUTS = [
   { title: 'Top Conference List' },
   { title: '신임교수초빙', subtitle: 'Faculty Recruitment' },
   { title: '구성원', subtitle: 'Faculty' },
 ];
 
-function LinkGroup({ old }: { old: boolean }) {
+function Shortcuts() {
   return (
-    <div className="w-full max-w-[342px] bg-neutral-900 px-3 py-10 sm:px-4">
-      <div className={old ? 'flex flex-col gap-[22px]' : 'flex flex-col gap-6'}>
-        <p
-          className={
-            old
-              ? 'text-sm font-medium text-neutral-400'
-              : 'type-section text-neutral-400'
-          }
-        >
-          바로가기
-        </p>
+    <div
+      className="w-full max-w-[342px] bg-neutral-900 px-3 py-10 sm:px-4"
+      onClickCapture={stay}
+    >
+      {/* LinkSection 의 한 열과 같은 클래스(앱 LinkSection 은 번역·경로에 묶여 있어 열만 옮겼다). */}
+      <div className="flex flex-1 flex-col gap-6 sm:gap-8">
+        <h3 className="type-section text-neutral-400">바로가기</h3>
         <div className="flex flex-col gap-5">
           {SHORTCUTS.map((l) => (
-            <div
-              key={l.title}
-              className={
-                old
-                  ? 'flex h-10 items-center justify-between border-l-[5px] border-main-orange-dark pl-7'
-                  : 'flex h-10 items-center justify-between border-l-[5px] border-main-orange-dark pl-6'
-              }
-            >
-              <div className="flex items-end gap-3 text-white">
-                <p className={old ? 'text-base font-medium' : 'type-item'}>
-                  {l.title}
-                </p>
-                {l.subtitle && (
-                  <p
-                    className={
-                      old
-                        ? 'whitespace-nowrap text-xs font-medium'
-                        : 'whitespace-nowrap type-meta'
-                    }
-                  >
-                    {l.subtitle}
-                  </p>
-                )}
-              </div>
-              <ArrowRight
-                className="size-7.5 shrink-0 text-white"
-                strokeWidth={old ? 1.5 : 2}
-              />
-            </div>
+            <LinkRow key={l.title} to="/design-system/type" {...l} />
           ))}
         </div>
       </div>
@@ -167,22 +140,63 @@ function LinkGroup({ old }: { old: boolean }) {
   );
 }
 
-// Do · Don't 견본: 새 소식 목록 한 줄. 예전 요약에는 break-all 이 붙어 있었다(NewsListRow).
-function NewsRow({ old }: { old: boolean }) {
+function LegacyShortcuts() {
   return (
-    <div className="w-56 border-b border-neutral-200 pb-6">
-      <p className="type-item">
-        컴퓨터공학부 연구팀, 국제 학술대회 최우수 논문상
-      </p>
-      <p
-        className="mt-2 type-body text-neutral-500"
-        style={old ? { wordBreak: 'break-all' } : undefined}
-      >
-        컴퓨터공학부 연구팀이 대규모 언어 모델의 추론 효율을 높이는 방법을
-        제안해 국제 학술대회에서 최우수 논문상을 받았습니다.
-      </p>
-      <p className="mt-2 type-meta text-neutral-500">2026/9/24</p>
+    <div className="w-full max-w-[342px] bg-neutral-900 px-3 py-10 sm:px-4">
+      <LegacyLinkSectionColumn title="바로가기">
+        {SHORTCUTS.map((l) => (
+          <LegacyLinkRow key={l.title} {...l} />
+        ))}
+      </LegacyLinkSectionColumn>
     </div>
+  );
+}
+
+// Do · Don't 견본: 새 소식 목록 한 줄. 예전 요약에는 break-all 이 붙어 있었다(NewsListRow).
+const NEWS = {
+  title: '컴퓨터공학부 연구팀, 국제 학술대회 최우수 논문상',
+  description:
+    '컴퓨터공학부 연구팀이 대규모 언어 모델의 추론 효율을 높이는 방법을 제안해 국제 학술대회에서 최우수 논문상을 받았습니다',
+  date: '2026/9/24 (목)',
+  viewCount: 198,
+  tags: ['연구'],
+};
+
+// 지금의 NewsListRow 와 같은 클래스로 다시 그린 것. 실제 부품은 상세 경로로 가는 링크라
+// 호버만 해도 그 페이지를 미리 불러와(서버 요청) 견본에 쓰지 않는다. 사진 자리는 뺐다.
+function NewsRow() {
+  return (
+    <article className="flex w-full max-w-80 flex-col-reverse gap-4 border-b border-neutral-200 pb-6 text-left sm:flex-row sm:gap-8">
+      <div className="flex flex-1 flex-col justify-between">
+        <p className="mb-2 flex items-center gap-2 type-meta text-neutral-950 sm:hidden">
+          <time>{NEWS.date}</time>
+          <span>조회수 {NEWS.viewCount}</span>
+        </p>
+        <div className="flex flex-col items-start">
+          <a href="#" onClick={stay} className="hover:underline">
+            <h3 className="mb-2 type-item">{NEWS.title}</h3>
+          </a>
+          <a
+            href="#"
+            onClick={stay}
+            className="mb-3 line-clamp-3 type-body text-neutral-500 hover:cursor-pointer sm:mb-8"
+          >
+            {NEWS.description}...
+          </a>
+        </div>
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            {NEWS.tags.map((tag) => (
+              <Tag key={tag} label={tag} onClick={() => undefined} />
+            ))}
+          </div>
+          <p className="hidden items-center gap-2 self-end whitespace-nowrap type-meta text-neutral-950 sm:flex">
+            <time>{NEWS.date}</time>
+            <span>조회수 {NEWS.viewCount}</span>
+          </p>
+        </div>
+      </div>
+    </article>
   );
 }
 
@@ -201,7 +215,7 @@ export function TypeSection() {
         <RuleList
           items={[
             '역할 하나가 크기·굵기·줄높이를 함께 정하고, 색만 따로 고릅니다. 크기만 골라 쓰면 같은 역할이 화면마다 달라 보입니다.',
-            '안에 든 것이 그것을 묶는 제목보다 크거나 굵지 않게 고릅니다. 위계가 뒤집히면 무엇이 무엇을 묶는지 읽히지 않습니다.',
+            '안에 든 것이 그것을 묶는 제목보다 크거나 굵지 않게 고릅니다. 위계가 뒤집히면 무엇이 무엇에 속하는지 알기 어렵습니다.',
             '항목 하나가 글 하나면 항목 제목(피드형 목록, 모바일에서 카드처럼 쌓인 표 행), 표의 한 칸이면 UI 글자입니다.',
             '줄간격은 본문 역할에만 있습니다. 한 줄 글자에 주면 카드·목록이 부풉니다. 여러 줄이 되는 작은 보조 글(카드 설명)만 줄높이 1.5를 더합니다.',
             '13px보다 작은 글자는 사용하지 않습니다. 한글은 12px에서 읽기 어렵습니다.',
@@ -217,25 +231,29 @@ export function TypeSection() {
       <DocSection title="Do · Don't">
         <DoDont
           good={{
-            example: <LinkGroup old={false} />,
+            example: <Shortcuts />,
             caption:
-              '묶음 제목은 섹션 제목(20·700), 링크는 항목 제목(16·700)이라 제목이 링크 셋을 묶는 것이 먼저 읽힙니다.',
+              '그룹 제목은 섹션 제목(20·700), 링크는 항목 제목(16·700)이라 제목이 먼저 눈에 들어오고, 아래 링크 셋이 그 제목에 속한다는 것을 알 수 있습니다.',
           }}
           bad={{
-            example: <LinkGroup old />,
+            example: <LegacyShortcuts />,
             caption:
-              '예전 모바일 메인의 묶음 제목은 14·500 회색이라 그 아래 16 흰색 링크보다 약해서 제목이 링크 사이에 묻혔습니다.',
+              '예전 모바일 메인의 그룹 제목은 14·500 회색이라 그 아래 16 흰색 링크보다 약해서 제목이 링크 사이에 묻혔습니다.',
           }}
         />
         <DoDont
           good={{
-            example: <NewsRow old={false} />,
-            caption: '어절 단위로 줄을 바꿔 낱말이 온전히 읽힙니다.',
+            example: <NewsRow />,
+            caption: '어절 단위로 줄을 바꿔 낱말이 중간에서 끊기지 않습니다.',
           }}
           bad={{
-            example: <NewsRow old />,
+            example: (
+              <div className="w-full max-w-80 text-left">
+                <LegacyNewsListRow post={NEWS} />
+              </div>
+            ),
             caption:
-              '예전 새 소식 목록의 요약은 글자 단위로 줄을 바꿔 "국/제", "받았습/니다"처럼 낱말 중간에서 끊겼습니다.',
+              '예전 새 소식 목록의 요약은 글자 단위로 줄을 바꿔 낱말이 중간에서 끊겼습니다.',
           }}
         />
       </DocSection>

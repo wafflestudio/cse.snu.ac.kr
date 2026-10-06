@@ -8,6 +8,8 @@ import {
   Lead,
   RuleList,
 } from '../-components/doc';
+import { stay } from '../-components/sample';
+import { LegacyLinkOrText } from '../-legacy/SeminarDetail';
 
 // 견본 글을 실제 본문 뷰어로 그린다. 제목·문단·인용·표의 값은 components/ui/assets/suneditor-contents.override.css 가 정한다.
 
@@ -71,7 +73,11 @@ export function ReadingSection() {
 
       <DocSection title="구성">
         <Example caption="문단·목록·제목·인용은 읽기 폭 640에서 멈추고, 표·이미지는 본문 폭을 사용합니다. 넓은 표는 표 안에서 가로로 스크롤합니다. 에디터도 같은 값을 사용하므로 작성 화면과 보기 화면이 같습니다.">
-          <div className="w-full max-w-2xl bg-neutral-50 p-6">
+          {/* 본문 링크는 진짜 <a> 라 호버·초점이 그대로지만, 눌러도 이동하지 않게 여기서 막는다. */}
+          <div
+            className="w-full max-w-2xl bg-neutral-50 p-6"
+            onClickCapture={stay}
+          >
             <HTMLViewer html={SAMPLE} />
           </div>
         </Example>
@@ -101,8 +107,9 @@ export function ReadingSection() {
               <span className="type-ui">
                 자세한 내용은{' '}
                 <a
-                  href="#reading"
-                  className="text-link underline underline-offset-2"
+                  href="#"
+                  onClick={stay}
+                  className="text-link underline underline-offset-2 hover:text-main-orange"
                 >
                   학사 안내
                 </a>
@@ -114,16 +121,13 @@ export function ReadingSection() {
           }}
           bad={{
             example: (
-              <span className="type-ui">
-                자세한 내용은{' '}
-                <a href="#reading" className="text-link hover:underline">
-                  학사 안내
-                </a>
-                를 확인해 주세요.
+              <span className="text-md">
+                자세한 내용은 <LegacyLinkOrText>학사 안내</LegacyLinkOrText>를
+                확인해 주세요.
               </span>
             ),
             caption:
-              '예전 링크는 호버할 때만 밑줄이 생겨, 색으로만 링크를 알아봐야 했습니다.',
+              '예전 세미나 연사·교수 연락처 같은 링크는 호버할 때만 밑줄이 생겨, 색으로만 링크를 알아봐야 했습니다.',
           }}
         />
       </DocSection>

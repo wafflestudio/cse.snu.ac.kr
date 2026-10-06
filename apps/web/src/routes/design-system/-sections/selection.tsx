@@ -11,6 +11,8 @@ import {
   RuleList,
   VariantTable,
 } from '../-components/doc';
+import { LegacySortOptions } from '../-legacy/CourseToolbar';
+import { LegacyLanguagePicker } from '../-legacy/LanguagePicker';
 
 // 선택·태그 페이지. 실제 PillGroup·TextToggle·Tag 를 그린다. 색·높이·호버는 부품이 정하므로 적지 않는다.
 
@@ -100,18 +102,6 @@ function LangToggle() {
   );
 }
 
-// 예전 편집 언어 선택(밑줄 탭)을 흉내 낸 정적 그림.
-function UnderlineTabs() {
-  return (
-    <div className="flex gap-3 type-ui font-bold">
-      <span className="border-b-2 border-neutral-800 pb-1 text-neutral-800">
-        한글
-      </span>
-      <span className="pb-1 text-neutral-300">English</span>
-    </div>
-  );
-}
-
 export function SelectionSection() {
   return (
     <>
@@ -191,13 +181,7 @@ export function SelectionSection() {
             caption: '정렬은 알약으로 고릅니다.',
           }}
           bad={{
-            example: (
-              <>
-                <Tag label="학년" onClick={() => {}} />
-                <Tag label="교과목 구분" onClick={() => {}} />
-                <Tag label="학점" onClick={() => {}} />
-              </>
-            ),
+            example: <LegacySortOptions />,
             caption:
               '예전 교과목 정렬은 태그를 버튼처럼 써서 분류 표시와 구분되지 않았습니다.',
           }}
@@ -208,9 +192,9 @@ export function SelectionSection() {
             caption: '편집 언어는 같은 폼의 보기만 바꾸므로 글자 토글입니다.',
           }}
           bad={{
-            example: <UnderlineTabs />,
+            example: <LegacyLanguagePicker />,
             caption:
-              '예전 편집 언어 선택은 다른 곳에 없는 밑줄 탭이었고, 고르지 않은 쪽이 neutral-300이라 거의 읽히지 않았습니다.',
+              '예전 편집 언어 선택은 다른 곳에 없는 밑줄 탭이었고, 고르지 않은 쪽이 neutral-300이라 거의 보이지 않았습니다.',
           }}
         />
       </DocSection>

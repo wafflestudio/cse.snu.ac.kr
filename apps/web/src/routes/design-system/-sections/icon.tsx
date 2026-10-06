@@ -5,6 +5,7 @@ import {
   ChevronDown,
   ChevronRight,
   CircleX,
+  ExternalLink,
   Link,
   Lock,
   MapPin,
@@ -25,6 +26,8 @@ import {
   Lead,
   RuleList,
 } from '../-components/doc';
+import { stay } from '../-components/sample';
+import { LegacyPrivacyPolicyLink } from '../-legacy/AddReservationModal';
 
 // 아이콘 페이지. 크기·선 굵기는 app.css 의 svg.lucide 공통 규칙이 정한다.
 
@@ -116,9 +119,9 @@ export function IconSection() {
         <RuleList
           items={[
             '아이콘은 lucide 한 벌에서 고릅니다(없는 것은 브랜드·학교 로고와 메인 그래픽뿐). 한 벌이어야 선 굵기와 모서리가 맞습니다.',
-            '크기·선 굵기·색은 옆 글자를 따르고, 세로 가운데로 정렬하며 위치를 따로 보정하지 않습니다. 글자와 다른 아이콘은 따로 떨어져 읽히고, 보정값은 글자 크기가 바뀌면 다시 어긋납니다.',
+            '크기·선 굵기·색은 옆 글자를 따르고, 세로 가운데로 정렬하며 위치를 따로 보정하지 않습니다. 크기·색이 글자와 다른 아이콘은 글자와 따로 놀아 보이고, 보정값은 글자 크기가 바뀌면 다시 어긋납니다.',
             '아이콘만 있는 버튼(닫기·메뉴·검색 실행)에는 반드시 스크린 리더가 읽을 이름을 붙이고 누르는 영역을 24×24 이상으로 두어야 합니다. 그림은 20px입니다.',
-            '채운 모양은 고정·북마크·재생·정지에만 씁니다. 선 아이콘 사이에서 채운 모양은 강조로 읽힙니다.',
+            '채운 모양은 고정·북마크·재생·정지에만 씁니다. 선 아이콘 사이에 채운 모양이 있으면 강조처럼 보입니다.',
           ]}
         />
         <KnownGap>
@@ -130,24 +133,25 @@ export function IconSection() {
       <DocSection title="Do · Don't">
         <DoDont
           good={{
+            // 예약 모달의 동의 내용 링크. 앱에서는 새 탭으로 여는 라우터 링크라 같은 클래스의 <a> 로 그린다.
             example: (
-              <span className="flex items-center type-ui text-neutral-500">
-                보러가기
-                <ChevronRight />
-              </span>
+              <a
+                href="#"
+                onClick={stay}
+                className="flex items-center gap-1 type-ui text-neutral-500 hover:text-neutral-950"
+              >
+                동의 내용 보기
+                <span className="sr-only">(새 탭)</span>
+                <ExternalLink />
+              </a>
             ),
             caption:
               '아이콘은 옆 글자 크기를 따르고 글자와 세로 가운데로 정렬합니다.',
           }}
           bad={{
-            example: (
-              <span className="type-ui text-neutral-500">
-                보러가기
-                <ChevronRight className="inline size-4 translate-y-[3px]" />
-              </span>
-            ),
+            example: <LegacyPrivacyPolicyLink />,
             caption:
-              '예전 예약 모달의 화살표는 16px 고정 크기에 3px 내려 맞춘 보정값이라, 글자 크기가 바뀌면 다시 어긋났습니다.',
+              '예전 예약 모달의 화살표는 16px 고정 크기에 3px 내림 보정까지 넣었지만 글자 옆에 서지 못하고 아랫줄로 밀려났습니다. 크기와 위치를 따로 정한 아이콘은 글자와 따로 놉니다.',
           }}
         />
       </DocSection>

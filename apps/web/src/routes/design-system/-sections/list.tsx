@@ -1,8 +1,7 @@
-import clsx from 'clsx';
-import { MousePointer2, Search } from 'lucide-react';
 import type { ReactNode } from 'react';
 import EmptyState from '@/components/ui/EmptyState';
 import ErrorState from '@/components/ui/ErrorState';
+import { ROW_LINK, ROW_LINK_TARGET } from '@/components/ui/rowLink';
 import {
   DeviceToggle,
   DocSection,
@@ -11,84 +10,86 @@ import {
   Lead,
   RuleList,
 } from '../-components/doc';
+import { stay } from '../-components/sample';
+import { LegacyNoSearchResult } from '../-legacy/NoSearchResult';
+import { LegacyNoticeList } from '../-legacy/NoticeListRow';
 
-// 목록 조각. 빈 상태·오류는 실제 부품, 표는 같은 값의 div(표는 화면마다 손으로 짠다).
+// 목록 조각. 빈 상태·오류는 실제 부품. 표는 화면마다 손으로 짜므로 공지 목록(notice/index·NoticeListRow)과
+// 같은 클래스로 다시 그린다. 행 전체 누르기는 실제 ui/rowLink, 제목은 진짜 링크(이동만 막음).
+// 공지 행은 라우터 링크라 호버하면 상세를 미리 불러오므로 실제 행 부품을 쓰지 않는다.
+// 실제 표는 창 폭(sm:)으로 모양을 바꾸지만 여기서는 데스크톱·모바일 모양을 각각 고정해 그린다.
 // EmptyState·ErrorState·Pagination·DotLinkList 가 정하는 값은 적지 않는다.
 
 const SAMPLE_ROWS = [
-  ['2026학년도 전기 대학원 입학 안내', '2026/09/27'],
-  ['세미나실 예약 기간 변경', '2026/09/26'],
-  ['학부 장학금 신청 안내', '2026/09/25'],
+  {
+    title: '2026학년도 전기 대학원 입학 안내',
+    date: '2026/9/27',
+    views: '981',
+  },
+  { title: '세미나실 예약 기간 변경', date: '2026/9/26', views: '412' },
+  { title: '학부 장학금 신청 안내', date: '2026/9/25', views: '96' },
 ];
 
-function SampleTable({ indent = false }: { indent?: boolean }) {
+// 공지 목록 데스크톱 모양(sm: 값을 풀어 씀).
+function SampleTable({ rows = SAMPLE_ROWS }: { rows?: typeof SAMPLE_ROWS }) {
   return (
-    <div
-      className={clsx(
-        'min-w-0 flex-1 border-y border-neutral-200',
-        indent && 'mx-6',
-      )}
-    >
-      <div className="flex h-11 items-center gap-x-6 border-b border-neutral-200 px-3 type-label text-neutral-950">
-        <span className="min-w-0 flex-1">제목</span>
-        <span className="w-24">날짜</span>
-      </div>
-      {SAMPLE_ROWS.map(([title, date], i) => (
-        <div
-          key={title}
-          className={clsx(
-            'flex h-11 items-center gap-x-6 px-3 type-ui',
-            i % 2 === 0 && 'bg-neutral-50',
-          )}
-        >
-          <span className="min-w-0 flex-1 truncate">{title}</span>
-          <span className="w-24 text-neutral-500">{date}</span>
-        </div>
-      ))}
+    <div className="grid min-w-0 flex-1 grid-cols-[auto_minmax(0,1fr)_auto_auto] border-y border-neutral-200">
+      <h5 className="col-span-full grid h-11 grid-cols-subgrid items-center whitespace-nowrap border-b border-neutral-200 type-label text-neutral-950">
+        <span />
+        <span className="pl-3">제목</span>
+        <span className="pr-6 pl-8">날짜</span>
+        <span className="pr-8">조회수</span>
+      </h5>
+      <ul className="col-span-full grid grid-cols-subgrid">
+        {rows.map((row) => (
+          <li
+            key={row.title}
+            className={`${ROW_LINK} col-span-full grid h-11 grid-cols-subgrid items-center type-ui odd:bg-neutral-50 hover:bg-neutral-100`}
+          >
+            <span className="flex justify-center px-3" />
+            <a
+              href="#"
+              onClick={stay}
+              className={`flex min-w-0 items-center gap-1 pl-3 type-ui ${ROW_LINK_TARGET}`}
+            >
+              <span className="overflow-hidden text-ellipsis whitespace-nowrap type-ui tracking-wide group-hover:text-main-orange">
+                {row.title}
+              </span>
+            </a>
+            <span className="pr-6 pl-8">{row.date}</span>
+            <span className="pr-8">{row.views}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
 
-// 모바일 표: 칸 틀을 풀고 행이 카드처럼 쌓인다. 머리 행 없이 제목 한 줄, 그 아래 날짜·조회.
+// 공지 목록 모바일 모양: 칸 틀을 풀고 행이 카드처럼 쌓인다. 머리 행 없이 제목 한 줄, 그 아래 날짜·조회.
 function SampleCards() {
   return (
-    <div className="border-y border-neutral-200">
-      {SAMPLE_ROWS.map(([title, date], i) => (
-        <div
-          key={title}
-          className={clsx(
-            'flex flex-col gap-2 px-6 py-6 type-ui',
-            i % 2 === 0 && 'bg-neutral-50',
-          )}
+    <ul className="border-y border-neutral-200">
+      {SAMPLE_ROWS.map((row) => (
+        <li
+          key={row.title}
+          className={`${ROW_LINK} flex flex-col gap-2 px-6 py-6 type-ui odd:bg-neutral-50 hover:bg-neutral-100`}
         >
-          <span>{title}</span>
-          <span className="flex gap-3">
-            <span>{date}</span>
-            <span>조회수 1,081</span>
-          </span>
-        </div>
+          <a
+            href="#"
+            onClick={stay}
+            className={`flex min-w-0 items-center gap-1 type-item ${ROW_LINK_TARGET}`}
+          >
+            <span className="overflow-hidden text-ellipsis type-item tracking-wide group-hover:text-main-orange">
+              {row.title}
+            </span>
+          </a>
+          <div className="flex gap-3">
+            <span>{row.date}</span>
+            <span>조회수 {row.views}</span>
+          </div>
+        </li>
       ))}
-    </div>
-  );
-}
-
-// Do · Don't 견본: 마우스를 행의 빈 곳(제목 글자와 날짜 사이)에 올린 상태. whole 이면 행 전체가 누르는 영역.
-function RowHover({ whole = false }: { whole?: boolean }) {
-  return (
-    <div className="w-72 max-w-full border-y border-neutral-200 type-ui">
-      <div
-        className={clsx(
-          'relative flex h-11 items-center gap-x-6 px-3',
-          whole ? 'bg-neutral-100' : 'bg-neutral-50',
-        )}
-      >
-        <span className={clsx('min-w-0 flex-1', whole && 'text-main-orange')}>
-          세미나실 예약 기간 변경
-        </span>
-        <span className="text-neutral-500">2026/09/26</span>
-        <MousePointer2 className="absolute top-5 left-44 fill-white text-neutral-950" />
-      </div>
-    </div>
+    </ul>
   );
 }
 
@@ -170,23 +171,32 @@ export function ListSection() {
           bad={{
             example: (
               <Edge>
-                <SampleTable indent />
+                <LegacyNoticeList rows={SAMPLE_ROWS} />
               </Edge>
             ),
             caption:
-              '예전 공지·교과목·관리자 표는 들여쓰기가 제각각이라 본문의 다른 요소와 왼쪽 끝이 어긋났습니다.',
+              '예전 공지 표는 본문에서 10 들여 있었고 교과목·관리자 표도 들여쓰기가 제각각이라, 본문의 다른 요소와 왼쪽 끝이 어긋났습니다.',
           }}
         />
         <DoDont
           good={{
-            example: <RowHover whole />,
+            example: (
+              // w-0 min-w-full: 줄지 않는 제목 글자 폭이 카드를 밀어 넓히지 않게.
+              <div className="w-0 min-w-full">
+                <SampleTable rows={SAMPLE_ROWS.slice(0, 2)} />
+              </div>
+            ),
             caption:
-              '행 어디에 올려도 행 바탕이 진해지고 제목이 주황이 됩니다.',
+              '행 어디에 올려도 행 바탕이 진해지고 제목이 주황이 되며, 행 어디를 눌러도 글로 갑니다.',
           }}
           bad={{
-            example: <RowHover />,
+            example: (
+              <div className="flex w-0 min-w-full">
+                <LegacyNoticeList rows={SAMPLE_ROWS.slice(0, 2)} />
+              </div>
+            ),
             caption:
-              '예전 공지·교과목 표는 제목 글자 위에서만 눌려, 행의 빈 곳을 누르면 아무 일도 없었습니다.',
+              '예전 공지 표는 제목 칸만 눌리고 행 바탕도 바뀌지 않아, 날짜·조회 쪽을 누르면 아무 일도 없었습니다.',
           }}
         />
         <DoDont
@@ -199,14 +209,7 @@ export function ListSection() {
             caption: '빈 상태는 목록 자리에 한 줄입니다.',
           }}
           bad={{
-            example: (
-              <div className="flex w-56 flex-col items-center gap-3 py-4 text-neutral-300">
-                <p className="type-item font-medium">
-                  검색 결과가 존재하지 않습니다
-                </p>
-                <Search className="size-12" />
-              </div>
-            ),
+            example: <LegacyNoSearchResult />,
             caption:
               '예전 빈 상태는 화면마다 다섯 가지였고, 통합 검색은 흐린 글자 아래 큰 돋보기 그림을 두었습니다.',
           }}
