@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { AlertCircle, ChevronRight } from 'lucide-react';
+import { AlertCircle, ExternalLink } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { FormProvider } from 'react-hook-form';
 import Form from '@/components/form/Form';
@@ -25,7 +25,8 @@ export default function AddReservationModal({
     취소: 'Cancel',
     '예약 중…': 'Reserving…',
     '개인정보 수집 및 이용동의': 'Privacy Agreement',
-    보러가기: 'View',
+    '동의 내용 보기': 'View terms',
+    '(새 탭)': '(opens in new tab)',
   });
 
   const {
@@ -151,14 +152,16 @@ export default function AddReservationModal({
                 <span className="text-main-orange">*</span>
               </div>
 
+              {/* 사이트에서 유일하게 새 탭으로 연다. 같은 탭이면 쓰던 예약 내용이 사라진다(/design-system/links). */}
               <Link
-                className="flex items-center type-ui text-neutral-500"
+                className="flex items-center gap-1 type-ui text-neutral-500 hover:text-neutral-950"
                 to={localizedPath('/reservations/privacy-policy')}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {t('보러가기')}
-                <ChevronRight />
+                {t('동의 내용 보기')}
+                <span className="sr-only">{t('(새 탭)')}</span>
+                <ExternalLink />
               </Link>
             </div>
           </fieldset>

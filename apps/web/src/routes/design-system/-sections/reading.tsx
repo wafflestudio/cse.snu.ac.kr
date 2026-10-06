@@ -3,9 +3,9 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import {
   DeviceToggle,
   DocSection,
+  DoDont,
   Example,
   Lead,
-  Related,
   RuleList,
 } from '../-components/doc';
 
@@ -79,28 +79,52 @@ export function ReadingSection() {
 
       <DocSection title="대표 이미지">
         <DeviceToggle
-          caption="대표 이미지는 데스크톱에서 본문 오른쪽에 배치하고 글이 그 왼쪽과 아래로 흐릅니다. 폭은 200·240·320 중 하나(그림은 240), 이미지 왼쪽 여백 32. 모바일은 본문 위에 폭 가득."
+          caption="데스크톱은 본문 오른쪽에 띄우고 글이 왼쪽과 아래로 흐릅니다(그림은 폭 240). 모바일은 본문 위에 폭 가득."
           desktop={<ImageLayout mobile={false} />}
           mobile={<ImageLayout mobile />}
         />
       </DocSection>
 
-      <DocSection title="규칙">
+      <DocSection title="작동 방식">
         <RuleList
           items={[
-            '작성자가 직접 지정한 글자 크기·색·표 서식은 변경하지 않습니다.',
+            '작성자가 직접 지정한 글자 크기·색·표 서식은 바꾸지 않습니다. 본문은 작성자가 에디터에서 본 모습 그대로 보여야 합니다.',
+            '대표 이미지 폭은 이미지의 쓰임에 맞춰 200·240·320 중에서 고릅니다(세미나 240).',
           ]}
         />
       </DocSection>
 
-      <DocSection title="관련">
-        <Related
-          links={[
-            ['type', '글자'],
-            ['editor', '에디터'],
-            ['post', '게시물 상세'],
-            ['color', '색'],
-          ]}
+      <DocSection title="Do · Don't">
+        <DoDont
+          good={{
+            example: (
+              <span className="type-ui">
+                자세한 내용은{' '}
+                <a
+                  href="#reading"
+                  className="text-link underline underline-offset-2"
+                >
+                  학사 안내
+                </a>
+                를 확인해 주세요.
+              </span>
+            ),
+            caption:
+              '링크에는 늘 밑줄을 표시합니다. 색을 구분하기 어려운 사용자도 링크를 알아볼 수 있습니다.',
+          }}
+          bad={{
+            example: (
+              <span className="type-ui">
+                자세한 내용은{' '}
+                <a href="#reading" className="text-link hover:underline">
+                  학사 안내
+                </a>
+                를 확인해 주세요.
+              </span>
+            ),
+            caption:
+              '예전 링크는 호버할 때만 밑줄이 생겨, 색으로만 링크를 알아봐야 했습니다.',
+          }}
         />
       </DocSection>
     </>

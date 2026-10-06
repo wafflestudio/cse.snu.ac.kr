@@ -22,11 +22,9 @@ export default function Attachments({ files }: AttachmentsProps) {
         return (
           <a
             key={key}
-            className="flex type-ui hover:underline"
+            className="flex type-ui hover:text-main-orange"
             href={encodeURI(file.url)}
             download={file.name}
-            target="_blank"
-            rel="noopener noreferrer"
           >
             <span className="overflow-hidden text-ellipsis whitespace-nowrap">
               {file.name}

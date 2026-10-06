@@ -5,8 +5,8 @@ import {
   DocSection,
   DoDont,
   Example,
+  KnownGap,
   Lead,
-  Related,
   RuleList,
 } from '../-components/doc';
 
@@ -59,46 +59,41 @@ export function SearchSection() {
         </Example>
       </DocSection>
 
-      <DocSection title="검색 상자 안">
+      <DocSection title="작동 방식">
         <RuleList
           items={[
-            '태그 선택에는 체크박스(입력·폼)를, 선택한 태그 줄에는 지우기가 있는 태그(선택·태그)를 그대로 사용합니다.',
+            '검색 상자 안의 태그 선택은 체크박스, 선택한 태그 줄은 지우기 태그를 그대로 씁니다. 검색용 모양을 따로 만들면 같은 일이 두 모양이 됩니다.',
           ]}
         />
+        <KnownGap>
+          모바일 메뉴의 전체 화면 검색만 밑줄 칸입니다. 채움 칸을 넣어 보니
+          메뉴와 너무 달라 그대로 두었습니다.
+        </KnownGap>
+        <Example tone="dark">
+          <UnderlineSearch />
+        </Example>
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않기">
+      <DocSection title="Do · Don't">
         <DoDont
           good={{
             example: (
-              <div className="bg-neutral-850 p-4">
-                <UnderlineSearch />
-              </div>
+              <SampleForm>
+                <SearchInput ariaLabel="검색" placeholder="검색어" />
+              </SampleForm>
             ),
-            caption:
-              '모바일 메뉴의 검색은 전체 화면을 덮는 어두운 면에 있으므로 밑줄 칸을 사용합니다.',
+            caption: '밝은 면의 검색 칸은 다른 입력 칸과 같은 모양입니다.',
           }}
           bad={{
             example: (
-              <div className="bg-neutral-850 p-4">
-                <SampleForm>
-                  <SearchInput tone="dark" ariaLabel="검색" />
-                </SampleForm>
+              <div className="flex h-8.5 w-60 items-center rounded-xs bg-neutral-100 px-3 type-ui text-neutral-500">
+                <span className="flex-1">검색어</span>
+                <Search />
               </div>
             ),
             caption:
-              '모바일 메뉴에 헤더의 채움 칸을 사용하면 메뉴의 모양과 맞지 않습니다.',
+              '예전 세미나 검색은 회색 채움 칸이라 공지·새 소식의 흰 검색 칸과 모양이 달랐습니다.',
           }}
-        />
-      </DocSection>
-
-      <DocSection title="관련">
-        <Related
-          links={[
-            ['form', '입력·폼'],
-            ['selection', '선택·태그'],
-            ['navigation', '내비게이션·셸'],
-          ]}
         />
       </DocSection>
     </>

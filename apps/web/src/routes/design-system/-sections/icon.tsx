@@ -21,8 +21,8 @@ import {
   DocSection,
   DoDont,
   Example,
+  KnownGap,
   Lead,
-  Related,
   RuleList,
 } from '../-components/doc';
 
@@ -112,50 +112,43 @@ export function IconSection() {
         </Sub>
       </DocSection>
 
-      <DocSection title="사용 방법">
+      <DocSection title="원칙">
         <RuleList
           items={[
-            '브랜드 로고(유튜브 등), 학교 로고, 메인 그래픽처럼 lucide에 없는 것만 별도로 제작한 그림을 사용합니다.',
-            '아이콘 크기와 선 굵기는 옆 글자를 따릅니다. 예외: 옆에 글자가 없는 아이콘만 있는 버튼(닫기·메뉴·검색 실행)은 20px입니다.',
-            '그래픽으로 사용하는 큰 화살표(교과목 카드 넘기기 등)는 메인·카테고리, 고유 화면이 정합니다.',
-            '아이콘 색은 옆 글자색과 같습니다.',
-            '아이콘과 글자는 세로 가운데로 정렬합니다. 아이콘만 위아래로 위치를 보정하지 않습니다.',
-            '아이콘만 있는 버튼은 클릭 영역을 24×24 이상으로 확보하고(그림 크기는 그대로) 스크린 리더가 읽을 이름을 추가합니다.',
-            '채운 모양은 고정·북마크·재생·정지에만 사용합니다.',
+            '아이콘은 lucide 한 벌에서 고릅니다(없는 것은 브랜드·학교 로고와 메인 그래픽뿐). 한 벌이어야 선 굵기와 모서리가 맞습니다.',
+            '크기·선 굵기·색은 옆 글자를 따르고, 세로 가운데로 정렬하며 위치를 따로 보정하지 않습니다. 글자와 다른 아이콘은 따로 떨어져 읽히고, 보정값은 글자 크기가 바뀌면 다시 어긋납니다.',
+            '아이콘만 있는 버튼(닫기·메뉴·검색 실행)에는 반드시 스크린 리더가 읽을 이름을 붙이고 누르는 영역을 24×24 이상으로 두어야 합니다. 그림은 20px입니다.',
+            '채운 모양은 고정·북마크·재생·정지에만 씁니다. 선 아이콘 사이에서 채운 모양은 강조로 읽힙니다.',
           ]}
         />
+        <KnownGap>
+          카테고리 카드·교과목 카드의 큰 화살표는 그래픽이라 옆 글자를 따르지
+          않습니다.
+        </KnownGap>
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않기">
+      <DocSection title="Do · Don't">
         <DoDont
           good={{
             example: (
-              <span className="flex items-center gap-1 type-meta text-neutral-500">
-                <Calendar />
-                2026/09/25
+              <span className="flex items-center type-ui text-neutral-500">
+                보러가기
+                <ChevronRight />
               </span>
             ),
-            caption: '아이콘이 옆 글자 크기에 맞습니다.',
+            caption:
+              '아이콘은 옆 글자 크기를 따르고 글자와 세로 가운데로 정렬합니다.',
           }}
           bad={{
             example: (
-              <span className="flex items-center gap-1 type-meta text-neutral-500">
-                <Calendar className="size-6" />
-                2026/09/25
+              <span className="type-ui text-neutral-500">
+                보러가기
+                <ChevronRight className="inline size-4 translate-y-[3px]" />
               </span>
             ),
-            caption: '아이콘만 옆 글자보다 커서 도드라집니다.',
+            caption:
+              '예전 예약 모달의 화살표는 16px 고정 크기에 3px 내려 맞춘 보정값이라, 글자 크기가 바뀌면 다시 어긋났습니다.',
           }}
-        />
-      </DocSection>
-
-      <DocSection title="관련">
-        <Related
-          links={[
-            ['button', '버튼'],
-            ['type', '글자'],
-            ['graphic', '그래픽'],
-          ]}
         />
       </DocSection>
     </>

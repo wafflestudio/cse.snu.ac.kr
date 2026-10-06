@@ -6,14 +6,14 @@ import {
   Example,
   Lead,
   RuleList,
-  SpecTable,
 } from '../-components/doc';
 
 // 초점·키보드. 견본의 초점 모양은 정적 클래스로 흉내 낸다(실제 모양은 app.css 의 :focus-visible).
 
 const RING = 'outline-2 outline-offset-2 outline-neutral-700';
 const RING_DARK = 'outline-2 outline-offset-2 outline-white';
-const RING_INSET = 'outline-2 -outline-offset-2 outline-neutral-700';
+// 예전 모양: 브라우저 기본 파란 1px.
+const RING_BLUE = 'outline-1 outline-blue-600';
 
 function Field({ focused, border }: { focused?: boolean; border?: boolean }) {
   return (
@@ -32,7 +32,11 @@ function Field({ focused, border }: { focused?: boolean; border?: boolean }) {
 function Card({ ring, clipped }: { ring: string; clipped?: boolean }) {
   return (
     <div
-      className={clsx('bg-neutral-100', clipped ? 'overflow-hidden' : 'p-3')}
+      className={clsx(
+        'bg-neutral-100',
+        // 잘리는 캐러셀: 위·왼쪽에 여유가 없다.
+        clipped ? 'overflow-hidden pr-3 pb-3' : 'p-1',
+      )}
     >
       <div className={clsx('flex h-24 w-36 flex-col bg-white', ring)}>
         <div className="h-10 bg-neutral-300" />
@@ -50,7 +54,7 @@ export function FocusSection() {
       </Lead>
 
       <DocSection title="값">
-        <Example caption="밝은 면의 버튼·링크">
+        <Example caption="밝은 면: 짙은 회색 2px 실선을 요소에서 2px 띄워 그립니다.">
           <span className={clsx('inline-flex', RING)}>
             <Button variant="primary">저장</Button>
           </span>
@@ -64,10 +68,7 @@ export function FocusSection() {
             링크
           </a>
         </Example>
-        <Example
-          tone="dark"
-          caption="어두운 면(헤더·내비·제목 영역·메인 어두운 띠)에서는 흰 링"
-        >
+        <Example tone="dark" caption="어두운 면: 같은 모양의 흰 링입니다.">
           <span className={clsx('inline-flex', RING_DARK)}>
             <Button variant="textInverse">로그인</Button>
           </span>
@@ -75,36 +76,10 @@ export function FocusSection() {
             Top Conference List
           </span>
         </Example>
-        <SpecTable
-          head={['항목', '값', '비고']}
-          rows={[
-            ['선', '2px 실선', ''],
-            ['간격', '2px', '요소 밖으로 띄웁니다'],
-            ['색(밝은 면)', 'neutral-700', ''],
-            [
-              '색(어두운 면)',
-              '흰색',
-              '헤더·내비·제목 영역·메인 어두운 띠 안의 모든 것',
-            ],
-          ]}
-        />
-      </DocSection>
-
-      <DocSection title="사용 방법">
-        <RuleList
-          items={[
-            '초점 모양은 사이트 어디서나 같습니다. 요소마다 다른 링을 사용하거나 링을 제거하지 않습니다.',
-            '초점 표시는 키보드로 이동했을 때만 나타납니다. 마우스로 클릭할 때는 나타나지 않습니다.',
-            '가장자리가 잘리는 틀(캐러셀·이미지 팝업 판)에서 링이 잘리면, 틀 안쪽에 4px 여유를 두거나(캐러셀) 링을 안쪽으로 2px 들여 표시합니다(팝업 버튼). 한 줄에 놓인 버튼은 같은 모양입니다.',
-            '체크박스·라디오·알약·글자 토글은 상자와 글자를 함께 감싸는 링을 표시합니다.',
-            '페이지를 열 때 자동으로 뜨는 팝업은 누르기 전까지 버튼에 링을 표시하지 않습니다.',
-            '보이지 않는 것(닫힌 메뉴·다른 폭의 벌·비활성 버튼)으로는 Tab으로 이동하지 않습니다.',
-          ]}
-        />
       </DocSection>
 
       <DocSection title="입력 칸">
-        <Example caption="흰 면의 입력 칸·드롭다운은 링 대신 테두리만 짙게 합니다(neutral-300 → 700). 칸 둘레에 링을 표시하면 외형이 크게 달라집니다.">
+        <Example caption="흰 면의 입력 칸·드롭다운은 링 대신 테두리만 짙게 합니다. 칸 둘레에 링을 그리면 칸이 두 겹으로 보입니다.">
           <Field border />
         </Example>
         <Example
@@ -122,15 +97,52 @@ export function FocusSection() {
         </Example>
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않기">
+      <DocSection title="작동 방식">
+        <RuleList
+          items={[
+            '초점 표시는 키보드 사용자가 현재 위치를 아는 유일한 단서라 반드시 남겨 두어야 하고, 요소마다 바꾸지 않습니다. 키보드로 이동할 때만 나타납니다.',
+            '어두운 면(헤더·내비·제목 영역·메인 어두운 띠) 안에서는 흰 링입니다. 짙은 회색 링은 어두운 바탕에 묻힙니다.',
+            '링은 누르는 영역 전체를 감쌉니다. 체크박스·라디오·알약·글자 토글은 상자와 글자를 함께 감쌉니다.',
+            '가장자리를 자르는 틀(캐러셀·이미지 팝업 판)에서는 틀 안쪽에 여유를 두고, 그럴 수 없으면 링을 안쪽에 그립니다. 잘린 링은 없는 것과 같습니다.',
+            '보이지 않는 것(닫힌 메뉴·다른 폭용 마크업·비활성 버튼)은 반드시 Tab 순서에서 빼야 합니다. 보이지 않는 곳으로 초점이 가면 사용자가 위치를 잃습니다.',
+          ]}
+        />
+      </DocSection>
+
+      <DocSection title="Do · Don't">
         <DoDont
           good={{
-            example: <Card clipped ring={RING_INSET} />,
-            caption: '잘리는 자리에서는 링을 안쪽에 표시합니다.',
+            example: <Card ring={RING} />,
+            caption:
+              '캐러셀 영역 안쪽에 4px 여유를 두어 바깥 링이 온전히 보입니다.',
           }}
           bad={{
-            example: <Card clipped ring={RING} />,
-            caption: '바깥쪽에 표시한 링이 스크롤 영역에 잘립니다.',
+            example: <Card clipped ring={RING_BLUE} />,
+            caption:
+              '예전 메인 새 소식 카드는 브라우저 기본 파란 1px 링이 캐러셀에 위·왼쪽이 잘렸습니다.',
+          }}
+        />
+        <DoDont
+          good={{
+            example: (
+              <div className="bg-neutral-900 p-4">
+                <span className={clsx('type-ui text-white', RING_DARK)}>
+                  Top Conference List
+                </span>
+              </div>
+            ),
+            caption: '어두운 면에서는 흰 2px 링이 바탕과 분명히 구분됩니다.',
+          }}
+          bad={{
+            example: (
+              <div className="bg-neutral-900 p-4">
+                <span className={clsx('type-ui text-white', RING_BLUE)}>
+                  Top Conference List
+                </span>
+              </div>
+            ),
+            caption:
+              '예전 메인 바로가기는 파란 1px 링이라 어두운 띠 위에서 거의 보이지 않았습니다.',
           }}
         />
       </DocSection>

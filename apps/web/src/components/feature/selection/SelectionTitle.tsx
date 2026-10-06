@@ -27,12 +27,7 @@ export default function SelectionTitle({
       <div className="sm:w-fit">
         <h2 className="px-3 type-section text-neutral-950">
           {href ? (
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-1"
-            >
+            <a href={href} className="group flex items-center gap-1">
               <span>{title}</span>
               <LinkIcon className="text-neutral-500 group-hover:text-main-orange" />
             </a>

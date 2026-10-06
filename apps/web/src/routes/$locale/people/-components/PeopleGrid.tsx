@@ -45,7 +45,7 @@ function PeopleCard({
         className="relative h-48 w-36 shrink-0 cursor-pointer overflow-hidden"
         aria-label={`${name} 교수 상세 페이지로 이동`}
       >
-        {/* 사진 틀 3:4 — 사진이 없으면 같은 틀에 로고(Image 가 그린다, /design-system/unique). */}
+        {/* 사진 틀 3:4 — 사진이 없으면 같은 틀에 로고(Image 가 그린다). */}
         <Image
           src={imageURL}
           alt={`${name} 프로필`}

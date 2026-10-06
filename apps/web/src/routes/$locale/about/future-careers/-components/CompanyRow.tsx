@@ -77,11 +77,9 @@ function CareerCompanyViewer({
         <p className={`type-ui text-neutral-500 sm:pl-2`}>{index}</p>
         <p className={`type-ui sm:pl-2`}>{name}</p>
         <a
-          className={`order-last col-span-2 col-start-2 w-fit type-meta sm:col-span-1 sm:col-start-auto text-link underline underline-offset-2 sm:order-0 sm:mt-0 sm:pl-2
+          className={`order-last col-span-2 col-start-2 w-fit type-meta sm:col-span-1 sm:col-start-auto text-link underline underline-offset-2 hover:text-main-orange sm:order-0 sm:mt-0 sm:pl-2
             ${url && 'mt-1'}`}
           href={url ?? undefined}
-          target="_blank"
-          rel="noopener noreferrer"
         >
           {url}
         </a>

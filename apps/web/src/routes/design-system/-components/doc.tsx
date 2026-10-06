@@ -1,4 +1,3 @@
-import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { Check, X } from 'lucide-react';
 import type { ReactNode } from 'react';
@@ -6,12 +5,14 @@ import { useState } from 'react';
 import PillGroup from '@/components/ui/PillGroup';
 
 // 디자인 시스템 문서 페이지의 틀 한 벌. 부품 페이지는 이 순서로 쓴다:
-// 한 줄 설명(Lead) → 예시(Example) → 종류(VariantTable) → 대신 쓰는 것 → 배치 → 이렇게·이렇게 하지 않기(DoDont) → 관련(Related).
+// 한 줄 설명(Lead) → 예시(Example) → 종류(VariantTable) → 사용하는 경우 → 사용하지 않는 경우 → 작동 방식 → Do · Don't.
+// 기반(색·글자·간격…)은 값 → 원칙 → 알려진 예외(KnownGap) → Do · Don't. 패턴은 짜임 그림 → 작동 방식 → Do · Don't.
 // 쓰는 사람이 정해야 하는 것만 적는다. 부품이 정하는 값(크기·여백·호버 색)은 예시가 보여 주고 소스가 정본이다.
-// 규칙은 그림에 붙여 쓴다. 코드는 싣지 않는다.
-// 폭에 따라 달라지는 것은 DeviceToggle 로 바꿔 보게 한다. 첫 줄 설명(Lead)은 한 문장.
-// 기반(색·글자·간격…)은 값 자체가 고르는 대상이라 값 표(SpecTable)를 쓴다: 한 줄 설명 → 값 → 쓰는 법 → 이렇게·하지 않기 → 관련.
-// 패턴·화면은 짜임 그림 → 규칙(RuleList) → 이렇게·하지 않기 → 관련. 짜는 사람이 고르는 간격 값은 적는다.
+// 규칙은 한 문장에 이유를 붙인다(이유가 없으면 당연하거나 근거 없는 규칙이라 뺀다). 값을 늘어놓기보다 역할·원칙으로 쓴다.
+// 세기: "반드시 …해야 합니다"(접근성·정확성, 드물게) · "…합니다"(기본) · "…하지 않습니다"(금지) · "…을 고려합니다"(권장).
+// 예외는 규칙으로 만들지 않고 KnownGap 한 줄에 이유와 함께 적는다.
+// Do · Don't 는 이번 개편 전 사이트가 실제로 하던 것(Don't)과 바꾼 규칙(Do)만 싣는다.
+// 폭에 따라 달라지는 것은 DeviceToggle 로 바꿔 보게 한다. 첫 줄 설명(Lead)은 한 문장. 코드는 싣지 않는다.
 
 export function Lead({ children }: { children: ReactNode }) {
   return (
@@ -105,7 +106,17 @@ export function RuleList({ items }: { items: string[] }) {
   );
 }
 
-// 이렇게 / 이렇게 하지 않기를 한 쌍으로 나란히 둔다. 규칙 문장은 각 카드 아래에 붙인다.
+// 알려진 예외·한계 한 줄. 규칙으로 만들지 않고 이유와 함께 적는다.
+export function KnownGap({ children }: { children: ReactNode }) {
+  return (
+    <p className="max-w-160 border-l-2 border-neutral-300 pl-4 type-ui leading-normal text-neutral-700">
+      <span className="mr-2 type-label text-neutral-950">알려진 예외</span>
+      {children}
+    </p>
+  );
+}
+
+// Do / Don't 를 한 쌍으로 나란히 둔다. 규칙 문장은 각 카드 아래에 붙인다.
 export function DoDont({
   good,
   bad,
@@ -153,7 +164,7 @@ function Verdict({
           )}
         >
           {ok ? <Check /> : <X />}
-          {ok ? '이렇게' : '이렇게 하지 않기'}
+          {ok ? 'Do' : "Don't"}
         </span>
         {caption}
       </figcaption>
@@ -170,10 +181,11 @@ export function SpecTable({
   rows: [ReactNode, ReactNode, ReactNode?][];
 }) {
   return (
-    <div className="grid grid-cols-[auto_auto_minmax(0,1fr)] border-y border-neutral-200 type-ui">
+    // 모바일은 셋째 칸(사용처)을 아래 줄로 내린다. 좁은 폭에서 한두 글자씩 끊기지 않게.
+    <div className="grid grid-cols-[auto_minmax(0,1fr)] border-y border-neutral-200 type-ui sm:grid-cols-[auto_auto_minmax(0,1fr)]">
       <div className="col-span-full grid h-11 grid-cols-subgrid items-center border-b border-neutral-200 type-label">
-        {head.map((h) => (
-          <span key={h} className="px-3">
+        {head.map((h, i) => (
+          <span key={h} className={i === 2 ? 'hidden px-3 sm:block' : 'px-3'}>
             {h}
           </span>
         ))}
@@ -181,11 +193,15 @@ export function SpecTable({
       {rows.map(([name, value, note], i) => (
         <div
           key={i}
-          className="col-span-full grid min-h-11 grid-cols-subgrid items-center odd:bg-neutral-50"
+          className="col-span-full grid min-h-11 grid-cols-subgrid items-center py-2 odd:bg-neutral-50 sm:py-0"
         >
-          <span className="px-3 py-2">{name}</span>
-          <span className="px-3 py-2 whitespace-nowrap">{value}</span>
-          <span className="px-3 py-2 text-neutral-500">{note}</span>
+          <span className="px-3 sm:py-2">{name}</span>
+          <span className="px-3 whitespace-nowrap sm:py-2">{value}</span>
+          {note && (
+            <span className="col-span-full px-3 pt-1 text-neutral-500 sm:col-span-1 sm:py-2">
+              {note}
+            </span>
+          )}
         </div>
       ))}
     </div>
@@ -226,23 +242,5 @@ export function DeviceToggle({
         </figcaption>
       )}
     </figure>
-  );
-}
-
-export function Related({ links }: { links: [id: string, title: string][] }) {
-  return (
-    <ul className="flex flex-wrap gap-x-6 gap-y-2 type-ui">
-      {links.map(([id, title]) => (
-        <li key={id}>
-          <Link
-            to="/design-system/$section"
-            params={{ section: id }}
-            className="text-link underline underline-offset-2 hover:text-main-orange"
-          >
-            {title}
-          </Link>
-        </li>
-      ))}
-    </ul>
   );
 }

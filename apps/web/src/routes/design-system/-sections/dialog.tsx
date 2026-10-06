@@ -7,7 +7,6 @@ import {
   DoDont,
   Example,
   Lead,
-  Related,
   RuleList,
   VariantTable,
 } from '../-components/doc';
@@ -147,7 +146,7 @@ export function DialogSection() {
             {
               name: '확인창',
               sample: <Mini width="w-[83px]" />,
-              use: '삭제·나가기처럼 되돌리기 어려운 작업을 확인할 때 사용합니다. 크기는 한 가지입니다.',
+              use: '삭제·나가기 확인.',
             },
             {
               name: '폼(기본)',
@@ -166,17 +165,35 @@ export function DialogSection() {
             },
           ]}
         />
+      </DocSection>
+
+      <DocSection title="사용하는 경우">
         <RuleList
           items={[
-            '판 폭은 내용의 길이에 맞춰 선택합니다.',
-            '모달 제목은 판 위쪽에만 표시합니다. 내용 안에 제목을 다시 표시하지 않습니다.',
-            '내용에 자체 제목이 있는 판(교과목·예약 상세, 팀 소개)은 판 위쪽 제목을 숨깁니다.',
+            '보던 화면을 떠나지 않고 짧은 일을 끝낼 때 사용합니다. 짧은 입력(교과목 추가), 한 항목 자세히 보기(예약 상세), 되돌리기 어려운 작업 전의 확인입니다.',
+          ]}
+        />
+      </DocSection>
+
+      <DocSection title="사용하지 않는 경우">
+        <RuleList
+          items={[
+            '입력이 길거나 서식 있는 본문을 쓸 때는 편집 화면을 사용합니다. 판에서 길게 스크롤하면 위치를 잃고, 실수로 닫으면 입력이 사라집니다.',
+            '결과를 알리기만 할 때는 토스트를 사용합니다. 누를 일 없는 판은 하던 일을 끊습니다.',
+          ]}
+        />
+      </DocSection>
+
+      <DocSection title="작동 방식">
+        <RuleList
+          items={[
+            '제목은 판이 그리고, 내용에 자체 제목이 있는 판(교과목·예약 상세, 팀 소개)만 판 제목을 숨깁니다. 제목이 두 번 보이지 않게 하기 위해서입니다.',
           ]}
         />
       </DocSection>
 
       <DocSection title="확인창">
-        <Example caption="실행 버튼에는 수행할 작업을 표시합니다(삭제·해제·나가기). 버튼 순서는 버튼 페이지, 문장은 문구 페이지를 따릅니다.">
+        <Example caption="실행 버튼에는 실행할 작업을 적습니다(삭제·해제·나가기). 문장은 문구 페이지를 따릅니다.">
           <Stage>
             <Panel width="max-w-[400px]" close={false}>
               <p>
@@ -196,24 +213,38 @@ export function DialogSection() {
         </Example>
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않기">
+      <DocSection title="Do · Don't">
         <DoDont
           good={{
             example: (
-              <Panel title="교과목 추가" width="max-w-[260px]">
-                <Field label="교과목명" />
-              </Panel>
+              <div className="w-full max-w-65 space-y-3">
+                <Panel title="교과목 추가" width="w-full">
+                  <Field label="교과목명" />
+                </Panel>
+                <Panel title="예약하기" width="w-full">
+                  <Field label="예약 제목" />
+                </Panel>
+              </div>
             ),
-            caption: '제목은 판 위쪽에 한 번만 표시합니다.',
+            caption: '모든 모달의 제목을 판이 같은 자리·같은 크기로 그립니다.',
           }}
           bad={{
             example: (
-              <Panel title="교과목 추가" width="max-w-[260px]">
-                <p className="mb-4 type-item">교과목 추가</p>
-                <Field label="교과목명" />
-              </Panel>
+              <div className="w-full max-w-65 space-y-3">
+                <Panel width="w-full">
+                  <p className="mb-4 text-xl font-bold text-neutral-700">
+                    교과목 추가
+                  </p>
+                  <Field label="교과목명" />
+                </Panel>
+                <Panel width="w-full">
+                  <p className="mb-4 type-item">예약하기</p>
+                  <Field label="예약 제목" />
+                </Panel>
+              </div>
             ),
-            caption: '내용 안에 제목을 다시 표시하면 제목이 중복됩니다.',
+            caption:
+              '예전에는 모달마다 내용 안에서 제목을 직접 그려 크기·색·자리가 제각각이었습니다.',
           }}
         />
         <DoDont
@@ -224,7 +255,7 @@ export function DialogSection() {
                 <Button variant="primary">삭제</Button>
               </>
             ),
-            caption: '확인창의 실행 버튼에는 수행할 작업을 표시합니다.',
+            caption: '실행 버튼에 실행할 작업을 적습니다.',
           }}
           bad={{
             example: (
@@ -234,19 +265,8 @@ export function DialogSection() {
               </>
             ),
             caption:
-              '"확인"으로 표시하면 어떤 작업이 수행되는지 알 수 없습니다.',
+              '예전 확인창은 저장·삭제·이탈을 모두 "확인"으로 받아, 무엇이 실행되는지 버튼만 보고 알 수 없었습니다.',
           }}
-        />
-      </DocSection>
-
-      <DocSection title="관련">
-        <Related
-          links={[
-            ['button', '버튼'],
-            ['form', '입력·폼'],
-            ['writing', '문구'],
-            ['shape', '모서리·그림자·선'],
-          ]}
         />
       </DocSection>
     </>

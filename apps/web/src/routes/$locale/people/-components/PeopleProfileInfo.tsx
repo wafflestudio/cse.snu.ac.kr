@@ -26,7 +26,7 @@ export default function PeopleProfileInfo({
   items,
 }: PeopleProfileInfoProps) {
   return (
-    // 인물 상세의 왼쪽: 사진과 그 아래 아이콘 연락처(/design-system/unique). 비어 있는 항목은 그리지 않는다.
+    // 인물 상세의 왼쪽: 사진과 그 아래 아이콘 연락처. 비어 있는 항목은 그리지 않는다.
     <div className="flex shrink-0 flex-col">
       <ProfileImage imageURL={imageURL} />
 
@@ -50,10 +50,8 @@ function ProfileInfoRow({ icon, label, href }: PeopleProfileInfoItem) {
       {Icon && <Icon className="shrink-0" />}
       {href ? (
         <a
-          target={href.startsWith('http') ? '_blank' : undefined}
           href={href}
-          className="text-link underline underline-offset-2"
-          rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+          className="text-link underline underline-offset-2 hover:text-main-orange"
         >
           {label}
         </a>

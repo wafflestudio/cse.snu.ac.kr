@@ -4,7 +4,6 @@ import {
   DocSection,
   Example,
   Lead,
-  Related,
   RuleList,
   VariantTable,
 } from '../-components/doc';
@@ -64,34 +63,34 @@ export function ToastSection() {
             {
               name: '성공',
               sample: <Kind icon="success" label="저장했습니다" />,
-              use: '완료한 작업(저장·삭제·게시)을 알립니다.',
+              use: '완료한 작업(저장·삭제·게시).',
             },
             {
               name: '실패',
               sample: <Kind icon="error" label="저장하지 못했습니다" />,
-              use: '작업이 실패했음을 알립니다. 문구는 오류마다 정해 둔 문장을 사용합니다.',
+              use: '실패한 작업. 문장은 오류마다 정해 둔 것을 씁니다.',
             },
             {
               name: '안내',
               sample: <Kind icon="info" label="로그인이 필요합니다" />,
-              use: '해야 할 일을 알립니다.',
+              use: '해야 할 일(로그인 필요 등).',
             },
-          ]}
-        />
-        <RuleList
-          items={[
-            '상태는 아이콘으로 구분합니다. 판 색은 종류와 관계없이 동일합니다.',
-            '성공·안내 문구는 문구 페이지를 따릅니다.',
           ]}
         />
       </DocSection>
 
-      <DocSection title="관련">
-        <Related
-          links={[
-            ['writing', '문구'],
-            ['form', '입력·폼'],
-            ['dialog', '모달'],
+      <DocSection title="사용하는 경우">
+        <RuleList
+          items={[
+            '방금 누른 버튼의 결과(했는지, 실패했는지)를 알릴 때 사용합니다. 문장은 문구 페이지를 따릅니다.',
+          ]}
+        />
+      </DocSection>
+
+      <DocSection title="사용하지 않는 경우">
+        <RuleList
+          items={[
+            '토스트는 몇 초 뒤 사라지고 누를 것이 없습니다. 그래서 입력 오류는 필드 아래(입력·폼), 실행 전 확인은 확인창(모달), 오래 읽을 안내는 화면에 둡니다.',
           ]}
         />
       </DocSection>

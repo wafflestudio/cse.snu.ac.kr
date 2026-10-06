@@ -6,9 +6,9 @@ import Form from '@/components/form/Form';
 import Button from '@/components/ui/Button';
 import {
   DocSection,
+  DoDont,
   Example,
   Lead,
-  Related,
   RuleList,
   VariantTable,
 } from '../-components/doc';
@@ -70,6 +70,37 @@ function InvalidSample() {
         </div>
       </div>
     </FormProvider>
+  );
+}
+
+// Do · Don't 견본: 정적 그림. inline 이면 지금 모양(필드 아래 문장 + 개수), 아니면 예전 모양(버튼 줄 옆 목록).
+function ErrorSketch({ inline = false }: { inline?: boolean }) {
+  const field = (name: string, error: boolean) => (
+    <div>
+      <p className="mb-2 type-label">{name}</p>
+      <div
+        className={
+          error && inline
+            ? 'h-8.5 rounded-xs border border-red-600 bg-white'
+            : 'h-8.5 rounded-xs border border-neutral-300 bg-white'
+        }
+      />
+      {inline && error && (
+        <p className="mt-2 type-meta text-red-600">{name}을 입력해 주세요.</p>
+      )}
+    </div>
+  );
+  return (
+    <div className="w-56 space-y-4">
+      {field('제목', true)}
+      {field('작성자', false)}
+      <div className="flex items-center justify-end gap-3">
+        <p className="type-meta text-red-600">
+          {inline ? '확인할 항목이 1개 있습니다.' : '제목을 입력해주세요.'}
+        </p>
+        <Button variant="primary">저장</Button>
+      </div>
+    </div>
   );
 }
 
@@ -152,7 +183,7 @@ export function FormSection() {
               {
                 name: '드롭다운',
                 sample: <Form.Dropdown name="year" contents={YEARS} />,
-                use: '정해진 항목 중 하나. 칸 폭은 가장 긴 항목에 맞춥니다.',
+                use: '정해진 항목 중 하나(연도·연구실처럼 항목이 많을 때).',
               },
               {
                 name: '날짜·시간',
@@ -167,7 +198,7 @@ export function FormSection() {
               {
                 name: '라디오',
                 sample: <Form.Radio name="radio" value="ko" label="한국어" />,
-                use: '폼 안에서 값 하나를 선택합니다.',
+                use: '폼 안에서 몇 개뿐인 항목 중 하나를 고릅니다(언어·교수 구분). 모두 보여 비교하기 쉽습니다.',
               },
               {
                 name: '첨부',
@@ -179,8 +210,17 @@ export function FormSection() {
         </SampleForm>
       </DocSection>
 
+      <DocSection title="사용하지 않는 경우">
+        <RuleList
+          items={[
+            '저장할 값이 아니라 보기를 바꿀 때(목록 거르기·정렬, 예약 화면의 날짜 넘기기)는 알약(선택·태그)이나 버튼을 사용합니다.',
+            '검색어는 검색 칸(검색 입력), 서식이 있는 본문은 에디터를 사용합니다. 각각 실행 버튼과 서식이 함께 있어야 합니다.',
+          ]}
+        />
+      </DocSection>
+
       <DocSection title="폭">
-        <Example caption="글자 칸의 폭은 입력할 내용의 길이에 맞춰 선택합니다. 좁은 화면에서는 어떤 폭도 영역 폭을 넘지 않습니다.">
+        <Example caption="글자 칸의 폭은 들어갈 값의 길이에 맞춰 고릅니다. 칸 폭이 얼마나 적을지 알려 줍니다. 좁은 화면에서는 어떤 폭도 영역을 넘지 않습니다.">
           <SampleForm>
             <div className="space-y-4">
               {WIDTHS.map(([size, name, use]) => (
@@ -200,19 +240,8 @@ export function FormSection() {
         </Example>
       </DocSection>
 
-      <DocSection title="입력 칸 대신 사용하는 것">
-        <RuleList
-          items={[
-            '목록을 필터링하거나 정렬할 때 → 알약(선택·태그).',
-            '검색어를 입력받을 때 → 검색 칸(검색 입력).',
-            '서식이 있는 본문을 작성할 때 → 에디터.',
-            '예약 화면 툴바에서 날짜를 이동할 때 → 보조 버튼. 값을 입력하는 칸이 아닙니다.',
-          ]}
-        />
-      </DocSection>
-
       <DocSection title="배치">
-        <Example caption="한 줄에 필드를 두 개까지 나란히 배치할 수 있습니다. 전화·팩스처럼 짧은 값은 두 칸 모두 보통 폭까지 사용하고, 긴 값은 줄을 반씩 나눕니다. 모바일에서는 세로로 쌓입니다.">
+        <Example caption="짝을 이루는 짧은 값(전화·팩스)만 한 줄에 둘까지 나란히 둡니다. 짧은 값은 두 칸 모두 보통 폭까지, 긴 값은 줄을 반씩 나눕니다. 모바일에서는 세로로 쌓입니다.">
           <SampleForm>
             <Form.Row>
               <Fieldset title="전화">
@@ -227,20 +256,22 @@ export function FormSection() {
       </DocSection>
 
       <DocSection title="오류">
-        <Example caption="오류 문장은 해당 필드 바로 아래에 표시합니다. 긴 폼에서 위쪽 오류를 놓치지 않도록 버튼 줄 옆에는 오류 개수만 표시합니다. 문장은 문구 페이지를 따릅니다.">
+        <Example caption="오류 문장은 그 필드 바로 아래에, 버튼 줄 옆에는 개수만 표시합니다. 긴 폼에서 위쪽 오류를 놓치지 않게 하기 위해서입니다.">
           <InvalidSample />
         </Example>
       </DocSection>
 
-      <DocSection title="관련">
-        <Related
-          links={[
-            ['button', '버튼'],
-            ['selection', '선택·태그'],
-            ['search', '검색 입력'],
-            ['editor', '에디터'],
-            ['writing', '문구'],
-          ]}
+      <DocSection title="Do · Don't">
+        <DoDont
+          good={{
+            example: <ErrorSketch inline />,
+            caption: '고칠 곳 바로 아래에 오류 문장이 있습니다.',
+          }}
+          bad={{
+            example: <ErrorSketch />,
+            caption:
+              '예전 폼은 오류를 버튼 줄 옆에만 모아 보여 줘, 긴 폼에서는 어느 칸을 고칠지 찾아야 했습니다.',
+          }}
         />
       </DocSection>
     </>

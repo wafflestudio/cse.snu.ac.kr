@@ -1,12 +1,6 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import HTMLEditor from '@/components/form/html/HTMLEditor';
-import {
-  DocSection,
-  Example,
-  Lead,
-  Related,
-  RuleList,
-} from '../-components/doc';
+import { DocSection, Example, Lead, RuleList } from '../-components/doc';
 
 // 에디터 페이지. 실제 HTMLEditor 를 그린다. 테두리·툴바 색은 override CSS 가 정하므로 적지 않는다.
 
@@ -31,25 +25,23 @@ export function EditorSection() {
       <Lead>에디터는 게시물 본문을 작성하는 입력 칸입니다.</Lead>
 
       <DocSection title="예시">
-        <Example caption="작성 중인 본문은 게시된 글과 동일하게 표시됩니다. 에디터에서 선택한 글자 크기는 게시된 글에서도 같습니다.">
+        <Example caption="작성 중인 본문은 게시된 글과 같은 모양으로 보입니다(읽는 본문).">
           <SampleEditor />
         </Example>
       </DocSection>
 
-      <DocSection title="겉모양">
+      <DocSection title="사용하는 경우">
         <RuleList
           items={[
-            '겉 테두리와 모서리는 다른 입력 칸(입력·폼)과 같습니다.',
-            '툴바 글자(크기·문단 형식)에도 사이트 서체를 사용합니다.',
+            '서식(제목·목록·링크·표·이미지)이 필요한 본문을 쓸 때 사용합니다(공지·새 소식·세미나 본문, 소개 글).',
           ]}
         />
       </DocSection>
 
-      <DocSection title="관련">
-        <Related
-          links={[
-            ['form', '입력·폼'],
-            ['reading', '읽는 본문·이미지'],
+      <DocSection title="사용하지 않는 경우">
+        <RuleList
+          items={[
+            '한 줄 값이나 서식 없는 짧은 설명은 글자·긴 글 칸(입력·폼)을 사용합니다. 에디터는 툴바만큼 무겁고, 서식이 섞이면 목록·카드에서 모양이 어긋납니다.',
           ]}
         />
       </DocSection>

@@ -2,13 +2,7 @@ import clsx from 'clsx';
 import { ChevronRight } from 'lucide-react';
 import type { ReactNode } from 'react';
 import Node from '@/components/ui/Nodes';
-import {
-  DocSection,
-  DoDont,
-  Lead,
-  Related,
-  RuleList,
-} from '../-components/doc';
+import { DocSection, DoDont, Lead, RuleList } from '../-components/doc';
 
 // 셸 조각을 같은 값의 div 로 그린다(경로 그래픽은 실제 Node). 실제는 PageTitle·LeftNav·SubNavbar·Footer.
 // 경로의 줄바꿈·서브내비의 자리·푸터의 열은 셸이 정한다. 짜는 사람이 고르는 것만 적는다.
@@ -104,45 +98,33 @@ export function NavigationSection() {
             <div className="flex-1 bg-neutral-900" />
           </div>
           <figcaption className="mt-2 type-meta text-neutral-500">
-            왼쪽 내비: 사이드바는 chrome-menu, 펼쳐지는 패널은 neutral-850.
-            모바일 메뉴의 목록·펼침도 같습니다. 색 페이지의 면 규칙(올라온 면이
-            더 밝다)의 예외입니다.
+            왼쪽 내비의 막대와 펼침 패널. 모바일 메뉴도 같은 색이고, 색 페이지의
+            알려진 예외입니다.
           </figcaption>
         </figure>
       </DocSection>
 
-      <DocSection title="규칙">
+      <DocSection title="작동 방식">
         <RuleList
           items={[
-            '형제 페이지가 있는 읽기 화면은 본문 오른쪽에 서브내비를 배치합니다.',
-            '서브내비의 위치·높이는 모든 화면에서 같습니다. 화면마다 옮기지 않습니다.',
-            '경로는 메뉴에서 그 화면이 있는 위치를 그대로 표시합니다.',
-            '왼쪽 내비·모바일 메뉴는 면 규칙의 예외입니다. 막대가 chrome-menu, 펼침 패널이 neutral-850입니다(변경해 보니 어색했습니다).',
+            '형제 페이지가 있는 읽기 화면에는 본문 오른쪽에 서브내비를 둡니다. 같은 묶음의 다른 페이지로 바로 갈 수 있습니다.',
+            '편집·작성 화면에는 서브내비를 두지 않습니다. 누르면 작성 중인 글을 벗어납니다.',
           ]}
         />
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않기">
+      <DocSection title="Do · Don't">
         <DoDont
           good={{
-            example: <Screen title="공지 편집" subnav={false} />,
-            caption: '편집·작성 화면에는 서브내비를 배치하지 않습니다.',
+            example: <Screen title="전공 이수 추가" subnav={false} />,
+            caption:
+              '작성 화면에는 서브내비가 없어 작성 중에 벗어나지 않습니다.',
           }}
           bad={{
-            example: <Screen title="공지 편집" subnav />,
+            example: <Screen title="전공 이수 추가" subnav />,
             caption:
-              '편집 화면에 형제 페이지 링크를 배치합니다. 누르면 작성 중인 글을 벗어납니다.',
+              '예전 전공 이수 추가 화면에만 서브내비가 있어, 형제 작성 화면끼리 틀이 달랐고 누르면 작성 중인 글을 벗어났습니다.',
           }}
-        />
-      </DocSection>
-
-      <DocSection title="관련">
-        <Related
-          links={[
-            ['layout', '레이아웃·페이지 틀'],
-            ['color', '색'],
-            ['graphic', '그래픽'],
-          ]}
         />
       </DocSection>
     </>

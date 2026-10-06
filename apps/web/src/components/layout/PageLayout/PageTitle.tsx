@@ -68,9 +68,11 @@ function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
   return (
     <ol className="flex flex-wrap items-center gap-x-1 gap-y-1 text-neutral-300">
       {items.map((item, i) => {
-        const isCurrent = item.path
-          ? pathname === localizedPath(item.path)
-          : false;
+        // 언어 밖 경로(디자인 시스템 문서 등)는 localized: false 로 그대로 쓴다.
+        const href =
+          item.path &&
+          (item.localized === false ? item.path : localizedPath(item.path));
+        const isCurrent = href ? pathname === href : false;
 
         return (
           <li
@@ -78,11 +80,7 @@ function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
             className="flex items-center gap-1 whitespace-nowrap"
           >
             {i > 0 && <ChevronRight className="type-meta" />}
-            <LocationText
-              path={item.path}
-              name={item.name}
-              isCurrent={isCurrent}
-            />
+            <LocationText href={href} name={item.name} isCurrent={isCurrent} />
           </li>
         );
       })}
@@ -94,13 +92,12 @@ function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
 }
 
 interface LocationTextProps {
-  path?: string;
+  href?: string;
   name: string;
   isCurrent: boolean;
 }
 
-function LocationText({ path, name, isCurrent }: LocationTextProps) {
-  const { localizedPath } = useLanguage();
+function LocationText({ href, name, isCurrent }: LocationTextProps) {
   const _navigate = useNavigate();
   const router = useRouter();
   const textStyle = 'type-meta tracking-[.02em]';
@@ -119,12 +116,9 @@ function LocationText({ path, name, isCurrent }: LocationTextProps) {
     );
   }
 
-  if (path) {
+  if (href) {
     return (
-      <Link
-        to={localizedPath(path)}
-        className={`${textStyle} hover:text-main-orange`}
-      >
+      <Link to={href} className={`${textStyle} hover:text-main-orange`}>
         {name}
       </Link>
     );

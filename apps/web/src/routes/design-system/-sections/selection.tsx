@@ -6,8 +6,8 @@ import {
   DocSection,
   DoDont,
   Example,
+  KnownGap,
   Lead,
-  Related,
   RuleList,
   VariantTable,
 } from '../-components/doc';
@@ -64,15 +64,51 @@ function Toggle() {
   );
 }
 
-function ViewPills() {
-  const [value, setValue] = useState<(typeof VIEW)[number]['value']>('list');
+const COURSE_SORT = [
+  { value: 'year', label: '학년' },
+  { value: 'type', label: '교과목 구분' },
+  { value: 'credit', label: '학점' },
+] as const;
+
+function CourseSortPills() {
+  const [value, setValue] =
+    useState<(typeof COURSE_SORT)[number]['value']>('year');
   return (
     <PillGroup
-      ariaLabel="보기 방식"
-      options={VIEW}
+      ariaLabel="교과목 정렬"
+      options={COURSE_SORT}
       value={value}
       onChange={setValue}
     />
+  );
+}
+
+const LANG = [
+  { value: 'ko', label: '한글' },
+  { value: 'en', label: 'English' },
+] as const;
+
+function LangToggle() {
+  const [value, setValue] = useState<(typeof LANG)[number]['value']>('ko');
+  return (
+    <TextToggle
+      ariaLabel="편집 언어"
+      options={LANG}
+      value={value}
+      onChange={setValue}
+    />
+  );
+}
+
+// 예전 편집 언어 선택(밑줄 탭)을 흉내 낸 정적 그림.
+function UnderlineTabs() {
+  return (
+    <div className="flex gap-3 type-ui font-bold">
+      <span className="border-b-2 border-neutral-800 pb-1 text-neutral-800">
+        한글
+      </span>
+      <span className="pb-1 text-neutral-300">English</span>
+    </div>
   );
 }
 
@@ -99,23 +135,23 @@ export function SelectionSection() {
             {
               name: '알약',
               sample: <Pills />,
-              use: '목록을 필터링하거나 정렬할 때 사용합니다(교수 정렬, 교과목 정렬).',
+              use: '교수 정렬, 교과목 정렬.',
             },
             {
               name: '알약(어두운 면)',
               sample: <DarkPills />,
-              use: '메인 공지 패널 전용. 메인 그래픽과 어우러지도록 주황을 사용합니다.',
+              use: '메인 공지 패널.',
               dark: true,
             },
             {
               name: '글자 토글',
               sample: <Toggle />,
-              use: '같은 영역의 보기 방식을 전환합니다(교과목 목록형/카드형, 편집 화면의 한글/English).',
+              use: '교과목 목록형/카드형, 편집 화면의 한글/English.',
             },
             {
               name: '태그',
               sample: <Tag label="장학" href="/design-system/selection" />,
-              use: '글의 분류. 누르면 해당 분류의 목록으로 이동합니다.',
+              use: '글의 분류(공지·새 소식·검색 결과).',
             },
             {
               name: '태그(지우기)',
@@ -124,60 +160,58 @@ export function SelectionSection() {
             },
           ]}
         />
-        <RuleList
-          items={['어두운 알약은 메인 공지 패널 밖에서 사용하지 않습니다.']}
-        />
+        <KnownGap>
+          어두운 알약만 고른 값을 주황으로 표시합니다. 메인 그래픽과 어우러지게
+          하려는 것이라 메인 공지 패널에서만 씁니다.
+        </KnownGap>
       </DocSection>
 
-      <DocSection title="이 모양을 사용하지 않는 것">
+      <DocSection title="사용하는 경우">
         <RuleList
           items={[
-            '학사 연혁의 연도 원 → 연혁 그래픽(고유 화면).',
-            '연구 그룹·시설 등의 접힌 모서리 선택 탭 → 그래픽.',
-            '푸터 제작진 이름표 → 분류가 아니라 이름 목록이라 태그가 아닙니다(내비게이션·셸).',
-            '폼 안에서 값을 선택할 때 → 체크박스·라디오(입력·폼).',
+            '알약은 목록을 거르거나 정렬할 때 사용합니다. 목록의 내용이 바뀌므로 눈에 띄게 둡니다.',
+            '글자 토글은 같은 내용을 다른 모양으로 볼 때(목록형·카드형, 편집 언어) 사용합니다. 내용은 그대로라 알약보다 가볍게 둡니다.',
           ]}
         />
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않기">
+      <DocSection title="사용하지 않는 경우">
+        <RuleList
+          items={[
+            '태그는 분류 표시라 선택 컨트롤로 쓰지 않습니다. 같은 모양이면 무엇을 누르면 무엇이 바뀌는지 알 수 없습니다.',
+            '폼에서 저장할 값은 체크박스·라디오(입력·폼), 여러 페이지 중 하나를 고르는 탭은 접힌 모서리 선택 탭(그래픽)입니다.',
+          ]}
+        />
+      </DocSection>
+
+      <DocSection title="Do · Don't">
         <DoDont
           good={{
-            example: <Pills />,
-            caption: '목록 필터링과 정렬에는 알약을 사용합니다.',
+            example: <CourseSortPills />,
+            caption: '정렬은 알약으로 고릅니다.',
           }}
           bad={{
             example: (
               <>
-                <Tag label="가나다순" onClick={() => {}} />
-                <Tag label="소속순" onClick={() => {}} />
+                <Tag label="학년" onClick={() => {}} />
+                <Tag label="교과목 구분" onClick={() => {}} />
+                <Tag label="학점" onClick={() => {}} />
               </>
             ),
             caption:
-              '태그를 선택 컨트롤로 사용합니다. 태그는 글의 분류를 표시합니다.',
+              '예전 교과목 정렬은 태그를 버튼처럼 써서 분류 표시와 구분되지 않았습니다.',
           }}
         />
         <DoDont
           good={{
-            example: <Toggle />,
-            caption:
-              '보기 전환은 보조 기능이므로 눈에 덜 띄는 글자 토글을 사용합니다.',
+            example: <LangToggle />,
+            caption: '편집 언어는 같은 폼의 보기만 바꾸므로 글자 토글입니다.',
           }}
           bad={{
-            example: <ViewPills />,
-            caption: '보기 전환에 알약을 사용하면 목록 필터처럼 보입니다.',
+            example: <UnderlineTabs />,
+            caption:
+              '예전 편집 언어 선택은 다른 곳에 없는 밑줄 탭이었고, 고르지 않은 쪽이 neutral-300이라 거의 읽히지 않았습니다.',
           }}
-        />
-      </DocSection>
-
-      <DocSection title="관련">
-        <Related
-          links={[
-            ['form', '입력·폼'],
-            ['button', '버튼'],
-            ['search', '검색 입력'],
-            ['graphic', '그래픽'],
-          ]}
         />
       </DocSection>
     </>

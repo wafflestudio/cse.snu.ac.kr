@@ -141,8 +141,6 @@ function LabSummary({
             <a
               href={lab.websiteURL}
               className="mt-auto w-fit type-meta underline hover:text-main-orange"
-              target="_blank"
-              rel="noopener noreferrer"
             >
               Website
             </a>
@@ -158,7 +156,7 @@ type ProcessedLab = Omit<ResearchLabDetail, 'description'> & {
   description: import('@/utils/csp').ViewerHtml;
 };
 
-// 이 연구실이 속한 스트림으로 가는 글자 링크 — 메인 "더보기 →"와 같은 모양(/design-system/main).
+// 이 연구실이 속한 스트림으로 가는 글자 링크 — 메인 "더보기 →"와 같은 모양(/design-system/button).
 function StreamLink({
   groupName,
   localizedPath,

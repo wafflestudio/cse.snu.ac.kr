@@ -3,8 +3,8 @@ import {
   DocSection,
   DoDont,
   Example,
+  KnownGap,
   Lead,
-  Related,
   RuleList,
 } from '../-components/doc';
 
@@ -55,17 +55,17 @@ function Line({
   );
 }
 
-function Card({ bad }: { bad?: boolean }) {
+// 메인 새 소식 카드(회색 띠 위). shadow 는 예전 모양.
+function NewsCard({ shadow = false }: { shadow?: boolean }) {
   return (
-    <div
-      className={
-        bad
-          ? 'w-44 rounded-lg bg-white p-4 shadow-overlay'
-          : 'w-44 border border-neutral-200 bg-white p-4'
-      }
-    >
-      <p className="type-item">입학 설명회</p>
-      <p className="mt-2 type-meta text-neutral-500">2026/09/25</p>
+    <div className="bg-neutral-100 p-4">
+      <div className={shadow ? 'w-40 bg-white shadow-lg' : 'w-40 bg-white'}>
+        <div className="h-16 bg-neutral-300" />
+        <div className="p-3">
+          <p className="type-item">연구실 수상 소식</p>
+          <p className="mt-1 type-meta text-neutral-500">2026/3/15</p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -125,39 +125,31 @@ export function ShapeSection() {
         </Sub>
       </DocSection>
 
-      <DocSection title="사용 방법">
+      <DocSection title="원칙">
         <RuleList
           items={[
-            '컨트롤이 아닌 판·카드에는 둥근 모서리를 적용하지 않습니다.',
-            '그림자는 화면 위에 떠 있는 것에만 사용합니다. 카드·목록은 면 색과 선으로 구분합니다.',
-            '메인 뉴스 카드와 교과목 카드 뒤집기의 그림자는 그 화면 고유 표현입니다(메인·카테고리, 고유 화면).',
-            '3px·5px 같은 굵은 선(모달 위 주황 선, 메인 링크 행 왼쪽 바)은 그 부품 고유 표현입니다(모달, 메인·카테고리).',
+            '둥근 모서리는 누르는 것(컨트롤·태그·알약)에만 둡니다. 판·카드·사진은 각지게 두어 둥근 모양이 누를 수 있다는 단서가 되게 합니다.',
+            '그림자는 화면 위에 떠 있는 층(모달·드롭다운·날짜 선택)에만 씁니다. 카드에 그림자가 있으면 떠 있는 층으로 읽히므로 면 색과 선으로 구분합니다.',
+            '선은 1px이 기본이고, 목록을 크게 나누는 제목 밑줄처럼 구분이 큰 곳에만 2px입니다.',
           ]}
         />
+        <KnownGap>
+          접힌 모서리의 옅은 그림자, 모달 위 주황 3px 선, 메인 링크 행의 5px
+          막대는 그 부품의 모양이라 값 밖입니다.
+        </KnownGap>
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않기">
+      <DocSection title="Do · Don't">
         <DoDont
           good={{
-            example: <Card />,
-            caption: '카드는 각진 모서리에 선으로 구분합니다.',
+            example: <NewsCard />,
+            caption: '회색 띠 위 카드는 흰 바탕만으로 띠와 구분합니다.',
           }}
           bad={{
-            example: <Card bad />,
+            example: <NewsCard shadow />,
             caption:
-              '카드에 둥근 모서리와 그림자를 적용하면 떠 있는 층(모달·드롭다운)처럼 보입니다.',
+              '예전 메인 새 소식 카드는 그림자 때문에 띠 위에 떠 있는 층처럼 보였습니다.',
           }}
-        />
-      </DocSection>
-
-      <DocSection title="관련">
-        <Related
-          links={[
-            ['color', '색'],
-            ['dialog', '모달'],
-            ['main', '메인·카테고리'],
-            ['unique', '고유 화면'],
-          ]}
         />
       </DocSection>
     </>

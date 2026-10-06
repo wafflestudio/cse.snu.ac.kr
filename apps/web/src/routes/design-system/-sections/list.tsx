@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { MousePointer2, Search } from 'lucide-react';
 import type { ReactNode } from 'react';
 import EmptyState from '@/components/ui/EmptyState';
 import ErrorState from '@/components/ui/ErrorState';
@@ -8,7 +9,6 @@ import {
   DoDont,
   Example,
   Lead,
-  Related,
   RuleList,
 } from '../-components/doc';
 
@@ -72,6 +72,26 @@ function SampleCards() {
   );
 }
 
+// Do · Don't 견본: 마우스를 행의 빈 곳(제목 글자와 날짜 사이)에 올린 상태. whole 이면 행 전체가 누르는 영역.
+function RowHover({ whole = false }: { whole?: boolean }) {
+  return (
+    <div className="w-72 max-w-full border-y border-neutral-200 type-ui">
+      <div
+        className={clsx(
+          'relative flex h-11 items-center gap-x-6 px-3',
+          whole ? 'bg-neutral-100' : 'bg-neutral-50',
+        )}
+      >
+        <span className={clsx('min-w-0 flex-1', whole && 'text-main-orange')}>
+          세미나실 예약 기간 변경
+        </span>
+        <span className="text-neutral-500">2026/09/26</span>
+        <MousePointer2 className="absolute top-5 left-44 fill-white text-neutral-950" />
+      </div>
+    </div>
+  );
+}
+
 // 본문 왼쪽 끝을 보여 주는 틀.
 function Edge({ children }: { children: ReactNode }) {
   return (
@@ -123,24 +143,20 @@ export function ListSection() {
         </Example>
       </DocSection>
 
-      <DocSection title="규칙">
+      <DocSection title="작동 방식">
         <RuleList
           items={[
-            '표형 목록(공지·연구실·학회·창업 기업·교과목·관리자)은 모두 위 표 모양입니다. 행 사이에 선을 긋지 않습니다.',
-            '줄무늬는 첫 행부터 neutral-50. 선택한 행은 neutral-100, 비공개 글은 neutral-200.',
-            '머리 행과 모든 행의 칸은 같은 세로선에 맞춥니다. 칸은 내용만큼 넓고, 제목처럼 긴 칸 하나만 남는 자리를 모두 사용합니다.',
-            '칸 사이 간격은 표에 한 번만 지정합니다. 칸 사이 24, 또는 칸마다 같은 안쪽 여백 12 중 하나입니다.',
-            '행이 한 곳으로만 이동하는 표(공지·교과목)는 행 전체를 누를 수 있습니다. 호버는 행 바탕 한 단계 진하게 + 제목 주황, 초점 링은 행 안쪽. 한 행에 링크가 여럿이면(연구실) 각 링크만 누를 수 있습니다.',
-            '편집 중에는 페이지 넘김을 비활성화합니다.',
-            '빈 상태는 검색 결과 없음·검색어가 짧음·연도 자료 없음 모두 EmptyState 한 줄입니다. 그림을 추가하지 않습니다.',
-            '불러오는 중 문구는 "불러오는 중…". 검색 결과를 더 불러올 때는 목록 아래에 회전하는 아이콘 하나를 표시합니다.',
-            '404: "페이지를 찾을 수 없습니다" / 요청 주소 / [메인으로 이동]. 제목과 같은 말을 본문에 반복하지 않습니다.',
-            '500: "문제가 생겼습니다" / "잠시 후 다시 시도해 주세요." / [다시 시도](보조) [메인으로 이동](주요).',
+            '여러 항목의 같은 값(날짜·조회·학점)을 견주는 목록은 모두 위 표 모양입니다. 목록마다 모양이 다르면 읽는 법을 다시 익혀야 합니다.',
+            '행의 상태는 바탕을 한 단계씩 짙게 해서 나타냅니다(줄무늬 50, 선택 100, 비공개 200).',
+            '머리 행과 모든 행의 칸은 같은 세로선에 맞추고, 긴 칸 하나(제목)만 남는 자리를 씁니다. 칸 사이 간격은 표에 한 번만 정합니다(24, 또는 칸마다 안쪽 12).',
+            '행이 한 곳으로만 가는 표는 행 전체를 누를 수 있게 합니다. 링크가 여럿인 행(연구실)은 어디로 갈지 모호하므로 각 링크만 누릅니다.',
+            '비었을 때는 이유와 관계없이 목록 자리에 빈 상태 한 줄을 둡니다. 늘 같은 자리·같은 모양이라 바로 알아봅니다.',
+            '불러오는 중에는 "불러오는 중…", 더 불러올 때는 목록 아래에 회전 아이콘 하나를 표시합니다.',
           ]}
         />
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않기">
+      <DocSection title="Do · Don't">
         <DoDont
           good={{
             example: (
@@ -149,7 +165,7 @@ export function ListSection() {
               </Edge>
             ),
             caption:
-              '표는 본문 폭을 모두 사용하고 본문 왼쪽 끝에서 시작합니다. 표 위아래 줄(총 개수·일괄 버튼·정렬)도 같은 끝에 맞춥니다.',
+              '표와 그 위아래 줄(총 개수·일괄 버튼)은 본문 왼쪽 끝에서 시작합니다.',
           }}
           bad={{
             example: (
@@ -158,18 +174,42 @@ export function ListSection() {
               </Edge>
             ),
             caption:
-              '표를 좌우로 들여 배치하면 본문의 다른 요소와 끝이 어긋납니다.',
+              '예전 공지·교과목·관리자 표는 들여쓰기가 제각각이라 본문의 다른 요소와 왼쪽 끝이 어긋났습니다.',
           }}
         />
-      </DocSection>
-
-      <DocSection title="관련">
-        <Related
-          links={[
-            ['search', '검색 입력'],
-            ['button', '버튼'],
-            ['writing', '문구'],
-          ]}
+        <DoDont
+          good={{
+            example: <RowHover whole />,
+            caption:
+              '행 어디에 올려도 행 바탕이 진해지고 제목이 주황이 됩니다.',
+          }}
+          bad={{
+            example: <RowHover />,
+            caption:
+              '예전 공지·교과목 표는 제목 글자 위에서만 눌려, 행의 빈 곳을 누르면 아무 일도 없었습니다.',
+          }}
+        />
+        <DoDont
+          good={{
+            example: (
+              <div className="w-56">
+                <EmptyState>검색 결과가 존재하지 않습니다.</EmptyState>
+              </div>
+            ),
+            caption: '빈 상태는 목록 자리에 한 줄입니다.',
+          }}
+          bad={{
+            example: (
+              <div className="flex w-56 flex-col items-center gap-3 py-4 text-neutral-300">
+                <p className="type-item font-medium">
+                  검색 결과가 존재하지 않습니다
+                </p>
+                <Search className="size-12" />
+              </div>
+            ),
+            caption:
+              '예전 빈 상태는 화면마다 다섯 가지였고, 통합 검색은 흐린 글자 아래 큰 돋보기 그림을 두었습니다.',
+          }}
         />
       </DocSection>
     </>

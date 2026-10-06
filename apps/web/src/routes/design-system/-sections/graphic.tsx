@@ -1,14 +1,7 @@
 import type { ReactNode } from 'react';
 import CornerFoldedRectangle from '@/components/ui/CornerFoldedRectangle';
 import Node from '@/components/ui/Nodes';
-import {
-  DocSection,
-  DoDont,
-  Example,
-  Lead,
-  Related,
-  RuleList,
-} from '../-components/doc';
+import { DocSection, Example, Lead, RuleList } from '../-components/doc';
 
 function Sub({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -78,21 +71,6 @@ function NodeList() {
   );
 }
 
-// 이렇게·하지 않기 도식: 서로 관계없는 두 묶음.
-function TwoGroups({ node }: { node?: boolean }) {
-  return (
-    <div className="w-48 space-y-4">
-      <p className="type-meta">학부 사무실 위치·전화</p>
-      {node ? (
-        <Node variant="straight" />
-      ) : (
-        <div className="border-t border-neutral-200" />
-      )}
-      <p className="type-meta">열람실 운영 시간 · 09:00–18:00</p>
-    </div>
-  );
-}
-
 export function GraphicSection() {
   return (
     <>
@@ -103,7 +81,7 @@ export function GraphicSection() {
           <NodeList />
         </Sub>
         <Sub title="접힌 모서리(한 대상의 정보 묶음)">
-          <Example caption="두 곳에만 사용합니다. 선택 탭(주황이 선택된 항목)과 연구실 상세의 연락처 요약입니다.">
+          <Example caption="선택 탭(주황이 선택된 항목, 회색 탭에 마우스를 올리면 모서리가 접힙니다)과 연구실 요약.">
             <CornerFoldedRectangle
               colorTheme="orange"
               size="small"
@@ -117,6 +95,7 @@ export function GraphicSection() {
               colorTheme="lightGray"
               size="small"
               shadow="medium"
+              animationType="folding"
             >
               <span className="block whitespace-nowrap py-1 pr-6 pl-3 type-label text-neutral-700">
                 선택 안 됨
@@ -135,42 +114,29 @@ export function GraphicSection() {
         </Sub>
       </DocSection>
 
-      <DocSection title="사용 방법">
+      <DocSection title="사용하는 경우">
         <RuleList
           items={[
-            '그래픽은 원과 선, 접힌 모서리, 메인 그래픽 세 가지입니다. 빈 곳을 채우는 장식으로 사용하지 않습니다.',
-            '원과 선은 위 변형 중에서 선택합니다. 직선과 45도 사선만 사용하고 끝에 원을 배치합니다.',
-            '선에는 클릭 동작을 적용하지 않습니다. 이동은 선 옆의 이름(링크)이 맡습니다.',
-            '밝은 면에서는 주황, 어두운 제목 영역에서는 회색 선입니다. 어두운 내비의 주황 선은 "현재 위치" 표시라 예외입니다.',
-            '관계가 없는 정보 묶음은 그래픽 대신 neutral-200 구분선으로 구분합니다.',
-            '서브내비의 세로 곡선은 서브내비 전용입니다.',
-            '접힌 모서리 자체는 "누를 수 있음"이나 "선택됨"을 뜻하지 않습니다. 선택은 주황 색이 알립니다.',
-            '긴 본문이나 문서의 모든 섹션을 접힌 모서리로 감싸지 않습니다.',
-            '메인 그래픽(0과 1을 나타내는 여섯 줄의 원과 막대로, ASCII로 읽으면 SNUCSE)은 메인 첫 화면에만 사용합니다.',
+            '원과 선은 이어진 정보(제목과 그 내용, 교수와 연구실)를 이을 때 위 변형에서 골라 사용합니다. 밝은 면에서는 주황, 어두운 제목 영역에서는 회색입니다. 어두운 면의 주황 선은 내비의 현재 위치 표시입니다.',
+            '접힌 모서리는 선택 탭과 연구실 요약 두 곳에만 사용합니다. 자리가 늘면 한 대상의 정보 묶음이라는 뜻이 흐려집니다.',
+            '메인 그래픽(원과 막대 여섯 줄, ASCII로 읽으면 SNUCSE)은 메인 첫 화면에만 사용합니다.',
           ]}
         />
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않기">
-        <DoDont
-          good={{
-            example: <TwoGroups />,
-            caption: '관계없는 묶음은 회색 구분선으로 구분합니다.',
-          }}
-          bad={{
-            example: <TwoGroups node />,
-            caption: '원과 선으로 구분하면 이어진 정보처럼 읽힙니다.',
-          }}
+      <DocSection title="사용하지 않는 경우">
+        <RuleList
+          items={[
+            '관계없는 묶음을 나누거나 빈 곳을 채울 때는 그리지 않습니다(나눌 때는 회색 구분선). 그래픽이 있으면 이어진 정보로 읽힙니다.',
+            '새로 그리는 그래픽을 누를 수 있다는 표시로 쓰지 않습니다. 이동은 선 옆의 이름(링크)이, 선택은 주황이 알립니다. 선택 탭의 접힘은 아래 작동 방식의 예외입니다.',
+          ]}
         />
       </DocSection>
 
-      <DocSection title="관련">
-        <Related
-          links={[
-            ['color', '색'],
-            ['icon', '아이콘'],
-            ['selection', '선택·태그'],
-            ['main', '메인·카테고리'],
+      <DocSection title="작동 방식">
+        <RuleList
+          items={[
+            '선택 안 된 탭은 마우스를 올리면 모서리가 접히고 면과 글자가 한 단계 짙어집니다. 접힌 모서리는 선택된 탭의 표시라서, 접히는 동작이 누르면 이 탭이 선택된다는 것을 미리 보여 줍니다.',
           ]}
         />
       </DocSection>

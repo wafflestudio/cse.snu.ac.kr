@@ -8,8 +8,8 @@ import PillGroup from '@/components/ui/PillGroup';
 import {
   DocSection,
   DoDont,
+  KnownGap,
   Lead,
-  Related,
   RuleList,
   SpecTable,
 } from '../-components/doc';
@@ -542,6 +542,30 @@ function SelTitle({ actions }: { actions?: boolean }) {
   );
 }
 
+// Do · Don't 견본: 제목 영역 아래 첫 요소(선택 탭)까지의 여백. 실제 px 의 절반으로 그린다.
+function TopGap({ doubled = false }: { doubled?: boolean }) {
+  const band = (label: string) => (
+    <div className="flex h-6 items-center justify-end border-y border-dashed border-main-orange bg-main-orange/10 pr-2 type-meta text-main-orange">
+      {label}
+    </div>
+  );
+  return (
+    <div className="w-56">
+      <div className="h-8 bg-neutral-900" />
+      {band('틀 48')}
+      {doubled && band('탭 48')}
+      <div className="grid grid-cols-2 gap-2">
+        <span className="flex h-7 items-center justify-center bg-main-orange type-meta text-white">
+          시스템
+        </span>
+        <span className="flex h-7 items-center justify-center bg-neutral-100 type-meta">
+          이론
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export function LayoutSection() {
   return (
     <>
@@ -554,42 +578,40 @@ export function LayoutSection() {
         <WidthExplorer />
       </DocSection>
 
-      <DocSection title="사용 방법">
+      <DocSection title="폭에 따른 원칙">
         <RuleList
           items={[
-            '긴 문단은 읽기 폭 640px에서 멈춥니다. HTML 본문도 문단·목록·제목이 640px에서 멈춥니다.',
-            '표·카드 격자·달력·폼은 읽기 폭에서 멈추지 않고 영역 전체를 사용합니다. 배경 띠가 있는 메인·카테고리도 끝까지 채웁니다.',
-            '1024px부터 데스크톱 모양입니다. 1280px에서는 서브내비와 그 자리만 바뀝니다.',
-            '폭에 따라 모양이 바뀌는 곳은 이 두 폭뿐입니다. 예외는 메인 뉴스 캐러셀의 카드 수 하나입니다.',
-            '공개 화면은 320px부터, 행정실 편집·관리 화면은 1200px부터 지원합니다.',
+            '긴 문단과 HTML 본문은 읽기 폭 640(14px 약 62자)에서 멈춥니다. 줄이 길면 다음 줄 첫머리를 찾기 어렵습니다.',
+            '표·카드 격자·달력·폼은 본문 영역 전체를 씁니다. 칸이 많은 것을 좁히면 줄바꿈만 늘어납니다.',
+            '모양은 1024(데스크톱 틀)와 1280(서브내비)에서만 바꿉니다. 바뀌는 폭이 늘면 확인할 화면도 늘어납니다.',
+            '공개 화면은 320부터, 편집·관리 화면은 1200부터 지원합니다. 편집은 행정실이 데스크톱에서만 합니다.',
           ]}
         />
+        <KnownGap>
+          메인 새 소식 캐러셀의 카드 수만 이 두 폭 밖에서 바뀝니다.
+        </KnownGap>
       </DocSection>
 
-      <DocSection title="페이지 구성">
+      <DocSection title="틀">
         <PageComposition />
         <p className="type-meta text-neutral-500">
           주황 띠가 틀이 정한 여백입니다. 오른쪽 목록은 서브내비입니다.
         </p>
-      </DocSection>
-
-      <DocSection title="페이지 구성 규칙">
         <RuleList
           items={[
-            '본문이 한 덩어리면 기본 틀, 흰·회색(neutral-100) 띠(PageBand)로 나누면 띠 틀입니다.',
-            '띠 틀은 학부 소개·진로·연구 스트림·연구 센터·연락처·연혁에 사용합니다.',
-            '위아래 여백은 틀이 정합니다. 화면마다 여백을 더하거나 바꾸지 않습니다.',
-            '선택 탭(SelectionList)으로 시작하는 화면도 위 여백은 틀이 적용합니다. 탭 위에 관리 버튼이 있으면 버튼 아래 32입니다.',
+            '본문이 한 덩어리면 기본 틀, 성격이 다른 묶음이 이어지면 흰·회색 띠로 나눈 띠 틀입니다(학부 소개·연구 스트림). 띠 색이 바뀌는 곳에서 묶음이 바뀝니다.',
+            '위아래 여백은 틀이 주므로 화면에서 더하지 않습니다. 더하면 화면마다 첫 줄 위치가 달라집니다.',
+            '선택 탭 위에 관리 버튼이 있으면 버튼 아래를 32로 둡니다.',
           ]}
         />
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않기">
+      <DocSection title="Do · Don't">
         <DoDont
           good={{
             example: <SelTitle actions />,
             caption:
-              '관리 버튼(편집·삭제)은 제목(SelectionTitle) 옆에 배치합니다. 공간이 부족하면 다음 줄 오른쪽으로 내려갑니다.',
+              '관리 버튼은 고치는 대상의 제목 옆에 두고, 자리가 모자라면 다음 줄 오른쪽으로 내립니다.',
           }}
           bad={{
             example: (
@@ -602,20 +624,19 @@ export function LayoutSection() {
               </div>
             ),
             caption:
-              '제목 위에 버튼 줄을 따로 배치하면 버튼이 수정하는 대상과 떨어져 보입니다.',
+              '예전 연구 스트림·연구 센터는 제목 위에 버튼 줄이 따로 있어, 무엇을 고치는 버튼인지 떨어져 보였습니다.',
           }}
         />
-      </DocSection>
-
-      <DocSection title="관련">
-        <Related
-          links={[
-            ['navigation', '내비게이션·셸'],
-            ['spacing', '간격'],
-            ['reading', '읽는 본문·이미지'],
-            ['post', '게시물 상세'],
-            ['selection', '선택·태그'],
-          ]}
+        <DoDont
+          good={{
+            example: <TopGap />,
+            caption: '첫 요소 위 여백은 틀이 주는 48 하나입니다.',
+          }}
+          bad={{
+            example: <TopGap doubled />,
+            caption:
+              '예전 관리자·찾아오는 길은 선택 탭이 자기 위 여백을 더해 틀 여백과 겹쳤습니다.',
+          }}
         />
       </DocSection>
     </>

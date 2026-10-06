@@ -38,8 +38,36 @@
   font-weight: 400;
 }
 
-/* Selected Day */
+/* Selected Day: 주황은 고른 날 하나에만(테두리 + 굵게). */
 .custom-calendar .rdp-selected .rdp-day_button {
   font-weight: 700;
   color: var(--rdp-accent-color);
+}
+
+/* 오늘: 주황 대신 숫자 아래 점. 주황을 함께 쓰면 오늘과 고른 날이 구분되지 않는다(/design-system/form). */
+.custom-calendar {
+  --rdp-today-color: inherit;
+}
+.custom-calendar .rdp-day_button {
+  position: relative;
+}
+.custom-calendar .rdp-today:not(.rdp-outside) .rdp-day_button::after {
+  content: "";
+  position: absolute;
+  bottom: 0.1875rem;
+  left: 50%;
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 9999px;
+  background-color: var(--color-neutral-950);
+  transform: translateX(-50%);
+}
+
+/* 이전·다음 달 화살표: 누르는 것이라 회색, 호버하면 짙게(아이콘 버튼과 같다). */
+.custom-calendar .rdp-chevron {
+  fill: var(--color-neutral-600);
+}
+.custom-calendar .rdp-button_previous:hover .rdp-chevron,
+.custom-calendar .rdp-button_next:hover .rdp-chevron {
+  fill: var(--color-neutral-950);
 }

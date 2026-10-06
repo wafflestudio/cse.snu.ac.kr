@@ -1,10 +1,10 @@
+import { ArrowRight } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import {
   DocSection,
   DoDont,
   Example,
   Lead,
-  Related,
   RuleList,
   VariantTable,
 } from '../-components/doc';
@@ -70,37 +70,37 @@ export function ButtonSection() {
             },
           ]}
         />
+      </DocSection>
+
+      <DocSection title="사용하는 경우">
         <RuleList
           items={[
-            '작은 크기는 표·목록 안의 일괄 버튼에만 사용합니다.',
-            '처리 중 문구는 누른 동사 + " 중…"입니다. 저장 중…, 게시 중…, 삭제 중….',
+            '무언가를 실행하거나 작업을 시작할 때(저장·삭제·예약, 새 글 쓰기) 사용합니다. 누르면 일이 일어난다는 것을 모양이 알려 줍니다.',
           ]}
         />
       </DocSection>
 
-      <DocSection title="버튼 대신 사용하는 것">
+      <DocSection title="사용하지 않는 경우">
         <RuleList
           items={[
-            '여러 항목 중 하나를 선택할 때 → 알약·라디오(선택·태그).',
-            '보기 방식을 전환할 때(목록형·카드형) → 글자 토글(선택·태그).',
-            '본문에서 다른 페이지로 이동할 때 → 글자 링크(읽는 본문).',
-            '날짜·파일을 선택할 때 → 입력 칸(입력·폼).',
+            '읽을 곳으로 이동만 할 때는 링크를 사용합니다(본문은 밑줄 링크, 모음으로 보내는 곳은 화살표 글자 링크). 버튼 모양이면 무언가 실행될 것처럼 보입니다.',
+            '값을 고를 때는 알약·글자 토글(선택·태그)이나 입력 칸(입력·폼)을 사용합니다. 고른 값이 남아 보여야 합니다.',
           ]}
         />
       </DocSection>
 
-      <DocSection title="여러 버튼을 배치할 때">
+      <DocSection title="작동 방식">
         <RuleList
           items={[
-            '버튼은 오른쪽 끝에 모으고, 주요 버튼을 맨 오른쪽에 배치합니다.',
-            '폼 아래의 삭제 버튼만 왼쪽 끝에 따로 배치합니다.',
-            '상세의 관리 버튼은 [삭제] [편집] 순서이고, 게시물은 그 뒤에 [목록]을 배치합니다.',
-            '목록의 추가·새 글 버튼은 목록 오른쪽 위에 배치합니다.',
+            '종류는 행동의 무게로 고르고, 한 줄에 주요 버튼은 하나만 둡니다. 둘이면 어느 쪽이 다음 행동인지 알 수 없습니다.',
+            '버튼 줄은 오른쪽 끝에 모으고 주요 버튼을 맨 오른쪽에, 폼의 삭제만 왼쪽 끝에 둡니다. 삭제가 저장 옆에 있으면 잘못 누르기 쉽습니다.',
+            '상세의 관리 버튼은 [삭제] [편집] (게시물은 [목록]까지), 목록의 추가 버튼은 목록 오른쪽 위입니다. 화면마다 같은 자리에 있어야 찾지 않습니다.',
+            '작은 크기는 표·목록 위의 일괄 버튼에만 사용합니다. 화면의 주된 행동보다 가볍게 보여야 합니다.',
           ]}
         />
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않기">
+      <DocSection title="Do · Don't">
         <DoDont
           good={{
             example: (
@@ -111,41 +111,60 @@ export function ButtonSection() {
                 <Button variant="primary">저장</Button>
               </>
             ),
-            caption: '삭제 버튼은 저장 버튼과 떨어뜨려 배치합니다.',
+            caption: '폼의 삭제는 왼쪽 끝에, 저장은 맨 오른쪽에 둡니다.',
           }}
           bad={{
             example: (
               <>
                 <Button variant="secondary">취소</Button>
-                <Button variant="primary">저장</Button>
-                <Button variant="secondary">삭제</Button>
+                <Button variant="primary">삭제</Button>
+                <Button variant="primary">저장하기</Button>
               </>
             ),
             caption:
-              '삭제 버튼을 저장 버튼 옆에 배치하면 잘못 누르기 쉽습니다.',
+              '예전 편집 폼은 삭제가 저장하기 바로 옆에 같은 짙은 색으로 있어 잘못 누르기 쉬웠습니다.',
           }}
         />
         <DoDont
           good={{
-            example: <Button variant="primary">저장</Button>,
-            caption: '주요 버튼은 짙은 회색으로 채웁니다.',
+            example: (
+              <>
+                <Button variant="primary">연구실 추가</Button>
+                <Button variant="primary">교수 추가</Button>
+              </>
+            ),
+            caption: '같은 "추가"는 어느 화면에서나 같은 주요 버튼입니다.',
           }}
           bad={{
-            example: <OrangeFilled>저장</OrangeFilled>,
+            example: (
+              <>
+                <OrangeFilled>연구실 추가</OrangeFilled>
+                <Button variant="primary">교수 추가</Button>
+              </>
+            ),
             caption:
-              '주황으로 채웁니다. 주황은 현재 위치·강조에 사용하는 색입니다.',
+              '예전에는 연구실·시설은 주황, 교수·새 소식은 짙은 회색이라 같은 행동이 화면마다 달라 보였습니다.',
           }}
         />
-      </DocSection>
-
-      <DocSection title="관련">
-        <Related
-          links={[
-            ['selection', '선택·태그'],
-            ['dialog', '모달'],
-            ['form', '입력·폼'],
-            ['writing', '문구'],
-          ]}
+        <DoDont
+          good={{
+            example: (
+              <span className="flex items-center gap-1 type-ui text-main-orange-dark">
+                시스템 스트림 <ArrowRight />
+              </span>
+            ),
+            caption:
+              '모음 페이지로 보내는 링크는 화살표를 붙인 글자 링크입니다.',
+          }}
+          bad={{
+            example: (
+              <span className="border border-main-orange px-3 py-2 type-ui text-main-orange">
+                시스템 스트림
+              </span>
+            ),
+            caption:
+              '예전 연구실 상세의 스트림 링크는 주황 테두리 상자라 실행 버튼처럼 보였습니다.',
+          }}
         />
       </DocSection>
     </>

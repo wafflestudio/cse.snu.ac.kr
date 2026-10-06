@@ -1,56 +1,35 @@
 import { createFileRoute, Link, notFound } from '@tanstack/react-router';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import NotFound from '@/components/layout/NotFound';
 import PageLayout from '@/components/layout/PageLayout';
 import { dsSubNav, SECTIONS } from './-registry';
 
-// 절 한 페이지. 목차는 오른쪽 서브내비(데스크톱), 아래에 이전·다음 절.
+// 절 한 페이지. 절 목록은 오른쪽 서브내비(데스크톱), 아래에 목차로 돌아가는 링크.
 
 function DesignSystemSection() {
   const { section: id } = Route.useParams();
-  const index = SECTIONS.findIndex((s) => s.id === id);
-  const section = SECTIONS[index];
-  const prev = SECTIONS[index - 1];
-  const next = SECTIONS[index + 1];
+  const section = SECTIONS.find((s) => s.id === id);
+  if (!section) return null;
 
   return (
     <PageLayout
       title={section.title}
-      breadcrumb={[{ name: '디자인 시스템' }, { name: section.group }]}
+      breadcrumb={[
+        { name: '디자인 시스템', path: '/design-system', localized: false },
+        { name: section.group },
+      ]}
       subNav={dsSubNav(id)}
       pageTitle={`${section.title} · 디자인 시스템`}
     >
       {section.content}
-      <nav
-        aria-label="이전·다음 절"
-        className="mt-16 flex justify-between gap-6 border-t border-neutral-200 pt-6 type-ui"
-      >
-        {prev ? (
-          <Link
-            to="/design-system/$section"
-            params={{ section: prev.id }}
-            className="flex items-center gap-1 hover:text-main-orange"
-          >
-            <ArrowLeft /> {prev.title}
-          </Link>
-        ) : (
-          <Link
-            to="/design-system"
-            className="flex items-center gap-1 hover:text-main-orange"
-          >
-            <ArrowLeft /> 목차
-          </Link>
-        )}
-        {next && (
-          <Link
-            to="/design-system/$section"
-            params={{ section: next.id }}
-            className="flex items-center gap-1 hover:text-main-orange"
-          >
-            {next.title} <ArrowRight />
-          </Link>
-        )}
-      </nav>
+      <div className="mt-16 border-t border-neutral-200 pt-6 type-ui">
+        <Link
+          to="/design-system"
+          className="inline-flex items-center gap-1 hover:text-main-orange"
+        >
+          <ArrowLeft /> 디자인 시스템 목차
+        </Link>
+      </div>
     </PageLayout>
   );
 }

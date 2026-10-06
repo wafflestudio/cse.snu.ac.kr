@@ -10,7 +10,7 @@ interface ImageModalProps {
   id: string | number;
   /** 이미지 URL */
   imageSrc: string;
-  /** 외부 링크 - 있으면 액션 버튼 노출, 클릭 시 새 창으로 이동 */
+  /** 외부 링크 - 있으면 액션 버튼 노출, 클릭 시 같은 탭에서 이동 */
   externalLink?: string | null;
 }
 
@@ -47,13 +47,14 @@ export default function ImageModal({
     }
   };
 
+  // 같은 탭에서 이동한다(/design-system/links). 페이지를 떠나기 전에 "다시 보지 않기"부터 저장한다.
   const handleAction = () => {
-    if (externalLink) {
-      window.open(externalLink, '_blank', 'noopener,noreferrer');
-    }
-    setOpen(false);
     if (hideModal) {
       localStorage.setItem(storageKey, 'true');
+    }
+    setOpen(false);
+    if (externalLink) {
+      window.location.assign(externalLink);
     }
   };
 

@@ -10,6 +10,7 @@ import SubNavbar from './SubNavbar';
 export interface BreadcrumbItem {
   name: string;
   path?: string;
+  localized?: boolean; // false 면 path 앞에 언어를 붙이지 않는다
 }
 
 interface PageLayoutProps {

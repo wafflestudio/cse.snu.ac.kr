@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
 import type { SubNavConfig } from '@/hooks/useSubNav';
 import { ButtonSection } from './-sections/button';
+import { CategorySection } from './-sections/category';
+import { ChangesSection } from './-sections/changes';
 import { ColorSection } from './-sections/color';
 import { DialogSection } from './-sections/dialog';
 import { EditorSection } from './-sections/editor';
@@ -10,7 +12,6 @@ import { GraphicSection } from './-sections/graphic';
 import { IconSection } from './-sections/icon';
 import { LayoutSection } from './-sections/layout';
 import { ListSection } from './-sections/list';
-import { MainSection } from './-sections/main';
 import { NavigationSection } from './-sections/navigation';
 import { PostSection } from './-sections/post';
 import { ReadingSection } from './-sections/reading';
@@ -20,7 +21,6 @@ import { ShapeSection } from './-sections/shape';
 import { SpacingSection } from './-sections/spacing';
 import { ToastSection } from './-sections/toast';
 import { TypeSection } from './-sections/type';
-import { UniqueSection } from './-sections/unique';
 import { WritingSection } from './-sections/writing';
 
 // 디자인 시스템 문서의 목차 한 곳. 절마다 한 페이지(/design-system/<id>)이고, 묶음은 목차에서만 나뉜다.
@@ -33,7 +33,6 @@ export const GROUPS: Group[] = [
   {
     title: '기반',
     sections: [
-      { id: 'layout', title: '레이아웃·페이지 틀', content: <LayoutSection /> },
       { id: 'color', title: '색', content: <ColorSection /> },
       { id: 'type', title: '글자', content: <TypeSection /> },
       { id: 'spacing', title: '간격', content: <SpacingSection /> },
@@ -41,6 +40,7 @@ export const GROUPS: Group[] = [
       { id: 'icon', title: '아이콘', content: <IconSection /> },
       { id: 'focus', title: '초점·키보드', content: <FocusSection /> },
       { id: 'graphic', title: '그래픽', content: <GraphicSection /> },
+      { id: 'writing', title: '문구', content: <WritingSection /> },
     ],
   },
   {
@@ -58,22 +58,27 @@ export const GROUPS: Group[] = [
   {
     title: '패턴',
     sections: [
+      { id: 'layout', title: '레이아웃·페이지 틀', content: <LayoutSection /> },
       {
         id: 'navigation',
         title: '내비게이션·셸',
         content: <NavigationSection />,
       },
+      {
+        id: 'category',
+        title: '카테고리 페이지',
+        content: <CategorySection />,
+      },
       { id: 'list', title: '목록·상태 화면', content: <ListSection /> },
       { id: 'post', title: '게시물 상세', content: <PostSection /> },
       { id: 'reading', title: '읽는 본문·이미지', content: <ReadingSection /> },
-      { id: 'writing', title: '문구', content: <WritingSection /> },
     ],
   },
   {
-    title: '화면',
+    // 규칙이 아니라 이번 개편의 전후 기록이라 맨 끝 묶음에 따로 둔다.
+    title: '기록',
     sections: [
-      { id: 'main', title: '메인·카테고리', content: <MainSection /> },
-      { id: 'unique', title: '고유 화면', content: <UniqueSection /> },
+      { id: 'changes', title: 'v2 개선 모음', content: <ChangesSection /> },
     ],
   },
 ];
@@ -82,7 +87,7 @@ export const SECTIONS = GROUPS.flatMap((group) =>
   group.sections.map((section) => ({ ...section, group: group.title })),
 );
 
-// 목차는 지금 묶음만 펼친다. 22개 절을 다 펼치면 화면 높이를 넘어 붙어 따라오는 목차가 잘린다.
+// 목차는 지금 묶음만 펼친다. 절을 다 펼치면 화면 높이를 넘어 붙어 따라오는 목차가 잘린다.
 // 다른 묶음은 이름만 두고 누르면 그 묶음의 첫 절로 간다. 들여쓰기는 사이트 서브내비와 같다(묶음 1단, 절 2단).
 export const dsSubNav = (currentId?: string): SubNavConfig => ({
   title: '디자인 시스템',

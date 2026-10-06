@@ -35,8 +35,7 @@ export default function Footer() {
     ? 'dark'
     : 'light';
 
-  const topBg =
-    mode === 'light' ? 'bg-neutral-50' : 'bg-neutral-800 sm:bg-neutral-900';
+  const topBg = mode === 'light' ? 'bg-neutral-50' : 'bg-neutral-800';
   const bottomBg = mode === 'light' ? 'bg-neutral-100' : 'bg-neutral-850';
   const borderTop =
     mode === 'light' ? 'border-neutral-100' : 'border-neutral-800';
@@ -56,22 +55,24 @@ export default function Footer() {
       <div
         className={`${bottomBg} flex flex-col justify-between px-5 py-8 sm:flex-row sm:items-center sm:gap-12 sm:px-15 sm:py-8`}
       >
-        <FooterBottomLeft />
+        <FooterBottomLeft mode={mode} />
         <FooterBottomRight />
       </div>
     </footer>
   );
 }
 
-function LinkGroup({ groupName, links, mode = 'light' }: LinkGroupProps) {
-  const { t } = useLanguage(footerTranslations);
+// 회색 글자 링크라 호버하면 주황 대신 더 또렷한 쪽으로 바꾼다(주황은 회색보다 대비가 낮다, /design-system/links).
+const HOVER_CLASS = {
+  light: 'hover:text-neutral-950',
+  dark: 'hover:text-white',
+} as const;
 
-  const titleColor =
-    mode === 'light' ? 'text-neutral-600' : 'text-neutral-200 sm:text-white';
-  const itemColor =
-    mode === 'light'
-      ? 'text-neutral-500'
-      : 'text-neutral-300 sm:text-neutral-500';
+function LinkGroup({ groupName, links, mode = 'light' }: LinkGroupProps) {
+  const { t, localizedPath } = useLanguage(footerTranslations);
+
+  const titleColor = mode === 'light' ? 'text-neutral-600' : 'text-neutral-200';
+  const itemColor = mode === 'light' ? 'text-neutral-500' : 'text-neutral-300';
 
   return (
     <section>
@@ -83,7 +84,9 @@ function LinkGroup({ groupName, links, mode = 'light' }: LinkGroupProps) {
         {links.map((link, i) => (
           <li key={i}>
             {/* 자리가 모자랄 때만 열 안에서 줄을 바꾼다. */}
-            <Link to={link.href}>{t(link.title)}</Link>
+            <Link to={localizedPath(link.href)} className={HOVER_CLASS[mode]}>
+              {t(link.title)}
+            </Link>
           </li>
         ))}
       </ul>
@@ -91,24 +94,34 @@ function LinkGroup({ groupName, links, mode = 'light' }: LinkGroupProps) {
   );
 }
 
-function FooterBottomLeft() {
+// 아래 띠 글자는 바탕과 4.5:1 이상(밝은 판 600 on 100 = 7.2, 어두운 판 400 on 850 = 6.6).
+function FooterBottomLeft({ mode }: { mode: 'light' | 'dark' }) {
   const { t, localizedPath } = useLanguage(footerTranslations);
   const [cserealOpen, setCserealOpen] = useState(false);
 
   return (
-    <div className="type-meta text-neutral-500">
-      <div className="mb-1 flex gap-2 [&>a]:font-bold ">
+    <div
+      className={`type-meta ${mode === 'light' ? 'text-neutral-600' : 'text-neutral-400'}`}
+    >
+      <div className="mb-1 flex gap-2 [&>a]:font-bold">
         <a
           href="https://www.snu.ac.kr/personal_information"
-          target="_blank"
-          rel="noopener noreferrer"
+          className={HOVER_CLASS[mode]}
         >
           {t('개인정보처리방침')}
         </a>
         <span>|</span>
-        <Link to={localizedPath('/about/contact')}>{t('학부 연락처')}</Link>
+        <Link
+          to={localizedPath('/about/contact')}
+          className={HOVER_CLASS[mode]}
+        >
+          {t('학부 연락처')}
+        </Link>
         <span>|</span>
-        <Link to={localizedPath('/about/directions')}>
+        <Link
+          to={localizedPath('/about/directions')}
+          className={HOVER_CLASS[mode]}
+        >
           {t('찾아오시는 길')}
         </Link>
       </div>
@@ -123,7 +136,7 @@ function FooterBottomLeft() {
         Powered by{' '}
         <button
           type="button"
-          className="cursor-pointer font-bold text-inherit hover:underline"
+          className={`cursor-pointer font-bold text-inherit ${HOVER_CLASS[mode]}`}
           onClick={() => setCserealOpen(true)}
         >
           CSEREAL
@@ -165,16 +178,12 @@ function FooterBottomRight() {
       <a
         href="http://eng.snu.ac.kr/"
         aria-label="서울대 공과대학 홈페이지로 이동"
-        target="_blank"
-        rel="noopener noreferrer"
       >
         <img src={snuEngineeringUrl} alt="" width={126} height={33} />
       </a>
       <a
         href="https://www.snu.ac.kr/snunow/pr/videos"
         aria-label="서울대 홈페이지로 이동"
-        target="_blank"
-        rel="noopener noreferrer"
       >
         <img src={snuLogoWithTextUrl} alt="" width={159} height={37} />
       </a>

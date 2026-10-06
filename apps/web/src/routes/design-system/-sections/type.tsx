@@ -1,8 +1,9 @@
+import { ArrowRight } from 'lucide-react';
 import {
   DocSection,
   DoDont,
+  KnownGap,
   Lead,
-  Related,
   RuleList,
 } from '../-components/doc';
 
@@ -107,80 +108,135 @@ function Scale() {
   );
 }
 
-const WRAP_SAMPLE =
-  '학부 과정에서는 컴퓨터 과학과 공학의 기초 이론부터 응용까지 폭넓게 교육합니다.';
+// Do · Don't 견본: 모바일 메인 화면 아래 바로가기 묶음(LinkSection, LinkRow).
+// 예전 값(d1baf83c): 묶음 제목 14·500 회색, 링크 16·500 흰색, 영어 부제 12·500, 화살표 30·선 1.5.
+const SHORTCUTS = [
+  { title: 'Top Conference List' },
+  { title: '신임교수초빙', subtitle: 'Faculty Recruitment' },
+  { title: '구성원', subtitle: 'Faculty' },
+];
+
+function LinkGroup({ old }: { old: boolean }) {
+  return (
+    <div className="w-full max-w-[342px] bg-neutral-900 px-3 py-10 sm:px-4">
+      <div className={old ? 'flex flex-col gap-[22px]' : 'flex flex-col gap-6'}>
+        <p
+          className={
+            old
+              ? 'text-sm font-medium text-neutral-400'
+              : 'type-section text-neutral-400'
+          }
+        >
+          바로가기
+        </p>
+        <div className="flex flex-col gap-5">
+          {SHORTCUTS.map((l) => (
+            <div
+              key={l.title}
+              className={
+                old
+                  ? 'flex h-10 items-center justify-between border-l-[5px] border-main-orange-dark pl-7'
+                  : 'flex h-10 items-center justify-between border-l-[5px] border-main-orange-dark pl-6'
+              }
+            >
+              <div className="flex items-end gap-3 text-white">
+                <p className={old ? 'text-base font-medium' : 'type-item'}>
+                  {l.title}
+                </p>
+                {l.subtitle && (
+                  <p
+                    className={
+                      old
+                        ? 'whitespace-nowrap text-xs font-medium'
+                        : 'whitespace-nowrap type-meta'
+                    }
+                  >
+                    {l.subtitle}
+                  </p>
+                )}
+              </div>
+              <ArrowRight
+                className="size-7.5 shrink-0 text-white"
+                strokeWidth={old ? 1.5 : 2}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Do · Don't 견본: 새 소식 목록 한 줄. 예전 요약에는 break-all 이 붙어 있었다(NewsListRow).
+function NewsRow({ old }: { old: boolean }) {
+  return (
+    <div className="w-56 border-b border-neutral-200 pb-6">
+      <p className="type-item">
+        컴퓨터공학부 연구팀, 국제 학술대회 최우수 논문상
+      </p>
+      <p
+        className="mt-2 type-body text-neutral-500"
+        style={old ? { wordBreak: 'break-all' } : undefined}
+      >
+        컴퓨터공학부 연구팀이 대규모 언어 모델의 추론 효율을 높이는 방법을
+        제안해 국제 학술대회에서 최우수 논문상을 받았습니다.
+      </p>
+      <p className="mt-2 type-meta text-neutral-500">2026/9/24</p>
+    </div>
+  );
+}
 
 export function TypeSection() {
   return (
     <>
-      <Lead>글자는 크기가 아니라 역할을 기준으로 선택합니다.</Lead>
+      <Lead>
+        제목·본문·보조 글처럼 글자의 역할마다 정해 둔 크기와 굵기입니다.
+      </Lead>
 
       <DocSection title="값">
         <Scale />
       </DocSection>
 
-      <DocSection title="사용 방법">
+      <DocSection title="원칙">
         <RuleList
           items={[
-            '역할 하나가 크기·굵기·줄높이를 한 벌로 정합니다. 색만 역할과 별도로 선택합니다.',
-            '단계 밖 크기는 카테고리 대제목(64·모바일 32), 메인 슬로건(Gowun Batang), 404 숫자 셋뿐입니다. 12px 이하는 사용하지 않습니다.',
-            '안에 든 것이 그것을 묶는 제목보다 크거나 굵지 않게 역할을 선택합니다.',
-            '본문 안 섹션 제목은 어느 화면이든 섹션 제목(20 · 700)입니다.',
-            '표형 목록(공지·연구실·교과목)의 행 제목은 데스크톱에서 UI 글자, 모바일에서 항목 제목입니다. 관리자 표는 UI 글자만, 피드형 목록(새 소식·세미나·검색)은 모든 폭에서 항목 제목입니다.',
-            '줄간격은 여러 줄로 읽는 본문에만 적용합니다. 나머지 역할은 1.2입니다.',
-            '여러 줄로 읽히는 작은 보조 글(카드 설명·요약)만 보조 글자에 줄높이 1.5를 적용합니다.',
-            '사이트 전체가 어절 단위로 줄바꿈합니다.',
-            '좁은 칸에서 긴 URL·메일이 넘칠 때만 그 칸에서 URL을 중간에서 끊습니다. 모든 낱말을 글자 중간에서 끊지는 않습니다.',
+            '역할 하나가 크기·굵기·줄높이를 함께 정하고, 색만 따로 고릅니다. 크기만 골라 쓰면 같은 역할이 화면마다 달라 보입니다.',
+            '안에 든 것이 그것을 묶는 제목보다 크거나 굵지 않게 고릅니다. 위계가 뒤집히면 무엇이 무엇을 묶는지 읽히지 않습니다.',
+            '항목 하나가 글 하나면 항목 제목(피드형 목록, 모바일에서 카드처럼 쌓인 표 행), 표의 한 칸이면 UI 글자입니다.',
+            '줄간격은 본문 역할에만 있습니다. 한 줄 글자에 주면 카드·목록이 부풉니다. 여러 줄이 되는 작은 보조 글(카드 설명)만 줄높이 1.5를 더합니다.',
+            '13px보다 작은 글자는 사용하지 않습니다. 한글은 12px에서 읽기 어렵습니다.',
+            '줄은 어절 단위로 바뀝니다. 긴 URL·메일 주소가 좁은 칸을 넘칠 때만 그 칸에서 글자 중간 줄바꿈을 허용합니다. 전체에 허용하면 한국어 낱말이 끊깁니다.',
           ]}
         />
+        <KnownGap>
+          카테고리 대제목, 메인 슬로건, 404 숫자는 그 자리에서만 쓰는 그래픽
+          글자라 단계 밖입니다.
+        </KnownGap>
       </DocSection>
 
-      <DocSection title="이렇게 · 이렇게 하지 않기">
+      <DocSection title="Do · Don't">
         <DoDont
           good={{
-            example: (
-              <div className="space-y-3">
-                <p className="type-section">연락처</p>
-                <p className="type-item">홍길동 교수</p>
-              </div>
-            ),
+            example: <LinkGroup old={false} />,
             caption:
-              '인물 이름(항목 제목)은 그것을 담은 섹션 제목보다 작습니다.',
+              '묶음 제목은 섹션 제목(20·700), 링크는 항목 제목(16·700)이라 제목이 링크 셋을 묶는 것이 먼저 읽힙니다.',
           }}
           bad={{
-            example: (
-              <div className="space-y-3">
-                <p className="type-section">연락처</p>
-                <p className="type-headline">홍길동 교수</p>
-              </div>
-            ),
-            caption: '안에 든 이름이 섹션 제목보다 커서 위계가 뒤집힙니다.',
+            example: <LinkGroup old />,
+            caption:
+              '예전 모바일 메인의 묶음 제목은 14·500 회색이라 그 아래 16 흰색 링크보다 약해서 제목이 링크 사이에 묻혔습니다.',
           }}
         />
         <DoDont
           good={{
-            example: <p className="w-44 type-body">{WRAP_SAMPLE}</p>,
-            caption: '어절 단위로 줄바꿈합니다(사이트 기본).',
+            example: <NewsRow old={false} />,
+            caption: '어절 단위로 줄을 바꿔 낱말이 온전히 읽힙니다.',
           }}
           bad={{
-            example: (
-              <p className="w-44 type-body" style={{ wordBreak: 'break-all' }}>
-                {WRAP_SAMPLE}
-              </p>
-            ),
-            caption: '낱말이 글자 중간에서 끊깁니다.',
+            example: <NewsRow old />,
+            caption:
+              '예전 새 소식 목록의 요약은 글자 단위로 줄을 바꿔 "국/제", "받았습/니다"처럼 낱말 중간에서 끊겼습니다.',
           }}
-        />
-      </DocSection>
-
-      <DocSection title="관련">
-        <Related
-          links={[
-            ['color', '색'],
-            ['spacing', '간격'],
-            ['reading', '읽는 본문·이미지'],
-            ['list', '목록·상태 화면'],
-          ]}
         />
       </DocSection>
     </>
