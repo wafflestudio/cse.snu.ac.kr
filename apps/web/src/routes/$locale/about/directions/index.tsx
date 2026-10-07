@@ -71,7 +71,7 @@ function DirectionsPage() {
           {
             <Link
               to={localizedPath('/people/staff')}
-              className="text-link underline underline-offset-2"
+              className="text-link underline underline-offset-2 hover:text-link-hover"
             >
               {t('학부 연락처')}
             </Link>

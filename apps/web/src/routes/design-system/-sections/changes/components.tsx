@@ -1,9 +1,11 @@
 import Button from '@/components/ui/Button';
 import LegacyButton from '../../-legacy/Button';
-import { type Area, ChangesPage, Gallery, shots } from './kit';
+import { type Area, ChangesPage, pairShots, shots } from './kit';
 import {
   ButtonStates,
+  EditLanguage,
   ErrorSketch,
+  FacultyFormSlice,
   FieldWidths,
   FileRow,
   MiniCalendar,
@@ -21,87 +23,81 @@ const AREAS: Area[] = [
       {
         title: '추가 버튼',
         why: '"추가"가 연구실·교과목·시설·졸업생 진로에서는 주황 채움, 교수진에서는 짙은 회색이라 같은 행동이 화면마다 달라 보였습니다. 버튼 색은 행동의 종류로 정해 주요 행동은 늘 짙은 회색입니다.',
-        before: (
-          <Gallery
-            shots={[
-              {
-                file: 'g2-add-labs-before',
-                w: 220,
-                h: 64,
-                label: '연구실',
-                alt: '주황 채움의 연구실 추가 버튼',
-              },
-              {
-                file: 'g2-add-courses-before',
-                w: 220,
-                h: 64,
-                label: '교과과정',
-                alt: '주황 채움의 새 교과목 버튼',
-              },
-              {
-                file: 'g2-add-facilities-before',
-                w: 220,
-                h: 64,
-                label: '시설 안내',
-                alt: '주황 채움의 시설 추가 버튼',
-              },
-              {
-                file: 'g2-add-careers-before',
-                w: 360,
-                h: 64,
-                label: '졸업생 진로',
-                alt: '연도 선택 옆의 주황 연도 추가 버튼과 그 오른쪽의 편집 버튼',
-              },
-              {
-                file: 'g2-add-faculty-before',
-                w: 220,
-                h: 64,
-                label: '교수진',
-                alt: '짙은 회색 채움의 추가하기 버튼',
-              },
-            ]}
-          />
-        ),
-        after: (
-          <Gallery
-            shots={[
-              {
-                file: 'g2-add-labs-after',
-                w: 220,
-                h: 64,
-                label: '연구실',
-                alt: '짙은 회색 채움의 연구실 추가 버튼',
-              },
-              {
-                file: 'g2-add-courses-after',
-                w: 220,
-                h: 64,
-                label: '교과과정',
-                alt: '짙은 회색 채움의 새 교과목 버튼',
-              },
-              {
-                file: 'g2-add-facilities-after',
-                w: 220,
-                h: 64,
-                label: '시설 안내',
-                alt: '짙은 회색 채움의 시설 추가 버튼',
-              },
-              {
-                file: 'g2-add-careers-after',
-                w: 360,
-                h: 64,
-                label: '졸업생 진로',
-                alt: '편집이 왼쪽, 짙은 회색 연도 추가가 맨 오른쪽에 놓인 버튼 줄',
-              },
-              {
-                file: 'g2-add-faculty-after',
-                w: 220,
-                h: 64,
-                label: '교수진',
-                alt: '원래 모양 그대로인 짙은 회색 추가 버튼',
-              },
-            ]}
-          />
+        ...pairShots(
+          [
+            {
+              file: 'g2-add-labs-before',
+              w: 220,
+              h: 64,
+              label: '연구실',
+              alt: '주황 채움의 연구실 추가 버튼',
+            },
+            {
+              file: 'g2-add-courses-before',
+              w: 220,
+              h: 64,
+              label: '교과과정',
+              alt: '주황 채움의 새 교과목 버튼',
+            },
+            {
+              file: 'g2-add-facilities-before',
+              w: 220,
+              h: 64,
+              label: '시설 안내',
+              alt: '주황 채움의 시설 추가 버튼',
+            },
+            {
+              file: 'g2-add-careers-before',
+              w: 360,
+              h: 64,
+              label: '졸업생 진로',
+              alt: '연도 선택 옆의 주황 연도 추가 버튼과 그 오른쪽의 편집 버튼',
+            },
+            {
+              file: 'g2-add-faculty-before',
+              w: 220,
+              h: 64,
+              label: '교수진',
+              alt: '짙은 회색 채움의 추가하기 버튼',
+            },
+          ],
+          [
+            {
+              file: 'g2-add-labs-after',
+              w: 220,
+              h: 64,
+              label: '연구실',
+              alt: '짙은 회색 채움의 연구실 추가 버튼',
+            },
+            {
+              file: 'g2-add-courses-after',
+              w: 220,
+              h: 64,
+              label: '교과과정',
+              alt: '짙은 회색 채움의 새 교과목 버튼',
+            },
+            {
+              file: 'g2-add-facilities-after',
+              w: 220,
+              h: 64,
+              label: '시설 안내',
+              alt: '짙은 회색 채움의 시설 추가 버튼',
+            },
+            {
+              file: 'g2-add-careers-after',
+              w: 360,
+              h: 64,
+              label: '졸업생 진로',
+              alt: '편집이 왼쪽, 짙은 회색 연도 추가가 맨 오른쪽에 놓인 버튼 줄',
+            },
+            {
+              file: 'g2-add-faculty-after',
+              w: 220,
+              h: 64,
+              label: '교수진',
+              alt: '원래 모양 그대로인 짙은 회색 추가 버튼',
+            },
+          ],
         ),
       },
       {
@@ -154,18 +150,20 @@ const AREAS: Area[] = [
     items: [
       {
         title: '입력 칸 한 모양',
-        why: '입력 칸마다 높이(28·30·32px)·바탕·테두리가 달랐고 라디오는 주황, 드롭다운은 작은 검정 테두리 상자였습니다. 높이 34px·흰 바탕·회색 테두리 칸 하나로 맞추고, 체크박스·라디오는 한 벌로 모아 켜진 색을 회색으로, 파일 고르기는 보조 버튼으로 바꿨습니다.',
+        why: '입력 칸마다 높이(28·30·32px)·바탕·테두리가 달랐고, 목록 입력의 새 칸은 회색 바탕, 사진·파일 고르기는 12px 테두리 단추였습니다. 높이 34px·흰 바탕·회색 테두리 칸 하나로 맞추고 고르기 단추는 보조 버튼으로 바꿨습니다. 견본은 교수진 추가 폼의 한 부분이라 직접 입력하고 사진을 고르고 학력을 더해 볼 수 있습니다.',
+        before: <FacultyFormSlice old />,
+        after: <FacultyFormSlice old={false} />,
+        same: [
+          '공지·새 소식·세미나 작성 폼',
+          '행정직원·연구실·연구 센터·시설·동아리 추가 폼',
+          '장학·교과목 변경·전공 이수 폼',
+          '교과목 추가 모달',
+          '시설 예약 모달',
+        ],
         values: [
-          ['글자 칸', '32px, 흰 바탕', '34px, 흰 바탕, 모서리 2px'],
-          [
-            '목록 입력(학력 등)',
-            '32px, 옅은 회색 바탕, 모서리 4px',
-            '34px, 흰 바탕, 모서리 2px',
-          ],
           ['드롭다운', '28px, 모서리 4px', '34px, 흰 바탕, 모서리 2px'],
-          ['날짜 선택', '30px, 모서리 4px', '34px, 흰 바탕, 모서리 2px'],
           [
-            '공지·새 소식 검색 상자',
+            '날짜 선택·공지와 새 소식 검색 상자',
             '30px, 모서리 4px',
             '34px, 흰 바탕, 모서리 2px',
           ],
@@ -179,67 +177,8 @@ const AREAS: Area[] = [
             '30px, 회색 채움, 모서리 1px',
             '34px, 옅은 회색 채움, 모서리 2px',
           ],
-          [
-            '파일·이미지 고르기',
-            '30~32px 테두리 버튼, 12px 글자',
-            '보조 버튼 34px',
-          ],
+          ['첨부 파일 고르기', '32px 테두리 단추, 12px 글자', '보조 버튼 34px'],
         ],
-        before: (
-          <Gallery
-            shots={[
-              {
-                file: 'g2-form-select-before',
-                w: 280,
-                h: 260,
-                label: '교수진 추가 위쪽',
-                alt: '주황 라디오, 흰 테두리 업로드 버튼, 작은 검정 테두리 드롭다운',
-              },
-              {
-                file: 'g2-form-list-before',
-                w: 580,
-                h: 80,
-                label: '학력 입력',
-                alt: '회색 바탕으로 채운 학력 입력 칸과 추가 버튼',
-              },
-              {
-                file: 'g2-form-file-before',
-                w: 240,
-                h: 76,
-                label: '첨부파일',
-                alt: '흰 바탕에 테두리가 있는 파일 선택 버튼',
-              },
-            ]}
-          />
-        ),
-        after: (
-          <Gallery
-            shots={[
-              {
-                file: 'g2-form-select-after',
-                w: 280,
-                h: 260,
-                label: '교수진 추가 위쪽',
-                alt: '회색 라디오, 회색 보조 버튼, 입력 칸과 같은 높이의 드롭다운',
-              },
-              {
-                file: 'g2-form-list-after',
-                w: 580,
-                h: 80,
-                label: '학력 입력',
-                alt: '흰 바탕에 회색 테두리인 넓은 학력 입력 칸',
-              },
-              {
-                file: 'g2-form-file-after',
-                w: 240,
-                h: 76,
-                label: '첨부파일',
-                alt: '연한 회색 보조 버튼으로 바뀐 파일 선택',
-              },
-            ]}
-          />
-        ),
-        wide: true,
       },
       {
         title: '입력 칸 폭',
@@ -289,11 +228,11 @@ const AREAS: Area[] = [
     doc: 'selection',
     items: [
       {
-        title: '단일 선택 두 종류',
-        why: '하나를 고르는 컨트롤이 화면마다 따로 만들어져 회색 사각 버튼, 주황 태그 버튼, 밑줄 탭이 섞여 있었습니다. 거르기와 정렬은 알약으로, 보기 바꾸기와 편집 언어는 글자 토글로 맞췄습니다. 밝은 면에서 고른 알약은 짙은 회색이고 어두운 메인 공지만 주황입니다.',
-        before: (
-          <Gallery
-            shots={[
+        title: '단일 선택과 탭',
+        why: '하나를 고르는 컨트롤이 화면마다 따로 만들어져 회색 사각 버튼과 주황 태그 버튼이 섞여 있었습니다. 거르기와 정렬은 알약으로, 보기 바꾸기는 글자 토글로 맞췄습니다. 밝은 면에서 고른 알약은 짙은 회색이고 어두운 메인 공지만 주황입니다. 편집 언어는 값을 고르는 것이 아니라 같은 자리의 입력 칸을 바꾸므로, 밑줄 모양은 그대로 두고 숨긴 라디오를 진짜 탭으로 바꿨습니다. 이제 화면 읽기 프로그램이 탭과 패널로 알리고, 화살표 키로 옮기면 바로 바뀝니다.',
+        pairs: [
+          ...pairShots(
+            [
               {
                 file: 'g2-select-main-before',
                 w: 300,
@@ -322,19 +261,8 @@ const AREAS: Area[] = [
                 label: '교과목 보기 방식',
                 alt: '굵은 세로선으로 나뉜 목록형, 카드형 글자 토글',
               },
-              {
-                file: 'g2-select-lang-before',
-                w: 200,
-                h: 50,
-                label: '편집 언어',
-                alt: '한글 아래 밑줄이 있는 한글, English 탭',
-              },
-            ]}
-          />
-        ),
-        after: (
-          <Gallery
-            shots={[
+            ],
+            [
               {
                 file: 'g2-select-main-after',
                 w: 300,
@@ -363,16 +291,14 @@ const AREAS: Area[] = [
                 label: '교과목 보기 방식',
                 alt: '얇은 구분선으로 나뉜 목록형, 카드형 글자 토글',
               },
-              {
-                file: 'g2-select-lang-after',
-                w: 200,
-                h: 50,
-                label: '편집 언어',
-                alt: '밑줄 대신 글자 토글로 바뀐 한글, English',
-              },
-            ]}
-          />
-        ),
+            ],
+          ).pairs,
+          {
+            label: '편집 언어',
+            before: <EditLanguage old />,
+            after: <EditLanguage old={false} />,
+          },
+        ],
       },
     ],
     extras: [
@@ -387,73 +313,67 @@ const AREAS: Area[] = [
       {
         title: '모달 판 한 벌',
         why: '모달마다 판의 바탕색·제목 크기·폭이 달랐고 확인창에는 위 주황 선이 없었으며 실행 버튼이 "확인"이었습니다. 흰 바탕에 위 주황 선이 있는 판 한 벌로 맞추고, 제목은 판이 같은 자리·같은 크기로 그리며, 폭은 확인 400·폼 560·넓게 768 셋에서 고릅니다. 확인창의 실행 버튼은 하는 일(삭제·나가기)을 적습니다.',
-        before: (
-          <Gallery
-            shots={[
-              {
-                file: 'g2-modal-course-before',
-                w: 540,
-                h: 220,
-                label: '교과목 추가',
-                alt: '옅은 회색 바탕에 회색 제목이 있는 교과목 추가 판',
-              },
-              {
-                file: 'g2-modal-reserve-before',
-                w: 440,
-                h: 220,
-                label: '시설 예약',
-                alt: '옅은 회색 바탕의 시설 예약 판',
-              },
-              {
-                file: 'g2-modal-detail-before',
-                w: 400,
-                h: 220,
-                label: '예약 상세',
-                alt: '좁고 옅은 회색 바탕의 예약 상세 판',
-              },
-              {
-                file: 'g2-modal-confirm-before',
-                w: 260,
-                h: 150,
-                label: '확인창',
-                alt: '위 주황 선이 없고 실행 버튼이 확인인 삭제 확인창',
-              },
-            ]}
-          />
-        ),
-        after: (
-          <Gallery
-            shots={[
-              {
-                file: 'g2-modal-course-after',
-                w: 600,
-                h: 220,
-                label: '교과목 추가',
-                alt: '흰 바탕에 굵은 검정 제목이 있는 교과목 추가 판',
-              },
-              {
-                file: 'g2-modal-reserve-after',
-                w: 580,
-                h: 220,
-                label: '시설 예약',
-                alt: '흰 바탕으로 바뀐 시설 예약 판',
-              },
-              {
-                file: 'g2-modal-detail-after',
-                w: 790,
-                h: 220,
-                label: '예약 상세',
-                alt: '넓은 크기의 흰 바탕 예약 상세 판',
-              },
-              {
-                file: 'g2-modal-confirm-after',
-                w: 420,
-                h: 180,
-                label: '확인창',
-                alt: '위 주황 선이 생기고 실행 버튼이 삭제로 바뀐 확인창',
-              },
-            ]}
-          />
+        ...pairShots(
+          [
+            {
+              file: 'g2-modal-course-before',
+              w: 540,
+              h: 220,
+              label: '교과목 추가',
+              alt: '옅은 회색 바탕에 회색 제목이 있는 교과목 추가 판',
+            },
+            {
+              file: 'g2-modal-reserve-before',
+              w: 440,
+              h: 220,
+              label: '시설 예약',
+              alt: '옅은 회색 바탕의 시설 예약 판',
+            },
+            {
+              file: 'g2-modal-detail-before',
+              w: 400,
+              h: 220,
+              label: '예약 상세',
+              alt: '좁고 옅은 회색 바탕의 예약 상세 판',
+            },
+            {
+              file: 'g2-modal-confirm-before',
+              w: 260,
+              h: 150,
+              label: '확인창',
+              alt: '위 주황 선이 없고 실행 버튼이 확인인 삭제 확인창',
+            },
+          ],
+          [
+            {
+              file: 'g2-modal-course-after',
+              w: 600,
+              h: 220,
+              label: '교과목 추가',
+              alt: '흰 바탕에 굵은 검정 제목이 있는 교과목 추가 판',
+            },
+            {
+              file: 'g2-modal-reserve-after',
+              w: 580,
+              h: 220,
+              label: '시설 예약',
+              alt: '흰 바탕으로 바뀐 시설 예약 판',
+            },
+            {
+              file: 'g2-modal-detail-after',
+              w: 790,
+              h: 220,
+              label: '예약 상세',
+              alt: '넓은 크기의 흰 바탕 예약 상세 판',
+            },
+            {
+              file: 'g2-modal-confirm-after',
+              w: 420,
+              h: 180,
+              label: '확인창',
+              alt: '위 주황 선이 생기고 실행 버튼이 삭제로 바뀐 확인창',
+            },
+          ],
         ),
         wide: true,
       },
@@ -483,59 +403,53 @@ const AREAS: Area[] = [
       {
         title: '검색 칸 한 부품',
         why: '헤더·검색 상자·세미나의 검색 칸이 회색 채움이나 테두리 없는 흰 칸 등 저마다 다른 모양이었습니다. 한 부품으로 모아 밝은 면은 다른 입력 칸과 같은 모양으로, 헤더는 채움 칸으로 맞췄습니다.',
-        before: (
-          <Gallery
-            shots={[
-              {
-                file: 'g2-search-header-before',
-                w: 260,
-                h: 56,
-                label: '헤더',
-                alt: '어두운 헤더 위의 회색 채움 검색 칸',
-              },
-              {
-                file: 'g2-search-notice-before',
-                w: 400,
-                h: 70,
-                label: '공지 검색 상자',
-                alt: '이름이 왼쪽에 있고 테두리 없는 흰 검색 칸',
-              },
-              {
-                file: 'g2-search-seminar-before',
-                w: 340,
-                h: 60,
-                label: '세미나',
-                alt: '이름이 왼쪽에 있는 회색 채움 검색 칸',
-              },
-            ]}
-          />
-        ),
-        after: (
-          <Gallery
-            shots={[
-              {
-                file: 'g2-search-header-after',
-                w: 260,
-                h: 56,
-                label: '헤더',
-                alt: '더 밝은 회색으로 채운 헤더 검색 칸',
-              },
-              {
-                file: 'g2-search-notice-after',
-                w: 400,
-                h: 90,
-                label: '공지 검색 상자',
-                alt: '이름이 위에 있고 테두리가 있는 흰 입력 칸',
-              },
-              {
-                file: 'g2-search-seminar-after',
-                w: 340,
-                h: 60,
-                label: '세미나',
-                alt: '자리표시 검색어가 있는 테두리 입력 칸',
-              },
-            ]}
-          />
+        ...pairShots(
+          [
+            {
+              file: 'g2-search-header-before',
+              w: 260,
+              h: 56,
+              label: '헤더',
+              alt: '어두운 헤더 위의 회색 채움 검색 칸',
+            },
+            {
+              file: 'g2-search-notice-before',
+              w: 400,
+              h: 70,
+              label: '공지 검색 상자',
+              alt: '이름이 왼쪽에 있고 테두리 없는 흰 검색 칸',
+            },
+            {
+              file: 'g2-search-seminar-before',
+              w: 340,
+              h: 60,
+              label: '세미나',
+              alt: '이름이 왼쪽에 있는 회색 채움 검색 칸',
+            },
+          ],
+          [
+            {
+              file: 'g2-search-header-after',
+              w: 260,
+              h: 56,
+              label: '헤더',
+              alt: '더 밝은 회색으로 채운 헤더 검색 칸',
+            },
+            {
+              file: 'g2-search-notice-after',
+              w: 400,
+              h: 90,
+              label: '공지 검색 상자',
+              alt: '이름이 위에 있고 테두리가 있는 흰 입력 칸',
+            },
+            {
+              file: 'g2-search-seminar-after',
+              w: 340,
+              h: 60,
+              label: '세미나',
+              alt: '자리표시 검색어가 있는 테두리 입력 칸',
+            },
+          ],
         ),
       },
     ],

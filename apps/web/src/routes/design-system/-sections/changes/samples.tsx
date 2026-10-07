@@ -13,9 +13,12 @@ import Checkbox from '@/components/ui/Checkbox';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import SearchInput from '@/components/ui/SearchInput';
 import { toast } from '@/components/ui/sonner';
+import Tabs from '@/components/ui/Tabs';
 import { Tag } from '@/components/ui/Tag';
 import type { NavItem } from '@/constants/navigation';
 import LinkRow from '@/routes/$locale/-components/LinkRow';
+import CourseList from '@/routes/$locale/academics/-components/courses/CourseList';
+import type { Course } from '@/types/api';
 import { SampleFormProvider, stay } from '../../-components/sample';
 import LegacyAction from '../../-legacy/Action';
 import { LegacyPrivacyPolicyLink } from '../../-legacy/AddReservationModal';
@@ -25,15 +28,20 @@ import LegacyButton from '../../-legacy/Button';
 import { LegacyCalendar } from '../../-legacy/Calendar';
 import { LegacyCategoryGrid } from '../../-legacy/CategoryGrid';
 import { LegacyCheckbox } from '../../-legacy/Checkbox';
+import { LegacyCourseList } from '../../-legacy/CourseList';
 import LegacyFieldset from '../../-legacy/Fieldset';
 import { LegacyFilePicker } from '../../-legacy/File';
 import { LegacyFooterBottomLeft } from '../../-legacy/Footer';
 import { LegacyHeaderSearchBar } from '../../-legacy/HeaderSearchBar';
+import { LegacyImagePicker } from '../../-legacy/Image';
+import { LegacyLanguagePicker } from '../../-legacy/LanguagePicker';
 import { LegacyLinkRow } from '../../-legacy/LinkRow';
 import { LegacyLinkSectionColumn } from '../../-legacy/LinkSection';
 import { LegacySearchBox } from '../../-legacy/SearchBox';
 import { LegacySearchResultRow } from '../../-legacy/SearchResultRow';
+import { LegacySection } from '../../-legacy/Section';
 import LegacyText from '../../-legacy/Text';
+import { LegacyTextList } from '../../-legacy/TextList';
 
 // v2 개선 기록의 견본. "후"는 지금 쓰는 실제 부품, "전"은 base 커밋(d1baf83c)의 예전 부품을 옮긴 -legacy 사본이다.
 // 실제 부품을 쓸 수 없는 자리(라우터 로더·네트워크가 필요한 것)만 지금 클래스 그대로 다시 그렸고, 그 자리에 적어 두었다.
@@ -76,7 +84,7 @@ export function LinkSentence({ old }: { old: boolean }) {
         className={
           old
             ? 'text-[#3c7be4] hover:underline'
-            : 'text-link underline underline-offset-2 hover:text-main-orange'
+            : 'text-link underline underline-offset-2 hover:text-link-hover'
         }
       >
         학사 안내
@@ -159,6 +167,70 @@ export function LinkGroup({ old }: { old: boolean }) {
         </div>
       </div>
     </NoNav>
+  );
+}
+
+// 보조 글자 대비: 교과목 목록 한 곳을 실제 화면 그대로. 예전 것은 구분·학점·학년이 neutral-400.
+const course = (
+  name: string,
+  classification: string,
+  code: string,
+  credit: number,
+  grade: number,
+): Course => ({
+  code,
+  credit,
+  grade,
+  studentType: 'undergraduate',
+  ko: { name, classification, description: '' },
+  en: { name, classification, description: '' },
+});
+
+const COURSES = [
+  course('컴퓨터의 개념 및 실습', '전공필수', '4190.101', 3, 1),
+  course('자료구조', '전공필수', '4190.210', 3, 2),
+];
+
+export function CourseMeta({ old }: { old: boolean }) {
+  return (
+    // 데스크톱 표는 다섯 칸이라 칸보다 넓을 수 있다. 칸 안에서 가로로 민다.
+    <div className="w-full overflow-x-auto">
+      <div className="sm:min-w-[32rem]">
+        {old ? (
+          <LegacyCourseList
+            courses={COURSES.map((c) => ({
+              name: c.ko.name,
+              classification: c.ko.classification,
+              code: c.code,
+              credit: c.credit,
+              grade: `${c.grade}학년`,
+            }))}
+          />
+        ) : (
+          <CourseList courses={COURSES} onSelectCourse={() => undefined} />
+        )}
+      </div>
+    </div>
+  );
+}
+
+// 13px 미만 글자: 메인 바로가기 한 줄. 영문 부제가 예전 12px, 지금 보조 글자 13px.
+export function ShortcutRow({ old }: { old: boolean }) {
+  const { pathname } = useLocation();
+  return (
+    <div className="surface-dark w-full max-w-80 bg-neutral-900 px-6 py-6 text-left">
+      {old ? (
+        <LegacyLinkRow title="신임교수초빙" subtitle="Faculty Recruitment" />
+      ) : (
+        <NoNav>
+          <LinkRow
+            to={pathname}
+            title="신임교수초빙"
+            subtitle="Faculty Recruitment"
+          />
+        </NoNav>
+      )}
+    </div>
   );
 }
 
@@ -596,6 +668,138 @@ export function FileRow({ old }: { old: boolean }) {
     <SampleFormProvider defaultValues={defaultValues}>
       <div className="w-full min-w-0 text-left">
         {old ? <LegacyFilePicker name="files" /> : <Form.File name="files" />}
+      </div>
+    </SampleFormProvider>
+  );
+}
+
+// 편집 언어. 예전은 숨긴 라디오 + 밑줄, 지금은 같은 밑줄 모양의 진짜 탭(←→ 로 옮기면 패널이 바뀐다).
+const LANGUAGES = [
+  { value: 'ko', label: '한글' },
+  { value: 'en', label: 'English' },
+] as const;
+
+export function EditLanguage({ old }: { old: boolean }) {
+  const [value, setValue] = useState<(typeof LANGUAGES)[number]['value']>('ko');
+  if (old) return <LegacyLanguagePicker />;
+  return (
+    <div className="w-full max-w-60 text-left">
+      <Tabs
+        ariaLabel="편집 언어"
+        tabs={LANGUAGES}
+        value={value}
+        onChange={setValue}
+      >
+        <span className="type-meta text-neutral-500">
+          {value === 'ko' ? '한글 입력 칸' : '영문 입력 칸'}
+        </span>
+      </Tabs>
+    </div>
+  );
+}
+
+// 교수진 추가 폼의 한 부분(사진·연락처·이름·직함·학력). 예전 것은 d1baf83c 의 FacultyEditor 를 예전 폼 부품 사본으로,
+// 지금 것은 실제 폼 부품으로 그린다. 둘 다 입력·초점·사진 고르기·학력 추가가 실제로 동작하고 저장은 하지 않는다.
+const FACULTY = {
+  image: null,
+  phone: '(02) 880-0000',
+  fax: '',
+  email: 'cskim@snu.ac.kr',
+  name: '김철수',
+  academicRank: '교수',
+  educations: ['서울대학교 컴퓨터공학 박사 (2010)'],
+};
+
+function OldFacultySlice() {
+  return (
+    <>
+      <LegacyFieldset title="사진" spacing="mb-12">
+        <span className="mb-3 whitespace-pre-wrap text-[13px] font-normal tracking-wide text-neutral-500">
+          3:4 비율의 증명사진이 가장 적합합니다.
+        </span>
+        <LegacyImagePicker name="image" />
+      </LegacyFieldset>
+      <LegacySection title="연락처 정보">
+        <div className="flex w-2xl">
+          <LegacyFieldset title="전화번호" spacing="mb-5">
+            <LegacyText name="phone" maxWidth="max-w-[20rem]" />
+          </LegacyFieldset>
+          <LegacyFieldset title="팩스" spacing="mb-5">
+            <LegacyText name="fax" maxWidth="max-w-[20rem]" />
+          </LegacyFieldset>
+        </div>
+        <LegacyFieldset title="이메일" spacing="mb-5">
+          <LegacyText name="email" maxWidth="max-w-[25rem]" />
+        </LegacyFieldset>
+      </LegacySection>
+      <LegacyFieldset title="이름" spacing="mb-5" required>
+        <LegacyText name="name" maxWidth="max-w-[30rem]" />
+      </LegacyFieldset>
+      <LegacyFieldset title="직함" spacing="mb-5" required>
+        <LegacyText
+          name="academicRank"
+          maxWidth="max-w-[30rem]"
+          placeholder="예: 교수, 조교수, 명예교수 등"
+        />
+      </LegacyFieldset>
+      <LegacyFieldset title="학력" spacing="mb-2.5">
+        <LegacyTextList
+          name="educations"
+          placeholder="예: 서울대학교 컴퓨터공학 학사 (2003)"
+        />
+      </LegacyFieldset>
+    </>
+  );
+}
+
+function NowFacultySlice() {
+  return (
+    <>
+      <Fieldset title="사진">
+        <span className="mb-3 whitespace-pre-wrap type-meta tracking-wide text-neutral-500">
+          3:4 비율의 증명사진이 가장 적합합니다.
+        </span>
+        <Form.Image name="image" />
+      </Fieldset>
+      <Form.Section title="연락처 정보">
+        <Form.Row>
+          <Fieldset title="전화번호">
+            <Form.Text name="phone" size="md" />
+          </Fieldset>
+          <Fieldset title="팩스">
+            <Form.Text name="fax" size="md" />
+          </Fieldset>
+        </Form.Row>
+        <Fieldset title="이메일">
+          <Form.Text name="email" size="lg" />
+        </Fieldset>
+      </Form.Section>
+      <Fieldset title="이름" required>
+        <Form.Text name="name" size="lg" />
+      </Fieldset>
+      <Fieldset title="직함" required>
+        <Form.Text
+          name="academicRank"
+          size="lg"
+          placeholder="예: 교수, 조교수, 명예교수 등"
+        />
+      </Fieldset>
+      <Fieldset title="학력">
+        <Form.TextList
+          name="educations"
+          placeholder="예: 서울대학교 컴퓨터공학 학사 (2003)"
+        />
+      </Fieldset>
+    </>
+  );
+}
+
+export function FacultyFormSlice({ old }: { old: boolean }) {
+  return (
+    <SampleFormProvider defaultValues={FACULTY}>
+      {/* 예전 전화·팩스 줄은 672px 고정이라 칸보다 넓다. 칸 안에서 가로로 밀어 본다. */}
+      <div className="w-full overflow-x-auto text-left">
+        {old ? <OldFacultySlice /> : <NowFacultySlice />}
       </div>
     </SampleFormProvider>
   );

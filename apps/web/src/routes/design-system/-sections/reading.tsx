@@ -109,7 +109,7 @@ export function ReadingSection() {
                 <a
                   href="#"
                   onClick={stay}
-                  className="text-link underline underline-offset-2 hover:text-main-orange"
+                  className="text-link underline underline-offset-2 hover:text-link-hover"
                 >
                   학사 안내
                 </a>

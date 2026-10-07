@@ -6,13 +6,15 @@ export default function LegacyFieldset({
   title,
   children,
   required = false,
+  spacing = 'mb-6',
 }: {
   title: string;
   children: ReactNode;
   required?: boolean;
+  spacing?: string; // 예전 spacing 값(mb-5·mb-10·mb-12 등)
 }) {
   return (
-    <fieldset className="mb-6 flex flex-1 flex-col">
+    <fieldset className={`${spacing} flex flex-1 flex-col`}>
       <legend className="mb-2 text-md font-medium tracking-wide">
         {title}
         {required && <span className="text-main-orange">*</span>}

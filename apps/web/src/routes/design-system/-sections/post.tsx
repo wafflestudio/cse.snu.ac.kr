@@ -173,7 +173,7 @@ export function PostSection() {
                   <a
                     href="#"
                     onClick={stay}
-                    className="text-link underline underline-offset-2 hover:text-main-orange"
+                    className="text-link underline underline-offset-2 hover:text-link-hover"
                   >
                     김연사
                   </a>
@@ -181,7 +181,7 @@ export function PostSection() {
                   <a
                     href="#"
                     onClick={stay}
-                    className="text-link underline underline-offset-2 hover:text-main-orange"
+                    className="text-link underline underline-offset-2 hover:text-link-hover"
                   >
                     서울대학교
                   </a>

@@ -14,8 +14,10 @@ export type ValueRow = [place: string, before: string, now: string];
 export type Item = {
   title: string;
   why: string;
+  pairs?: Pair[]; // 여러 벌이 하나로 모인 변화: 변형마다 전·후를 한 줄씩
   values?: ValueRow[];
   more?: string; // 표 아래 "그 밖에 N곳" 같은 한 줄
+  same?: string[]; // 전후 견본과 똑같이 바뀐 다른 자리(견본 아래 한 줄)
   before?: ReactNode;
   after?: ReactNode;
   wide?: boolean; // 넓은 캡처는 전·후를 위아래로 쌓는다
@@ -84,6 +86,8 @@ export function shots(
 }
 
 // 여러 벌이 하나로 모인 변화: 한쪽에 변형 여러 개를 이름과 함께 쌓는다. file 은 확장자 뺀 파일 이름.
+export type Pair = { label: string; before: ReactNode; after: ReactNode };
+
 type GalleryShot = {
   file: string;
   w: number;
@@ -116,6 +120,35 @@ export function Gallery({ shots: list }: { shots: GalleryShot[] }) {
       })}
     </div>
   );
+}
+
+// 캡처 한 장(이름표 없이). 변형마다 전·후를 짝지을 때 쓴다.
+function Still({ shot }: { shot: GalleryShot }) {
+  const src = `/design-system/changes/${shot.file}.webp`;
+  return (
+    <a href={src} className="block w-full" style={{ maxWidth: shot.w }}>
+      <img
+        src={src}
+        width={shot.w}
+        height={shot.h}
+        alt={shot.alt}
+        loading="lazy"
+        decoding="async"
+        className="block h-auto w-full"
+      />
+    </a>
+  );
+}
+
+// 같은 순서의 전·후 캡처 목록을 변형마다 한 쌍으로 묶는다. 이름표는 전 쪽 것을 쓴다.
+export function pairShots(before: GalleryShot[], after: GalleryShot[]) {
+  return {
+    pairs: before.map((shot, i) => ({
+      label: shot.label,
+      before: <Still shot={shot} />,
+      after: <Still shot={after[i]} />,
+    })),
+  };
 }
 
 // ── 값 표 ─────────────────────────────────────────────────────────
@@ -182,14 +215,28 @@ function ChangeItem({ item }: { item: Item }) {
       <p className="max-w-160 type-ui leading-normal text-neutral-700">
         {item.why}
       </p>
-      {item.values && <ValueTable rows={item.values} />}
-      {item.more && <p className="type-meta text-neutral-500">{item.more}</p>}
       {item.before !== undefined && item.after !== undefined && (
         <div className={clsx('grid gap-6', !item.wide && 'sm:grid-cols-2')}>
           <Pane side="before">{item.before}</Pane>
           <Pane side="after">{item.after}</Pane>
         </div>
       )}
+      {item.pairs?.map((pair) => (
+        <div key={pair.label} className="space-y-2">
+          <p className="type-label">{pair.label}</p>
+          <div className="grid gap-6 sm:grid-cols-2">
+            <Pane side="before">{pair.before}</Pane>
+            <Pane side="after">{pair.after}</Pane>
+          </div>
+        </div>
+      ))}
+      {item.same && (
+        <p className="max-w-160 type-meta leading-normal text-neutral-500">
+          같은 변경: {item.same.join(', ')}
+        </p>
+      )}
+      {item.values && <ValueTable rows={item.values} />}
+      {item.more && <p className="type-meta text-neutral-500">{item.more}</p>}
     </article>
   );
 }

@@ -4,8 +4,10 @@ import { ButtonSection } from './-sections/button';
 import { CategorySection } from './-sections/category';
 import { ChangesCommonSection } from './-sections/changes/common';
 import { ChangesComponentsSection } from './-sections/changes/components';
+import { ChangesContentSection } from './-sections/changes/content';
 import { ChangesFoundationsSection } from './-sections/changes/foundations';
-import { ChangesPatternsSection } from './-sections/changes/patterns';
+import { ChangesScreensSection } from './-sections/changes/screens';
+import { ChangesShellSection } from './-sections/changes/shell';
 import { ColorSection } from './-sections/color';
 import { DialogSection } from './-sections/dialog';
 import { EditorSection } from './-sections/editor';
@@ -92,10 +94,21 @@ export const GROUPS: Group[] = [
         title: '컴포넌트 개선',
         content: <ChangesComponentsSection />,
       },
+      // 틀·내비 개선이 예전 패턴 개선 주소(/design-system/changes-patterns)를 그대로 쓴다.
       {
         id: 'changes-patterns',
-        title: '패턴 개선',
-        content: <ChangesPatternsSection />,
+        title: '틀·내비 개선',
+        content: <ChangesShellSection />,
+      },
+      {
+        id: 'changes-content',
+        title: '목록·글 개선',
+        content: <ChangesContentSection />,
+      },
+      {
+        id: 'changes-screens',
+        title: '화면별 개선',
+        content: <ChangesScreensSection />,
       },
       {
         id: 'changes-common',

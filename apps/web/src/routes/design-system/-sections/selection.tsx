@@ -1,5 +1,8 @@
 import { useState } from 'react';
+import Fieldset from '@/components/form/Fieldset';
+import Form from '@/components/form/Form';
 import PillGroup from '@/components/ui/PillGroup';
+import Tabs from '@/components/ui/Tabs';
 import { Tag } from '@/components/ui/Tag';
 import TextToggle from '@/components/ui/TextToggle';
 import {
@@ -11,10 +14,10 @@ import {
   RuleList,
   VariantTable,
 } from '../-components/doc';
+import { SampleFormProvider } from '../-components/sample';
 import { LegacySortOptions } from '../-legacy/CourseToolbar';
-import { LegacyLanguagePicker } from '../-legacy/LanguagePicker';
 
-// 선택·태그 페이지. 실제 PillGroup·TextToggle·Tag 를 그린다. 색·높이·호버는 부품이 정하므로 적지 않는다.
+// 선택·태그 페이지. 실제 PillGroup·TextToggle·Tabs·Tag 를 그린다. 색·높이·호버는 부품이 정하므로 적지 않는다.
 
 const SORT = [
   { value: 'name', label: '가나다순' },
@@ -90,15 +93,62 @@ const LANG = [
   { value: 'en', label: 'English' },
 ] as const;
 
+// 편집 언어: 탭이 같은 자리의 입력 칸 패널을 바꾼다. 견본 폼이라 저장하지 않는다.
+const NAME = { ko: '김철수', en: 'Cheolsu Kim' } as const;
+
+function LangPanel({ language }: { language: (typeof LANG)[number]['value'] }) {
+  return (
+    <Fieldset title={language === 'ko' ? '이름' : '이름(영문)'}>
+      <Form.Text key={language} name={language} size="md" />
+    </Fieldset>
+  );
+}
+
+function LangTabs() {
+  const [value, setValue] = useState<(typeof LANG)[number]['value']>('ko');
+  return (
+    <SampleFormProvider defaultValues={NAME}>
+      <div className="w-full max-w-80 text-left">
+        <Tabs
+          ariaLabel="편집 언어"
+          tabs={LANG}
+          value={value}
+          onChange={setValue}
+        >
+          <LangPanel language={value} />
+        </Tabs>
+      </div>
+    </SampleFormProvider>
+  );
+}
+
+// 종류 표의 작은 견본: 탭과 패널 자리만.
+function TabsSample() {
+  const [value, setValue] = useState<(typeof LANG)[number]['value']>('ko');
+  return (
+    <Tabs ariaLabel="편집 언어" tabs={LANG} value={value} onChange={setValue}>
+      <span className="type-meta text-neutral-500">
+        {value === 'ko' ? '한글 입력 칸' : '영문 입력 칸'}
+      </span>
+    </Tabs>
+  );
+}
+
+// Don't: 같은 패널 바꾸기를 글자 토글(라디오)로 한 모양. 값을 고르는 컨트롤로 알려진다.
 function LangToggle() {
   const [value, setValue] = useState<(typeof LANG)[number]['value']>('ko');
   return (
-    <TextToggle
-      ariaLabel="편집 언어"
-      options={LANG}
-      value={value}
-      onChange={setValue}
-    />
+    <SampleFormProvider defaultValues={NAME}>
+      <div className="w-full max-w-80 space-y-6 text-left">
+        <TextToggle
+          ariaLabel="편집 언어"
+          options={LANG}
+          value={value}
+          onChange={setValue}
+        />
+        <LangPanel language={value} />
+      </div>
+    </SampleFormProvider>
   );
 }
 
@@ -114,6 +164,7 @@ export function SelectionSection() {
         <Example>
           <Pills />
           <Toggle />
+          <LangTabs />
           <Tag label="장학" href="/design-system/selection" />
           <Tag label="대학원" onDelete={() => {}} />
         </Example>
@@ -136,7 +187,12 @@ export function SelectionSection() {
             {
               name: '글자 토글',
               sample: <Toggle />,
-              use: '교과목 목록형/카드형, 편집 화면의 한글/English.',
+              use: '교과목 목록형/카드형.',
+            },
+            {
+              name: '탭',
+              sample: <TabsSample />,
+              use: '편집 화면의 한글/English 패널.',
             },
             {
               name: '태그',
@@ -160,7 +216,8 @@ export function SelectionSection() {
         <RuleList
           items={[
             '알약은 목록을 거르거나 정렬할 때 사용합니다. 목록의 내용이 바뀌므로 눈에 띄게 둡니다.',
-            '글자 토글은 같은 내용을 다른 모양으로 볼 때(목록형·카드형, 편집 언어) 사용합니다. 내용은 그대로라 알약보다 가볍게 둡니다.',
+            '글자 토글은 같은 내용을 다른 모양으로 볼 때(목록형·카드형) 사용합니다. 내용은 그대로라 알약보다 가볍게 둡니다.',
+            '값을 고르면 라디오(알약·글자 토글), 같은 자리의 패널을 바꾸면 탭입니다(편집 화면의 한글/English). 탭으로 두면 화면 읽기 프로그램이 "탭, 2개 중 1번째"처럼 읽고 아래 패널과 이어 주며, 화살표 키로 옮기면 바로 패널이 바뀝니다.',
           ]}
         />
       </DocSection>
@@ -169,7 +226,7 @@ export function SelectionSection() {
         <RuleList
           items={[
             '태그는 분류 표시라 선택 컨트롤로 쓰지 않습니다. 같은 모양이면 무엇을 누르면 무엇이 바뀌는지 알 수 없습니다.',
-            '폼에서 저장할 값은 체크박스·라디오(입력·폼), 여러 페이지 중 하나를 고르는 탭은 접힌 모서리 선택 탭(그래픽)입니다.',
+            '폼에서 저장할 값은 체크박스·라디오(입력·폼)입니다. 다른 페이지로 옮겨 가는 탭은 접힌 모서리 선택 탭(그래픽)이고, 밑줄 탭은 한 폼 안의 패널만 바꿉니다.',
           ]}
         />
       </DocSection>
@@ -188,13 +245,14 @@ export function SelectionSection() {
         />
         <DoDont
           good={{
-            example: <LangToggle />,
-            caption: '편집 언어는 같은 폼의 보기만 바꾸므로 글자 토글입니다.',
+            example: <LangTabs />,
+            caption:
+              '편집 언어는 같은 자리의 입력 칸을 바꾸므로 탭입니다. 화살표 키로 옮기면 패널이 바로 바뀝니다.',
           }}
           bad={{
-            example: <LegacyLanguagePicker />,
+            example: <LangToggle />,
             caption:
-              '예전 편집 언어 선택은 다른 곳에 없는 밑줄 탭이었고, 고르지 않은 쪽이 neutral-300이라 거의 보이지 않았습니다.',
+              '글자 토글은 라디오라 화면 읽기 프로그램이 "라디오 버튼"으로 알려 값을 고르는 것처럼 들리고, 아래 패널과 이어지지 않습니다.',
           }}
         />
       </DocSection>

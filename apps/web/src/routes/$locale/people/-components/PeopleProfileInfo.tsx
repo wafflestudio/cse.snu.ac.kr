@@ -51,7 +51,7 @@ function ProfileInfoRow({ icon, label, href }: PeopleProfileInfoItem) {
       {href ? (
         <a
           href={href}
-          className="text-link underline underline-offset-2 hover:text-main-orange"
+          className="text-link underline underline-offset-2 hover:text-link-hover"
         >
           {label}
         </a>

@@ -40,6 +40,12 @@ const ROLES: [role: string, chip: string, token: string, use: string][] = [
   ],
   ['링크', 'bg-link', 'link', '본문 속 링크(늘 밑줄)'],
   [
+    '링크 호버',
+    'bg-link-hover',
+    'link-hover',
+    '링크에 마우스를 올렸을 때(같은 파랑을 짙게)',
+  ],
+  [
     '현재 위치',
     'bg-main-orange',
     'main-orange',
@@ -49,7 +55,7 @@ const ROLES: [role: string, chip: string, token: string, use: string][] = [
     '호버',
     'bg-main-orange-dark',
     'main-orange-dark',
-    '이동할 수 있는 글자에 마우스를 올렸을 때',
+    '메뉴·제목처럼 이동할 수 있는 글자(링크 색이 아닌 것)에 마우스를 올렸을 때',
   ],
   ['오류', 'bg-red-600', 'red-600', '오류 문장과 오류가 난 칸'],
   ['선', 'bg-neutral-200', 'neutral-200', '표 줄, 구분선'],
@@ -94,6 +100,7 @@ const PALETTE: [token: string, chip: string, hex: string][] = [
   ['main-orange', 'bg-main-orange', '#ff6914'],
   ['main-orange-dark', 'bg-main-orange-dark', '#e65817'],
   ['link', 'bg-link', '#2867cf'],
+  ['link-hover', 'bg-link-hover', '#1d4ea3'],
   ['red-600', 'bg-red-600', '#e7000b'],
 ];
 
