@@ -27,12 +27,6 @@
     outline-offset: 2px;
   }
 
-  /* 루트 바탕은 흰색. body 의 어두운 바탕(__root)만 문서 바탕으로 번지면 macOS 크롬이 스크롤 막대를
-     밝게 골라 흰 본문 위에서 안 보인다. 루트에 바탕이 있으면 막대 색은 이것을 보고 고른다. */
-  html {
-    background-color: var(--color-white);
-  }
-
   html,
   body {
     @apply h-full;
