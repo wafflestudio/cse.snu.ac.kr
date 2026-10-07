@@ -128,18 +128,18 @@ function RootDocument() {
         />
       </head>
       <body className="font-normal text-neutral-950">
-        {/* 사이트의 어두운 바탕. body 에 칠하면 문서 바탕이 어두워져 스크롤 막대가 흰 본문 위에서 안 보인다(app.css).
-            고정 층이라 화면 어디서나 뒤에 깔리고, 메인 배경 무늬(-z-50)보다 뒤에 둔다. */}
-        <div aria-hidden className="fixed inset-0 -z-60 bg-neutral-900" />
         <LNB />
         <MobileNav />
         <main
           className={clsx(
-            'flex min-h-full min-w-full flex-col',
+            'relative flex min-h-full min-w-full flex-col',
             paddingLeft,
             isScrollBlocked ? 'overflow-hidden h-full' : '',
           )}
         >
+          {/* 사이트의 어두운 바탕. body 에 칠하면 문서 바탕이 어두워져 스크롤 막대가 흰 본문 위에서 안 보인다(app.css).
+              문서 길이만큼 깔리도록 main 에 붙이고(고정 층은 전체 페이지 캡처에서 첫 화면만 덮는다), 메인 배경 무늬(-z-50)보다 뒤에 둔다. */}
+          <div aria-hidden className="absolute inset-0 -z-60 bg-neutral-900" />
           <Outlet />
           <Footer />
           <Toaster icons={TOAST_ICONS} />
