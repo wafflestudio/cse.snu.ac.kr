@@ -52,9 +52,10 @@ export default function ResearchCenterEditor({
           <Form.Text name="websiteURL" />
         </Fieldset>
 
-        <LanguagePicker selected={language} onChange={setLanguage} />
-        {language === 'ko' && <Editor language="ko" />}
-        {language === 'en' && <Editor language="en" />}
+        <LanguagePicker selected={language} onChange={setLanguage}>
+          {/* key: 언어를 바꾸면 입력란을 새로 그린다(값은 react-hook-form 에 남는다). */}
+          <Editor key={language} language={language} />
+        </LanguagePicker>
 
         <Form.Action
           onCancel={onCancel}

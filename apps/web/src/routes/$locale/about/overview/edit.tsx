@@ -76,30 +76,30 @@ function OverviewEdit() {
     <PageLayout title="학부 소개 편집">
       <FormProvider {...methods}>
         <Form>
-          <LanguagePicker onChange={setLanguage} selected={language} />
-
-          <Fieldset.HTML>
-            <Form.HTML
-              name="htmlKo"
-              options={{
-                required: {
-                  value: true,
-                  message: '한국어 내용을 입력해 주세요.',
-                },
-              }}
-              isHidden={language === 'en'}
-            />
-            <Form.HTML
-              name="htmlEn"
-              options={{
-                required: {
-                  value: true,
-                  message: '영문 내용을 입력해 주세요.',
-                },
-              }}
-              isHidden={language === 'ko'}
-            />
-          </Fieldset.HTML>
+          <LanguagePicker selected={language} onChange={setLanguage}>
+            <Fieldset.HTML>
+              <Form.HTML
+                name="htmlKo"
+                options={{
+                  required: {
+                    value: true,
+                    message: '한국어 내용을 입력해 주세요.',
+                  },
+                }}
+                isHidden={language === 'en'}
+              />
+              <Form.HTML
+                name="htmlEn"
+                options={{
+                  required: {
+                    value: true,
+                    message: '영문 내용을 입력해 주세요.',
+                  },
+                }}
+                isHidden={language === 'ko'}
+              />
+            </Fieldset.HTML>
+          </LanguagePicker>
 
           <Fieldset.Image>
             <label

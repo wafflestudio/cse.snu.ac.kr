@@ -28,11 +28,15 @@ export async function fillHTMLEditor(page: Page, html: string, index = 0) {
   await editor.fill(html);
 }
 
-/** 폼 에디터의 한/영 전환 (라디오는 숨겨져 있어 label 클릭).
- *  고정 슬립 대신 라디오 checked(언어 상태 전환)를 실제 신호로 대기한다. */
+/** 폼 에디터의 한/영 전환(LanguagePicker 탭).
+ *  고정 슬립 대신 탭의 aria-selected(언어 상태 전환)를 실제 신호로 대기한다. */
 export async function switchEditorLanguage(page: Page, lang: 'ko' | 'en') {
-  await page.locator(`label[for="${lang}"]`).click();
-  await expect(page.locator(`input#${lang}`)).toBeChecked();
+  const tab = page.getByRole('tab', {
+    name: lang === 'ko' ? '한글' : 'English',
+    exact: true,
+  });
+  await tab.click();
+  await expect(tab).toHaveAttribute('aria-selected', 'true');
 }
 
 /** Form.Dropdown — 필드셋을 열고 옵션 라벨로 선택.

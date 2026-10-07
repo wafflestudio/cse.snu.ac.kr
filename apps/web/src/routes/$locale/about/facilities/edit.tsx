@@ -116,68 +116,74 @@ function FacilitiesEdit() {
             </div>
           )}
 
-          <LanguagePicker onChange={setLanguage} selected={language} />
+          <LanguagePicker selected={language} onChange={setLanguage}>
+            <Fieldset title="시설명" required>
+              {language === 'ko' && (
+                <Form.Text
+                  name="ko.name"
+                  size="lg"
+                  options={{
+                    required: {
+                      value: true,
+                      message: '시설명을 입력해 주세요.',
+                    },
+                  }}
+                />
+              )}
+              {language === 'en' && (
+                <Form.Text
+                  name="en.name"
+                  size="lg"
+                  options={{
+                    required: {
+                      value: true,
+                      message: '시설명을 입력해 주세요.',
+                    },
+                  }}
+                />
+              )}
+            </Fieldset>
 
-          <Fieldset title="시설명" required>
-            {language === 'ko' && (
-              <Form.Text
-                name="ko.name"
-                size="lg"
-                options={{
-                  required: { value: true, message: '시설명을 입력해 주세요.' },
-                }}
-              />
-            )}
-            {language === 'en' && (
-              <Form.Text
-                name="en.name"
-                size="lg"
-                options={{
-                  required: { value: true, message: '시설명을 입력해 주세요.' },
-                }}
-              />
-            )}
-          </Fieldset>
+            <Fieldset title="시설 설명" required>
+              {language === 'ko' && (
+                <Form.HTML
+                  name="ko.description"
+                  options={{
+                    required: {
+                      value: true,
+                      message: '시설 설명을 입력해 주세요.',
+                    },
+                  }}
+                />
+              )}
+              {language === 'en' && (
+                <Form.HTML
+                  name="en.description"
+                  options={{
+                    required: {
+                      value: true,
+                      message: '시설 설명을 입력해 주세요.',
+                    },
+                  }}
+                />
+              )}
+            </Fieldset>
 
-          <Fieldset title="시설 설명" required>
-            {language === 'ko' && (
-              <Form.HTML
-                name="ko.description"
-                options={{
-                  required: {
-                    value: true,
-                    message: '시설 설명을 입력해 주세요.',
-                  },
-                }}
-              />
-            )}
-            {language === 'en' && (
-              <Form.HTML
-                name="en.description"
-                options={{
-                  required: {
-                    value: true,
-                    message: '시설 설명을 입력해 주세요.',
-                  },
-                }}
-              />
-            )}
-          </Fieldset>
-
-          <Fieldset title="시설 위치" required>
-            {language === 'ko' && (
-              <Form.TextList
-                name="ko.locations"
-                placeholder="예: 301동 315호"
-              />
-            )}
-            {language === 'en' && (
-              <Form.TextList
-                name="en.locations"
-                placeholder="예: 301동 315호"
-              />
-            )}
-          </Fieldset>
+            <Fieldset title="시설 위치" required>
+              {language === 'ko' && (
+                <Form.TextList
+                  name="ko.locations"
+                  placeholder="예: 301동 315호"
+                />
+              )}
+              {language === 'en' && (
+                <Form.TextList
+                  name="en.locations"
+                  placeholder="예: 301동 315호"
+                />
+              )}
+            </Fieldset>
+          </LanguagePicker>
 
           <Fieldset title="시설 사진">
             <p className="mb-3 whitespace-pre-wrap type-meta tracking-wide text-neutral-500">

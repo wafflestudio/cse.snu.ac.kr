@@ -71,6 +71,7 @@ TanStack Start 빌드는 `dist/server/server.js` 를 **Web fetch 핸들러**로 
 - 글자 칸 폭은 `size`(`sm`·`md`·`lg`·`full`, 기본 `full`). `Form.Dropdown` 에는 폭을 주지 않는다. 필드 둘을 한 줄에 둘 때만 `Form.Row`(짧은 값 기본, 긴 값 `size="full"`), 줄 전체에 고정 폭을 주지 않는다.
 - Button `variant` 는 행동의 종류로 고르는 4개(primary/secondary/text/textInverse, 주황 채움 없음), 아이콘은 children 에 직접, `className` 통로 없음. 처리 중은 `pending`·`pendingLabel`("동사 + 중…"), `Form.Action` 은 버튼 이름에서 자동으로 만든다.
 - 단일 선택은 네이티브 radiogroup(`PillGroup`·`TextToggle`, 그룹 이름은 `ariaLabel`). 어두운 알약(`tone="dark"`)은 메인 공지 패널 전용.
+- 값을 고르면 라디오, 같은 자리의 패널을 바꾸면 `ui/Tabs`(패널은 children 으로 넘겨 tabpanel 에 잇는다). 편집 화면의 한글/English 는 탭이다(`form/LanguagePicker`).
 - Dialog 폭은 `size`, 제목은 `title` 로 넘겨 판이 그린다(내용 안에서 다시 그리지 않는다). 자기 제목을 가진 판은 `hideTitle`. 판 값은 `ui/dialogStyle.ts`. 확인창 `AlertDialog` 의 `confirmText` 는 필수(하는 일을 적는다).
 - 검색 실행(주소의 검색 파라미터 바꾸기)은 `SearchInput` 을 감싸는 `<form>` 의 submit 이 맡는다. 헤더 칸은 `tone="dark"`.
 - API 실패 토스트는 `toastError`, 문구는 `utils/apiErrors.ts` 사전(화면에서 새로 쓰지 않는다). sonner 는 strict CSP 때문에 복사본(`ui/sonner/`), 모양은 그 `styles.css`.

@@ -15,8 +15,8 @@ GIT_SHA=$(git rev-parse --verify "$REF^{commit}")
 TARGET=staging
 
 # 호스트는 GitHub 에서 받아 빌드하므로, 원격에 없는 커밋은 배포할 수 없다.
-git fetch -q origin
-if ! git branch -r --contains "$GIT_SHA" | grep -q .; then
+# gh API 로 확인한다(git fetch 는 SSH 에이전트가 잠겨 있으면 멈춘다).
+if ! gh api "repos/wafflestudio/cse.snu.ac.kr/commits/$GIT_SHA" --silent 2>/dev/null; then
     echo "✗ $GIT_SHA 가 원격에 없다. 먼저 푸시한다." >&2
     exit 1
 fi

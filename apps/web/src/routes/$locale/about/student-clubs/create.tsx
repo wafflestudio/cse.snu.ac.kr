@@ -58,53 +58,53 @@ function StudentClubsCreate() {
     <PageLayout title="동아리 추가">
       <FormProvider {...methods}>
         <Form>
-          <LanguagePicker onChange={setLanguage} selected={language} />
+          <LanguagePicker selected={language} onChange={setLanguage}>
+            <Fieldset.Title>
+              <Form.Text
+                name="ko.name"
+                options={{
+                  required: {
+                    value: true,
+                    message: '한국어 제목을 입력해 주세요.',
+                  },
+                }}
+                hidden={language === 'en'}
+              />
+              <Form.Text
+                name="en.name"
+                options={{
+                  required: {
+                    value: true,
+                    message: '영문 제목을 입력해 주세요.',
+                  },
+                }}
+                hidden={language === 'ko'}
+              />
+            </Fieldset.Title>
 
-          <Fieldset.Title>
-            <Form.Text
-              name="ko.name"
-              options={{
-                required: {
-                  value: true,
-                  message: '한국어 제목을 입력해 주세요.',
-                },
-              }}
-              hidden={language === 'en'}
-            />
-            <Form.Text
-              name="en.name"
-              options={{
-                required: {
-                  value: true,
-                  message: '영문 제목을 입력해 주세요.',
-                },
-              }}
-              hidden={language === 'ko'}
-            />
-          </Fieldset.Title>
-
-          <Fieldset.HTML>
-            <Form.HTML
-              name="ko.description"
-              options={{
-                required: {
-                  value: true,
-                  message: '한국어 내용을 입력해 주세요.',
-                },
-              }}
-              isHidden={language === 'en'}
-            />
-            <Form.HTML
-              name="en.description"
-              options={{
-                required: {
-                  value: true,
-                  message: '영문 내용을 입력해 주세요.',
-                },
-              }}
-              isHidden={language === 'ko'}
-            />
-          </Fieldset.HTML>
+            <Fieldset.HTML>
+              <Form.HTML
+                name="ko.description"
+                options={{
+                  required: {
+                    value: true,
+                    message: '한국어 내용을 입력해 주세요.',
+                  },
+                }}
+                isHidden={language === 'en'}
+              />
+              <Form.HTML
+                name="en.description"
+                options={{
+                  required: {
+                    value: true,
+                    message: '영문 내용을 입력해 주세요.',
+                  },
+                }}
+                isHidden={language === 'ko'}
+              />
+            </Fieldset.HTML>
+          </LanguagePicker>
 
           <Fieldset.Image>
             <label

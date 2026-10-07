@@ -120,9 +120,10 @@ export default function FacultyEditor({
 
         <SharedEditor labs={labs.ko} />
 
-        <LanguagePicker selected={language} onChange={setLanguage} />
-        {language === 'ko' && <TranslationEditor language="ko" />}
-        {language === 'en' && <TranslationEditor language="en" />}
+        <LanguagePicker selected={language} onChange={setLanguage}>
+          {/* key: 언어를 바꾸면 입력란을 새로 그린다(값은 react-hook-form 에 남는다). */}
+          <TranslationEditor key={language} language={language} />
+        </LanguagePicker>
 
         <Form.Action
           onCancel={onCancel}
