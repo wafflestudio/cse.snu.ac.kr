@@ -8,7 +8,7 @@ import {
   Lead,
   RuleList,
 } from '../-components/doc';
-import { stay } from '../-components/sample';
+import { SAMPLE_IMAGE, stay } from '../-components/sample';
 import { LegacyNewsCard } from '../-legacy/NewsCard';
 
 function Sub({ title, children }: { title: string; children: ReactNode }) {
@@ -65,6 +65,7 @@ export const SAMPLE_NEWS = {
   date: '2026/9/24',
   description:
     '컴퓨터공학부 연구팀이 대규모 언어 모델의 추론 효율을 높이는 방법을 제안해 최우수 논문상을 받았습니다.',
+  imageURL: SAMPLE_IMAGE.news,
 };
 
 export function SampleNewsCard() {
@@ -76,7 +77,7 @@ export function SampleNewsCard() {
     >
       <div className="relative h-25 w-full">
         <Image
-          src={null}
+          src={SAMPLE_NEWS.imageURL}
           alt=""
           sizes="240px"
           className="absolute inset-0 h-full w-full object-cover"
@@ -155,9 +156,9 @@ export function ShapeSection() {
       <DocSection title="원칙">
         <RuleList
           items={[
-            '둥근 모서리는 누르는 것(컨트롤·태그·알약)에만 둡니다. 판·카드·사진은 각지게 두어 둥근 모양이 누를 수 있다는 단서가 되게 합니다.',
-            '그림자는 화면 위에 떠 있는 층(모달·드롭다운·날짜 선택)에만 씁니다. 카드에 그림자가 있으면 떠 있는 층처럼 보이므로 면 색과 선으로 구분합니다.',
-            '선은 1px이 기본이고, 목록을 크게 나누는 제목 밑줄처럼 구분이 큰 곳에만 2px입니다.',
+            '둥근 모양이 누를 수 있다는 단서가 되게, 둥근 모서리는 누르는 것(컨트롤·태그·알약)에만 두고 판·카드·사진은 각지게 둡니다.',
+            '그림자는 떠 있는 층(모달·드롭다운·날짜 선택)에만 씁니다. 카드는 떠 보이지 않게 면 색과 선으로 구분합니다.',
+            '선은 1px이고, 목록을 크게 나누는 제목 밑줄에만 2px입니다.',
           ]}
         />
         <KnownGap>
@@ -183,7 +184,7 @@ export function ShapeSection() {
               </div>
             ),
             caption:
-              '예전 메인 새 소식 카드는 그림자 때문에 띠 위에 떠 있는 층처럼 보였습니다.',
+              '예전 메인 새 소식 카드는 그림자로 떠 있는 층처럼 보였습니다.',
           }}
         />
       </DocSection>

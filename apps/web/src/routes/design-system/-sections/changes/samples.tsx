@@ -12,6 +12,7 @@ import Button from '@/components/ui/Button';
 import Calendar from '@/components/ui/Calendar';
 import Checkbox from '@/components/ui/Checkbox';
 import HTMLViewer from '@/components/ui/HTMLViewer';
+import Image from '@/components/ui/Image';
 import SearchInput from '@/components/ui/SearchInput';
 import { toast } from '@/components/ui/sonner';
 import Tabs from '@/components/ui/Tabs';
@@ -22,7 +23,11 @@ import LinkRow from '@/routes/$locale/-components/LinkRow';
 import CourseList from '@/routes/$locale/academics/-components/courses/CourseList';
 import PrivacyPolicyLink from '@/routes/$locale/reservations/-components/ReservationCalendar/PrivacyPolicyLink';
 import type { Course } from '@/types/api';
-import { SampleFormProvider, stay } from '../../-components/sample';
+import {
+  SAMPLE_IMAGE,
+  SampleFormProvider,
+  stay,
+} from '../../-components/sample';
 import LegacyAction from '../../-legacy/Action';
 import { LegacyPrivacyPolicyLink } from '../../-legacy/AddReservationModal';
 import LegacyAlertPanel from '../../-legacy/AlertDialog';
@@ -210,6 +215,30 @@ export function CourseMeta({ old }: { old: boolean }) {
         )}
       </div>
     </div>
+  );
+}
+
+// 구성원 목록 카드의 사진 칸(PeopleGrid 와 같은 클래스). 예전(d1baf83c)은 사진 링크에 drop-shadow 가 있었다.
+export function PersonPhoto({ old }: { old: boolean }) {
+  return (
+    <a
+      href="#"
+      onClick={stay}
+      aria-label="교수 상세 페이지로 이동"
+      className={clsx(
+        'relative h-48 w-36 shrink-0 overflow-hidden',
+        old && 'drop-shadow-[0px_0px_4px_rgba(0,0,0,0.15)]',
+      )}
+    >
+      <Image
+        src={SAMPLE_IMAGE.silhouette}
+        alt="교수 프로필"
+        className="h-48 w-36 object-cover"
+        width={144}
+        sizes="144px"
+        height={192}
+      />
+    </a>
   );
 }
 
@@ -703,7 +732,7 @@ const FACULTY = {
   image: null,
   phone: '(02) 880-0000',
   fax: '',
-  email: 'cskim@snu.ac.kr',
+  email: 'kim@example.com',
   name: '김철수',
   academicRank: '교수',
   educations: ['서울대학교 컴퓨터공학 박사 (2010)'],

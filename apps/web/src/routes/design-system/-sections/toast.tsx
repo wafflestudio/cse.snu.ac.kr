@@ -28,10 +28,10 @@ function Kind({
 export function ToastSection() {
   return (
     <>
-      <Lead>토스트는 수행한 작업의 결과를 잠시 알릴 때 사용합니다.</Lead>
+      <Lead>토스트는 방금 한 작업의 결과를 잠시 알립니다.</Lead>
 
       <DocSection title="예시">
-        <Example caption="버튼을 누르면 토스트가 표시됩니다.">
+        <Example caption="버튼을 누르면 토스트가 뜹니다.">
           <Button
             variant="secondary"
             onClick={() => toast.success('게시물을 저장했습니다.')}
@@ -82,7 +82,7 @@ export function ToastSection() {
       <DocSection title="사용하는 경우">
         <RuleList
           items={[
-            '방금 누른 버튼의 결과(했는지, 실패했는지)를 알릴 때 사용합니다. 문장은 문구 페이지를 따릅니다.',
+            '방금 누른 버튼의 성공·실패를 알릴 때 씁니다. 문장은 문구 페이지를 따릅니다.',
           ]}
         />
       </DocSection>
@@ -90,7 +90,7 @@ export function ToastSection() {
       <DocSection title="사용하지 않는 경우">
         <RuleList
           items={[
-            '토스트는 몇 초 뒤 사라지고 누를 것이 없습니다. 그래서 입력 오류는 필드 아래(입력·폼), 실행 전 확인은 확인창(모달), 오래 읽을 안내는 화면에 둡니다.',
+            '토스트는 몇 초 뒤 사라지고 누를 것이 없어, 입력 오류는 필드 아래, 실행 전 확인은 확인창, 오래 읽을 안내는 화면에 둡니다.',
           ]}
         />
       </DocSection>

@@ -15,7 +15,7 @@ import {
   RuleList,
   VariantTable,
 } from '../-components/doc';
-import { SampleFormProvider } from '../-components/sample';
+import { SAMPLE_IMAGE, SampleFormProvider } from '../-components/sample';
 import LegacyAlertPanel from '../-legacy/AlertDialog';
 import LegacyDialogPanel from '../-legacy/Dialog';
 import LegacyFieldset from '../-legacy/Fieldset';
@@ -155,9 +155,13 @@ function ImageSample() {
     <Stage className="pb-12">
       <div className="relative w-60">
         <div className="flex flex-col overflow-hidden bg-white shadow-overlay">
-          <div className="flex aspect-[4/5] items-center justify-center bg-neutral-200 type-meta text-neutral-500">
-            포스터 이미지
-          </div>
+          <img
+            src={SAMPLE_IMAGE.poster}
+            alt=""
+            width={480}
+            height={600}
+            className="h-auto w-full object-contain"
+          />
           <div className="flex shrink-0">
             <button
               type="button"
@@ -191,12 +195,10 @@ function ImageSample() {
 export function DialogSection() {
   return (
     <>
-      <Lead>
-        모달은 현재 화면 위에 판을 띄워 짧은 작업을 완료할 때 사용합니다.
-      </Lead>
+      <Lead>모달은 화면 위에 판을 띄워 짧은 작업을 끝내게 합니다.</Lead>
 
       <DocSection title="예시">
-        <Example caption="판은 화면 위에 뜨므로 여기서는 같은 모양으로 표시합니다. 버튼을 누르면 실제 판이 뜹니다.">
+        <Example caption="여기서는 판을 같은 모양으로 그렸고, 버튼을 누르면 실제 판이 뜹니다.">
           <Stage>
             <Panel title="교과목 추가" width="max-w-[560px]">
               <SampleFormProvider>
@@ -240,7 +242,7 @@ export function DialogSection() {
       <DocSection title="사용하는 경우">
         <RuleList
           items={[
-            '보던 화면을 떠나지 않고 짧은 일을 끝낼 때 사용합니다. 짧은 입력(교과목 추가), 한 항목 자세히 보기(예약 상세), 되돌리기 어려운 작업 전의 확인입니다.',
+            '보던 화면을 떠나지 않고 짧은 일을 끝낼 때 씁니다. 짧은 입력(교과목 추가), 한 항목 자세히 보기(예약 상세), 되돌리기 어려운 작업 전 확인입니다.',
           ]}
         />
       </DocSection>
@@ -248,8 +250,8 @@ export function DialogSection() {
       <DocSection title="사용하지 않는 경우">
         <RuleList
           items={[
-            '입력이 길거나 서식 있는 본문을 쓸 때는 편집 화면을 사용합니다. 판에서 길게 스크롤하면 위치를 잃고, 실수로 닫으면 입력이 사라집니다.',
-            '결과를 알리기만 할 때는 토스트를 사용합니다. 누를 일 없는 판은 하던 일을 끊습니다.',
+            '긴 입력이나 서식 있는 본문은 편집 화면에서 씁니다. 판에서는 길게 스크롤하면 위치를 잃고, 실수로 닫으면 입력이 사라집니다.',
+            '결과만 알릴 때는 토스트를 씁니다. 누를 일 없는 판은 하던 일을 끊습니다.',
           ]}
         />
       </DocSection>
@@ -257,13 +259,13 @@ export function DialogSection() {
       <DocSection title="작동 방식">
         <RuleList
           items={[
-            '제목은 판이 그리고, 내용에 자체 제목이 있는 판(교과목·예약 상세, 팀 소개)만 판 제목을 숨깁니다. 제목이 두 번 보이지 않게 하기 위해서입니다.',
+            '제목은 판이 그립니다. 내용에 제목이 있는 판(교과목·예약 상세, 팀 소개)만 판 제목을 숨겨 제목이 두 번 보이지 않게 합니다.',
           ]}
         />
       </DocSection>
 
       <DocSection title="확인창">
-        <Example caption="실행 버튼에는 실행할 작업을 적습니다(삭제·해제·나가기). 문장은 문구 페이지를 따릅니다. 버튼을 누르면 실제 확인창이 뜹니다.">
+        <Example caption="실행 버튼에는 할 작업을 적습니다(삭제·해제·나가기). 문장은 문구 페이지를 따르고, 버튼을 누르면 실제 확인창이 뜹니다.">
           <Stage>
             <Panel width="max-w-[400px]" close={false}>
               <p className="type-body text-neutral-950">
@@ -279,7 +281,7 @@ export function DialogSection() {
       </DocSection>
 
       <DocSection title="이미지 팝업">
-        <Example caption="메인의 포스터 공지. 포스터 색이 매번 다르므로 버튼은 회색을 사용하고, 다시 보지 않기는 판 밖에 배치합니다.">
+        <Example caption="메인의 포스터 공지. 포스터 색이 매번 달라 버튼은 회색이고, 다시 보지 않기는 판 밖에 둡니다.">
           <ImageSample />
         </Example>
       </DocSection>
@@ -299,7 +301,7 @@ export function DialogSection() {
                 </div>
               </SampleFormProvider>
             ),
-            caption: '모든 모달의 제목을 판이 같은 자리·같은 크기로 그립니다.',
+            caption: '모든 모달의 제목을 판이 같은 자리·크기로 그립니다.',
           }}
           bad={{
             example: (
@@ -323,7 +325,7 @@ export function DialogSection() {
               </SampleFormProvider>
             ),
             caption:
-              '예전에는 모달마다 내용 안에서 제목을 직접 그려 색·간격이 제각각이었습니다.',
+              '예전에는 모달마다 제목을 직접 그려 색·간격이 제각각이었습니다.',
           }}
         />
         <DoDont
@@ -345,7 +347,7 @@ export function DialogSection() {
               <LegacyAlertPanel description="게시물을 삭제하시겠습니까?" />
             ),
             caption:
-              '예전 확인창은 저장·삭제·이탈을 모두 "확인"으로 받아, 무엇이 실행되는지 버튼만 보고 알 수 없었습니다.',
+              '예전 확인창은 저장·삭제·이탈을 모두 "확인"으로 받아 버튼만 보고는 무엇이 실행되는지 몰랐습니다.',
           }}
         />
       </DocSection>

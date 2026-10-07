@@ -55,8 +55,11 @@ function SubNavItem({
 }) {
   const { pathname } = useLocation();
   const localizedItemPath = item.path ? toPath(item.path) : undefined;
+  // 경로 조각 경계에서만 앞부분이 같다고 본다(/changes 가 /changes-components 를 현재로 잡지 않게).
   const isCurrent =
-    localizedItemPath !== undefined && pathname.startsWith(localizedItemPath);
+    localizedItemPath !== undefined &&
+    (pathname === localizedItemPath ||
+      pathname.startsWith(`${localizedItemPath.replace(/\/$/, '')}/`));
   const marginLeft = marginLeftMap[item.depth || 0];
 
   return (

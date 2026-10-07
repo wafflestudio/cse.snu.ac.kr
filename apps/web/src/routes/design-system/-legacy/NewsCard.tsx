@@ -9,6 +9,7 @@ interface LegacyMainNews {
   title: string;
   date: string;
   description: string;
+  imageURL: string | null;
 }
 
 export function LegacyNewsCard({ news }: { news: LegacyMainNews }) {
@@ -20,7 +21,7 @@ export function LegacyNewsCard({ news }: { news: LegacyMainNews }) {
     >
       <div className="relative h-25 w-full">
         <Image
-          src={null}
+          src={news.imageURL}
           alt=""
           sizes="240px"
           className="absolute inset-0 h-full w-full object-cover"

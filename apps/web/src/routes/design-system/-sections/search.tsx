@@ -46,7 +46,7 @@ function UnderlineSearch() {
 export function SearchSection() {
   return (
     <>
-      <Lead>검색 칸은 배치되는 면에 맞는 모양을 선택해 사용합니다.</Lead>
+      <Lead>검색 칸은 놓이는 면에 맞는 모양을 고릅니다.</Lead>
 
       <DocSection title="예시">
         <Example caption="검색 상자(공지 등)는 이름을 칸 위에 표시합니다.">
@@ -54,14 +54,14 @@ export function SearchSection() {
             <SearchInput label="검색" ariaLabel="검색" />
           </SampleForm>
         </Example>
-        <Example caption="세미나처럼 태그 없이 검색만 있는 경우 이름 없이 자리표시로 안내합니다.">
+        <Example caption="태그 없이 검색만 있으면(세미나) 이름 없이 자리표시로 안내합니다.">
           <SampleForm>
             <SearchInput ariaLabel="검색" placeholder="검색어" />
           </SampleForm>
         </Example>
         <Example
           tone="dark"
-          caption="헤더는 어두운 막대 위에 있으므로 어두운 면 칸을 사용합니다."
+          caption="헤더는 어두운 막대 위라 어두운 면 칸을 씁니다."
         >
           <SampleForm>
             <SearchInput tone="dark" ariaLabel="통합검색" />
@@ -72,12 +72,12 @@ export function SearchSection() {
       <DocSection title="작동 방식">
         <RuleList
           items={[
-            '검색 상자 안의 태그 선택은 체크박스, 선택한 태그 줄은 지우기 태그를 그대로 씁니다. 검색용 모양을 따로 만들면 같은 일이 두 모양이 됩니다.',
+            '검색 상자의 태그 선택은 체크박스, 고른 태그 줄은 지우기 태그를 그대로 씁니다. 따로 만들면 같은 일이 두 모양이 됩니다.',
           ]}
         />
         <KnownGap>
-          모바일 메뉴의 전체 화면 검색만 밑줄 칸입니다. 채움 칸을 넣어 보니
-          메뉴와 너무 달라 그대로 두었습니다.
+          모바일 메뉴의 전체 화면 검색만 밑줄 칸입니다. 채움 칸은 메뉴와 너무
+          달라 그대로 두었습니다.
         </KnownGap>
         <Example tone="dark">
           <UnderlineSearch />
@@ -97,7 +97,7 @@ export function SearchSection() {
           bad={{
             example: <LegacySeminarSearchBar />,
             caption:
-              '예전 세미나 검색은 회색 채움 칸이라 공지·새 소식의 흰 검색 칸과 모양이 달랐습니다.',
+              '예전 세미나 검색은 회색 채움 칸이라 공지·새 소식의 흰 칸과 달랐습니다.',
           }}
         />
       </DocSection>

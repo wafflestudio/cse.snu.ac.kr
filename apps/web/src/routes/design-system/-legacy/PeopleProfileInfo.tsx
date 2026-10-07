@@ -5,8 +5,7 @@ import { stay } from '../-components/sample';
 
 // d1baf83c 의 apps/web/src/routes/$locale/people/-components/PeopleProfileInfo.tsx(와 PeopleProfileImage.tsx)를
 // 옮긴 사본. DS 문서 전용(앱 코드에서 가져오지 않는다). 교수 상세 왼쪽의 사진과 연락처.
-// 링크는 이동하지 않는 <a href="#"> 로 바꿨고, 바깥 float 은 견본 칸에 맞춰 뺐다. 견본은 사진 없이 그리므로
-// 로고 자리에 사진 틀 크기(200×264, 예전 width·height 값)를 줬다.
+// 링크는 이동하지 않는 <a href="#"> 로 바꿨고, 바깥 float 은 견본 칸에 맞춰 뺐다. 사진 틀 크기(200×264)는 예전 width·height 값.
 // 예전 링크 색 --color-link 는 #3c7be4 였다(지금 토큰은 #2867cf). 밑줄은 호버 때만.
 
 interface LegacyProfileInfoItem {

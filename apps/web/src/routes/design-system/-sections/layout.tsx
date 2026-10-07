@@ -15,6 +15,7 @@ import {
   RuleList,
   SpecTable,
 } from '../-components/doc';
+import { SAMPLE_IMAGE } from '../-components/sample';
 import { LegacyResearchGroupHead } from '../-legacy/ResearchGroups';
 import { LegacySelectionList } from '../-legacy/SelectionList';
 
@@ -386,7 +387,13 @@ function BasicPage({ d }: { d: Device }) {
           className="flex gap-8"
           style={{ paddingLeft: g.x, width: g.x + areaW }}
         >
-          <div className="h-44 w-32 shrink-0 bg-neutral-200" />
+          <img
+            src={SAMPLE_IMAGE.silhouette}
+            alt="학부장"
+            width={128}
+            height={176}
+            className="h-44 w-32 shrink-0 object-cover"
+          />
           <p className="type-body text-neutral-800">
             컴퓨터공학부 홈페이지를 찾아 주셔서 감사합니다. 학부는 교육과 연구로
             우리 사회의 내일을 준비합니다. 학생과 교수, 직원이 함께 만드는
@@ -593,8 +600,8 @@ export function LayoutSection() {
   return (
     <>
       <Lead>
-        화면 폭에 따라 틀이 두 번 변경되고, 그 안의 본문은 PageLayout 하나로
-        구성합니다.
+        틀은 화면 폭에 따라 두 번 바뀌고, 그 안의 본문은 PageLayout 하나로
+        짭니다.
       </Lead>
 
       <DocSection title="폭에 따라">
@@ -604,9 +611,9 @@ export function LayoutSection() {
       <DocSection title="폭에 따른 원칙">
         <RuleList
           items={[
-            '긴 문단과 HTML 본문은 읽기 폭 640(14px 약 62자)에서 멈춥니다. 줄이 길면 다음 줄 첫머리를 찾기 어렵습니다.',
+            '긴 문단과 HTML 본문은 읽기 폭 640(14px 약 62자)에서 멈춥니다. 줄이 길면 다음 줄 첫머리를 놓칩니다.',
             '표·카드 격자·달력·폼은 본문 영역 전체를 씁니다. 칸이 많은 것을 좁히면 줄바꿈만 늘어납니다.',
-            '모양은 1024(데스크톱 틀)와 1280(서브내비)에서만 바꿉니다. 바뀌는 폭이 늘면 확인할 화면도 늘어납니다.',
+            '모양은 1024(데스크톱 틀)와 1280(서브내비)에서만 바꿉니다. 바뀌는 폭마다 확인할 화면이 늘어납니다.',
             '공개 화면은 320부터, 편집·관리 화면은 1200부터 지원합니다. 편집은 행정실이 데스크톱에서만 합니다.',
           ]}
         />
@@ -622,8 +629,8 @@ export function LayoutSection() {
         </p>
         <RuleList
           items={[
-            '본문이 한 덩어리면 기본 틀, 성격이 다른 내용이 이어지면 흰·회색 띠로 나눈 띠 틀입니다(학부 소개·연구 스트림). 띠 색이 바뀌는 곳에서 내용의 성격도 바뀝니다.',
-            '위아래 여백은 틀이 주므로 화면에서 더하지 않습니다. 더하면 화면마다 첫 줄 위치가 달라집니다.',
+            '본문이 한 덩어리면 기본 틀, 성격이 다른 내용이 이어지면 띠 틀(학부 소개·연구 스트림)입니다. 띠 색이 바뀌는 곳에서 내용도 바뀝니다.',
+            '위아래 여백은 틀이 줍니다. 화면에서 더하면 첫 줄 위치가 화면마다 달라집니다.',
             '선택 탭 위에 관리 버튼이 있으면 버튼 아래를 32로 둡니다.',
           ]}
         />
@@ -634,12 +641,12 @@ export function LayoutSection() {
           good={{
             example: <SelTitle />,
             caption:
-              '관리 버튼은 고치는 대상의 제목 옆에 두고, 자리가 모자라면 다음 줄 오른쪽으로 내립니다.',
+              '관리 버튼은 고칠 대상의 제목 옆에, 자리가 모자라면 다음 줄 오른쪽에 둡니다.',
           }}
           bad={{
             example: <LegacyResearchGroupHead title="시스템 스트림" />,
             caption:
-              '예전 연구 스트림·연구 센터는 제목 위에 버튼 줄이 따로 있어, 무엇을 고치는 버튼인지 떨어져 보였습니다.',
+              '예전 연구 스트림·연구 센터는 버튼 줄이 제목 위에 따로 있어 무엇을 고치는지 몰랐습니다.',
           }}
         />
         <DoDont
@@ -650,7 +657,7 @@ export function LayoutSection() {
           bad={{
             example: <TopGap legacy />,
             caption:
-              '예전 관리자·찾아오는 길은 선택 탭이 자기 위 여백을 더해 틀 여백과 겹쳤습니다.',
+              '예전 관리자·찾아오는 길은 선택 탭이 여백을 더해 틀 여백과 겹쳤습니다.',
           }}
         />
       </DocSection>

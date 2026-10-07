@@ -98,8 +98,8 @@ export function NavigationSection() {
           </Phone>
         </div>
         <p className="type-meta text-neutral-500">
-          경로: 항목 안에서는 줄을 바꾸지 않고 항목 단위로 넘어갑니다. 곡선
-          그래픽은 마지막 항목 뒤의 남은 자리를 채웁니다.
+          경로: 줄은 항목 단위로 바뀌고, 곡선 그래픽이 마지막 항목 뒤 남은
+          자리를 채웁니다.
         </p>
         <figure>
           <div className="flex h-32 w-full max-w-80">
@@ -115,7 +115,7 @@ export function NavigationSection() {
             <div className="flex-1 bg-neutral-900" />
           </div>
           <figcaption className="mt-2 type-meta text-neutral-500">
-            왼쪽 내비의 막대와 펼침 패널. 모바일 메뉴도 같은 색이고, 색 페이지의
+            왼쪽 내비의 막대와 펼침 패널. 모바일 메뉴도 같은 색이며 색 페이지의
             알려진 예외입니다.
           </figcaption>
         </figure>
@@ -124,8 +124,8 @@ export function NavigationSection() {
       <DocSection title="작동 방식">
         <RuleList
           items={[
-            '형제 페이지가 있는 읽기 화면에는 본문 오른쪽에 서브내비를 둡니다. 같은 메뉴의 다른 페이지로 바로 갈 수 있습니다.',
-            '편집·작성 화면에는 서브내비를 두지 않습니다. 누르면 작성 중인 글을 벗어납니다.',
+            '형제 페이지가 있는 읽기 화면은 본문 오른쪽에 서브내비를 두어 같은 메뉴의 다른 페이지로 바로 가게 합니다.',
+            '편집·작성 화면에는 서브내비를 두지 않습니다. 누르면 쓰던 글을 벗어납니다.',
           ]}
         />
       </DocSection>
@@ -135,12 +135,12 @@ export function NavigationSection() {
           good={{
             example: <Screen subnav={false} />,
             caption:
-              '작성 화면에는 서브내비가 없어 작성 중에 벗어나지 않습니다.',
+              '작성 화면에는 서브내비가 없어 쓰는 중에 벗어나지 않습니다.',
           }}
           bad={{
             example: <Screen subnav />,
             caption:
-              '예전 전공 이수 추가 화면에만 서브내비가 있어, 형제 작성 화면끼리 틀이 달랐고 누르면 작성 중인 글을 벗어났습니다.',
+              '예전 전공 이수 추가 화면에만 서브내비가 있어 형제 작성 화면과 틀이 달랐고, 누르면 쓰던 글을 벗어났습니다.',
           }}
         />
       </DocSection>

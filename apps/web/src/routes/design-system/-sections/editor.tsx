@@ -22,10 +22,10 @@ function SampleEditor() {
 export function EditorSection() {
   return (
     <>
-      <Lead>에디터는 게시물 본문을 작성하는 입력 칸입니다.</Lead>
+      <Lead>에디터는 게시물 본문을 쓰는 입력 칸입니다.</Lead>
 
       <DocSection title="예시">
-        <Example caption="작성 중인 본문은 게시된 글과 같은 모양으로 보입니다(읽는 본문).">
+        <Example caption="쓰는 중인 본문은 게시된 글과 같은 모양입니다.">
           <SampleEditor />
         </Example>
       </DocSection>
@@ -33,7 +33,7 @@ export function EditorSection() {
       <DocSection title="사용하는 경우">
         <RuleList
           items={[
-            '서식(제목·목록·링크·표·이미지)이 필요한 본문을 쓸 때 사용합니다(공지·새 소식·세미나 본문, 소개 글).',
+            '서식(제목·목록·링크·표·이미지)이 필요한 본문(공지·새 소식·세미나, 소개 글)에 씁니다.',
           ]}
         />
       </DocSection>
@@ -41,7 +41,7 @@ export function EditorSection() {
       <DocSection title="사용하지 않는 경우">
         <RuleList
           items={[
-            '한 줄 값이나 서식 없는 짧은 설명은 글자·긴 글 칸(입력·폼)을 사용합니다. 에디터는 툴바만큼 무겁고, 서식이 섞이면 목록·카드에서 모양이 어긋납니다.',
+            '한 줄 값이나 서식 없는 짧은 설명은 글자·긴 글 칸을 씁니다. 에디터는 툴바만큼 무겁고, 서식이 섞이면 목록·카드에서 모양이 어긋납니다.',
           ]}
         />
       </DocSection>

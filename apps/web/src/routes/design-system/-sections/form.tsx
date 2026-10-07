@@ -132,7 +132,7 @@ const WIDTHS = [
 export function FormSection() {
   return (
     <>
-      <Lead>입력 칸은 값을 입력하거나 선택하는 요소입니다.</Lead>
+      <Lead>입력 칸은 저장할 값을 넣거나 고르는 자리입니다.</Lead>
 
       <DocSection title="예시">
         <Example>
@@ -185,7 +185,7 @@ export function FormSection() {
                     <Form.Text name="md" placeholder="이름" />
                   </div>
                 ),
-                use: '한 줄 값. 폭은 아래 네 단계 중에서 선택합니다.',
+                use: '한 줄 값. 폭은 아래 네 단계에서 고릅니다.',
               },
               {
                 name: '긴 글',
@@ -194,7 +194,7 @@ export function FormSection() {
                     <Form.TextArea name="note" rows={2} />
                   </div>
                 ),
-                use: '여러 줄의 짧은 설명. 서식이 있는 본문에는 에디터를 사용합니다.',
+                use: '여러 줄의 짧은 설명. 서식 있는 본문은 에디터.',
               },
               {
                 name: '드롭다운',
@@ -209,12 +209,12 @@ export function FormSection() {
               {
                 name: '체크박스',
                 sample: <Form.Checkbox name="tags" value="학부" />,
-                use: '여러 항목을 선택하거나 해제합니다(분류·태그 선택).',
+                use: '여러 항목 고르기(분류·태그).',
               },
               {
                 name: '라디오',
                 sample: <Form.Radio name="radio" value="ko" label="한국어" />,
-                use: '폼 안에서 몇 개뿐인 항목 중 하나를 고릅니다(언어·교수 구분). 모두 보여 비교하기 쉽습니다.',
+                use: '폼 안의 몇 개뿐인 항목 중 하나(언어·교수 구분). 모두 보여 비교하기 쉽습니다.',
               },
               {
                 name: '첨부',
@@ -229,14 +229,14 @@ export function FormSection() {
       <DocSection title="사용하지 않는 경우">
         <RuleList
           items={[
-            '저장할 값이 아니라 보기를 바꿀 때(목록 거르기·정렬, 예약 화면의 날짜 넘기기)는 알약(선택·태그)이나 버튼을 사용합니다.',
-            '검색어는 검색 칸(검색 입력), 서식이 있는 본문은 에디터를 사용합니다. 각각 실행 버튼과 서식이 함께 있어야 합니다.',
+            '보기를 바꿀 때(목록 거르기·정렬, 예약 날짜 넘기기)는 알약이나 버튼을 씁니다. 저장할 값이 아니기 때문입니다.',
+            '검색어는 검색 칸, 서식 있는 본문은 에디터를 씁니다. 각각 실행 버튼과 서식이 함께 있어야 합니다.',
           ]}
         />
       </DocSection>
 
       <DocSection title="폭">
-        <Example caption="글자 칸의 폭은 들어갈 값의 길이에 맞춰 고릅니다. 칸 폭이 얼마나 적을지 알려 줍니다. 좁은 화면에서는 어떤 폭도 영역을 넘지 않습니다.">
+        <Example caption="글자 칸 폭은 값의 길이에 맞춰 골라 얼마나 적을지 알립니다. 좁은 화면에서는 어떤 폭도 영역을 넘지 않습니다.">
           <SampleForm>
             <div className="space-y-4">
               {WIDTHS.map(([size, name, use]) => (
@@ -257,7 +257,7 @@ export function FormSection() {
       </DocSection>
 
       <DocSection title="배치">
-        <Example caption="짝을 이루는 짧은 값(전화·팩스)만 한 줄에 둘까지 나란히 둡니다. 짧은 값은 두 칸 모두 보통 폭까지, 긴 값은 줄을 반씩 나눕니다. 모바일에서는 세로로 쌓입니다.">
+        <Example caption="짝을 이루는 값(전화·팩스)만 한 줄에 둘까지 둡니다. 짧은 값은 보통 폭까지, 긴 값은 줄을 반씩 나누고, 모바일에서는 세로로 쌓입니다.">
           <SampleForm>
             <Form.Row>
               <Fieldset title="전화">
@@ -272,7 +272,7 @@ export function FormSection() {
       </DocSection>
 
       <DocSection title="오류">
-        <Example caption="오류 문장은 그 필드 바로 아래에, 버튼 줄 옆에는 개수만 표시합니다. 긴 폼에서 위쪽 오류를 놓치지 않게 하기 위해서입니다.">
+        <Example caption="오류 문장은 필드 바로 아래에, 버튼 줄 옆에는 개수만 둡니다. 긴 폼에서 위쪽 오류를 놓치지 않게 합니다.">
           <InvalidSample />
         </Example>
       </DocSection>
@@ -286,7 +286,7 @@ export function FormSection() {
           bad={{
             example: <ErrorDont />,
             caption:
-              '예전 폼은 오류를 버튼 줄 옆에만 모아 보여 줘, 긴 폼에서는 어느 칸을 고칠지 찾아야 했습니다.',
+              '예전 폼은 오류를 버튼 줄 옆에만 모아, 긴 폼에서 고칠 칸을 찾아야 했습니다.',
           }}
         />
       </DocSection>

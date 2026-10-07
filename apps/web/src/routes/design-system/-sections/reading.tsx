@@ -7,7 +7,7 @@ import {
   Lead,
   RuleList,
 } from '../-components/doc';
-import { stay } from '../-components/sample';
+import { SAMPLE_IMAGE, stay } from '../-components/sample';
 
 // 견본 글을 실제 본문 뷰어로 그린다. 제목·문단·인용·표의 값은 components/ui/assets/suneditor-contents.override.css 가 정한다.
 
@@ -29,17 +29,17 @@ const IMAGE_TEXT = [
   '문의는 컴퓨터공학부 행정실로 해 주세요. 학부 과정 관련 문의는 학부 사무실, 장학 관련 문의는 장학 담당자에게 따로 해 주세요.',
 ];
 
-// 대표 이미지 자리. 실제는 HTMLViewer 의 image 다. 데스크톱은 오른쪽에 띄우고(왼쪽 32) 모바일은 위에 폭 가득.
+// 대표 이미지. 실제는 HTMLViewer 의 image 다(폭 고정, 높이는 사진 비율). 데스크톱은 오른쪽에 띄우고(왼쪽 32)
+// 모바일은 위에 폭 가득.
 function ImageSlot({ className }: { className: string }) {
   return (
-    <div
-      className={clsx(
-        'mb-8 flex items-center justify-center bg-neutral-200 type-meta text-neutral-500',
-        className,
-      )}
-    >
-      대표 이미지
-    </div>
+    <img
+      src={SAMPLE_IMAGE.news}
+      alt="대표 이미지"
+      width={640}
+      height={400}
+      className={clsx('mb-8 h-auto object-contain', className)}
+    />
   );
 }
 
@@ -48,9 +48,7 @@ function ImageLayout({ mobile }: { mobile: boolean }) {
     <div
       className={clsx('flow-root bg-neutral-50 p-6', !mobile && 'max-w-3xl')}
     >
-      <ImageSlot
-        className={mobile ? 'h-40 w-full' : 'float-right ml-8 h-28 w-60'}
-      />
+      <ImageSlot className={mobile ? 'w-full' : 'float-right ml-8 w-60'} />
       <div className="space-y-4">
         {IMAGE_TEXT.map((text) => (
           <p key={text} className="max-w-160 type-body">
@@ -66,11 +64,11 @@ export function ReadingSection() {
   return (
     <>
       <Lead>
-        작성자가 에디터로 작성한 글은 <code>HTMLViewer</code> 하나로 표시합니다.
+        에디터로 쓴 글은 <code>HTMLViewer</code> 하나로 보여 줍니다.
       </Lead>
 
       <DocSection title="구성">
-        <Example caption="문단·목록·제목·인용은 읽기 폭 640에서 멈추고, 표·이미지는 본문 폭을 사용합니다. 넓은 표는 표 안에서 가로로 스크롤합니다. 에디터도 같은 값을 사용하므로 작성 화면과 보기 화면이 같습니다.">
+        <Example caption="문단·목록·제목·인용은 읽기 폭 640에서 멈추고, 표·이미지는 본문 폭을 씁니다. 넓은 표는 표 안에서 가로로 밉니다. 에디터도 같은 값이라 작성 화면과 보기 화면이 같습니다.">
           {/* 본문 링크는 진짜 <a> 라 호버·초점이 그대로지만, 눌러도 이동하지 않게 여기서 막는다. */}
           <div
             className="w-full max-w-2xl bg-neutral-50 p-6"
@@ -83,7 +81,7 @@ export function ReadingSection() {
 
       <DocSection title="대표 이미지">
         <DeviceToggle
-          caption="데스크톱은 본문 오른쪽에 띄우고 글이 왼쪽과 아래로 흐릅니다(그림은 폭 240). 모바일은 본문 위에 폭 가득."
+          caption="데스크톱은 본문 오른쪽에 띄워 글이 왼쪽과 아래로 흐르고(그림 폭 240), 모바일은 본문 위에 폭 가득."
           desktop={<ImageLayout mobile={false} />}
           mobile={<ImageLayout mobile />}
         />
@@ -92,8 +90,8 @@ export function ReadingSection() {
       <DocSection title="작동 방식">
         <RuleList
           items={[
-            '작성자가 직접 지정한 글자 크기·색·표 서식은 바꾸지 않습니다. 본문은 작성자가 에디터에서 본 모습 그대로 보여야 합니다.',
-            '대표 이미지 폭은 이미지의 쓰임에 맞춰 200·240·320 중에서 고릅니다(세미나 240).',
+            '작성자가 정한 글자 크기·색·표 서식은 바꾸지 않습니다. 본문은 에디터에서 본 모습 그대로여야 합니다.',
+            '대표 이미지 폭은 쓰임에 맞춰 200·240·320 중에서 고릅니다(세미나 240).',
           ]}
         />
       </DocSection>

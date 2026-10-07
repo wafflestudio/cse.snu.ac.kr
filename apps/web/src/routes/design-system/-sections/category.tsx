@@ -223,12 +223,12 @@ export function CategorySection() {
     <>
       <Lead>
         카테고리 페이지는 최상위 메뉴(소개·구성원·연구 등)의 하위 페이지를
-        카드로 펼쳐 보여 줍니다.
+        카드로 보여 줍니다.
       </Lead>
 
       <DocSection title="머리">
         <DeviceToggle
-          caption="영어 부제 위에 큰 제목. 설명 문구는 데스크톱에서 제목 아래, 모바일에서 카드 아래에 놓입니다."
+          caption="영어 부제 아래 큰 제목. 설명 문구는 데스크톱은 제목 아래, 모바일은 카드 아래입니다."
           desktop={<HeadLayout mobile={false} />}
           mobile={<HeadLayout mobile />}
         />
@@ -256,7 +256,7 @@ export function CategorySection() {
           </CardState>
         </Example>
         <DeviceToggle
-          caption="데스크톱은 폭 300 카드가 줄을 채우고, 모바일은 두 칸이 폭을 똑같이 나눕니다. 띄어쓰기 없는 긴 제목은 “(” 앞에서 줄을 바꿉니다."
+          caption="데스크톱은 폭 300 카드가 줄을 채우고, 모바일은 두 칸이 폭을 나눕니다. 띄어쓰기 없는 긴 제목은 “(” 앞에서 줄을 바꿉니다."
           desktop={<CardsLayout mobile={false} />}
           mobile={<CardsLayout mobile />}
         />
@@ -265,8 +265,8 @@ export function CategorySection() {
       <DocSection title="작동 방식">
         <RuleList
           items={[
-            '카드 오른쪽 아래 기호가 누르면 일어날 일을 알립니다(이동 →, 펼치기 ⌄, 펼침 ⌃). 기호가 없으면 누를 수 있는 카드인지 알 수 없습니다.',
-            '가장 큰 제목은 카테고리 머리에만 씁니다. 메뉴의 맨 위라는 표시라 다른 화면에서 쓰면 위계가 흐려집니다.',
+            '카드 오른쪽 아래 기호가 누르면 일어날 일을 알립니다(이동 →, 펼치기 ⌄, 펼침 ⌃). 기호가 없으면 누를 수 있는지 모릅니다.',
+            '가장 큰 제목은 메뉴의 맨 위라는 표시라 카테고리 머리에만 씁니다. 다른 화면에 쓰면 위계가 흐려집니다.',
           ]}
         />
       </DocSection>
@@ -276,14 +276,14 @@ export function CategorySection() {
           good={{
             example: <MiniGrid items={EXPAND_ITEMS} initialSelected="학부" />,
             caption:
-              '펼친 카드는 짙은 주황이고 호버는 한 단계 짙은 회색이라 한눈에 구분됩니다.',
+              '펼친 카드는 짙은 주황, 호버는 한 단계 짙은 회색이라 바로 구분됩니다.',
           }}
           bad={{
             example: (
               <LegacyCategoryGrid items={EXPAND_ITEMS} initialSelected="학부" />
             ),
             caption:
-              '예전에는 펼친 카드와 호버가 같은 짙은 주황이라 무엇을 펼쳤는지 알 수 없었습니다.',
+              '예전에는 펼친 카드와 호버가 같은 짙은 주황이라 무엇을 펼쳤는지 몰랐습니다.',
           }}
         />
         <DoDont
@@ -294,7 +294,7 @@ export function CategorySection() {
           bad={{
             example: <LegacyCategoryGrid items={MARK_ITEMS} />,
             caption:
-              '예전 입학·학사의 펼치는 카드에는 기호가 없어 누를 수 있는 카드인지 알 수 없었습니다.',
+              '예전 입학·학사의 펼치는 카드에는 기호가 없어 누를 수 있는지 몰랐습니다.',
           }}
         />
       </DocSection>

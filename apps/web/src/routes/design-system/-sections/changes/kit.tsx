@@ -1,26 +1,26 @@
 import { Link } from '@tanstack/react-router';
-import clsx from 'clsx';
 import { ArrowRight } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { Lead, RuleList } from '../../-components/doc';
+import { Compare, type Shot, type Side } from './compare';
 
 // v2 개선 기록 네 페이지(기반·컴포넌트·패턴·공통)가 함께 쓰는 틀.
 // 한 화면이 눈에 띄게 바뀐 것은 전후(캡처·견본), 여러 화면에 흩어진 값을 하나로 모은 것은 "예전 값 → 지금 값" 표.
 // 캡처는 .ds-review 에서 잘라 public/design-system/changes 에 둔다. 견본·표의 예전 값은 base 커밋(d1baf83c) 코드에서 옮겼다.
 
 // [자리, 예전 값, 지금 값]
-export type ValueRow = [place: string, before: string, now: string];
+type ValueRow = [place: string, before: string, now: string];
 
-export type Item = {
+type Item = {
   title: string;
   why: string;
   pairs?: Pair[]; // 여러 벌이 하나로 모인 변화: 변형마다 전·후를 한 줄씩
   values?: ValueRow[];
   more?: string; // 표 아래 "그 밖에 N곳" 같은 한 줄
   same?: string[]; // 전후 견본과 똑같이 바뀐 다른 자리(견본 아래 한 줄)
-  before?: ReactNode;
-  after?: ReactNode;
-  wide?: boolean; // 넓은 캡처는 전·후를 위아래로 쌓는다
+  before?: Side;
+  after?: Side;
+  full?: boolean; // 본문 폭이 있어야 차이가 보이는 견본(입력 칸 폭 등): 나란히 없이 한 쪽씩
 };
 
 export type Area = {
@@ -33,37 +33,15 @@ export type Area = {
 
 // ── 캡처 ──────────────────────────────────────────────────────────
 
-function Shot({
-  name,
-  side,
+const shot = (file: string, w: number, h: number, alt: string): Shot => ({
+  kind: 'shot',
+  src: `/design-system/changes/${file}.webp`,
   w,
   h,
   alt,
-}: {
-  name: string;
-  side: 'before' | 'after';
-  w: number;
-  h: number;
-  alt: string;
-}) {
-  const src = `/design-system/changes/${name}-${side}.webp`;
-  // 좁은 화면에서는 작게 보이므로 누르면 원래 크기로 연다.
-  return (
-    <a href={src} className="block w-full" style={{ maxWidth: w }}>
-      <img
-        src={src}
-        width={w}
-        height={h}
-        alt={alt}
-        loading="lazy"
-        decoding="async"
-        className="block h-auto w-full"
-      />
-    </a>
-  );
-}
+});
 
-// 같은 크기의 전후 캡처 한 쌍.
+// 전후 캡처 한 쌍. 후 쪽 크기가 다르면 after 로 따로 준다.
 export function shots(
   name: string,
   w: number,
@@ -72,21 +50,13 @@ export function shots(
   after?: { w: number; h: number },
 ) {
   return {
-    before: <Shot name={name} side="before" w={w} h={h} alt={alts[0]} />,
-    after: (
-      <Shot
-        name={name}
-        side="after"
-        w={after?.w ?? w}
-        h={after?.h ?? h}
-        alt={alts[1]}
-      />
-    ),
+    before: shot(`${name}-before`, w, h, alts[0]),
+    after: shot(`${name}-after`, after?.w ?? w, after?.h ?? h, alts[1]),
   };
 }
 
-// 여러 벌이 하나로 모인 변화: 한쪽에 변형 여러 개를 이름과 함께 쌓는다. file 은 확장자 뺀 파일 이름.
-export type Pair = { label: string; before: ReactNode; after: ReactNode };
+// 여러 벌이 하나로 모인 변화: 변형마다 전·후를 한 쌍씩. file 은 확장자 뺀 파일 이름.
+export type Pair = { label: string; before: Side; after: Side };
 
 type GalleryShot = {
   file: string;
@@ -96,58 +66,16 @@ type GalleryShot = {
   alt: string;
 };
 
-export function Gallery({ shots: list }: { shots: GalleryShot[] }) {
-  return (
-    <div className="grid w-full gap-6">
-      {list.map((shot) => {
-        const src = `/design-system/changes/${shot.file}.webp`;
-        return (
-          <div key={shot.file} className="min-w-0">
-            <p className="mb-2 type-meta text-neutral-500">{shot.label}</p>
-            <a href={src} className="block w-full" style={{ maxWidth: shot.w }}>
-              <img
-                src={src}
-                width={shot.w}
-                height={shot.h}
-                alt={shot.alt}
-                loading="lazy"
-                decoding="async"
-                className="block h-auto w-full border border-neutral-100"
-              />
-            </a>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-// 캡처 한 장(이름표 없이). 변형마다 전·후를 짝지을 때 쓴다.
-function Still({ shot }: { shot: GalleryShot }) {
-  const src = `/design-system/changes/${shot.file}.webp`;
-  return (
-    <a href={src} className="block w-full" style={{ maxWidth: shot.w }}>
-      <img
-        src={src}
-        width={shot.w}
-        height={shot.h}
-        alt={shot.alt}
-        loading="lazy"
-        decoding="async"
-        className="block h-auto w-full"
-      />
-    </a>
-  );
-}
-
 // 같은 순서의 전·후 캡처 목록을 변형마다 한 쌍으로 묶는다. 이름표는 전 쪽 것을 쓴다.
 export function pairShots(before: GalleryShot[], after: GalleryShot[]) {
   return {
-    pairs: before.map((shot, i) => ({
-      label: shot.label,
-      before: <Still shot={shot} />,
-      after: <Still shot={after[i]} />,
-    })),
+    pairs: before.map(
+      (b, i): Pair => ({
+        label: b.label,
+        before: shot(b.file, b.w, b.h, b.alt),
+        after: shot(after[i].file, after[i].w, after[i].h, after[i].alt),
+      }),
+    ),
   };
 }
 
@@ -181,33 +109,6 @@ function ValueTable({ rows }: { rows: ValueRow[] }) {
 
 // ── 카드 ──────────────────────────────────────────────────────────
 
-function Pane({
-  side,
-  children,
-}: {
-  side: 'before' | 'after';
-  children: ReactNode;
-}) {
-  const after = side === 'after';
-  return (
-    <figure className="flex min-w-0 flex-col">
-      <figcaption
-        className={clsx(
-          'mb-3 border-t-3 pt-2 type-label',
-          after
-            ? 'border-neutral-950 text-neutral-950'
-            : 'border-neutral-300 text-neutral-500',
-        )}
-      >
-        {after ? '후' : '전'}
-      </figcaption>
-      <div className="flex min-h-24 flex-1 flex-wrap items-center justify-center gap-3 overflow-hidden border border-neutral-200 bg-white p-4 sm:p-6">
-        {children}
-      </div>
-    </figure>
-  );
-}
-
 function ChangeItem({ item }: { item: Item }) {
   return (
     <article className="space-y-4">
@@ -216,19 +117,15 @@ function ChangeItem({ item }: { item: Item }) {
         {item.why}
       </p>
       {item.before !== undefined && item.after !== undefined && (
-        <div className={clsx('grid gap-6', !item.wide && 'sm:grid-cols-2')}>
-          <Pane side="before">{item.before}</Pane>
-          <Pane side="after">{item.after}</Pane>
-        </div>
+        <Compare before={item.before} after={item.after} full={item.full} />
       )}
       {item.pairs?.map((pair) => (
-        <div key={pair.label} className="space-y-2">
-          <p className="type-label">{pair.label}</p>
-          <div className="grid gap-6 sm:grid-cols-2">
-            <Pane side="before">{pair.before}</Pane>
-            <Pane side="after">{pair.after}</Pane>
-          </div>
-        </div>
+        <Compare
+          key={pair.label}
+          label={pair.label}
+          before={pair.before}
+          after={pair.after}
+        />
       ))}
       {item.same && (
         <p className="max-w-160 type-meta leading-normal text-neutral-500">
@@ -264,9 +161,6 @@ function AreaBlock({ area }: { area: Area }) {
           <h3 className="type-label">
             {area.items.length > 0 ? '그 밖에' : '바뀐 것'}
           </h3>
-          <p className="type-meta text-neutral-500">
-            코드 정리이거나 차이가 너무 작아 전후 없이 한 줄로 적은 것입니다.
-          </p>
           <RuleList items={area.extras} />
         </div>
       )}
@@ -274,21 +168,24 @@ function AreaBlock({ area }: { area: Area }) {
   );
 }
 
+// note: 리드 아래 한 줄. 싣는 기준은 첫 페이지(기반 개선)에만 적는다.
 export function ChangesPage({
   lead,
+  note,
   areas,
 }: {
   lead: ReactNode;
+  note?: ReactNode;
   areas: Area[];
 }) {
   return (
     <>
       <Lead>{lead}</Lead>
-      <p className="-mt-8 mb-12 max-w-160 type-ui leading-normal text-neutral-700">
-        여러 화면이나 핵심 화면에서 보이는 변화, 접근성·사용성 문제를 고친 것,
-        화면을 만드는 규칙을 바꾼 것, 여러 벌을 하나로 모은 것은 카드로 싣고,
-        코드 정리이거나 차이가 너무 작은 것만 "그 밖에"에 한 줄로 적습니다.
-      </p>
+      {note && (
+        <p className="-mt-8 mb-12 max-w-160 type-ui leading-normal text-neutral-700">
+          {note}
+        </p>
+      )}
       <div className="space-y-16">
         {areas.map((area) => (
           <AreaBlock key={area.id} area={area} />
