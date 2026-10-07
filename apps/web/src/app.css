@@ -27,6 +27,12 @@
     outline-offset: 2px;
   }
 
+  /* 문서 바탕은 흰색. macOS 크롬은 문서 바탕의 밝기로 스크롤 막대 색을 고르므로, 어두운 바탕이 문서
+     바탕이 되면 밝은 막대가 흰 본문 위에서 보이지 않는다. 어두운 바탕은 __root 의 고정 층이 깐다. */
+  html {
+    background-color: var(--color-white);
+  }
+
   html,
   body {
     @apply h-full;

@@ -127,7 +127,10 @@ function RootDocument() {
           href={`${origin}/ko${altPath}`}
         />
       </head>
-      <body className="bg-neutral-900 font-normal text-neutral-950">
+      <body className="font-normal text-neutral-950">
+        {/* 사이트의 어두운 바탕. body 에 칠하면 문서 바탕이 어두워져 스크롤 막대가 흰 본문 위에서 안 보인다(app.css).
+            고정 층이라 화면 어디서나 뒤에 깔리고, 메인 배경 무늬(-z-50)보다 뒤에 둔다. */}
+        <div aria-hidden className="fixed inset-0 -z-60 bg-neutral-900" />
         <LNB />
         <MobileNav />
         <main
