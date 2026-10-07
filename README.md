@@ -35,7 +35,7 @@ OAuth(`id.snucse.org`)로 발급되는 세션 쿠키 `JSESSIONID`를 사용해 �
 | | 주소 | 브랜치 | |
 | --- | --- | --- | --- |
 | production | https://cse.snu.ac.kr | `main` | 학내 호스트. 학외에서 드물게 연결이 끊기면 재시도하면 됩니다. |
-| staging | https://168.107.16.249.nip.io | `develop` | 클라우드. 데이터는 production 과 별개입니다 |
+| staging | https://snucse.yeolyi.com | `develop` | 클라우드. 데이터는 production 과 별개입니다 |
 
 브랜치에 push 되면 자동으로 배포됩니다.
 

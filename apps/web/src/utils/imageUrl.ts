@@ -16,6 +16,8 @@ const QUALITY = 75;
  */
 const imageProxyHosts = (dev: boolean) => [
   'cse.snu.ac.kr',
+  'snucse.yeolyi.com',
+  // 옛 staging 주소. 그때 올린 파일의 주소가 DB 에 남아 있을 수 있다.
   '168.107.16.249.nip.io',
   ...(dev ? ['localhost'] : []),
 ];

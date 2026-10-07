@@ -20,7 +20,7 @@ RUNS="${PERF_RUNS:-3}"
 target="${1:-prod}"
 case "$target" in
   prod) BASE="https://cse.snu.ac.kr" ;;
-  staging) BASE="https://168.107.16.249.nip.io" ;;
+  staging) BASE="https://snucse.yeolyi.com" ;;
   local) PORT="${PERF_PORT:-3000}"; BASE="http://host.docker.internal:$PORT" ;;
   http://* | https://*) BASE="$target"; target="custom" ;;
   *) echo "usage: pnpm perf [prod|staging|local|<url>]" >&2; exit 2 ;;
