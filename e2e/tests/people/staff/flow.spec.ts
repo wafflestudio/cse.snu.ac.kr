@@ -51,12 +51,14 @@ test.describe('행정직원 - 추가/편집/삭제 플로우', () => {
     await expect(page.getByRole('heading', { name: koName })).toBeVisible();
 
     // === en round-trip === (/en 상세에 입력한 en 이름이 노출되는지)
-    await expect(page.getByText('위치: 301동 316호')).toBeVisible();
+    await expect(page.getByText('301동 316호', { exact: true })).toBeVisible();
     await expectEnDetailHeading(page, enName);
     // 위치는 언어별 값이다 — 부모(공유)로 되돌리면 ko 표기가 새어 여기서 깨진다.
     await setLocale(page, 'en');
     await page.goto(new URL(page.url()).pathname.replace(/^\/ko/, '/en'));
-    await expect(page.getByText('Office: Bldg 301, Rm 316')).toBeVisible();
+    await expect(
+      page.getByText('Bldg 301, Rm 316', { exact: true }),
+    ).toBeVisible();
     await setLocale(page, 'ko');
     await page.goto(new URL(page.url()).pathname.replace(/^\/en/, '/ko'));
 
@@ -76,7 +78,7 @@ test.describe('행정직원 - 추가/편집/삭제 플로우', () => {
     await page.waitForURL(/\/people\/staff\/\d+\/edit/);
     await deleteItem(
       page,
-      '확인',
+      '삭제',
       page.getByRole('button', { name: '삭제' }).last(),
     );
     await expect(page.getByText('행정직원을 삭제했습니다.')).toBeVisible();

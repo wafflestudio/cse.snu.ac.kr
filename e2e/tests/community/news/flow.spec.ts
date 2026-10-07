@@ -107,10 +107,9 @@ test.describe('새 소식 - 대표 이미지', () => {
     await fillTextInput(page, 'title', title);
     await fillHTMLEditor(page, '<p>이미지 본문</p>');
 
-    // 대표 이미지 업로드(Form.Image '이미지 업로드' label 내부 input)
+    // 대표 이미지 업로드('대표 이미지' 그룹 안의 숨긴 input. 보이는 것은 '이미지 업로드' 버튼)
     await page
-      .locator('label')
-      .filter({ hasText: '이미지 업로드' })
+      .getByRole('group', { name: '대표 이미지' })
       .locator('input[type="file"]')
       .setInputFiles({
         name: 'rep.png',

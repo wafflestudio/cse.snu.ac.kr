@@ -55,7 +55,7 @@ test.describe('명예교수 - 추가/편집/삭제 플로우', () => {
     await page.waitForURL(/\/people\/emeritus-faculty\/\d+\/edit/);
     await deleteItem(
       page,
-      '확인',
+      '삭제',
       page.getByRole('button', { name: '삭제' }).last(),
     );
     await expect(page.getByText('역대 교수진을 삭제했습니다.')).toBeVisible();

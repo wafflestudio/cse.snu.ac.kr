@@ -11,7 +11,9 @@ test.describe('404 - 읽기', () => {
     // 200)를 못 잡는다 — 상태 코드 층 전반은 tests/security.spec.ts가 담당한다.
     expect(response?.status()).toBe(404);
 
-    await expect(page.getByText('존재하지 않는 경로입니다')).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: '페이지를 찾을 수 없습니다' }),
+    ).toBeVisible();
     await expect(page).toHaveScreenshot('404-ko.png', { fullPage: true });
   });
 });

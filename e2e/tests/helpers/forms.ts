@@ -61,14 +61,14 @@ export async function submitForm(page: Page, buttonName = '저장') {
 
 /**
  * 삭제 버튼 클릭 후 AlertDialog 확인까지 처리.
- * 확인 버튼 라벨은 컴포넌트마다 다르다(Form.Action='확인', ClubDetails='삭제').
+ * 확인창의 버튼은 하는 일을 적으므로 기본은 '삭제'다(AlertDialog 의 confirmText).
  * 기본 트리거는 첫 '삭제' 버튼. 한 화면에 '삭제'가 여럿이면(예: 교수 편집 폼의 학력별 삭제 +
  * Form.Action 삭제) `trigger`로 명시(예: Form.Action 삭제 = `.last()`).
  * 확인 버튼은 항상 마지막('삭제' 트리거와 겹치지 않도록 last).
  */
 export async function deleteItem(
   page: Page,
-  confirmText = '확인',
+  confirmText = '삭제',
   trigger?: Locator,
 ) {
   await (trigger ?? page.getByRole('button', { name: '삭제' }).first()).click();

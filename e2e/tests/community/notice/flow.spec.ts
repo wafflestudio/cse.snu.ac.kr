@@ -377,10 +377,9 @@ test.describe('공지사항 - 첨부파일', () => {
     await fillTextInput(page, 'title', title);
     await fillHTMLEditor(page, '<p>첨부 본문</p>');
 
-    // 첨부파일 업로드 ('파일 선택' label 내부의 input)
+    // 첨부파일 업로드('첨부파일' 그룹 안의 숨긴 input. 보이는 것은 '파일 선택' 버튼)
     await page
-      .locator('label')
-      .filter({ hasText: '파일 선택' })
+      .getByRole('group', { name: '첨부파일' })
       .locator('input[type="file"]')
       .setInputFiles({
         name: fileName,

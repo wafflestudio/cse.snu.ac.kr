@@ -45,8 +45,8 @@
 # 로그인 · Form · 대기
 
 - `loginAsStaff` 는 mock-login 으로 세션 쿠키 발급 + reload(prod 빌드엔 dev 버튼이 없다). my-role 이 세션을 읽어 staff UI 를 렌더 — 프로덕션과 같은 화면.
-- **Form 구동은 `tests/helpers/forms.ts` 단일 책임 함수로 — 인라인 재구현 금지.** 삭제는 `deleteItem`(확인 버튼 라벨이 컴포넌트마다 달라 `confirmText`). suneditor 는 `.sun-editor-editable`, 한/영 전환은 `label[for="ko"|"en"]`. 붙여넣기 테스트는 `ClipboardEvent` 를 직접 dispatch 하고 `/api/v2/content/sanitize` 응답을 기다린다.
-- 네비게이션은 `waitForURL`, 에디터 언어 전환은 라디오 checked 대기. **`waitForTimeout` 금지.**
+- **Form 구동은 `tests/helpers/forms.ts` 단일 책임 함수로 — 인라인 재구현 금지.** 삭제는 `deleteItem`(확인창 버튼은 하는 일을 적어 기본 '삭제', 예약 취소처럼 다르면 `confirmText`). suneditor 는 `.sun-editor-editable`, 한/영 전환은 `switchEditorLanguage`(탭). 붙여넣기 테스트는 `ClipboardEvent` 를 직접 dispatch 하고 `/api/v2/content/sanitize` 응답을 기다린다.
+- 네비게이션은 `waitForURL`, 에디터 언어 전환은 탭의 `aria-selected` 대기. **`waitForTimeout` 금지.**
 - POM 미사용 — 함수형 헬퍼.
 
 # 실행 · baseline
