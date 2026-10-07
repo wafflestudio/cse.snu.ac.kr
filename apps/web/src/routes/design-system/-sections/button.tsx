@@ -1,4 +1,3 @@
-import { ArrowRight } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import {
   DocSection,
@@ -8,9 +7,7 @@ import {
   RuleList,
   VariantTable,
 } from '../-components/doc';
-import { stay } from '../-components/sample';
 import LegacyButton from '../-legacy/Button';
-import { LegacyStreamLink } from '../-legacy/StreamLink';
 
 // 버튼 페이지. 문서 틀(-components/doc.tsx)의 기준 페이지. 실제 Button 을 그린다.
 // 크기·여백·호버 색처럼 Button 이 정하는 값은 적지 않는다(예시가 보여 주고, 값은 소스에 있다).
@@ -79,7 +76,7 @@ export function ButtonSection() {
       <DocSection title="사용하지 않는 경우">
         <RuleList
           items={[
-            '읽을 곳으로 이동만 할 때는 링크를 사용합니다(본문은 밑줄 링크, 모음으로 보내는 곳은 화살표 글자 링크). 버튼 모양이면 무언가 실행될 것처럼 보입니다.',
+            '다른 페이지로 이동만 할 때는 링크를 사용합니다(링크). 버튼 모양이면 무언가 실행될 것처럼 보입니다.',
             '값을 고를 때는 알약·글자 토글(선택·태그)이나 입력 칸(입력·폼)을 사용합니다. 고른 값이 남아 보여야 합니다.',
           ]}
         />
@@ -140,26 +137,6 @@ export function ButtonSection() {
             ),
             caption:
               '예전에는 연구실·시설은 주황, 교수·새 소식은 짙은 회색이라 같은 행동이 화면마다 달라 보였습니다.',
-          }}
-        />
-        <DoDont
-          good={{
-            example: (
-              <a
-                href="/research/groups"
-                onClick={stay}
-                className="flex w-fit items-center gap-1 type-ui text-main-orange-dark"
-              >
-                시스템 스트림 <ArrowRight />
-              </a>
-            ),
-            caption:
-              '모음 페이지로 보내는 링크는 화살표를 붙인 글자 링크입니다.',
-          }}
-          bad={{
-            example: <LegacyStreamLink label="시스템 스트림" />,
-            caption:
-              '예전 연구실 상세의 스트림 링크는 주황 테두리 상자라 실행 버튼처럼 보였습니다.',
           }}
         />
       </DocSection>

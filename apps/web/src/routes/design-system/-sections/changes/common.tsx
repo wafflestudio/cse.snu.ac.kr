@@ -7,6 +7,7 @@ const AREAS: Area[] = [
   {
     id: 'links',
     title: '링크와 새 탭',
+    doc: 'links',
     items: [
       {
         title: '링크는 같은 탭에서',

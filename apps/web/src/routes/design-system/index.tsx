@@ -48,7 +48,7 @@ function Contents() {
                 <Link
                   to="/design-system/$section"
                   params={{ section: section.id }}
-                  className="flex h-11 items-center type-ui text-neutral-950 hover:text-main-orange"
+                  className="flex h-11 items-center type-ui text-neutral-950 hover:text-main-orange-dark"
                 >
                   {section.title}
                 </Link>

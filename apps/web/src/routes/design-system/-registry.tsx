@@ -16,6 +16,7 @@ import { FormSection } from './-sections/form';
 import { GraphicSection } from './-sections/graphic';
 import { IconSection } from './-sections/icon';
 import { LayoutSection } from './-sections/layout';
+import { LinksSection } from './-sections/links';
 import { ListSection } from './-sections/list';
 import { NavigationSection } from './-sections/navigation';
 import { PostSection } from './-sections/post';
@@ -40,6 +41,7 @@ export const GROUPS: Group[] = [
     sections: [
       { id: 'color', title: '색', content: <ColorSection /> },
       { id: 'type', title: '글자', content: <TypeSection /> },
+      { id: 'links', title: '링크', content: <LinksSection /> },
       { id: 'spacing', title: '간격', content: <SpacingSection /> },
       { id: 'shape', title: '모서리·그림자·선', content: <ShapeSection /> },
       { id: 'icon', title: '아이콘', content: <IconSection /> },

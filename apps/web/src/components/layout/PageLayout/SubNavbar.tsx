@@ -25,7 +25,7 @@ export default function SubNavbar({
         <div className="pl-1.5 pt-2.75">
           <Link
             to={toPath(titlePath)}
-            className="text-neutral-950 hover:text-main-orange"
+            className="text-neutral-950 hover:text-main-orange-dark"
           >
             <h3 className="inline whitespace-nowrap type-item">{title}</h3>
           </Link>
@@ -72,7 +72,7 @@ function SubNavItem({
       {localizedItemPath ? (
         <Link
           to={localizedItemPath}
-          className={'whitespace-nowrap hover:text-main-orange'}
+          className="whitespace-nowrap hover:text-main-orange-dark"
         >
           <NavLabel text={item.name} />
         </Link>

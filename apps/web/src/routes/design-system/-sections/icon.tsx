@@ -5,7 +5,6 @@ import {
   ChevronDown,
   ChevronRight,
   CircleX,
-  ExternalLink,
   Link,
   Lock,
   MapPin,
@@ -18,6 +17,7 @@ import {
   X,
 } from 'lucide-react';
 import type { ReactNode } from 'react';
+import PrivacyPolicyLink from '@/routes/$locale/reservations/-components/ReservationCalendar/PrivacyPolicyLink';
 import {
   DocSection,
   DoDont,
@@ -133,17 +133,11 @@ export function IconSection() {
       <DocSection title="Do · Don't">
         <DoDont
           good={{
-            // 예약 모달의 동의 내용 링크. 앱에서는 새 탭으로 여는 라우터 링크라 같은 클래스의 <a> 로 그린다.
+            // 예약 모달의 실제 동의 내용 링크. 새 탭으로 열리지 않게 클릭을 막는다.
             example: (
-              <a
-                href="#"
-                onClick={stay}
-                className="flex items-center gap-1 type-ui text-neutral-500 hover:text-neutral-950"
-              >
-                동의 내용 보기
-                <span className="sr-only">(새 탭)</span>
-                <ExternalLink />
-              </a>
+              <div onClickCapture={stay}>
+                <PrivacyPolicyLink />
+              </div>
             ),
             caption:
               '아이콘은 옆 글자 크기를 따르고 글자와 세로 가운데로 정렬합니다.',

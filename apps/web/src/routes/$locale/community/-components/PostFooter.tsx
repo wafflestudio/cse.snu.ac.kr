@@ -131,6 +131,8 @@ const PostNavLink = ({
   <Link to={href} className="group flex w-fit items-center">
     <span className="type-label text-main-orange">{icon}</span>
     <p className="mr-3 shrink-0 type-label text-main-orange">{label}</p>
-    <p className="line-clamp-1 type-ui group-hover:underline">{title}</p>
+    <p className="line-clamp-1 type-ui group-hover:text-main-orange-dark">
+      {title}
+    </p>
   </Link>
 );

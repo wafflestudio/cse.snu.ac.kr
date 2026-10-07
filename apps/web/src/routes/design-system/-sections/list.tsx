@@ -52,7 +52,7 @@ function SampleTable({ rows = SAMPLE_ROWS }: { rows?: typeof SAMPLE_ROWS }) {
               onClick={stay}
               className={`flex min-w-0 items-center gap-1 pl-3 type-ui ${ROW_LINK_TARGET}`}
             >
-              <span className="overflow-hidden text-ellipsis whitespace-nowrap type-ui tracking-wide group-hover:text-main-orange">
+              <span className="overflow-hidden text-ellipsis whitespace-nowrap type-ui tracking-wide group-hover:text-main-orange-dark">
                 {row.title}
               </span>
             </a>
@@ -79,7 +79,7 @@ function SampleCards() {
             onClick={stay}
             className={`flex min-w-0 items-center gap-1 type-item ${ROW_LINK_TARGET}`}
           >
-            <span className="overflow-hidden text-ellipsis type-item tracking-wide group-hover:text-main-orange">
+            <span className="overflow-hidden text-ellipsis type-item tracking-wide group-hover:text-main-orange-dark">
               {row.title}
             </span>
           </a>

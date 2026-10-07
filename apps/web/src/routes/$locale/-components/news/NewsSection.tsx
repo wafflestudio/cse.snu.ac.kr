@@ -1,5 +1,4 @@
-import { Link } from '@tanstack/react-router';
-import { ArrowRight } from 'lucide-react';
+import ArrowLink from '@/components/ui/ArrowLink';
 import { useLanguage } from '@/hooks/useLanguage';
 import type { MainNews } from '@/types/api';
 import NewsCarousel from './NewsCarousel';
@@ -12,12 +11,11 @@ export default function NewsSection({ mainNews }: { mainNews: MainNews[] }) {
     <div className="surface-light relative flex flex-col gap-6 overflow-hidden bg-neutral-100 pb-12 pl-5 pt-8 sm:flex-row sm:gap-16 sm:pt-16 sm:pb-12 sm:pl-16 sm:pr-32">
       <div className="flex shrink-0 flex-col gap-2">
         <h3 className="type-headline text-neutral-950">{t('새 소식')}</h3>
-        <Link
-          className="hidden items-center gap-1 type-ui text-main-orange-dark sm:flex"
-          to={localizedPath('/community/news')}
-        >
-          {t('더보기')} <ArrowRight />
-        </Link>
+        <div className="hidden sm:block">
+          <ArrowLink to={localizedPath('/community/news')}>
+            {t('더보기')}
+          </ArrowLink>
+        </div>
       </div>
       {/* useIsMobile 로 고르면 SSR 이 모바일판을 그려 데스크톱에서 교체되며 64px 밀린다.
           CSS 로 감추면 서버가 그린 마크업이 곧 최종 레이아웃이라 이동이 없다.

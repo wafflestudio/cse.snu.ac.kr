@@ -6,6 +6,7 @@ import footerTranslations from '@/components/layout/Footer/translations.json';
 import PageLayout from '@/components/layout/PageLayout';
 import Button from '@/components/ui/Button';
 import HTMLViewer from '@/components/ui/HTMLViewer';
+import { TEXT_LINK } from '@/components/ui/textLink';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useSelectionList } from '@/hooks/useSelectionList';
 import { useAboutSubNav } from '@/hooks/useSubNav';
@@ -69,10 +70,7 @@ function DirectionsPage() {
           <br />
           {t('전화')}:{' '}
           {
-            <Link
-              to={localizedPath('/people/staff')}
-              className="text-link underline underline-offset-2 hover:text-link-hover"
-            >
+            <Link to={localizedPath('/people/staff')} className={TEXT_LINK}>
               {t('학부 연락처')}
             </Link>
           }

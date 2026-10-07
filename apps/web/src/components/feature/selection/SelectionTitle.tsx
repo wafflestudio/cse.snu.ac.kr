@@ -29,7 +29,7 @@ export default function SelectionTitle({
           {href ? (
             <a href={href} className="group flex items-center gap-1">
               <span>{title}</span>
-              <LinkIcon className="text-neutral-500 group-hover:text-main-orange" />
+              <LinkIcon className="text-neutral-500 group-hover:text-main-orange-dark" />
             </a>
           ) : (
             <span className="flex items-baseline gap-2">

@@ -55,7 +55,7 @@ const ROLES: [role: string, chip: string, token: string, use: string][] = [
     '호버',
     'bg-main-orange-dark',
     'main-orange-dark',
-    '메뉴·제목처럼 이동할 수 있는 글자(링크 색이 아닌 것)에 마우스를 올렸을 때',
+    '밝은 면에서 메뉴·제목처럼 링크 색이 아닌 링크에 마우스를 올렸을 때(어두운 면은 main-orange)',
   ],
   ['오류', 'bg-red-600', 'red-600', '오류 문장과 오류가 난 칸'],
   ['선', 'bg-neutral-200', 'neutral-200', '표 줄, 구분선'],

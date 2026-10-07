@@ -62,13 +62,17 @@ export default function Footer() {
   );
 }
 
-// 회색 글자 링크라 호버하면 주황 대신 더 또렷한 쪽으로 바꾼다(주황은 회색보다 대비가 낮다, /design-system/links).
+// 회색 메뉴 링크의 호버(/design-system/links): 밝은 판은 짙은 주황, 어두운 판은 주황(neutral-800 위 5.3:1).
 const HOVER_CLASS = {
   light: 'hover:text-neutral-950',
   dark: 'hover:text-white',
 } as const;
 
-function LinkGroup({ groupName, links, mode = 'light' }: LinkGroupProps) {
+export function LinkGroup({
+  groupName,
+  links,
+  mode = 'light',
+}: LinkGroupProps) {
   const { t, localizedPath } = useLanguage(footerTranslations);
 
   const titleColor = mode === 'light' ? 'text-neutral-600' : 'text-neutral-200';

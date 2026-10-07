@@ -63,7 +63,7 @@ function LabNameCell({
       className={`order-first col-span-1 row-span-1 type-item sm:type-ui sm:whitespace-normal`}
     >
       <Link
-        className="text-neutral-950 hover:text-main-orange"
+        className="text-neutral-950 hover:text-main-orange-dark"
         to={localizedPath(`/research/labs/${id}`)}
       >
         {name}
@@ -88,7 +88,7 @@ function LabProfessorsCell({
         <Fragment key={info.id}>
           <Link
             to={localizedPath(`/people/faculty/${info.id}`)}
-            className="hover:text-main-orange"
+            className="hover:text-main-orange-dark"
           >
             {info.name}
           </Link>
@@ -121,12 +121,12 @@ function LabMaterialsCell({
           className="h-5"
           title="PDF"
         >
-          <FileText className="size-5 text-neutral-500 hover:text-neutral-950" />
+          <FileText className="size-5 text-neutral-500 hover:text-main-orange-dark" />
         </a>
       )}
       {youtube && (
         <a href={youtube} className="h-5 py-1" title="YOUTUBE">
-          <YoutubeIcon className="fill-neutral-500 hover:fill-neutral-950" />
+          <YoutubeIcon className="fill-neutral-500 hover:fill-main-orange-dark" />
         </a>
       )}
     </span>

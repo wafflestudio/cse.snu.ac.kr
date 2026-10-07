@@ -3,13 +3,11 @@ import HTMLViewer from '@/components/ui/HTMLViewer';
 import {
   DeviceToggle,
   DocSection,
-  DoDont,
   Example,
   Lead,
   RuleList,
 } from '../-components/doc';
 import { stay } from '../-components/sample';
-import { LegacyLinkOrText } from '../-legacy/SeminarDetail';
 
 // 견본 글을 실제 본문 뷰어로 그린다. 제목·문단·인용·표의 값은 components/ui/assets/suneditor-contents.override.css 가 정한다.
 
@@ -97,38 +95,6 @@ export function ReadingSection() {
             '작성자가 직접 지정한 글자 크기·색·표 서식은 바꾸지 않습니다. 본문은 작성자가 에디터에서 본 모습 그대로 보여야 합니다.',
             '대표 이미지 폭은 이미지의 쓰임에 맞춰 200·240·320 중에서 고릅니다(세미나 240).',
           ]}
-        />
-      </DocSection>
-
-      <DocSection title="Do · Don't">
-        <DoDont
-          good={{
-            example: (
-              <span className="type-ui">
-                자세한 내용은{' '}
-                <a
-                  href="#"
-                  onClick={stay}
-                  className="text-link underline underline-offset-2 hover:text-link-hover"
-                >
-                  학사 안내
-                </a>
-                를 확인해 주세요.
-              </span>
-            ),
-            caption:
-              '링크에는 늘 밑줄을 표시합니다. 색을 구분하기 어려운 사용자도 링크를 알아볼 수 있습니다.',
-          }}
-          bad={{
-            example: (
-              <span className="text-md">
-                자세한 내용은 <LegacyLinkOrText>학사 안내</LegacyLinkOrText>를
-                확인해 주세요.
-              </span>
-            ),
-            caption:
-              '예전 세미나 연사·교수 연락처 같은 링크는 호버할 때만 밑줄이 생겨, 색으로만 링크를 알아봐야 했습니다.',
-          }}
         />
       </DocSection>
     </>

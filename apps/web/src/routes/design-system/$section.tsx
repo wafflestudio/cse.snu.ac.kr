@@ -25,7 +25,7 @@ function DesignSystemSection() {
       <div className="mt-16 border-t border-neutral-200 pt-6 type-ui">
         <Link
           to="/design-system"
-          className="inline-flex items-center gap-1 hover:text-main-orange"
+          className="inline-flex items-center gap-1 hover:text-main-orange-dark"
         >
           <ArrowLeft /> 디자인 시스템 목차
         </Link>

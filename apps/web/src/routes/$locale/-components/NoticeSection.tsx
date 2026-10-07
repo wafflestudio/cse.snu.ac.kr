@@ -1,8 +1,8 @@
 import 'dayjs/locale/ko';
 import { Link } from '@tanstack/react-router';
 import dayjs from 'dayjs';
-import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
+import ArrowLink from '@/components/ui/ArrowLink';
 import Image from '@/components/ui/Image';
 import PillGroup from '@/components/ui/PillGroup';
 import { useLanguage } from '@/hooks/useLanguage';
@@ -52,12 +52,9 @@ export default function NoticeSection({
             onChange={setTag}
           />
           {!isMobile && (
-            <Link
-              className="flex items-center gap-1 type-ui text-main-orange-dark"
-              to={localizedPath('/community/notice')}
-            >
-              {t('더보기')} <ArrowRight />
-            </Link>
+            <ArrowLink to={localizedPath('/community/notice')}>
+              {t('더보기')}
+            </ArrowLink>
           )}
         </div>
 
@@ -65,7 +62,7 @@ export default function NoticeSection({
           {allMainNotice[tag].map((notice) => (
             <Link
               key={notice.id}
-              className="line-clamp-1 flex justify-between gap-2 type-ui text-white"
+              className="line-clamp-1 flex justify-between gap-2 type-ui text-white hover:text-main-orange"
               to={localizedPath(`/community/notice/${notice.id}`)}
             >
               <h3 className="truncate sm:w-108">{notice.title}</h3>
@@ -80,12 +77,11 @@ export default function NoticeSection({
           ))}
         </div>
         {isMobile && (
-          <Link
-            className="ml-auto mt-6 flex items-center gap-1 type-ui text-main-orange-dark"
-            to={localizedPath('/community/notice')}
-          >
-            {t('더보기')} <ArrowRight />
-          </Link>
+          <div className="ml-auto mt-6">
+            <ArrowLink to={localizedPath('/community/notice')}>
+              {t('더보기')}
+            </ArrowLink>
+          </div>
         )}
       </div>
     </div>

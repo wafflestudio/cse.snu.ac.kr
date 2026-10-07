@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import Button from '@/components/ui/Button';
 import Node from '@/components/ui/Nodes';
 import { Tag } from '@/components/ui/Tag';
+import { TEXT_LINK } from '@/components/ui/textLink';
 import { DocSection, DoDont, Lead, RuleList } from '../-components/doc';
 import { stay } from '../-components/sample';
 import { LegacyNoticeDetailHead } from '../-legacy/NoticeDetail';
@@ -38,7 +39,7 @@ function Band({
   );
 }
 
-// PostFooter 의 PostNavLink 와 같은 클래스. 제목에 호버하면 밑줄.
+// PostFooter 의 PostNavLink 와 같은 클래스. 호버하면 제목이 짙은 주황.
 function Neighbor({
   up,
   label,
@@ -54,7 +55,9 @@ function Neighbor({
         {up ? <ChevronUp /> : <ChevronDown />}
       </span>
       <p className="mr-3 shrink-0 type-label text-main-orange">{label}</p>
-      <p className="line-clamp-1 type-ui group-hover:underline">{title}</p>
+      <p className="line-clamp-1 type-ui group-hover:text-main-orange-dark">
+        {title}
+      </p>
     </a>
   );
 }
@@ -170,19 +173,11 @@ export function PostSection() {
               <div className="w-full text-left">
                 <div className="mb-2 type-item">연사</div>
                 <p className="type-body">
-                  <a
-                    href="#"
-                    onClick={stay}
-                    className="text-link underline underline-offset-2 hover:text-link-hover"
-                  >
+                  <a href="#" onClick={stay} className={TEXT_LINK}>
                     김연사
                   </a>
                   {' · 교수 · '}
-                  <a
-                    href="#"
-                    onClick={stay}
-                    className="text-link underline underline-offset-2 hover:text-link-hover"
-                  >
+                  <a href="#" onClick={stay} className={TEXT_LINK}>
                     서울대학교
                   </a>
                 </p>

@@ -6,6 +6,7 @@ import Form from '@/components/form/Form';
 import AlertDialog from '@/components/ui/AlertDialog';
 import Button from '@/components/ui/Button';
 import { toast, toastError } from '@/components/ui/sonner';
+import { TEXT_LINK } from '@/components/ui/textLink';
 import type { Company } from '@/types/api';
 import { api } from '@/utils/api';
 
@@ -77,7 +78,7 @@ function CareerCompanyViewer({
         <p className={`type-ui text-neutral-500 sm:pl-2`}>{index}</p>
         <p className={`type-ui sm:pl-2`}>{name}</p>
         <a
-          className={`order-last col-span-2 col-start-2 w-fit type-meta sm:col-span-1 sm:col-start-auto text-link underline underline-offset-2 hover:text-link-hover sm:order-0 sm:mt-0 sm:pl-2
+          className={`order-last col-span-2 col-start-2 w-fit type-meta sm:col-span-1 sm:col-start-auto ${TEXT_LINK} sm:order-0 sm:mt-0 sm:pl-2
             ${url && 'mt-1'}`}
           href={url ?? undefined}
         >

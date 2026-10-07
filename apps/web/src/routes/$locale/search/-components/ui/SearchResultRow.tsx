@@ -21,7 +21,7 @@ export default function SearchResultRow({ item }: { item: SearchResultItem }) {
 
   return (
     <article className="border-b border-neutral-200 pb-6">
-      {/* 행 전체가 링크다 — 어디를 눌러도 가고, 호버하면 제목에 밑줄이 생긴다. */}
+      {/* 행 전체가 링크다 — 어디를 눌러도 가고, 호버하면 제목이 짙은 주황이 된다. */}
       <Link to={localizedPath(item.url)} className="group flex gap-6">
         {/* 사진을 오른쪽에 두면 사진이 있고 없고에 따라 제목이 좌우로 튀지 않는다. */}
         {item.thumbnailUrl && (
@@ -36,7 +36,7 @@ export default function SearchResultRow({ item }: { item: SearchResultItem }) {
         )}
 
         <div className="flex min-w-0 flex-1 flex-col gap-2">
-          <span className="type-item tracking-wide text-neutral-950 group-hover:underline">
+          <span className="type-item tracking-wide text-neutral-950 group-hover:text-main-orange-dark">
             {item.title}
           </span>
 

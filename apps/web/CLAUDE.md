@@ -84,5 +84,6 @@ TanStack Start 빌드는 `dist/server/server.js` 를 **Web fetch 핸들러**로 
 - 서브내비는 `subNav` 로 넘긴다(편집·작성 화면에는 넘기지 않는다). 자리·높이는 `PageLayout` 이 정한다. 경로는 메뉴 정의에서 `useBreadcrumb` 가 만든다.
 - 선택형 상세의 관리 버튼(편집·삭제)은 `SelectionTitle` 의 `actions` 로 넘긴다.
 - 표: 칸 폭(`w-*`)을 적지 않는다. `grid-template-columns` 는 표에 한 번, 머리 행·행은 `col-span-full grid grid-cols-subgrid`. 칸은 `auto`, 긴 칸 하나만 `minmax(0,1fr)`(본보기 `AdminTable`·`ConferenceListTable`). 칸 사이는 표에 한 번(`gap-x-6` 또는 모든 칸 `px-3`). 행이 모바일 카드용 gap 을 가지면 `sm:` 에서 표 값으로 되돌린다.
+- 링크(/design-system/links): 글 속 링크는 `ui/textLink.ts` 의 `TEXT_LINK`, 모음으로 보내는 링크는 `ui/ArrowLink`. 링크 색이 아닌 링크의 호버는 밝은 면 `main-orange-dark`, 어두운 면 `main-orange`(이미 주황이면 밑줄). `target="_blank"` 는 예약 동의 링크(`PrivacyPolicyLink`) 하나뿐이다.
 - 행 전체를 누르는 표는 `ui/rowLink.ts`: 행에 `ROW_LINK`, 제목 링크에 `ROW_LINK_TARGET`(링크 하나의 `::after` 를 행 크기로). 한 행에 링크가 여럿이면 쓰지 않는다.
 - 대표 이미지는 `HTMLViewer` 의 `image`(`width: 200 | 240 | 320`, 세미나 240). 예약 칸 색은 `bg-main-orange/80`.

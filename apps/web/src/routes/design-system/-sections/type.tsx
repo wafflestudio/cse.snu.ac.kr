@@ -166,20 +166,22 @@ const NEWS = {
 // 호버만 해도 그 페이지를 미리 불러와(서버 요청) 견본에 쓰지 않는다. 사진 자리는 뺐다.
 function NewsRow() {
   return (
-    <article className="flex w-full max-w-80 flex-col-reverse gap-4 border-b border-neutral-200 pb-6 text-left sm:flex-row sm:gap-8">
+    <article className="group flex w-full max-w-80 flex-col-reverse gap-4 border-b border-neutral-200 pb-6 text-left sm:flex-row sm:gap-8">
       <div className="flex flex-1 flex-col justify-between">
         <p className="mb-2 flex items-center gap-2 type-meta text-neutral-950 sm:hidden">
           <time>{NEWS.date}</time>
           <span>조회수 {NEWS.viewCount}</span>
         </p>
         <div className="flex flex-col items-start">
-          <a href="#" onClick={stay} className="hover:underline">
-            <h3 className="mb-2 type-item">{NEWS.title}</h3>
+          <a href="#" onClick={stay} className="detail-link">
+            <h3 className="mb-2 type-item group-has-[.detail-link:hover]:text-main-orange-dark">
+              {NEWS.title}
+            </h3>
           </a>
           <a
             href="#"
             onClick={stay}
-            className="mb-3 line-clamp-3 type-body text-neutral-500 hover:cursor-pointer sm:mb-8"
+            className="detail-link mb-3 line-clamp-3 type-body text-neutral-500 sm:mb-8"
           >
             {NEWS.description}...
           </a>

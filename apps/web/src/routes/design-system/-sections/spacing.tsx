@@ -215,7 +215,7 @@ function SearchResults() {
           <article key={r.title} className="border-b border-neutral-200 pb-6">
             <a href="#" onClick={stay} className="group flex gap-6">
               <div className="flex min-w-0 flex-1 flex-col gap-2">
-                <span className="type-item tracking-wide text-neutral-950 group-hover:underline">
+                <span className="type-item tracking-wide text-neutral-950 group-hover:text-main-orange-dark">
                   {r.title}
                 </span>
                 <HighlightedText segments={r.preview} />
@@ -273,7 +273,11 @@ function FooterLinks() {
           <ul className="flex flex-col gap-3 type-ui text-neutral-500">
             {links.map((l) => (
               <li key={l}>
-                <a href="#" onClick={stay} className="hover:text-neutral-950">
+                <a
+                  href="#"
+                  onClick={stay}
+                  className="hover:text-main-orange-dark"
+                >
                   {l}
                 </a>
               </li>

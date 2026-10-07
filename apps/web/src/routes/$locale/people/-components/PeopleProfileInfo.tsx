@@ -1,5 +1,6 @@
 import type { LucideIcon } from 'lucide-react';
 import { Globe, Mail, MapPin, PhoneCall, Printer } from 'lucide-react';
+import { TEXT_LINK } from '@/components/ui/textLink';
 import ProfileImage from '@/routes/$locale/people/-components/PeopleProfileImage';
 
 export interface PeopleProfileInfoItem {
@@ -49,10 +50,7 @@ function ProfileInfoRow({ icon, label, href }: PeopleProfileInfoItem) {
     <div className="flex items-start gap-1 wrap-anywhere">
       {Icon && <Icon className="shrink-0" />}
       {href ? (
-        <a
-          href={href}
-          className="text-link underline underline-offset-2 hover:text-link-hover"
-        >
+        <a href={href} className={TEXT_LINK}>
           {label}
         </a>
       ) : (

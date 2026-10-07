@@ -1,10 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import clsx from 'clsx';
-import type {
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes,
-  ReactNode,
-} from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import { forwardRef } from 'react';
 
 // 역할은 행동의 종류로 정한다(/design-system/button). 주황 채움 버튼은 없다.
@@ -44,8 +40,6 @@ type ButtonAsLink = BaseProps & {
 type ButtonAsAnchor = BaseProps & {
   as: 'a';
   href: string;
-  target?: AnchorHTMLAttributes<HTMLAnchorElement>['target'];
-  rel?: AnchorHTMLAttributes<HTMLAnchorElement>['rel'];
 };
 
 type ButtonProps = ButtonAsButton | ButtonAsLink | ButtonAsAnchor;
@@ -95,13 +89,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
 
   if (props.as === 'a') {
     return (
-      <a
-        href={props.href}
-        className={className}
-        target={props.target}
-        rel={props.rel}
-        aria-label={ariaLabel}
-      >
+      <a href={props.href} className={className} aria-label={ariaLabel}>
         {children}
       </a>
     );

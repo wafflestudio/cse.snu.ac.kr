@@ -22,8 +22,9 @@ export default function NewsListRow({ post }: NewsListRowProps) {
     ? `${detailPathBase}?pageNum=${pageNum}`
     : detailPathBase;
 
+  // 제목·요약·사진 링크가 모두 상세로 간다. 어느 것을 호버해도 제목이 호버 색이 된다(태그는 제외).
   return (
-    <article className="flex flex-col-reverse gap-4 border-b border-neutral-200 pb-6 sm:flex-row sm:gap-8">
+    <article className="group flex flex-col-reverse gap-4 border-b border-neutral-200 pb-6 sm:flex-row sm:gap-8">
       <div className="flex flex-1 flex-col justify-between">
         <p className="mb-2 flex items-center gap-2 type-meta text-neutral-950 sm:hidden">
           <time>
@@ -36,13 +37,15 @@ export default function NewsListRow({ post }: NewsListRowProps) {
         </p>
 
         <div className="flex flex-col items-start">
-          <Link to={detailPath} className="hover:underline">
-            <h3 className="mb-2 type-item">{post.title}</h3>
+          <Link to={detailPath} className="detail-link">
+            <h3 className="mb-2 type-item group-has-[.detail-link:hover]:text-main-orange-dark">
+              {post.title}
+            </h3>
           </Link>
 
           <Link
             to={detailPath}
-            className="mb-3 line-clamp-3 type-body text-neutral-500 hover:cursor-pointer sm:mb-8"
+            className="detail-link mb-3 line-clamp-3 type-body text-neutral-500 sm:mb-8"
           >
             {post.description}...
           </Link>
@@ -71,7 +74,10 @@ export default function NewsListRow({ post }: NewsListRowProps) {
       </div>
 
       {post.imageURL ? (
-        <Link to={detailPath} className="relative flex aspect-4/3 sm:h-37.5">
+        <Link
+          to={detailPath}
+          className="detail-link relative flex aspect-4/3 sm:h-37.5"
+        >
           <Image
             src={post.imageURL}
             alt="포스트 대표 이미지"

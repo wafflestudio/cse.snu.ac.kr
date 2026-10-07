@@ -26,7 +26,7 @@ const ImportantBanner = ({ important }: { important: MainImportant }) => {
   return (
     <Link
       to={localizedPath(`/community/${important.category}/${important.id}`)}
-      className="relative flex min-h-30 flex-col gap-2 pb-12 bg-main-orange-dark px-6 pt-6"
+      className="group relative flex min-h-30 flex-col gap-2 pb-12 bg-main-orange-dark px-6 pt-6"
     >
       <h3 className="line-clamp-2 text-balance type-section text-neutral-950 sm:line-clamp-1">
         {important.title}
@@ -42,7 +42,7 @@ const ImportantBanner = ({ important }: { important: MainImportant }) => {
 const CharityBanner = () => (
   <a
     href="https://computingcommons.snu.ac.kr/"
-    className="relative flex min-h-30 flex-col gap-2 pb-12 px-6 pt-6"
+    className="group relative flex min-h-30 flex-col gap-2 pb-12 px-6 pt-6"
   >
     <Image
       src={charityImg}
@@ -60,6 +60,7 @@ const CharityBanner = () => (
   </a>
 );
 
+// 카드 링크의 호버는 화살표가 오른쪽으로 민다(카테고리 카드·바로가기 줄과 같다, /design-system/links).
 const ImportantSectionArrow = () => (
-  <ArrowRight className="absolute bottom-4 right-4 size-7 text-neutral-950" />
+  <ArrowRight className="absolute bottom-4 right-4 size-7 text-neutral-950 duration-300 group-hover:translate-x-2.5" />
 );

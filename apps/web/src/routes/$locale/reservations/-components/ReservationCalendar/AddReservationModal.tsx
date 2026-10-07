@@ -1,5 +1,4 @@
-import { Link } from '@tanstack/react-router';
-import { AlertCircle, ExternalLink } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { FormProvider } from 'react-hook-form';
 import Form from '@/components/form/Form';
@@ -7,6 +6,7 @@ import Button from '@/components/ui/Button';
 import Dialog from '@/components/ui/Dialog';
 import { useLanguage } from '@/hooks/useLanguage';
 import useReservationForm from '@/routes/$locale/reservations/-hooks/useReservationForm';
+import PrivacyPolicyLink from './PrivacyPolicyLink';
 
 interface AddReservationModalProps {
   roomId: number;
@@ -19,14 +19,12 @@ export default function AddReservationModal({
   open,
   onOpenChange,
 }: AddReservationModalProps) {
-  const { t, localizedPath } = useLanguage({
+  const { t } = useLanguage({
     '시설 예약': 'Reservation',
     예약: 'Reserve',
     취소: 'Cancel',
     '예약 중…': 'Reserving…',
     '개인정보 수집 및 이용동의': 'Privacy Agreement',
-    '동의 내용 보기': 'View terms',
-    '(새 탭)': '(opens in new tab)',
   });
 
   const {
@@ -152,17 +150,7 @@ export default function AddReservationModal({
                 <span className="text-main-orange">*</span>
               </div>
 
-              {/* 사이트에서 유일하게 새 탭으로 연다. 같은 탭이면 쓰던 예약 내용이 사라진다(/design-system/links). */}
-              <Link
-                className="flex items-center gap-1 type-ui text-neutral-500 hover:text-neutral-950"
-                to={localizedPath('/reservations/privacy-policy')}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t('동의 내용 보기')}
-                <span className="sr-only">{t('(새 탭)')}</span>
-                <ExternalLink />
-              </Link>
+              <PrivacyPolicyLink />
             </div>
           </fieldset>
 

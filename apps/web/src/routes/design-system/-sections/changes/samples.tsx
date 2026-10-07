@@ -1,11 +1,12 @@
 import { useLocation } from '@tanstack/react-router';
 import clsx from 'clsx';
-import { ArrowLeft, ArrowRight, CircleCheck, ExternalLink } from 'lucide-react';
+import { ArrowLeft, CircleCheck } from 'lucide-react';
 import { type ReactNode, useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import CategoryGrid from '@/components/feature/category/CategoryGrid';
 import Fieldset from '@/components/form/Fieldset';
 import Form from '@/components/form/Form';
+import ArrowLink from '@/components/ui/ArrowLink';
 import Attachments from '@/components/ui/Attachments';
 import Button from '@/components/ui/Button';
 import Calendar from '@/components/ui/Calendar';
@@ -15,9 +16,11 @@ import SearchInput from '@/components/ui/SearchInput';
 import { toast } from '@/components/ui/sonner';
 import Tabs from '@/components/ui/Tabs';
 import { Tag } from '@/components/ui/Tag';
+import { TEXT_LINK } from '@/components/ui/textLink';
 import type { NavItem } from '@/constants/navigation';
 import LinkRow from '@/routes/$locale/-components/LinkRow';
 import CourseList from '@/routes/$locale/academics/-components/courses/CourseList';
+import PrivacyPolicyLink from '@/routes/$locale/reservations/-components/ReservationCalendar/PrivacyPolicyLink';
 import type { Course } from '@/types/api';
 import { SampleFormProvider, stay } from '../../-components/sample';
 import LegacyAction from '../../-legacy/Action';
@@ -81,11 +84,7 @@ export function LinkSentence({ old }: { old: boolean }) {
       <a
         href={HERE}
         onClick={stay}
-        className={
-          old
-            ? 'text-[#3c7be4] hover:underline'
-            : 'text-link underline underline-offset-2 hover:text-link-hover'
-        }
+        className={old ? 'text-[#3c7be4] hover:underline' : TEXT_LINK}
       >
         학사 안내
       </a>
@@ -105,7 +104,7 @@ export function Address({ old }: { old: boolean }) {
       </div>
     );
   }
-  const link = 'hover:text-neutral-950';
+  const link = 'hover:text-main-orange-dark';
   return (
     <div className="surface-light w-78 bg-neutral-100 px-5 py-8 text-left">
       <div className="type-meta text-neutral-600">
@@ -295,7 +294,7 @@ export function SearchResults({ old }: { old: boolean }) {
           >
             <a href={HERE} onClick={stay} className="group flex gap-6">
               <div className="flex min-w-0 flex-1 flex-col gap-2">
-                <span className="type-item tracking-wide text-neutral-950 group-hover:underline">
+                <span className="type-item tracking-wide text-neutral-950 group-hover:text-main-orange-dark">
                   {item.title}
                 </span>
                 <p className="line-clamp-2 type-body text-neutral-700">
@@ -907,43 +906,37 @@ function OldSmallRightArrow() {
   );
 }
 
-// 메인 공지(어두운 판)와 새 소식(밝은 판)의 더보기 링크. 예전 값은 d1baf83c 의 NoticeSection·NewsSection.
+// 메인 공지(어두운 판)와 새 소식(밝은 판)의 더보기 링크. 예전 값은 d1baf83c 의 NoticeSection·NewsSection,
+// 지금 것은 실제 ArrowLink(이 문서로 가는 링크라 눌러도 이동하지 않는다).
 export function MoreLinks({ old }: { old: boolean }) {
-  const now = 'flex items-center gap-1 type-ui text-main-orange-dark';
   return (
     <div className="flex flex-wrap items-center gap-6">
-      <div className="surface-dark bg-[#212121] px-4 py-3">
-        <a
-          href={HERE}
-          onClick={stay}
-          className={
-            old ? 'flex text-base font-normal text-main-orange-dark' : now
-          }
-        >
-          {old ? (
-            <>
-              <OldPlusIcon /> 더보기
-            </>
-          ) : (
-            <>
-              더보기 <ArrowRight />
-            </>
-          )}
-        </a>
-      </div>
-      <div className="bg-neutral-100 px-4 py-3">
-        <a
-          href={HERE}
-          onClick={stay}
-          className={
-            old
-              ? 'flex items-center gap-1 text-base font-normal text-[#E65615]'
-              : now
-          }
-        >
-          더보기 {old ? <OldSmallRightArrow /> : <ArrowRight />}
-        </a>
-      </div>
+      <NoNav className="surface-dark bg-[#212121] px-4 py-3">
+        {old ? (
+          <a
+            href={HERE}
+            onClick={stay}
+            className="flex text-base font-normal text-main-orange-dark"
+          >
+            <OldPlusIcon /> 더보기
+          </a>
+        ) : (
+          <ArrowLink to={HERE}>더보기</ArrowLink>
+        )}
+      </NoNav>
+      <NoNav className="bg-neutral-100 px-4 py-3">
+        {old ? (
+          <a
+            href={HERE}
+            onClick={stay}
+            className="flex items-center gap-1 text-base font-normal text-[#E65615]"
+          >
+            더보기 <OldSmallRightArrow />
+          </a>
+        ) : (
+          <ArrowLink to={HERE}>더보기</ArrowLink>
+        )}
+      </NoNav>
     </div>
   );
 }
@@ -1045,7 +1038,7 @@ export function BrowserTabs({
   );
 }
 
-// 예약 폼의 개인정보 동의 줄. 체크박스는 예전 사본·지금 실제 부품, 링크는 예약 모달의 링크 클래스 그대로.
+// 예약 폼의 개인정보 동의 줄. 체크박스·링크는 예전 사본·지금 실제 부품(새 탭으로 열리지 않게 클릭을 막는다).
 export function PrivacyLink({ old }: { old: boolean }) {
   const [agreed, setAgreed] = useState(false);
   const label = '개인정보 수집 및 이용동의';
@@ -1062,15 +1055,9 @@ export function PrivacyLink({ old }: { old: boolean }) {
       {old ? (
         <LegacyPrivacyPolicyLink />
       ) : (
-        <a
-          href={HERE}
-          onClick={stay}
-          className="flex items-center gap-1 type-ui text-neutral-500 hover:text-neutral-950"
-        >
-          동의 내용 보기
-          <span className="sr-only">(새 탭)</span>
-          <ExternalLink />
-        </a>
+        <NoNav>
+          <PrivacyPolicyLink />
+        </NoNav>
       )}
     </div>
   );

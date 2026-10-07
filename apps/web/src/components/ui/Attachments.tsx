@@ -22,7 +22,7 @@ export default function Attachments({ files }: AttachmentsProps) {
         return (
           <a
             key={key}
-            className="flex type-ui hover:text-main-orange"
+            className="flex type-ui hover:text-main-orange-dark"
             href={encodeURI(file.url)}
             download={file.name}
           >

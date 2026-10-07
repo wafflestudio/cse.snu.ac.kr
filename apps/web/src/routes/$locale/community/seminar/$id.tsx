@@ -8,6 +8,7 @@ import PageLayout from '@/components/layout/PageLayout';
 import HTMLViewer from '@/components/ui/HTMLViewer';
 import Image from '@/components/ui/Image';
 import { toast, toastError } from '@/components/ui/sonner';
+import { TEXT_LINK } from '@/components/ui/textLink';
 import { useCountView } from '@/hooks/useCountView';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useCommunitySubNav } from '@/hooks/useSubNav';
@@ -135,10 +136,7 @@ const LinkOrText = ({
   if (!href) return <span className="inline">{children}</span>;
 
   return (
-    <a
-      className="text-link underline underline-offset-2 hover:text-link-hover"
-      href={href}
-    >
+    <a className={TEXT_LINK} href={href}>
       {children}
     </a>
   );

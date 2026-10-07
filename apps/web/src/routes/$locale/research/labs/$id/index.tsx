@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { ArrowRight } from 'lucide-react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import PageLayout from '@/components/layout/PageLayout';
+import ArrowLink from '@/components/ui/ArrowLink';
 import Button from '@/components/ui/Button';
 import CornerFoldedRectangle from '@/components/ui/CornerFoldedRectangle';
 import HTMLViewer from '@/components/ui/HTMLViewer';
@@ -118,7 +118,7 @@ function LabSummary({
               <span key={info.id}>
                 <Link
                   to={localizedPath(`/people/faculty/${info.id}`)}
-                  className="hover:text-main-orange"
+                  className="hover:text-main-orange-dark"
                 >
                   {info.name}
                 </Link>
@@ -140,7 +140,7 @@ function LabSummary({
           <li>
             <a
               href={lab.websiteURL}
-              className="mt-auto w-fit type-meta underline hover:text-main-orange"
+              className="mt-auto w-fit type-meta underline hover:text-main-orange-dark"
             >
               Website
             </a>
@@ -167,12 +167,11 @@ function StreamLink({
   label: string;
 }) {
   return (
-    <Link
+    <ArrowLink
       to={localizedPath(createSelectionUrl('/research/groups', groupName))}
-      className="flex w-fit items-center gap-1 type-ui text-main-orange-dark"
     >
-      {groupName} {label} <ArrowRight />
-    </Link>
+      {groupName} {label}
+    </ArrowLink>
   );
 }
 

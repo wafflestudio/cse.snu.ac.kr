@@ -250,7 +250,7 @@ function AreaBlock({ area }: { area: Area }) {
           <Link
             to="/design-system/$section"
             params={{ section: area.doc }}
-            className="inline-flex items-center gap-1 type-meta text-neutral-600 hover:text-main-orange"
+            className="inline-flex items-center gap-1 type-meta text-neutral-600 hover:text-main-orange-dark"
           >
             규칙 보기 <ArrowRight />
           </Link>

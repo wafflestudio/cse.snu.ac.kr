@@ -63,7 +63,7 @@ const Row = ({
         className={`order-1 col-span-3 pr-2 type-item sm:col-span-1 sm:type-ui`}
       >
         <button
-          className={`text-left group-hover:text-main-orange ${ROW_LINK_TARGET}`}
+          className={`text-left group-hover:text-main-orange-dark ${ROW_LINK_TARGET}`}
           type="button"
           onClick={() => onSelectCourse(course)}
         >

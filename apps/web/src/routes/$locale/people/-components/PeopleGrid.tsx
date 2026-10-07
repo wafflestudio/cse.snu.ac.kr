@@ -75,7 +75,7 @@ function PeopleCard({
               <Link
                 key={`${text}-${idx}`}
                 to={href}
-                className="hover:underline"
+                className="hover:text-main-orange-dark"
               >
                 <p>{text}</p>
               </Link>

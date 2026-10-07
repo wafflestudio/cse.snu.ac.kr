@@ -59,7 +59,7 @@ function ImageCell({ imageURL }: { imageURL: string | null }) {
 
 function TitleCell({ title }: { title: string }) {
   return (
-    <h3 className="mb-1 grow type-item group-hover:underline sm:mb-2">
+    <h3 className="mb-1 grow type-item group-hover:text-main-orange-dark sm:mb-2">
       {title}
     </h3>
   );
