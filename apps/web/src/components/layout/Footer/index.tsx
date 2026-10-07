@@ -87,10 +87,16 @@ export function LinkGroup({
       <ul className={`${itemColor} flex flex-col gap-3 type-ui`}>
         {links.map((link, i) => (
           <li key={i}>
-            {/* 자리가 모자랄 때만 열 안에서 줄을 바꾼다. */}
-            <Link to={localizedPath(link.href)} className={HOVER_CLASS[mode]}>
-              {t(link.title)}
-            </Link>
+            {/* 자리가 모자랄 때만 열 안에서 줄을 바꾼다. 바깥 사이트(More)는 주소 그대로 — 언어를 붙이면 /kohttps://… 가 된다. */}
+            {/^https?:\/\//.test(link.href) ? (
+              <a href={link.href} className={HOVER_CLASS[mode]}>
+                {t(link.title)}
+              </a>
+            ) : (
+              <Link to={localizedPath(link.href)} className={HOVER_CLASS[mode]}>
+                {t(link.title)}
+              </Link>
+            )}
           </li>
         ))}
       </ul>
