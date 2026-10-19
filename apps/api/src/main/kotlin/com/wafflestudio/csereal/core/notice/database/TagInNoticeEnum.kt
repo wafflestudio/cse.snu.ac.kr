@@ -15,6 +15,7 @@ import com.wafflestudio.csereal.common.ErrorCode
  * 학생을 특정하지 않는 전 구성원 안내엔 붙이지 않는다 — 안 그러면 거의 모든 공지에 붙어 필터가 죽는다.
  */
 enum class TagInNoticeEnum(val krName: String, val guide: String) {
+    CLASS("수업", "교과목 운영 전반 — 수강신청·강의평가·개설·조교 모집. 대상 과정의 학부·대학원도 함께 붙인다"),
     SCHOLARSHIP("장학", "장학금 선발·신청"),
     UNDERGRADUATE("학부", "대상이 학부생일 때. 주제가 학사인지와 무관하다"),
     GRADUATE("대학원", "대상이 대학원생일 때"),
