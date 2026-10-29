@@ -1,0 +1,57 @@
+# 버전 업데이트 PR 을 develop 으로 보낸다(주 1회). 메이저는 따로 계획해서 올리므로 받지 않는다.
+# Settings 의 "Dependabot security updates" 는 끈다 — target-branch 와 상관없이 항상 main 으로 PR 을 내서 staging 을 건너뛴다.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    target-branch: develop
+    schedule:
+      interval: weekly
+      timezone: Asia/Seoul
+    groups:
+      npm:
+        patterns: ["*"]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+      # e2e/run.sh 의 Playwright 이미지 태그와 같이 올려야 한다
+      - dependency-name: "@playwright/test"
+
+  - package-ecosystem: gradle
+    directory: /apps/api
+    target-branch: develop
+    schedule:
+      interval: weekly
+      timezone: Asia/Seoul
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: docker
+    directories: [/apps/web, /apps/api, /infra, /infra/ops]
+    target-branch: develop
+    schedule:
+      interval: weekly
+      timezone: Asia/Seoul
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: docker-compose
+    directories: [/infra, /infra/monitoring]
+    target-branch: develop
+    schedule:
+      interval: weekly
+      timezone: Asia/Seoul
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+      # 8.0 → 8.4 는 DB 이전이라 계획해서 한다
+      - dependency-name: mysql
+
+  - package-ecosystem: github-actions
+    directory: /
+    target-branch: develop
+    schedule:
+      interval: weekly
+      timezone: Asia/Seoul
