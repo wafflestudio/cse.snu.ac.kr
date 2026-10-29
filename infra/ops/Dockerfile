@@ -1,5 +1,5 @@
 # 예약 실행되는 운영 작업(백업)을 담는 컨테이너.
-FROM alpine:3.20
+FROM alpine:3.24
 
 # docker-cli: DB 컨테이너 안 mysqldump 호출  ·  openssh-client: 오프사이트 복사
 # tzdata: 스케줄과 파일명 날짜가 KST 기준
