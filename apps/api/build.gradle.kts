@@ -8,7 +8,7 @@ plugins {
     kotlin("plugin.jpa") version "1.9.25"
     kotlin("kapt") version "1.9.25"
     id("org.jlleitschuh.gradle.ktlint") version "11.6.0"
-    id("org.flywaydb.flyway") version "11.7.2"
+    id("org.flywaydb.flyway") version "11.20.3"
 }
 
 group = "com.wafflestudio"
