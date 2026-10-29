@@ -46,9 +46,9 @@ dependencies {
     implementation("org.flywaydb:flyway-mysql")
 
     // kotest
-    testImplementation("io.kotest:kotest-runner-junit5-jvm:5.8.1")
-    testImplementation("io.kotest:kotest-assertions-core-jvm:5.8.1")
-    testImplementation("io.kotest:kotest-property-jvm:5.8.1")
+    testImplementation("io.kotest:kotest-runner-junit5-jvm:5.9.1")
+    testImplementation("io.kotest:kotest-assertions-core-jvm:5.9.1")
+    testImplementation("io.kotest:kotest-property-jvm:5.9.1")
     implementation("io.kotest.extensions:kotest-extensions-spring:1.1.3")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.boot:spring-boot-testcontainers")
