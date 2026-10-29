@@ -22,6 +22,10 @@ repositories {
     mavenCentral()
 }
 
+// Boot 3.5 는 OSS 지원이 끝나 관리 버전에 보안 패치가 더 안 들어온다 — Boot 를 올리면 지운다.
+extra["tomcat.version"] = "10.1.61"
+extra["jackson-bom.version"] = "2.21.8"
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
@@ -73,13 +77,13 @@ dependencies {
     implementation("org.jsoup:jsoup:1.17.2")
 
     // 이미지 업로드
-    implementation("commons-io:commons-io:2.11.0")
+    implementation("commons-io:commons-io:2.22.0")
 
     // Custom Metadata
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
     // google guava
-    implementation("com.google.guava:guava:33.4.8-jre")
+    implementation("com.google.guava:guava:33.7.2-jre")
 
     // prometheus
     implementation("org.springframework.boot:spring-boot-starter-actuator")
