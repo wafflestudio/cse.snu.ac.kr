@@ -1,7 +1,7 @@
 services:
   caddy:
     container_name: csereal_caddy
-    image: caddy:2.7.4-alpine
+    image: caddy:2.11.7-alpine
     ports:
       - 80:80
       - 443:443
