@@ -43,7 +43,7 @@ services:
         restart: unless-stopped
 
     grafana:
-        image: grafana/grafana:13.2.1
+        image: grafana/grafana:13.2.4
         container_name: grafana
         # 도커 게이트웨이에만 낸다 — Caddy 가 여기 붙어 /grafana 를 서빙한다.
         # 3000 은 프론트가 쓴다.
