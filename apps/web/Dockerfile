@@ -1,5 +1,5 @@
 # 컨텍스트 = 레포 루트(pnpm 워크스페이스 lockfile 이 거기 있다). 호출: docker build -f apps/web/Dockerfile <루트>
-FROM node:24.20.0-alpine AS base
+FROM node:24.22.2-alpine AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
