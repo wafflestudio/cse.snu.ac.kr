@@ -15,6 +15,7 @@ services:
             BACKUP_DIR: /backup
             METRICS_DIR: /metrics
             DB_CONTAINER: csereal_db_container
+            TLS_HOST: cse.snu.ac.kr # 만료를 지켜볼 사이트
             # 오프사이트 복사 대상(staging 호스트).
             OFFSITE_HOST: ubuntu@168.107.16.249
             OFFSITE_PATH: db-backup-from-prod/

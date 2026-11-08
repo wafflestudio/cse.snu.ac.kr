@@ -160,6 +160,32 @@ groups:
                           - evaluator: { type: gt, params: [90000] }
                       refId: C
 
+          # 인증서 만료로 사이트가 두 번 내려갔다(2025-07, 2026-08). 갱신은 행정실이 신청해야 해서
+          # 며칠 전 알림으로는 늦는다. 값은 ops 컨테이너가 하루 한 번 443 에서 읽어 남긴다.
+          - uid: tls-expiring
+            title: 사이트 인증서가 30일 안에 만료된다
+            condition: C
+            for: 10m
+            annotations:
+                summary: "행정실에 갱신 신청을 부탁할 것. 발급 메일은 csereal 메일로, 설치는 ~/secrets/certs."
+            labels: { severity: critical }
+            data:
+                - refId: A
+                  relativeTimeRange: { from: 172800, to: 0 }
+                  datasourceUid: prometheus
+                  model:
+                      expr: csereal_tls_not_after_timestamp_seconds - time()
+                      instant: true
+                      refId: A
+                - refId: C
+                  datasourceUid: __expr__
+                  model:
+                      type: threshold
+                      expression: A
+                      conditions:
+                          - evaluator: { type: lt, params: [2592000] }
+                      refId: C
+
           # 호스트 디스크. node-exporter 가 들어와서 비로소 가능해졌다.
           - uid: disk-low
             title: 디스크 여유가 10GB 미만이다
