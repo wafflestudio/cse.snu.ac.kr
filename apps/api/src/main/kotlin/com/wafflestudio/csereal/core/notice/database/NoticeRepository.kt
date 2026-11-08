@@ -3,6 +3,7 @@ package com.wafflestudio.csereal.core.notice.database
 import com.querydsl.core.BooleanBuilder
 import com.querydsl.core.types.Projections
 import com.querydsl.core.types.dsl.Expressions
+import com.querydsl.jpa.JPAExpressions
 import com.querydsl.jpa.impl.JPAQueryFactory
 import com.wafflestudio.csereal.common.utils.FixedPageRequest
 import com.wafflestudio.csereal.core.main.dto.MainImportantResponse
@@ -55,16 +56,19 @@ interface NoticeRepository : JpaRepository<NoticeEntity, Long>, CustomNoticeRepo
 }
 
 interface CustomNoticeRepository {
-    /** 키워드 없이 태그만으로 훑을 때. 순서·페이징까지 여기서 정한다. */
+    /**
+     * 공지 목록. 순서·페이징까지 여기서 정한다. keyword 는 제목에 글자 그대로 든 낱말로 찾는다(띄어 쓴 낱말은 모두).
+     * 목록이 제목만 보여 주니 걸린 이유가 늘 보이게 하고, '네이'로 '네이버'도 찾게 한다(검색 색인은 낱말 단위라 못 찾는다).
+     * 본문 검색은 통합검색 몫이다. 행정실 2026-10-23 "공지 검색이 이상하다".
+     */
     fun browseNotice(
         tag: List<String>?,
+        excludeTag: List<String>?,
+        keyword: String?,
         pageable: Pageable,
         usePageBtn: Boolean,
         isStaff: Boolean
     ): NoticeSearchResponse
-
-    /** 키워드 검색이 고른 id 들의 표시용 값. 준 id 차례대로 돌려준다. */
-    fun findSearchDtosByIds(ids: List<Long>): List<NoticeSearchDto>
 
     fun findImportantNotice(cnt: Int? = null): List<MainImportantResponse>
 }
@@ -73,20 +77,33 @@ interface CustomNoticeRepository {
 class NoticeRepositoryImpl(
     private val queryFactory: JPAQueryFactory
 ) : CustomNoticeRepository {
-    override fun findSearchDtosByIds(ids: List<Long>): List<NoticeSearchDto> {
-        // in 질의는 순서를 보장하지 않는다. 부른 쪽이 정한 차례로 되돌린다.
-        val byId = selectNoticeSearchDto().where(noticeEntity.id.`in`(ids)).fetch().associateBy { it.id }
-        return ids.mapNotNull(byId::get)
-    }
-
     override fun browseNotice(
         tag: List<String>?,
+        excludeTag: List<String>?,
+        keyword: String?,
         pageable: Pageable,
         usePageBtn: Boolean,
         isStaff: Boolean
     ): NoticeSearchResponse {
         val tagsBooleanBuilder = BooleanBuilder()
         val isPrivateBooleanBuilder = BooleanBuilder()
+        val excludeBooleanBuilder = BooleanBuilder()
+        val titleBooleanBuilder = BooleanBuilder()
+
+        keyword?.trim()?.split(Regex("\\s+"))?.filter { it.isNotEmpty() }?.forEach {
+            titleBooleanBuilder.and(noticeEntity.title.containsIgnoreCase(it))
+        }
+
+        if (!excludeTag.isNullOrEmpty()) {
+            // 목록 쿼리의 조인과 별칭이 겹치면 "그 태그 줄만" 빠지고 글은 다른 태그 줄로 남는다.
+            val excluded = QNoticeTagEntity("excludedTag")
+            excludeBooleanBuilder.and(
+                JPAExpressions.selectOne().from(excluded).where(
+                    excluded.notice.eq(noticeEntity),
+                    excluded.tag.name.`in`(excludeTag.map { TagInNoticeEnum.getTagEnum(it) })
+                ).notExists()
+            )
+        }
 
         if (!tag.isNullOrEmpty()) {
             tag.forEach {
@@ -105,7 +122,7 @@ class NoticeRepositoryImpl(
 
         val jpaQuery = selectNoticeSearchDto()
             .leftJoin(noticeTagEntity).on(noticeTagEntity.notice.eq(noticeEntity))
-            .where(tagsBooleanBuilder, isPrivateBooleanBuilder)
+            .where(tagsBooleanBuilder, isPrivateBooleanBuilder, excludeBooleanBuilder, titleBooleanBuilder)
 
         val total: Long
         var pageRequest = pageable

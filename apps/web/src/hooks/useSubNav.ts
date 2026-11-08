@@ -97,6 +97,7 @@ export const useCommunitySubNav = (): SubNavConfig => {
     titlePath: '/community',
     items: [
       { name: t('공지사항'), path: '/community/notice', depth: 1 },
+      { name: t('채용정보'), path: '/community/jobs', depth: 1 },
       { name: t('새 소식'), path: '/community/news', depth: 1 },
       { name: t('세미나'), path: '/community/seminar', depth: 1 },
       {

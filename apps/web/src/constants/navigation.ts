@@ -41,6 +41,7 @@ export const navigationTree: NavItem[] = [
     path: '/community',
     children: [
       { key: '공지사항', path: '/community/notice' },
+      { key: '채용정보', path: '/community/jobs' },
       { key: '새 소식', path: '/community/news' },
       { key: '세미나', path: '/community/seminar' },
       {

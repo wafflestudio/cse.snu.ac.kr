@@ -48,11 +48,13 @@ export default function SearchBox({
           handleSearch(e.currentTarget);
         }}
       >
-        <TagCheckBoxes
-          tags={tags}
-          selectedTags={selectedTags}
-          disabled={disabled}
-        />
+        {tags.length > 0 && (
+          <TagCheckBoxes
+            tags={tags}
+            selectedTags={selectedTags}
+            disabled={disabled}
+          />
+        )}
         <Input
           key={initialKeyword}
           defaultValue={initialKeyword}

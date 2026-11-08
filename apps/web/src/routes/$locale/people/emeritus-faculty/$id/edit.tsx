@@ -3,6 +3,7 @@ import {
   useNavigate,
   useRouter,
 } from '@tanstack/react-router';
+import dayjs from 'dayjs';
 import PageLayout from '@/components/layout/PageLayout';
 import { toast, toastError } from '@/components/ui/sonner';
 import { useLanguage } from '@/hooks/useLanguage';
@@ -31,8 +32,8 @@ function EmeritusFacultyEdit() {
     const request: ProfessorPutBody = {
       status: content.status,
       labId: content.labId,
-      startDate: content.startDate.toISOString(),
-      endDate: content.endDate.toISOString(),
+      startDate: dayjs(content.startDate).format('YYYY-MM-DD'),
+      endDate: dayjs(content.endDate).format('YYYY-MM-DD'),
       phone: content.phone,
       fax: content.fax,
       email: content.email,

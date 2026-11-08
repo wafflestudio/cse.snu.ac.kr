@@ -13,7 +13,7 @@ contactPoints:
           - uid: email-default
             type: email
             settings:
-                addresses: yeolyi1310@gmail.com
+                addresses: csereal.waffle@gmail.com # 팀 공용 메일함. 담당자가 바뀌어도 남는다
                 singleEmail: true
 
 policies:

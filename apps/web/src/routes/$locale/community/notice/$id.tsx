@@ -17,6 +17,7 @@ import PostFooter from '@/routes/$locale/community/-components/PostFooter';
 import { prepareHtmlForViewer } from '@/serverFns/prepareHtmlForViewer';
 import type { Notice } from '@/types/api';
 import { stripHtml, truncateDescription } from '@/utils/string';
+import { JOB_NOTICE_TAG } from './-constants';
 
 function NoticeDetailPage() {
   const notice = Route.useLoaderData();
@@ -40,11 +41,16 @@ function NoticeDetailPage() {
       ? 'Notice details from the Department of Computer Science and Engineering at Seoul National University.'
       : '서울대학교 컴퓨터공학부 공지사항 상세 내용입니다.';
 
+  // 채용 공지는 채용정보 목록에만 보인다. 상세 주소·메뉴·이전/다음 글은 공지사항 그대로 둔다(가성비).
+  const listPath = notice.tags.includes(JOB_NOTICE_TAG)
+    ? '/community/jobs'
+    : '/community/notice';
+
   const handleDelete = async () => {
     try {
       await api.delete(`v2/notice/${notice.id}`);
       toast.success('게시글을 삭제했습니다.');
-      navigate({ to: localizedPath('/community/notice') });
+      navigate({ to: localizedPath(listPath) });
     } catch (error) {
       toastError(error);
     }
@@ -106,7 +112,7 @@ function NoticeDetailPage() {
 
         <PostFooter
           post={notice}
-          listPath="/community/notice"
+          listPath={listPath}
           editPath={`/community/notice/edit/${notice.id}`}
           onDelete={handleDelete}
         />

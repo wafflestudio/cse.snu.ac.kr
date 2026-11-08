@@ -2,8 +2,6 @@ package com.wafflestudio.csereal.core.notice.service
 
 import com.wafflestudio.csereal.common.CserealException
 import com.wafflestudio.csereal.common.ErrorCode
-import com.wafflestudio.csereal.common.search.SearchListService
-import com.wafflestudio.csereal.common.search.SearchType
 import com.wafflestudio.csereal.common.utils.isCurrentUserStaff
 import com.wafflestudio.csereal.core.notice.api.req.CreateNoticeReq
 import com.wafflestudio.csereal.core.notice.api.req.UpdateNoticeReq
@@ -20,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile
 interface NoticeService {
     fun searchNotice(
         tag: List<String>?,
+        excludeTag: List<String>?,
         keyword: String?,
         pageable: Pageable,
         usePageBtn: Boolean
@@ -43,39 +42,21 @@ interface NoticeService {
 @Service
 class NoticeServiceImpl(
     private val noticeRepository: NoticeRepository,
-    private val searchListService: SearchListService,
     private val tagInNoticeRepository: TagInNoticeRepository,
     private val noticeTagRepository: NoticeTagRepository,
     private val attachmentService: AttachmentService,
     private val userService: UserService
 ) : NoticeService {
 
-    /**
-     * 키워드가 있으면 ES 가 거르고 정렬하고 페이지를 나눈다. 화면에 그릴 값은 그 id 로
-     * DB 에서 읽는다. 키워드 없이 태그만 훑을 때는 색인을 거칠 이유가 없다.
-     */
     @Transactional(readOnly = true)
     override fun searchNotice(
         tag: List<String>?,
+        excludeTag: List<String>?,
         keyword: String?,
         pageable: Pageable,
         usePageBtn: Boolean
-    ): NoticeSearchResponse {
-        val isStaff = isCurrentUserStaff()
-        if (keyword.isNullOrEmpty()) {
-            return noticeRepository.browseNotice(tag, pageable, usePageBtn, isStaff)
-        }
-
-        val page = searchListService.searchIds(
-            type = SearchType.NOTICE,
-            keyword = keyword,
-            tags = tag.orEmpty().map { TagInNoticeEnum.getTagEnum(it).name },
-            isStaff = isStaff,
-            offset = pageable.offset,
-            size = pageable.pageSize
-        )
-        return NoticeSearchResponse(page.total, noticeRepository.findSearchDtosByIds(page.ids))
-    }
+    ): NoticeSearchResponse =
+        noticeRepository.browseNotice(tag, excludeTag, keyword, pageable, usePageBtn, isCurrentUserStaff())
 
     @Transactional
     override fun increaseViewCount(noticeId: Long) {

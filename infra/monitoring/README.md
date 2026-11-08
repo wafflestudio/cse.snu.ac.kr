@@ -80,7 +80,7 @@ Slack appender 를 걷어내면서 이 시스템에 알림 수단이 없어졌�
 
 ### 메일 발송 설정
 
-수신처는 `yeolyi1310@gmail.com` 이다. **SMTP 자격증명이 없으면 Grafana 는 조용히 메일을
+수신처는 팀 공용 메일함 `csereal.waffle@gmail.com` 이다. **SMTP 자격증명이 없으면 Grafana 는 조용히 메일을
 안 보낸다**(로그에만 남는다). 호스트 `monitoring/.env` 에 넣는다:
 
 ```
