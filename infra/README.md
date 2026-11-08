@@ -10,7 +10,7 @@ compose.caddy.yml     엣지(Caddy, ~/proxy). caddy/Caddyfile(prod)·Caddyfile.d
 compose.ops.yml       백업 컨테이너
 monitoring/           Prometheus·Grafana(prod)
 ops/host-deploy.sh    호스트에서 jar·api 이미지·web 이미지 빌드 → compose up → Caddy reload → GIT_SHA 검증. deploy.yml 이 부른다
-ops/db-backup.sh 등   백업
+ops/db-backup.sh 등   백업 · 인증서 만료 지표(tls-expiry.sh)
 production.env        prod 배포 대상 — 호스트·프로파일·웹 빌드 mode·Caddyfile·인증서 경로 (main push)
 staging.env           staging 배포 대상 (develop push)
 Dockerfile.es         nori 플러그인을 넣은 Elasticsearch 이미지

@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 import { useState } from 'react';
 import LoginVisible from '@/components/feature/auth/LoginVisible';
 import SearchBox from '@/components/feature/SearchBox';
@@ -18,7 +18,7 @@ import AdminFeatures from './-components/AdminFeatures';
 import NoticeListRow, {
   NOTICE_ROW_CELL_WIDTH,
 } from './-components/NoticeListRow';
-import { NOTICE_TAGS } from './-constants';
+import { JOB_NOTICE_TAG, NOTICE_FILTER_TAGS, NOTICE_TAGS } from './-constants';
 
 const POST_LIMIT = 20;
 
@@ -76,7 +76,7 @@ function NoticePage() {
       pageTitle={meta.title}
       pageDescription={meta.description}
     >
-      <SearchBox tags={NOTICE_TAGS} disabled={isEditMode} />
+      <SearchBox tags={NOTICE_FILTER_TAGS} disabled={isEditMode} />
 
       {data.searchList.length === 0 ? (
         <p className="mx-2.5 mb-8 mt-6">
@@ -145,6 +145,16 @@ export const Route = createFileRoute('/$locale/community/notice/')({
       (NOTICE_TAGS as readonly string[]).includes(t),
     ),
   }),
+  // 채용 공지는 채용정보 페이지로 옮겼다. 옛 '채용정보' 태그 링크는 그리로 보낸다.
+  beforeLoad: ({ params, search }) => {
+    if (search.tag?.includes(JOB_NOTICE_TAG)) {
+      throw redirect({
+        to: '/$locale/community/jobs',
+        params,
+        search: { keyword: search.keyword },
+      });
+    }
+  },
   // loader가 실제로 쓰는 것만 선언한다(전체를 넘기면 무관한 파라미터 변경에도 재실행).
   loaderDeps: ({ search }) => search,
   loader: ({ params, deps }) => {
@@ -156,6 +166,8 @@ export const Route = createFileRoute('/$locale/community/notice/')({
           ['language', locale],
           ...(deps.keyword ? [['keyword', deps.keyword]] : []),
           ...(deps.tag ?? []).map((t) => ['tag', t]),
+          // 회사 공지가 많아 학사 공지가 묻힌다(행정실 요청 2026-10-21). 검색에서도 뺀다.
+          ['excludeTag', JOB_NOTICE_TAG],
         ] as [string, string][],
       })
       .json<NoticePreviewList>();

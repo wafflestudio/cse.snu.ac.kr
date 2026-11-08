@@ -49,6 +49,7 @@ import { Route as LocaleAboutStudentClubsEditRouteImport } from './routes/$local
 import { Route as LocaleAcademicsStudentTypeCoursesRouteImport } from './routes/$locale/academics/$studentType/courses'
 import { Route as LocaleCommunityFacultyRecruitmentIndexRouteImport } from './routes/$locale/community/faculty-recruitment/index'
 import { Route as LocaleCommunityFacultyRecruitmentEditRouteImport } from './routes/$locale/community/faculty-recruitment/edit'
+import { Route as LocaleCommunityJobsIndexRouteImport } from './routes/$locale/community/jobs/index'
 import { Route as LocaleCommunityNewsIndexRouteImport } from './routes/$locale/community/news/index'
 import { Route as LocaleCommunityNewsIdRouteImport } from './routes/$locale/community/news/$id'
 import { Route as LocaleCommunityNewsCreateRouteImport } from './routes/$locale/community/news/create'
@@ -325,6 +326,12 @@ const LocaleCommunityFacultyRecruitmentEditRoute =
   LocaleCommunityFacultyRecruitmentEditRouteImport.update({
     id: '/community/faculty-recruitment/edit',
     path: '/community/faculty-recruitment/edit',
+    getParentRoute: () => LocaleRouteRoute,
+  } as any)
+const LocaleCommunityJobsIndexRoute =
+  LocaleCommunityJobsIndexRouteImport.update({
+    id: '/community/jobs/',
+    path: '/community/jobs/',
     getParentRoute: () => LocaleRouteRoute,
   } as any)
 const LocaleCommunityNewsIndexRoute =
@@ -735,6 +742,7 @@ export interface FileRoutesByFullPath {
   '/$locale/about/overview/': typeof LocaleAboutOverviewIndexRoute
   '/$locale/about/student-clubs/': typeof LocaleAboutStudentClubsIndexRoute
   '/$locale/community/faculty-recruitment/': typeof LocaleCommunityFacultyRecruitmentIndexRoute
+  '/$locale/community/jobs/': typeof LocaleCommunityJobsIndexRoute
   '/$locale/community/news/': typeof LocaleCommunityNewsIndexRoute
   '/$locale/community/notice/': typeof LocaleCommunityNoticeIndexRoute
   '/$locale/community/seminar/': typeof LocaleCommunitySeminarIndexRoute
@@ -835,6 +843,7 @@ export interface FileRoutesByTo {
   '/$locale/about/overview': typeof LocaleAboutOverviewIndexRoute
   '/$locale/about/student-clubs': typeof LocaleAboutStudentClubsIndexRoute
   '/$locale/community/faculty-recruitment': typeof LocaleCommunityFacultyRecruitmentIndexRoute
+  '/$locale/community/jobs': typeof LocaleCommunityJobsIndexRoute
   '/$locale/community/news': typeof LocaleCommunityNewsIndexRoute
   '/$locale/community/notice': typeof LocaleCommunityNoticeIndexRoute
   '/$locale/community/seminar': typeof LocaleCommunitySeminarIndexRoute
@@ -937,6 +946,7 @@ export interface FileRoutesById {
   '/$locale/about/overview/': typeof LocaleAboutOverviewIndexRoute
   '/$locale/about/student-clubs/': typeof LocaleAboutStudentClubsIndexRoute
   '/$locale/community/faculty-recruitment/': typeof LocaleCommunityFacultyRecruitmentIndexRoute
+  '/$locale/community/jobs/': typeof LocaleCommunityJobsIndexRoute
   '/$locale/community/news/': typeof LocaleCommunityNewsIndexRoute
   '/$locale/community/notice/': typeof LocaleCommunityNoticeIndexRoute
   '/$locale/community/seminar/': typeof LocaleCommunitySeminarIndexRoute
@@ -1040,6 +1050,7 @@ export interface FileRouteTypes {
     | '/$locale/about/overview/'
     | '/$locale/about/student-clubs/'
     | '/$locale/community/faculty-recruitment/'
+    | '/$locale/community/jobs/'
     | '/$locale/community/news/'
     | '/$locale/community/notice/'
     | '/$locale/community/seminar/'
@@ -1140,6 +1151,7 @@ export interface FileRouteTypes {
     | '/$locale/about/overview'
     | '/$locale/about/student-clubs'
     | '/$locale/community/faculty-recruitment'
+    | '/$locale/community/jobs'
     | '/$locale/community/news'
     | '/$locale/community/notice'
     | '/$locale/community/seminar'
@@ -1241,6 +1253,7 @@ export interface FileRouteTypes {
     | '/$locale/about/overview/'
     | '/$locale/about/student-clubs/'
     | '/$locale/community/faculty-recruitment/'
+    | '/$locale/community/jobs/'
     | '/$locale/community/news/'
     | '/$locale/community/notice/'
     | '/$locale/community/seminar/'
@@ -1580,6 +1593,13 @@ declare module '@tanstack/react-router' {
       path: '/community/faculty-recruitment/edit'
       fullPath: '/$locale/community/faculty-recruitment/edit'
       preLoaderRoute: typeof LocaleCommunityFacultyRecruitmentEditRouteImport
+      parentRoute: typeof LocaleRouteRoute
+    }
+    '/$locale/community/jobs/': {
+      id: '/$locale/community/jobs/'
+      path: '/community/jobs'
+      fullPath: '/$locale/community/jobs/'
+      preLoaderRoute: typeof LocaleCommunityJobsIndexRouteImport
       parentRoute: typeof LocaleRouteRoute
     }
     '/$locale/community/news/': {
@@ -2088,6 +2108,7 @@ interface LocaleRouteRouteChildren {
   LocaleAboutOverviewIndexRoute: typeof LocaleAboutOverviewIndexRoute
   LocaleAboutStudentClubsIndexRoute: typeof LocaleAboutStudentClubsIndexRoute
   LocaleCommunityFacultyRecruitmentIndexRoute: typeof LocaleCommunityFacultyRecruitmentIndexRoute
+  LocaleCommunityJobsIndexRoute: typeof LocaleCommunityJobsIndexRoute
   LocaleCommunityNewsIndexRoute: typeof LocaleCommunityNewsIndexRoute
   LocaleCommunityNoticeIndexRoute: typeof LocaleCommunityNoticeIndexRoute
   LocaleCommunitySeminarIndexRoute: typeof LocaleCommunitySeminarIndexRoute
@@ -2175,6 +2196,7 @@ const LocaleRouteRouteChildren: LocaleRouteRouteChildren = {
   LocaleAboutStudentClubsIndexRoute: LocaleAboutStudentClubsIndexRoute,
   LocaleCommunityFacultyRecruitmentIndexRoute:
     LocaleCommunityFacultyRecruitmentIndexRoute,
+  LocaleCommunityJobsIndexRoute: LocaleCommunityJobsIndexRoute,
   LocaleCommunityNewsIndexRoute: LocaleCommunityNewsIndexRoute,
   LocaleCommunityNoticeIndexRoute: LocaleCommunityNoticeIndexRoute,
   LocaleCommunitySeminarIndexRoute: LocaleCommunitySeminarIndexRoute,
