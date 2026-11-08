@@ -16,3 +16,11 @@ export const NOTICE_TAGS = [
   '공모전/대회',
   '시설/생활',
 ];
+
+/** 이 태그를 단 공지는 공지사항 목록에서 빠지고 채용정보 페이지(/community/jobs)에만 모인다. */
+export const JOB_NOTICE_TAG = '채용정보';
+
+/** 공지사항 목록의 태그 필터. 채용정보는 따로 페이지가 있어 뺀다(편집기는 NOTICE_TAGS 그대로). */
+export const NOTICE_FILTER_TAGS = NOTICE_TAGS.filter(
+  (t) => t !== JOB_NOTICE_TAG,
+);

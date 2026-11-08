@@ -1,0 +1,153 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { useState } from 'react';
+import LoginVisible from '@/components/feature/auth/LoginVisible';
+import SearchBox from '@/components/feature/SearchBox';
+import PageLayout from '@/components/layout/PageLayout';
+import Pagination from '@/components/ui/Pagination';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useSetToggle } from '@/hooks/useSetToggle';
+import { useCommunitySubNav } from '@/hooks/useSubNav';
+import type { NoticePreviewList } from '@/types/api';
+import { api } from '@/utils/api';
+import { pageNumParam, stringParam } from '@/utils/searchSchema';
+import AdminFeatures from '../notice/-components/AdminFeatures';
+import NoticeListRow, {
+  NOTICE_ROW_CELL_WIDTH,
+} from '../notice/-components/NoticeListRow';
+import { JOB_NOTICE_TAG } from '../notice/-constants';
+
+// 채용 공지는 따로 쓰는 게시판이 아니라 '채용정보' 태그를 단 공지다. 행정실은 공지를 쓰고
+// 태그만 달면 되고, 공지사항 목록에서는 빠진다(학사 공지가 묻힌다는 요청, 2026-10-21).
+const POST_LIMIT = 20;
+
+interface JobsSearch {
+  pageNum?: number;
+  keyword?: string;
+}
+
+const META = {
+  ko: {
+    title: '채용정보',
+    description:
+      '서울대학교 컴퓨터공학부에 올라온 기업·기관 채용 공고와 채용설명회 소식을 모아 봅니다.',
+  },
+  en: {
+    title: 'Recruitment',
+    description:
+      'Job postings and recruiting events shared with the Department of Computer Science and Engineering at Seoul National University.',
+  },
+};
+
+function JobsPage() {
+  const data = Route.useLoaderData();
+  const { pageNum = 1 } = Route.useSearch();
+  const { t, locale } = useLanguage({
+    제목: 'Title',
+    조회수: 'Views',
+    날짜: 'Date',
+    '검색 결과가 존재하지 않습니다.': 'No search results found.',
+  });
+  const subNav = useCommunitySubNav();
+  const meta = META[locale];
+
+  // 채용 공지는 공지사항 목록에 안 나오니 고정·일괄 삭제도 여기서 한다.
+  const [isEditMode, setIsEditMode] = useState(false);
+  const {
+    selected: selectedIds,
+    toggle: toggleSelection,
+    clear,
+  } = useSetToggle<number>();
+  const toggleEditMode = () => {
+    setIsEditMode((prev) => !prev);
+    clear();
+  };
+
+  return (
+    <PageLayout
+      title={t('채용정보')}
+      titleSize="xl"
+      subNav={subNav}
+      pageTitle={meta.title}
+      pageDescription={meta.description}
+    >
+      <SearchBox tags={[]} formOnly disabled={isEditMode} />
+
+      {data.searchList.length === 0 ? (
+        <p className="mx-2.5 mb-8 mt-6">
+          {t('검색 결과가 존재하지 않습니다.')}
+        </p>
+      ) : (
+        <div className="mb-10 mt-9 border-y border-neutral-200 sm:mx-2.5">
+          <h5 className="hidden h-11 items-center border-b border-neutral-200 pl-12.5 text-[15px] text-neutral-800 sm:flex">
+            <span
+              className={`${NOTICE_ROW_CELL_WIDTH.title} min-w-0 grow whitespace-nowrap tracking-wide sm:pl-3`}
+            >
+              {t('제목')}
+            </span>
+            <span
+              className={`${NOTICE_ROW_CELL_WIDTH.date} shrink-0 whitespace-nowrap tracking-wide sm:pl-8 sm:pr-6`}
+            >
+              {t('날짜')}
+            </span>
+            <span
+              className={`${NOTICE_ROW_CELL_WIDTH.views} shrink-0 whitespace-nowrap tracking-wide sm:pr-10`}
+            >
+              {t('조회수')}
+            </span>
+          </h5>
+          <ul
+            className={`${
+              isEditMode && 'divide-y divide-dashed divide-neutral-200'
+            }`}
+          >
+            {data.searchList.map((post) => (
+              <NoticeListRow
+                key={post.id}
+                post={post}
+                isEditMode={isEditMode}
+                isSelected={selectedIds.has(post.id)}
+                onToggleSelect={() => toggleSelection(post.id)}
+              />
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <Pagination
+        page={pageNum}
+        totalPages={Math.ceil(data.total / POST_LIMIT)}
+        disabled={isEditMode}
+      />
+
+      <LoginVisible allow="ROLE_STAFF">
+        <AdminFeatures
+          selectedIds={selectedIds}
+          isEditMode={isEditMode}
+          toggleEditMode={toggleEditMode}
+        />
+      </LoginVisible>
+    </PageLayout>
+  );
+}
+
+export const Route = createFileRoute('/$locale/community/jobs/')({
+  validateSearch: (search: Record<string, unknown>): JobsSearch => ({
+    pageNum: pageNumParam(search.pageNum),
+    keyword: stringParam(search.keyword),
+  }),
+  loaderDeps: ({ search }) => search,
+  loader: ({ params, deps }) => {
+    const locale = params.locale === 'en' ? 'en' : 'ko';
+    return api
+      .get('v2/notice', {
+        searchParams: [
+          ['pageNum', String(deps.pageNum ?? 1)],
+          ['language', locale],
+          ['tag', JOB_NOTICE_TAG],
+          ...(deps.keyword ? [['keyword', deps.keyword]] : []),
+        ] as [string, string][],
+      })
+      .json<NoticePreviewList>();
+  },
+  component: JobsPage,
+});

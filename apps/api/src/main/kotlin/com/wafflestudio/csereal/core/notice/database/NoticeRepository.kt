@@ -3,6 +3,7 @@ package com.wafflestudio.csereal.core.notice.database
 import com.querydsl.core.BooleanBuilder
 import com.querydsl.core.types.Projections
 import com.querydsl.core.types.dsl.Expressions
+import com.querydsl.jpa.JPAExpressions
 import com.querydsl.jpa.impl.JPAQueryFactory
 import com.wafflestudio.csereal.common.utils.FixedPageRequest
 import com.wafflestudio.csereal.core.main.dto.MainImportantResponse
@@ -58,6 +59,7 @@ interface CustomNoticeRepository {
     /** 키워드 없이 태그만으로 훑을 때. 순서·페이징까지 여기서 정한다. */
     fun browseNotice(
         tag: List<String>?,
+        excludeTag: List<String>?,
         pageable: Pageable,
         usePageBtn: Boolean,
         isStaff: Boolean
@@ -81,12 +83,25 @@ class NoticeRepositoryImpl(
 
     override fun browseNotice(
         tag: List<String>?,
+        excludeTag: List<String>?,
         pageable: Pageable,
         usePageBtn: Boolean,
         isStaff: Boolean
     ): NoticeSearchResponse {
         val tagsBooleanBuilder = BooleanBuilder()
         val isPrivateBooleanBuilder = BooleanBuilder()
+        val excludeBooleanBuilder = BooleanBuilder()
+
+        if (!excludeTag.isNullOrEmpty()) {
+            // 목록 쿼리의 조인과 별칭이 겹치면 "그 태그 줄만" 빠지고 글은 다른 태그 줄로 남는다.
+            val excluded = QNoticeTagEntity("excludedTag")
+            excludeBooleanBuilder.and(
+                JPAExpressions.selectOne().from(excluded).where(
+                    excluded.notice.eq(noticeEntity),
+                    excluded.tag.name.`in`(excludeTag.map { TagInNoticeEnum.getTagEnum(it) })
+                ).notExists()
+            )
+        }
 
         if (!tag.isNullOrEmpty()) {
             tag.forEach {
@@ -105,7 +120,7 @@ class NoticeRepositoryImpl(
 
         val jpaQuery = selectNoticeSearchDto()
             .leftJoin(noticeTagEntity).on(noticeTagEntity.notice.eq(noticeEntity))
-            .where(tagsBooleanBuilder, isPrivateBooleanBuilder)
+            .where(tagsBooleanBuilder, isPrivateBooleanBuilder, excludeBooleanBuilder)
 
         val total: Long
         var pageRequest = pageable

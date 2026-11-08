@@ -4762,6 +4762,7 @@ export interface operations {
         parameters: {
             query?: {
                 tag?: string[];
+                excludeTag?: string[];
                 keyword?: string;
                 pageNum?: number;
                 pageSize?: number;

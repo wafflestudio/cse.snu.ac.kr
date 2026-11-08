@@ -25,6 +25,7 @@ class NoticeController(
     @GetMapping
     fun searchNotice(
         @RequestParam(required = false) tag: List<String>?,
+        @RequestParam(required = false) excludeTag: List<String>?,
         @RequestParam(required = false) keyword: String?,
         @RequestParam(required = false) @Positive pageNum: Int?,
         @RequestParam(required = false, defaultValue = "20") @Positive pageSize: Int
@@ -33,7 +34,7 @@ class NoticeController(
         val page = pageNum ?: 1
         val pageRequest = PageRequest.of(page - 1, pageSize)
 
-        return ResponseEntity.ok(noticeService.searchNotice(tag, keyword, pageRequest, usePageBtn))
+        return ResponseEntity.ok(noticeService.searchNotice(tag, excludeTag, keyword, pageRequest, usePageBtn))
     }
 
     @GetMapping("/{noticeId}")

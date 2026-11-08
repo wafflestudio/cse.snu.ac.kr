@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile
 interface NoticeService {
     fun searchNotice(
         tag: List<String>?,
+        excludeTag: List<String>?,
         keyword: String?,
         pageable: Pageable,
         usePageBtn: Boolean
@@ -57,19 +58,21 @@ class NoticeServiceImpl(
     @Transactional(readOnly = true)
     override fun searchNotice(
         tag: List<String>?,
+        excludeTag: List<String>?,
         keyword: String?,
         pageable: Pageable,
         usePageBtn: Boolean
     ): NoticeSearchResponse {
         val isStaff = isCurrentUserStaff()
         if (keyword.isNullOrEmpty()) {
-            return noticeRepository.browseNotice(tag, pageable, usePageBtn, isStaff)
+            return noticeRepository.browseNotice(tag, excludeTag, pageable, usePageBtn, isStaff)
         }
 
         val page = searchListService.searchIds(
             type = SearchType.NOTICE,
             keyword = keyword,
             tags = tag.orEmpty().map { TagInNoticeEnum.getTagEnum(it).name },
+            excludeTags = excludeTag.orEmpty().map { TagInNoticeEnum.getTagEnum(it).name },
             isStaff = isStaff,
             offset = pageable.offset,
             size = pageable.pageSize
