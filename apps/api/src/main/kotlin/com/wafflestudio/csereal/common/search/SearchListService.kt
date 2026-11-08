@@ -22,7 +22,6 @@ class SearchListService(
         type: SearchType,
         keyword: String,
         tags: List<String>,
-        excludeTags: List<String> = emptyList(),
         isStaff: Boolean,
         offset: Long,
         size: Int
@@ -40,13 +39,6 @@ class SearchListService(
                             bool.filter { f -> f.term { it.field("type").value(type.toValue()) } }
                             if (!isStaff) {
                                 bool.filter { f -> f.term { it.field("isPrivate").value(false) } }
-                            }
-                            if (excludeTags.isNotEmpty()) {
-                                bool.mustNot { n ->
-                                    n.terms { t ->
-                                        t.field("tags").terms { v -> v.value(excludeTags.map(FieldValue::of)) }
-                                    }
-                                }
                             }
                             if (tags.isNotEmpty()) {
                                 bool.filter { f ->

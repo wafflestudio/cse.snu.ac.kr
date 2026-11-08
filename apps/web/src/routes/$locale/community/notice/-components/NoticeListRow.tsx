@@ -1,5 +1,6 @@
 import { Link, useSearch } from '@tanstack/react-router';
 import dayjs from 'dayjs';
+import type { ReactNode } from 'react';
 import 'dayjs/locale/ko';
 import Checkbox from '@/components/ui/Checkbox';
 import { useLanguage } from '@/hooks/useLanguage';
@@ -61,6 +62,7 @@ export default function NoticeListRow({
         id={post.id}
         isPinned={post.isPinned}
         pageNum={search.pageNum ? String(search.pageNum) : null}
+        keyword={search.keyword}
         isEditMode={isEditMode}
       />
 
@@ -91,6 +93,7 @@ interface TitleCellProps {
   id: number;
   isPinned: boolean;
   pageNum: string | null;
+  keyword?: string;
   isEditMode: boolean;
 }
 
@@ -100,6 +103,7 @@ function TitleCell({
   id,
   isPinned,
   pageNum,
+  keyword,
   isEditMode,
 }: TitleCellProps) {
   const { localizedPath } = useLanguage({});
@@ -119,9 +123,29 @@ function TitleCell({
           isPinned && 'font-semibold text-main-orange sm:text-neutral-800'
         } overflow-hidden text-ellipsis text-base tracking-wide hover:text-main-orange sm:whitespace-nowrap sm:text-md`}
       >
-        {title}
+        {highlight(title, keyword)}
       </span>
       {hasAttachment && <ClipIcon className="shrink-0" />}
     </Wrapper>
+  );
+}
+
+/**
+ * 검색어 낱말을 제목에서 굵게. 공지 검색은 제목으로만 찾으니 걸린 이유가 제목에 있다.
+ * 검색은 형태소로 하므로 글자 그대로 없으면(활용형 등) 굵게 할 곳이 없을 수 있다. 그때는 그대로 둔다.
+ */
+function highlight(title: string, keyword?: string): ReactNode {
+  const words = keyword?.trim().split(/\s+/).filter(Boolean) ?? [];
+  if (words.length === 0) return title;
+  const escaped = words.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  const parts = title.split(new RegExp(`(${escaped.join('|')})`, 'gi'));
+  return parts.map((part, i) =>
+    i % 2 === 1 ? (
+      <strong key={i} className="font-bold">
+        {part}
+      </strong>
+    ) : (
+      part
+    ),
   );
 }
