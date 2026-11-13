@@ -92,7 +92,7 @@ dependencies {
 
 buildscript {
     dependencies {
-        classpath("org.flywaydb:flyway-mysql:10.20.1")
+        classpath("org.flywaydb:flyway-mysql:10.22.0")
         classpath("com.mysql:mysql-connector-j:8.3.0")
     }
 }
