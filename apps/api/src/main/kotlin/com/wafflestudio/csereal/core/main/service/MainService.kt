@@ -31,7 +31,14 @@ class MainServiceImpl(
         val noticeScholarship = mainRepository.readMainNoticeTag(TagInNoticeEnum.SCHOLARSHIP)
         val noticeUndergraduate = mainRepository.readMainNoticeTag(TagInNoticeEnum.UNDERGRADUATE)
         val noticeGraduate = mainRepository.readMainNoticeTag(TagInNoticeEnum.GRADUATE)
-        val notices = NoticesResponse(noticeTotal, noticeScholarship, noticeUndergraduate, noticeGraduate)
+        val noticeRecruit = mainRepository.readMainNoticeTag(TagInNoticeEnum.RECRUIT)
+        val notices = NoticesResponse(
+            noticeTotal,
+            noticeScholarship,
+            noticeUndergraduate,
+            noticeGraduate,
+            noticeRecruit
+        )
 
         val importants = readMainImportant(importantCnt)
 
