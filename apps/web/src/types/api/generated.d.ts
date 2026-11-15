@@ -1888,6 +1888,7 @@ export interface components {
             scholarship: components["schemas"]["MainNoticeResponse"][];
             undergraduate: components["schemas"]["MainNoticeResponse"][];
             graduate: components["schemas"]["MainNoticeResponse"][];
+            recruit: components["schemas"]["MainNoticeResponse"][];
         };
         MyRoleResponse: {
             roles: ("ROLE_STAFF" | "ROLE_RESERVE" | "ROLE_RESERVE_PROFESSOR_ROOM" | "ROLE_LABMASTER")[];

@@ -30,4 +30,21 @@ test.describe('메인 - 읽기', () => {
       mask: [page.locator('a[href*="/community/news/"] .object-cover')],
     });
   });
+
+  // 채용정보는 공지 분류가 아니라 따로 페이지가 있다. 고르면 '더보기'가 그리로 바뀌는지(클라 상태 → 링크)
+  test('채용정보를 고르면 더보기가 채용정보 페이지로 간다', async ({
+    page,
+  }) => {
+    await setLocale(page, 'ko');
+    await page.goto('/');
+    const more = page.locator('a[href$="/community/jobs"]', {
+      hasText: '더보기',
+    });
+    await expect(more).toHaveCount(0);
+    await page
+      .getByRole('group', { name: '공지사항' })
+      .getByText('채용정보')
+      .click();
+    await expect(more).toBeVisible();
+  });
 });
