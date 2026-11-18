@@ -1,6 +1,8 @@
 package com.wafflestudio.csereal.core.resource.common.api
 
 import com.wafflestudio.csereal.common.properties.EndpointProperties
+import com.wafflestudio.csereal.common.utils.isCurrentUserStaff
+import com.wafflestudio.csereal.core.resource.attachment.database.AttachmentRepository
 import com.wafflestudio.csereal.core.resource.common.dto.FileUploadResponse
 import com.wafflestudio.csereal.core.resource.common.dto.UploadFileInfo
 import jakarta.servlet.http.HttpServletRequest
@@ -24,7 +26,8 @@ import kotlin.text.Charsets.UTF_8
 class FileController(
     @Value("\${csereal.upload.path}")
     private val uploadPath: String,
-    private val endpointProperties: EndpointProperties
+    private val endpointProperties: EndpointProperties,
+    private val attachmentRepository: AttachmentRepository
 ) {
 
     @GetMapping("/{filename:.+}")
@@ -32,6 +35,11 @@ class FileController(
         @PathVariable filename: String,
         request: HttpServletRequest
     ): ResponseEntity<Resource> {
+        // 비공개 글의 첨부는 교직원만. 있다는 것도 알리지 않게 404 로 답한다.
+        if (!isCurrentUserStaff() && attachmentRepository.existsPrivateByFilename(filename)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build()
+        }
+
         val file = Paths.get(uploadPath, filename)
         val resource = UrlResource(file.toUri())
 

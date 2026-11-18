@@ -6,6 +6,8 @@ import com.wafflestudio.csereal.core.news.dto.NewsResponse
 import com.wafflestudio.csereal.core.news.dto.NewsSearchResponse
 import com.wafflestudio.csereal.core.news.service.NewsService
 import jakarta.validation.Valid
+import jakarta.validation.constraints.Max
+import jakarta.validation.constraints.Positive
 import org.springframework.data.domain.PageRequest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -22,8 +24,11 @@ class NewsController(
     fun searchNews(
         @RequestParam(required = false) tag: List<String>?,
         @RequestParam(required = false) keyword: String?,
-        @RequestParam(required = false) pageNum: Int?,
-        @RequestParam(required = false, defaultValue = "10") pageSize: Int
+        @RequestParam(required = false) @Positive pageNum: Int?,
+        @RequestParam(required = false, defaultValue = "10")
+        @Positive
+        @Max(100)
+        pageSize: Int
     ): ResponseEntity<NewsSearchResponse> {
         val usePageBtn = pageNum != null
         val page = pageNum ?: 1

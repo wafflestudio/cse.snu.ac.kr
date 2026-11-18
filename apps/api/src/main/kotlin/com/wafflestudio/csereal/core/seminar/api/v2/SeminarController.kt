@@ -6,6 +6,8 @@ import com.wafflestudio.csereal.core.seminar.dto.SeminarResponse
 import com.wafflestudio.csereal.core.seminar.dto.SeminarSearchResponse
 import com.wafflestudio.csereal.core.seminar.service.SeminarService
 import jakarta.validation.Valid
+import jakarta.validation.constraints.Max
+import jakarta.validation.constraints.Positive
 import org.springframework.data.domain.PageRequest
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
@@ -20,8 +22,11 @@ class SeminarController(
     @GetMapping
     fun searchSeminar(
         @RequestParam(required = false) keyword: String?,
-        @RequestParam(required = false) pageNum: Int?,
-        @RequestParam(required = false, defaultValue = "10") pageSize: Int
+        @RequestParam(required = false) @Positive pageNum: Int?,
+        @RequestParam(required = false, defaultValue = "10")
+        @Positive
+        @Max(100)
+        pageSize: Int
     ): ResponseEntity<SeminarSearchResponse> {
         val usePageBtn = pageNum != null
         val page = pageNum ?: 1

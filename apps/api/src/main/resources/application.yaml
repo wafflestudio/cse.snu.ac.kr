@@ -136,6 +136,13 @@ endpoint:
 
 login-page: https://${URL}
 
+# 운영에선 API 문서를 열지 않는다(학교 보안점검 2026-11). 타입 생성(gen:api)은 로컬 백엔드를 쓴다.
+springdoc:
+    api-docs:
+        enabled: false
+    swagger-ui:
+        enabled: false
+
 customlog:
     file:
         base: "/app/logs"
