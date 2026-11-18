@@ -8,6 +8,7 @@ import com.wafflestudio.csereal.core.notice.service.NoticeService
 import com.wafflestudio.csereal.core.notice.suggest.TagSuggester
 import com.wafflestudio.csereal.core.notice.suggest.TagSuggestion
 import jakarta.validation.Valid
+import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.Positive
 import org.springframework.data.domain.PageRequest
 import org.springframework.http.HttpStatus
@@ -28,7 +29,10 @@ class NoticeController(
         @RequestParam(required = false) excludeTag: List<String>?,
         @RequestParam(required = false) keyword: String?,
         @RequestParam(required = false) @Positive pageNum: Int?,
-        @RequestParam(required = false, defaultValue = "20") @Positive pageSize: Int
+        @RequestParam(required = false, defaultValue = "20")
+        @Positive
+        @Max(100)
+        pageSize: Int
     ): ResponseEntity<NoticeSearchResponse> {
         val usePageBtn = pageNum != null
         val page = pageNum ?: 1

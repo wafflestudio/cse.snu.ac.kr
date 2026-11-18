@@ -19,8 +19,7 @@ services:
             timeout: 5s
 
     api:
-        ports:
-            - 8080:8080
+        # 포트 게시는 override 에 있다 — 운영은 호스트 브리지(172.17.0.1)에만, 로컬은 localhost 에.
         depends_on:
             db: { condition: service_healthy }
             search: { condition: service_healthy }

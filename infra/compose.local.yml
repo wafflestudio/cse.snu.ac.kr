@@ -32,6 +32,8 @@ services:
 
     api:
         image: csereal-api:local
+        ports:
+            - 8080:8080
         build:
             context: ../apps/api
             args:

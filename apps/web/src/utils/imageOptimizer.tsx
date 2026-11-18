@@ -60,6 +60,11 @@ function validateDomain(imageUrl: string, dev: boolean): URL {
   if (!isImageProxyHost(parsedUrl.hostname, dev)) {
     throw new Response('Domain not allowed', { status: 403 });
   }
+  // 호스트만 보면 같은 서버의 다른 포트(백엔드 8080 등)를 읽을 수 있다(SSRF). 운영은 기본 포트만.
+  // 옛 본문엔 http:// 주소가 남아 있어 스킴은 둘 다 받는다(80 은 Caddy 가 https 로 넘긴다).
+  if (!dev && parsedUrl.port !== '') {
+    throw new Response('URL not allowed', { status: 403 });
+  }
 
   return parsedUrl;
 }
@@ -178,7 +183,12 @@ export async function handleImg(
 
   // SVG/GIF는 최적화 스킵
   if (imageUrl.endsWith('.svg') || imageUrl.endsWith('.gif')) {
-    return await fetchImageWithProdFallback(imageUrl, dev);
+    const passthrough = await fetchImageWithProdFallback(imageUrl, dev);
+    // 확장자는 쿼리로 꾸밀 수 있다 — 이미지가 아닌 응답은 돌려주지 않는다.
+    if (!passthrough.headers.get('content-type')?.startsWith('image/')) {
+      throw new Response('Not an image', { status: 415 });
+    }
+    return passthrough;
   }
 
   const cacheDir = getCacheDir(dev);
@@ -213,7 +223,10 @@ export async function handleImg(
     });
   } catch (error) {
     console.error('Image optimization failed:', error);
-    // 최적화 실패 시 원본 반환
+    // 최적화 실패 시 원본 반환 — 단, 이미지일 때만(내부 응답을 그대로 흘리지 않게).
+    if (!contentType?.startsWith('image/')) {
+      throw new Response('Not an image', { status: 415 });
+    }
     return new Response(new Uint8Array(buffer), {
       headers: {
         'Content-Type': contentType || 'image/jpeg',

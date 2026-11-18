@@ -24,7 +24,9 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_FILE_BASE}/${LOG_FILE_NAME}_%d{yyyy-MM-dd}.log</fileNamePattern>
             <cleanHistoryOnStart>false</cleanHistoryOnStart>
-            <maxHistory>14</maxHistory>
+            <!-- 학교 보안 기준: 로그 1년 보관. 디스크를 채우지 않게 총량 상한을 둔다. -->
+            <maxHistory>365</maxHistory>
+            <totalSizeCap>20GB</totalSizeCap>
         </rollingPolicy>
     </appender>
 

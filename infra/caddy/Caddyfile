@@ -2,6 +2,16 @@
 	tls {$CERTIFICATE} {$PRIVATE_KEY}
 
 	import headers.caddy
+
+	# 접근 로그 — 학교 보안 기준으로 1년 보관. Caddy 는 Cookie·Authorization 헤더를 기본으로 가린다.
+	log {
+		output file /data/logs/access.log {
+			roll_size 100MiB
+			roll_keep 1000
+			roll_keep_for 8760h
+		}
+		format json
+	}
 	header Strict-Transport-Security "max-age=31536000"
 
 	# Frontend
@@ -23,8 +33,5 @@
 	# GoatCounter — 페이지 조회 통계
 	reverse_proxy /stats* host.docker.internal:8081
 
-	# Swagger — /swagger-ui.html 은 /swagger-ui/ 아래가 아니라 별도 매처가 필요하다
-	reverse_proxy /swagger-ui.html host.docker.internal:8080
-	reverse_proxy /swagger-ui/* host.docker.internal:8080
-	reverse_proxy /api-docs/* host.docker.internal:8080
+	# Swagger 는 운영에서 열지 않는다(학교 보안점검 2026-11). staging(Caddyfile.dev)에서만 본다.
 }
