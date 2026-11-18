@@ -21,7 +21,7 @@ services:
 
     # 호스트 지표(CPU·메모리·디스크·네트워크)와 배치 잡 하트비트를 노출한다.
     node-exporter:
-        image: prom/node-exporter:v1.9.1
+        image: prom/node-exporter:v1.12.1
         container_name: node-exporter
         # 호스트 네임스페이스를 봐야 진짜 호스트 지표가 나온다.
         pid: host
