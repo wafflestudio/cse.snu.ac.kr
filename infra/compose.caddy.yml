@@ -17,4 +17,9 @@ services:
       PRIVATE_KEY: ${PRIVATE_KEY}
     extra_hosts:
       - host.docker.internal:host-gateway
+    logging:
+      driver: json-file
+      options:
+        max-size: "100m"
+        max-file: "3"
     restart: always

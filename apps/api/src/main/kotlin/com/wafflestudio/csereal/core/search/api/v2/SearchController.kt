@@ -4,6 +4,7 @@ import com.wafflestudio.csereal.common.enums.LanguageType
 import com.wafflestudio.csereal.common.search.SearchType
 import com.wafflestudio.csereal.core.search.api.res.SearchResBody
 import com.wafflestudio.csereal.core.search.service.SearchQueryService
+import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Positive
 import org.hibernate.validator.constraints.Length
@@ -32,6 +33,7 @@ class SearchController(
         pageNum: Int,
         @RequestParam(required = false, defaultValue = "20")
         @Positive
+        @Max(100)
         pageSize: Int
     ): SearchResBody = searchQueryService.search(keyword, language, type, pageNum, pageSize)
 }

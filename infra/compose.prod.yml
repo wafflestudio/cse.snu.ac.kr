@@ -42,6 +42,10 @@ services:
         container_name: csereal_api
         # 커밋 해시 태그. 롤백은 .env 의 IMAGE_TAG 를 옛 값으로 바꾸고 up -d 하면 된다.
         image: "csereal-api:${IMAGE_TAG:?ops/host-deploy.sh 가 .env 에 써 넣는다}"
+        # Caddy·Prometheus 가 host.docker.internal:8080 으로 붙는다 — 호스트 브리지에만 노출.
+        # 0.0.0.0 에 게시하면 Caddy 를 거치지 않고 actuator 등을 바로 볼 수 있다(호스트 방화벽 없음).
+        ports:
+            - "172.17.0.1:8080:8080"
         volumes:
             - ./cse-files:/app/cse-files
             - ./files:/app/files
