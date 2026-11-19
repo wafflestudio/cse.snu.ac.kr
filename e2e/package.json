@@ -9,7 +9,7 @@
   "devDependencies": {
     "@playwright/test": "^1.57.0",
     "@types/node": "^24",
-    "mysql2": "^3.24.2",
+    "mysql2": "^3.24.6",
     "typescript": "^5.9.2"
   }
 }
