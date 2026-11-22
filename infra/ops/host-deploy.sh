@@ -31,13 +31,15 @@ build_jar() {
 }
 
 build_images() {
+    # --pull: 베이스 이미지(eclipse-temurin:21-jre·node)의 보안 패치를 배포 때마다 받는다.
+    # 없으면 호스트에 처음 받아 둔 판을 계속 써서 JDK 패치(21.0.13 → 21.0.13.1)가 안 들어간다.
     say "api 이미지: csereal-api:$TAG"
-    docker build -q --build-arg JAR_STAGE=prebuilt --build-arg GIT_SHA="$GIT_SHA" \
+    docker build -q --pull --build-arg JAR_STAGE=prebuilt --build-arg GIT_SHA="$GIT_SHA" \
         -t "csereal-api:$TAG" "$API_DIR"
 
     # 컨텍스트는 레포 루트(워크스페이스 lockfile). .dockerignore 가 apps/api·e2e·infra 를 뺀다.
     say "web 이미지: csereal-web:$TAG"
-    docker build -q -f "$WORKSPACE/apps/web/Dockerfile" \
+    docker build -q --pull -f "$WORKSPACE/apps/web/Dockerfile" \
         --build-arg BUILD_MODE="$WEB_MODE" --build-arg VITE_KAKAO_MAP_API_KEY="$KAKAO" --build-arg GIT_SHA="$GIT_SHA" \
         -t "csereal-web:$TAG" "$WORKSPACE"
 
