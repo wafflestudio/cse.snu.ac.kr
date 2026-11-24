@@ -22,6 +22,43 @@ const isContentEmpty = (editor: SunEditorCore) => {
   );
 };
 
+// SunEditor 는 strict CSP 를 지원하지 않아 하는 우회다(JiHong88/SunEditor#1572, 답 없이 닫힘).
+// 툴바(색 팔레트·글자 크기 목록)와 본문을 innerHTML 로 그리는데, style-src 에 unsafe-inline 이 없으면
+// 그 style 속성이 적용되지 않는다. nonce 는 style 속성에 듣지 않으므로 CSSOM(style.cssText)으로 다시 넣는다.
+// 화면만의 문제가 아니다. 서식을 바꿀 때 style.cssText 를 읽어 합치므로, 막힌 채면 기존 색이 저장본에서 사라진다.
+// 판정은 "속성값 ≠ cssText". 다시 넣으면 둘이 같아져(#f00 → rgb(255, 0, 0)) 관찰자가 자기 변경에 반응하지 않는다.
+// style.length 로 판정하면 안 된다. 막힌 setAttribute 는 이전 선언을 남겨 0이 아니다.
+// SunEditor 를 올릴 때 context.element.topArea 가 툴바·본문을 함께 감싸는지 확인한다.
+const restoreBlockedStyles = (root: HTMLElement) => {
+  const restore = (el: HTMLElement) => {
+    const style = el.getAttribute('style');
+    if (style && style !== el.style.cssText) el.style.cssText = style;
+  };
+  const restoreTree = (el: HTMLElement) => {
+    restore(el);
+    for (const child of el.querySelectorAll<HTMLElement>('[style]')) {
+      restore(child);
+    }
+  };
+
+  restoreTree(root);
+  const observer = new MutationObserver((records) => {
+    for (const record of records) {
+      if (record.type === 'attributes') restore(record.target as HTMLElement);
+      for (const node of record.addedNodes) {
+        if (node instanceof Element) restoreTree(node as HTMLElement);
+      }
+    }
+  });
+  observer.observe(root, {
+    subtree: true,
+    childList: true,
+    attributes: true,
+    attributeFilter: ['style'],
+  });
+  return observer;
+};
+
 export interface HTMLEditorProps {
   name: string;
   isHidden?: boolean;
@@ -42,6 +79,7 @@ export default function HTMLEditor({
     if (typeof window === 'undefined') return;
 
     let _editor: SunEditorCore | null = null;
+    let styleObserver: MutationObserver | null = null;
 
     const initEditor = async () => {
       const { default: suneditor } = await import('suneditor');
@@ -71,6 +109,9 @@ export default function HTMLEditor({
         strictMode: false,
       });
 
+      styleObserver = restoreBlockedStyles(
+        editor.core.context.element.topArea as HTMLElement,
+      );
       editor.onImageUploadBefore = handleImageUploadBefore;
       editor.onPaste = handlePaste;
       editor.onBlur = onBlur;
@@ -87,6 +128,7 @@ export default function HTMLEditor({
     initEditor();
 
     return () => {
+      styleObserver?.disconnect();
       _editor?.destroy();
       return;
     };
