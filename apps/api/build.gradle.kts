@@ -74,7 +74,7 @@ dependencies {
     implementation("com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20260313.1")
 
     // 검색 색인용 평문 추출, 세탁 전 DOM 손질
-    implementation("org.jsoup:jsoup:1.17.2")
+    implementation("org.jsoup:jsoup:1.23.2")
 
     // 이미지 업로드
     implementation("commons-io:commons-io:2.22.0")
