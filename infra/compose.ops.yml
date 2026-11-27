@@ -28,6 +28,8 @@ services:
             - ops-metrics:/metrics
             # 오프사이트 복사용 전용 SSH 키.
             - ../secrets/backup_offsite:/secrets/backup_offsite:ro
+            # 오프사이트 복사본을 암호화할 age 공개키. 개인키는 서버에 두지 않는다(ops/README.md).
+            - ../secrets/backup_age.pub:/secrets/backup_age.pub:ro
         restart: unless-stopped
         logging:
             driver: json-file

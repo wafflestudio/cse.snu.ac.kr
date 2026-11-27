@@ -10,7 +10,7 @@
 # 덮어쓰거나 지울 수 없다 — 지우기는 KEEP_DAYS 가 지난 것만, 이 스크립트가 정한 대로만 한다.
 #
 #   list           받은 백업 이름 목록
-#   put NAME       표준입력을 NAME 으로 받는다. 이미 있으면 거절(덮어쓰지 않는다)
+#   put NAME       표준입력(age 암호문)을 NAME 으로 받는다. 이미 있으면 거절(덮어쓰지 않는다)
 #   sha256 NAME    받은 파일의 sha256 — 보낸 쪽이 온전히 갔는지 비교한다
 #   prune          KEEP_DAYS 지난 백업과 끊긴 조각(.part)을 지운다
 set -euo pipefail
@@ -22,7 +22,9 @@ PUT_WINDOW_DAYS=7 # 이 날수보다 오래된(또는 미래) 날짜 이름은 �
 MAX_BYTES=$((2 * 1024 * 1024 * 1024)) # 정상 덤프 ~95MB. 디스크를 채우는 업로드를 막는다
 # 이름의 날짜는 prod 가 KST 로 찍는다. 이 호스트가 UTC 여도 같은 달력으로 비교한다.
 export TZ=Asia/Seoul
-NAME_RE='^mysqldump-([0-9]{4}-[0-9]{2}-[0-9]{2})\.gz$'
+# 암호문(age)만 받는다. 보내는 쪽 설정이 어긋나도 평문 덤프가 이 호스트에 남지 않게.
+NAME_RE='^mysqldump-([0-9]{4}-[0-9]{2}-[0-9]{2})\.gz\.age$'
+AGE_MAGIC='age-encryption.org/v1'
 
 die() {
     echo "backup-receive: $*" >&2
@@ -71,6 +73,7 @@ put)
     # .part 로 받고 끝까지 받았을 때만 옮긴다 — 끊긴 조각이 정상 파일처럼 남지 않게.
     head -c $((MAX_BYTES + 1)) >"$NAME.part"
     [ "$(stat -c %s "$NAME.part")" -le "$MAX_BYTES" ] || die "너무 크다(상한 $MAX_BYTES bytes)"
+    [ "$(head -c ${#AGE_MAGIC} "$NAME.part")" = "$AGE_MAGIC" ] || die "age 암호문이 아니다 — 받지 않는다"
     mv "$NAME.part" "$NAME"
     trap - EXIT
     ;;

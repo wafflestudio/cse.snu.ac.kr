@@ -11,6 +11,8 @@ set -euo pipefail
 # 그래서 원격 명령은 셸 문장이 아니라 그 스크립트가 아는 list·put·sha256·prune 뿐이고,
 # 받는 경로·보관 기간도 받는 쪽이 정한다(이 키로 지우는 기간을 바꿀 수 없게).
 KEY=/secrets/backup_offsite # compose 가 읽기 전용으로 마운트한다
+# age 공개키(수신자) 파일. 한 줄에 하나, 여러 명이면 아무 개인키로나 풀린다. 개인키는 서버에 두지 않는다.
+RECIPIENTS=/secrets/backup_age.pub
 PORT=22
 SEND_WINDOW_DAYS=7 # backup-receive.sh 의 PUT_WINDOW_DAYS 와 같은 값. 더 오래된 것은 받는 쪽이 거절한다
 TOTAL=
@@ -23,27 +25,38 @@ ssh_() {
 
 copy_new() {
     [ -r "$KEY" ] || { echo "SSH 키를 읽을 수 없다: $KEY" >&2; exit 1; }
-    local remote copied=0 f name local_sum remote_sum
+    if ! { [ -f "$RECIPIENTS" ] && grep -q '^age1' "$RECIPIENTS"; }; then
+        echo "age 공개키가 없다: $RECIPIENTS (ops/README.md 의 키 만들기)" >&2
+        exit 1
+    fi
+    local remote copied=0 f name enc local_sum remote_sum
     remote=$(ssh_ list)
+    enc=$(mktemp)
+    trap 'rm -f "$enc"' EXIT
 
     while IFS= read -r f; do
-        name=$(basename "$f")
+        name=$(basename "$f").age
         printf '%s\n' "$remote" | grep -qxF "$name" && continue
 
-        ssh_ put "$name" <"$f"
+        # 받는 쪽(staging, 학외 클라우드)에는 암호문만 둔다. 암호화는 여기서, 풀기는 개인키를 가진 사람만.
+        # 파일로 한 번 떨궈 해시를 잰다 — age 출력은 매번 달라 원본 해시와 비교할 수 없다.
+        age -R "$RECIPIENTS" -o "$enc" "$f"
+        ssh_ put "$name" <"$enc"
 
         # 크기가 아니라 해시로 본다 — 같은 크기로 깨진 전송도 잡는다.
-        local_sum=$(sha256sum "$f" | cut -d' ' -f1)
+        local_sum=$(sha256sum "$enc" | cut -d' ' -f1)
         # </dev/null: 안 막으면 ssh 가 이 while 의 입력(파일 목록)을 먹어 버린다.
         remote_sum=$(ssh_ sha256 "$name" </dev/null)
         [ "$local_sum" = "$remote_sum" ] || {
             echo "해시 불일치: $name (로컬 $local_sum / 원격 $remote_sum)" >&2
             exit 1
         }
-        echo "복사: $name ($(($(stat -c %s "$f") / 1024 / 1024))MB)"
+        echo "복사: $name ($(($(stat -c %s "$enc") / 1024 / 1024))MB)"
         copied=$((copied + 1))
     done < <(find "$BACKUP_DIR" -maxdepth 1 -name 'mysqldump-*.gz' -mtime -"$SEND_WINDOW_DAYS" | sort)
 
+    rm -f "$enc"
+    trap - EXIT
     echo "$(date -Is) 오프사이트 복사 완료 → $OFFSITE_HOST (새로 $copied 개)"
 }
 

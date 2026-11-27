@@ -20,10 +20,13 @@ docker exec csereal_ops /opt/ops/<스크립트>.sh   # 한 번 손으로 돌려 
 ## 오프사이트 백업
 
 ```
-prod  csereal_ops ──ssh(전용 키 /secrets/backup_offsite)──> staging 168.107.16.249  csebackup 계정
-      backup-offsite.sh                                      authorized_keys: restrict,command=…
-        list · put NAME · sha256 NAME · prune                  └─ /usr/local/bin/csereal-backup-receive (= backup-receive.sh)
-                                                                    └─ ~csebackup/db-backup-from-prod/
+prod  ~/database/backup/mysqldump-DATE.gz (평문, 30일)
+        │ csereal_ops: backup-offsite.sh
+        │   age -R /secrets/backup_age.pub  → 암호문
+        └─ssh(전용 키 /secrets/backup_offsite)──> staging 168.107.16.249  csebackup 계정
+             list · put NAME · sha256 NAME · prune      authorized_keys: restrict,command=…
+                                                          └─ /usr/local/bin/csereal-backup-receive (= backup-receive.sh)
+                                                               └─ ~csebackup/db-backup-from-prod/mysqldump-DATE.gz.age (30일)
 ```
 
 받는 곳은 **staging 호스트와 같은 기계**다(`compose.ops.yml` 의 `OFFSITE_HOST` 와 `staging.env` 의 `SSH_HOST` 가 같다).
@@ -47,6 +50,51 @@ prod 가 털리면 그 키로 staging 셸을 얻고, 받아 둔 백업도 지울
 
 rrsync 를 쓰지 않은 이유: 보내는 쪽이 rsync 가 아니라 `ssh … <파일` 이고, rrsync 는 경로만 가둘 뿐
 그 안에서 덮어쓰기·지우기를 막지 못한다.
+
+### 암호화
+
+staging 은 학외 클라우드이고 앱과 디스크를 같이 쓴다. 그래서 그쪽엔 **암호문만** 둔다.
+prod 가 복사 직전에 age 공개키로 암호화하고(`backup-offsite.sh`), 받는 쪽은 `age-encryption.org/v1` 머리가
+없는 파일과 `.gz.age` 가 아닌 이름을 거절한다(`backup-receive.sh`). 보내는 쪽 설정이 어긋나도 평문이 남지 않는다.
+
+**개인키는 어느 서버에도 두지 않는다.** prod 에는 공개키만 있으니 prod 가 털려도 staging 의 사본은 못 푼다.
+반대로 개인키를 잃으면 오프사이트 사본 전부가 쓸모없어진다 — 보관이 이 방식의 전부다.
+
+#### 키 만들기·보관 (사람이, 한 번)
+
+```bash
+# 자기 노트북에서(서버 아님). brew install age / apt install age
+age-keygen -o csereal-backup-<이름>.key        # 출력의 "Public key: age1…" 이 공개키
+```
+
+- 개인키 파일은 팀 비밀번호 관리자(와플 공용 금고 등)에 넣고, 오프라인 사본을 하나 더 둔다. 노트북의 파일은 지운다.
+- 관리자 두 명이 각자 키를 만들어 공개키를 둘 다 넣는 것을 권한다(한 줄에 하나). 어느 한 개인키로도 풀린다 — 한 사람이 떠나도 복구가 된다.
+- prod 호스트 `~/secrets/backup_age.pub` 에 공개키 줄(`age1…`)을 쓴다. 없으면 복사가 실패하고 경보가 울린다.
+- 키를 바꾸면(사람이 바뀌는 등) 공개키 파일만 고친다. 이미 올라간 사본은 옛 키로만 풀리니 옛 개인키는 30일 더 둔다.
+
+#### 바꾸는 순서
+
+1. 키를 만들고 prod `~/secrets/backup_age.pub` 를 둔다.
+2. staging 에 새 `backup-receive.sh` 를 다시 설치한다(아래 `sudo install …` 줄). **이 스크립트가 바뀔 때마다 다시 설치해야 한다** — 배포가 덮어 주지 않는다.
+3. prod ops 를 다시 빌드하고 `docker exec csereal_ops /opt/ops/backup-offsite.sh` 로 한 번 돌린다.
+4. 아래 "오프사이트 사본 복구"로 한 번 풀어 본다. 풀리는 것을 보기 전까지는 백업이 있다고 말하지 않는다.
+5. staging 에 남은 옛 평문 사본(`mysqldump-*.gz`)은 30일 뒤 `prune` 이 지우지만, 4 가 끝나면 손으로 지우는 것을 권한다:
+   `sudo find ~csebackup/db-backup-from-prod -name 'mysqldump-*.gz' -delete`
+
+#### 오프사이트 사본 복구
+
+prod 의 `~/database/backup` 이 살아 있으면 그쪽이 먼저다(루트 README "DB 백업 복원"). prod 디스크를 잃었을 때:
+
+```bash
+# 개인키가 있는 기계에서. csebackup 은 셸이 없으니 ubuntu 로 sudo 해서 꺼낸다.
+ssh ubuntu@168.107.16.249 'sudo ls /home/csebackup/db-backup-from-prod'
+ssh ubuntu@168.107.16.249 'sudo cat /home/csebackup/db-backup-from-prod/mysqldump-YYYY-MM-DD.gz.age' >dump.gz.age
+
+docker run -d --name restore-test -e MYSQL_ROOT_PASSWORD=x -e MYSQL_DATABASE=csereal mysql:8.0
+age -d -i csereal-backup-<이름>.key dump.gz.age | gunzip | docker exec -i restore-test mysql -uroot -px csereal
+```
+
+풀린 평문(`gunzip` 결과)을 파일로 남기지 않는다. 운영 DB 에 넣을 때도 같은 파이프를 `csereal_db_container` 로 돌린다.
 
 ### 받는 쪽 설치 (사람이 staging 호스트에서, 한 번)
 
