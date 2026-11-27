@@ -62,7 +62,8 @@ case $CMD in
 list)
     no_name
     for f in mysqldump-*; do
-        [[ $f =~ $NAME_RE ]] && [ -f "$f" ] && printf '%s\n' "$f"
+        # 평문(.gz) 같은 다른 파일은 건너뛴다. && 로 이으면 마지막 파일이 안 맞을 때 그 실패가 종료 코드가 된다
+        if [[ $f =~ $NAME_RE ]] && [ -f "$f" ]; then printf '%s\n' "$f"; fi
     done
     ;;
 put)
