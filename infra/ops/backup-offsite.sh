@@ -5,12 +5,14 @@ set -euo pipefail
 # compose.ops.yml 이 정한다(기본값을 여기서 또 정하면 두 곳이 갈라진다).
 : "${BACKUP_DIR:?compose.ops.yml 이 넣어준다}"
 : "${METRICS_DIR:?compose.ops.yml 이 넣어준다}"
-: "${OFFSITE_HOST:?compose.ops.yml 이 넣어준다 (예: ubuntu@168.107.16.249)}"
-: "${OFFSITE_PATH:?compose.ops.yml 이 넣어준다}"
+: "${OFFSITE_HOST:?compose.ops.yml 이 넣어준다 (예: csebackup@168.107.16.249)}"
 
+# 받는 쪽 키는 authorized_keys 의 command= 로 backup-receive.sh 만 돌릴 수 있다.
+# 그래서 원격 명령은 셸 문장이 아니라 그 스크립트가 아는 list·put·sha256·prune 뿐이고,
+# 받는 경로·보관 기간도 받는 쪽이 정한다(이 키로 지우는 기간을 바꿀 수 없게).
 KEY=/secrets/backup_offsite # compose 가 읽기 전용으로 마운트한다
 PORT=22
-KEEP_DAYS=30
+SEND_WINDOW_DAYS=7 # backup-receive.sh 의 PUT_WINDOW_DAYS 와 같은 값. 더 오래된 것은 받는 쪽이 거절한다
 TOTAL=
 
 # accept-new: 첫 접속만 받아들이고 이후 호스트 키 변경은 거부한다.
@@ -21,35 +23,35 @@ ssh_() {
 
 copy_new() {
     [ -r "$KEY" ] || { echo "SSH 키를 읽을 수 없다: $KEY" >&2; exit 1; }
-    ssh_ "mkdir -p '$OFFSITE_PATH'"
-    local remote copied=0 f name local_size remote_size
-    remote=$(ssh_ "ls -1 '$OFFSITE_PATH' 2>/dev/null || true")
+    local remote copied=0 f name local_sum remote_sum
+    remote=$(ssh_ list)
 
-    for f in "$BACKUP_DIR"/mysqldump-*.gz; do
-        [ -e "$f" ] || continue
+    while IFS= read -r f; do
         name=$(basename "$f")
         printf '%s\n' "$remote" | grep -qxF "$name" && continue
 
-        # .part 로 받고 성공했을 때만 옮긴다 — 끊긴 조각이 정상 파일처럼 남지 않게.
-        ssh_ "cat > '$OFFSITE_PATH/$name.part' && mv '$OFFSITE_PATH/$name.part' '$OFFSITE_PATH/$name'" <"$f"
+        ssh_ put "$name" <"$f"
 
-        local_size=$(stat -c %s "$f")
-        remote_size=$(ssh_ "stat -c %s '$OFFSITE_PATH/$name'")
-        [ "$local_size" = "$remote_size" ] || {
-            echo "크기 불일치: $name (로컬 $local_size / 원격 $remote_size)" >&2
+        # 크기가 아니라 해시로 본다 — 같은 크기로 깨진 전송도 잡는다.
+        local_sum=$(sha256sum "$f" | cut -d' ' -f1)
+        # </dev/null: 안 막으면 ssh 가 이 while 의 입력(파일 목록)을 먹어 버린다.
+        remote_sum=$(ssh_ sha256 "$name" </dev/null)
+        [ "$local_sum" = "$remote_sum" ] || {
+            echo "해시 불일치: $name (로컬 $local_sum / 원격 $remote_sum)" >&2
             exit 1
         }
-        echo "복사: $name ($((local_size / 1024 / 1024))MB)"
+        echo "복사: $name ($(($(stat -c %s "$f") / 1024 / 1024))MB)"
         copied=$((copied + 1))
-    done
+    done < <(find "$BACKUP_DIR" -maxdepth 1 -name 'mysqldump-*.gz' -mtime -"$SEND_WINDOW_DAYS" | sort)
 
-    TOTAL=$(ssh_ "ls -1 '$OFFSITE_PATH'/mysqldump-*.gz 2>/dev/null | wc -l")
-    echo "$(date -Is) 오프사이트 복사 완료 → $OFFSITE_HOST:$OFFSITE_PATH (새로 $copied 개, 총 $TOTAL 개)"
+    echo "$(date -Is) 오프사이트 복사 완료 → $OFFSITE_HOST (새로 $copied 개)"
 }
 
-# 보관 정책을 한 곳에서만 정한다. 양쪽이 따로 늙으면 언젠가 어긋난다.
+# 보관 기간은 받는 쪽(backup-receive.sh)이 정한다. 여기선 정리하라고만 한다.
 prune_remote() {
-    ssh_ "find '$OFFSITE_PATH' -name 'mysqldump-*.gz' -mtime +$KEEP_DAYS -delete"
+    ssh_ prune
+    TOTAL=$(ssh_ list | wc -l)
+    echo "원격 보관 중: $TOTAL 개"
 }
 
 # 실패하면 이 함수에 도달하지 않아 값이 늙는다 — 그게 신호다.
