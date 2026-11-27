@@ -244,7 +244,7 @@ groups:
             condition: D
             for: 10m
             annotations:
-                summary: "지난주 같은 시각의 5배·초당 10건을 넘었다. 접근 로그에서 많이 부른 IP·경로를 볼 것(monitoring/README.md '접근 로그 점검')."
+                summary: "지난주 같은 시각의 5배·초당 10건을 넘었다. 접근 로그에서 많이 부른 IP·경로를 볼 것(monitoring/README.md '요청 급증 경보')."
             labels: { severity: warning }
             data:
                 - refId: A

@@ -98,68 +98,15 @@ Gmail 은 일반 비밀번호가 아니라 **앱 비밀번호**가 필요하다(
 보안점검 ②-8. `rules.yml` 의 `request-surge`: 백엔드 요청 수(`http_server_requests_seconds_count`, actuator 제외)가
 **지난주 같은 시각의 5배를 넘고 초당 10건을 넘은 채 10분** 가면 울린다. 고정값보다 지난주 대비가 덜 시끄럽다(학기 시작·발표 날의
 정상 급증은 매주 같은 때 반복되지 않는다). 기준은 2026-11 중순 14일 값(중앙값 0.8rps, 99% 2.7rps, 10rps 넘은 5분 구간 4번)으로
-잡았다. 울리면 아래 '접근 로그 점검' 1번으로 많이 부른 IP·경로를 본다.
-
-요청 수 제한(IP 별 429)은 하지 않는다 — Caddy 공식 이미지엔 없어 플러그인 빌드가 필요하고, 실제 공격 흔적이 없다(2026-11-27).
-
-## 접근 로그 점검 (정기 절차)
-
-보안점검 ④-6 에 "정기 점검 절차 마련 예정"으로 적은 것. 경보는 "무슨 일이 났다"만 알려 준다 — 경보에 안 걸리는 느린 이상
-(스캐너, 낯선 관리 요청, 낯선 SSH 로그인)은 사람이 정해진 때 본다. **점검은 읽기만 한다.** 호스트에서 고칠 일이 나오면 따로 정한다.
-
-### 어디에 무엇이 있나 (prod)
-
-| 로그 | 위치 | 보관 | 비고 |
-|---|---|---|---|
-| 엣지 접근 로그(Caddy json) | `~/proxy/caddy/data/logs/access.log` (+ 회전된 `.gz`) | 1년(`roll_keep_for 8760h`), 100MiB 단위 회전·압축 | 누가(IP) 무엇을(경로·메서드·상태·UA). Cookie·Authorization 은 Caddy 가 가린다 |
-| 백엔드 앱 로그 | `~/app/logs/` | **365일 또는 20GB 중 먼저 닿는 쪽** | 아래 주의 |
-| 컨테이너 stdout | `docker logs <이름>` | 100MB×3 | 배포 직후 오류 보기용, 기록으로는 짧다 |
-| SSH·fail2ban | `/var/log/auth.log`, `fail2ban-client status sshd` | logrotate 설정을 따른다(우분투 기본은 주 단위 4주) | 1년이 필요하면 logrotate 를 늘려야 한다 — 확인 필요 |
-| 경보 이력 | Grafana → 경보 → 기록 | Grafana 기본 | |
-
-⚠️ **앱 로그는 20GB 상한에 365일보다 먼저 닿을 수 있다.** `logback-spring.xml` 이 `maxHistory 365` 와 `totalSizeCap 20GB` 를 같이 걸어,
-하루 로그가 평균 56MB 를 넘으면 1년이 되기 전에 오래된 날부터 지워진다. 회전된 파일을 압축하지 않으므로(`.log`) 생각보다 빨리 찬다.
-월간 점검에서 가장 오래된 파일 날짜를 보고, 1년이 안 되는데 20GB 에 가까우면 둘 중 하나를 한다: 회전 파일 압축
-(`fileNamePattern` 끝을 `.log.gz` 로 — 보통 열 배 남짓 준다), 또는 상한을 디스크 여유(경보 10GB)를 보며 올리기.
-Caddy 접근 로그는 개수 상한(1000×100MiB)이 커서 1년이 먼저 닿지만, 압축 뒤 크기는 월간 점검에서 같이 본다.
-
-### 누가·언제·무엇을
-
-담당은 그 학기 운영 담당 한 명(지금 이성열). 바뀌면 이 줄과 경보 메일 수신처를 같이 바꾼다.
-결과는 팀 문서에 날짜·담당·본 것·조치 한 줄씩 남긴다("이상 없음"도 남긴다 — 점검했다는 기록이 점검표가 묻는 것이다).
-
-| 언제 | 무엇을 | 걸리는 시간 |
-|---|---|---|
-| 경보 메일이 올 때 | 경보 summary 가 가리키는 곳. 끝나면 원인 한 줄 기록 | 그때그때 |
-| 매주 월요일 | 아래 "주간 점검" 명령 | 10분 |
-| 매월 첫 주 | 보관 상태(앱 로그 가장 오래된 날짜·총량, 접근 로그 총량, auth.log 보관), Grafana 경보 규칙이 다 `Normal`/살아 있는지, 메일이 실제로 오는지 | 15분 |
-| 학기마다 | 이 절차가 맞는지, 담당·수신처 갱신 | |
-
-### 주간 점검 (prod 에서, 읽기만)
+잡았다. 울리면 접근 로그에서 많이 부른 IP·경로를 본다:
 
 ```bash
-ssh -p 9122 waffle@147.46.92.120
-# jq 가 호스트에 없으면 설치하지 말고 alias jq='docker run --rm -i ghcr.io/jqlang/jq'
-L=~/proxy/caddy/data/logs
-week() { find "$L" -name 'access*' -mtime -8 -print0 | xargs -0 zcat -f | jq -c 'select(.ts > (now - 7*86400))'; }
-
-# 1. 요청이 많은 IP — 크롤러 폭주·스크래핑
-week | jq -r .request.remote_ip | sort | uniq -c | sort -rn | head -20
-# 2. 4xx 를 많이 받은 IP·경로 — 취약점 스캐너(/wp-admin, /.env, /.git …)
-week | jq -r 'select(.status >= 400 and .status < 500) | "\(.request.remote_ip) \(.request.uri)"' | sort | uniq -c | sort -rn | head -20
-# 3. 5xx — 경보와 맞춰 본다
-week | jq -r 'select(.status >= 500) | "\(.ts|todate) \(.status) \(.request.method) \(.request.uri)"' | tail -20
-# 4. 쓰기 요청(관리 기능) — 아는 사람·학내 IP 인가
-week | jq -r 'select(.request.method != "GET" and .request.method != "HEAD" and (.request.uri|startswith("/api/"))) | "\(.request.remote_ip) \(.request.method) \(.request.uri|split("?")[0])"' | sort | uniq -c | sort -rn | head -20
-# 5. 로그인 시도
-week | jq -r 'select(.request.uri|startswith("/oauth2/") or startswith("/api/v1/login")) | .request.remote_ip' | sort | uniq -c | sort -rn | head
-# 6. SSH: 성공한 로그인이 아는 키·IP 인가, fail2ban 차단
-sudo grep 'Accepted' /var/log/auth.log | tail -20
-sudo fail2ban-client status sshd
+docker exec csereal_caddy sh -c 'tail -n 200000 /data/logs/access.log' | jq -r .request.remote_ip | sort | uniq -c | sort -rn | head
+docker exec csereal_caddy sh -c 'tail -n 200000 /data/logs/access.log' | jq -r .request.uri | cut -d'?' -f1 | sort | uniq -c | sort -rn | head
 ```
 
-볼 때 기준: 1·2 는 상위가 검색엔진·학내 IP 면 넘어간다. 낯선 IP 가 4 에 나오거나, 6 에 모르는 IP 의 `Accepted` 가 있으면
-그날 팀에 알린다. 1 의 수치는 요청 급증 경보 기준(위 "요청 급증 경보")을 다시 볼 때 쓴다.
+
+요청 수 제한(IP 별 429)은 하지 않는다 — Caddy 공식 이미지엔 없어 플러그인 빌드가 필요하고, 실제 공격 흔적이 없다(2026-11-27).
 
 ## 페이지 조회 통계 (GoatCounter)
 
