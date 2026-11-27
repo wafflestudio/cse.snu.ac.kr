@@ -16,12 +16,13 @@ docker compose -f monitoring/compose.yml up -d
 
 ## 보기
 
-두 포트 모두 **loopback 에만** 바인딩돼 있다. 호스트에 방화벽이 없어서(ufw 미설치,
-iptables INPUT ACCEPT) 게시 포트가 곧 공개 포트이기 때문이다. SSH 터널로 본다.
+**Grafana 는 https://cse.snu.ac.kr/grafana/ 로 밖에 연다(의도한 것).** 포트는 도커 게이트웨이(`172.17.0.1:3001`)에만
+게시하고 Caddy 가 `/grafana*` 를 그리로 넘긴다(`caddy/Caddyfile`). 로그인이 필요하다(admin / `GRAFANA_ADMIN_PASSWORD`).
+**Prometheus 는 loopback(`127.0.0.1:9090`)에만** 있다. 호스트에 방화벽이 없어서(ufw 미설치, iptables INPUT ACCEPT)
+게시 포트가 곧 공개 포트이기 때문이다. Prometheus 는 SSH 터널로 본다.
 
 ```bash
-ssh -p 9122 -L 3001:localhost:3001 -L 9090:localhost:9090 waffle@<prod-host>
-# Grafana     http://localhost:3001   (admin / GRAFANA_ADMIN_PASSWORD)
+ssh -p 9122 -L 9090:localhost:9090 waffle@<prod-host>
 # Prometheus  http://localhost:9090
 ```
 
