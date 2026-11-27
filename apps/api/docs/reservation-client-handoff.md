@@ -57,7 +57,7 @@ termStartTime < termEndTime
 
 응답 배열이 비어 있거나 선택한 날짜에 해당하는 term이 없을 수도 있습니다. 이때 클라이언트가 기본 일정으로 term을 만들어 대신하면 안 됩니다.
 
-요청 시작 시각을 포함하는 행이 없으면 서버는 `Missing`일 때만 적용하는 2주 `ONE_TIME` 대체 규칙(Missing-only fallback)을 검사합니다. 반대로 해당 행이 조건을 어기거나 두 개 이상이면 `RESERVE-07`로 요청을 차단합니다(fail closed). `/terms`에 행이 없다는 이유만으로 클라이언트가 성공이나 실패를 미리 판단해서는 안 됩니다. 서버 응답을 최종 기준으로 사용하세요.
+요청 시작 시각을 포함하는 행이 없으면 서버는 `Missing`일 때만 적용하는 한 달 `ONE_TIME` 대체 규칙(Missing-only fallback)을 검사합니다. 반대로 해당 행이 조건을 어기거나 두 개 이상이면 `RESERVE-07`로 요청을 차단합니다(fail closed). `/terms`에 행이 없다는 이유만으로 클라이언트가 성공이나 실패를 미리 판단해서는 안 됩니다. 서버 응답을 최종 기준으로 사용하세요.
 
 ## 3. 역할별 UI 처리
 
@@ -70,14 +70,14 @@ termStartTime < termEndTime
 | Reservation-only + 유효한 BEFORE phase | `RESERVE-04` | Labmaster 전용 안내 |
 | 유효한 GAP phase | `RESERVE-14` | 신청 마감 안내 |
 | 유효한 TERM_ACTIVE phase | `ONE_TIME` | 반복 횟수를 1로 제한 |
-| 대상 term 없음 | 2주 오픈 시각 이후 `ONE_TIME` | 임의의 일정으로 term을 보충하지 않음 |
+| 대상 term 없음 | 한 달 오픈 시각 이후 `ONE_TIME` | 임의의 일정으로 term을 보충하지 않음 |
 | 대상 term이 Invalid/Multiple | `RESERVE-07` | 운영 확인이 필요한 차단 상태 안내 |
 
 Phase는 신청 기간을 먼저 확인합니다. Term이 활성 상태여도 `applyStartTime <= now < applyEndTime`이면 `REGULAR_APPLICATION`입니다. Term 안에서 신청 기간이 열리기 전과 닫힌 뒤에는 `TERM_ACTIVE`입니다.
 
 Non-staff 예약은 각 회차가 `Asia/Seoul` 기준 같은 날짜 안에 끝나야 하며 3시간을 넘을 수 없습니다. 반복 예약의 시간은 회차별로 검사하며 합산하지 않습니다. Room ID 8은 `ROLE_PROFESSOR`가 추가로 필요하지만, professor 역할만으로 예약 생성 권한이 생기지는 않습니다.
 
-`ONE_TIME` 예약은 요청 날짜 2주 전 09:00 `Asia/Seoul`에 열립니다. 그날이 토요일이나 일요일이면 다음 월요일 09:00로 미룹니다. 유효한 활성 term에서는 `termStartTime`보다 먼저 열리지 않으며, 공휴일은 따로 보정하지 않습니다.
+`ONE_TIME` 예약은 요청 날짜 한 달 전 같은 날 09:00 `Asia/Seoul`에 열립니다. 그날이 토요일이나 일요일이면 다음 월요일 09:00로 미룹니다. 유효한 활성 term에서는 `termStartTime`보다 먼저 열리지 않으며, 공휴일은 따로 보정하지 않습니다.
 
 ## 4. 오류 코드
 
@@ -89,7 +89,7 @@ Non-staff 예약은 각 회차가 `Asia/Seoul` 기준 같은 날짜 안에 끝�
 | `RESERVE-08` | Labmaster가 application 시작 전에 요청함 |
 | `RESERVE-10` | 반복 횟수 정책 위반 |
 | `RESERVE-11` | `ONE_TIME` 반복 요청 |
-| `RESERVE-12` | 2주 `ONE_TIME` 오픈 전 요청 |
+| `RESERVE-12` | 한 달 `ONE_TIME` 오픈 전 요청 |
 | `RESERVE-14` | 신청 기간 종료 후 term 시작 전 GAP에서 요청함 |
 
 기존 room, permission, duration, overlap, past-time 오류 코드는 유지됩니다. 오류를 처리할 때는 HTTP status보다 code를 우선하세요. 알 수 없는 code만 서버 메시지나 기본 오류 처리로 넘깁니다.

@@ -105,7 +105,7 @@ WHERE term_start_time <= :request_start
 ORDER BY id;
 ```
 
-- 후보가 없으면 `Missing`이며, 2주 `ONE_TIME` 대체 규칙을 적용할 수 있습니다.
+- 후보가 없으면 `Missing`이며, 한 달 `ONE_TIME` 대체 규칙을 적용할 수 있습니다.
 - 후보가 하나이고 유효하면 저장된 phase를 적용합니다.
 - 후보가 하나지만 조건을 어기면 `Invalid`이며 `RESERVE-07`로 요청을 차단합니다.
 - 후보가 두 개 이상이면 `Multiple`이며 `RESERVE-07`로 요청을 차단합니다.

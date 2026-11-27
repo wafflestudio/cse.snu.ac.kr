@@ -106,7 +106,7 @@ class ReserveTermPolicyTest : BehaviorSpec({
             val reservationStartUtc = LocalDateTime.of(2026, 7, 17, 16, 0)
 
             policy.oneTimeReservationOpenTime(reservationStartUtc) shouldBe
-                LocalDateTime.of(2026, 7, 6, 0, 0)
+                LocalDateTime.of(2026, 6, 18, 0, 0)
         }
 
         then("active terms cannot open before their persisted start") {
