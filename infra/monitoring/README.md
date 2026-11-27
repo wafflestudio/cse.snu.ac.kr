@@ -227,12 +227,10 @@ week | jq -r 'select(.request.uri|startswith("/oauth2/") or startswith("/api/v1/
 # 6. SSH: 성공한 로그인이 아는 키·IP 인가, fail2ban 차단
 sudo grep 'Accepted' /var/log/auth.log | tail -20
 sudo fail2ban-client status sshd
-# 7. 업로드 무결성 기록(infra/ops/README.md)
-docker exec csereal_ops sh -c 'ls -t /integrity/changes-*.log 2>/dev/null | head -7 | xargs -r cat' | grep -v '^+' | head
 ```
 
-볼 때 기준: 1·2 는 상위가 검색엔진·학내 IP 면 넘어간다. 낯선 IP 가 4 에 나오거나, 6 에 모르는 IP 의 `Accepted` 가 있거나,
-7 에 `~`(내용 바뀜)가 있으면 그날 팀에 알린다. 1 의 수치는 요청 급증 경보 기준을 정할 재료로 쓴다(위 "요청 수 제한·급증 경보").
+볼 때 기준: 1·2 는 상위가 검색엔진·학내 IP 면 넘어간다. 낯선 IP 가 4 에 나오거나, 6 에 모르는 IP 의 `Accepted` 가 있으면
+그날 팀에 알린다. 1 의 수치는 요청 급증 경보 기준을 정할 재료로 쓴다(위 "요청 수 제한·급증 경보").
 
 ## 페이지 조회 통계 (GoatCounter)
 
