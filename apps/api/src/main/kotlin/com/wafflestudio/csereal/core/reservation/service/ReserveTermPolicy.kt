@@ -40,7 +40,7 @@ class ReserveTermPolicy(
 
     fun oneTimeReservationOpenTime(reservationStart: LocalDateTime): LocalDateTime {
         val reservationDate = reservationStart.toInstant(ZoneOffset.UTC).atZone(SEOUL_ZONE).toLocalDate()
-        return adjustWeekend(reservationDate.minusWeeks(2).atTime(OPEN_TIME))
+        return adjustWeekend(reservationDate.minusMonths(1).atTime(OPEN_TIME))
             .atZone(SEOUL_ZONE)
             .withZoneSameInstant(ZoneOffset.UTC)
             .toLocalDateTime()

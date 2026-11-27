@@ -218,8 +218,8 @@ class ReservationServiceTest(
     }
 
     "a UTC ONE_TIME request opens at the weekend-adjusted Monday derived in Seoul" {
-        val reservationStartUtc = LocalDateTime.of(2026, 7, 19, 13, 0)
-        val openingUtc = LocalDateTime.of(2026, 7, 6, 0, 0)
+        val reservationStartUtc = LocalDateTime.of(2026, 7, 20, 13, 0)
+        val openingUtc = LocalDateTime.of(2026, 6, 22, 0, 0)
 
         val before = harness(openingUtc.minusSeconds(1))
         authenticateRoles("ROLE_RESERVE")

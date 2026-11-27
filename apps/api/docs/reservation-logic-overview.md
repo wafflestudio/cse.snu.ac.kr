@@ -47,7 +47,7 @@ termStartTime <= requestStart < termEndTime
 
 | 결과 | 의미 | Non-staff 동작 |
 |---|---|---|
-| `Missing` | 포함하는 행이 없음 | 2주 `ONE_TIME` 대체 규칙 검사 |
+| `Missing` | 포함하는 행이 없음 | 한 달 `ONE_TIME` 대체 규칙 검사 |
 | `Valid` | 행이 하나이고 시각 및 metadata pair 조건을 만족함 | 저장된 phase 적용 |
 | `Invalid` | 행이 하나지만 조건을 어김 | `RESERVE-07 TERM_NOT_REGISTERED` |
 | `Multiple` | 포함하는 행이 두 개 이상임 | `RESERVE-07 TERM_NOT_REGISTERED` |
@@ -74,10 +74,10 @@ Term 안에서 신청 기간이 열리면 phase는 `TERM_ACTIVE -> REGULAR_APPLI
 유효한 활성 term에서 `ONE_TIME` 예약이 열리는 시각은 다음 두 값 중 늦은 값입니다.
 
 ```text
-max(termStartTime UTC, toUtc(adjustWeekend(toSeoulDate(requestStart UTC) - 2 weeks at 09:00 Asia/Seoul)))
+max(termStartTime UTC, toUtc(adjustWeekend(toSeoulDate(requestStart UTC) - 1 month at 09:00 Asia/Seoul)))
 ```
 
-`Missing` 대체 규칙에는 term 시작 시각이 없으므로 주말을 보정한 2주 전 오픈 시각만 사용합니다. 두 `ONE_TIME` 경로 모두 `recurringWeeks == 1`이어야 합니다. 오픈 전에는 `RESERVE-12`, 반복 요청에는 `RESERVE-11`을 반환합니다. 공휴일은 보정하지 않습니다.
+`Missing` 대체 규칙에는 term 시작 시각이 없으므로 주말을 보정한 한 달 전 오픈 시각만 사용합니다. 두 `ONE_TIME` 경로 모두 `recurringWeeks == 1`이어야 합니다. 오픈 전에는 `RESERVE-12`, 반복 요청에는 `RESERVE-11`을 반환합니다. 공휴일은 보정하지 않습니다.
 
 ## 4. 예약 회차와 충돌
 
