@@ -2,8 +2,8 @@
 FROM alpine:3.20
 
 # docker-cli: DB 컨테이너 안 mysqldump 호출  ·  openssh-client: 오프사이트 복사
-# tzdata: 스케줄과 파일명 날짜가 KST 기준  ·  openssl: 인증서 만료 확인
-RUN apk add --no-cache bash docker-cli openssh-client tzdata coreutils findutils openssl
+# tzdata: 스케줄과 파일명 날짜가 KST 기준  ·  openssl: 인증서 만료 확인  ·  age: 오프사이트 복사본 암호화
+RUN apk add --no-cache bash docker-cli openssh-client tzdata coreutils findutils openssl age
 
 COPY db-backup.sh backup-offsite.sh tls-expiry.sh /opt/ops/
 RUN chmod +x /opt/ops/*.sh

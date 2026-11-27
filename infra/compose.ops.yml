@@ -16,9 +16,9 @@ services:
             METRICS_DIR: /metrics
             DB_CONTAINER: csereal_db_container
             TLS_HOST: cse.snu.ac.kr # 만료를 지켜볼 사이트
-            # 오프사이트 복사 대상(staging 호스트).
-            OFFSITE_HOST: ubuntu@168.107.16.249
-            OFFSITE_PATH: db-backup-from-prod/
+            # 오프사이트 복사 대상. staging 호스트(staging.env 의 SSH_HOST)와 같은 기계의 전용 계정이다.
+            # 받는 경로·보관 기간은 받는 쪽 backup-receive.sh 가 정한다(ops/README.md).
+            OFFSITE_HOST: csebackup@168.107.16.249
         volumes:
             # DB 컨테이너 안 mysqldump 를 부르기 위해. ⚠️ 소켓은 root 권한과 등가다.
             - /var/run/docker.sock:/var/run/docker.sock
@@ -28,6 +28,8 @@ services:
             - ops-metrics:/metrics
             # 오프사이트 복사용 전용 SSH 키.
             - ../secrets/backup_offsite:/secrets/backup_offsite:ro
+            # 오프사이트 복사본을 암호화할 age 공개키. 개인키는 서버에 두지 않는다(ops/README.md).
+            - ../secrets/backup_age.pub:/secrets/backup_age.pub:ro
         restart: unless-stopped
         logging:
             driver: json-file

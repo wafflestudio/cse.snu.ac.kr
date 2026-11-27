@@ -98,6 +98,7 @@ GitHub 에는 Environment `production`·`staging` 의 시크릿 `SSH_KEY` 와 �
 | `monitoring.env` | `GF_SECURITY_ADMIN_PASSWORD` · `GF_SMTP_*`(prod) |
 | `certs/` | TLS 인증서·키. `production.env` 의 경로와 맞아야 합니다 |
 | `backup_offsite` | 백업용 SSH 개인키(prod) |
+| `backup_age.pub` | 오프사이트 사본을 암호화할 age 공개키(prod). 개인키는 서버에 두지 않는다 — [`infra/ops/README.md`](infra/ops/README.md) |
 
 ### DB 백업 복원
 
@@ -107,3 +108,5 @@ GitHub 에는 Environment `production`·`staging` 의 시크릿 `SSH_KEY` 와 �
 docker run -d --name restore-test -e MYSQL_ROOT_PASSWORD=x -e MYSQL_DATABASE=csereal mysql:8.0
 gunzip -c ~/database/backup/mysqldump-YYYY-MM-DD.gz | docker exec -i restore-test mysql -uroot -px csereal
 ```
+
+staging 호스트의 오프사이트 사본은 age 로 암호화돼 있어 개인키가 있어야 풀린다. 꺼내고 푸는 법은 [`infra/ops/README.md`](infra/ops/README.md) "오프사이트 사본 복구".
