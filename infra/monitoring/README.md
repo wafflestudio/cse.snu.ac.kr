@@ -93,85 +93,14 @@ GF_SMTP_FROM_ADDRESS=<보내는 계정>
 
 Gmail 은 일반 비밀번호가 아니라 **앱 비밀번호**가 필요하다(2단계 인증 켠 뒤 발급).
 
-## 요청 수 제한·급증 경보 (제안 — 기준값 미정)
+## 요청 급증 경보
 
-보안점검 ②-8 에 "요청 수 제한·급증 경보 적용 예정"으로 적었다. 기준은 접근 로그(Caddy json, #133 에서 켬)가 몇 주
-쌓인 뒤 정하기로 했다. 그때 바로 고를 수 있게 지금 가능한 것과 필요한 것을 적어 둔다. **아래 숫자 자리(`<…>`)는 비워 둔다.**
+보안점검 ②-8. `rules.yml` 의 `request-surge`: 백엔드 요청 수(`http_server_requests_seconds_count`, actuator 제외)가
+**지난주 같은 시각의 5배를 넘고 초당 10건을 넘은 채 10분** 가면 울린다. 고정값보다 지난주 대비가 덜 시끄럽다(학기 시작·발표 날의
+정상 급증은 매주 같은 때 반복되지 않는다). 기준은 2026-11 중순 14일 값(중앙값 0.8rps, 99% 2.7rps, 10rps 넘은 5분 구간 4번)으로
+잡았다. 울리면 아래 '접근 로그 점검' 1번으로 많이 부른 IP·경로를 본다.
 
-```
-인터넷 → Caddy(접근 로그 /data/logs/access.log, IP 가 보인다) → web :3000 (http_requests_total)
-                                                              → api :8080 (http_server_requests_seconds_count)
-                                                                              └─ Prometheus 15초 → Grafana 경보
-```
-
-### 1. 급증 경보 — 지금 있는 지표로 된다
-
-앱 두 곳이 이미 요청 수를 낸다(전체 합계, IP 구분 없음). 고정값보다 **지난주 같은 시각 대비 배수**가 덜 시끄럽다
-(학기 시작·발표 날처럼 정상 급증은 하루 단위로 반복되지 않는다). 초안 — 기준이 정해지면 `rules.yml` 에 넣는다.
-
-```yaml
-- uid: request-surge
-  title: API 요청이 평소보다 크게 늘었다
-  condition: D
-  for: 10m
-  annotations:
-    summary: "지난주 같은 시각의 <배수>배를 넘었다. 접근 로그에서 많이 부른 IP·경로를 볼 것(아래 '접근 로그 점검')."
-  labels: { severity: warning }
-  data:
-    - refId: A   # 지금
-      relativeTimeRange: { from: 600, to: 0 }
-      datasourceUid: prometheus
-      model: { expr: 'sum(rate(http_server_requests_seconds_count{uri!~"/actuator.*"}[5m]))', instant: true, refId: A }
-    - refId: B   # 지난주 같은 시각
-      relativeTimeRange: { from: 600, to: 0 }
-      datasourceUid: prometheus
-      model: { expr: 'sum(rate(http_server_requests_seconds_count{uri!~"/actuator.*"}[5m] offset 7d))', instant: true, refId: B }
-    - refId: D   # 배수와 바닥값(한밤 소량 트래픽의 배수 튐 막기) 둘 다 넘을 때
-      datasourceUid: __expr__
-      model: { type: math, expression: '$A > <배수> * $B && $A > <초당 최소 요청>', refId: D }
-```
-
-프론트는 같은 꼴로 `http_requests_total{job="frontend"}`. 기준 잡는 법: Grafana Explore 에서 위 A 를 몇 주치 그려
-평소 최대치와 지난주 대비 비율의 분포를 보고, 실제로 있었던 크롤러 폭주(접근 로그)가 몇 배였는지와 맞춘다.
-
-**IP 별 경보는 지표로는 안 된다** — Prometheus 에 IP 라벨을 넣으면 시계열이 터진다. IP 별로 보려면 접근 로그를 읽는
-수집기(Loki+Alloy 등)가 필요한데, 지금 규모에선 아래 2·3 이 낫다.
-
-Caddy 도 자체 지표(`caddy_http_requests_total`, 상태 코드별)를 낼 수 있다. 엣지에서 막힌 요청(429 등)까지 세려면 쓴다.
-관리 API(:2019)를 게시하면 설정을 바꿀 수 있으니 열지 말고, 지표 전용 리스너(`metrics` 핸들러)를 `172.17.0.1` 에만 게시해 긁는다.
-
-### 2. 요청 수 제한 — 플러그인이 필요하다
-
-- **Caddy 공식 이미지에는 rate limit 이 없다.** `github.com/mholt/caddy-ratelimit` 을 넣어 xcaddy 로 빌드한 이미지가 필요하다
-  (`compose.caddy.yml` 의 `image: caddy:2.11.7-alpine` → `caddy:2.11.7-builder` 로 빌드하는 Dockerfile, 배포 때 같이 빌드).
-  Caddy 조직 공식 모듈이 아니라 Matt Holt 개인 레포다. 판 올릴 때 같이 봐야 할 것이 하나 는다.
-- 걸면 이런 꼴이다. 넘으면 429 와 `Retry-After` 를 준다.
-
-  ```caddyfile
-  { order rate_limit before reverse_proxy }
-  rate_limit {
-      zone api_per_ip {
-          match { path /api/* }
-          key    {remote_host}
-          window <창>        # 예: 1m
-          events <허용 요청>
-      }
-  }
-  ```
-
-- 걸기 전에 확인할 것: **접근 로그의 `request.remote_ip` 가 진짜 클라이언트 IP 인가.** docker 포트 게시가 원래 IP 를 넘기지 못하면
-  (IPv6·userland-proxy) 모두 `172.17.0.1` 로 찍히고, 그 상태로 IP 별 제한을 걸면 사이트 전체가 한 IP 로 묶여 막힌다.
-  `jq -r .request.remote_ip access.log | sort | uniq -c | sort -rn | head` 로 본다.
-- 학내 NAT 뒤 여러 사람이 한 IP 로 나올 수 있다(연구실·기숙사). 기준은 그것보다 넉넉하게, 처음엔 `/api/*` 중 무거운 것(검색·목록)만.
-
-### 3. 다른 길
-
-- **fail2ban**(호스트에 이미 있다)이 Caddy 접근 로그를 읽어 폭주 IP 를 막는 jail. 플러그인 없이 된다. 단 Caddy 가 docker 라
-  기본 `INPUT` 체인 차단은 게시 포트에 안 먹는다 — `chain = DOCKER-USER` 로 걸어야 한다. 로그 경로는 호스트 `~/proxy/caddy/data/logs/access.log`.
-- 앱(Spring)에서 bucket4j 등으로 제한: Caddy 가 붙이는 `X-Forwarded-For` 를 믿도록 설정해야 하고, 웹 SSR 이 api 를 직접 부르는 길(`API_ORIGIN`)과
-  구분해야 한다. 엣지에서 막는 것보다 손이 많이 간다.
-
-권하는 순서: (1) 로그 몇 주 → 기준 → 1 의 경보부터 켠다(관찰). (2) 실제 폭주가 보이면 그때 2 또는 fail2ban 으로 막는다.
+요청 수 제한(IP 별 429)은 하지 않는다 — Caddy 공식 이미지엔 없어 플러그인 빌드가 필요하고, 실제 공격 흔적이 없다(2026-11-27).
 
 ## 접근 로그 점검 (정기 절차)
 
@@ -230,7 +159,7 @@ sudo fail2ban-client status sshd
 ```
 
 볼 때 기준: 1·2 는 상위가 검색엔진·학내 IP 면 넘어간다. 낯선 IP 가 4 에 나오거나, 6 에 모르는 IP 의 `Accepted` 가 있으면
-그날 팀에 알린다. 1 의 수치는 요청 급증 경보 기준을 정할 재료로 쓴다(위 "요청 수 제한·급증 경보").
+그날 팀에 알린다. 1 의 수치는 요청 급증 경보 기준(위 "요청 급증 경보")을 다시 볼 때 쓴다.
 
 ## 페이지 조회 통계 (GoatCounter)
 

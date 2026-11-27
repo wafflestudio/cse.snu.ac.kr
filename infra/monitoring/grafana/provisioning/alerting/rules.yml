@@ -236,3 +236,34 @@ groups:
                       conditions:
                           - evaluator: { type: lt, params: [10000000000] }
                       refId: C
+
+          # API 요청 급증(보안점검 ②-8). 고정값보다 지난주 같은 시각 대비가 덜 시끄럽다 — 학기 시작처럼 정상 급증은
+          # 매주 같은 때 반복되지 않는다. 바닥값 10rps: 2026-11 중순 14일 동안 중앙값 0.8, 99% 2.7, 10rps 를 넘은 5분 구간 4번.
+          - uid: request-surge
+            title: API 요청이 평소보다 크게 늘었다
+            condition: D
+            for: 10m
+            annotations:
+                summary: "지난주 같은 시각의 5배·초당 10건을 넘었다. 접근 로그에서 많이 부른 IP·경로를 볼 것(monitoring/README.md '접근 로그 점검')."
+            labels: { severity: warning }
+            data:
+                - refId: A
+                  relativeTimeRange: { from: 600, to: 0 }
+                  datasourceUid: prometheus
+                  model:
+                      expr: sum(rate(http_server_requests_seconds_count{uri!~"/actuator.*"}[5m]))
+                      instant: true
+                      refId: A
+                - refId: B
+                  relativeTimeRange: { from: 600, to: 0 }
+                  datasourceUid: prometheus
+                  model:
+                      expr: sum(rate(http_server_requests_seconds_count{uri!~"/actuator.*"}[5m] offset 7d))
+                      instant: true
+                      refId: B
+                - refId: D
+                  datasourceUid: __expr__
+                  model:
+                      type: math
+                      expression: "$A > 5 * $B && $A > 10"
+                      refId: D
