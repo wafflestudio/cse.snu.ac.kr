@@ -93,6 +93,21 @@ GF_SMTP_FROM_ADDRESS=<보내는 계정>
 
 Gmail 은 일반 비밀번호가 아니라 **앱 비밀번호**가 필요하다(2단계 인증 켠 뒤 발급).
 
+## 요청 급증 경보
+
+보안점검 ②-8. `rules.yml` 의 `request-surge`: 백엔드 요청 수(`http_server_requests_seconds_count`, actuator 제외)가
+**지난주 같은 시각의 5배를 넘고 초당 10건을 넘은 채 10분** 가면 울린다. 고정값보다 지난주 대비가 덜 시끄럽다(학기 시작·발표 날의
+정상 급증은 매주 같은 때 반복되지 않는다). 기준은 2026-11 중순 14일 값(중앙값 0.8rps, 99% 2.7rps, 10rps 넘은 5분 구간 4번)으로
+잡았다. 울리면 접근 로그에서 많이 부른 IP·경로를 본다:
+
+```bash
+docker exec csereal_caddy sh -c 'tail -n 200000 /data/logs/access.log' | jq -r .request.remote_ip | sort | uniq -c | sort -rn | head
+docker exec csereal_caddy sh -c 'tail -n 200000 /data/logs/access.log' | jq -r .request.uri | cut -d'?' -f1 | sort | uniq -c | sort -rn | head
+```
+
+
+요청 수 제한(IP 별 429)은 하지 않는다 — Caddy 공식 이미지엔 없어 플러그인 빌드가 필요하고, 실제 공격 흔적이 없다(2026-11-27).
+
 ## 페이지 조회 통계 (GoatCounter)
 
 Prometheus 의 요청 수는 서버 관점이다 — 크롤러가 섞이고 클라이언트 네비게이션은 안 잡힌다.
