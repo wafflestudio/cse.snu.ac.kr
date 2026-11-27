@@ -23,7 +23,7 @@ Dockerfile.es         nori 플러그인을 넣은 Elasticsearch 이미지
 VM 디스크는 씬 프로비저닝이다. 게스트가 쓴 만큼 하이퍼바이저 디스크가 차고, 게스트에서 지운 것은 `fstrim` 이 돌아야 돌아간다(`fstrim.timer` 주간, 켜져 있다). 2026-09-12 에 하이퍼바이저 디스크가 가득 차 VM 이 굳은 적이 있다. 쓸데없는 데이터를 남기지 않는다.
 
 - `host-deploy.sh` 가 배포마다 옛 이미지(3개 남김)·빌드 캐시(2GB 상한)·이름 없는 볼륨을 걷어낸다.
-- 백엔드 로그 14일(`logback-spring.xml`), DB 백업 30일(`ops/db-backup.sh`), 컨테이너 로그 100MB×3.
+- 백엔드 로그 365일·20GB 중 먼저 닿는 쪽(`logback-spring.xml`), Caddy 접근 로그 1년(`caddy/Caddyfile`), DB 백업 30일(`ops/db-backup.sh`), 컨테이너 로그 100MB×3. 정기 점검은 `monitoring/README.md` "접근 로그 점검".
 - journald 는 상한을 두어야 한다(기본은 디스크의 10%까지 자란다). 호스트에서 한 번:
 
   ```sh
